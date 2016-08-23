@@ -1,0 +1,15 @@
+version: 0.0.1.{build}
+skip_tags: true
+os: Visual Studio 2015
+platform: Any CPU
+configuration: Release
+assembly_info:
+  patch: true
+  file: AssemblyInfo.*
+  assembly_version: '{version}'
+  assembly_file_version: '{version}'
+before_build:
+- nuget restore src/Logikfabrik.Overseer.sln
+build:
+  project: src/Logikfabrik.Overseer.sln
+  verbosity: minimal
