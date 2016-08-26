@@ -5,8 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              mc:Ignorable="d" 
              d:DesignHeight="100" d:DesignWidth="100">
-    <Button Style="{StaticResource BuildProviderView}" 
-            x:Name="AddConnection">
+    <Button x:Name="AddConnection">
         <Button.Template>
             <ControlTemplate TargetType="{x:Type Button}">
                 <Grid Background="{TemplateBinding Background}">
@@ -19,9 +18,8 @@
                             </Grid.RowDefinitions>
                             <TextBlock Grid.Row="1" 
                                        Foreground="{TemplateBinding Foreground}" 
-                                       Text="{Binding ProviderName}" 
-                                       TextWrapping="WrapWithOverflow" 
-                                       Margin="5" />
+                                       FontSize="{TemplateBinding FontSize}"
+                                       Text="{Binding ProviderName}" />
                         </Grid>
                     </Border>
                 </Grid>

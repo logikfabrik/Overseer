@@ -6,6 +6,29 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
-            <Label Content="Hej" />
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <TextBlock Style="{StaticResource Header}" Text="VS Team Services" />
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <StackPanel Grid.Row="0">
+                <TextBlock Text="Url" />
+                <TextBox x:Name="Url" />
+            </StackPanel>
+            <StackPanel Grid.Row="1">
+                <TextBlock Text="Token" />
+                <TextBox x:Name="Token" />
+            </StackPanel>
+            <StackPanel Grid.Row="2" Orientation="Horizontal">
+                <Button Content="OK" />
+                <Button Content="Cancel" />
+            </StackPanel>
+        </Grid>
     </Grid>
 </UserControl>
