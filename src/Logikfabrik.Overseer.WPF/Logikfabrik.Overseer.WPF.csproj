@@ -80,6 +80,7 @@
     <Compile Include="Styles\CommonColors.cs" />
     <Compile Include="ViewModels\AddConnectionViewModel.cs" />
     <Compile Include="ViewModels\BuildProviderViewModel.cs" />
+    <Compile Include="ViewModels\ConnectionsViewModel.cs" />
     <None Include="packages.config" />
     <AppDesigner Include="Properties\" />
     <AdditionalFiles Include="stylecop.json" />

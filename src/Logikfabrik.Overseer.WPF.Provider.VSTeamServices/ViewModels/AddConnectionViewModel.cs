@@ -4,6 +4,8 @@
 
 namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices.ViewModels
 {
+    using Caliburn.Micro;
+
     /// <summary>
     /// The <see cref="AddConnectionViewModel" /> class.
     /// </summary>
@@ -12,6 +14,15 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices.ViewModels
     {
         private string _url = "https://";
         private string _token;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AddConnectionViewModel" /> class.
+        /// </summary>
+        /// <param name="eventAggregator">The event aggregator.</param>
+        public AddConnectionViewModel(IEventAggregator eventAggregator)
+            : base(eventAggregator)
+        {
+        }
 
         /// <summary>
         /// Gets or sets the URL.

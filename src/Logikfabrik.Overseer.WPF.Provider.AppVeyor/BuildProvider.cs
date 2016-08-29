@@ -19,7 +19,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor
         /// <value>
         /// The name.
         /// </value>
-        public override string Name { get; } = "AppVeyor";
+        public override string ProviderName { get; } = "AppVeyor";
 
         public override IEnumerable<IProject> GetProjects()
         {

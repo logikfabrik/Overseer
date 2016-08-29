@@ -44,6 +44,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BuildProviderSettings.cs" />
+    <Compile Include="BuildProviderSettingsRepository.cs" />
     <Compile Include="BuildStatus.cs" />
     <Compile Include="BuildProvider.cs" />
     <Compile Include="IBuild.cs" />

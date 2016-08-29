@@ -11,13 +11,25 @@ namespace Logikfabrik.Overseer.WPF.Styles
     /// </summary>
     public static class CommonBrushes
     {
+        /// <summary>
+        /// Gets the control focus brush.
+        /// </summary>
+        /// <value>
+        /// The control focus brush.
+        /// </value>
+        public static Brush ControlFocus => GetBrush(CommonColors.ControlFocus);
+
+        /// <summary>
+        /// Gets the input control selection brush.
+        /// </summary>
+        /// <value>
+        /// The input control selection brush.
+        /// </value>
+        public static Brush InputControlSelection => GetBrush(CommonColors.ControlFocus);
+
         private static Brush GetBrush(Color color)
         {
             return new SolidColorBrush(color);
         }
-
-        public static Brush ControlFocus => GetBrush(CommonColors.ControlFocus);
-
-        public static Brush InputControlSelection => GetBrush(CommonColors.ControlFocus);
     }
 }

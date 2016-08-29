@@ -45,7 +45,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// <value>
         /// The name of the provider.
         /// </value>
-        public string ProviderName => _buildProvider.Name;
+        public string ProviderName => _buildProvider.ProviderName;
 
         /// <summary>
         /// Gets the type of the view model to add connection.

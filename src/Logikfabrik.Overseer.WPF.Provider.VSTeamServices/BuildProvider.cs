@@ -19,7 +19,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices
         /// <value>
         /// The name.
         /// </value>
-        public override string Name { get; } = "VS Team Services";
+        public override string ProviderName { get; } = "VS Team Services";
 
         public override IEnumerable<IProject> GetProjects()
         {

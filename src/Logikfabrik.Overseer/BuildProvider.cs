@@ -7,17 +7,17 @@ namespace Logikfabrik.Overseer
     using System.Collections.Generic;
 
     /// <summary>
-    /// The <see cref="BuildProvider" /> interface.
+    /// The <see cref="BuildProvider" /> class.
     /// </summary>
     public abstract class BuildProvider
     {
         /// <summary>
-        /// Gets the name.
+        /// Gets the provider name.
         /// </summary>
         /// <value>
-        /// The name.
+        /// The provider name.
         /// </value>
-        public abstract string Name { get; }
+        public abstract string ProviderName { get; }
 
         /// <summary>
         /// Gets the projects.

@@ -2,12 +2,11 @@
 //   Copyright (c) 2016 anton(at)logikfabrik.se. Licensed under the MIT license.
 // </copyright>
 
-namespace Logikfabrik.Overseer.WPF.Client.ViewModels
+namespace Logikfabrik.Overseer.WPF.ViewModels
 {
     using System;
     using System.Collections.Generic;
     using Caliburn.Micro;
-    using WPF.ViewModels;
 
     /// <summary>
     /// The <see cref="ConnectionsViewModel" /> class.

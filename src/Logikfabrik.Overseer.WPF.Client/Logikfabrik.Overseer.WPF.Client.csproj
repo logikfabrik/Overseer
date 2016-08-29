@@ -85,7 +85,6 @@
     </Compile>
     <Compile Include="AppBootstrapper.cs" />
     <Compile Include="ViewModels\AppViewModel.cs" />
-    <Compile Include="ViewModels\ConnectionsViewModel.cs" />
     <Compile Include="ViewModels\ProjectsViewModel.cs" />
     <Compile Include="ViewModels\ProjectViewModel.cs" />
     <Compile Include="Views\AppView.xaml.cs">

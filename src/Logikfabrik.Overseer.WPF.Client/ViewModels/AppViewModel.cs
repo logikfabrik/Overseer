@@ -4,7 +4,9 @@
 
 namespace Logikfabrik.Overseer.WPF.Client.ViewModels
 {
+    using System;
     using Caliburn.Micro;
+    using WPF.ViewModels;
 
     /// <summary>
     /// The <see cref="AppViewModel" /> class.
@@ -16,8 +18,20 @@ namespace Logikfabrik.Overseer.WPF.Client.ViewModels
         /// </summary>
         /// <param name="eventAggregator">The event aggregator.</param>
         /// <param name="connectionsViewModel">The connections view model.</param>
+        /// <exception cref="ArgumentNullException">Thrown if <paramref name="eventAggregator" /> is <c>null</c>.</exception>
+        /// <exception cref="ArgumentNullException">Thrown if <paramref name="connectionsViewModel" /> is <c>null</c>.</exception>
         public AppViewModel(IEventAggregator eventAggregator, ConnectionsViewModel connectionsViewModel)
         {
+            if (eventAggregator == null)
+            {
+                throw new ArgumentNullException(nameof(eventAggregator));
+            }
+
+            if (connectionsViewModel == null)
+            {
+                throw new ArgumentNullException(nameof(connectionsViewModel));
+            }
+
             eventAggregator.Subscribe(this);
 
             ActivateItem(connectionsViewModel);
