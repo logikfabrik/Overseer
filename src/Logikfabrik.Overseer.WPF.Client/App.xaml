@@ -5,6 +5,7 @@
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/Logikfabrik.Overseer.WPF;component/Styles/Shared.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/Logikfabrik.Overseer.WPF;component/Styles/Button.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/Logikfabrik.Overseer.WPF;component/Styles/TextBlock.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/Logikfabrik.Overseer.WPF;component/Styles/TextBox.xaml"/>

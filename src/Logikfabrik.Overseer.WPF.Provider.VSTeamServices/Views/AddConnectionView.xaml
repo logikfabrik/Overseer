@@ -9,8 +9,8 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
-        <TextBlock Style="{StaticResource Header}" Text="VS Team Services" />
+        </Grid.RowDefinitions> 
+        <!--<TextBlock Style="{StaticResource Header}" Text="VS Team Services" />-->
         <Grid Grid.Row="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />

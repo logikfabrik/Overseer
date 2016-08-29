@@ -10,6 +10,7 @@
           VerticalAlignment="Center">
         <ContentControl MinHeight="300" 
                         MinWidth="300" 
+                        Focusable="False"
                         x:Name="ActiveItem" />
     </Grid>
 </Window>
