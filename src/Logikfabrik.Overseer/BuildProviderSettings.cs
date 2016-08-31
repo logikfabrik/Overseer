@@ -14,13 +14,7 @@ namespace Logikfabrik.Overseer
     {
         private string _name;
         private Type _providerType;
-
-        public BuildProviderSettings(string name, Type providerType)
-        {
-            Name = name;
-            ProviderType = providerType;
-            Settings = new Dictionary<string, string>();
-        }
+        private Setting[] _settings;
 
         /// <summary>
         /// Gets or sets the name.
@@ -28,7 +22,7 @@ namespace Logikfabrik.Overseer
         /// <value>
         /// The name.
         /// </value>
-        /// <exception cref="ArgumentException">Thrown if name is <c>null</c> or white space.</exception>
+        /// <exception cref="ArgumentException">Thrown if <paramref name="value" /> is <c>null</c> or white space.</exception>
         public string Name
         {
             get
@@ -40,13 +34,20 @@ namespace Logikfabrik.Overseer
             {
                 if (string.IsNullOrWhiteSpace(value))
                 {
-                    throw new ArgumentException("Name cannot be null or white space.", nameof(value));
+                    throw new ArgumentException("Value cannot be null or white space.", nameof(value));
                 }
 
                 _name = value;
             }
         }
 
+        /// <summary>
+        /// Gets or sets the provider type.
+        /// </summary>
+        /// <value>
+        /// The provider type.
+        /// </value>
+        /// <exception cref="ArgumentNullException">Thrown if <paramref name="value" /> is <c>null</c>.</exception>
         public Type ProviderType
         {
             get
@@ -58,11 +59,36 @@ namespace Logikfabrik.Overseer
             {
                 if (value == null)
                 {
-                    throw new ArgumentNullException(nameof(value), "Provider type cannot be null.");
+                    throw new ArgumentNullException(nameof(value), "Value cannot be null.");
                 }
+
+                _providerType = value;
             }
         }
 
-        public IDictionary<string, string> Settings { get; private set; }
+        /// <summary>
+        /// Gets or sets the settings.
+        /// </summary>
+        /// <value>
+        /// The settings.
+        /// </value>
+        /// <exception cref="ArgumentNullException">Thrown if <paramref name="value" /> is <c>null</c>.</exception>
+        public Setting[] Settings
+        {
+            get
+            {
+                return _settings;
+            }
+
+            set
+            {
+                if (value == null)
+                {
+                    throw new ArgumentNullException(nameof(value), "Value cannot be null.");
+                }
+
+                _settings = value;
+            }
+        }
     }
 }
