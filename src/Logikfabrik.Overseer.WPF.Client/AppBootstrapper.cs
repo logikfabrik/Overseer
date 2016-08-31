@@ -13,6 +13,7 @@ namespace Logikfabrik.Overseer.WPF.Client
     using Caliburn.Micro;
     using Ninject;
     using Ninject.Modules;
+    using Settings;
     using ViewModels;
 
     /// <summary>
@@ -74,6 +75,10 @@ namespace Logikfabrik.Overseer.WPF.Client
             // Default setup.
             _kernel.Bind<IWindowManager>().To<WindowManager>().InSingletonScope();
             _kernel.Bind<IEventAggregator>().To<EventAggregator>().InSingletonScope();
+
+            // Program setup.
+            _kernel.Bind<IBuildProviderSettingsStore>().To<BuildProviderSettingsStore>().InSingletonScope();
+            _kernel.Bind<IBuildProviderSettingsRepository>().To<BuildProviderSettingsRepository>().InSingletonScope();
 
             _kernel.Load(SelectAssemblies());
         }

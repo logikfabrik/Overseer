@@ -2,7 +2,7 @@
 //   Copyright (c) 2016 anton(at)logikfabrik.se. Licensed under the MIT license.
 // </copyright>
 
-namespace Logikfabrik.Overseer
+namespace Logikfabrik.Overseer.Settings
 {
     using System.Collections.Generic;
     using System.Threading.Tasks;
@@ -12,7 +12,7 @@ namespace Logikfabrik.Overseer
     /// </summary>
     public interface IBuildProviderSettingsStore
     {
-        void SaveAsync(IEnumerable<BuildProviderSettings> settings);
+        Task SaveAsync(IEnumerable<BuildProviderSettings> settings);
 
         Task<IEnumerable<BuildProviderSettings>> LoadAsync();
     }

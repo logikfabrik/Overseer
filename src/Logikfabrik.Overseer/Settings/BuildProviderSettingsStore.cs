@@ -2,12 +2,13 @@
 //   Copyright (c) 2016 anton(at)logikfabrik.se. Licensed under the MIT license.
 // </copyright>
 
-namespace Logikfabrik.Overseer
+namespace Logikfabrik.Overseer.Settings
 {
     using System;
     using System.Collections.Generic;
     using System.IO;
     using System.Linq;
+    using System.Reflection;
     using System.Threading;
     using System.Threading.Tasks;
     using System.Xml.Serialization;
@@ -25,18 +26,16 @@ namespace Logikfabrik.Overseer
         /// </summary>
         public BuildProviderSettingsStore()
         {
-            _path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "settings.xml");
+            _path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), GetProduct(), "Providers.xml");
             _handle = new EventWaitHandle(true, EventResetMode.AutoReset, "b4908818-002e-42fb-a058-86ea4e47e36e");
         }
 
-        /// <inheritdoc />
         public async Task<IEnumerable<BuildProviderSettings>> LoadAsync()
         {
             return await Task.Run(() => Load());
         }
 
-        /// <inheritdoc />
-        public async void SaveAsync(IEnumerable<BuildProviderSettings> settings)
+        public async Task SaveAsync(IEnumerable<BuildProviderSettings> settings)
         {
             if (settings == null)
             {
@@ -44,6 +43,13 @@ namespace Logikfabrik.Overseer
             }
 
             await Task.Run(() => Save(settings));
+        }
+
+        private static string GetProduct()
+        {
+            var attribute = Attribute.GetCustomAttribute(Assembly.GetExecutingAssembly(), typeof(AssemblyProductAttribute), false) as AssemblyProductAttribute;
+
+            return attribute?.Product;
         }
 
         private IEnumerable<BuildProviderSettings> Load()
@@ -57,11 +63,6 @@ namespace Logikfabrik.Overseer
 
             try
             {
-                if (File.GetAttributes(_path).IsEncrypted())
-                {
-                    File.Decrypt(_path);
-                }
-
                 using (var reader = new StreamReader(_path))
                 {
                     var serializer = new XmlSerializer(typeof(BuildProviderSettings[]));
@@ -71,11 +72,6 @@ namespace Logikfabrik.Overseer
             }
             finally
             {
-                if (!File.GetAttributes(_path).IsEncrypted())
-                {
-                    File.Encrypt(_path);
-                }
-
                 _handle.Set();
             }
         }
@@ -91,23 +87,27 @@ namespace Logikfabrik.Overseer
 
             try
             {
+                var directoryPath = Path.GetDirectoryName(_path);
+
+                // ReSharper disable once AssignNullToNotNullAttribute
+                if (!Directory.Exists(directoryPath))
+                {
+                    Directory.CreateDirectory(directoryPath);
+                }
+
                 using (var writer = new StreamWriter(_path, false))
                 {
-                    var serializer = new XmlSerializer(typeof (BuildProviderSettings[]));
+                    var serializer = new XmlSerializer(typeof(BuildProviderSettings[]));
 
                     serializer.Serialize(writer, settings.ToArray());
                 }
             }
-            catch (Exception ex)
-            {
-                var d = 0;
-            }
             finally
             {
-                //if (File.Exists(_path))
-                //{
-                //    File.Encrypt(_path);
-                //}
+                if (File.Exists(_path) && !File.GetAttributes(_path).HasFlag(FileAttributes.Encrypted))
+                {
+                    File.Encrypt(_path);
+                }
 
                 _handle.Set();
             }

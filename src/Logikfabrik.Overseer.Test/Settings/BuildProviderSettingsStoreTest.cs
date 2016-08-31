@@ -1,8 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Logikfabrik.Overseer.Settings;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Logikfabrik.Overseer.Test
+namespace Logikfabrik.Overseer.Test.Settings
 {
     [TestClass]
     public class BuildProviderSettingsStoreTest
@@ -15,7 +14,7 @@ namespace Logikfabrik.Overseer.Test
                 new BuildProviderSettings
                 {
                     Name = "Name",
-                    ProviderType = typeof (object),
+                    ProviderTypeName = typeof (object).AssemblyQualifiedName,
                     Settings = new[]
                     {
                         new Setting { Name = "Name", Value = "Value"}
@@ -25,7 +24,7 @@ namespace Logikfabrik.Overseer.Test
 
             var store = new BuildProviderSettingsStore();
 
-            store.SaveAsync(settings);
+            store.SaveAsync(settings).Wait();
         }
 
         [TestMethod]

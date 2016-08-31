@@ -44,18 +44,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BuildProviderSettings.cs" />
-    <Compile Include="BuildProviderSettingsRepository.cs" />
-    <Compile Include="BuildProviderSettingsStore.cs" />
+    <Compile Include="Settings\BuildProviderSettings.cs" />
+    <Compile Include="Settings\BuildProviderSettingsRepository.cs" />
+    <Compile Include="Settings\BuildProviderSettingsStore.cs" />
     <Compile Include="BuildStatus.cs" />
     <Compile Include="BuildProvider.cs" />
-    <Compile Include="FileAttributesExtensions.cs" />
     <Compile Include="IBuild.cs" />
-    <Compile Include="IBuildProviderSettingsRepository.cs" />
-    <Compile Include="IBuildProviderSettingsStore.cs" />
+    <Compile Include="Settings\IBuildProviderSettingsRepository.cs" />
+    <Compile Include="Settings\IBuildProviderSettingsStore.cs" />
     <Compile Include="IProject.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Setting.cs" />
+    <Compile Include="Settings\Setting.cs" />
   </ItemGroup>
   <ItemGroup>
     <AdditionalFiles Include="stylecop.json" />

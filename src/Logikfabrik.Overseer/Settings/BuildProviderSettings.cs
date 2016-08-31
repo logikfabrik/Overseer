@@ -2,10 +2,9 @@
 //   Copyright (c) 2016 anton(at)logikfabrik.se. Licensed under the MIT license.
 // </copyright>
 
-namespace Logikfabrik.Overseer
+namespace Logikfabrik.Overseer.Settings
 {
     using System;
-    using System.Collections.Generic;
 
     /// <summary>
     /// The <see cref="BuildProvider" /> class.
@@ -13,7 +12,7 @@ namespace Logikfabrik.Overseer
     public class BuildProviderSettings
     {
         private string _name;
-        private Type _providerType;
+        private string _providerTypeName;
         private Setting[] _settings;
 
         /// <summary>
@@ -42,27 +41,27 @@ namespace Logikfabrik.Overseer
         }
 
         /// <summary>
-        /// Gets or sets the provider type.
+        /// Gets or sets the provider type name.
         /// </summary>
         /// <value>
-        /// The provider type.
+        /// The provider type name.
         /// </value>
-        /// <exception cref="ArgumentNullException">Thrown if <paramref name="value" /> is <c>null</c>.</exception>
-        public Type ProviderType
+        /// <exception cref="ArgumentException">Thrown if <paramref name="value" /> is <c>null</c> or white space.</exception>
+        public string ProviderTypeName
         {
             get
             {
-                return _providerType;
+                return _providerTypeName;
             }
 
             set
             {
-                if (value == null)
+                if (string.IsNullOrWhiteSpace(value))
                 {
-                    throw new ArgumentNullException(nameof(value), "Value cannot be null.");
+                    throw new ArgumentException("Value cannot be null or white space.", nameof(value));
                 }
 
-                _providerType = value;
+                _providerTypeName = value;
             }
         }
 
@@ -89,6 +88,17 @@ namespace Logikfabrik.Overseer
 
                 _settings = value;
             }
+        }
+
+        /// <summary>
+        /// Gets the provider type.
+        /// </summary>
+        /// <returns>The provider type.</returns>
+        public Type GetProviderType()
+        {
+            return string.IsNullOrWhiteSpace(_providerTypeName)
+                ? null
+                : Type.GetType(_providerTypeName, false);
         }
     }
 }
