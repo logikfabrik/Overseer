@@ -35,7 +35,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             }
 
             BuildProviderViewModels = buildProviderViewModels;
-            ConnectionViewModels = buildProviderSettingsRepository.Get().Select(settings => new ConnectionViewModel(BuildProviderFactory.GetProvider(settings), settings));
+            ConnectionViewModels = buildProviderSettingsRepository.Get().Select(settings => new ConnectionViewModel(settings));
         }
 
         /// <summary>

@@ -5,6 +5,7 @@
 namespace Logikfabrik.Overseer.WPF.ViewModels
 {
     using System;
+    using System.Collections.Generic;
     using Settings;
 
     /// <summary>
@@ -15,28 +16,48 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// <summary>
         /// Initializes a new instance of the <see cref="ConnectionViewModel"/> class.
         /// </summary>
-        /// <param name="provider">The provider.</param>
         /// <param name="settings">The settings.</param>
-        /// <exception cref="ArgumentNullException">Thrown if <paramref name="provider" /> is <c>null</c>.</exception>
         /// <exception cref="ArgumentNullException">Thrown if <paramref name="settings" /> is <c>null</c>.</exception>
-        public ConnectionViewModel(BuildProvider provider, BuildProviderSettings settings)
+        public ConnectionViewModel(BuildProviderSettings settings)
         {
-            if (provider == null)
-            {
-                throw new ArgumentNullException(nameof(provider));
-            }
-
             if (settings == null)
             {
                 throw new ArgumentNullException(nameof(settings));
             }
 
-            ProviderName = provider.ProviderName;
+            ProviderName = BuildProviderFactory.GetProvider(settings).ProviderName;
             ConnectionName = settings.Name;
+
+
+            ProjectBuildViewModels = new List<ProjectBuildViewModel>()
+            {
+                new ProjectBuildViewModel(),
+                new ProjectBuildViewModel(),
+                new ProjectBuildViewModel(),
+                new ProjectBuildViewModel(),
+                new ProjectBuildViewModel(),
+                new ProjectBuildViewModel(),
+                new ProjectBuildViewModel(),
+            };
+
         }
 
-        public string ConnectionName { get; set; }
+        /// <summary>
+        /// Gets the connection name.
+        /// </summary>
+        /// <value>
+        /// The connection name.
+        /// </value>
+        public string ConnectionName { get; }
 
-        public string ProviderName { get; set; }
+        /// <summary>
+        /// Gets provider name.
+        /// </summary>
+        /// <value>
+        /// The provider name.
+        /// </value>
+        public string ProviderName { get; }
+
+        public IEnumerable<ProjectBuildViewModel> ProjectBuildViewModels { get; set; }
     }
 }

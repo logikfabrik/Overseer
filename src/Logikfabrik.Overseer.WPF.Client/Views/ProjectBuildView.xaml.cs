@@ -1,18 +1,18 @@
-﻿// <copyright file="ProjectView.xaml.cs" company="Logikfabrik">
+﻿// <copyright file="ProjectBuildView.xaml.cs" company="Logikfabrik">
 //   Copyright (c) 2016 anton(at)logikfabrik.se. Licensed under the MIT license.
 // </copyright>
 
 namespace Logikfabrik.Overseer.WPF.Client.Views
 {
     /// <summary>
-    /// The <see cref="ProjectView" /> class.
+    /// The <see cref="ProjectBuildView" /> class.
     /// </summary>
-    public partial class ProjectView
+    public partial class ProjectBuildView
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="ProjectView" /> class.
+        /// Initializes a new instance of the <see cref="ProjectBuildView" /> class.
         /// </summary>
-        public ProjectView()
+        public ProjectBuildView()
         {
             InitializeComponent();
         }

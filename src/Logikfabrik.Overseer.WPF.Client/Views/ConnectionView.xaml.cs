@@ -1,12 +1,17 @@
-﻿namespace Logikfabrik.Overseer.WPF.Client.Views
-{
-    using System.Windows.Controls;
+﻿// <copyright file="ConnectionView.xaml.cs" company="Logikfabrik">
+//   Copyright (c) 2016 anton(at)logikfabrik.se. Licensed under the MIT license.
+// </copyright>
 
+namespace Logikfabrik.Overseer.WPF.Client.Views
+{
     /// <summary>
-    /// Interaction logic for ConnectionView.xaml
+    /// The <see cref="ConnectionView" /> class.
     /// </summary>
     public partial class ConnectionView
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ConnectionView" /> class.
+        /// </summary>
         public ConnectionView()
         {
             InitializeComponent();
