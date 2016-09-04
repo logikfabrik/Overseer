@@ -5,6 +5,7 @@
 namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices.ViewModels
 {
     using Caliburn.Micro;
+    using Settings;
 
     /// <summary>
     /// The <see cref="AddConnectionViewModel" /> class.
@@ -19,8 +20,9 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices.ViewModels
         /// Initializes a new instance of the <see cref="AddConnectionViewModel" /> class.
         /// </summary>
         /// <param name="eventAggregator">The event aggregator.</param>
-        public AddConnectionViewModel(IEventAggregator eventAggregator)
-            : base(eventAggregator)
+        /// <param name="buildProviderSettingsRepository">The build provider settings repository.</param>
+        public AddConnectionViewModel(IEventAggregator eventAggregator, IBuildProviderSettingsRepository buildProviderSettingsRepository)
+            : base(eventAggregator, buildProviderSettingsRepository)
         {
         }
 
@@ -62,6 +64,21 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices.ViewModels
                 _token = value;
                 NotifyOfPropertyChange(() => Token);
             }
+        }
+
+        /// <inheritdoc />
+        protected override BuildProviderSettings GetSettings()
+        {
+            return new BuildProviderSettings
+            {
+                Name = Name,
+                ProviderTypeName = typeof(BuildProvider).AssemblyQualifiedName,
+                Settings = new[]
+                {
+                    new Setting {Name = "Url", Value = Url},
+                    new Setting {Name = "Token", Value = Token}
+                }
+            };
         }
     }
 }

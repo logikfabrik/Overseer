@@ -31,24 +31,12 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
                 throw new ArgumentNullException(nameof(settings));
             }
 
-            Provider = provider;
-            Settings = settings;
+            ProviderName = provider.ProviderName;
+            ConnectionName = settings.Name;
         }
 
-        /// <summary>
-        /// Gets the provider.
-        /// </summary>
-        /// <value>
-        /// The provider.
-        /// </value>
-        public BuildProvider Provider { get; }
+        public string ConnectionName { get; set; }
 
-        /// <summary>
-        /// Gets the settings.
-        /// </summary>
-        /// <value>
-        /// The settings.
-        /// </value>
-        public BuildProviderSettings Settings { get; }
+        public string ProviderName { get; set; }
     }
 }

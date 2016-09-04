@@ -6,6 +6,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using Caliburn.Micro;
     using Settings;
 
@@ -34,6 +35,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             }
 
             BuildProviderViewModels = buildProviderViewModels;
+            ConnectionViewModels = buildProviderSettingsRepository.Get().Select(settings => new ConnectionViewModel(BuildProviderFactory.GetProvider(settings), settings));
         }
 
         /// <summary>

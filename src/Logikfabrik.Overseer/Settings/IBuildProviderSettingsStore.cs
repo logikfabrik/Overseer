@@ -12,8 +12,17 @@ namespace Logikfabrik.Overseer.Settings
     /// </summary>
     public interface IBuildProviderSettingsStore
     {
+        /// <summary>
+        /// Saves the specified settings.
+        /// </summary>
+        /// <param name="settings">The settings.</param>
+        /// <returns>A task.</returns>
         Task SaveAsync(IEnumerable<BuildProviderSettings> settings);
 
+        /// <summary>
+        /// Loads settings.
+        /// </summary>
+        /// <returns>A task.</returns>
         Task<IEnumerable<BuildProviderSettings>> LoadAsync();
     }
 }

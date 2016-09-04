@@ -4,7 +4,9 @@
 
 namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor.ViewModels
 {
+    using System;
     using Caliburn.Micro;
+    using Settings;
 
     /// <summary>
     /// The <see cref="AddConnectionViewModel" /> class.
@@ -16,9 +18,16 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor.ViewModels
         /// Initializes a new instance of the <see cref="AddConnectionViewModel" /> class.
         /// </summary>
         /// <param name="eventAggregator">The event aggregator.</param>
-        public AddConnectionViewModel(IEventAggregator eventAggregator)
-            : base(eventAggregator)
+        /// <param name="buildProviderSettingsRepository">The build provider settings repository.</param>
+        public AddConnectionViewModel(IEventAggregator eventAggregator, IBuildProviderSettingsRepository buildProviderSettingsRepository)
+            : base(eventAggregator, buildProviderSettingsRepository)
         {
+        }
+
+        /// <inheritdoc />
+        protected override BuildProviderSettings GetSettings()
+        {
+            throw new NotImplementedException();
         }
     }
 }

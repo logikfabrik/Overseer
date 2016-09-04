@@ -29,7 +29,10 @@ namespace Logikfabrik.Overseer.Settings
             }
 
             _buildProviderSettingsStore = buildProviderSettingsStore;
-            _currentSettings = new Lazy<IDictionary<Tuple<string, string>, BuildProviderSettings>>(() => _buildProviderSettingsStore.LoadAsync().Result.ToDictionary(GetKey, setting => setting));
+            _currentSettings = new Lazy<IDictionary<Tuple<string, string>, BuildProviderSettings>>(() =>
+            {
+                return _buildProviderSettingsStore.LoadAsync().Result.ToDictionary(GetKey, setting => setting);
+            });
         }
 
         /// <summary>

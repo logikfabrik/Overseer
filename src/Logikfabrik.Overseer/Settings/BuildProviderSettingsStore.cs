@@ -18,6 +18,8 @@ namespace Logikfabrik.Overseer.Settings
     /// </summary>
     public class BuildProviderSettingsStore : IBuildProviderSettingsStore
     {
+        private const string HandleName = "b4908818-002e-42fb-a058-86ea4e47e36e";
+
         private readonly string _path;
         private readonly EventWaitHandle _handle;
 
@@ -27,14 +29,16 @@ namespace Logikfabrik.Overseer.Settings
         public BuildProviderSettingsStore()
         {
             _path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), GetProduct(), "Providers.xml");
-            _handle = new EventWaitHandle(true, EventResetMode.AutoReset, "b4908818-002e-42fb-a058-86ea4e47e36e");
+            _handle = new EventWaitHandle(true, EventResetMode.AutoReset, HandleName);
         }
 
+        /// <inheritdoc />
         public async Task<IEnumerable<BuildProviderSettings>> LoadAsync()
         {
-            return await Task.Run(() => Load());
+            return await Task.Run(() => Load()).ConfigureAwait(false);
         }
 
+        /// <inheritdoc />
         public async Task SaveAsync(IEnumerable<BuildProviderSettings> settings)
         {
             if (settings == null)
@@ -42,7 +46,7 @@ namespace Logikfabrik.Overseer.Settings
                 throw new ArgumentNullException(nameof(settings));
             }
 
-            await Task.Run(() => Save(settings));
+            await Task.Run(() => Save(settings)).ConfigureAwait(false);
         }
 
         private static string GetProduct()
@@ -54,18 +58,18 @@ namespace Logikfabrik.Overseer.Settings
 
         private IEnumerable<BuildProviderSettings> Load()
         {
-            if (!File.Exists(_path))
-            {
-                return new BuildProviderSettings[] { };
-            }
-
             _handle.WaitOne();
 
             try
             {
+                if (!File.Exists(_path))
+                {
+                    return new BuildProviderSettings[] { };
+                }
+
                 using (var reader = new StreamReader(_path))
                 {
-                    var serializer = new XmlSerializer(typeof(BuildProviderSettings[]));
+                    var serializer = XmlSerializer.FromTypes(new[] { typeof(BuildProviderSettings[]) })[0];
 
                     return (BuildProviderSettings[])serializer.Deserialize(reader);
                 }
@@ -89,7 +93,11 @@ namespace Logikfabrik.Overseer.Settings
             {
                 var directoryPath = Path.GetDirectoryName(_path);
 
-                // ReSharper disable once AssignNullToNotNullAttribute
+                if (string.IsNullOrWhiteSpace(directoryPath))
+                {
+                    throw new Exception();
+                }
+
                 if (!Directory.Exists(directoryPath))
                 {
                     Directory.CreateDirectory(directoryPath);
@@ -97,7 +105,7 @@ namespace Logikfabrik.Overseer.Settings
 
                 using (var writer = new StreamWriter(_path, false))
                 {
-                    var serializer = new XmlSerializer(typeof(BuildProviderSettings[]));
+                    var serializer = XmlSerializer.FromTypes(new[] { typeof(BuildProviderSettings[]) })[0];
 
                     serializer.Serialize(writer, settings.ToArray());
                 }
