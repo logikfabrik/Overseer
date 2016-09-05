@@ -6,34 +6,15 @@
              xmlns:cal="http://www.caliburnproject.org"
              mc:Ignorable="d" 
              d:DesignHeight="500" d:DesignWidth="500">
+
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="auto" />
             <RowDefinition Height="*" />
-            <RowDefinition Height="auto" />
-            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        <Label Grid.Row="0" Content="Add Connection" />
-        <ItemsControl Grid.Row="1" ItemsSource="{Binding BuildProviderViewModels}">
-            <ItemsControl.ItemContainerStyle>
-                <Style>
-                    <Setter Property="FrameworkElement.Margin" Value="5" />
-                </Style>
-            </ItemsControl.ItemContainerStyle>
-            <ItemsControl.ItemTemplate>
-                <DataTemplate>
-                    <ContentControl Focusable="False" cal:View.Model="{Binding}" />
-                </DataTemplate>
-            </ItemsControl.ItemTemplate>
-            <ItemsControl.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <UniformGrid />
-                </ItemsPanelTemplate>
-            </ItemsControl.ItemsPanel>
-        </ItemsControl>
-        <Label Grid.Row="2" Content="Connections" />
-        <ScrollViewer Grid.Row="3">
-            <ItemsControl ItemsSource="{Binding ConnectionViewModels}">
+        <ScrollViewer Grid.Row="0">
+            <ItemsControl Focusable="False" 
+                          ItemsSource="{Binding ConnectionViewModels}">
                 <ItemsControl.ItemContainerStyle>
                     <Style>
                         <Setter Property="FrameworkElement.Margin" Value="5" />
@@ -41,7 +22,8 @@
                 </ItemsControl.ItemContainerStyle>
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <ContentControl Focusable="False" cal:View.Model="{Binding}" />
+                        <ContentControl Focusable="False" 
+                                        cal:View.Model="{Binding}" />
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
                 <ItemsControl.ItemsPanel>
@@ -51,5 +33,9 @@
                 </ItemsControl.ItemsPanel>
             </ItemsControl>
         </ScrollViewer>
+        <Button Grid.Row="1"
+                Content="Add..."
+                HorizontalAlignment="Center"
+                VerticalAlignment="Bottom" />
     </Grid>
 </UserControl>

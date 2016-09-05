@@ -16,8 +16,8 @@
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
-            <TextBlock Grid.Column="0" x:Name="CommitMessage" />
-            <TextBlock Grid.Column="1" x:Name="Version" />
+            <TextBlock Grid.Column="0" FontSize="12" FontWeight="Bold" x:Name="CommitMessage" />
+            <TextBlock Grid.Column="1" FontSize="12" FontWeight="Bold" x:Name="Version" />
         </Grid>
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
@@ -26,10 +26,10 @@
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <TextBlock Grid.Column="0" Text="Build date" />
-            <TextBlock Grid.Column="1" x:Name="CommitUser" />
-            <TextBlock Grid.Column="2" x:Name="Branch" />
-            <TextBlock Grid.Column="3" x:Name="Revision" />
+            <TextBlock Grid.Column="0" FontSize="10" Text="Build date" />
+            <TextBlock Grid.Column="1" FontSize="10" x:Name="CommitUser" />
+            <TextBlock Grid.Column="2" FontSize="10" x:Name="Branch" />
+            <TextBlock Grid.Column="3" FontSize="10" x:Name="Revision" />
         </Grid>
     </Grid>
 </UserControl>

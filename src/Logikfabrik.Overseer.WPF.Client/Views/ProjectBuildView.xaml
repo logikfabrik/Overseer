@@ -15,8 +15,11 @@
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
-                <TextBlock Grid.Row="0" Text="Project name" />
-                <ContentControl Grid.Row="1" cal:View.Model="{Binding BuildViewModel}" />
+                <TextBlock Grid.Row="0" 
+                           Text="Project name" />
+                <ContentControl Grid.Row="1" 
+                                Focusable="False" 
+                                cal:View.Model="{Binding BuildViewModel}" />
             </Grid>
         </Button.Content>
     </Button>

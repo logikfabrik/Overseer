@@ -13,6 +13,7 @@
                     <client:AppBootstrapper x:Key="Bootstrapper" />
                     <Style x:Key="AppView" TargetType="{x:Type Window}">
                         <Setter Property="Background" Value="#FF565656" />
+                        <!--<Setter Property="WindowStyle" Value="None" />-->
                     </Style>
                 </ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
