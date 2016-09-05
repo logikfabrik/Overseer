@@ -80,6 +80,7 @@
     <Compile Include="Styles\CommonColors.cs" />
     <Compile Include="ViewModels\AddConnectionViewModel.cs" />
     <Compile Include="ViewModels\BuildProviderViewModel.cs" />
+    <Compile Include="ViewModels\BuildViewModel.cs" />
     <Compile Include="ViewModels\ConnectionsViewModel.cs" />
     <Compile Include="ViewModels\ConnectionViewModel.cs" />
     <Compile Include="ViewModels\ProjectBuildViewModel.cs" />

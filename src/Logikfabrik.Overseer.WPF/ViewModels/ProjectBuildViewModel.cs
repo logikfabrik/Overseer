@@ -11,5 +11,26 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     /// </summary>
     public class ProjectBuildViewModel : PropertyChangedBase
     {
+        public ProjectBuildViewModel()
+        {
+            ProjectName = "My Project";
+            BuildViewModel = new BuildViewModel();
+        }
+
+        /// <summary>
+        /// Gets the project name.
+        /// </summary>
+        /// <value>
+        /// The project name.
+        /// </value>
+        public string ProjectName { get; }
+
+        /// <summary>
+        /// Gets the build view model.
+        /// </summary>
+        /// <value>
+        /// The build view model.
+        /// </value>
+        public BuildViewModel BuildViewModel { get; }
     }
 }
