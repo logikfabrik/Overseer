@@ -14,6 +14,17 @@
                     </Setter.Value>
                 </Setter>
             </Style>
+            <Style x:Key="CircleFocusVisual">
+                <Setter Property="Control.Template">
+                    <Setter.Value>
+                        <ControlTemplate>
+                            <Ellipse SnapsToDevicePixels="true" 
+                                     Stroke="{x:Static local:CommonBrushes.ControlFocus}" 
+                                     StrokeThickness="1" />
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
         </ResourceDictionary>
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>
