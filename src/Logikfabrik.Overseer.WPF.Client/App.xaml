@@ -9,11 +9,12 @@
                 <ResourceDictionary Source="pack://application:,,,/Logikfabrik.Overseer.WPF;component/Styles/Button.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/Logikfabrik.Overseer.WPF;component/Styles/TextBlock.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/Logikfabrik.Overseer.WPF;component/Styles/TextBox.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/Logikfabrik.Overseer.WPF;component/Styles/ScrollViewer.xaml"/>
                 <ResourceDictionary>
                     <client:AppBootstrapper x:Key="Bootstrapper" />
                     <Style x:Key="AppView" TargetType="{x:Type Window}">
-                        <Setter Property="Width" Value="280" />
-                        <Setter Property="Width" Value="480" />
+                        <Setter Property="Width" Value="400" />
+                        <Setter Property="Height" Value="700" />
                         <Setter Property="Background" Value="#FF565656" />
                         <!--<Setter Property="WindowStyle" Value="None" />-->
                     </Style>
