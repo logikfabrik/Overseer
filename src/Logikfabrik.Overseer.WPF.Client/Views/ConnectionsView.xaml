@@ -32,7 +32,8 @@
                 </ItemsControl.ItemsPanel>
             </ItemsControl>
         </ScrollViewer>
-        <Button Grid.Row="1"
+        <Button x:Name="AddConnection"
+                Grid.Row="1"
                 Height="55"
                 Width="55"
                 Margin="10"

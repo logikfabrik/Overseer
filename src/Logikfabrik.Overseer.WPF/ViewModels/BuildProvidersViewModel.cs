@@ -13,6 +13,11 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     /// </summary>
     public class BuildProvidersViewModel : PropertyChangedBase
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="BuildProvidersViewModel" /> class.
+        /// </summary>
+        /// <param name="buildProviderViewModels">The build provider view models.</param>
+        /// <exception cref="ArgumentNullException">Thrown if <paramref name="buildProviderViewModels" /> is <c>null</c>.</exception>
         public BuildProvidersViewModel(IEnumerable<BuildProviderViewModel> buildProviderViewModels)
         {
             if (buildProviderViewModels == null)

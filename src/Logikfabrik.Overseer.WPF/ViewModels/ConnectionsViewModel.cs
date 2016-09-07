@@ -15,36 +15,30 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     /// </summary>
     public class ConnectionsViewModel : PropertyChangedBase
     {
+        private readonly IEventAggregator _eventAggregator;
+
         /// <summary>
         /// Initializes a new instance of the <see cref="ConnectionsViewModel" /> class.
         /// </summary>
+        /// <param name="eventAggregator">The event aggregator.</param>
         /// <param name="buildProviderSettingsRepository">The build provider settings repository.</param>
-        /// <param name="buildProviderViewModels">The build provider view models.</param>
+        /// <exception cref="ArgumentNullException">Thrown if <paramref name="eventAggregator" /> is <c>null</c>.</exception>
         /// <exception cref="ArgumentNullException">Thrown if <paramref name="buildProviderSettingsRepository" /> is <c>null</c>.</exception>
-        /// <exception cref="ArgumentNullException">Thrown if <paramref name="buildProviderViewModels" /> is <c>null</c>.</exception>
-        public ConnectionsViewModel(IBuildProviderSettingsRepository buildProviderSettingsRepository, IEnumerable<BuildProviderViewModel> buildProviderViewModels)
+        public ConnectionsViewModel(IEventAggregator eventAggregator, IBuildProviderSettingsRepository buildProviderSettingsRepository)
         {
+            if (eventAggregator == null)
+            {
+                throw new ArgumentNullException(nameof(eventAggregator));
+            }
+
             if (buildProviderSettingsRepository == null)
             {
                 throw new ArgumentNullException(nameof(buildProviderSettingsRepository));
             }
 
-            if (buildProviderViewModels == null)
-            {
-                throw new ArgumentNullException(nameof(buildProviderViewModels));
-            }
-
-            BuildProviderViewModels = buildProviderViewModels;
+            _eventAggregator = eventAggregator;
             ConnectionViewModels = buildProviderSettingsRepository.Get().Select(settings => new ConnectionViewModel(settings));
         }
-
-        /// <summary>
-        /// Gets the build providers.
-        /// </summary>
-        /// <value>
-        /// The build providers.
-        /// </value>
-        public IEnumerable<BuildProviderViewModel> BuildProviderViewModels { get; }
 
         /// <summary>
         /// Gets the connections
@@ -53,5 +47,12 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// The connections.
         /// </value>
         public IEnumerable<ConnectionViewModel> ConnectionViewModels { get; }
+
+        public void AddConnection()
+        {
+            var eventMessage = new NavigationEvent(typeof(BuildProvidersViewModel));
+
+            _eventAggregator.PublishOnUIThread(eventMessage);
+        }
     }
 }
