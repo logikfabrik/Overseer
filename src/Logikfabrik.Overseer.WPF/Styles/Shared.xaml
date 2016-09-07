@@ -3,6 +3,8 @@
                     xmlns:local="clr-namespace:Logikfabrik.Overseer.WPF.Styles">
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary>
+            <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+            
             <Style x:Key="FocusVisual">
                 <Setter Property="Control.Template">
                     <Setter.Value>

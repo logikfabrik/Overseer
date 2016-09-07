@@ -5,22 +5,30 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Logikfabrik.Overseer.WPF.Client.Views"
              xmlns:cal="http://www.caliburnproject.org"
+             xmlns:styles="clr-namespace:Logikfabrik.Overseer.WPF.Styles;assembly=Logikfabrik.Overseer.WPF"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <Button HorizontalContentAlignment="Stretch" 
-            VerticalContentAlignment="Stretch">
+            VerticalContentAlignment="Stretch"
+            Padding="0"
+            BorderThickness="0">
         <Button.Content>
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                </Grid.RowDefinitions>
-                <TextBlock Grid.Row="0" 
-                           Text="Project name" />
-                <ContentControl Grid.Row="1" 
-                                Focusable="False" 
-                                cal:View.Model="{Binding BuildViewModel}" />
-            </Grid>
+            <Border SnapsToDevicePixels="true" 
+                    BorderBrush="{x:Static styles:CommonBrushes.ControlFocus}" 
+                    BorderThickness="5 0 0 0">
+                <Grid Margin="10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Row="0" 
+                               FontSize="18px"
+                               Text="Project name" />
+                    <ContentControl Grid.Row="1" 
+                                    Focusable="False" 
+                                    cal:View.Model="{Binding BuildViewModel}" />
+                </Grid>
+            </Border>
         </Button.Content>
     </Button>
 </UserControl>

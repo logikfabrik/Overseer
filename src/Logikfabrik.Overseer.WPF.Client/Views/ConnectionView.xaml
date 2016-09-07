@@ -13,8 +13,10 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <TextBlock Grid.Row="0" 
+                   FontSize="22px"
                    x:Name="ConnectionName" />
-        <ItemsControl Grid.Row="1" 
+        <Expander x:Name="ProjectBuildsExpander" Grid.Row="0" IsExpanded="False" />
+        <ItemsControl Visibility="{Binding IsExpanded, ElementName=ProjectBuildsExpander, Converter={StaticResource BooleanToVisibilityConverter}}" Grid.Row="1" 
                       Focusable="False" 
                       ItemsSource="{Binding ProjectBuildViewModels}">
             <ItemsControl.ItemContainerStyle>
