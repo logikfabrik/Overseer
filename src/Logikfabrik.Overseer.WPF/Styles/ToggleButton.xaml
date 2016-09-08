@@ -7,25 +7,42 @@
         <ResourceDictionary>
 
             <Style x:Key="OpenCloseToggleButton" TargetType="{x:Type ToggleButton}">
-                <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
-                <Setter Property="Background" Value="{StaticResource Button.Static.Background}"/>
-                <Setter Property="BorderBrush" Value="{StaticResource Button.Static.Border}"/>
-                <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
-                <Setter Property="HorizontalContentAlignment" Value="Center"/>
-                <Setter Property="VerticalContentAlignment" Value="Center"/>
-                <Setter Property="Width" Value="20px" />
-                <Setter Property="Height" Value="20px" />
+                <Setter Property="Focusable" Value="False" />
+                <Setter Property="IsTabStop" Value="False" />
+                <Setter Property="Foreground" Value="{StaticResource Button.Static.Foreground}" />
+                <Setter Property="HorizontalContentAlignment" Value="Center" />
+                <Setter Property="VerticalContentAlignment" Value="Center" />
+                <Setter Property="Width" Value="15px" />
+                <Setter Property="Height" Value="15px" />
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="{x:Type ToggleButton}">
-                            <Viewbox Stretch="Uniform"
-                                     Width="{TemplateBinding Width}" 
-                                     Height="{TemplateBinding Height}">
-                                <Path Data="F 1 M 3.534,0 L 0,3.535 7.232,10.768 0,18 3.534,21.535 14.302,10.768 Z" 
-                                      Fill="#000000"
-                                      HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
-                                      VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
-                            </Viewbox>
+                            <Grid>
+                                <Rectangle Fill="Transparent"
+                                           Width="{TemplateBinding Width}" 
+                                           Height="{TemplateBinding Height}" />
+                                    <Viewbox Stretch="Uniform"
+                                             Width="{TemplateBinding Width}" 
+                                             Height="{TemplateBinding Height}">
+                                    <Path x:Name="path"
+                                          RenderTransformOrigin="0.5, 0.5"
+                                          SnapsToDevicePixels="True"
+                                          Data="F 1 M 3.534,0 L 0,3.535 7.232,10.768 0,18 3.534,21.535 14.302,10.768 Z" 
+                                          Fill="{TemplateBinding Foreground}"
+                                          HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
+                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+                                </Viewbox>
+                            </Grid>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsChecked" Value="true">
+                                    <Setter Property="RenderTransform" 
+                                            TargetName="path">
+                                        <Setter.Value>
+                                            <RotateTransform Angle="90"/>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
                         </ControlTemplate>
                     </Setter.Value>
                 </Setter>

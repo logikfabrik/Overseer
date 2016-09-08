@@ -17,11 +17,10 @@
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <ToggleButton Grid.Column="0" x:Name="ProjectBuildsExpander" />
-            <TextBlock Grid.Column="1" 
-                   FontSize="22px"
-                   x:Name="ConnectionName" />
-            
+            <ToggleButton Grid.Column="0" x:Name="ProjectBuildsExpander" Style="{StaticResource OpenCloseToggleButton}" />
+            <TextBlock Grid.Column="1"
+                       FontSize="22px"
+                       x:Name="ConnectionName" />
         </Grid>
         
         <!--<Expander x:Name="ProjectBuildsExpander" Grid.Row="0" IsExpanded="False" />-->
