@@ -22,7 +22,7 @@
                         <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>
                     <TextBlock Grid.Row="0" 
-                               FontSize="18px"
+                               FontSize="18"
                                Text="Project name" />
                     <ContentControl Grid.Row="1" 
                                     Focusable="False" 
