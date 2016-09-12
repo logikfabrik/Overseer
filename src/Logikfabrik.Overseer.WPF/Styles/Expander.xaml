@@ -44,11 +44,6 @@
                                         </Setter.Value>
                                     </Setter>
                                 </Trigger>
-                                <Trigger Property="IsFocused" Value="true">
-                                    <Setter Property="Fill" 
-                                            TargetName="path" 
-                                            Value="{x:Static local:CommonBrushes.ControlFocus}" />
-                                </Trigger>
                             </ControlTemplate.Triggers>
                         </ControlTemplate>
                     </Setter.Value>
@@ -94,11 +89,6 @@
                                             <RotateTransform Angle="-90" />
                                         </Setter.Value>
                                     </Setter>
-                                </Trigger>
-                                <Trigger Property="IsFocused" Value="true">
-                                    <Setter Property="Fill" 
-                                            TargetName="path" 
-                                            Value="{x:Static local:CommonBrushes.ControlFocus}" />
                                 </Trigger>
                             </ControlTemplate.Triggers>
                         </ControlTemplate>
@@ -146,11 +136,6 @@
                                         </Setter.Value>
                                     </Setter>
                                 </Trigger>
-                                <Trigger Property="IsFocused" Value="true">
-                                    <Setter Property="Fill" 
-                                            TargetName="path" 
-                                            Value="{x:Static local:CommonBrushes.ControlFocus}" />
-                                </Trigger>
                             </ControlTemplate.Triggers>
                         </ControlTemplate>
                     </Setter.Value>
@@ -197,11 +182,6 @@
                                         </Setter.Value>
                                     </Setter>
                                 </Trigger>
-                                <Trigger Property="IsFocused" Value="true">
-                                    <Setter Property="Fill" 
-                                            TargetName="path" 
-                                            Value="{x:Static local:CommonBrushes.ControlFocus}" />
-                                </Trigger>
                             </ControlTemplate.Triggers>
                         </ControlTemplate>
                     </Setter.Value>
@@ -226,7 +206,7 @@
                                               VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
                                               IsChecked="{Binding IsExpanded, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}" 
                                               Style="{StaticResource ExpanderDownHeaderStyle}"
-                                              FocusVisualStyle="{x:Null}" />
+                                              FocusVisualStyle="{StaticResource FocusVisual}" />
                                 <ContentPresenter x:Name="ExpandSite" 
                                                   DockPanel.Dock="Bottom" 
                                                   Focusable="false" 

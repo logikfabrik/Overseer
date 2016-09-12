@@ -9,9 +9,21 @@
              d:DesignHeight="300" d:DesignWidth="300">
     <Expander>
         <Expander.Header>
-            <TextBlock x:Name="ConnectionName"
-                       FontSize="22"
-                       Text="Connection name" />
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <TextBlock x:Name="ConnectionName"
+                           Grid.Column="0" 
+                           FontSize="22"
+                           Text="Connection name" />
+                <StackPanel Grid.Column="1" Orientation="Horizontal">
+                    <Button Content="Edit" />
+                    <Button Content="Remove" />
+                </StackPanel>
+            </Grid>
+            
         </Expander.Header>
         <Expander.Content>
             <ItemsControl Grid.Row="1" 

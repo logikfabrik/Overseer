@@ -58,6 +58,12 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// </value>
         public string ProviderName { get; }
 
+        /// <summary>
+        /// Gets or sets the project build view models.
+        /// </summary>
+        /// <value>
+        /// The project build view models.
+        /// </value>
         public IEnumerable<ProjectBuildViewModel> ProjectBuildViewModels { get; set; }
     }
 }
