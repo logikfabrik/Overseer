@@ -28,7 +28,11 @@ namespace Logikfabrik.Overseer
                 throw new Exception();
             }
 
-            return constructor.Invoke(new object[] { }) as BuildProvider;
+            var provider = (BuildProvider)constructor.Invoke(new object[] { });
+
+            provider.Settings = settings;
+
+            return provider;
         }
     }
 }

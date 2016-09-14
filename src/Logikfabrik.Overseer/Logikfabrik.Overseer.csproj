@@ -34,6 +34,10 @@
     <DocumentationFile>bin\Release\Logikfabrik.Overseer.XML</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EnsureThat.vNext, Version=4.0.0.26, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ensure.That.4.0.0\lib\net46\EnsureThat.vNext.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -44,7 +48,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BuildMonitor.cs" />
+    <Compile Include="BuildMonitorState.cs" />
     <Compile Include="BuildProviderFactory.cs" />
+    <Compile Include="BuildStatusChangedEventArgs.cs" />
+    <Compile Include="BuildProviderRepository.cs" />
+    <Compile Include="IBuildProviderRepository.cs" />
     <Compile Include="Settings\BuildProviderSettings.cs" />
     <Compile Include="Settings\BuildProviderSettingsRepository.cs" />
     <Compile Include="Settings\BuildProviderSettingsStore.cs" />
@@ -61,7 +70,9 @@
     <AdditionalFiles Include="stylecop.json" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Analyzer Include="..\packages\StyleCop.Analyzers.1.0.0\analyzers\dotnet\cs\Newtonsoft.Json.dll" />

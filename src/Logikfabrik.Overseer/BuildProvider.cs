@@ -5,6 +5,7 @@
 namespace Logikfabrik.Overseer
 {
     using System.Collections.Generic;
+    using Settings;
 
     /// <summary>
     /// The <see cref="BuildProvider" /> class.
@@ -18,6 +19,14 @@ namespace Logikfabrik.Overseer
         /// The provider name.
         /// </value>
         public abstract string ProviderName { get; }
+
+        /// <summary>
+        /// Gets or sets the settings.
+        /// </summary>
+        /// <value>
+        /// The settings.
+        /// </value>
+        public BuildProviderSettings Settings { get; set; }
 
         /// <summary>
         /// Gets the projects.
