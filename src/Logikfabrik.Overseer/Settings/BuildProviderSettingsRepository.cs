@@ -7,6 +7,7 @@ namespace Logikfabrik.Overseer.Settings
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using EnsureThat;
 
     /// <summary>
     /// The <see cref="BuildProviderSettingsRepository" /> class.
@@ -20,13 +21,9 @@ namespace Logikfabrik.Overseer.Settings
         /// Initializes a new instance of the <see cref="BuildProviderSettingsRepository" /> class.
         /// </summary>
         /// <param name="buildProviderSettingsStore">The build provider settings store.</param>
-        /// <exception cref="ArgumentNullException">Thrown if <paramref name="buildProviderSettingsStore" /> is <c>null</c>.</exception>
         public BuildProviderSettingsRepository(IBuildProviderSettingsStore buildProviderSettingsStore)
         {
-            if (buildProviderSettingsStore == null)
-            {
-                throw new ArgumentNullException(nameof(buildProviderSettingsStore));
-            }
+            Ensure.That(buildProviderSettingsStore).IsNotNull();
 
             _buildProviderSettingsStore = buildProviderSettingsStore;
             _currentSettings = new Lazy<IDictionary<Tuple<string, string>, BuildProviderSettings>>(() =>
@@ -48,13 +45,9 @@ namespace Logikfabrik.Overseer.Settings
         /// Adds the specified settings.
         /// </summary>
         /// <param name="settings">The settings.</param>
-        /// <exception cref="ArgumentNullException">Thrown if <paramref name="settings" /> is <c>null</c>.</exception>
         public void Add(BuildProviderSettings settings)
         {
-            if (settings == null)
-            {
-                throw new ArgumentNullException(nameof(settings));
-            }
+            Ensure.That(settings).IsNotNull();
 
             _currentSettings.Value.Add(GetKey(settings), settings);
 

@@ -12,7 +12,7 @@ namespace Logikfabrik.Overseer
     /// <summary>
     /// The <see cref="BuildMonitor" /> class.
     /// </summary>
-    public class BuildMonitor
+    public class BuildMonitor : IBuildMonitor
     {
         private readonly BackgroundWorker _backgroundWorker;
         private readonly IBuildProviderRepository _buildProviderRepository;
@@ -25,11 +25,6 @@ namespace Logikfabrik.Overseer
         {
             Ensure.That(buildProviderRepository).IsNotNull();
 
-            if (buildProviderRepository == null)
-            {
-                throw new ArgumentNullException(nameof(buildProviderRepository));
-            }
-
             _buildProviderRepository = buildProviderRepository;
 
             _backgroundWorker = new BackgroundWorker
@@ -40,12 +35,51 @@ namespace Logikfabrik.Overseer
 
             _backgroundWorker.DoWork += DoWork;
             _backgroundWorker.ProgressChanged += ProgressChanged;
+            _backgroundWorker.RunWorkerCompleted += RunWorkerCompleted;
         }
 
         /// <summary>
         /// Occurs when a build status changes.
         /// </summary>
         public event EventHandler<BuildStatusChangedEventArgs> BuildStatusChanged;
+
+        /// <summary>
+        /// Gets a value indicating whether this instance is monitoring.
+        /// </summary>
+        /// <value>
+        /// <c>true</c> if this instance is monitoring; otherwise, <c>false</c>.
+        /// </value>
+        public bool IsMonitoring { get; private set; }
+
+        /// <summary>
+        /// Starts the monitoring.
+        /// </summary>
+        public void StartMonitoring()
+        {
+            if (IsMonitoring)
+            {
+                return;
+            }
+
+            _backgroundWorker.RunWorkerAsync();
+
+            IsMonitoring = true;
+        }
+
+        /// <summary>
+        /// Stops the monitoring.
+        /// </summary>
+        public void StopMonitoring()
+        {
+            if (!IsMonitoring)
+            {
+                return;
+            }
+
+            _backgroundWorker.CancelAsync();
+
+            IsMonitoring = false;
+        }
 
         /// <summary>
         /// Raises the <see cref="BuildStatusChanged" /> event.
@@ -103,6 +137,21 @@ namespace Logikfabrik.Overseer
                     _backgroundWorker.ReportProgress(percentProgress, new BuildMonitorState(providers[i], projects[j], builds));
                 }
             }
+        }
+
+        private void RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            if (e.Error != null)
+            {
+                throw e.Error;
+            }
+
+            if (!IsMonitoring)
+            {
+                return;
+            }
+
+            _backgroundWorker.RunWorkerAsync();
         }
     }
 }

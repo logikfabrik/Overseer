@@ -4,9 +4,9 @@
 
 namespace Logikfabrik.Overseer
 {
-    using System;
     using System.Collections.Generic;
     using System.Linq;
+    using EnsureThat;
     using Settings;
 
     /// <summary>
@@ -20,13 +20,9 @@ namespace Logikfabrik.Overseer
         /// Initializes a new instance of the <see cref="BuildProviderRepository" /> class.
         /// </summary>
         /// <param name="buildProviderSettingsRepository">The build provider settings repository.</param>
-        /// <exception cref="ArgumentNullException">Thrown if <paramref name="buildProviderSettingsRepository" /> is <c>null</c>.</exception>
         public BuildProviderRepository(IBuildProviderSettingsRepository buildProviderSettingsRepository)
         {
-            if (buildProviderSettingsRepository == null)
-            {
-                throw new ArgumentNullException(nameof(buildProviderSettingsRepository));
-            }
+            Ensure.That(buildProviderSettingsRepository).IsNotNull();
 
             _buildProviderSettingsRepository = buildProviderSettingsRepository;
         }

@@ -12,6 +12,7 @@ namespace Logikfabrik.Overseer.Settings
     using System.Threading;
     using System.Threading.Tasks;
     using System.Xml.Serialization;
+    using EnsureThat;
 
     /// <summary>
     /// The <see cref="BuildProviderSettingsStore" /> class.
@@ -32,19 +33,14 @@ namespace Logikfabrik.Overseer.Settings
             _handle = new EventWaitHandle(true, EventResetMode.AutoReset, HandleName);
         }
 
-        /// <inheritdoc />
         public async Task<IEnumerable<BuildProviderSettings>> LoadAsync()
         {
             return await Task.Run(() => Load()).ConfigureAwait(false);
         }
 
-        /// <inheritdoc />
         public async Task SaveAsync(IEnumerable<BuildProviderSettings> settings)
         {
-            if (settings == null)
-            {
-                throw new ArgumentNullException(nameof(settings));
-            }
+            Ensure.That(settings).IsNotNull();
 
             await Task.Run(() => Save(settings)).ConfigureAwait(false);
         }
@@ -82,10 +78,7 @@ namespace Logikfabrik.Overseer.Settings
 
         private void Save(IEnumerable<BuildProviderSettings> settings)
         {
-            if (settings == null)
-            {
-                throw new ArgumentNullException(nameof(settings));
-            }
+            Ensure.That(settings).IsNotNull();
 
             _handle.WaitOne();
 

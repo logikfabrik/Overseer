@@ -6,6 +6,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
 {
     using System;
     using Caliburn.Micro;
+    using EnsureThat;
 
     /// <summary>
     /// The <see cref="BuildProviderViewModel" /> class.
@@ -21,19 +22,10 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// </summary>
         /// <param name="eventAggregator">The event aggregator.</param>
         /// <param name="buildProvider">The build provider.</param>
-        /// <exception cref="ArgumentNullException">Thrown if <paramref name="eventAggregator" /> is <c>null</c>.</exception>
-        /// <exception cref="ArgumentNullException">Thrown if <paramref name="buildProvider" /> is <c>null</c>.</exception>
         protected BuildProviderViewModel(IEventAggregator eventAggregator, BuildProvider buildProvider)
         {
-            if (eventAggregator == null)
-            {
-                throw new ArgumentNullException(nameof(eventAggregator));
-            }
-
-            if (buildProvider == null)
-            {
-                throw new ArgumentNullException(nameof(buildProvider));
-            }
+            Ensure.That(eventAggregator).IsNotNull();
+            Ensure.That(buildProvider).IsNotNull();
 
             _eventAggregator = eventAggregator;
             _buildProvider = buildProvider;

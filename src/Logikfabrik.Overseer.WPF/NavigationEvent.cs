@@ -5,6 +5,7 @@
 namespace Logikfabrik.Overseer.WPF
 {
     using System;
+    using EnsureThat;
 
     /// <summary>
     /// The <see cref="NavigationEvent" /> class.
@@ -15,13 +16,9 @@ namespace Logikfabrik.Overseer.WPF
         /// Initializes a new instance of the <see cref="NavigationEvent" /> class.
         /// </summary>
         /// <param name="viewModelType">The view model type to navigate to.</param>
-        /// <exception cref="ArgumentNullException">Thrown if <paramref name="viewModelType" /> is <c>null</c>.</exception>
         public NavigationEvent(Type viewModelType)
         {
-            if (viewModelType == null)
-            {
-                throw new ArgumentNullException(nameof(viewModelType));
-            }
+            Ensure.That(viewModelType).IsNotNull();
 
             ViewModelType = viewModelType;
         }

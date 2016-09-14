@@ -5,6 +5,7 @@
 namespace Logikfabrik.Overseer.Settings
 {
     using System;
+    using EnsureThat;
 
     /// <summary>
     /// The <see cref="BuildProvider" /> class.
@@ -21,7 +22,6 @@ namespace Logikfabrik.Overseer.Settings
         /// <value>
         /// The name.
         /// </value>
-        /// <exception cref="ArgumentException">Thrown if <paramref name="value" /> is <c>null</c> or white space.</exception>
         public string Name
         {
             get
@@ -31,10 +31,7 @@ namespace Logikfabrik.Overseer.Settings
 
             set
             {
-                if (string.IsNullOrWhiteSpace(value))
-                {
-                    throw new ArgumentException("Value cannot be null or white space.", nameof(value));
-                }
+                Ensure.That(value).IsNotNullOrWhiteSpace();
 
                 _name = value;
             }
@@ -46,7 +43,6 @@ namespace Logikfabrik.Overseer.Settings
         /// <value>
         /// The provider type name.
         /// </value>
-        /// <exception cref="ArgumentException">Thrown if <paramref name="value" /> is <c>null</c> or white space.</exception>
         public string ProviderTypeName
         {
             get
@@ -56,10 +52,7 @@ namespace Logikfabrik.Overseer.Settings
 
             set
             {
-                if (string.IsNullOrWhiteSpace(value))
-                {
-                    throw new ArgumentException("Value cannot be null or white space.", nameof(value));
-                }
+                Ensure.That(value).IsNotNullOrWhiteSpace();
 
                 _providerTypeName = value;
             }
@@ -71,7 +64,6 @@ namespace Logikfabrik.Overseer.Settings
         /// <value>
         /// The settings.
         /// </value>
-        /// <exception cref="ArgumentNullException">Thrown if <paramref name="value" /> is <c>null</c>.</exception>
         public Setting[] Settings
         {
             get
@@ -81,10 +73,7 @@ namespace Logikfabrik.Overseer.Settings
 
             set
             {
-                if (value == null)
-                {
-                    throw new ArgumentNullException(nameof(value), "Value cannot be null.");
-                }
+                Ensure.That(value).IsNotNull();
 
                 _settings = value;
             }

@@ -2,6 +2,8 @@
 //   Copyright (c) 2016 anton(at)logikfabrik.se. Licensed under the MIT license.
 // </copyright>
 
+using EnsureThat;
+
 namespace Logikfabrik.Overseer.WPF.Client.ViewModels
 {
     using System;
@@ -18,19 +20,10 @@ namespace Logikfabrik.Overseer.WPF.Client.ViewModels
         /// </summary>
         /// <param name="eventAggregator">The event aggregator.</param>
         /// <param name="connectionsViewModel">The connections view model.</param>
-        /// <exception cref="ArgumentNullException">Thrown if <paramref name="eventAggregator" /> is <c>null</c>.</exception>
-        /// <exception cref="ArgumentNullException">Thrown if <paramref name="connectionsViewModel" /> is <c>null</c>.</exception>
         public AppViewModel(IEventAggregator eventAggregator, ConnectionsViewModel connectionsViewModel)
         {
-            if (eventAggregator == null)
-            {
-                throw new ArgumentNullException(nameof(eventAggregator));
-            }
-
-            if (connectionsViewModel == null)
-            {
-                throw new ArgumentNullException(nameof(connectionsViewModel));
-            }
+            Ensure.That(eventAggregator).IsNotNull();
+            Ensure.That(connectionsViewModel).IsNotNull();
 
             eventAggregator.Subscribe(this);
 

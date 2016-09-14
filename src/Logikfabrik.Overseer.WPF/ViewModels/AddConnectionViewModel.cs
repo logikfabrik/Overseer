@@ -4,8 +4,8 @@
 
 namespace Logikfabrik.Overseer.WPF.ViewModels
 {
-    using System;
     using Caliburn.Micro;
+    using EnsureThat;
     using Settings;
 
     /// <summary>
@@ -22,19 +22,10 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// </summary>
         /// <param name="eventAggregator">The event aggregator.</param>
         /// <param name="buildProviderSettingsRepository">The build provider settings repository.</param>
-        /// <exception cref="ArgumentNullException">Thrown if <paramref name="eventAggregator" /> is <c>null</c>.</exception>
-        /// <exception cref="ArgumentNullException">Thrown if <paramref name="buildProviderSettingsRepository" /> is <c>null</c>.</exception>
         protected AddConnectionViewModel(IEventAggregator eventAggregator, IBuildProviderSettingsRepository buildProviderSettingsRepository)
         {
-            if (eventAggregator == null)
-            {
-                throw new ArgumentNullException(nameof(eventAggregator));
-            }
-
-            if (buildProviderSettingsRepository == null)
-            {
-                throw new ArgumentNullException(nameof(buildProviderSettingsRepository));
-            }
+            Ensure.That(eventAggregator).IsNotNull();
+            Ensure.That(buildProviderSettingsRepository).IsNotNull();
 
             _eventAggregator = eventAggregator;
             _buildProviderSettingsRepository = buildProviderSettingsRepository;

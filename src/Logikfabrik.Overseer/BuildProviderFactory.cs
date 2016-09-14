@@ -2,6 +2,8 @@
 //   Copyright (c) 2016 anton(at)logikfabrik.se. Licensed under the MIT license.
 // </copyright>
 
+using EnsureThat;
+
 namespace Logikfabrik.Overseer
 {
     using System;
@@ -14,11 +16,8 @@ namespace Logikfabrik.Overseer
     {
         public static BuildProvider GetProvider(BuildProviderSettings settings)
         {
-            if (settings == null)
-            {
-                throw new ArgumentNullException(nameof(settings));
-            }
-
+            Ensure.That(settings).IsNotNull();
+            
             var providerType = settings.GetProviderType();
 
             var constructor = providerType.GetConstructor(Type.EmptyTypes);

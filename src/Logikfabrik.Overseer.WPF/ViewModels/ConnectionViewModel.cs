@@ -4,9 +4,8 @@
 
 namespace Logikfabrik.Overseer.WPF.ViewModels
 {
-    using System;
     using System.Collections.Generic;
-    using Settings;
+    using EnsureThat;
 
     /// <summary>
     /// The <see cref="ConnectionViewModel" /> class.
@@ -16,20 +15,15 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// <summary>
         /// Initializes a new instance of the <see cref="ConnectionViewModel"/> class.
         /// </summary>
-        /// <param name="settings">The settings.</param>
-        /// <exception cref="ArgumentNullException">Thrown if <paramref name="settings" /> is <c>null</c>.</exception>
-        public ConnectionViewModel(BuildProviderSettings settings)
+        /// <param name="buildProvider">The build provider settings.</param>
+        public ConnectionViewModel(BuildProvider buildProvider)
         {
-            if (settings == null)
-            {
-                throw new ArgumentNullException(nameof(settings));
-            }
+            Ensure.That(buildProvider).IsNotNull();
 
-            ProviderName = BuildProviderFactory.GetProvider(settings).ProviderName;
-            ConnectionName = settings.Name;
+            ProviderName = buildProvider.ProviderName;
+            ConnectionName = buildProvider.Settings.Name;
 
-
-            ProjectBuildViewModels = new List<ProjectBuildViewModel>()
+            ProjectBuildViewModels = new List<ProjectBuildViewModel>
             {
                 new ProjectBuildViewModel(),
                 new ProjectBuildViewModel(),
@@ -39,7 +33,6 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
                 new ProjectBuildViewModel(),
                 new ProjectBuildViewModel(),
             };
-
         }
 
         /// <summary>

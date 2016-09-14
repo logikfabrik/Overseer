@@ -4,8 +4,8 @@
 
 namespace Logikfabrik.Overseer.WPF.Styles
 {
-    using System;
     using System.Windows.Media;
+    using EnsureThat;
 
     /// <summary>
     /// The <see cref="CommonColors" /> class.
@@ -222,10 +222,7 @@ namespace Logikfabrik.Overseer.WPF.Styles
 
         private static Color GetColor(string color)
         {
-            if (string.IsNullOrWhiteSpace(color))
-            {
-                throw new ArgumentException("Color cannot be null or white space.", nameof(color));
-            }
+            Ensure.That(color).IsNotNullOrWhiteSpace();
 
             return (Color)ColorConverter.ConvertFromString(color);
         }

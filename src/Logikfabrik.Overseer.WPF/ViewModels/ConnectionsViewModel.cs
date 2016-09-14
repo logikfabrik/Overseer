@@ -4,11 +4,10 @@
 
 namespace Logikfabrik.Overseer.WPF.ViewModels
 {
-    using System;
     using System.Collections.Generic;
     using System.Linq;
     using Caliburn.Micro;
-    using Settings;
+    using EnsureThat;
 
     /// <summary>
     /// The <see cref="ConnectionsViewModel" /> class.
@@ -21,23 +20,14 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// Initializes a new instance of the <see cref="ConnectionsViewModel" /> class.
         /// </summary>
         /// <param name="eventAggregator">The event aggregator.</param>
-        /// <param name="buildProviderSettingsRepository">The build provider settings repository.</param>
-        /// <exception cref="ArgumentNullException">Thrown if <paramref name="eventAggregator" /> is <c>null</c>.</exception>
-        /// <exception cref="ArgumentNullException">Thrown if <paramref name="buildProviderSettingsRepository" /> is <c>null</c>.</exception>
-        public ConnectionsViewModel(IEventAggregator eventAggregator, IBuildProviderSettingsRepository buildProviderSettingsRepository)
+        /// <param name="buildProviderRepository">The build provider repository.</param>
+        public ConnectionsViewModel(IEventAggregator eventAggregator, IBuildProviderRepository buildProviderRepository)
         {
-            if (eventAggregator == null)
-            {
-                throw new ArgumentNullException(nameof(eventAggregator));
-            }
-
-            if (buildProviderSettingsRepository == null)
-            {
-                throw new ArgumentNullException(nameof(buildProviderSettingsRepository));
-            }
+            Ensure.That(eventAggregator).IsNotNull();
+            Ensure.That(buildProviderRepository).IsNotNull();
 
             _eventAggregator = eventAggregator;
-            ConnectionViewModels = buildProviderSettingsRepository.Get().Select(settings => new ConnectionViewModel(settings));
+            ConnectionViewModels = buildProviderRepository.GetProviders().Select(provider => new ConnectionViewModel(provider));
         }
 
         /// <summary>

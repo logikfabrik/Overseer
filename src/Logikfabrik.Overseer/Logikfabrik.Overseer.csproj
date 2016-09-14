@@ -38,6 +38,10 @@
       <HintPath>..\packages\Ensure.That.4.0.0\lib\net46\EnsureThat.vNext.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Ninject, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.3.2.2.0\lib\net45-full\Ninject.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -53,7 +57,9 @@
     <Compile Include="BuildProviderFactory.cs" />
     <Compile Include="BuildStatusChangedEventArgs.cs" />
     <Compile Include="BuildProviderRepository.cs" />
+    <Compile Include="IBuildMonitor.cs" />
     <Compile Include="IBuildProviderRepository.cs" />
+    <Compile Include="Module.cs" />
     <Compile Include="Settings\BuildProviderSettings.cs" />
     <Compile Include="Settings\BuildProviderSettingsRepository.cs" />
     <Compile Include="Settings\BuildProviderSettingsStore.cs" />

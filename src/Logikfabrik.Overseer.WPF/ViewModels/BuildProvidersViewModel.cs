@@ -4,9 +4,9 @@
 
 namespace Logikfabrik.Overseer.WPF.ViewModels
 {
-    using System;
     using System.Collections.Generic;
     using Caliburn.Micro;
+    using EnsureThat;
 
     /// <summary>
     /// The <see cref="BuildProvidersViewModel" /> class.
@@ -17,13 +17,9 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// Initializes a new instance of the <see cref="BuildProvidersViewModel" /> class.
         /// </summary>
         /// <param name="buildProviderViewModels">The build provider view models.</param>
-        /// <exception cref="ArgumentNullException">Thrown if <paramref name="buildProviderViewModels" /> is <c>null</c>.</exception>
         public BuildProvidersViewModel(IEnumerable<BuildProviderViewModel> buildProviderViewModels)
         {
-            if (buildProviderViewModels == null)
-            {
-                throw new ArgumentNullException(nameof(buildProviderViewModels));
-            }
+            Ensure.That(buildProviderViewModels).IsNotNull();
 
             BuildProviderViewModels = buildProviderViewModels;
         }
