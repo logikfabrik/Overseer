@@ -2,6 +2,8 @@
 //   Copyright (c) 2016 anton(at)logikfabrik.se. Licensed under the MIT license.
 // </copyright>
 
+using System.Linq;
+
 namespace Logikfabrik.Overseer.WPF.ViewModels
 {
     using System.Collections.Generic;
@@ -23,16 +25,20 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             ProviderName = buildProvider.ProviderName;
             ConnectionName = buildProvider.Settings.Name;
 
-            ProjectBuildViewModels = new List<ProjectBuildViewModel>
+
+            // TODO: Maybe we shouldn't access the buildprovider, but use the BuildMonitor? Slow star because of thread sleep in the provider.
+
+            var viewModels = new List<ProjectBuildViewModel>();
+
+            var projects = buildProvider.GetProjects();
+
+
+            foreach (var project in projects)
             {
-                new ProjectBuildViewModel(),
-                new ProjectBuildViewModel(),
-                new ProjectBuildViewModel(),
-                new ProjectBuildViewModel(),
-                new ProjectBuildViewModel(),
-                new ProjectBuildViewModel(),
-                new ProjectBuildViewModel(),
-            };
+                viewModels.Add(new ProjectBuildViewModel(project, buildProvider.GetBuilds(project.Id).FirstOrDefault()));
+            }
+
+            ProjectBuildViewModels = viewModels;
         }
 
         /// <summary>

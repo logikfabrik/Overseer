@@ -59,6 +59,8 @@
     <Compile Include="BuildProviderRepository.cs" />
     <Compile Include="IBuildMonitor.cs" />
     <Compile Include="IBuildProviderRepository.cs" />
+    <Compile Include="StubBuild.cs" />
+    <Compile Include="StubProject.cs" />
     <Compile Include="Module.cs" />
     <Compile Include="Settings\BuildProviderSettings.cs" />
     <Compile Include="Settings\BuildProviderSettingsRepository.cs" />

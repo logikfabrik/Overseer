@@ -2,9 +2,10 @@
 //   Copyright (c) 2016 anton(at)logikfabrik.se. Licensed under the MIT license.
 // </copyright>
 
+using System.Threading;
+
 namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices
 {
-    using System;
     using System.Collections.Generic;
 
     /// <summary>
@@ -23,12 +24,60 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices
 
         public override IEnumerable<IProject> GetProjects()
         {
-            throw new NotImplementedException();
+            // TODO: Implement!
+            Thread.Sleep(2000);
+
+            return new[]
+            {
+                new StubProject
+                {
+                    Id = "1",
+                    Name = "Project 1"
+                },
+                new StubProject
+                {
+                    Id = "2",
+                    Name = "Project 1"
+                },
+                new StubProject
+                {
+                    Id = "3",
+                    Name = "Project 1"
+                },
+                new StubProject
+                {
+                    Id = "4",
+                    Name = "Project 1"
+                }
+            };
         }
 
         public override IEnumerable<IBuild> GetBuilds(string projectId)
         {
-            throw new NotImplementedException();
+            // TODO: Implement!
+            Thread.Sleep(2000);
+
+            return new[]
+            {
+                new StubBuild
+                {
+                    Branch = "Master",
+                    BuildNumber = "1",
+                    Status = BuildStatus.Failed
+                },
+                new StubBuild
+                {
+                    Branch = "Master",
+                    BuildNumber = "2",
+                    Status = BuildStatus.Succeeded
+                },
+                new StubBuild
+                {
+                    Branch = "Master",
+                    BuildNumber = "3",
+                    Status = BuildStatus.InProgress
+                }
+            };
         }
     }
 }

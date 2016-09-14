@@ -5,16 +5,20 @@
 namespace Logikfabrik.Overseer.WPF.ViewModels
 {
     using Caliburn.Micro;
+    using EnsureThat;
 
     /// <summary>
     /// The <see cref="ProjectBuildViewModel" /> class.
     /// </summary>
     public class ProjectBuildViewModel : PropertyChangedBase
     {
-        public ProjectBuildViewModel()
+        public ProjectBuildViewModel(IProject project, IBuild build)
         {
-            ProjectName = "My Project";
-            BuildViewModel = new BuildViewModel();
+            Ensure.That(project).IsNotNull();
+            Ensure.That(build).IsNotNull();
+
+            ProjectName = project.Name;
+            BuildViewModel = new BuildViewModel(build);
         }
 
         /// <summary>

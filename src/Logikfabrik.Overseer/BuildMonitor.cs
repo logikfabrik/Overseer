@@ -94,9 +94,9 @@ namespace Logikfabrik.Overseer
         {
             var totalProviderProgress = (double)currentProvider / totalProviders;
 
-            var currentProviderProgress = ((double)currentProviderProject / currentProviderTotalProjects) * ((double)1 / totalProviders);
+            var currentProviderProgress = (double)currentProviderProject / currentProviderTotalProjects * ((double)1 / totalProviders);
 
-            return (int)Math.Floor(totalProviderProgress + currentProviderProgress) * 100;
+            return (int)Math.Floor((totalProviderProgress + currentProviderProgress) * 100);
         }
 
         private void ProgressChanged(object sender, ProgressChangedEventArgs e)

@@ -2,6 +2,8 @@
 //   Copyright (c) 2016 anton(at)logikfabrik.se. Licensed under the MIT license.
 // </copyright>
 
+using Logikfabrik.Overseer.WPF.ViewModels;
+
 namespace Logikfabrik.Overseer.WPF.Client
 {
     using System;
@@ -74,6 +76,9 @@ namespace Logikfabrik.Overseer.WPF.Client
             // Default setup.
             _kernel.Bind<IWindowManager>().To<WindowManager>().InSingletonScope();
             _kernel.Bind<IEventAggregator>().To<EventAggregator>().InSingletonScope();
+
+            // TODO: Temp when testing the monitor in ConnectionsViewModel.
+            _kernel.Bind<ConnectionsViewModel>().To<ConnectionsViewModel>().InSingletonScope();
 
             _kernel.Load(SelectAssemblies());
         }

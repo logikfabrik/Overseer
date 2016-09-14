@@ -6,14 +6,17 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
 {
     using System;
     using Caliburn.Micro;
+    using EnsureThat;
 
     /// <summary>
     /// The <see cref="BuildViewModel" /> class.
     /// </summary>
     public class BuildViewModel : PropertyChangedBase
     {
-        public BuildViewModel()
+        public BuildViewModel(IBuild build)
         {
+            Ensure.That(build).IsNotNull();
+
             CommitMessage = "Bug #238 Fixed a bug.";
             CommitUser = "john";
             Branch = "master";

@@ -4,7 +4,9 @@
 
 namespace Logikfabrik.Overseer.WPF.ViewModels
 {
+    using System;
     using System.Collections.Generic;
+    using System.Diagnostics;
     using System.Linq;
     using Caliburn.Micro;
     using EnsureThat;
@@ -15,19 +17,31 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     public class ConnectionsViewModel : PropertyChangedBase
     {
         private readonly IEventAggregator _eventAggregator;
+        private readonly IBuildMonitor _buildMonitor;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ConnectionsViewModel" /> class.
         /// </summary>
         /// <param name="eventAggregator">The event aggregator.</param>
         /// <param name="buildProviderRepository">The build provider repository.</param>
-        public ConnectionsViewModel(IEventAggregator eventAggregator, IBuildProviderRepository buildProviderRepository)
+        /// <param name="buildMonitor">The build monitor.</param>
+        public ConnectionsViewModel(IEventAggregator eventAggregator, IBuildProviderRepository buildProviderRepository, IBuildMonitor buildMonitor)
         {
             Ensure.That(eventAggregator).IsNotNull();
             Ensure.That(buildProviderRepository).IsNotNull();
+            Ensure.That(buildMonitor).IsNotNull();
 
             _eventAggregator = eventAggregator;
             ConnectionViewModels = buildProviderRepository.GetProviders().Select(provider => new ConnectionViewModel(provider));
+            _buildMonitor = buildMonitor;
+
+            _buildMonitor.BuildStatusChanged += BuildStatusChanged;
+            _buildMonitor.StartMonitoring();
+        }
+
+        private void BuildStatusChanged(object sender, BuildStatusChangedEventArgs e)
+        {
+            Debug.WriteLine($"Progress at {DateTime.Now}: {e.PercentProgress}%");
         }
 
         /// <summary>
@@ -36,7 +50,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// <value>
         /// The connections.
         /// </value>
-        public IEnumerable<ConnectionViewModel> ConnectionViewModels { get; }
+        public IEnumerable<ConnectionViewModel> ConnectionViewModels { get; } // TODO: Projects/builds for each connection might be added/removed externally. Should this be observable?
 
         public void AddConnection()
         {
