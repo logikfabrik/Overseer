@@ -1,4 +1,4 @@
-﻿// <copyright file="BuildStatusChangedEventArgs.cs" company="Logikfabrik">
+﻿// <copyright file="BuildMonitorProgressEventArgs.cs" company="Logikfabrik">
 //   Copyright (c) 2016 anton(at)logikfabrik.se. Licensed under the MIT license.
 // </copyright>
 
@@ -9,18 +9,18 @@ namespace Logikfabrik.Overseer
     using EnsureThat;
 
     /// <summary>
-    /// The <see cref="BuildStatusChangedEventArgs" /> class.
+    /// The <see cref="BuildMonitorProgressEventArgs" /> class.
     /// </summary>
-    public class BuildStatusChangedEventArgs : EventArgs
+    public class BuildMonitorProgressEventArgs : EventArgs
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="BuildStatusChangedEventArgs" /> class.
+        /// Initializes a new instance of the <see cref="BuildMonitorProgressEventArgs" /> class.
         /// </summary>
         /// <param name="percentProgress">The percent progress.</param>
         /// <param name="provider">The provider.</param>
         /// <param name="project">The project.</param>
         /// <param name="builds">The builds.</param>
-        public BuildStatusChangedEventArgs(int percentProgress, BuildProvider provider, IProject project, IEnumerable<IBuild> builds)
+        public BuildMonitorProgressEventArgs(int percentProgress, BuildProvider provider, IProject project, IEnumerable<IBuild> builds)
         {
             Ensure.That(percentProgress).IsInRange(0, 100);
             Ensure.That(provider).IsNotNull();

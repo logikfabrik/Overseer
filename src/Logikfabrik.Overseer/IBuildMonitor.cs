@@ -12,9 +12,9 @@ namespace Logikfabrik.Overseer
     public interface IBuildMonitor
     {
         /// <summary>
-        /// Occurs when a build status changes.
+        /// Occurs when progress changes.
         /// </summary>
-        event EventHandler<BuildStatusChangedEventArgs> BuildStatusChanged;
+        event EventHandler<BuildMonitorProgressEventArgs> ProgressChanged;
 
         /// <summary>
         /// Gets a value indicating whether this instance is monitoring.

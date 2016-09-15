@@ -35,11 +35,11 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             ConnectionViewModels = buildProviderRepository.GetProviders().Select(provider => new ConnectionViewModel(provider));
             _buildMonitor = buildMonitor;
 
-            _buildMonitor.BuildStatusChanged += BuildStatusChanged;
+            _buildMonitor.ProgressChanged += ProgressChanged;
             _buildMonitor.StartMonitoring();
         }
 
-        private void BuildStatusChanged(object sender, BuildStatusChangedEventArgs e)
+        private void ProgressChanged(object sender, BuildMonitorProgressEventArgs e)
         {
             Debug.WriteLine($"Progress at {DateTime.Now}: {e.PercentProgress}%");
         }

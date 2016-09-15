@@ -33,15 +33,15 @@ namespace Logikfabrik.Overseer
                 WorkerSupportsCancellation = true
             };
 
-            _backgroundWorker.DoWork += DoWork;
-            _backgroundWorker.ProgressChanged += ProgressChanged;
-            _backgroundWorker.RunWorkerCompleted += RunWorkerCompleted;
+            _backgroundWorker.DoWork += OnBackgroundWorkerDoWork;
+            _backgroundWorker.ProgressChanged += OnBackgroundWorkerProgressChanged;
+            _backgroundWorker.RunWorkerCompleted += OnBackgroundWorkerRunWorkerCompleted;
         }
 
         /// <summary>
-        /// Occurs when a build status changes.
+        /// Occurs when progress changes.
         /// </summary>
-        public event EventHandler<BuildStatusChangedEventArgs> BuildStatusChanged;
+        public event EventHandler<BuildMonitorProgressEventArgs> ProgressChanged;
 
         /// <summary>
         /// Gets a value indicating whether this instance is monitoring.
@@ -82,12 +82,12 @@ namespace Logikfabrik.Overseer
         }
 
         /// <summary>
-        /// Raises the <see cref="BuildStatusChanged" /> event.
+        /// Raises the <see cref="ProgressChanged" /> event.
         /// </summary>
-        /// <param name="e">The <see cref="BuildStatusChangedEventArgs" /> instance containing the event data.</param>
-        protected virtual void OnBuildStatusChanged(BuildStatusChangedEventArgs e)
+        /// <param name="e">The <see cref="BuildMonitorProgressEventArgs" /> instance containing the event data.</param>
+        protected virtual void OnProgressChanged(BuildMonitorProgressEventArgs e)
         {
-            BuildStatusChanged?.Invoke(this, e);
+            ProgressChanged?.Invoke(this, e);
         }
 
         private static int GetPercentProgress(int totalProviders, int currentProvider, int currentProviderTotalProjects, int currentProviderProject)
@@ -99,16 +99,16 @@ namespace Logikfabrik.Overseer
             return (int)Math.Floor((totalProviderProgress + currentProviderProgress) * 100);
         }
 
-        private void ProgressChanged(object sender, ProgressChangedEventArgs e)
+        private void OnBackgroundWorkerProgressChanged(object sender, ProgressChangedEventArgs e)
         {
             var state = (BuildMonitorState)e.UserState;
 
-            var args = new BuildStatusChangedEventArgs(e.ProgressPercentage, state.Provider, state.Project, state.Builds);
+            var args = new BuildMonitorProgressEventArgs(e.ProgressPercentage, state.Provider, state.Project, state.Builds);
 
-            OnBuildStatusChanged(args);
+            OnProgressChanged(args);
         }
 
-        private void DoWork(object sender, DoWorkEventArgs e)
+        private void OnBackgroundWorkerDoWork(object sender, DoWorkEventArgs e)
         {
             var providers = _buildProviderRepository.GetProviders().ToArray();
 
@@ -139,7 +139,7 @@ namespace Logikfabrik.Overseer
             }
         }
 
-        private void RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        private void OnBackgroundWorkerRunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             if (e.Error != null)
             {

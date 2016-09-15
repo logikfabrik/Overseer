@@ -55,7 +55,7 @@
     <Compile Include="BuildMonitor.cs" />
     <Compile Include="BuildMonitorState.cs" />
     <Compile Include="BuildProviderFactory.cs" />
-    <Compile Include="BuildStatusChangedEventArgs.cs" />
+    <Compile Include="BuildMonitorProgressEventArgs.cs" />
     <Compile Include="BuildProviderRepository.cs" />
     <Compile Include="IBuildMonitor.cs" />
     <Compile Include="IBuildProviderRepository.cs" />
