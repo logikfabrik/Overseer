@@ -12,9 +12,6 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices.ViewModels
     /// </summary>
     public class AddConnectionViewModel : WPF.ViewModels.AddConnectionViewModel
     {
-        private string _url = "https://";
-        private string _token;
-
         /// <summary>
         /// Initializes a new instance of the <see cref="AddConnectionViewModel" /> class.
         /// </summary>
@@ -23,6 +20,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices.ViewModels
         public AddConnectionViewModel(IEventAggregator eventAggregator, IBuildProviderSettingsRepository buildProviderSettingsRepository)
             : base(eventAggregator, buildProviderSettingsRepository)
         {
+            Url = "https://";
         }
 
         /// <summary>
@@ -31,19 +29,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices.ViewModels
         /// <value>
         /// The URL.
         /// </value>
-        public string Url
-        {
-            get
-            {
-                return _url;
-            }
-
-            set
-            {
-                _url = value;
-                NotifyOfPropertyChange(() => Url);
-            }
-        }
+        public string Url { get; set; }
 
         /// <summary>
         /// Gets or sets the token.
@@ -51,19 +37,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices.ViewModels
         /// <value>
         /// The token.
         /// </value>
-        public string Token
-        {
-            get
-            {
-                return _token;
-            }
-
-            set
-            {
-                _token = value;
-                NotifyOfPropertyChange(() => Token);
-            }
-        }
+        public string Token { get; set; }
 
         /// <summary>
         /// Gets the build provider settings.

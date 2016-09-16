@@ -29,13 +29,13 @@
                         <Button Content="Remove" />
                     </StackPanel>
                 </Grid>
-                <userControls:BusyIndicator Grid.Column="1" />
+                <userControls:BusyIndicator Grid.Column="1" Visibility="{Binding IsBusy, Converter={StaticResource BooleanToVisibilityConverter}}" />
             </Grid>
         </Expander.Header>
         <Expander.Content>
             <ItemsControl Grid.Row="1" 
                           Focusable="False" 
-                          ItemsSource="{Binding ProjectBuildViewModels}">
+                          ItemsSource="{Binding ProjectBuildViewModels, IsAsync=True}">
                 <ItemsControl.ItemContainerStyle>
                     <Style>
                         <Setter Property="FrameworkElement.Margin" Value="5" />

@@ -76,8 +76,6 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Converters\NullHiddenVisibilityConverter.cs" />
-    <Compile Include="Converters\NullVisibleVisibilityConverter.cs" />
     <Compile Include="NavigationEvent.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>

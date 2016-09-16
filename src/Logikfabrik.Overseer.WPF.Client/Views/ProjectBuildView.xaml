@@ -33,12 +33,11 @@
                                Text="Project name" />
                     <uc:BusyIndicator Grid.Row="0"
                                       Grid.Column="1"
-                                      Visibility="{Binding BuildViewModel, Converter={StaticResource NullVisibleVisibilityConverter}}" />
+                                      Visibility="{Binding IsBusy, Converter={StaticResource BooleanToVisibilityConverter}}" />
                     <ContentControl Grid.Row="1" 
                                     Grid.Column="0"
                                     Grid.ColumnSpan="2"
                                     Focusable="False" 
-                                    Visibility="{Binding BuildViewModel, Converter={StaticResource NullHiddenVisibilityConverter}}"
                                     cal:View.Model="{Binding BuildViewModel}" />
                 </Grid>
             </Border>

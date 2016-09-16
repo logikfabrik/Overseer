@@ -12,8 +12,6 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor.ViewModels
     /// </summary>
     public class AddConnectionViewModel : WPF.ViewModels.AddConnectionViewModel
     {
-        private string _token;
-
         /// <summary>
         /// Initializes a new instance of the <see cref="AddConnectionViewModel" /> class.
         /// </summary>
@@ -30,19 +28,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor.ViewModels
         /// <value>
         /// The token.
         /// </value>
-        public string Token
-        {
-            get
-            {
-                return _token;
-            }
-
-            set
-            {
-                _token = value;
-                NotifyOfPropertyChange(() => Token);
-            }
-        }
+        public string Token { get; set; }
 
         /// <summary>
         /// Gets the build provider settings.

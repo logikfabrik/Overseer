@@ -17,6 +17,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         private readonly IBuildProvider _buildProvider;
         private readonly IProject _project;
         private BuildViewModel _buildViewModel;
+        private bool _isBusy;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ProjectBuildViewModel" /> class.
@@ -32,6 +33,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
 
             _buildProvider = buildProvider;
             _project = project;
+            _isBusy = true;
 
             WeakEventManager<IBuildMonitor, BuildMonitorProgressEventArgs>.AddHandler(buildMonitor, nameof(buildMonitor.ProgressChanged), BuildMonitorProgressChanged);
         }
@@ -64,6 +66,26 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             }
         }
 
+        /// <summary>
+        /// Gets a value indicating whether this instance is busy.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if this instance is busy; otherwise, <c>false</c>.
+        /// </value>
+        public bool IsBusy
+        {
+            get
+            {
+                return _isBusy;
+            }
+
+            private set
+            {
+                _isBusy = value;
+                NotifyOfPropertyChange(() => IsBusy);
+            }
+        }
+
         private void BuildMonitorProgressChanged(object sender, BuildMonitorProgressEventArgs e)
         {
             if (_buildProvider.BuildProviderSettings.Id != e.BuildProvider.BuildProviderSettings.Id)
@@ -77,6 +99,8 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             }
 
             BuildViewModel = new BuildViewModel(e.Builds.FirstOrDefault());
+
+            IsBusy = false;
         }
     }
 }

@@ -15,7 +15,6 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     {
         private readonly IEventAggregator _eventAggregator;
         private readonly IBuildProviderSettingsRepository _buildProviderSettingsRepository;
-        private string _name;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="AddConnectionViewModel" /> class.
@@ -37,19 +36,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// <value>
         /// The name.
         /// </value>
-        public string Name
-        {
-            get
-            {
-                return _name;
-            }
-
-            set
-            {
-                _name = value;
-                NotifyOfPropertyChange(() => Name);
-            }
-        }
+        public string Name { get; set; }
 
         /// <summary>
         /// Add the connection.
