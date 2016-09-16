@@ -12,15 +12,15 @@ namespace Logikfabrik.Overseer.Settings
     public interface IBuildProviderSettingsRepository
     {
         /// <summary>
-        /// Adds the specified settings.
+        /// Adds the specified build provider settings.
         /// </summary>
-        /// <param name="settings">The settings.</param>
-        void Add(BuildProviderSettings settings);
+        /// <param name="buildProviderSettings">The build provider settings.</param>
+        void Add(BuildProviderSettings buildProviderSettings);
 
         /// <summary>
-        /// Gets settings.
+        /// Gets the build provider settings.
         /// </summary>
-        /// <returns>Settings.</returns>
+        /// <returns>The build provider settings.</returns>
         IEnumerable<BuildProviderSettings> Get();
     }
 }

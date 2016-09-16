@@ -1,4 +1,4 @@
-﻿// <copyright file="BuildProvider.cs" company="Logikfabrik">
+﻿// <copyright file="IBuildProvider.cs" company="Logikfabrik">
 //   Copyright (c) 2016 anton(at)logikfabrik.se. Licensed under the MIT license.
 // </copyright>
 
@@ -8,9 +8,9 @@ namespace Logikfabrik.Overseer
     using Settings;
 
     /// <summary>
-    /// The <see cref="BuildProvider" /> class.
+    /// The <see cref="IBuildProvider" /> interface.
     /// </summary>
-    public abstract class BuildProvider : IBuildProvider
+    public interface IBuildProvider
     {
         /// <summary>
         /// Gets the name.
@@ -18,7 +18,7 @@ namespace Logikfabrik.Overseer
         /// <value>
         /// The name.
         /// </value>
-        public abstract string Name { get; }
+        string Name { get; }
 
         /// <summary>
         /// Gets or sets the build provider settings.
@@ -26,19 +26,19 @@ namespace Logikfabrik.Overseer
         /// <value>
         /// The build provider settings.
         /// </value>
-        public BuildProviderSettings BuildProviderSettings { get; set; }
+        BuildProviderSettings BuildProviderSettings { get; set; }
 
         /// <summary>
         /// Gets the projects.
         /// </summary>
         /// <returns>The projects.</returns>
-        public abstract IEnumerable<IProject> GetProjects();
+        IEnumerable<IProject> GetProjects();
 
         /// <summary>
         /// Gets the builds for the project with the specified project identifier.
         /// </summary>
         /// <param name="projectId">The project identifier.</param>
         /// <returns>The builds for the project with the specified project identifier.</returns>
-        public abstract IEnumerable<IBuild> GetBuilds(string projectId);
+        IEnumerable<IBuild> GetBuilds(string projectId);
     }
 }

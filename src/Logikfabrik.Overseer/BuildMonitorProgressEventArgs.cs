@@ -17,18 +17,18 @@ namespace Logikfabrik.Overseer
         /// Initializes a new instance of the <see cref="BuildMonitorProgressEventArgs" /> class.
         /// </summary>
         /// <param name="percentProgress">The percent progress.</param>
-        /// <param name="provider">The provider.</param>
+        /// <param name="buildProvider">The build provider.</param>
         /// <param name="project">The project.</param>
         /// <param name="builds">The builds.</param>
-        public BuildMonitorProgressEventArgs(int percentProgress, BuildProvider provider, IProject project, IEnumerable<IBuild> builds)
+        public BuildMonitorProgressEventArgs(int percentProgress, IBuildProvider buildProvider, IProject project, IEnumerable<IBuild> builds)
         {
             Ensure.That(percentProgress).IsInRange(0, 100);
-            Ensure.That(provider).IsNotNull();
+            Ensure.That(buildProvider).IsNotNull();
             Ensure.That(project).IsNotNull();
             Ensure.That(builds).IsNotNull();
 
             PercentProgress = percentProgress;
-            Provider = provider;
+            BuildProvider = buildProvider;
             Project = project;
             Builds = builds;
         }
@@ -42,12 +42,12 @@ namespace Logikfabrik.Overseer
         public int PercentProgress { get; }
 
         /// <summary>
-        /// Gets the provider.
+        /// Gets the build provider.
         /// </summary>
         /// <value>
-        /// The provider.
+        /// The build provider.
         /// </value>
-        public BuildProvider Provider { get; }
+        public IBuildProvider BuildProvider { get; }
 
         /// <summary>
         /// Gets the project.

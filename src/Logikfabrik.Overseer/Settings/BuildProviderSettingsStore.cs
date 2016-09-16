@@ -33,16 +33,29 @@ namespace Logikfabrik.Overseer.Settings
             _handle = new EventWaitHandle(true, EventResetMode.AutoReset, HandleName);
         }
 
+        /// <summary>
+        /// Loads the build provider settings.
+        /// </summary>
+        /// <returns>
+        /// A task.
+        /// </returns>
         public async Task<IEnumerable<BuildProviderSettings>> LoadAsync()
         {
             return await Task.Run(() => Load()).ConfigureAwait(false);
         }
 
-        public async Task SaveAsync(IEnumerable<BuildProviderSettings> settings)
+        /// <summary>
+        /// Saves the specified build provider settings.
+        /// </summary>
+        /// <param name="buildProviderSettings">The build provider settings.</param>
+        /// <returns>
+        /// A task.
+        /// </returns>
+        public async Task SaveAsync(IEnumerable<BuildProviderSettings> buildProviderSettings)
         {
-            Ensure.That(settings).IsNotNull();
+            Ensure.That(buildProviderSettings).IsNotNull();
 
-            await Task.Run(() => Save(settings)).ConfigureAwait(false);
+            await Task.Run(() => Save(buildProviderSettings)).ConfigureAwait(false);
         }
 
         private static string GetProduct()
@@ -76,9 +89,9 @@ namespace Logikfabrik.Overseer.Settings
             }
         }
 
-        private void Save(IEnumerable<BuildProviderSettings> settings)
+        private void Save(IEnumerable<BuildProviderSettings> buildProviderSettings)
         {
-            Ensure.That(settings).IsNotNull();
+            Ensure.That(buildProviderSettings).IsNotNull();
 
             _handle.WaitOne();
 
@@ -100,7 +113,7 @@ namespace Logikfabrik.Overseer.Settings
                 {
                     var serializer = XmlSerializer.FromTypes(new[] { typeof(BuildProviderSettings[]) })[0];
 
-                    serializer.Serialize(writer, settings.ToArray());
+                    serializer.Serialize(writer, buildProviderSettings.ToArray());
                 }
             }
             finally

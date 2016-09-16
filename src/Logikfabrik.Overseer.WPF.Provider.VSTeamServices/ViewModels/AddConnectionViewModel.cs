@@ -66,13 +66,12 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices.ViewModels
             }
         }
 
-        /// <inheritdoc />
         protected override BuildProviderSettings GetSettings()
         {
             return new BuildProviderSettings
             {
                 Name = Name,
-                ProviderTypeName = typeof(BuildProvider).AssemblyQualifiedName,
+                BuildProviderTypeName = typeof(BuildProvider).AssemblyQualifiedName,
                 Settings = new[]
                 {
                     new Setting {Name = "Url", Value = Url},

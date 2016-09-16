@@ -2,11 +2,10 @@
 //   Copyright (c) 2016 anton(at)logikfabrik.se. Licensed under the MIT license.
 // </copyright>
 
-using EnsureThat;
-
 namespace Logikfabrik.Overseer
 {
     using System;
+    using EnsureThat;
     using Settings;
 
     /// <summary>
@@ -14,24 +13,25 @@ namespace Logikfabrik.Overseer
     /// </summary>
     public static class BuildProviderFactory
     {
-        public static BuildProvider GetProvider(BuildProviderSettings settings)
+        /// <summary>
+        /// Gets a build provider.
+        /// </summary>
+        /// <param name="buildProviderSettings">The build provider settings.</param>
+        /// <returns>A build provider.</returns>
+        public static IBuildProvider GetBuildProvider(BuildProviderSettings buildProviderSettings)
         {
-            Ensure.That(settings).IsNotNull();
-            
-            var providerType = settings.GetProviderType();
+            Ensure.That(buildProviderSettings).IsNotNull();
 
-            var constructor = providerType.GetConstructor(Type.EmptyTypes);
+            var buildProviderType = buildProviderSettings.GetBuildProviderType();
 
-            if (constructor == null)
-            {
-                throw new Exception();
-            }
+            var constructor = buildProviderType.GetConstructor(Type.EmptyTypes);
 
-            var provider = (BuildProvider)constructor.Invoke(new object[] { });
+            // ReSharper disable once PossibleNullReferenceException
+            var buildProvider = (IBuildProvider)constructor.Invoke(new object[] { });
 
-            provider.Settings = settings;
+            buildProvider.BuildProviderSettings = buildProviderSettings;
 
-            return provider;
+            return buildProvider;
         }
     }
 }

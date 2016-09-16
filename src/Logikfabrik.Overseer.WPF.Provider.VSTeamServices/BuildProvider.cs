@@ -20,7 +20,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices
         /// <value>
         /// The name.
         /// </value>
-        public override string ProviderName { get; } = "VS Team Services";
+        public override string Name { get; } = "VS Team Services";
 
         public override IEnumerable<IProject> GetProjects()
         {
@@ -37,17 +37,17 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices
                 new StubProject
                 {
                     Id = "2",
-                    Name = "Project 1"
+                    Name = "Project 2"
                 },
                 new StubProject
                 {
                     Id = "3",
-                    Name = "Project 1"
+                    Name = "Project 3"
                 },
                 new StubProject
                 {
                     Id = "4",
-                    Name = "Project 1"
+                    Name = "Project 4"
                 }
             };
         }
@@ -62,19 +62,19 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices
                 new StubBuild
                 {
                     Branch = "Master",
-                    BuildNumber = "1",
+                    Number = "1",
                     Status = BuildStatus.Failed
                 },
                 new StubBuild
                 {
                     Branch = "Master",
-                    BuildNumber = "2",
+                    Number = "2",
                     Status = BuildStatus.Succeeded
                 },
                 new StubBuild
                 {
                     Branch = "Master",
-                    BuildNumber = "3",
+                    Number = "3",
                     Status = BuildStatus.InProgress
                 }
             };

@@ -15,27 +15,27 @@ namespace Logikfabrik.Overseer
         /// <summary>
         /// Initializes a new instance of the <see cref="BuildMonitorState" /> class.
         /// </summary>
-        /// <param name="provider">The provider.</param>
+        /// <param name="buildProvider">The build provider.</param>
         /// <param name="project">The project.</param>
         /// <param name="builds">The builds.</param>
-        public BuildMonitorState(BuildProvider provider, IProject project, IEnumerable<IBuild> builds)
+        public BuildMonitorState(IBuildProvider buildProvider, IProject project, IEnumerable<IBuild> builds)
         {
-            Ensure.That(provider).IsNotNull();
+            Ensure.That(buildProvider).IsNotNull();
             Ensure.That(project).IsNotNull();
             Ensure.That(builds).IsNotNull();
 
-            Provider = provider;
+            BuildProvider = buildProvider;
             Project = project;
             Builds = builds;
         }
 
         /// <summary>
-        /// Gets the provider.
+        /// Gets the build provider.
         /// </summary>
         /// <value>
-        /// The provider.
+        /// The build provider.
         /// </value>
-        public BuildProvider Provider { get; }
+        public IBuildProvider BuildProvider { get; }
 
         /// <summary>
         /// Gets the project.

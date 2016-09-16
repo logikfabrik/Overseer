@@ -58,6 +58,7 @@
     <Compile Include="BuildMonitorProgressEventArgs.cs" />
     <Compile Include="BuildProviderRepository.cs" />
     <Compile Include="IBuildMonitor.cs" />
+    <Compile Include="IBuildProvider.cs" />
     <Compile Include="IBuildProviderRepository.cs" />
     <Compile Include="StubBuild.cs" />
     <Compile Include="StubProject.cs" />

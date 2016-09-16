@@ -90,11 +90,11 @@ namespace Logikfabrik.Overseer
             ProgressChanged?.Invoke(this, e);
         }
 
-        private static int GetPercentProgress(int totalProviders, int currentProvider, int currentProviderTotalProjects, int currentProviderProject)
+        private static int GetPercentProgress(int totalBuildProviders, int currentBuildProvider, int currentBuildProviderTotalProjects, int currentBuildProviderProject)
         {
-            var totalProviderProgress = (double)currentProvider / totalProviders;
+            var totalProviderProgress = (double)currentBuildProvider / totalBuildProviders;
 
-            var currentProviderProgress = (double)currentProviderProject / currentProviderTotalProjects * ((double)1 / totalProviders);
+            var currentProviderProgress = (double)currentBuildProviderProject / currentBuildProviderTotalProjects * ((double)1 / totalBuildProviders);
 
             return (int)Math.Floor((totalProviderProgress + currentProviderProgress) * 100);
         }
@@ -103,16 +103,16 @@ namespace Logikfabrik.Overseer
         {
             var state = (BuildMonitorState)e.UserState;
 
-            var args = new BuildMonitorProgressEventArgs(e.ProgressPercentage, state.Provider, state.Project, state.Builds);
+            var args = new BuildMonitorProgressEventArgs(e.ProgressPercentage, state.BuildProvider, state.Project, state.Builds);
 
             OnProgressChanged(args);
         }
 
         private void OnBackgroundWorkerDoWork(object sender, DoWorkEventArgs e)
         {
-            var providers = _buildProviderRepository.GetProviders().ToArray();
+            var buildProviders = _buildProviderRepository.GetBuildProviders().ToArray();
 
-            for (var i = 0; i < providers.Length; i++)
+            for (var i = 0; i < buildProviders.Length; i++)
             {
                 if (_backgroundWorker.CancellationPending)
                 {
@@ -120,7 +120,7 @@ namespace Logikfabrik.Overseer
                     return;
                 }
 
-                var projects = providers[i].GetProjects().ToArray();
+                var projects = buildProviders[i].GetProjects().ToArray();
 
                 for (var j = 0; j < projects.Length; j++)
                 {
@@ -130,11 +130,11 @@ namespace Logikfabrik.Overseer
                         return;
                     }
 
-                    var builds = providers[i].GetBuilds(projects[j].Id);
+                    var builds = buildProviders[i].GetBuilds(projects[j].Id);
 
-                    var percentProgress = GetPercentProgress(providers.Length, i, projects.Length, j);
+                    var percentProgress = GetPercentProgress(buildProviders.Length, i, projects.Length, j);
 
-                    _backgroundWorker.ReportProgress(percentProgress, new BuildMonitorState(providers[i], projects[j], builds));
+                    _backgroundWorker.ReportProgress(percentProgress, new BuildMonitorState(buildProviders[i], projects[j], builds));
                 }
             }
         }

@@ -14,10 +14,10 @@
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
-                <TextBlock x:Name="ConnectionName"
+                <TextBlock x:Name="Name"
                            Grid.Column="0" 
                            FontSize="22"
-                           Text="Connection name" />
+                           Text="Name" />
                 <StackPanel Grid.Column="1" Orientation="Horizontal">
                     <Button Content="Edit" />
                     <Button Content="Remove" />

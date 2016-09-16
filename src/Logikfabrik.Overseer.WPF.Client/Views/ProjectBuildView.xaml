@@ -21,7 +21,8 @@
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>
-                    <TextBlock Grid.Row="0" 
+                    <TextBlock x:Name="ProjectName"
+                               Grid.Row="0" 
                                FontSize="18"
                                Text="Project name" />
                     <ContentControl Grid.Row="1" 

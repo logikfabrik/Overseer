@@ -1,8 +1,8 @@
-﻿using Logikfabrik.Overseer.Settings;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-
-namespace Logikfabrik.Overseer.Test.Settings
+﻿namespace Logikfabrik.Overseer.Test.Settings
 {
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using Overseer.Settings;
+
     [TestClass]
     public class BuildProviderSettingsStoreTest
     {
@@ -14,10 +14,10 @@ namespace Logikfabrik.Overseer.Test.Settings
                 new BuildProviderSettings
                 {
                     Name = "Name",
-                    ProviderTypeName = typeof (object).AssemblyQualifiedName,
+                    BuildProviderTypeName = typeof (object).AssemblyQualifiedName,
                     Settings = new[]
                     {
-                        new Setting { Name = "Name", Value = "Value"}
+                        new Setting { Name = "Name", Value = "Value" }
                     }
                 }
             };

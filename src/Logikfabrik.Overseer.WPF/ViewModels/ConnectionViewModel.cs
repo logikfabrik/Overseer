@@ -2,11 +2,10 @@
 //   Copyright (c) 2016 anton(at)logikfabrik.se. Licensed under the MIT license.
 // </copyright>
 
-using System.Linq;
-
 namespace Logikfabrik.Overseer.WPF.ViewModels
 {
     using System.Collections.Generic;
+    using System.Linq;
     using EnsureThat;
 
     /// <summary>
@@ -17,52 +16,40 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// <summary>
         /// Initializes a new instance of the <see cref="ConnectionViewModel"/> class.
         /// </summary>
+        /// <param name="buildMonitor">The build monitor.</param>
         /// <param name="buildProvider">The build provider settings.</param>
-        public ConnectionViewModel(BuildProvider buildProvider)
+        public ConnectionViewModel(IBuildMonitor buildMonitor, IBuildProvider buildProvider)
         {
+            Ensure.That(buildMonitor).IsNotNull();
             Ensure.That(buildProvider).IsNotNull();
 
-            ProviderName = buildProvider.ProviderName;
-            ConnectionName = buildProvider.Settings.Name;
-
-
-            // TODO: Maybe we shouldn't access the buildprovider, but use the BuildMonitor? Slow star because of thread sleep in the provider.
-
-            var viewModels = new List<ProjectBuildViewModel>();
-
-            var projects = buildProvider.GetProjects();
-
-
-            foreach (var project in projects)
-            {
-                viewModels.Add(new ProjectBuildViewModel(project, buildProvider.GetBuilds(project.Id).FirstOrDefault()));
-            }
-
-            ProjectBuildViewModels = viewModels;
+            Name = buildProvider.BuildProviderSettings.Name;
+            BuildProviderName = buildProvider.Name;
+            ProjectBuildViewModels = buildProvider.GetProjects().Select(project => new ProjectBuildViewModel(buildMonitor, buildProvider, project));
         }
 
         /// <summary>
-        /// Gets the connection name.
+        /// Gets the name.
         /// </summary>
         /// <value>
-        /// The connection name.
+        /// The name.
         /// </value>
-        public string ConnectionName { get; }
+        public string Name { get; }
 
         /// <summary>
-        /// Gets provider name.
+        /// Gets the build provider name.
         /// </summary>
         /// <value>
-        /// The provider name.
+        /// The build provider name.
         /// </value>
-        public string ProviderName { get; }
+        public string BuildProviderName { get; }
 
         /// <summary>
-        /// Gets or sets the project build view models.
+        /// Gets the project build view models.
         /// </summary>
         /// <value>
         /// The project build view models.
         /// </value>
-        public IEnumerable<ProjectBuildViewModel> ProjectBuildViewModels { get; set; }
+        public IEnumerable<ProjectBuildViewModel> ProjectBuildViewModels { get; }
     }
 }

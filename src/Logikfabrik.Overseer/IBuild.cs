@@ -12,12 +12,12 @@ namespace Logikfabrik.Overseer
     public interface IBuild
     {
         /// <summary>
-        /// Gets the build number.
+        /// Gets the number.
         /// </summary>
         /// <value>
-        /// The build number.
+        /// The number.
         /// </value>
-        string BuildNumber { get; }
+        string Number { get; }
 
         /// <summary>
         /// Gets the branch.

@@ -12,9 +12,39 @@ namespace Logikfabrik.Overseer.Settings
     /// </summary>
     public class BuildProviderSettings
     {
+        private Guid _id;
         private string _name;
-        private string _providerTypeName;
+        private string _buildProviderTypeName;
         private Setting[] _settings;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="BuildProviderSettings" /> class.
+        /// </summary>
+        public BuildProviderSettings()
+        {
+            _id = Guid.NewGuid();
+        }
+
+        /// <summary>
+        /// Gets or sets the identifier.
+        /// </summary>
+        /// <value>
+        /// The identifier.
+        /// </value>
+        public Guid Id
+        {
+            get
+            {
+                return _id;
+            }
+
+            set
+            {
+                Ensure.That(value).IsNotEmpty();
+
+                _id = value;
+            }
+        }
 
         /// <summary>
         /// Gets or sets the name.
@@ -43,18 +73,18 @@ namespace Logikfabrik.Overseer.Settings
         /// <value>
         /// The provider type name.
         /// </value>
-        public string ProviderTypeName
+        public string BuildProviderTypeName
         {
             get
             {
-                return _providerTypeName;
+                return _buildProviderTypeName;
             }
 
             set
             {
                 Ensure.That(value).IsNotNullOrWhiteSpace();
 
-                _providerTypeName = value;
+                _buildProviderTypeName = value;
             }
         }
 
@@ -80,14 +110,14 @@ namespace Logikfabrik.Overseer.Settings
         }
 
         /// <summary>
-        /// Gets the provider type.
+        /// Gets the build provider type.
         /// </summary>
-        /// <returns>The provider type.</returns>
-        public Type GetProviderType()
+        /// <returns>The build provider type.</returns>
+        public Type GetBuildProviderType()
         {
-            return string.IsNullOrWhiteSpace(_providerTypeName)
+            return string.IsNullOrWhiteSpace(_buildProviderTypeName)
                 ? null
-                : Type.GetType(_providerTypeName, false);
+                : Type.GetType(_buildProviderTypeName, false);
         }
     }
 }

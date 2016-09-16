@@ -15,7 +15,7 @@ namespace Logikfabrik.Overseer.Settings
     public class BuildProviderSettingsRepository : IBuildProviderSettingsRepository
     {
         private readonly IBuildProviderSettingsStore _buildProviderSettingsStore;
-        private readonly Lazy<IDictionary<Tuple<string, string>, BuildProviderSettings>> _currentSettings;
+        private readonly Lazy<IDictionary<Guid, BuildProviderSettings>> _currentBuildProviderSettings;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="BuildProviderSettingsRepository" /> class.
@@ -26,37 +26,34 @@ namespace Logikfabrik.Overseer.Settings
             Ensure.That(buildProviderSettingsStore).IsNotNull();
 
             _buildProviderSettingsStore = buildProviderSettingsStore;
-            _currentSettings = new Lazy<IDictionary<Tuple<string, string>, BuildProviderSettings>>(() =>
+            _currentBuildProviderSettings = new Lazy<IDictionary<Guid, BuildProviderSettings>>(() =>
             {
-                return _buildProviderSettingsStore.LoadAsync().Result.ToDictionary(GetKey, setting => setting);
+                return _buildProviderSettingsStore.LoadAsync().Result.ToDictionary(buildProviderSettings => buildProviderSettings.Id, buildProviderSettings => buildProviderSettings);
             });
         }
 
         /// <summary>
-        /// Gets settings.
+        /// Gets the build provider settings.
         /// </summary>
-        /// <returns>Settings.</returns>
+        /// <returns>
+        /// The build provider settings.
+        /// </returns>
         public IEnumerable<BuildProviderSettings> Get()
         {
-            return _currentSettings.Value.Values;
+            return _currentBuildProviderSettings.Value.Values;
         }
 
         /// <summary>
-        /// Adds the specified settings.
+        /// Adds the specified build provider settings.
         /// </summary>
-        /// <param name="settings">The settings.</param>
-        public void Add(BuildProviderSettings settings)
+        /// <param name="buildProviderSettings">The build provider settings.</param>
+        public void Add(BuildProviderSettings buildProviderSettings)
         {
-            Ensure.That(settings).IsNotNull();
+            Ensure.That(buildProviderSettings).IsNotNull();
 
-            _currentSettings.Value.Add(GetKey(settings), settings);
+            _currentBuildProviderSettings.Value.Add(buildProviderSettings.Id, buildProviderSettings);
 
-            _buildProviderSettingsStore.SaveAsync(_currentSettings.Value.Values);
-        }
-
-        private static Tuple<string, string> GetKey(BuildProviderSettings settings)
-        {
-            return new Tuple<string, string>(settings.Name, settings.ProviderTypeName);
+            _buildProviderSettingsStore.SaveAsync(_currentBuildProviderSettings.Value.Values);
         }
     }
 }

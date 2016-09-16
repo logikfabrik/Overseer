@@ -28,16 +28,16 @@ namespace Logikfabrik.Overseer
         }
 
         /// <summary>
-        /// Gets the providers.
+        /// Gets the build providers.
         /// </summary>
-        /// <returns>The providers.</returns>
-        public IEnumerable<BuildProvider> GetProviders()
+        /// <returns>The build providers.</returns>
+        public IEnumerable<IBuildProvider> GetBuildProviders()
         {
-            var settings = _buildProviderSettingsRepository.Get();
+            var buildProviderSettings = _buildProviderSettingsRepository.Get();
 
-            var providers = settings.Select(BuildProviderFactory.GetProvider);
+            var buildProviders = buildProviderSettings.Select(BuildProviderFactory.GetBuildProvider);
 
-            return providers;
+            return buildProviders;
         }
     }
 }
