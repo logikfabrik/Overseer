@@ -1,4 +1,8 @@
-﻿namespace Logikfabrik.Overseer.Test.Settings
+﻿// <copyright file="BuildProviderSettingsStoreTest.cs" company="Logikfabrik">
+//   Copyright (c) 2016 anton(at)logikfabrik.se. Licensed under the MIT license.
+// </copyright>
+
+namespace Logikfabrik.Overseer.Test.Settings
 {
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Overseer.Settings;
@@ -14,7 +18,7 @@
                 new BuildProviderSettings
                 {
                     Name = "Name",
-                    BuildProviderTypeName = typeof (object).AssemblyQualifiedName,
+                    BuildProviderTypeName = typeof(object).AssemblyQualifiedName,
                     Settings = new[]
                     {
                         new Setting { Name = "Name", Value = "Value" }

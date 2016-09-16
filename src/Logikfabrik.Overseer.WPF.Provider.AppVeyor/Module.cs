@@ -10,7 +10,6 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor
     /// <summary>
     /// The <see cref="Module" /> class.
     /// </summary>
-    /// <seealso cref="NinjectModule" />
     public class Module : NinjectModule
     {
         /// <summary>

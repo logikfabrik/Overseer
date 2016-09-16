@@ -51,13 +51,19 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             }
         }
 
+        /// <summary>
+        /// Add the connection.
+        /// </summary>
         public void AddConnection()
         {
-            _buildProviderSettingsRepository.Add(GetSettings());
+            _buildProviderSettingsRepository.Add(GetBuildProviderSettings());
 
             ViewConnections();
         }
 
+        /// <summary>
+        /// View the connections.
+        /// </summary>
         public void ViewConnections()
         {
             var eventMessage = new NavigationEvent(typeof(ConnectionsViewModel));
@@ -66,9 +72,9 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         }
 
         /// <summary>
-        /// Gets the settings.
+        /// Gets the build provider settings.
         /// </summary>
-        /// <returns>The settings.</returns>
-        protected abstract BuildProviderSettings GetSettings();
+        /// <returns>The build provider settings.</returns>
+        protected abstract BuildProviderSettings GetBuildProviderSettings();
     }
 }

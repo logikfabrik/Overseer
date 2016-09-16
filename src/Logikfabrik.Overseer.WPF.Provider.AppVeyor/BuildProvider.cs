@@ -10,7 +10,6 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor
     /// <summary>
     /// The <see cref="BuildProvider" /> class.
     /// </summary>
-    /// <seealso cref="Overseer.BuildProvider" />
     public class BuildProvider : Overseer.BuildProvider
     {
         /// <summary>

@@ -14,7 +14,7 @@ namespace Logikfabrik.Overseer
     public static class BuildProviderFactory
     {
         /// <summary>
-        /// Gets a build provider.
+        /// Gets a build provider using the specified build provider settings.
         /// </summary>
         /// <param name="buildProviderSettings">The build provider settings.</param>
         /// <returns>A build provider.</returns>

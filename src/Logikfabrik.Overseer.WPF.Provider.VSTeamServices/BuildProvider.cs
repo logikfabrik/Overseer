@@ -2,16 +2,14 @@
 //   Copyright (c) 2016 anton(at)logikfabrik.se. Licensed under the MIT license.
 // </copyright>
 
-using System.Threading;
-
 namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices
 {
     using System.Collections.Generic;
+    using System.Threading;
 
     /// <summary>
     /// The <see cref="BuildProvider" /> class.
     /// </summary>
-    /// <seealso cref="Overseer.BuildProvider" />
     public class BuildProvider : Overseer.BuildProvider
     {
         /// <summary>

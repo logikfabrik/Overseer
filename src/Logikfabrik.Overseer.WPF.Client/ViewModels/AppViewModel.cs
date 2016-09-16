@@ -2,12 +2,10 @@
 //   Copyright (c) 2016 anton(at)logikfabrik.se. Licensed under the MIT license.
 // </copyright>
 
-using EnsureThat;
-
 namespace Logikfabrik.Overseer.WPF.Client.ViewModels
 {
-    using System;
     using Caliburn.Micro;
+    using EnsureThat;
     using WPF.ViewModels;
 
     /// <summary>

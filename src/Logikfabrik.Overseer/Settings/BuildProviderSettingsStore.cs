@@ -19,18 +19,18 @@ namespace Logikfabrik.Overseer.Settings
     /// </summary>
     public class BuildProviderSettingsStore : IBuildProviderSettingsStore
     {
-        private const string HandleName = "b4908818-002e-42fb-a058-86ea4e47e36e";
+        private const string FileWaitHandleName = "b4908818-002e-42fb-a058-86ea4e47e36e";
 
-        private readonly string _path;
-        private readonly EventWaitHandle _handle;
+        private readonly string _filePath;
+        private readonly EventWaitHandle _fileWaitHandle;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="BuildProviderSettingsStore" /> class.
         /// </summary>
         public BuildProviderSettingsStore()
         {
-            _path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), GetProduct(), "Providers.xml");
-            _handle = new EventWaitHandle(true, EventResetMode.AutoReset, HandleName);
+            _filePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), GetProduct(), "Providers.xml");
+            _fileWaitHandle = new EventWaitHandle(true, EventResetMode.AutoReset, FileWaitHandleName);
         }
 
         /// <summary>
@@ -67,16 +67,16 @@ namespace Logikfabrik.Overseer.Settings
 
         private IEnumerable<BuildProviderSettings> Load()
         {
-            _handle.WaitOne();
+            _fileWaitHandle.WaitOne();
 
             try
             {
-                if (!File.Exists(_path))
+                if (!File.Exists(_filePath))
                 {
                     return new BuildProviderSettings[] { };
                 }
 
-                using (var reader = new StreamReader(_path))
+                using (var reader = new StreamReader(_filePath))
                 {
                     var serializer = XmlSerializer.FromTypes(new[] { typeof(BuildProviderSettings[]) })[0];
 
@@ -85,7 +85,7 @@ namespace Logikfabrik.Overseer.Settings
             }
             finally
             {
-                _handle.Set();
+                _fileWaitHandle.Set();
             }
         }
 
@@ -93,11 +93,11 @@ namespace Logikfabrik.Overseer.Settings
         {
             Ensure.That(buildProviderSettings).IsNotNull();
 
-            _handle.WaitOne();
+            _fileWaitHandle.WaitOne();
 
             try
             {
-                var directoryPath = Path.GetDirectoryName(_path);
+                var directoryPath = Path.GetDirectoryName(_filePath);
 
                 if (string.IsNullOrWhiteSpace(directoryPath))
                 {
@@ -109,7 +109,7 @@ namespace Logikfabrik.Overseer.Settings
                     Directory.CreateDirectory(directoryPath);
                 }
 
-                using (var writer = new StreamWriter(_path, false))
+                using (var writer = new StreamWriter(_filePath, false))
                 {
                     var serializer = XmlSerializer.FromTypes(new[] { typeof(BuildProviderSettings[]) })[0];
 
@@ -118,12 +118,12 @@ namespace Logikfabrik.Overseer.Settings
             }
             finally
             {
-                if (File.Exists(_path) && !File.GetAttributes(_path).HasFlag(FileAttributes.Encrypted))
+                if (File.Exists(_filePath) && !File.GetAttributes(_filePath).HasFlag(FileAttributes.Encrypted))
                 {
-                    File.Encrypt(_path);
+                    File.Encrypt(_filePath);
                 }
 
-                _handle.Set();
+                _fileWaitHandle.Set();
             }
         }
     }

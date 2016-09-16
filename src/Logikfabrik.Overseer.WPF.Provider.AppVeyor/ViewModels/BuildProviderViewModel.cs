@@ -10,7 +10,6 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor.ViewModels
     /// <summary>
     /// The <see cref="BuildProviderViewModel" /> class.
     /// </summary>
-    /// <seealso cref="WPF.ViewModels.BuildProviderViewModel" />
     public class BuildProviderViewModel : WPF.ViewModels.BuildProviderViewModel
     {
         /// <summary>

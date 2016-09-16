@@ -11,7 +11,6 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     /// <summary>
     /// The <see cref="BuildProviderViewModel" /> class.
     /// </summary>
-    /// <seealso cref="PropertyChangedBase" />
     public abstract class BuildProviderViewModel : PropertyChangedBase
     {
         private readonly IBuildProvider _buildProvider;
@@ -32,12 +31,12 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         }
 
         /// <summary>
-        /// Gets the name of the provider.
+        /// Gets build provider name.
         /// </summary>
         /// <value>
-        /// The name of the provider.
+        /// The build provider name.
         /// </value>
-        public string ProviderName => _buildProvider.Name;
+        public string BuildProviderName => _buildProvider.Name;
 
         /// <summary>
         /// Gets the type of the view model to add connection.

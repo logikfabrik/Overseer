@@ -4,16 +4,16 @@
 
 namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor.ViewModels
 {
-    using System;
     using Caliburn.Micro;
     using Settings;
 
     /// <summary>
     /// The <see cref="AddConnectionViewModel" /> class.
     /// </summary>
-    /// <seealso cref="WPF.ViewModels.AddConnectionViewModel" />
     public class AddConnectionViewModel : WPF.ViewModels.AddConnectionViewModel
     {
+        private string _token;
+
         /// <summary>
         /// Initializes a new instance of the <see cref="AddConnectionViewModel" /> class.
         /// </summary>
@@ -24,10 +24,43 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor.ViewModels
         {
         }
 
-        /// <inheritdoc />
-        protected override BuildProviderSettings GetSettings()
+        /// <summary>
+        /// Gets or sets the token.
+        /// </summary>
+        /// <value>
+        /// The token.
+        /// </value>
+        public string Token
         {
-            throw new NotImplementedException();
+            get
+            {
+                return _token;
+            }
+
+            set
+            {
+                _token = value;
+                NotifyOfPropertyChange(() => Token);
+            }
+        }
+
+        /// <summary>
+        /// Gets the build provider settings.
+        /// </summary>
+        /// <returns>
+        /// The build provider settings.
+        /// </returns>
+        protected override BuildProviderSettings GetBuildProviderSettings()
+        {
+            return new BuildProviderSettings
+            {
+                Name = Name,
+                BuildProviderTypeName = typeof(BuildProvider).AssemblyQualifiedName,
+                Settings = new[]
+                {
+                    new Setting { Name = "Token", Value = Token }
+                }
+            };
         }
     }
 }
