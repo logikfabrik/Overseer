@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Logikfabrik.Overseer.WPF.Client.Views"
              xmlns:cal="http://www.caliburnproject.org"
+             xmlns:userControls="clr-namespace:Logikfabrik.Overseer.WPF.Client.UserControls"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <Expander>
@@ -12,18 +13,24 @@
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="20" />
                 </Grid.ColumnDefinitions>
-                <TextBlock x:Name="Name"
-                           Grid.Column="0" 
-                           FontSize="22"
-                           Text="Name" />
-                <StackPanel Grid.Column="1" Orientation="Horizontal">
-                    <Button Content="Edit" />
-                    <Button Content="Remove" />
-                </StackPanel>
+                <Grid Grid.Column="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock x:Name="Name"
+                               Grid.Column="0" 
+                               FontSize="22"
+                               Text="Name" />
+                    <StackPanel Grid.Column="1" Orientation="Horizontal">
+                        <Button Content="Edit" />
+                        <Button Content="Remove" />
+                    </StackPanel>
+                </Grid>
+                <userControls:BusyIndicator Grid.Column="1" />
             </Grid>
-            
         </Expander.Header>
         <Expander.Content>
             <ItemsControl Grid.Row="1" 
