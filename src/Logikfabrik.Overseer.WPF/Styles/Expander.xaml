@@ -14,13 +14,13 @@
                         <ControlTemplate TargetType="{x:Type ToggleButton}">
                             <Grid Background="Transparent">
                                 <Grid.RowDefinitions>
-                                    <RowDefinition Height="15" />
+                                    <RowDefinition Height="10" />
                                     <RowDefinition Height="*" />
                                 </Grid.RowDefinitions>
                                 <Viewbox Grid.Row="0"
                                          Stretch="Uniform"
-                                         Width="15" 
-                                         Height="15">
+                                         Width="10" 
+                                         Height="10">
                                     <Path x:Name="path"
                                           RenderTransformOrigin="0.5, 0.5"
                                           SnapsToDevicePixels="True"
@@ -56,13 +56,13 @@
                         <ControlTemplate TargetType="{x:Type ToggleButton}">
                             <Grid Background="Transparent">
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="15" />
+                                    <ColumnDefinition Width="10" />
                                     <ColumnDefinition Width="*" />
                                 </Grid.ColumnDefinitions>
                                 <Viewbox Grid.Column="0"
                                          Stretch="Uniform"
-                                         Width="15" 
-                                         Height="15">
+                                         Width="10" 
+                                         Height="10">
                                     <Path x:Name="path"
                                           RenderTransformOrigin="0.5, 0.5"
                                           SnapsToDevicePixels="True"
@@ -102,13 +102,13 @@
                         <ControlTemplate TargetType="{x:Type ToggleButton}">
                             <Grid Background="Transparent">
                                 <Grid.RowDefinitions>
-                                    <RowDefinition Height="15" />
+                                    <RowDefinition Height="10" />
                                     <RowDefinition Height="*" />
                                 </Grid.RowDefinitions>
                                 <Viewbox Grid.Row="0"
                                          Stretch="Uniform"
-                                         Width="15" 
-                                         Height="15">
+                                         Width="10" 
+                                         Height="10">
                                     <Path x:Name="path"
                                           RenderTransformOrigin="0.5, 0.5"
                                           SnapsToDevicePixels="True"
@@ -148,13 +148,13 @@
                         <ControlTemplate TargetType="{x:Type ToggleButton}">
                             <Grid Background="Transparent">
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="15" />
+                                    <ColumnDefinition Width="10" />
                                     <ColumnDefinition Width="*" />
                                 </Grid.ColumnDefinitions>
                                 <Viewbox Grid.Column="0"
                                          Stretch="Uniform"
-                                         Width="15" 
-                                         Height="15">
+                                         Width="10" 
+                                         Height="10">
                                     <Path x:Name="path"
                                           RenderTransformOrigin="0.5, 0.5"
                                           SnapsToDevicePixels="True"

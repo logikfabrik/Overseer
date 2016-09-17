@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:cal="http://www.caliburnproject.org"
+             xmlns:uc="clr-namespace:Logikfabrik.Overseer.WPF.Client.UserControls"
              mc:Ignorable="d" 
              d:DesignHeight="500" d:DesignWidth="500">
     <Grid>
@@ -104,11 +105,9 @@
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Button.Template>
-            <Path Data="M0.5,0 L.5,1 M0,0.5 L1,0.5"
-                  SnapsToDevicePixels="True"
-                  StrokeThickness="4"
-                  Stretch="Uniform"
-                  Stroke="{Binding Foreground, RelativeSource={RelativeSource AncestorType={x:Type Button}}}" />
+            <uc:Icon Data="F 1 M 21.535,8.276 L 13.261,8.276 13.261,0 8.275,0 8.275,8.276 0,8.276 0,13.261 8.275,13.261 8.275,21.536 13.261,21.536 13.261,13.261 21.535,13.261 Z" 
+                     Width="10" 
+                     Height="10" />
         </Button>
     </Grid>
 </UserControl>

@@ -13,17 +13,21 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     /// </summary>
     public class BuildViewModel : PropertyChangedBase
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="BuildViewModel" /> class.
+        /// </summary>
+        /// <param name="build">The build.</param>
         public BuildViewModel(IBuild build)
         {
             Ensure.That(build).IsNotNull();
 
             CommitMessage = "Bug #238 Fixed a bug.";
             CommitUser = "john";
-            Branch = "master";
+            Branch = build.Branch;
             Revision = "11982efa";
             Version = "12.324.4410.1134";
-            Started = DateTime.Now;
-            Finished = DateTime.Now;
+            Started = build.Started;
+            Finished = build.Finished;
         }
 
         /// <summary>

@@ -3,9 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:Logikfabrik.Overseer.WPF.Client.Views"
              xmlns:cal="http://www.caliburnproject.org"
-             xmlns:userControls="clr-namespace:Logikfabrik.Overseer.WPF.Client.UserControls"
+             xmlns:uc="clr-namespace:Logikfabrik.Overseer.WPF.Client.UserControls"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <Expander>
@@ -24,12 +23,14 @@
                                Grid.Column="0" 
                                FontSize="22"
                                Text="Name" />
-                    <StackPanel Grid.Column="1" Orientation="Horizontal">
-                        <Button Content="Edit" />
-                        <Button Content="Remove" />
+                    <StackPanel Grid.Column="1" 
+                                Orientation="Horizontal">
+                        <uc:IconButton Data="F 1 M 21.536,3.536 L 18,0 10.767,7.234 3.536,0 0,3.536 7.232,10.769 0,18 3.536,21.536 10.767,14.304 18,21.536 21.536,18 14.302,10.769 Z" />
+                        <uc:IconButton Data="F 1 M 21.536,3.536 L 18,0 10.767,7.234 3.536,0 0,3.536 7.232,10.769 0,18 3.536,21.536 10.767,14.304 18,21.536 21.536,18 14.302,10.769 Z" />
                     </StackPanel>
                 </Grid>
-                <userControls:BusyIndicator Grid.Column="1" Visibility="{Binding IsBusy, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                <uc:BusyIndicator Grid.Column="1" 
+                                  Visibility="{Binding IsBusy, Converter={StaticResource BooleanToVisibilityConverter}}" />
             </Grid>
         </Expander.Header>
         <Expander.Content>
@@ -38,7 +39,8 @@
                           ItemsSource="{Binding ProjectBuildViewModels, IsAsync=True}">
                 <ItemsControl.ItemContainerStyle>
                     <Style>
-                        <Setter Property="FrameworkElement.Margin" Value="5" />
+                        <Setter Property="FrameworkElement.Margin" 
+                                Value="5" />
                     </Style>
                 </ItemsControl.ItemContainerStyle>
                 <ItemsControl.ItemTemplate>
