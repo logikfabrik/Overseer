@@ -11,6 +11,8 @@ namespace Logikfabrik.Overseer.WPF.Styles
     /// </summary>
     public static class CommonBrushes
     {
+        public static Brush Control => GetBrush(CommonColors.ControlStaticBackground);
+
         /// <summary>
         /// Gets the control focus brush.
         /// </summary>

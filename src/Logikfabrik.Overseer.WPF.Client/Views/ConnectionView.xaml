@@ -5,19 +5,17 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:cal="http://www.caliburnproject.org"
              xmlns:uc="clr-namespace:Logikfabrik.Overseer.WPF.Client.UserControls"
+             xmlns:styles="clr-namespace:Logikfabrik.Overseer.WPF.Styles;assembly=Logikfabrik.Overseer.WPF"
+             xmlns:controls="clr-namespace:Logikfabrik.Overseer.WPF.Controls;assembly=Logikfabrik.Overseer.WPF"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid Background="#FF6a6a6a">
         <Grid.Effect>
             <DropShadowEffect Opacity="0.2" ShadowDepth="2" />
         </Grid.Effect>
-        <Expander x:Name="Expander" Margin="5">
+        <Expander x:Name="Expander">
             <Expander.Header>
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="20" />
-                    </Grid.ColumnDefinitions>
+                
                     <Grid Grid.Column="0">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*" />
@@ -29,27 +27,31 @@
                                    Text="Name" />
 
                         <StackPanel Grid.Column="1" Orientation="Horizontal" Visibility="{Binding ElementName=Expander, Path=IsExpanded, Converter={StaticResource BooleanToVisibilityConverter}}">
-                            <uc:IconButton IconData="F 1 M 21.536,3.536 L 18,0 10.767,7.234 3.536,0 0,3.536 7.232,10.769 0,18 3.536,21.536 10.767,14.304 18,21.536 21.536,18 14.302,10.769 Z" 
-                                            Width="20"
-                                            Height="20" />
-                            <uc:IconButton IconData="F 1 M 21.536,3.536 L 18,0 10.767,7.234 3.536,0 0,3.536 7.232,10.769 0,18 3.536,21.536 10.767,14.304 18,21.536 21.536,18 14.302,10.769 Z" 
-                                            Width="20" 
-                                            Height="20" />
+                            <Button>
+                                <controls:Icon Data="F 1 M 21.536,3.536 L 18,0 10.767,7.234 3.536,0 0,3.536 7.232,10.769 0,18 3.536,21.536 10.767,14.304 18,21.536 21.536,18 14.302,10.769 Z" 
+                                               Width="10"
+                                               Height="10" />
+                            </Button>
+                            <Button>
+                                <controls:Icon Data="F 1 M 21.536,3.536 L 18,0 10.767,7.234 3.536,0 0,3.536 7.232,10.769 0,18 3.536,21.536 10.767,14.304 18,21.536 21.536,18 14.302,10.769 Z" 
+                                               Width="10"
+                                               Height="10" />
+                            </Button>
+                            <uc:BusyIndicator Visibility="{Binding IsBusy, Converter={StaticResource BooleanToVisibilityConverter}}" />
                         </StackPanel>
 
                     </Grid>
-                    <uc:BusyIndicator Grid.Column="1" 
-                                      Visibility="{Binding IsBusy, Converter={StaticResource BooleanToVisibilityConverter}}" />
-                </Grid>
+                    
+                
             </Expander.Header>
             <Expander.Content>
-                <ItemsControl Grid.Row="1" 
-                              Focusable="False" 
-                              ItemsSource="{Binding ProjectBuildViewModels, IsAsync=True}">
+                <ItemsControl Focusable="False" 
+                              ItemsSource="{Binding ProjectBuildViewModels, IsAsync=True}"
+                              Margin="0, 5, 0, 0">
                     <ItemsControl.ItemContainerStyle>
                         <Style>
                             <Setter Property="FrameworkElement.Margin" 
-                                    Value="0, 5" />
+                                    Value="5, 0, 5, 5" />
                         </Style>
                     </ItemsControl.ItemContainerStyle>
                     <ItemsControl.ItemTemplate>

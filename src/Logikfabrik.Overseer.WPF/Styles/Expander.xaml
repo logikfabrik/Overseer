@@ -5,174 +5,124 @@
         <ResourceDictionary Source="pack://application:,,,/Logikfabrik.Overseer.WPF;component/Styles/Shared.xaml" />
         <ResourceDictionary>
 
+            <SolidColorBrush x:Key="Expander.Static.Background" 
+                             Color="{x:Static local:CommonColors.ControlStaticBackground}" />
             <SolidColorBrush x:Key="Expander.Static.Foreground" 
                              Color="{x:Static local:CommonColors.ControlStaticForeground}" />
+            <SolidColorBrush x:Key="Expander.Static.Border" 
+                             Color="{x:Static local:CommonColors.ControlStaticBorder}" />
 
-            <Style x:Key="ExpanderRightHeaderStyle" TargetType="{x:Type ToggleButton}">
-                <Setter Property="Template">
-                    <Setter.Value>
-                        <ControlTemplate TargetType="{x:Type ToggleButton}">
-                            <Grid Background="Transparent">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="10" />
-                                    <RowDefinition Height="*" />
-                                </Grid.RowDefinitions>
-                                <Viewbox Grid.Row="0"
-                                         Stretch="Uniform"
-                                         Width="10" 
-                                         Height="10">
-                                    <Path x:Name="path"
-                                          RenderTransformOrigin="0.5, 0.5"
-                                          Data="F 1 M 3.534,0 L 0,3.535 7.232,10.768 0,18 3.534,21.535 14.302,10.768 Z" 
-                                          Fill="{TemplateBinding Foreground}"
-                                          HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
-                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
-                                </Viewbox>
-                                <ContentPresenter Grid.Row="1" 
-                                                  HorizontalAlignment="Left" 
-                                                  VerticalAlignment="Center"
-                                                  RecognizesAccessKey="True" />
-                            </Grid>
-                            <ControlTemplate.Triggers>
-                                <Trigger Property="IsChecked" Value="true">
-                                    <Setter Property="RenderTransform" 
-                                            TargetName="path">
-                                        <Setter.Value>
-                                            <RotateTransform Angle="180" />
-                                        </Setter.Value>
-                                    </Setter>
-                                </Trigger>
-                            </ControlTemplate.Triggers>
-                        </ControlTemplate>
-                    </Setter.Value>
-                </Setter>
-            </Style>
-            
-            <Style x:Key="ExpanderUpHeaderStyle" TargetType="{x:Type ToggleButton}">
-                <Setter Property="Template">
-                    <Setter.Value>
-                        <ControlTemplate TargetType="{x:Type ToggleButton}">
-                            <Grid Background="Transparent">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="10" />
-                                    <ColumnDefinition Width="*" />
-                                </Grid.ColumnDefinitions>
-                                <Viewbox Grid.Column="0"
-                                         Stretch="Uniform"
-                                         Width="10" 
-                                         Height="10">
-                                    <Path x:Name="path"
-                                          RenderTransformOrigin="0.5, 0.5"
-                                          Data="F 1 M 3.534,0 L 0,3.535 7.232,10.768 0,18 3.534,21.535 14.302,10.768 Z" 
-                                          Fill="{TemplateBinding Foreground}"
-                                          HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
-                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
-                                        <Path.RenderTransform>
-                                            <RotateTransform Angle="90" />
-                                        </Path.RenderTransform>
-                                    </Path>
-                                </Viewbox>
-                                <ContentPresenter Grid.Column="1" 
-                                                  HorizontalAlignment="Left" 
-                                                  VerticalAlignment="Center"
-                                                  RecognizesAccessKey="True" />
-                            </Grid>
-                            <ControlTemplate.Triggers>
-                                <Trigger Property="IsChecked" Value="true">
-                                    <Setter Property="RenderTransform" 
-                                            TargetName="path">
-                                        <Setter.Value>
-                                            <RotateTransform Angle="-90" />
-                                        </Setter.Value>
-                                    </Setter>
-                                </Trigger>
-                            </ControlTemplate.Triggers>
-                        </ControlTemplate>
-                    </Setter.Value>
-                </Setter>
-            </Style>
-            
-            <Style x:Key="ExpanderLeftHeaderStyle" TargetType="{x:Type ToggleButton}">
-                <Setter Property="Template">
-                    <Setter.Value>
-                        <ControlTemplate TargetType="{x:Type ToggleButton}">
-                            <Grid Background="Transparent">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="10" />
-                                    <RowDefinition Height="*" />
-                                </Grid.RowDefinitions>
-                                <Viewbox Grid.Row="0"
-                                         Stretch="Uniform"
-                                         Width="10" 
-                                         Height="10">
-                                    <Path x:Name="path"
-                                          RenderTransformOrigin="0.5, 0.5"
-                                          Data="F 1 M 3.534,0 L 0,3.535 7.232,10.768 0,18 3.534,21.535 14.302,10.768 Z" 
-                                          Fill="{TemplateBinding Foreground}"
-                                          HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
-                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
-                                        <Path.RenderTransform>
-                                            <RotateTransform Angle="180" />
-                                        </Path.RenderTransform>
-                                    </Path>
-                                </Viewbox>
-                                <ContentPresenter Grid.Row="1" 
-                                                  HorizontalAlignment="Left" 
-                                                  VerticalAlignment="Center"
-                                                  RecognizesAccessKey="True" />
-                            </Grid>
-                            <ControlTemplate.Triggers>
-                                <Trigger Property="IsChecked" Value="true">
-                                    <Setter Property="RenderTransform" 
-                                            TargetName="path">
-                                        <Setter.Value>
-                                            <RotateTransform Angle="0" />
-                                        </Setter.Value>
-                                    </Setter>
-                                </Trigger>
-                            </ControlTemplate.Triggers>
-                        </ControlTemplate>
-                    </Setter.Value>
-                </Setter>
-            </Style>
-            
+            <SolidColorBrush x:Key="Expander.MouseOver.Background" 
+                             Color="{x:Static local:CommonColors.ControlMouseOverBackground}" />
+            <SolidColorBrush x:Key="Expander.MouseOver.Foreground" 
+                             Color="{x:Static local:CommonColors.ControlMouseOverForeground}" />
+            <SolidColorBrush x:Key="Expander.MouseOver.Border" 
+                             Color="{x:Static local:CommonColors.ControlMouseOverBorder}" />
+
+            <SolidColorBrush x:Key="Expander.Pressed.Background" 
+                             Color="{x:Static local:CommonColors.ControlPressedBackground}" />
+            <SolidColorBrush x:Key="Expander.Pressed.Foreground" 
+                             Color="{x:Static local:CommonColors.ControlPressedForeground}" />
+            <SolidColorBrush x:Key="Expander.Pressed.Border" 
+                             Color="{x:Static local:CommonColors.ControlPressedBorder}" />
+
+            <SolidColorBrush x:Key="Expander.Disabled.Background" 
+                             Color="{x:Static local:CommonColors.ControlDisabledBackground}" />
+            <SolidColorBrush x:Key="Expander.Disabled.Foreground" 
+                             Color="{x:Static local:CommonColors.ControlDisabledForeground}" />
+            <SolidColorBrush x:Key="Expander.Disabled.Border" 
+                             Color="{x:Static local:CommonColors.ControlDisabledBorder}" />
+
             <Style x:Key="ExpanderDownHeaderStyle" TargetType="{x:Type ToggleButton}">
+                <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}" />
+                <Setter Property="Background" Value="{StaticResource Expander.Static.Background}" />
+                <Setter Property="Foreground" Value="{StaticResource Expander.Static.Foreground}" />
+                <Setter Property="BorderBrush" Value="{StaticResource Expander.Static.Border}" />
+                <Setter Property="BorderThickness" Value="1" />
+                <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                <Setter Property="VerticalContentAlignment" Value="Stretch" />
+                <Setter Property="Padding" Value="10, 5, 10, 5" />
+                <Setter Property="FontSize" Value="14" />
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="{x:Type ToggleButton}">
-                            <Grid Background="Transparent">
+                            <Grid>
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="10" />
+                                    <ColumnDefinition Width="Auto" />
                                     <ColumnDefinition Width="*" />
                                 </Grid.ColumnDefinitions>
-                                <Viewbox Grid.Column="0"
-                                         Stretch="Uniform"
-                                         Width="10" 
-                                         Height="10">
-                                    <Path x:Name="path"
-                                          RenderTransformOrigin="0.5, 0.5"
-                                          Data="F 1 M 3.534,0 L 0,3.535 7.232,10.768 0,18 3.534,21.535 14.302,10.768 Z" 
-                                          Fill="{TemplateBinding Foreground}"
-                                          HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
-                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
-                                        <Path.RenderTransform>
-                                            <RotateTransform Angle="-90" />
-                                        </Path.RenderTransform>
-                                    </Path>
-                                </Viewbox>
-                                <ContentPresenter Grid.Column="1" 
-                                                  HorizontalAlignment="Left" 
-                                                  VerticalAlignment="Center"
-                                                  RecognizesAccessKey="True" />
+                                <Border x:Name="Border" 
+                                        Grid.Column="0"
+                                        BorderBrush="{TemplateBinding BorderBrush}" 
+                                        BorderThickness="{TemplateBinding BorderThickness}" 
+                                        Background="{TemplateBinding Background}"
+                                        Padding="{TemplateBinding Padding}" >
+                                    <Viewbox VerticalAlignment="Center"
+                                             HorizontalAlignment="Center"
+                                             Stretch="Uniform"
+                                             Width="10" 
+                                             Height="10">
+                                        <Path x:Name="Path"
+                                              RenderTransformOrigin="0.5, 0.5"
+                                              Data="F 1 M 3.534,0 L 0,3.535 7.232,10.768 0,18 3.534,21.535 14.302,10.768 Z" 
+                                              Fill="{TemplateBinding Foreground}">
+                                            <Path.RenderTransform>
+                                                <RotateTransform Angle="-90" />
+                                            </Path.RenderTransform>
+                                        </Path>
+                                    </Viewbox>
+                                </Border>
+                                <ContentPresenter x:Name="ContentPresenter" Grid.Column="1"
+                                                  Focusable="False" 
+                                                  RecognizesAccessKey="True" 
+                                                  HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
+                                                  VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
                             </Grid>
                             <ControlTemplate.Triggers>
-                                <Trigger Property="IsChecked" Value="true">
+                                <Trigger Property="IsChecked" 
+                                         Value="True">
                                     <Setter Property="RenderTransform" 
-                                            TargetName="path">
+                                            TargetName="Path">
                                         <Setter.Value>
                                             <RotateTransform Angle="90" />
                                         </Setter.Value>
                                     </Setter>
+                                </Trigger>
+                                <Trigger Property="IsMouseOver" 
+                                         Value="True">
+                                    <Setter Property="Background" 
+                                            TargetName="Border" 
+                                            Value="{StaticResource Expander.MouseOver.Background}" />
+                                    <Setter Property="TextElement.Foreground" 
+                                            TargetName="ContentPresenter" 
+                                            Value="{StaticResource Expander.MouseOver.Foreground}" />
+                                    <Setter Property="BorderBrush" 
+                                            TargetName="Border" 
+                                            Value="{StaticResource Expander.MouseOver.Border}" />
+                                </Trigger>
+                                <Trigger Property="IsPressed" 
+                                         Value="True">
+                                    <Setter Property="Background" 
+                                            TargetName="Border" 
+                                            Value="{StaticResource Expander.Pressed.Background}" />
+                                    <Setter Property="TextElement.Foreground" 
+                                            TargetName="ContentPresenter" 
+                                            Value="{StaticResource Expander.Pressed.Foreground}" />
+                                    <Setter Property="BorderBrush" 
+                                            TargetName="Border" 
+                                            Value="{StaticResource Expander.Pressed.Border}" />
+                                </Trigger>
+                                <Trigger Property="IsEnabled" 
+                                         Value="False">
+                                    <Setter Property="Background" 
+                                            TargetName="Border" 
+                                            Value="{StaticResource Expander.Disabled.Background}" />
+                                    <Setter Property="TextElement.Foreground" 
+                                            TargetName="ContentPresenter" 
+                                            Value="{StaticResource Expander.Disabled.Foreground}" />
+                                    <Setter Property="BorderBrush" 
+                                            TargetName="Border" 
+                                            Value="{StaticResource Expander.Disabled.Border}" />
                                 </Trigger>
                             </ControlTemplate.Triggers>
                         </ControlTemplate>
@@ -181,49 +131,23 @@
             </Style>
 
             <Style TargetType="{x:Type Expander}">
-                <Setter Property="Foreground" Value="{StaticResource Expander.Static.Foreground}" />
-                <Setter Property="HorizontalContentAlignment" Value="Stretch" />
-                <Setter Property="VerticalContentAlignment" Value="Stretch" />
+                
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="{x:Type Expander}">
-                            <DockPanel>
-                                <ToggleButton x:Name="HeaderSite"
-                                              DockPanel.Dock="Top" 
-                                              ContentTemplate="{TemplateBinding HeaderTemplate}" 
+                            <StackPanel>
+                                <ToggleButton ContentTemplate="{TemplateBinding HeaderTemplate}" 
                                               ContentTemplateSelector="{TemplateBinding HeaderTemplateSelector}" 
                                               Content="{TemplateBinding Header}" 
-                                              Foreground="{TemplateBinding Foreground}" 
-                                              HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" 
-                                              VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
                                               IsChecked="{Binding IsExpanded, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}" 
-                                              Style="{StaticResource ExpanderDownHeaderStyle}"
-                                              FocusVisualStyle="{StaticResource FocusVisual}" />
-                                <ContentPresenter x:Name="ExpandSite" 
-                                                  DockPanel.Dock="Bottom" 
-                                                  Focusable="false" 
-                                                  HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
-                                                  VerticalAlignment="{TemplateBinding VerticalContentAlignment}" 
+                                              Style="{StaticResource ExpanderDownHeaderStyle}" />
+                                <ContentPresenter x:Name="ContentPresenter" 
+                                                  Focusable="False" 
                                                   Visibility="Collapsed" />
-                            </DockPanel>
+                            </StackPanel>
                             <ControlTemplate.Triggers>
-                                <Trigger Property="IsExpanded" Value="true">
-                                    <Setter Property="Visibility" TargetName="ExpandSite" Value="Visible" />
-                                </Trigger>
-                                <Trigger Property="ExpandDirection" Value="Right">
-                                    <Setter Property="DockPanel.Dock" TargetName="ExpandSite" Value="Right" />
-                                    <Setter Property="DockPanel.Dock" TargetName="HeaderSite" Value="Left" />
-                                    <Setter Property="Style" TargetName="HeaderSite" Value="{StaticResource ExpanderRightHeaderStyle}" />
-                                </Trigger>
-                                <Trigger Property="ExpandDirection" Value="Up">
-                                    <Setter Property="DockPanel.Dock" TargetName="ExpandSite" Value="Top"/>
-                                    <Setter Property="DockPanel.Dock" TargetName="HeaderSite" Value="Bottom"/>
-                                    <Setter Property="Style" TargetName="HeaderSite" Value="{StaticResource ExpanderUpHeaderStyle}" />
-                                </Trigger>
-                                <Trigger Property="ExpandDirection" Value="Left">
-                                    <Setter Property="DockPanel.Dock" TargetName="ExpandSite" Value="Left"/>
-                                    <Setter Property="DockPanel.Dock" TargetName="HeaderSite" Value="Right"/>
-                                    <Setter Property="Style" TargetName="HeaderSite" Value="{StaticResource ExpanderLeftHeaderStyle}" />
+                                <Trigger Property="IsExpanded" Value="True">
+                                    <Setter Property="Visibility" TargetName="ContentPresenter" Value="Visible" />
                                 </Trigger>
                             </ControlTemplate.Triggers>
                         </ControlTemplate>
