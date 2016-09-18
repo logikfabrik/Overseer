@@ -2,8 +2,6 @@
 //   Copyright (c) 2016 anton(at)logikfabrik.se. Licensed under the MIT license.
 // </copyright>
 
-using Logikfabrik.Overseer.WPF.ViewModels;
-
 namespace Logikfabrik.Overseer.WPF.Client
 {
     using System;
@@ -16,6 +14,7 @@ namespace Logikfabrik.Overseer.WPF.Client
     using Ninject;
     using Ninject.Modules;
     using ViewModels;
+    using WPF.ViewModels;
 
     /// <summary>
     /// The <see cref="AppBootstrapper" /> class.

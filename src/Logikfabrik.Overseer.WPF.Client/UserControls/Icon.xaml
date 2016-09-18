@@ -10,8 +10,7 @@
         <Viewbox Stretch="Uniform"
                  Width="{Binding Path=Width, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type uc:Icon}}}" 
                  Height="{Binding Path=Height, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type uc:Icon}}}">
-            <Path SnapsToDevicePixels="True" 
-                  Data="{Binding Data, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type uc:Icon}}}" 
+            <Path Data="{Binding Data, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type uc:Icon}}}" 
                   Fill="{Binding Foreground, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type uc:Icon}}}" />
         </Viewbox>
     

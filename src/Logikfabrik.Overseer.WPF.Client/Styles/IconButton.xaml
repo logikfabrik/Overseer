@@ -7,37 +7,55 @@
         <ResourceDictionary>
 
             <Style TargetType="{x:Type uc:IconButton}">
-                <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}" />
+                <Setter Property="FocusVisualStyle" Value="{StaticResource CircleFocusVisual}" />
+                <Setter Property="Background" Value="{StaticResource Button.Static.Background}" />
                 <Setter Property="Foreground" Value="{StaticResource Button.Static.Foreground}" />
-                <Setter Property="Padding" Value="10, 5, 10, 5" />
+                <Setter Property="BorderBrush" Value="{StaticResource Button.Static.Border}" />
+                <Setter Property="BorderThickness" Value="0" />
+                <Setter Property="VerticalAlignment" Value="Center" />
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="{x:Type uc:IconButton}">
-                            <Grid Margin="{TemplateBinding Padding}">
+                            <Grid>
+                                <Ellipse x:Name="circle" 
+                                         Stroke="{TemplateBinding BorderBrush}" 
+                                         StrokeThickness="{TemplateBinding BorderThickness}" 
+                                         Fill="{TemplateBinding Background}" 
+                                         Height="{TemplateBinding Height}"
+                                         Width="{TemplateBinding Width}" />
                                 <uc:Icon x:Name="icon"
-                                         Data="{Binding Data, RelativeSource={RelativeSource TemplatedParent}}" 
+                                         Data="{Binding IconData, RelativeSource={RelativeSource TemplatedParent}}" 
                                          Foreground="{TemplateBinding Foreground}" 
-                                         Width="10"
-                                         Height="10" />
+                                         Width="{Binding IconWidth, RelativeSource={RelativeSource TemplatedParent}}"
+                                         Height="{Binding IconHeight, RelativeSource={RelativeSource TemplatedParent}}" />
                             </Grid>
                             <ControlTemplate.Triggers>
                                 <Trigger Property="IsMouseOver" 
                                          Value="true">
-                                    <Setter Property="Foreground" 
-                                            TargetName="icon" 
-                                            Value="{StaticResource Button.MouseOver.Foreground}" />
+                                    <Setter Property="Fill" 
+                                            TargetName="circle" 
+                                            Value="{StaticResource Button.MouseOver.Background}" />
+                                    <Setter Property="Stroke" 
+                                            TargetName="circle" 
+                                            Value="{StaticResource Button.MouseOver.Border}" />
                                 </Trigger>
                                 <Trigger Property="IsPressed" 
                                          Value="true">
-                                    <Setter Property="Foreground" 
-                                            TargetName="icon" 
+                                    <Setter Property="Fill" 
+                                            TargetName="circle" 
                                             Value="{StaticResource Button.Pressed.Background}" />
+                                    <Setter Property="Stroke" 
+                                            TargetName="circle" 
+                                            Value="{StaticResource Button.Pressed.Border}" />
                                 </Trigger>
                                 <Trigger Property="IsEnabled" 
                                          Value="false">
-                                    <Setter Property="Foreground" 
-                                            TargetName="icon" 
-                                            Value="{StaticResource Button.Disabled.Foreground}" />
+                                    <Setter Property="Fill" 
+                                            TargetName="circle" 
+                                            Value="{StaticResource Button.Disabled.Background}" />
+                                    <Setter Property="Stroke" 
+                                            TargetName="circle" 
+                                            Value="{StaticResource Button.Disabled.Border}" />
                                 </Trigger>
                             </ControlTemplate.Triggers>
                         </ControlTemplate>

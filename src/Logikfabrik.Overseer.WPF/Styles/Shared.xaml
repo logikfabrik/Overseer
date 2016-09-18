@@ -4,13 +4,12 @@
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary>
             <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
-            
+
             <Style x:Key="FocusVisual">
                 <Setter Property="Control.Template">
                     <Setter.Value>
                         <ControlTemplate>
-                            <Rectangle SnapsToDevicePixels="true" 
-                                       Stroke="{x:Static local:CommonBrushes.ControlFocus}" 
+                            <Rectangle Stroke="{x:Static local:CommonBrushes.ControlFocus}" 
                                        StrokeThickness="1" />
                         </ControlTemplate>
                     </Setter.Value>
@@ -20,8 +19,7 @@
                 <Setter Property="Control.Template">
                     <Setter.Value>
                         <ControlTemplate>
-                            <Ellipse SnapsToDevicePixels="true" 
-                                     Stroke="{x:Static local:CommonBrushes.ControlFocus}" 
+                            <Ellipse Stroke="{x:Static local:CommonBrushes.ControlFocus}" 
                                      StrokeThickness="1" />
                         </ControlTemplate>
                     </Setter.Value>

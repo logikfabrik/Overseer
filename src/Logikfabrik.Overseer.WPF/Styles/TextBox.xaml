@@ -56,8 +56,7 @@
                             <Border x:Name="border" 
                                     BorderBrush="{TemplateBinding BorderBrush}" 
                                     BorderThickness="{TemplateBinding BorderThickness}" 
-                                    Background="{TemplateBinding Background}" 
-                                    SnapsToDevicePixels="True">
+                                    Background="{TemplateBinding Background}">
                                 <ScrollViewer x:Name="PART_ContentHost" 
                                               Focusable="false" 
                                               HorizontalScrollBarVisibility="Hidden" 

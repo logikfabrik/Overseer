@@ -49,15 +49,13 @@
                             <Border x:Name="border" 
                                     BorderBrush="{TemplateBinding BorderBrush}" 
                                     BorderThickness="{TemplateBinding BorderThickness}" 
-                                    Background="{TemplateBinding Background}" 
-                                    SnapsToDevicePixels="true">
+                                    Background="{TemplateBinding Background}">
                                 <ContentPresenter x:Name="contentPresenter" 
                                                   Focusable="False" 
                                                   RecognizesAccessKey="True" 
                                                   HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
                                                   VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                                  Margin="{TemplateBinding Padding}" 
-                                                  SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                                                  Margin="{TemplateBinding Padding}" />
                             </Border>
                             <ControlTemplate.Triggers>
                                 <Trigger Property="IsDefaulted" 

@@ -23,7 +23,6 @@
                                          Height="10">
                                     <Path x:Name="path"
                                           RenderTransformOrigin="0.5, 0.5"
-                                          SnapsToDevicePixels="True"
                                           Data="F 1 M 3.534,0 L 0,3.535 7.232,10.768 0,18 3.534,21.535 14.302,10.768 Z" 
                                           Fill="{TemplateBinding Foreground}"
                                           HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
@@ -32,8 +31,7 @@
                                 <ContentPresenter Grid.Row="1" 
                                                   HorizontalAlignment="Left" 
                                                   VerticalAlignment="Center"
-                                                  RecognizesAccessKey="True" 
-                                                  SnapsToDevicePixels="True" />
+                                                  RecognizesAccessKey="True" />
                             </Grid>
                             <ControlTemplate.Triggers>
                                 <Trigger Property="IsChecked" Value="true">
@@ -65,7 +63,6 @@
                                          Height="10">
                                     <Path x:Name="path"
                                           RenderTransformOrigin="0.5, 0.5"
-                                          SnapsToDevicePixels="True"
                                           Data="F 1 M 3.534,0 L 0,3.535 7.232,10.768 0,18 3.534,21.535 14.302,10.768 Z" 
                                           Fill="{TemplateBinding Foreground}"
                                           HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
@@ -78,8 +75,7 @@
                                 <ContentPresenter Grid.Column="1" 
                                                   HorizontalAlignment="Left" 
                                                   VerticalAlignment="Center"
-                                                  RecognizesAccessKey="True" 
-                                                  SnapsToDevicePixels="True" />
+                                                  RecognizesAccessKey="True" />
                             </Grid>
                             <ControlTemplate.Triggers>
                                 <Trigger Property="IsChecked" Value="true">
@@ -111,7 +107,6 @@
                                          Height="10">
                                     <Path x:Name="path"
                                           RenderTransformOrigin="0.5, 0.5"
-                                          SnapsToDevicePixels="True"
                                           Data="F 1 M 3.534,0 L 0,3.535 7.232,10.768 0,18 3.534,21.535 14.302,10.768 Z" 
                                           Fill="{TemplateBinding Foreground}"
                                           HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
@@ -124,8 +119,7 @@
                                 <ContentPresenter Grid.Row="1" 
                                                   HorizontalAlignment="Left" 
                                                   VerticalAlignment="Center"
-                                                  RecognizesAccessKey="True" 
-                                                  SnapsToDevicePixels="True" />
+                                                  RecognizesAccessKey="True" />
                             </Grid>
                             <ControlTemplate.Triggers>
                                 <Trigger Property="IsChecked" Value="true">
@@ -157,7 +151,6 @@
                                          Height="10">
                                     <Path x:Name="path"
                                           RenderTransformOrigin="0.5, 0.5"
-                                          SnapsToDevicePixels="True"
                                           Data="F 1 M 3.534,0 L 0,3.535 7.232,10.768 0,18 3.534,21.535 14.302,10.768 Z" 
                                           Fill="{TemplateBinding Foreground}"
                                           HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
@@ -170,8 +163,7 @@
                                 <ContentPresenter Grid.Column="1" 
                                                   HorizontalAlignment="Left" 
                                                   VerticalAlignment="Center"
-                                                  RecognizesAccessKey="True" 
-                                                  SnapsToDevicePixels="True" />
+                                                  RecognizesAccessKey="True" />
                             </Grid>
                             <ControlTemplate.Triggers>
                                 <Trigger Property="IsChecked" Value="true">

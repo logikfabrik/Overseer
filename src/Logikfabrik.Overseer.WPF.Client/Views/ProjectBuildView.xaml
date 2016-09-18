@@ -14,8 +14,7 @@
             Padding="0"
             BorderThickness="0">
         <Button.Content>
-            <Border SnapsToDevicePixels="true" 
-                    BorderBrush="{x:Static styles:CommonBrushes.ControlFocus}" 
+            <Border BorderBrush="{x:Static styles:CommonBrushes.ControlFocus}" 
                     BorderThickness="5 0 0 0">
                 <Grid Margin="10">
                     <Grid.RowDefinitions>

@@ -14,26 +14,74 @@ namespace Logikfabrik.Overseer.WPF.Client.UserControls
     public class IconButton : Button
     {
         /// <summary>
-        /// The data property.
+        /// The icon data property.
         /// </summary>
-        public static readonly DependencyProperty DataProperty = DependencyProperty.Register("Data", typeof(Geometry), typeof(IconButton));
+        public static readonly DependencyProperty IconDataProperty = DependencyProperty.Register("IconData", typeof(Geometry), typeof(IconButton));
 
         /// <summary>
-        /// Gets or sets the data.
+        /// The icon width property.
+        /// </summary>
+        public static readonly DependencyProperty IconWidthProperty = DependencyProperty.Register("IconWidth", typeof(double), typeof(IconButton), new UIPropertyMetadata((double)10));
+
+        /// <summary>
+        /// The icon height property.
+        /// </summary>
+        public static readonly DependencyProperty IconHeightProperty = DependencyProperty.Register("IconHeight", typeof(double), typeof(IconButton), new UIPropertyMetadata((double)10));
+
+        /// <summary>
+        /// Gets or sets the icon data.
         /// </summary>
         /// <value>
-        /// The data.
+        /// The icon data.
         /// </value>
-        public Geometry Data
+        public Geometry IconData
         {
             get
             {
-                return (Geometry)GetValue(DataProperty);
+                return (Geometry)GetValue(IconDataProperty);
             }
 
             set
             {
-                SetValue(DataProperty, value);
+                SetValue(IconDataProperty, value);
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the icon width.
+        /// </summary>
+        /// <value>
+        /// The icon width.
+        /// </value>
+        public double IconWidth
+        {
+            get
+            {
+                return (double)GetValue(IconWidthProperty);
+            }
+
+            set
+            {
+                SetValue(IconWidthProperty, value);
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the icon height.
+        /// </summary>
+        /// <value>
+        /// The icon height.
+        /// </value>
+        public double IconHeight
+        {
+            get
+            {
+                return (double)GetValue(IconHeightProperty);
+            }
+
+            set
+            {
+                SetValue(IconHeightProperty, value);
             }
         }
     }
