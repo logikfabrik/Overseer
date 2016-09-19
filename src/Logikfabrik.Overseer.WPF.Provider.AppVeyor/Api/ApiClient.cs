@@ -4,40 +4,75 @@
 
 namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor.Api
 {
+    using System.Collections.Generic;
+    using System.Net.Http;
+    using System.Net.Http.Headers;
+    using System.Threading.Tasks;
+    using EnsureThat;
+    using Models;
+
     /// <summary>
     /// The <see cref="ApiClient" /> class.
     /// </summary>
     public class ApiClient
     {
-        //private readonly string _token;
+        private const string BaseUri = "https://ci.appveyor.com/";
+        private readonly string _token;
 
-        //public BuildProvider(Uri baseUri, string token)
-        //{
-        //    if (string.IsNullOrWhiteSpace(token))
-        //    {
-        //        throw new ArgumentException("Token cannot be null or white space.", nameof(token));
-        //    }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ApiClient" /> class.
+        /// </summary>
+        /// <param name="token">The token.</param>
+        public ApiClient(string token)
+        {
+            Ensure.That(token).IsNotNullOrWhiteSpace();
 
-        //    _token = token;
-        //}
+            _token = token;
+        }
 
-        //public async Task<IEnumerable<IProject>> GetProjects()
-        //{
-        //    using (var client = new HttpClient())
-        //    {
-        //        client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-        //        client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", _token);
+        /// <summary>
+        /// Gets the projects.
+        /// </summary>
+        /// <returns>The projects.</returns>
+        public async Task<IEnumerable<Project>> GetProjects()
+        {
+            using (var client = new HttpClient())
+            {
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", _token);
 
-        //        // get the list of roles
-        //        using (var response = await client.GetAsync("https://ci.appveyor.com/api/projects"))
-        //        {
-        //            response.EnsureSuccessStatusCode();
+                using (var response = await client.GetAsync($"{BaseUri}api/projects"))
+                {
+                    response.EnsureSuccessStatusCode();
 
-        //            var projects = await response.Content.ReadAsAsync<Project[]>();
+                    return await response.Content.ReadAsAsync<IEnumerable<Project>>();
+                }
+            }
+        }
 
-        //            return projects;
-        //        }
-        //    }
-        //}
+        /// <summary>
+        /// Gets the project history.
+        /// </summary>
+        /// <param name="accountName">The account name.</param>
+        /// <param name="projectSlug">The project slug.</param>
+        /// <returns>The project history.</returns>
+        public async Task<ProjectHistory> GetProjectHistory(string accountName, string projectSlug)
+        {
+            Ensure.That(accountName).IsNotNullOrWhiteSpace();
+            Ensure.That(projectSlug).IsNotNullOrWhiteSpace();
+
+            using (var client = new HttpClient())
+            {
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", _token);
+
+                using (var response = await client.GetAsync($"{BaseUri}api/projects/{accountName}/{projectSlug}/history?recordsNumber=10"))
+                {
+                    response.EnsureSuccessStatusCode();
+
+                    return await response.Content.ReadAsAsync<ProjectHistory>();
+                }
+            }
+        }
     }
 }

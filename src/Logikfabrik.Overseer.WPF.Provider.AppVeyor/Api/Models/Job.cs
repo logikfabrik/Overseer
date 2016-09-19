@@ -27,15 +27,21 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor.Api.Models
         /// </value>
         public string Name { get; set; }
 
+        /// <summary>
+        /// Gets or sets a value indicating whether failures are allowed.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if failures are allowed; otherwise, <c>false</c>.
+        /// </value>
         public bool AllowFailure { get; set; }
 
         /// <summary>
-        /// Gets or sets the message count.
+        /// Gets or sets the messages count.
         /// </summary>
         /// <value>
-        /// The message count.
+        /// The messages count.
         /// </value>
-        public int MessageCount { get; set; }
+        public int MessagesCount { get; set; }
 
         /// <summary>
         /// Gets or sets the compilation messages count.

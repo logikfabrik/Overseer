@@ -2,6 +2,8 @@
 //   Copyright (c) 2016 anton(at)logikfabrik.se. Licensed under the MIT license.
 // </copyright>
 
+using System.Linq;
+
 namespace Logikfabrik.Overseer.Settings
 {
     using System;
@@ -118,6 +120,13 @@ namespace Logikfabrik.Overseer.Settings
             return string.IsNullOrWhiteSpace(_buildProviderTypeName)
                 ? null
                 : Type.GetType(_buildProviderTypeName, false);
+        }
+
+        public string GetSetting(string name)
+        {
+            Ensure.That(name).IsNotNullOrWhiteSpace();
+
+            return _settings.First(setting => setting.Name == name).Value;
         }
     }
 }

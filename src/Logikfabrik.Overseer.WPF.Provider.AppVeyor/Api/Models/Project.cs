@@ -93,6 +93,14 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor.Api.Models
         public string RepositoryBranch { get; set; }
 
         /// <summary>
+        /// Gets or sets a value indicating whether this project is private.
+        /// </summary>
+        /// <value>
+        /// <c>true</c> if this project is private; otherwise, <c>false</c>.
+        /// </value>
+        public bool IsPrivate { get; set; }
+
+        /// <summary>
         /// Gets or sets the created date.
         /// </summary>
         /// <value>

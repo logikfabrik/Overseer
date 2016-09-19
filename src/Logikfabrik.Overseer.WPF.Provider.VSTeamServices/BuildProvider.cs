@@ -23,7 +23,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices
         public override IEnumerable<IProject> GetProjects()
         {
             // TODO: Implement!
-            Thread.Sleep(5000);
+            //Thread.Sleep(5000);
 
             return new[]
             {
@@ -53,7 +53,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices
         public override IEnumerable<IBuild> GetBuilds(string projectId)
         {
             // TODO: Implement!
-            Thread.Sleep(5000);
+            //Thread.Sleep(5000);
 
             return new[]
             {
