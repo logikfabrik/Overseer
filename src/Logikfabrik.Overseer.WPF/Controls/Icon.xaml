@@ -1,17 +1,13 @@
 ﻿<UserControl x:Class="Logikfabrik.Overseer.WPF.Controls.Icon"
+             x:Name="UserControl"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:uc="clr-namespace:Logikfabrik.Overseer.WPF.Controls"
-             mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
-    
-        <Viewbox Stretch="Uniform"
-                 Width="{Binding Path=Width, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type uc:Icon}}}" 
-                 Height="{Binding Path=Height, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type uc:Icon}}}">
-            <Path Data="{Binding Data, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type uc:Icon}}}" 
-                  Fill="{Binding Foreground, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type uc:Icon}}}" />
-        </Viewbox>
-    
+             Width="10"
+             Height="10">
+    <Viewbox Stretch="Uniform"
+             Width="{Binding Path=Width, ElementName=UserControl}" 
+             Height="{Binding Path=Height, ElementName=UserControl}">
+        <Path Data="{Binding Data, ElementName=UserControl}" 
+              Fill="{Binding Foreground, ElementName=UserControl}" />
+    </Viewbox>
 </UserControl>

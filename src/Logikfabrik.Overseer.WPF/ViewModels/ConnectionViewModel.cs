@@ -19,7 +19,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         private bool _isBusy;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ConnectionViewModel"/> class.
+        /// Initializes a new instance of the <see cref="ConnectionViewModel" /> class.
         /// </summary>
         /// <param name="buildMonitor">The build monitor.</param>
         /// <param name="buildProvider">The build provider settings.</param>

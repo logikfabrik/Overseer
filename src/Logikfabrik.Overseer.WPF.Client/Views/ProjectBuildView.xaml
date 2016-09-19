@@ -3,10 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:Logikfabrik.Overseer.WPF.Client.Views"
-             xmlns:uc="clr-namespace:Logikfabrik.Overseer.WPF.Client.UserControls"
              xmlns:cal="http://www.caliburnproject.org"
              xmlns:styles="clr-namespace:Logikfabrik.Overseer.WPF.Styles;assembly=Logikfabrik.Overseer.WPF"
+             xmlns:c="clr-namespace:Logikfabrik.Overseer.WPF.Controls;assembly=Logikfabrik.Overseer.WPF"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <Button HorizontalContentAlignment="Stretch" 
@@ -30,7 +29,7 @@
                                Grid.Column="0"
                                FontSize="18"
                                Text="Project name" />
-                    <uc:BusyIndicator Grid.Row="0"
+                    <c:BusyIndicator Grid.Row="0"
                                       Grid.Column="1"
                                       Visibility="{Binding IsBusy, Converter={StaticResource BooleanToVisibilityConverter}}" />
                     <ContentControl Grid.Row="1" 

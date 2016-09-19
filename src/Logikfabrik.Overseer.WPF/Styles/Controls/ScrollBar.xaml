@@ -2,16 +2,14 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="clr-namespace:Logikfabrik.Overseer.WPF.Styles">
     <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="pack://application:,,,/Logikfabrik.Overseer.WPF;component/Styles/Shared.xaml" />
+        <ResourceDictionary Source="../Resources/FocusVisualResources.xaml" />
         <ResourceDictionary>
-
             <SolidColorBrush x:Key="ScrollBar.Static.Thumb" 
                              Color="{x:Static local:CommonColors.ControlStaticBackground}" />
             <SolidColorBrush x:Key="ScrollBar.MouseOver.Thumb" 
                              Color="{x:Static local:CommonColors.ControlMouseOverBackground}" />
             <SolidColorBrush x:Key="ScrollBar.Pressed.Thumb" 
                              Color="{x:Static local:CommonColors.ControlPressedBackground}" />
-
             <Style x:Key="ScrollBarRepeatButton" TargetType="{x:Type RepeatButton}">
                 <Setter Property="OverridesDefaultStyle" Value="true"/>
                 <Setter Property="Background" Value="Transparent"/>
@@ -27,7 +25,6 @@
                     </Setter.Value>
                 </Setter>
             </Style>
-
             <Style x:Key="ScrollBarThumb" TargetType="{x:Type Thumb}">
                 <Setter Property="OverridesDefaultStyle" Value="true" />
                 <Setter Property="IsTabStop" Value="false" />
@@ -56,7 +53,6 @@
                     </Setter.Value>
                 </Setter>
             </Style>
-
             <Style x:Key="ScrollBar" TargetType="{x:Type ScrollBar}">
                 <Setter Property="Stylus.IsPressAndHoldEnabled" Value="false" />
                 <Setter Property="Stylus.IsFlicksEnabled" Value="false" />

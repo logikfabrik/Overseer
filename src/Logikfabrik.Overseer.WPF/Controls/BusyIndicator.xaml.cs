@@ -2,7 +2,7 @@
 //   Copyright (c) 2016 anton(at)logikfabrik.se. Licensed under the MIT license.
 // </copyright>
 
-namespace Logikfabrik.Overseer.WPF.Client.UserControls
+namespace Logikfabrik.Overseer.WPF.Controls
 {
     /// <summary>
     /// The <see cref="BusyIndicator" /> class.
