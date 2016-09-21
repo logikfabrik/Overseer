@@ -74,6 +74,26 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices.Api
             }
         }
 
+        /// <summary>
+        /// Gets the changesets.
+        /// </summary>
+        /// <param name="sourceVersion">The source version.</param>
+        /// <returns>A task.</returns>
+        public async Task<Changesets> GetChangesetsAsync(string sourceVersion)
+        {
+            Ensure.That(sourceVersion).IsNotNullOrWhiteSpace();
+
+            using (var client = GetHttpClient())
+            {
+                using (var response = await client.GetAsync($"_apis/tfvc/changesets?api-version=1.0&version{sourceVersion}").ConfigureAwait(false))
+                {
+                    response.EnsureSuccessStatusCode();
+
+                    return await response.Content.ReadAsAsync<Changesets>().ConfigureAwait(false);
+                }
+            }
+        }
+
         private HttpClient GetHttpClient()
         {
             var credentials = Convert.ToBase64String(System.Text.Encoding.ASCII.GetBytes($"{string.Empty}:{_token}"));

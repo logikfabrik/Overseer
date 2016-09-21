@@ -54,9 +54,18 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices
 
             var apiClient = GetApiClient();
 
-            var builds = await apiClient.GetBuildsAsync(Guid.Parse(projectId), SkipCount, TakeCount).ConfigureAwait(false);
+            var builds = new List<IBuild>();
 
-            return builds.Value.Select(build => new Build(build));
+            foreach (var build in (await apiClient.GetBuildsAsync(Guid.Parse(projectId), SkipCount, TakeCount).ConfigureAwait(false)).Value)
+            {
+                var changesets = await apiClient.GetChangesetsAsync(build.SourceVersion).ConfigureAwait(false);
+
+                var comment = changesets.Value.FirstOrDefault()?.Comment;
+
+                builds.Add(new Build(build, comment));
+            }
+
+            return builds;
         }
 
         private Api.ApiClient GetApiClient()

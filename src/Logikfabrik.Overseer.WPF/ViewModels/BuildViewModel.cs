@@ -21,30 +21,39 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         {
             Ensure.That(build).IsNotNull();
 
-            CommitMessage = "Bug #238 Fixed a bug.";
-            CommitUser = "john";
+            Version = build.Version;
             Branch = build.Branch;
-            Revision = "11982efa";
-            Version = "12.324.4410.1134";
             Started = build.Started;
             Finished = build.Finished;
+            Revision = build.Revision;
+            CommitterName = build.CommitterName;
+            RequestorName = build.RequestorName;
+            Comment = build.Comment;
         }
 
         /// <summary>
-        /// Gets the commit message.
+        /// Gets the comment.
         /// </summary>
         /// <value>
-        /// The commit message.
+        /// The comment.
         /// </value>
-        public string CommitMessage { get; }
+        public string Comment { get; }
 
         /// <summary>
-        /// Gets the commit user.
+        /// Gets the name of the committer.
         /// </summary>
         /// <value>
-        /// The commit user.
+        /// The name of the committer.
         /// </value>
-        public string CommitUser { get; }
+        public string CommitterName { get; }
+
+        /// <summary>
+        /// Gets the name of the requestor.
+        /// </summary>
+        /// <value>
+        /// The name of the requestor.
+        /// </value>
+        public string RequestorName { get; }
 
         /// <summary>
         /// Gets the branch.
