@@ -84,6 +84,7 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Api\Models\Builds.cs" />
     <Compile Include="Build.cs" />
     <Compile Include="BuildProvider.cs" />
     <Compile Include="Module.cs" />

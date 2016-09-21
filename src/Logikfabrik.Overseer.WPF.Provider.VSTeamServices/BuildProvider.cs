@@ -4,15 +4,20 @@
 
 namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices
 {
+    using System;
     using System.Collections.Generic;
-    using System.Threading;
+    using System.Linq;
     using System.Threading.Tasks;
+    using EnsureThat;
 
     /// <summary>
     /// The <see cref="BuildProvider" /> class.
     /// </summary>
     public class BuildProvider : Overseer.BuildProvider
     {
+        private const int TakeCount = 10;
+        private const int SkipCount = 0;
+
         /// <summary>
         /// Gets the name.
         /// </summary>
@@ -29,32 +34,11 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices
         /// </returns>
         public override async Task<IEnumerable<IProject>> GetProjectsAsync()
         {
-            // TODO: Implement!
-            // Thread.Sleep(5000);
+            var apiClient = GetApiClient();
 
-            return new[]
-            {
-                new StubProject
-                {
-                    Id = "1",
-                    Name = "Project 1"
-                },
-                new StubProject
-                {
-                    Id = "2",
-                    Name = "Project 2"
-                },
-                new StubProject
-                {
-                    Id = "3",
-                    Name = "Project 3"
-                },
-                new StubProject
-                {
-                    Id = "4",
-                    Name = "Project 4"
-                }
-            };
+            var projects = await apiClient.GetProjectsAsync(SkipCount, TakeCount).ConfigureAwait(false);
+
+            return projects.Value.Select(project => new Project(project));
         }
 
         /// <summary>
@@ -66,30 +50,21 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices
         /// </returns>
         public override async Task<IEnumerable<IBuild>> GetBuildsAsync(string projectId)
         {
-            // TODO: Implement!
-            //Thread.Sleep(5000);
+            Ensure.That(projectId).IsNotNullOrWhiteSpace();
 
-            return new[]
-            {
-                new StubBuild
-                {
-                    Branch = "Master",
-                    Number = "1",
-                    Status = BuildStatus.Failed
-                },
-                new StubBuild
-                {
-                    Branch = "Master",
-                    Number = "2",
-                    Status = BuildStatus.Succeeded
-                },
-                new StubBuild
-                {
-                    Branch = "Master",
-                    Number = "3",
-                    Status = BuildStatus.InProgress
-                }
-            };
+            var apiClient = GetApiClient();
+
+            var builds = await apiClient.GetBuildsAsync(Guid.Parse(projectId), SkipCount, TakeCount).ConfigureAwait(false);
+
+            return builds.Value.Select(build => new Build(build));
+        }
+
+        private Api.ApiClient GetApiClient()
+        {
+            var url = BuildProviderSettings.GetSetting("Url");
+            var token = BuildProviderSettings.GetSetting("Token");
+
+            return new Api.ApiClient(url, token);
         }
     }
 }

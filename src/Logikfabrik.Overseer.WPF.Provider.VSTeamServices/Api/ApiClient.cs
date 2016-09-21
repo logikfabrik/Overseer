@@ -22,30 +22,54 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices.Api
         /// <summary>
         /// Initializes a new instance of the <see cref="ApiClient" /> class.
         /// </summary>
-        /// <param name="baseUri">The base URI.</param>
+        /// <param name="url">The URL.</param>
         /// <param name="token">The token.</param>
-        public ApiClient(string baseUri, string token)
+        public ApiClient(string url, string token)
         {
-            Ensure.That(baseUri).IsNotNullOrWhiteSpace();
+            Ensure.That(url).IsNotNullOrWhiteSpace();
             Ensure.That(token).IsNotNullOrWhiteSpace();
 
-            _baseUri = new Uri(baseUri);
+            _baseUri = new Uri(url);
             _token = token;
         }
 
         /// <summary>
         /// Gets the projects.
         /// </summary>
+        /// <param name="skip">The skip count.</param>
+        /// <param name="take">The take count.</param>
         /// <returns>A task.</returns>
-        public async Task<Projects> GetProjectsAsync()
+        public async Task<Projects> GetProjectsAsync(int skip, int take)
         {
             using (var client = GetHttpClient())
             {
-                using (var response = await client.GetAsync("_apis/projects?stateFilter=All&api-version=1.0").ConfigureAwait(false))
+                using (var response = await client.GetAsync($"_apis/projects?api-version=1.0&skip={skip}&$top={take}").ConfigureAwait(false))
                 {
                     response.EnsureSuccessStatusCode();
 
                     return await response.Content.ReadAsAsync<Projects>().ConfigureAwait(false);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets the builds.
+        /// </summary>
+        /// <param name="projectId">The project identifier.</param>
+        /// <param name="skip">The skip count.</param>
+        /// <param name="take">The take count.</param>
+        /// <returns>A task.</returns>
+        public async Task<Builds> GetBuildsAsync(Guid projectId, int skip, int take)
+        {
+            Ensure.That(projectId).IsNotEmpty();
+
+            using (var client = GetHttpClient())
+            {
+                using (var response = await client.GetAsync($"{projectId}/_apis/build/builds?api-version=2.0&skip={skip}&$top={take}").ConfigureAwait(false))
+                {
+                    response.EnsureSuccessStatusCode();
+
+                    return await response.Content.ReadAsAsync<Builds>().ConfigureAwait(false);
                 }
             }
         }
