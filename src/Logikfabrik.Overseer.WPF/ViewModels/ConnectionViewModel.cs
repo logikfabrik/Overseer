@@ -34,7 +34,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
 
             _projectBuildViewModels = new Lazy<IEnumerable<ProjectBuildViewModel>>(() =>
             {
-                var projectViewModels = buildProvider.GetProjects().Select(project => new ProjectBuildViewModel(buildMonitor, buildProvider, project));
+                var projectViewModels = buildProvider.GetProjectsAsync().Result.Select(project => new ProjectBuildViewModel(buildMonitor, buildProvider, project));
 
                 IsBusy = false;
 

@@ -4,6 +4,7 @@
 
 namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor.Api
 {
+    using System;
     using System.Collections.Generic;
     using System.Net.Http;
     using System.Net.Http.Headers;
@@ -16,7 +17,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor.Api
     /// </summary>
     public class ApiClient
     {
-        private const string BaseUri = "https://ci.appveyor.com/";
+        private readonly Uri _baseUri;
         private readonly string _token;
 
         /// <summary>
@@ -27,25 +28,23 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor.Api
         {
             Ensure.That(token).IsNotNullOrWhiteSpace();
 
+            _baseUri = new Uri("https://ci.appveyor.com/");
             _token = token;
         }
 
         /// <summary>
         /// Gets the projects.
         /// </summary>
-        /// <returns>The projects.</returns>
-        public async Task<IEnumerable<Project>> GetProjects()
+        /// <returns>A task.</returns>
+        public async Task<IEnumerable<Project>> GetProjectsAsync()
         {
-            using (var client = new HttpClient())
+            using (var client = GetHttpClient())
             {
-                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", _token);
-
-                using (var response = await client.GetAsync($"{BaseUri}api/projects"))
+                using (var response = await client.GetAsync("api/projects").ConfigureAwait(false))
                 {
                     response.EnsureSuccessStatusCode();
 
-                    return await response.Content.ReadAsAsync<IEnumerable<Project>>();
+                    return await response.Content.ReadAsAsync<IEnumerable<Project>>().ConfigureAwait(false);
                 }
             }
         }
@@ -55,24 +54,31 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor.Api
         /// </summary>
         /// <param name="accountName">The account name.</param>
         /// <param name="projectSlug">The project slug.</param>
-        /// <returns>The project history.</returns>
-        public async Task<ProjectHistory> GetProjectHistory(string accountName, string projectSlug)
+        /// <returns>A task.</returns>
+        public async Task<ProjectHistory> GetProjectHistoryAsync(string accountName, string projectSlug)
         {
             Ensure.That(accountName).IsNotNullOrWhiteSpace();
             Ensure.That(projectSlug).IsNotNullOrWhiteSpace();
 
-            using (var client = new HttpClient())
+            using (var client = GetHttpClient())
             {
-                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", _token);
-
-                using (var response = await client.GetAsync($"{BaseUri}api/projects/{accountName}/{projectSlug}/history?recordsNumber=10"))
+                using (var response = await client.GetAsync($"api/projects/{accountName}/{projectSlug}/history?recordsNumber=10").ConfigureAwait(false))
                 {
                     response.EnsureSuccessStatusCode();
 
-                    return await response.Content.ReadAsAsync<ProjectHistory>();
+                    return await response.Content.ReadAsAsync<ProjectHistory>().ConfigureAwait(false);
                 }
             }
+        }
+
+        private HttpClient GetHttpClient()
+        {
+            var client = new HttpClient { BaseAddress = _baseUri };
+
+            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", _token);
+
+            return client;
         }
     }
 }

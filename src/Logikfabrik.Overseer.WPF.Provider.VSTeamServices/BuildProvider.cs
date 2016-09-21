@@ -6,6 +6,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices
 {
     using System.Collections.Generic;
     using System.Threading;
+    using System.Threading.Tasks;
 
     /// <summary>
     /// The <see cref="BuildProvider" /> class.
@@ -20,10 +21,16 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices
         /// </value>
         public override string Name { get; } = "VS Team Services";
 
-        public override IEnumerable<IProject> GetProjects()
+        /// <summary>
+        /// Gets the projects.
+        /// </summary>
+        /// <returns>
+        /// A task.
+        /// </returns>
+        public override async Task<IEnumerable<IProject>> GetProjectsAsync()
         {
             // TODO: Implement!
-            //Thread.Sleep(5000);
+            // Thread.Sleep(5000);
 
             return new[]
             {
@@ -50,7 +57,14 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices
             };
         }
 
-        public override IEnumerable<IBuild> GetBuilds(string projectId)
+        /// <summary>
+        /// Gets the builds for the project with the specified project identifier.
+        /// </summary>
+        /// <param name="projectId">The project identifier.</param>
+        /// <returns>
+        /// A task.
+        /// </returns>
+        public override async Task<IEnumerable<IBuild>> GetBuildsAsync(string projectId)
         {
             // TODO: Implement!
             //Thread.Sleep(5000);

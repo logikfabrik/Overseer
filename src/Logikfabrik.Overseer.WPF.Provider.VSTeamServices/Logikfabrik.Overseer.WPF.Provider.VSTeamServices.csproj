@@ -84,8 +84,10 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Build.cs" />
     <Compile Include="BuildProvider.cs" />
     <Compile Include="Module.cs" />
+    <Compile Include="Project.cs" />
     <Compile Include="ViewModels\AddConnectionViewModel.cs" />
     <Compile Include="ViewModels\BuildProviderViewModel.cs" />
     <Compile Include="Views\AddConnectionView.xaml.cs">

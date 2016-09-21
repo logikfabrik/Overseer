@@ -2,11 +2,10 @@
 //   Copyright (c) 2016 anton(at)logikfabrik.se. Licensed under the MIT license.
 // </copyright>
 
-using System.Linq;
-
 namespace Logikfabrik.Overseer.Settings
 {
     using System;
+    using System.Linq;
     using EnsureThat;
 
     /// <summary>

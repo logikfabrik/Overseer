@@ -5,8 +5,9 @@
 namespace Logikfabrik.Overseer
 {
     using System;
-    using System.ComponentModel;
     using System.Linq;
+    using System.Threading;
+    using System.Threading.Tasks;
     using EnsureThat;
 
     /// <summary>
@@ -14,8 +15,8 @@ namespace Logikfabrik.Overseer
     /// </summary>
     public class BuildMonitor : IBuildMonitor
     {
-        private readonly BackgroundWorker _backgroundWorker;
         private readonly IBuildProviderRepository _buildProviderRepository;
+        private CancellationTokenSource _cancellationTokenSource;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="BuildMonitor" /> class.
@@ -26,16 +27,6 @@ namespace Logikfabrik.Overseer
             Ensure.That(buildProviderRepository).IsNotNull();
 
             _buildProviderRepository = buildProviderRepository;
-
-            _backgroundWorker = new BackgroundWorker
-            {
-                WorkerReportsProgress = true,
-                WorkerSupportsCancellation = true
-            };
-
-            _backgroundWorker.DoWork += OnBackgroundWorkerDoWork;
-            _backgroundWorker.ProgressChanged += OnBackgroundWorkerProgressChanged;
-            _backgroundWorker.RunWorkerCompleted += OnBackgroundWorkerRunWorkerCompleted;
         }
 
         /// <summary>
@@ -61,7 +52,7 @@ namespace Logikfabrik.Overseer
                 return;
             }
 
-            _backgroundWorker.RunWorkerAsync();
+            Monitor();
 
             IsMonitoring = true;
         }
@@ -76,7 +67,7 @@ namespace Logikfabrik.Overseer
                 return;
             }
 
-            _backgroundWorker.CancelAsync();
+            _cancellationTokenSource.Cancel();
 
             IsMonitoring = false;
         }
@@ -90,68 +81,38 @@ namespace Logikfabrik.Overseer
             ProgressChanged?.Invoke(this, e);
         }
 
-        private static int GetPercentProgress(int totalBuildProviders, int currentBuildProvider, int currentBuildProviderTotalProjects, int currentBuildProviderProject)
+        private void Monitor()
         {
-            var totalProviderProgress = (double)currentBuildProvider / totalBuildProviders;
+            _cancellationTokenSource = new CancellationTokenSource();
 
-            var currentProviderProgress = (double)currentBuildProviderProject / currentBuildProviderTotalProjects * ((double)1 / totalBuildProviders);
-
-            return (int)Math.Floor((totalProviderProgress + currentProviderProgress) * 100);
-        }
-
-        private void OnBackgroundWorkerProgressChanged(object sender, ProgressChangedEventArgs e)
-        {
-            var state = (BuildMonitorState)e.UserState;
-
-            var args = new BuildMonitorProgressEventArgs(e.ProgressPercentage, state.BuildProvider, state.Project, state.Builds);
-
-            OnProgressChanged(args);
-        }
-
-        private void OnBackgroundWorkerDoWork(object sender, DoWorkEventArgs e)
-        {
-            var buildProviders = _buildProviderRepository.GetBuildProviders().ToArray();
-
-            for (var i = 0; i < buildProviders.Length; i++)
+            // ReSharper disable once FunctionNeverReturns
+            Task.Run(
+                async () =>
             {
-                if (_backgroundWorker.CancellationPending)
+                while (true)
                 {
-                    e.Cancel = true;
-                    return;
+                    var buildProviders = _buildProviderRepository.GetBuildProviders();
+
+                    Task.WaitAll(buildProviders.Select(GetProjectsAsync).ToArray());
+
+                    await Task.Delay(30 * 1000);
                 }
-
-                var projects = buildProviders[i].GetProjects().ToArray();
-
-                for (var j = 0; j < projects.Length; j++)
-                {
-                    if (_backgroundWorker.CancellationPending)
-                    {
-                        e.Cancel = true;
-                        return;
-                    }
-
-                    var builds = buildProviders[i].GetBuilds(projects[j].Id);
-
-                    var percentProgress = GetPercentProgress(buildProviders.Length, i, projects.Length, j);
-
-                    _backgroundWorker.ReportProgress(percentProgress, new BuildMonitorState(buildProviders[i], projects[j], builds));
-                }
-            }
+            },
+            _cancellationTokenSource.Token);
         }
 
-        private void OnBackgroundWorkerRunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        private async Task GetProjectsAsync(IBuildProvider buildProvider)
         {
-            if (e.Error != null)
-            {
-                throw e.Error;
-            }
+            var projects = await buildProvider.GetProjectsAsync().ConfigureAwait(false);
 
-            if (!IsMonitoring)
+            Task.WaitAll(projects.Select(async project =>
             {
-                return;
-            }
+                var builds = await buildProvider.GetBuildsAsync(project.Id).ConfigureAwait(false);
 
-            _backgroundWorker.RunWorkerAsync();
+                var args = new BuildMonitorProgressEventArgs(buildProvider, project, builds);
+
+                OnProgressChanged(args);
+            }).ToArray());
         }
     }
 }

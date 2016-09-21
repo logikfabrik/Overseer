@@ -5,6 +5,7 @@
 namespace Logikfabrik.Overseer
 {
     using System.Collections.Generic;
+    using System.Threading.Tasks;
     using Settings;
 
     /// <summary>
@@ -31,14 +32,14 @@ namespace Logikfabrik.Overseer
         /// <summary>
         /// Gets the projects.
         /// </summary>
-        /// <returns>The projects.</returns>
-        public abstract IEnumerable<IProject> GetProjects();
+        /// <returns>A task.</returns>
+        public abstract Task<IEnumerable<IProject>> GetProjectsAsync();
 
         /// <summary>
         /// Gets the builds for the project with the specified project identifier.
         /// </summary>
         /// <param name="projectId">The project identifier.</param>
-        /// <returns>The builds for the project with the specified project identifier.</returns>
-        public abstract IEnumerable<IBuild> GetBuilds(string projectId);
+        /// <returns>A task.</returns>
+        public abstract Task<IEnumerable<IBuild>> GetBuildsAsync(string projectId);
     }
 }

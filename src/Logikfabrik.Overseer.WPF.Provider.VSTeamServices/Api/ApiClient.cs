@@ -4,79 +4,62 @@
 
 namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices.Api
 {
+    using System;
+    using System.Net.Http;
+    using System.Net.Http.Headers;
+    using System.Threading.Tasks;
+    using EnsureThat;
+    using Models;
+
     /// <summary>
     /// The <see cref="ApiClient" /> class.
     /// </summary>
     public class ApiClient
     {
-        ///*
-        // * 
-        // * 
-        // * 
-        // * 
-        // * 
-        // * Build (read) + Project and team (read)
-        // */
+        private readonly Uri _baseUri;
+        private readonly string _token;
 
-        //private readonly Uri _serviceUrl;
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ApiClient" /> class.
+        /// </summary>
+        /// <param name="baseUri">The base URI.</param>
+        /// <param name="token">The token.</param>
+        public ApiClient(string baseUri, string token)
+        {
+            Ensure.That(baseUri).IsNotNullOrWhiteSpace();
+            Ensure.That(token).IsNotNullOrWhiteSpace();
 
-        ////private readonly VssBasicCredential _credentials;
+            _baseUri = new Uri(baseUri);
+            _token = token;
+        }
 
-        //private readonly string _token;
+        /// <summary>
+        /// Gets the projects.
+        /// </summary>
+        /// <returns>A task.</returns>
+        public async Task<Projects> GetProjectsAsync()
+        {
+            using (var client = GetHttpClient())
+            {
+                using (var response = await client.GetAsync("_apis/projects?stateFilter=All&api-version=1.0").ConfigureAwait(false))
+                {
+                    response.EnsureSuccessStatusCode();
 
-        //public Client2(Uri serviceUrl, string token)
-        //{
-        //    if (serviceUrl == null)
-        //    {
-        //        throw new ArgumentNullException(nameof(serviceUrl));
-        //    }
+                    return await response.Content.ReadAsAsync<Projects>().ConfigureAwait(false);
+                }
+            }
+        }
 
-        //    if (string.IsNullOrWhiteSpace(token))
-        //    {
-        //        throw new ArgumentException("Token cannot be null or white space.", nameof(token));
-        //    }
+        private HttpClient GetHttpClient()
+        {
+            var credentials = Convert.ToBase64String(System.Text.Encoding.ASCII.GetBytes($"{string.Empty}:{_token}"));
 
-        //    _serviceUrl = serviceUrl;
-        //    //_credentials = new VssBasicCredential(string.Empty, token);
+            var client = new HttpClient { BaseAddress = _baseUri };
 
-        //    _token = token;
-        //}
+            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", credentials);
 
-        ////public async Task<IEnumerable<Build>> GetBuilds()
-        ////{
-        ////    using (var client = new BuildHttpClient(_serviceUrl, _credentials))
-        ////    {
-        ////        return await client.GetBuildsAsync();
-        ////    }
-        ////}
-
-        //public async Task<Projects> GetProjects()
-        //{
-        //    string credentials = Convert.ToBase64String(System.Text.ASCIIEncoding.ASCII.GetBytes(string.Format("{0}:{1}", "", _token)));
-            
-        //    //use the httpclient
-        //    using (var client = new HttpClient())
-        //    {
-        //        client.BaseAddress = new Uri("https://xxx.visualstudio.com:");  //url of our account
-        //        client.DefaultRequestHeaders.Accept.Clear();
-        //        client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
-        //        client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", credentials);
-
-        //        //connect to the REST endpoint            
-        //        HttpResponseMessage response = client.GetAsync("_apis/projects?stateFilter=All&api-version=1.0").Result;
-
-        //        response.EnsureSuccessStatusCode();
-                  
-        //            return await response.Content.ReadAsAsync<Projects>();
- 
-        //    }
-
-
-
-        //    //using (var client = new ProjectHttpClient(_serviceUrl, _credentials))
-        //    //{
-        //    //    return await client.GetProjects();
-        //    //}
-        //}
+            return client;
+        }
     }
 }
