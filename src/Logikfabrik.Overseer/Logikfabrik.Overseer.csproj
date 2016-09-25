@@ -56,9 +56,11 @@
     <Compile Include="BuildProviderFactory.cs" />
     <Compile Include="BuildMonitorProgressEventArgs.cs" />
     <Compile Include="BuildProviderRepository.cs" />
+    <Compile Include="Change.cs" />
     <Compile Include="IBuildMonitor.cs" />
     <Compile Include="IBuildProvider.cs" />
     <Compile Include="IBuildProviderRepository.cs" />
+    <Compile Include="IChange.cs" />
     <Compile Include="Module.cs" />
     <Compile Include="Settings\BuildProviderSettings.cs" />
     <Compile Include="Settings\BuildProviderSettingsRepository.cs" />

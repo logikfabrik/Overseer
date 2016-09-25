@@ -24,10 +24,13 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor
             Branch = build.Branch;
             Started = build.Started;
             Finished = build.Finished;
-            Revision = build.CommitId;
-            CommitterName = build.CommitterName;
-            RequestorName = build.AuthorName;
-            Comment = build.Message;
+            RequestedBy = build.AuthorUsername;
+            LastChange = new Change
+            {
+                Changed = build.Committed,
+                ChangedBy = build.CommitterName,
+                Comment = build.Message
+            };
         }
 
         /// <summary>
@@ -37,6 +40,14 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor
         /// The version.
         /// </value>
         public string Version { get; }
+
+        /// <summary>
+        /// Gets the number.
+        /// </summary>
+        /// <value>
+        /// The number.
+        /// </value>
+        public string Number { get; }
 
         /// <summary>
         /// Gets the branch.
@@ -71,35 +82,19 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor
         public BuildStatus? Status { get; }
 
         /// <summary>
-        /// Gets the revision.
+        /// Gets the name of whoever requested the build.
         /// </summary>
         /// <value>
-        /// The revision.
+        /// The name of whoever requested the build.
         /// </value>
-        public string Revision { get; }
+        public string RequestedBy { get; }
 
         /// <summary>
-        /// Gets the name of the committer.
+        /// Gets the last change.
         /// </summary>
         /// <value>
-        /// The name of the committer.
+        /// The last change.
         /// </value>
-        public string CommitterName { get; }
-
-        /// <summary>
-        /// Gets the name of the requestor.
-        /// </summary>
-        /// <value>
-        /// The name of the requestor.
-        /// </value>
-        public string RequestorName { get; }
-
-        /// <summary>
-        /// Gets the comment.
-        /// </summary>
-        /// <value>
-        /// The comment.
-        /// </value>
-        public string Comment { get; }
+        public IChange LastChange { get; }
     }
 }

@@ -25,35 +25,20 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             Branch = build.Branch;
             Started = build.Started;
             Finished = build.Finished;
-            Revision = build.Revision;
-            CommitterName = build.CommitterName;
-            RequestorName = build.RequestorName;
-            Comment = build.Comment;
+
+            if (build.LastChange != null)
+            {
+                ChangeViewModel = new ChangeViewModel(build.LastChange);
+            }
         }
 
         /// <summary>
-        /// Gets the comment.
+        /// Gets the change view model.
         /// </summary>
         /// <value>
-        /// The comment.
+        /// The change view model.
         /// </value>
-        public string Comment { get; }
-
-        /// <summary>
-        /// Gets the name of the committer.
-        /// </summary>
-        /// <value>
-        /// The name of the committer.
-        /// </value>
-        public string CommitterName { get; }
-
-        /// <summary>
-        /// Gets the name of the requestor.
-        /// </summary>
-        /// <value>
-        /// The name of the requestor.
-        /// </value>
-        public string RequestorName { get; }
+        public ChangeViewModel ChangeViewModel { get; }
 
         /// <summary>
         /// Gets the branch.
@@ -62,14 +47,6 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// The branch.
         /// </value>
         public string Branch { get; }
-
-        /// <summary>
-        /// Gets the revision.
-        /// </summary>
-        /// <value>
-        /// The revision.
-        /// </value>
-        public string Revision { get; }
 
         /// <summary>
         /// Gets the version.

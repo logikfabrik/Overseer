@@ -59,9 +59,9 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices.Api
         /// <param name="skip">The skip count.</param>
         /// <param name="take">The take count.</param>
         /// <returns>A task.</returns>
-        public async Task<Builds> GetBuildsAsync(Guid projectId, int skip, int take)
+        public async Task<Builds> GetBuildsAsync(string projectId, int skip, int take)
         {
-            Ensure.That(projectId).IsNotEmpty();
+            Ensure.That(projectId).IsNotNullOrWhiteSpace();
 
             using (var client = GetHttpClient())
             {
@@ -70,6 +70,28 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices.Api
                     response.EnsureSuccessStatusCode();
 
                     return await response.Content.ReadAsAsync<Builds>().ConfigureAwait(false);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets the commits.
+        /// </summary>
+        /// <param name="repositoryId">The repository identifier.</param>
+        /// <param name="skip">The skip count.</param>
+        /// <param name="take">The take count.</param>
+        /// <returns>A task.</returns>
+        public async Task<Commits> GetCommitsAsync(string repositoryId, int skip, int take)
+        {
+            Ensure.That(repositoryId).IsNotNullOrWhiteSpace();
+
+            using (var client = GetHttpClient())
+            {
+                using (var response = await client.GetAsync($"_apis/git/repositories/{repositoryId}/commits?api-version=2.0&$skip={skip}&$top={take}").ConfigureAwait(false))
+                {
+                    response.EnsureSuccessStatusCode();
+
+                    return await response.Content.ReadAsAsync<Commits>().ConfigureAwait(false);
                 }
             }
         }

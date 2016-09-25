@@ -87,7 +87,10 @@
     <Compile Include="Api\Models\Builds.cs" />
     <Compile Include="Api\Models\Changeset.cs" />
     <Compile Include="Api\Models\Changesets.cs" />
+    <Compile Include="Api\Models\Commit.cs" />
+    <Compile Include="Api\Models\Commits.cs" />
     <Compile Include="Api\Models\RepositoryType.cs" />
+    <Compile Include="Api\Models\UserRef.cs" />
     <Compile Include="Build.cs" />
     <Compile Include="BuildProvider.cs" />
     <Compile Include="Module.cs" />

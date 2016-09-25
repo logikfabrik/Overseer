@@ -2,11 +2,8 @@
 //   Copyright (c) 2016 anton(at)logikfabrik.se. Licensed under the MIT license.
 // </copyright>
 
-using Logikfabrik.Overseer.WPF.Provider.VSTeamServices.Api.Models;
-
 namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices
 {
-    using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
@@ -55,26 +52,31 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices
 
             var builds = new List<IBuild>();
 
-            foreach (var build in (await apiClient.GetBuildsAsync(Guid.Parse(projectId), 0, 10).ConfigureAwait(false)).Value)
+            foreach (var build in (await apiClient.GetBuildsAsync(projectId, 0, 10).ConfigureAwait(false)).Value)
             {
-                string comment = null;
-
                 switch (build.Repository.Type)
                 {
-                    case RepositoryType.Tfs:
+                    case Api.Models.RepositoryType.TfsVersionControl:
                         var changesets = await apiClient.GetChangesetsAsync(build.SourceVersion, 0, 1).ConfigureAwait(false);
+                        var changeset = changesets.Value.FirstOrDefault();
 
-                        comment = changesets.Value.FirstOrDefault()?.Comment;
+                        builds.Add(changeset != null ? new Build(build, changeset) : new Build(build));
 
                         break;
 
-                    case RepositoryType.TfsGit:
-                        comment = "Git"; // TODO: Get git commit.
+                    case Api.Models.RepositoryType.TfsGit:
+                        var commits = await apiClient.GetCommitsAsync(build.Repository.Id, 0, 1).ConfigureAwait(false);
+                        var commit = commits.Value.FirstOrDefault();
+
+                        builds.Add(commit != null ? new Build(build, commit) : new Build(build));
+
+                        break;
+
+                    default:
+                        builds.Add(new Build(build));
 
                         break;
                 }
-
-                builds.Add(new Build(build, comment));
             }
 
             return builds;

@@ -5,18 +5,18 @@
 namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices.Api.Models
 {
     /// <summary>
-    /// The <see cref="RepositoryType" /> class.
+    /// The <see cref="RepositoryType" /> enumeration.
     /// </summary>
-    public static class RepositoryType
+    public enum RepositoryType
     {
         /// <summary>
-        /// The TFS type.
+        /// TFS
         /// </summary>
-        public const string Tfs = "TfsVersionControl";
+        TfsVersionControl,
 
         /// <summary>
-        /// The TFS Git type.
+        /// TFS Git
         /// </summary>
-        public const string TfsGit = "TfsGit";
+        TfsGit
     }
 }

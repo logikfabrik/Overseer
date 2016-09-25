@@ -1,30 +1,30 @@
-﻿// <copyright file="Repository.cs" company="Logikfabrik">
+﻿// <copyright file="Commits.cs" company="Logikfabrik">
 //   Copyright (c) 2016 anton(at)logikfabrik.se. Licensed under the MIT license.
 // </copyright>
 
 namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices.Api.Models
 {
-    using System;
+    using System.Collections.Generic;
 
     /// <summary>
-    /// The <see cref="Repository" /> class.
+    /// The <see cref="Commits" /> class.
     /// </summary>
-    public class Repository
+    public class Commits
     {
         /// <summary>
-        /// Gets or sets the identifier.
+        /// Gets or sets the count.
         /// </summary>
         /// <value>
-        /// The identifier.
+        /// The count.
         /// </value>
-        public string Id { get; set; }
+        public int Count { get; set; }
 
         /// <summary>
-        /// Gets or sets the type.
+        /// Gets or sets the value.
         /// </summary>
         /// <value>
-        /// The type.
+        /// The value.
         /// </value>
-        public RepositoryType Type { get; set; }
+        public IEnumerable<Commit> Value { get; set; }
     }
 }

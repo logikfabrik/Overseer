@@ -13,22 +13,52 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices
     public class Build : IBuild
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="Build" /> class.
+        /// Initializes a new instance of the <see cref="Build"/> class.
         /// </summary>
         /// <param name="build">The build.</param>
-        /// <param name="comment">The comment.</param>
-        public Build(Api.Models.Build build, string comment)
+        public Build(Api.Models.Build build)
         {
             Ensure.That(build).IsNotNull();
 
-            Version = build.BuildNumber; // In VSTS the build number is the version.
+            Number = build.BuildNumber;
             Branch = build.SourceBranch;
             Started = build.StartTime;
             Finished = build.FinishTime;
-            Revision = build.SourceVersion;
-            CommitterName = build.LastChangedBy?.DisplayName;
-            RequestorName = build.RequestedBy?.DisplayName;
-            Comment = comment;
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Build" /> class.
+        /// </summary>
+        /// <param name="build">The build.</param>
+        /// <param name="lastChangeset">The last changeset.</param>
+        public Build(Api.Models.Build build, Api.Models.Changeset lastChangeset)
+            : this(build)
+        {
+            Ensure.That(lastChangeset).IsNotNull();
+
+            LastChange = new Change
+            {
+                Changed = lastChangeset.CreatedDate,
+                ChangedBy = lastChangeset.CheckedInBy.DisplayName,
+                Comment = lastChangeset.Comment
+            };
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Build" /> class.
+        /// </summary>
+        /// <param name="build">The build.</param>
+        /// <param name="lastCommit">The last commit.</param>
+        public Build(Api.Models.Build build, Api.Models.Commit lastCommit)
+            : this(build)
+        {
+            Ensure.That(lastCommit).IsNotNull();
+
+            LastChange = new Change
+            {
+                ChangedBy = lastCommit.Committer.Name,
+                Comment = lastCommit.Comment
+            };
         }
 
         /// <summary>
@@ -38,6 +68,14 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices
         /// The version.
         /// </value>
         public string Version { get; }
+
+        /// <summary>
+        /// Gets the number.
+        /// </summary>
+        /// <value>
+        /// The number.
+        /// </value>
+        public string Number { get; }
 
         /// <summary>
         /// Gets the branch.
@@ -70,37 +108,21 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices
         /// The status.
         /// </value>
         public BuildStatus? Status { get; }
-
+        
         /// <summary>
-        /// Gets the revision.
+        /// Gets the name of whoever requested the build.
         /// </summary>
         /// <value>
-        /// The revision.
+        /// The name of whoever requested the build.
         /// </value>
-        public string Revision { get; }
+        public string RequestedBy { get; }
 
         /// <summary>
-        /// Gets the name of the committer.
+        /// Gets the last change.
         /// </summary>
         /// <value>
-        /// The name of the committer.
+        /// The last change.
         /// </value>
-        public string CommitterName { get; }
-
-        /// <summary>
-        /// Gets the name of the requestor.
-        /// </summary>
-        /// <value>
-        /// The name of the requestor.
-        /// </value>
-        public string RequestorName { get; }
-
-        /// <summary>
-        /// Gets the comment.
-        /// </summary>
-        /// <value>
-        /// The comment.
-        /// </value>
-        public string Comment { get; }
+        public IChange LastChange { get; }
     }
 }

@@ -1,30 +1,28 @@
-﻿// <copyright file="Repository.cs" company="Logikfabrik">
+﻿// <copyright file="UserRef.cs" company="Logikfabrik">
 //   Copyright (c) 2016 anton(at)logikfabrik.se. Licensed under the MIT license.
 // </copyright>
 
 namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices.Api.Models
 {
-    using System;
-
     /// <summary>
-    /// The <see cref="Repository" /> class.
+    /// The <see cref="UserRef" /> class.
     /// </summary>
-    public class Repository
+    public class UserRef
     {
         /// <summary>
-        /// Gets or sets the identifier.
+        /// Gets or sets the name.
         /// </summary>
         /// <value>
-        /// The identifier.
+        /// The name.
         /// </value>
-        public string Id { get; set; }
+        public string Name { get; set; }
 
         /// <summary>
-        /// Gets or sets the type.
+        /// Gets or sets the e-mail.
         /// </summary>
         /// <value>
-        /// The type.
+        /// The e-mail.
         /// </value>
-        public RepositoryType Type { get; set; }
+        public string Email { get; set; }
     }
 }

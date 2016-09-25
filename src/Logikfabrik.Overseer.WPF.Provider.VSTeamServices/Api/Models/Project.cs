@@ -17,7 +17,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices.Api.Models
         /// <value>
         /// The identifier.
         /// </value>
-        public Guid Id { get; set; }
+        public string Id { get; set; }
 
         /// <summary>
         /// Gets or sets the name.
@@ -34,13 +34,5 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices.Api.Models
         /// The URL.
         /// </value>
         public string Url { get; set; }
-
-        /// <summary>
-        /// Gets or sets the revision.
-        /// </summary>
-        /// <value>
-        /// The revision.
-        /// </value>
-        public long Revision { get; set; }
     }
 }
