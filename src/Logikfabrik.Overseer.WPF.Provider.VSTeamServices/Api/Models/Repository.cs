@@ -12,14 +12,6 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices.Api.Models
     public class Repository
     {
         /// <summary>
-        /// Gets or sets the default branch.
-        /// </summary>
-        /// <value>
-        /// The default branch.
-        /// </value>
-        public string DefaultBranch { get; set; }
-
-        /// <summary>
         /// Gets or sets the identifier.
         /// </summary>
         /// <value>
@@ -28,35 +20,11 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices.Api.Models
         public string Id { get; set; }
 
         /// <summary>
-        /// Gets or sets the name.
-        /// </summary>
-        /// <value>
-        /// The name.
-        /// </value>
-        public string Name { get; set; }
-
-        /// <summary>
-        /// Gets or sets the root folder.
-        /// </summary>
-        /// <value>
-        /// The root folder.
-        /// </value>
-        public string RootFolder { get; set; }
-
-        /// <summary>
         /// Gets or sets the type.
         /// </summary>
         /// <value>
         /// The type.
         /// </value>
         public string Type { get; set; }
-
-        /// <summary>
-        /// Gets or sets the URL.
-        /// </summary>
-        /// <value>
-        /// The URL.
-        /// </value>
-        public Uri Url { get; set; }
     }
 }

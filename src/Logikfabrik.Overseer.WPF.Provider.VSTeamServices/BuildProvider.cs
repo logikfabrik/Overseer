@@ -2,6 +2,8 @@
 //   Copyright (c) 2016 anton(at)logikfabrik.se. Licensed under the MIT license.
 // </copyright>
 
+using Logikfabrik.Overseer.WPF.Provider.VSTeamServices.Api.Models;
+
 namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices
 {
     using System;
@@ -15,9 +17,6 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices
     /// </summary>
     public class BuildProvider : Overseer.BuildProvider
     {
-        private const int TakeCount = 10;
-        private const int SkipCount = 0;
-
         /// <summary>
         /// Gets the name.
         /// </summary>
@@ -36,7 +35,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices
         {
             var apiClient = GetApiClient();
 
-            var projects = await apiClient.GetProjectsAsync(SkipCount, TakeCount).ConfigureAwait(false);
+            var projects = await apiClient.GetProjectsAsync(0, 10).ConfigureAwait(false);
 
             return projects.Value.Select(project => new Project(project));
         }
@@ -56,11 +55,24 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices
 
             var builds = new List<IBuild>();
 
-            foreach (var build in (await apiClient.GetBuildsAsync(Guid.Parse(projectId), SkipCount, TakeCount).ConfigureAwait(false)).Value)
+            foreach (var build in (await apiClient.GetBuildsAsync(Guid.Parse(projectId), 0, 10).ConfigureAwait(false)).Value)
             {
-                var changesets = await apiClient.GetChangesetsAsync(build.SourceVersion).ConfigureAwait(false);
+                string comment = null;
 
-                var comment = changesets.Value.FirstOrDefault()?.Comment;
+                switch (build.Repository.Type)
+                {
+                    case RepositoryType.Tfs:
+                        var changesets = await apiClient.GetChangesetsAsync(build.SourceVersion, 0, 1).ConfigureAwait(false);
+
+                        comment = changesets.Value.FirstOrDefault()?.Comment;
+
+                        break;
+
+                    case RepositoryType.TfsGit:
+                        comment = "Git"; // TODO: Get git commit.
+
+                        break;
+                }
 
                 builds.Add(new Build(build, comment));
             }

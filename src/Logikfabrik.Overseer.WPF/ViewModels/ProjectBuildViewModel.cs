@@ -98,7 +98,10 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
                 return;
             }
 
-            BuildViewModel = new BuildViewModel(e.Builds.FirstOrDefault());
+            if (e.Builds.Any())
+            {
+                BuildViewModel = new BuildViewModel(e.Builds.First());
+            }
 
             IsBusy = false;
         }

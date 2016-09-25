@@ -12,14 +12,6 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices.Api.Models
     public class Project
     {
         /// <summary>
-        /// Gets or sets the description.
-        /// </summary>
-        /// <value>
-        /// The description.
-        /// </value>
-        public string Description { get; set; }
-
-        /// <summary>
         /// Gets or sets the identifier.
         /// </summary>
         /// <value>
@@ -36,19 +28,19 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices.Api.Models
         public string Name { get; set; }
 
         /// <summary>
-        /// Gets or sets the revision.
-        /// </summary>
-        /// <value>
-        /// The revision.
-        /// </value>
-        public long Revision { get; set; }
-
-        /// <summary>
         /// Gets or sets the URL.
         /// </summary>
         /// <value>
         /// The URL.
         /// </value>
         public string Url { get; set; }
+
+        /// <summary>
+        /// Gets or sets the revision.
+        /// </summary>
+        /// <value>
+        /// The revision.
+        /// </value>
+        public long Revision { get; set; }
     }
 }

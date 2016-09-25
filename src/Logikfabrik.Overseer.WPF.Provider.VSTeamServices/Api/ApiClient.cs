@@ -43,7 +43,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices.Api
         {
             using (var client = GetHttpClient())
             {
-                using (var response = await client.GetAsync($"_apis/projects?api-version=1.0&skip={skip}&$top={take}").ConfigureAwait(false))
+                using (var response = await client.GetAsync($"_apis/projects?api-version=2.0&$skip={skip}&$top={take}").ConfigureAwait(false))
                 {
                     response.EnsureSuccessStatusCode();
 
@@ -65,7 +65,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices.Api
 
             using (var client = GetHttpClient())
             {
-                using (var response = await client.GetAsync($"{projectId}/_apis/build/builds?api-version=2.0&skip={skip}&$top={take}").ConfigureAwait(false))
+                using (var response = await client.GetAsync($"{projectId}/_apis/build/builds?api-version=2.0&$skip={skip}&$top={take}").ConfigureAwait(false))
                 {
                     response.EnsureSuccessStatusCode();
 
@@ -78,14 +78,16 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices.Api
         /// Gets the changesets.
         /// </summary>
         /// <param name="sourceVersion">The source version.</param>
+        /// <param name="skip">The skip count.</param>
+        /// <param name="take">The take count.</param>
         /// <returns>A task.</returns>
-        public async Task<Changesets> GetChangesetsAsync(string sourceVersion)
+        public async Task<Changesets> GetChangesetsAsync(string sourceVersion, int skip, int take)
         {
             Ensure.That(sourceVersion).IsNotNullOrWhiteSpace();
 
             using (var client = GetHttpClient())
             {
-                using (var response = await client.GetAsync($"_apis/tfvc/changesets?api-version=1.0&version{sourceVersion}").ConfigureAwait(false))
+                using (var response = await client.GetAsync($"_apis/tfvc/changesets?api-version=2.0&version={sourceVersion}&$skip={skip}&$top={take}").ConfigureAwait(false))
                 {
                     response.EnsureSuccessStatusCode();
 
