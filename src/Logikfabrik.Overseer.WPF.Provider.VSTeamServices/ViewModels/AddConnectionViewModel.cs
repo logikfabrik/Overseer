@@ -49,7 +49,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices.ViewModels
         {
             return new BuildProviderSettings
             {
-                Name = Name,
+                Name = ConnectionName,
                 BuildProviderTypeName = typeof(BuildProvider).AssemblyQualifiedName,
                 Settings = new[]
                 {

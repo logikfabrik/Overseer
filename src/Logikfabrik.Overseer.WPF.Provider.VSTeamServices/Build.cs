@@ -24,6 +24,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices
             Branch = build.SourceBranch;
             Started = build.StartTime;
             Finished = build.FinishTime;
+            RequestedBy = build.RequestedFor.DisplayName;
         }
 
         /// <summary>
@@ -108,7 +109,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices
         /// The status.
         /// </value>
         public BuildStatus? Status { get; }
-        
+
         /// <summary>
         /// Gets the name of whoever requested the build.
         /// </summary>

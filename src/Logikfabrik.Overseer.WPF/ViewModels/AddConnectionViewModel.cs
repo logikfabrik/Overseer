@@ -31,12 +31,12 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         }
 
         /// <summary>
-        /// Gets or sets the name.
+        /// Gets or sets the connection name.
         /// </summary>
         /// <value>
-        /// The name.
+        /// The connection name.
         /// </value>
-        public string Name { get; set; }
+        public string ConnectionName { get; set; }
 
         /// <summary>
         /// Add the connection.

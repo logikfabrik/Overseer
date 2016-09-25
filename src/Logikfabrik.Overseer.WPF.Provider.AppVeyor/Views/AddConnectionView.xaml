@@ -20,7 +20,7 @@
             </Grid.RowDefinitions>
             <StackPanel Grid.Row="0">
                 <TextBlock Text="Name" />
-                <TextBox x:Name="Name" />
+                <TextBox x:Name="ConnectionName" />
             </StackPanel>
             <StackPanel Grid.Row="1">
                 <TextBlock Text="Url" />

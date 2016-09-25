@@ -4,9 +4,10 @@
 
 namespace Logikfabrik.Overseer.WPF.ViewModels
 {
-    using System;
+    using System.Text;
     using Caliburn.Micro;
     using EnsureThat;
+    using Humanizer;
 
     /// <summary>
     /// The <see cref="BuildViewModel" /> class.
@@ -21,10 +22,11 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         {
             Ensure.That(build).IsNotNull();
 
-            Version = build.Version;
             Branch = build.Branch;
-            Started = build.Started;
-            Finished = build.Finished;
+
+            VersionOrNumber = !string.IsNullOrWhiteSpace(build.Version) ? build.Version : build.Number;
+
+            Description = GetDescription(build);
 
             if (build.LastChange != null)
             {
@@ -49,27 +51,41 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         public string Branch { get; }
 
         /// <summary>
-        /// Gets the version.
+        /// Gets the version or number.
         /// </summary>
         /// <value>
-        /// The version.
+        /// The version or number.
         /// </value>
-        public string Version { get; }
+        public string VersionOrNumber { get; }
 
         /// <summary>
-        /// Gets the started date.
+        /// Gets when built.
         /// </summary>
         /// <value>
-        /// The started date.
+        /// When built.
         /// </value>
-        public DateTime? Started { get; }
+        public string Description { get; }
 
-        /// <summary>
-        /// Gets finished date.
-        /// </summary>
-        /// <value>
-        /// The finished date.
-        /// </value>
-        public DateTime? Finished { get; }
+        private static string GetDescription(IBuild build)
+        {
+            var builder = new StringBuilder();
+
+            if (build.Started.HasValue && build.Finished.HasValue)
+            {
+                builder.Append($"Built {build.Started.Humanize()}");
+                builder.Append($" in {(build.Finished.Value - build.Started.Value).Humanize()}");
+
+                if (!string.IsNullOrWhiteSpace(build.RequestedBy))
+                {
+                    builder.Append($" for {build.RequestedBy}");
+                }
+            }
+            else if (build.Started.HasValue)
+            {
+                // TODO: Description for still active build.
+            }
+
+            return builder.ToString();
+        }
     }
 }

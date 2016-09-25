@@ -12,34 +12,27 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        <Grid Grid.Row="0">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="Auto" />
-            </Grid.ColumnDefinitions>
-            <TextBlock Grid.Column="0" 
-                       FontSize="14" 
-                       x:Name="Comment" />
-            <TextBlock Grid.Column="1" 
-                       FontSize="14" 
-                       x:Name="Version" />
-        </Grid>
-        <Grid Grid.Row="1">
+        <TextBlock Grid.Row="0" 
+                   FontSize="14" 
+                   x:Name="VersionOrNumber" />
+        <TextBlock Grid.Row="1" 
+                   FontSize="10" 
+                   x:Name="Description" />
+        <Grid Grid.Row="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <TextBlock Grid.Column="0" 
-                       FontSize="10" 
-                       Text="Build date" />
+            
             <TextBlock Grid.Column="2" 
                        FontSize="10" 
                        x:Name="Branch" />
         </Grid>
-        <ContentControl Grid.Row="2"
+        <ContentControl Grid.Row="3"
                         Focusable="False" 
                         cal:View.Model="{Binding ChangeViewModel}" />
     </Grid>
