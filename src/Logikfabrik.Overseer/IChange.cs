@@ -12,6 +12,14 @@ namespace Logikfabrik.Overseer
     public interface IChange
     {
         /// <summary>
+        /// Gets the identifier.
+        /// </summary>
+        /// <value>
+        /// The identifier.
+        /// </value>
+        string Id { get; }
+
+        /// <summary>
         /// Gets the changed date.
         /// </summary>
         /// <value>

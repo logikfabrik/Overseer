@@ -4,8 +4,6 @@
 
 namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices.Api.Models
 {
-    using System;
-
     /// <summary>
     /// The <see cref="Repository" /> class.
     /// </summary>
@@ -25,6 +23,6 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices.Api.Models
         /// <value>
         /// The type.
         /// </value>
-        public RepositoryType Type { get; set; }
+        public RepositoryType? Type { get; set; }
     }
 }

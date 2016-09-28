@@ -1,4 +1,4 @@
-﻿// <copyright file="Changeset.cs" company="Logikfabrik">
+﻿// <copyright file="Change.cs" company="Logikfabrik">
 //   Copyright (c) 2016 anton(at)logikfabrik.se. Licensed under the MIT license.
 // </copyright>
 
@@ -7,25 +7,25 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices.Api.Models
     using System;
 
     /// <summary>
-    /// The <see cref="Changeset" /> class.
+    /// The <see cref="Change" /> class.
     /// </summary>
-    public class Changeset
+    public class Change
     {
         /// <summary>
-        /// Gets or sets the changeset identifier.
+        /// Gets or sets the identifier.
         /// </summary>
         /// <value>
-        /// The changeset identifier.
+        /// The identifier.
         /// </value>
-        public string ChangesetId { get; set; }
+        public string Id { get; set; }
 
         /// <summary>
-        /// Gets or sets the URL.
+        /// Gets or sets the message.
         /// </summary>
         /// <value>
-        /// The URL.
+        /// The message.
         /// </value>
-        public Uri Url { get; set; }
+        public string Message { get; set; }
 
         /// <summary>
         /// Gets or sets the author.
@@ -36,27 +36,27 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices.Api.Models
         public IdentityRef Author { get; set; }
 
         /// <summary>
-        /// Gets or sets who checked in the changeset.
+        /// Gets or sets the timestamp.
         /// </summary>
         /// <value>
-        /// Who checked in the changeset.
+        /// The timestamp.
         /// </value>
-        public IdentityRef CheckedInBy { get; set; }
+        public DateTime? Timestamp { get; set; }
 
         /// <summary>
-        /// Gets or sets the created date.
+        /// Gets or sets the location.
         /// </summary>
         /// <value>
-        /// The created date.
+        /// The location.
         /// </value>
-        public DateTime CreatedDate { get; set; }
+        public Uri Location { get; set; }
 
         /// <summary>
-        /// Gets or sets the comment.
+        /// Gets or sets the type.
         /// </summary>
         /// <value>
-        /// The comment.
+        /// The type.
         /// </value>
-        public string Comment { get; set; }
+        public RepositoryType? Type { get; set; }
     }
 }

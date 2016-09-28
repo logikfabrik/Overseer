@@ -31,34 +31,18 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices
         /// Initializes a new instance of the <see cref="Build" /> class.
         /// </summary>
         /// <param name="build">The build.</param>
-        /// <param name="lastChangeset">The last changeset.</param>
-        public Build(Api.Models.Build build, Api.Models.Changeset lastChangeset)
+        /// <param name="lastChange">The last change.</param>
+        public Build(Api.Models.Build build, Api.Models.Change lastChange)
             : this(build)
         {
-            Ensure.That(lastChangeset).IsNotNull();
+            Ensure.That(lastChange).IsNotNull();
 
             LastChange = new Change
             {
-                Changed = lastChangeset.CreatedDate,
-                ChangedBy = lastChangeset.CheckedInBy.DisplayName,
-                Comment = lastChangeset.Comment
-            };
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="Build" /> class.
-        /// </summary>
-        /// <param name="build">The build.</param>
-        /// <param name="lastCommit">The last commit.</param>
-        public Build(Api.Models.Build build, Api.Models.Commit lastCommit)
-            : this(build)
-        {
-            Ensure.That(lastCommit).IsNotNull();
-
-            LastChange = new Change
-            {
-                ChangedBy = lastCommit.Committer.Name,
-                Comment = lastCommit.Comment
+                Id = lastChange.Id,
+                Changed = lastChange.Timestamp,
+                ChangedBy = lastChange.Author.DisplayName,
+                Comment = lastChange.Message
             };
         }
 

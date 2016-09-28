@@ -18,7 +18,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices.Api.Models
         /// <value>
         /// The identifier.
         /// </value>
-        public int Id { get; set; }
+        public string Id { get; set; }
 
         /// <summary>
         /// Gets or sets the build number.

@@ -1,4 +1,4 @@
-﻿// <copyright file="Changesets.cs" company="Logikfabrik">
+﻿// <copyright file="Changes.cs" company="Logikfabrik">
 //   Copyright (c) 2016 anton(at)logikfabrik.se. Licensed under the MIT license.
 // </copyright>
 
@@ -7,9 +7,9 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices.Api.Models
     using System.Collections.Generic;
 
     /// <summary>
-    /// The <see cref="Changesets" /> class.
+    /// The <see cref="Changes" /> class.
     /// </summary>
-    public class Changesets
+    public class Changes
     {
         /// <summary>
         /// Gets or sets the count.
@@ -25,6 +25,6 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices.Api.Models
         /// <value>
         /// The value.
         /// </value>
-        public IEnumerable<Changeset> Value { get; set; }
+        public IEnumerable<Change> Value { get; set; }
     }
 }

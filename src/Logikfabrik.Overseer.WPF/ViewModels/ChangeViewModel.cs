@@ -20,10 +20,19 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         {
             Ensure.That(change).IsNotNull();
 
+            Id = change.Id;
             Changed = change.Changed;
             ChangedBy = change.ChangedBy;
             Comment = change.Comment;
         }
+
+        /// <summary>
+        /// Gets or sets the identifier.
+        /// </summary>
+        /// <value>
+        /// The identifier.
+        /// </value>
+        public string Id { get; set; }
 
         /// <summary>
         /// Gets the changed date.

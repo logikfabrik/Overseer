@@ -4,6 +4,7 @@
 
 namespace Logikfabrik.Overseer.WPF.ViewModels
 {
+    using System;
     using System.Text;
     using Caliburn.Micro;
     using EnsureThat;
@@ -82,7 +83,16 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             }
             else if (build.Started.HasValue)
             {
-                // TODO: Description for still active build.
+                builder.Append($"Building since {(DateTime.UtcNow - build.Started.Value).Humanize()} ago");
+
+                if (!string.IsNullOrWhiteSpace(build.RequestedBy))
+                {
+                    builder.Append($" for {build.RequestedBy}");
+                }
+            }
+            else
+            {
+                // TODO: Build has no started or finished time. What to report?
             }
 
             return builder.ToString();

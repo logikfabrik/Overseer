@@ -4,8 +4,6 @@
 
 namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices.Api.Models
 {
-    using System;
-
     /// <summary>
     /// The <see cref="Project" /> class.
     /// </summary>

@@ -37,7 +37,7 @@
                 <Setter Property="Background" Value="{StaticResource TextBox.Static.Background}" />
                 <Setter Property="Foreground" Value="{StaticResource TextBox.Static.Foreground}" />
                 <Setter Property="BorderBrush" Value="{StaticResource TextBox.Static.Border}" />
-                <Setter Property="BorderThickness" Value="0, 0, 0, 2" />
+                <Setter Property="BorderThickness" Value="0 0 0 2" />
                 <Setter Property="KeyboardNavigation.TabNavigation" Value="None" />
                 <Setter Property="HorizontalContentAlignment" Value="Left" />
                 <Setter Property="AllowDrop" Value="true" />

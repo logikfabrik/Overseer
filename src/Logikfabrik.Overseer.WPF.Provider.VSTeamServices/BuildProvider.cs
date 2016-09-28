@@ -54,29 +54,10 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices
 
             foreach (var build in (await apiClient.GetBuildsAsync(projectId, 0, 10).ConfigureAwait(false)).Value)
             {
-                switch (build.Repository.Type)
-                {
-                    case Api.Models.RepositoryType.TfsVersionControl:
-                        var changesets = await apiClient.GetChangesetsAsync(build.SourceVersion, 0, 1).ConfigureAwait(false);
-                        var changeset = changesets.Value.FirstOrDefault();
+                var changes = await apiClient.GetChangesAsync(projectId, build.Id).ConfigureAwait(false);
+                var change = changes.Value.FirstOrDefault();
 
-                        builds.Add(changeset != null ? new Build(build, changeset) : new Build(build));
-
-                        break;
-
-                    case Api.Models.RepositoryType.TfsGit:
-                        var commits = await apiClient.GetCommitsAsync(build.Repository.Id, 0, 1).ConfigureAwait(false);
-                        var commit = commits.Value.FirstOrDefault();
-
-                        builds.Add(commit != null ? new Build(build, commit) : new Build(build));
-
-                        break;
-
-                    default:
-                        builds.Add(new Build(build));
-
-                        break;
-                }
+                builds.Add(change != null ? new Build(build, change) : new Build(build));
             }
 
             return builds;

@@ -27,6 +27,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor
             RequestedBy = build.AuthorUsername;
             LastChange = new Change
             {
+                Id = build.CommitId,
                 Changed = build.Committed,
                 ChangedBy = build.CommitterName,
                 Comment = build.Message

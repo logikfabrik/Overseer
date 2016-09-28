@@ -12,6 +12,14 @@ namespace Logikfabrik.Overseer
     public class Change : IChange
     {
         /// <summary>
+        /// Gets or sets the identifier.
+        /// </summary>
+        /// <value>
+        /// The identifier.
+        /// </value>
+        public string Id { get; set; }
+
+        /// <summary>
         /// Gets or sets the changed date.
         /// </summary>
         /// <value>
