@@ -16,11 +16,13 @@
         <Border Grid.Column="0" 
                 BorderThickness="0 0 2 0" 
                 BorderBrush="{StaticResource UserControl.Static.Border}">
-            <StackPanel>
+            <StackPanel VerticalAlignment="Center">
                 <TextBlock Text="{Binding Changed, Mode=OneTime, StringFormat=d}" 
-                           Style="{StaticResource TextBlockDefaultStyle}" />
+                           Style="{StaticResource TextBlockDefaultStyle}"
+                           Margin="5 0" />
                 <TextBlock Text="{Binding Changed, Mode=OneTime, StringFormat=t}" 
-                           Style="{StaticResource TextBlockDefaultStyle}" />
+                           Style="{StaticResource TextBlockDefaultStyle}" 
+                           Margin="5 0" />
             </StackPanel>
         </Border>
         <StackPanel Grid.Column="1">
