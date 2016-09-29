@@ -25,6 +25,8 @@ namespace Logikfabrik.Overseer.WPF.Client.ViewModels
 
             eventAggregator.Subscribe(this);
 
+            DisplayName = "Overseer";
+
             ActivateItem(connectionsViewModel);
         }
 

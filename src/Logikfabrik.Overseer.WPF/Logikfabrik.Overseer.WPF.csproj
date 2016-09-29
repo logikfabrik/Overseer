@@ -87,6 +87,7 @@
       <DependentUpon>Icon.xaml</DependentUpon>
     </Compile>
     <Compile Include="Converters\RangeToBooleanConverter.cs" />
+    <Compile Include="Extensions\HyperlinkExtensions.cs" />
     <Compile Include="NavigationEvent.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>

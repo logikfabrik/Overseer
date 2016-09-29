@@ -6,11 +6,13 @@
     <Style x:Key="WindowDefaultStyle" 
            TargetType="{x:Type Window}">
         <Setter Property="Width" 
-                Value="400" />
+                Value="350" />
         <Setter Property="MinWidth" 
-                Value="250" />
+                Value="300" />
         <Setter Property="Height" 
-                Value="700" />
+                Value="650" />
+        <Setter Property="MinHeight" 
+                Value="400" />
         <Setter Property="Background" 
                 Value="{StaticResource Window.Static.Background}" />
         <Setter Property="UseLayoutRounding" 
