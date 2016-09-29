@@ -12,7 +12,8 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        <ScrollViewer Grid.Row="0">
+        <ScrollViewer Style="{StaticResource ScrollViewerDefaultStyle}"
+                      Grid.Row="0">
             <ItemsControl Focusable="False" 
                           ItemsSource="{Binding ConnectionViewModels}">
                 <ItemsControl.ItemContainerStyle>

@@ -3,54 +3,54 @@
                     xmlns:system="clr-namespace:System;assembly=mscorlib">
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="../Resources/ConverterResources.xaml" />
-        <ResourceDictionary>
-            <x:Array x:Key="UniformGrid.WindowBreakpoints.SmallUnboundWidth" Type="{x:Type system:Double}">
-                <system:Double>-1</system:Double>
-                <system:Double>250</system:Double>
-            </x:Array>
-
-            <x:Array x:Key="UniformGrid.WindowBreakpoints.MediumBoundWidth" Type="{x:Type system:Double}">
-                <system:Double>250</system:Double>
-                <system:Double>450</system:Double>
-            </x:Array>
-
-            <x:Array x:Key="UniformGrid.WindowBreakpoints.MediumUnboundWidth" Type="{x:Type system:Double}">
-                <system:Double>-1</system:Double>
-                <system:Double>450</system:Double>
-            </x:Array>
-
-            <x:Array x:Key="UniformGrid.WindowBreakpoints.LargeUnboundWidth" Type="{x:Type system:Double}">
-                <system:Double>450</system:Double>
-                <system:Double>-1</system:Double>
-            </x:Array>
-
-            <Style x:Key="UniformGrid4To2To1Style" TargetType="{x:Type UniformGrid}">
-                <Setter Property="Columns" Value="4" />
-                <Style.Triggers>
-                    <DataTrigger Value="True" 
-                                 Binding="{Binding ActualWidth, Converter={StaticResource RangeToBooleanConverter}, ConverterParameter={StaticResource UniformGrid.WindowBreakpoints.MediumBoundWidth},  RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}">
-                        <Setter Property="Columns" 
-                                Value="2" />
-                    </DataTrigger>
-                    <DataTrigger Value="True" 
-                                 Binding="{Binding ActualWidth, Converter={StaticResource RangeToBooleanConverter}, ConverterParameter={StaticResource UniformGrid.WindowBreakpoints.SmallUnboundWidth},  RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}">
-                        <Setter Property="Columns" 
-                                Value="1" />
-                    </DataTrigger>
-                </Style.Triggers>
-            </Style>
-
-            <Style x:Key="UniformGrid3To1Style" TargetType="{x:Type UniformGrid}">
-                <Setter Property="Columns" Value="3" />
-                <Style.Triggers>
-                    <DataTrigger Value="True" 
-                                 Binding="{Binding ActualWidth, Converter={StaticResource RangeToBooleanConverter}, ConverterParameter={StaticResource UniformGrid.WindowBreakpoints.MediumUnboundWidth},  RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}">
-                        <Setter Property="Columns" 
-                                Value="1" />
-                    </DataTrigger>
-                </Style.Triggers>
-            </Style>
-
-        </ResourceDictionary>
     </ResourceDictionary.MergedDictionaries>
+    <x:Array x:Key="UniformGrid.WindowBreakpoints.SmallUnboundWidth" 
+             Type="{x:Type system:Double}">
+        <system:Double>-1</system:Double>
+        <system:Double>250</system:Double>
+    </x:Array>
+    <x:Array x:Key="UniformGrid.WindowBreakpoints.MediumBoundWidth" 
+             Type="{x:Type system:Double}">
+        <system:Double>250</system:Double>
+        <system:Double>450</system:Double>
+    </x:Array>
+    <x:Array x:Key="UniformGrid.WindowBreakpoints.MediumUnboundWidth" 
+             Type="{x:Type system:Double}">
+        <system:Double>-1</system:Double>
+        <system:Double>450</system:Double>
+    </x:Array>
+    <x:Array x:Key="UniformGrid.WindowBreakpoints.LargeUnboundWidth" 
+             Type="{x:Type system:Double}">
+        <system:Double>450</system:Double>
+        <system:Double>-1</system:Double>
+    </x:Array>
+    <Style x:Key="UniformGrid4To2To1Style" 
+           TargetType="{x:Type UniformGrid}">
+        <Setter Property="Columns" 
+                Value="4" />
+        <Style.Triggers>
+            <DataTrigger Value="True" 
+                         Binding="{Binding ActualWidth, Converter={StaticResource RangeToBooleanConverter}, ConverterParameter={StaticResource UniformGrid.WindowBreakpoints.MediumBoundWidth},  RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}">
+                <Setter Property="Columns" 
+                        Value="2" />
+            </DataTrigger>
+            <DataTrigger Value="True" 
+                         Binding="{Binding ActualWidth, Converter={StaticResource RangeToBooleanConverter}, ConverterParameter={StaticResource UniformGrid.WindowBreakpoints.SmallUnboundWidth},  RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}">
+                <Setter Property="Columns" 
+                        Value="1" />
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+    <Style x:Key="UniformGrid3To1Style" 
+           TargetType="{x:Type UniformGrid}">
+        <Setter Property="Columns" 
+                Value="3" />
+        <Style.Triggers>
+            <DataTrigger Value="True" 
+                         Binding="{Binding ActualWidth, Converter={StaticResource RangeToBooleanConverter}, ConverterParameter={StaticResource UniformGrid.WindowBreakpoints.MediumUnboundWidth},  RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}">
+                <Setter Property="Columns" 
+                        Value="1" />
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
 </ResourceDictionary>

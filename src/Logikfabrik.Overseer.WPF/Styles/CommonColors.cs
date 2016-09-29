@@ -12,13 +12,23 @@ namespace Logikfabrik.Overseer.WPF.Styles
     /// </summary>
     public static class CommonColors
     {
-        private const string Green = "#FF99BB00";
         private const string LightGreen = "#FFAADD00";
-        private const string DarkGray = "#FF3E3E3E";
-        private const string Gray = "#FF636363";
         private const string LightGray = "#FF838383";
+
+
+
+
+        private const string Gray1 = "#FF444444";
+        private const string Gray2 = "#FF666666";
+        private const string Gray3 = "#FF888888";
+        private const string Gray4 = "#FF999999";
+
+
+
         private const string White = "#FFFFFFFF";
         private const string Black = "#FF000000";
+
+        public static Color WindowStaticBackground => GetColor(Gray1);
 
         /// <summary>
         /// Gets the control focus color.

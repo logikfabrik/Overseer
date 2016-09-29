@@ -11,7 +11,7 @@
         <Grid.Effect>
             <DropShadowEffect Opacity="0.2" ShadowDepth="2" />
         </Grid.Effect>
-        <Expander>
+        <Expander Style="{StaticResource ExpanderDefaultStyle}">
             <Expander.Header>
 
                 <Grid Grid.Column="0">
@@ -25,10 +25,12 @@
                                Text="Name" />
                     <StackPanel Grid.Column="1" 
                                 Orientation="Horizontal" >
-                        <Button Visibility="{Binding IsExpanded, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Expander}}, Converter={StaticResource BooleanToVisibilityConverter}}">
+                        <Button Style="{StaticResource ButtonDefaultStyle}" 
+                                Visibility="{Binding IsExpanded, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Expander}}, Converter={StaticResource BooleanToVisibilityConverter}}">
                             <c:Icon Data="F 1 M 21.536,3.536 L 18,0 10.767,7.234 3.536,0 0,3.536 7.232,10.769 0,18 3.536,21.536 10.767,14.304 18,21.536 21.536,18 14.302,10.769 Z" />
                         </Button>
-                        <Button Visibility="{Binding IsExpanded, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Expander}}, Converter={StaticResource BooleanToVisibilityConverter}}">
+                        <Button Style="{StaticResource ButtonDefaultStyle}" 
+                                Visibility="{Binding IsExpanded, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Expander}}, Converter={StaticResource BooleanToVisibilityConverter}}">
                             <c:Icon Data="F 1 M 21.536,3.536 L 18,0 10.767,7.234 3.536,0 0,3.536 7.232,10.769 0,18 3.536,21.536 10.767,14.304 18,21.536 21.536,18 14.302,10.769 Z" />
                         </Button>
                         <c:BusyIndicator Visibility="{Binding IsBusy, Converter={StaticResource BooleanToVisibilityConverter}}" />

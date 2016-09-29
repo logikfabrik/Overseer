@@ -3,97 +3,105 @@
                     xmlns:s="clr-namespace:Logikfabrik.Overseer.WPF.Styles">
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="../Resources/FocusVisualResources.xaml" />
-        <ResourceDictionary>
-            <SolidColorBrush x:Key="Button.Static.Background" 
-                             Color="{x:Static s:CommonColors.ControlStaticBackground}" />
-            <SolidColorBrush x:Key="Button.Static.Foreground" 
-                             Color="{x:Static s:CommonColors.ControlStaticForeground}" />
-            <SolidColorBrush x:Key="Button.Static.Border" 
-                             Color="{x:Static s:CommonColors.ControlStaticBorder}" />
-            <SolidColorBrush x:Key="Button.MouseOver.Background" 
-                             Color="{x:Static s:CommonColors.ControlMouseOverBackground}" />
-            <SolidColorBrush x:Key="Button.MouseOver.Foreground" 
-                             Color="{x:Static s:CommonColors.ControlMouseOverForeground}" />
-            <SolidColorBrush x:Key="Button.MouseOver.Border" 
-                             Color="{x:Static s:CommonColors.ControlMouseOverBorder}" />
-            <SolidColorBrush x:Key="Button.Pressed.Background" 
-                             Color="{x:Static s:CommonColors.ControlPressedBackground}" />
-            <SolidColorBrush x:Key="Button.Pressed.Foreground" 
-                             Color="{x:Static s:CommonColors.ControlPressedForeground}" />
-            <SolidColorBrush x:Key="Button.Pressed.Border" 
-                             Color="{x:Static s:CommonColors.ControlPressedBorder}" />
-            <SolidColorBrush x:Key="Button.Disabled.Background" 
-                             Color="{x:Static s:CommonColors.ControlDisabledBackground}" />
-            <SolidColorBrush x:Key="Button.Disabled.Foreground" 
-                             Color="{x:Static s:CommonColors.ControlDisabledForeground}" />
-            <SolidColorBrush x:Key="Button.Disabled.Border" 
-                             Color="{x:Static s:CommonColors.ControlDisabledBorder}" />
-            <Style TargetType="{x:Type Button}">
-                <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}" />
-                <Setter Property="Background" Value="{StaticResource Button.Static.Background}" />
-                <Setter Property="Foreground" Value="{StaticResource Button.Static.Foreground}" />
-                <Setter Property="BorderBrush" Value="{StaticResource Button.Static.Border}" />
-                <Setter Property="BorderThickness" Value="1" />
-                <Setter Property="HorizontalContentAlignment" Value="Center" />
-                <Setter Property="VerticalContentAlignment" Value="Center" />
-                <Setter Property="Padding" Value="10, 5, 10, 5" />
-                <Setter Property="FontSize" Value="14" />
-                <Setter Property="Template">
-                    <Setter.Value>
-                        <ControlTemplate TargetType="{x:Type Button}">
-                            <Border x:Name="Border" 
-                                    BorderBrush="{TemplateBinding BorderBrush}" 
-                                    BorderThickness="{TemplateBinding BorderThickness}" 
-                                    Background="{TemplateBinding Background}">
-                                <ContentPresenter x:Name="ContentPresenter" 
-                                                  Focusable="False" 
-                                                  RecognizesAccessKey="True" 
-                                                  HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
-                                                  VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                                  Margin="{TemplateBinding Padding}" />
-                            </Border>
-                            <ControlTemplate.Triggers>
-                                <Trigger Property="IsMouseOver" 
-                                         Value="True">
-                                    <Setter Property="Background" 
-                                            TargetName="Border" 
-                                            Value="{StaticResource Button.MouseOver.Background}" />
-                                    <Setter Property="TextElement.Foreground" 
-                                            TargetName="ContentPresenter" 
-                                            Value="{StaticResource Button.MouseOver.Foreground}" />
-                                    <Setter Property="BorderBrush" 
-                                            TargetName="Border" 
-                                            Value="{StaticResource Button.MouseOver.Border}" />
-                                </Trigger>
-                                <Trigger Property="IsPressed" 
-                                         Value="True">
-                                    <Setter Property="Background" 
-                                            TargetName="Border" 
-                                            Value="{StaticResource Button.Pressed.Background}" />
-                                    <Setter Property="TextElement.Foreground" 
-                                            TargetName="ContentPresenter" 
-                                            Value="{StaticResource Button.Pressed.Foreground}" />
-                                    <Setter Property="BorderBrush" 
-                                            TargetName="Border" 
-                                            Value="{StaticResource Button.Pressed.Border}" />
-                                </Trigger>
-                                <Trigger Property="IsEnabled" 
-                                         Value="False">
-                                    <Setter Property="Background" 
-                                            TargetName="Border" 
-                                            Value="{StaticResource Button.Disabled.Background}" />
-                                    <Setter Property="TextElement.Foreground" 
-                                            TargetName="ContentPresenter" 
-                                            Value="{StaticResource Button.Disabled.Foreground}" />
-                                    <Setter Property="BorderBrush" 
-                                            TargetName="Border" 
-                                            Value="{StaticResource Button.Disabled.Border}" />
-                                </Trigger>
-                            </ControlTemplate.Triggers>
-                        </ControlTemplate>
-                    </Setter.Value>
-                </Setter>
-            </Style>
-        </ResourceDictionary>
     </ResourceDictionary.MergedDictionaries>
+    <SolidColorBrush x:Key="Button.Static.Background" 
+                     Color="{x:Static s:CommonColors.ControlStaticBackground}" />
+    <SolidColorBrush x:Key="Button.Static.Foreground" 
+                     Color="{x:Static s:CommonColors.ControlStaticForeground}" />
+    <SolidColorBrush x:Key="Button.Static.Border" 
+                     Color="{x:Static s:CommonColors.ControlStaticBorder}" />
+    <SolidColorBrush x:Key="Button.MouseOver.Background" 
+                     Color="{x:Static s:CommonColors.ControlMouseOverBackground}" />
+    <SolidColorBrush x:Key="Button.MouseOver.Foreground" 
+                     Color="{x:Static s:CommonColors.ControlMouseOverForeground}" />
+    <SolidColorBrush x:Key="Button.MouseOver.Border" 
+                     Color="{x:Static s:CommonColors.ControlMouseOverBorder}" />
+    <SolidColorBrush x:Key="Button.Pressed.Background" 
+                     Color="{x:Static s:CommonColors.ControlPressedBackground}" />
+    <SolidColorBrush x:Key="Button.Pressed.Foreground" 
+                     Color="{x:Static s:CommonColors.ControlPressedForeground}" />
+    <SolidColorBrush x:Key="Button.Pressed.Border" 
+                     Color="{x:Static s:CommonColors.ControlPressedBorder}" />
+    <SolidColorBrush x:Key="Button.Disabled.Background" 
+                     Color="{x:Static s:CommonColors.ControlDisabledBackground}" />
+    <SolidColorBrush x:Key="Button.Disabled.Foreground" 
+                     Color="{x:Static s:CommonColors.ControlDisabledForeground}" />
+    <SolidColorBrush x:Key="Button.Disabled.Border" 
+                     Color="{x:Static s:CommonColors.ControlDisabledBorder}" />
+    <Style x:Key="ButtonDefaultStyle" 
+           TargetType="{x:Type Button}">
+        <Setter Property="FocusVisualStyle" 
+                Value="{StaticResource FocusVisual}" />
+        <Setter Property="Background" 
+                Value="{StaticResource Button.Static.Background}" />
+        <Setter Property="Foreground" 
+                Value="{StaticResource Button.Static.Foreground}" />
+        <Setter Property="BorderBrush" 
+                Value="{StaticResource Button.Static.Border}" />
+        <Setter Property="BorderThickness" 
+                Value="1" />
+        <Setter Property="HorizontalContentAlignment" 
+                Value="Center" />
+        <Setter Property="VerticalContentAlignment" 
+                Value="Center" />
+        <Setter Property="Padding" 
+                Value="10 5 10 5" />
+        <Setter Property="FontSize" 
+                Value="14" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border x:Name="PART_Border" 
+                            BorderBrush="{TemplateBinding BorderBrush}" 
+                            BorderThickness="{TemplateBinding BorderThickness}" 
+                            Background="{TemplateBinding Background}">
+                        <ContentPresenter x:Name="PART_ContentPresenter" 
+                                          Focusable="False" 
+                                          RecognizesAccessKey="True" 
+                                          HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
+                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                          Margin="{TemplateBinding Padding}" />
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" 
+                                 Value="True">
+                            <Setter Property="Background" 
+                                    TargetName="PART_Border" 
+                                    Value="{StaticResource Button.MouseOver.Background}" />
+                            <Setter Property="TextElement.Foreground" 
+                                    TargetName="PART_ContentPresenter" 
+                                    Value="{StaticResource Button.MouseOver.Foreground}" />
+                            <Setter Property="BorderBrush" 
+                                    TargetName="PART_Border" 
+                                    Value="{StaticResource Button.MouseOver.Border}" />
+                        </Trigger>
+                        <Trigger Property="IsPressed" 
+                                 Value="True">
+                            <Setter Property="Background" 
+                                    TargetName="PART_Border" 
+                                    Value="{StaticResource Button.Pressed.Background}" />
+                            <Setter Property="TextElement.Foreground" 
+                                    TargetName="PART_ContentPresenter" 
+                                    Value="{StaticResource Button.Pressed.Foreground}" />
+                            <Setter Property="BorderBrush" 
+                                    TargetName="PART_Border" 
+                                    Value="{StaticResource Button.Pressed.Border}" />
+                        </Trigger>
+                        <Trigger Property="IsEnabled" 
+                                 Value="False">
+                            <Setter Property="Background" 
+                                    TargetName="PART_Border" 
+                                    Value="{StaticResource Button.Disabled.Background}" />
+                            <Setter Property="TextElement.Foreground" 
+                                    TargetName="PART_ContentPresenter" 
+                                    Value="{StaticResource Button.Disabled.Foreground}" />
+                            <Setter Property="BorderBrush" 
+                                    TargetName="PART_Border" 
+                                    Value="{StaticResource Button.Disabled.Border}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
 </ResourceDictionary>
