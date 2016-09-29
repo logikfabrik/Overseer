@@ -14,7 +14,7 @@
         <ScrollViewer Style="{StaticResource ScrollViewerDefaultStyle}"
                       Grid.Row="0">
             <ItemsControl Focusable="False" 
-                          ItemsSource="{Binding ConnectionViewModels, Mode=OneWay}">
+                          ItemsSource="{Binding ConnectionViewModels, Mode=OneTime}">
                 <ItemsControl.ItemContainerStyle>
                     <Style>
                         <Setter Property="FrameworkElement.Margin" Value="10 5" />

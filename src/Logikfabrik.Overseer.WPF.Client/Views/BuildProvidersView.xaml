@@ -1,30 +1,38 @@
 ﻿<UserControl x:Class="Logikfabrik.Overseer.WPF.Client.Views.BuildProvidersView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:cal="http://www.caliburnproject.org"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:cal="http://www.caliburnproject.org"
-             mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
+             mc:Ignorable="d" d:DesignHeight="300" d:DesignWidth="300">
     <ScrollViewer Style="{StaticResource ScrollViewerDefaultStyle}">
-        <ItemsControl Focusable="False" 
-                      ItemsSource="{Binding BuildProviderViewModels}">
-            <ItemsControl.ItemContainerStyle>
-                <Style>
-                    <Setter Property="FrameworkElement.Margin" Value="5" />
-                </Style>
-            </ItemsControl.ItemContainerStyle>
-            <ItemsControl.ItemTemplate>
-                <DataTemplate>
-                    <ContentControl Focusable="False" 
-                                    cal:View.Model="{Binding}" />
-                </DataTemplate>
-            </ItemsControl.ItemTemplate>
-            <ItemsControl.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <StackPanel />
-                </ItemsPanelTemplate>
-            </ItemsControl.ItemsPanel>
-        </ItemsControl>
+        <StackPanel Margin="25">
+            <TextBlock Text="Select your provider" 
+                       Style="{StaticResource TextBlockHeading0DefaultStyle}" />
+            <TextBlock Text="Find your CI provider, set it up and have Overseer watch for changes" 
+                       Style="{StaticResource TextBlockHeading2DefaultStyle}" />
+            <ItemsControl Focusable="False" 
+                          ItemsSource="{Binding BuildProviderViewModels, Mode=OneTime}">
+                <ItemsControl.ItemContainerStyle>
+                    <Style>
+                        <Setter Property="FrameworkElement.Margin" Value="0 0 0 5" />
+                    </Style>
+                </ItemsControl.ItemContainerStyle>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <ContentControl Focusable="False" 
+                                        cal:View.Model="{Binding}" />
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel />
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+            </ItemsControl>
+            <Button x:Name="ViewConnections" 
+                    Content="Cancel" 
+                    Style="{StaticResource ButtonDefaultStyle}" />
+        </StackPanel>
     </ScrollViewer>
 </UserControl>
