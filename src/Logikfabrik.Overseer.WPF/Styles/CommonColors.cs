@@ -13,7 +13,7 @@ namespace Logikfabrik.Overseer.WPF.Styles
     public static class CommonColors
     {
         private const string LightGreen = "#FFAADD00";
-        private const string LightGray = "#FF838383";
+
 
 
 
@@ -44,7 +44,9 @@ namespace Logikfabrik.Overseer.WPF.Styles
         /// <value>
         /// The control static border color.
         /// </value>
-        public static Color ControlStaticBorder => GetColor(LightGray);
+        public static Color ControlStaticBorder => GetColor(Gray3);
+
+        public static Color ControlStaticDarkBackground => GetColor(Gray2);
 
         /// <summary>
         /// Gets the control static background color.
@@ -52,7 +54,7 @@ namespace Logikfabrik.Overseer.WPF.Styles
         /// <value>
         /// The control static background color.
         /// </value>
-        public static Color ControlStaticBackground => GetColor(LightGray);
+        public static Color ControlStaticBackground => GetColor(Gray3);
 
         /// <summary>
         /// Gets the control static foreground color.
@@ -68,7 +70,7 @@ namespace Logikfabrik.Overseer.WPF.Styles
         /// <value>
         /// The control mouse over border color.
         /// </value>
-        public static Color ControlMouseOverBorder => GetColor(LightGray);
+        public static Color ControlMouseOverBorder => GetColor(Gray3);
 
         /// <summary>
         /// Gets the control mouse over background color.
@@ -76,7 +78,7 @@ namespace Logikfabrik.Overseer.WPF.Styles
         /// <value>
         /// The control mouse over background color.
         /// </value>
-        public static Color ControlMouseOverBackground => GetColor(LightGray);
+        public static Color ControlMouseOverBackground => GetColor(Gray3);
 
         /// <summary>
         /// Gets the control mouse over foreground color.
@@ -116,7 +118,7 @@ namespace Logikfabrik.Overseer.WPF.Styles
         /// <value>
         /// The control disabled border color.
         /// </value>
-        public static Color ControlDisabledBorder => GetColor(LightGray);
+        public static Color ControlDisabledBorder => GetColor(Gray3);
 
         /// <summary>
         /// Gets the control disabled background color.
@@ -124,7 +126,7 @@ namespace Logikfabrik.Overseer.WPF.Styles
         /// <value>
         /// The control disabled background color.
         /// </value>
-        public static Color ControlDisabledBackground => GetColor(LightGray);
+        public static Color ControlDisabledBackground => GetColor(Gray3);
 
         /// <summary>
         /// Gets the control disabled foreground color.
@@ -140,7 +142,7 @@ namespace Logikfabrik.Overseer.WPF.Styles
         /// <value>
         /// The input control static border color.
         /// </value>
-        public static Color InputControlStaticBorder => GetColor(LightGray);
+        public static Color InputControlStaticBorder => GetColor(Gray3);
 
         /// <summary>
         /// Gets the input control static background color.
@@ -164,7 +166,7 @@ namespace Logikfabrik.Overseer.WPF.Styles
         /// <value>
         /// The input control mouse over border color.
         /// </value>
-        public static Color InputControlMouseOverBorder => GetColor(LightGray);
+        public static Color InputControlMouseOverBorder => GetColor(Gray3);
 
         /// <summary>
         /// Gets the input control mouse over background color.
@@ -212,7 +214,7 @@ namespace Logikfabrik.Overseer.WPF.Styles
         /// <value>
         /// The input control disabled border color.
         /// </value>
-        public static Color InputControlDisabledBorder => GetColor(LightGray);
+        public static Color InputControlDisabledBorder => GetColor(Gray3);
 
         /// <summary>
         /// Gets the input control disabled background color.
