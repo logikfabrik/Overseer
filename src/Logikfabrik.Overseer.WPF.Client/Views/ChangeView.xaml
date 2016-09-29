@@ -4,19 +4,34 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" d:DesignHeight="300" d:DesignWidth="300">
-    <StackPanel>
-        <TextBlock x:Name="Comment"
-                   FontSize="14" />
-        <UniformGrid Style="{StaticResource UniformGrid3To1Style}">
-            <TextBlock Text="{Binding Changed, Mode=OneTime}"
-                       ToolTip="{Binding Changed, Mode=OneTime}"
-                       FontSize="10" />
-            <TextBlock Text="{Binding ChangedBy, Mode=OneTime}"
-                       ToolTip="{Binding ChangedBy, Mode=OneTime}"
-                       FontSize="10" />
-            <TextBlock Text="{Binding Id, Mode=OneTime}"
-                       ToolTip="{Binding Id, Mode=OneTime}"
-                       FontSize="10" />
-        </UniformGrid>
-    </StackPanel>
+    <UserControl.Resources>
+        <SolidColorBrush x:Key="UserControl.Static.Border" 
+                         Color="#FFBBBBBB" />
+    </UserControl.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Border Grid.Column="0" 
+                BorderThickness="0 0 2 0" 
+                BorderBrush="{StaticResource UserControl.Static.Border}">
+            <StackPanel>
+                <TextBlock Text="{Binding Changed, Mode=OneTime, StringFormat=d}" 
+                           Style="{StaticResource TextBlockDefaultStyle}" />
+                <TextBlock Text="{Binding Changed, Mode=OneTime, StringFormat=t}" 
+                           Style="{StaticResource TextBlockDefaultStyle}" />
+            </StackPanel>
+        </Border>
+        <StackPanel Grid.Column="1">
+            <TextBlock Text="{Binding Comment, Mode=OneTime}" 
+                       Style="{StaticResource TextBlockDefaultStyle}" />
+            <WrapPanel>
+                <TextBlock Text="{Binding ChangedBy, Mode=OneTime}"
+                       Style="{StaticResource TextBlockLightDetailDefaultStyle}" />
+                <TextBlock Text="{Binding Id, Mode=OneTime}"
+                       Style="{StaticResource TextBlockLightDetailDefaultStyle}" />
+            </WrapPanel>
+        </StackPanel>
+    </Grid>
 </UserControl>

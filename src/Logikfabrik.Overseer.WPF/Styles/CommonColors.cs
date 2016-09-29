@@ -28,6 +28,9 @@ namespace Logikfabrik.Overseer.WPF.Styles
         private const string White = "#FFFFFFFF";
         private const string Black = "#FF000000";
 
+        public static Color Text = GetColor(White);
+        public static Color DarkText = GetColor(Gray3);
+
         public static Color WindowStaticBackground => GetColor(Gray1);
 
         /// <summary>
@@ -55,6 +58,9 @@ namespace Logikfabrik.Overseer.WPF.Styles
         /// The control static background color.
         /// </value>
         public static Color ControlStaticBackground => GetColor(Gray3);
+
+
+        public static Color ControlStaticLightBackground => GetColor(Gray4);
 
         /// <summary>
         /// Gets the control static foreground color.

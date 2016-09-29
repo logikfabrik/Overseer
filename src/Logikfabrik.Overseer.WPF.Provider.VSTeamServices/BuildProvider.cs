@@ -55,9 +55,8 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices
             foreach (var build in (await apiClient.GetBuildsAsync(projectId, 0, 10).ConfigureAwait(false)).Value)
             {
                 var changes = await apiClient.GetChangesAsync(projectId, build.Id).ConfigureAwait(false);
-                var change = changes.Value.FirstOrDefault();
 
-                builds.Add(change != null ? new Build(build, change) : new Build(build));
+                builds.Add(new Build(build, changes.Value));
             }
 
             return builds;

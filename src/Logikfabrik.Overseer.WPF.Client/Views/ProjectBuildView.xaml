@@ -15,26 +15,31 @@
         <Button.Content>
             <Border BorderBrush="{x:Static s:CommonBrushes.ControlFocus}" 
                     BorderThickness="5 0 0 0">
-                <Grid Margin="10">
+                <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="20" />
-                    </Grid.ColumnDefinitions>
-                    <TextBlock x:Name="ProjectName"
-                               Grid.Row="0" 
-                               Grid.Column="0"
-                               FontSize="18"
-                               Text="Project name" />
-                    <c:BusyIndicator Grid.Row="0"
-                                     Grid.Column="1"
-                                     Visibility="{Binding IsBusy, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                    <Grid Grid.Row="0"
+                          Margin="10 5">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="20" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Row="0" 
+                                   Grid.Column="0" 
+                                   Text="{Binding ProjectName, Mode=OneTime}" 
+                                   Style="{StaticResource TextBlockHeading1DefaultStyle}" />
+                        <c:BusyIndicator Grid.Row="0"
+                                         Grid.Column="1"
+                                         Visibility="{Binding IsBusy, Converter={StaticResource BooleanToVisibilityConverter}}" />
+
+                    </Grid>
                     <ContentControl Grid.Row="1" 
-                                    Grid.Column="0"
-                                    Grid.ColumnSpan="2"
                                     Focusable="False" 
                                     cal:View.Model="{Binding BuildViewModel}" />
                 </Grid>

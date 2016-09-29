@@ -5,6 +5,8 @@
 namespace Logikfabrik.Overseer.WPF.ViewModels
 {
     using System;
+    using System.Collections.Generic;
+    using System.Linq;
     using System.Text;
     using Caliburn.Micro;
     using EnsureThat;
@@ -29,19 +31,16 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
 
             Description = GetDescription(build);
 
-            if (build.LastChange != null)
-            {
-                ChangeViewModel = new ChangeViewModel(build.LastChange);
-            }
+            ChangeViewModels = build.LastChanges.Select(lastChange => new ChangeViewModel(lastChange));
         }
 
         /// <summary>
-        /// Gets the change view model.
+        /// Gets the change view models.
         /// </summary>
         /// <value>
-        /// The change view model.
+        /// The change view models.
         /// </value>
-        public ChangeViewModel ChangeViewModel { get; }
+        public IEnumerable<ChangeViewModel> ChangeViewModels { get; }
 
         /// <summary>
         /// Gets the branch.

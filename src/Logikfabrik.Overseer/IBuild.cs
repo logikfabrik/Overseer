@@ -5,6 +5,7 @@
 namespace Logikfabrik.Overseer
 {
     using System;
+    using System.Collections.Generic;
 
     /// <summary>
     /// The <see cref="IBuild" /> interface.
@@ -68,11 +69,11 @@ namespace Logikfabrik.Overseer
         string RequestedBy { get; }
 
         /// <summary>
-        /// Gets the last change.
+        /// Gets the last changes.
         /// </summary>
         /// <value>
-        /// The last change.
+        /// The last changes.
         /// </value>
-        IChange LastChange { get; }
+        IEnumerable<IChange> LastChanges { get; }
     }
 }

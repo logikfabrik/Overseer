@@ -5,6 +5,7 @@
 namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor
 {
     using System;
+    using System.Collections.Generic;
     using EnsureThat;
 
     /// <summary>
@@ -25,12 +26,15 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor
             Started = build.Started;
             Finished = build.Finished;
             RequestedBy = build.AuthorUsername;
-            LastChange = new Change
+            LastChanges = new[]
             {
-                Id = build.CommitId,
-                Changed = build.Committed,
-                ChangedBy = build.CommitterName,
-                Comment = build.Message
+                new Change
+                {
+                    Id = build.CommitId,
+                    Changed = build.Committed,
+                    ChangedBy = build.CommitterName,
+                    Comment = build.Message
+                }
             };
         }
 
@@ -91,11 +95,11 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor
         public string RequestedBy { get; }
 
         /// <summary>
-        /// Gets the last change.
+        /// Gets the last changes.
         /// </summary>
         /// <value>
-        /// The last change.
+        /// The last changes.
         /// </value>
-        public IChange LastChange { get; }
+        public IEnumerable<IChange> LastChanges { get; }
     }
 }

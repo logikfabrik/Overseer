@@ -19,10 +19,9 @@
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="Auto" />
                     </Grid.ColumnDefinitions>
-                    <TextBlock x:Name="Name"
-                               Grid.Column="0" 
-                               FontSize="22"
-                               Text="Name" />
+                    <TextBlock Grid.Column="0" 
+                               Style="{StaticResource TextBlockHeading1DefaultStyle}"
+                               Text="{Binding Name, Mode=OneTime}" />
                     <StackPanel Grid.Column="1" 
                                 Orientation="Horizontal" >
                         <Button Style="{StaticResource ButtonDefaultStyle}" 

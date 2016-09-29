@@ -5,6 +5,8 @@
 namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices
 {
     using System;
+    using System.Collections.Generic;
+    using System.Linq;
     using EnsureThat;
 
     /// <summary>
@@ -13,37 +15,27 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices
     public class Build : IBuild
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="Build"/> class.
+        /// Initializes a new instance of the <see cref="Build" /> class.
         /// </summary>
         /// <param name="build">The build.</param>
-        public Build(Api.Models.Build build)
+        /// <param name="lastChanges">The last changes.</param>
+        public Build(Api.Models.Build build, IEnumerable<Api.Models.Change> lastChanges)
         {
             Ensure.That(build).IsNotNull();
+            Ensure.That(lastChanges).IsNotNull();
 
             Number = build.BuildNumber;
             Branch = build.SourceBranch;
             Started = build.StartTime;
             Finished = build.FinishTime;
             RequestedBy = build.RequestedFor.DisplayName;
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="Build" /> class.
-        /// </summary>
-        /// <param name="build">The build.</param>
-        /// <param name="lastChange">The last change.</param>
-        public Build(Api.Models.Build build, Api.Models.Change lastChange)
-            : this(build)
-        {
-            Ensure.That(lastChange).IsNotNull();
-
-            LastChange = new Change
+            LastChanges = lastChanges.Select(lastChange => new Change
             {
                 Id = lastChange.Id,
                 Changed = lastChange.Timestamp,
                 ChangedBy = lastChange.Author.DisplayName,
                 Comment = lastChange.Message
-            };
+            });
         }
 
         /// <summary>
@@ -103,11 +95,11 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices
         public string RequestedBy { get; }
 
         /// <summary>
-        /// Gets the last change.
+        /// Gets the last changes.
         /// </summary>
         /// <value>
-        /// The last change.
+        /// The last changes.
         /// </value>
-        public IChange LastChange { get; }
+        public IEnumerable<IChange> LastChanges { get; }
     }
 }
