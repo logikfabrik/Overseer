@@ -5,13 +5,19 @@
         <Setter Property="Foreground" 
                 Value="#FFFFFFFF" />
         <Setter Property="TextWrapping" 
-                Value="NoWrap" />
+                Value="Wrap" />
         <Setter Property="TextTrimming" 
                 Value="CharacterEllipsis" />
         <Setter Property="Margin" 
                 Value="5" />
         <Setter Property="FontSize" 
                 Value="12" />
+    </Style>
+    <Style x:Key="TextBlockHeading0DefaultStyle" 
+           BasedOn="{StaticResource TextBlockDefaultStyle}" 
+           TargetType="{x:Type TextBlock}">
+        <Setter Property="FontSize" 
+                Value="36" />
     </Style>
     <Style x:Key="TextBlockHeading1DefaultStyle" 
            BasedOn="{StaticResource TextBlockDefaultStyle}" 

@@ -13,24 +13,19 @@ namespace Logikfabrik.Overseer.WPF.Styles
     public static class CommonColors
     {
         private const string LightGreen = "#FFAADD00";
-
-
-
-
-
         private const string Gray1 = "#FF444444";
         private const string Gray2 = "#FF666666";
         private const string Gray3 = "#FF888888";
         private const string Gray4 = "#FF999999";
-
-
-
         private const string White = "#FFFFFFFF";
         private const string Black = "#FF000000";
 
-        public static Color Text = GetColor(White);
-        public static Color DarkText = GetColor(Gray3);
-
+        /// <summary>
+        /// Gets the window static background color.
+        /// </summary>
+        /// <value>
+        /// The window static background color.
+        /// </value>
         public static Color WindowStaticBackground => GetColor(Gray1);
 
         /// <summary>
@@ -49,6 +44,12 @@ namespace Logikfabrik.Overseer.WPF.Styles
         /// </value>
         public static Color ControlStaticBorder => GetColor(Gray3);
 
+        /// <summary>
+        /// Gets the control static dark background color.
+        /// </summary>
+        /// <value>
+        /// The control static dark background color.
+        /// </value>
         public static Color ControlStaticDarkBackground => GetColor(Gray2);
 
         /// <summary>
@@ -59,7 +60,12 @@ namespace Logikfabrik.Overseer.WPF.Styles
         /// </value>
         public static Color ControlStaticBackground => GetColor(Gray3);
 
-
+        /// <summary>
+        /// Gets the control static light background color.
+        /// </summary>
+        /// <value>
+        /// The control static light background color.
+        /// </value>
         public static Color ControlStaticLightBackground => GetColor(Gray4);
 
         /// <summary>

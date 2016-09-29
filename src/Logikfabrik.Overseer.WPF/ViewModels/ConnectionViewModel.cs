@@ -85,5 +85,19 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// The project build view models.
         /// </value>
         public IEnumerable<ProjectBuildViewModel> ProjectBuildViewModels => _projectBuildViewModels.Value;
+
+        /// <summary>
+        /// Edit this connection.
+        /// </summary>
+        public void Edit()
+        {
+        }
+
+        /// <summary>
+        /// Remove this connection.
+        /// </summary>
+        public void Remove()
+        {
+        }
     }
 }

@@ -121,6 +121,11 @@ namespace Logikfabrik.Overseer.Settings
                 : Type.GetType(_buildProviderTypeName, false);
         }
 
+        /// <summary>
+        /// Gets the setting with the specified name.
+        /// </summary>
+        /// <param name="name">The name.</param>
+        /// <returns>The setting.</returns>
         public string GetSetting(string name)
         {
             Ensure.That(name).IsNotNullOrWhiteSpace();

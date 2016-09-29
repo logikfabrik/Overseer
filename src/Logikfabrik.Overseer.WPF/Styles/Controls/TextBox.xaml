@@ -32,7 +32,7 @@
     <SolidColorBrush x:Key="TextBox.Disabled.Border" 
                      Color="{x:Static s:CommonColors.InputControlDisabledBorder}"
                      Opacity="0" />
-    <Style x:Key="TextboxDefaultStyle" 
+    <Style x:Key="TextBoxDefaultStyle" 
            TargetType="{x:Type TextBox}">
         <Setter Property="FocusVisualStyle" 
                 Value="{StaticResource FocusVisual}" />
