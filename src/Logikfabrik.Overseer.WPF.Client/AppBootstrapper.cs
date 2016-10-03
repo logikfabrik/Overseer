@@ -120,9 +120,7 @@ namespace Logikfabrik.Overseer.WPF.Client
         /// </returns>
         protected override IEnumerable<Assembly> SelectAssemblies()
         {
-            var assemblies = _assemblies.Value;
-
-            return assemblies;
+            return _assemblies.Value;
         }
 
         private static void LoadAllAssemblies()

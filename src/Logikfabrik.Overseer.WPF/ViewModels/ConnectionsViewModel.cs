@@ -44,9 +44,9 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
 
         public void AddConnection()
         {
-            var eventMessage = new NavigationEvent(typeof(BuildProvidersViewModel));
+            var message = new NavigationMessage(typeof(BuildProvidersViewModel));
 
-            _eventAggregator.PublishOnUIThread(eventMessage);
+            _eventAggregator.PublishOnUIThread(message);
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿// <copyright file="NavigationEvent.cs" company="Logikfabrik">
+﻿// <copyright file="NavigationMessage.cs" company="Logikfabrik">
 //   Copyright (c) 2016 anton(at)logikfabrik.se. Licensed under the MIT license.
 // </copyright>
 
@@ -8,15 +8,15 @@ namespace Logikfabrik.Overseer.WPF
     using EnsureThat;
 
     /// <summary>
-    /// The <see cref="NavigationEvent" /> class.
+    /// The <see cref="NavigationMessage" /> class.
     /// </summary>
-    public class NavigationEvent
+    public class NavigationMessage
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="NavigationEvent" /> class.
+        /// Initializes a new instance of the <see cref="NavigationMessage" /> class.
         /// </summary>
         /// <param name="viewModelType">The view model type to navigate to.</param>
-        public NavigationEvent(Type viewModelType)
+        public NavigationMessage(Type viewModelType)
         {
             Ensure.That(viewModelType).IsNotNull();
 
@@ -24,10 +24,10 @@ namespace Logikfabrik.Overseer.WPF
         }
 
         /// <summary>
-        /// Gets the type of the view model.
+        /// Gets the type of the view model to navigate to.
         /// </summary>
         /// <value>
-        /// The type of the view model.
+        /// The type of the view model to navigate to.
         /// </value>
         public Type ViewModelType { get; }
     }

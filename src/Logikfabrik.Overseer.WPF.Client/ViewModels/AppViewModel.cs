@@ -11,7 +11,7 @@ namespace Logikfabrik.Overseer.WPF.Client.ViewModels
     /// <summary>
     /// The <see cref="AppViewModel" /> class.
     /// </summary>
-    public sealed class AppViewModel : Conductor<PropertyChangedBase>, IHandle<NavigationEvent>
+    public sealed class AppViewModel : Conductor<PropertyChangedBase>, IHandle<NavigationMessage>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="AppViewModel" /> class.
@@ -31,12 +31,12 @@ namespace Logikfabrik.Overseer.WPF.Client.ViewModels
         }
 
         /// <summary>
-        /// Handles the specified event message.
+        /// Handles the specified message.
         /// </summary>
-        /// <param name="eventMessage">The event message to handle.</param>
-        public void Handle(NavigationEvent eventMessage)
+        /// <param name="message">The message to handle.</param>
+        public void Handle(NavigationMessage message)
         {
-            var viewModel = IoC.GetInstance(eventMessage.ViewModelType, null) as PropertyChangedBase;
+            var viewModel = IoC.GetInstance(message.ViewModelType, null) as PropertyChangedBase;
 
             ActivateItem(viewModel);
         }
