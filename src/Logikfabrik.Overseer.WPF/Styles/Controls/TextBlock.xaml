@@ -43,4 +43,10 @@
         <Setter Property="Foreground" 
                 Value="#FFBBBBBB" />
     </Style>
+    <Style x:Key="TextBlockErrorDetailDefaultStyle" 
+           BasedOn="{StaticResource TextBlockDetailDefaultStyle}" 
+           TargetType="{x:Type TextBlock}">
+        <Setter Property="Foreground" 
+                Value="#FFFF0000" />
+    </Style>
 </ResourceDictionary>

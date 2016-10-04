@@ -2,15 +2,21 @@
 //   Copyright (c) 2016 anton(at)logikfabrik.se. Licensed under the MIT license.
 // </copyright>
 
+using System.Linq;
+using FluentValidation;
+using Logikfabrik.Overseer.WPF.Provider.VSTeamServices.Validators;
+
 namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices.ViewModels
 {
+    using System;
+    using System.ComponentModel;
     using Caliburn.Micro;
     using Settings;
 
     /// <summary>
     /// The <see cref="AddConnectionViewModel" /> class.
     /// </summary>
-    public class AddConnectionViewModel : WPF.ViewModels.AddConnectionViewModel
+    public class AddConnectionViewModel : WPF.ViewModels.AddConnectionViewModel, IDataErrorInfo
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="AddConnectionViewModel" /> class.
@@ -38,6 +44,28 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices.ViewModels
         /// The token.
         /// </value>
         public string Token { get; set; }
+
+        /// <summary>
+        /// Gets an error message indicating what is wrong with this object.
+        /// </summary>
+        public string Error => null;
+
+        public string this[string columnName]
+        {
+            get
+            {
+                var validator = new AddConnectionViewModelValidator();
+
+                var results = validator.Validate(this, columnName);
+
+                if (results.IsValid)
+                {
+                    return null;
+                }
+
+                return results.Errors.First().ErrorMessage;
+            }
+        }
 
         /// <summary>
         /// Gets the build provider settings.
