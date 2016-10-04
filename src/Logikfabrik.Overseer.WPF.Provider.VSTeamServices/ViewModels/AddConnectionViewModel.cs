@@ -2,16 +2,14 @@
 //   Copyright (c) 2016 anton(at)logikfabrik.se. Licensed under the MIT license.
 // </copyright>
 
-using System.Linq;
-using FluentValidation;
-using Logikfabrik.Overseer.WPF.Provider.VSTeamServices.Validators;
-
 namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices.ViewModels
 {
-    using System;
     using System.ComponentModel;
+    using System.Linq;
     using Caliburn.Micro;
+    using FluentValidation;
     using Settings;
+    using Validators;
 
     /// <summary>
     /// The <see cref="AddConnectionViewModel" /> class.
@@ -58,12 +56,9 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices.ViewModels
 
                 var results = validator.Validate(this, columnName);
 
-                if (results.IsValid)
-                {
-                    return null;
-                }
-
-                return results.Errors.First().ErrorMessage;
+                return results.IsValid
+                    ? null
+                    : results.Errors.First().ErrorMessage;
             }
         }
 

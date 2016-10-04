@@ -4,6 +4,7 @@
 
 namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices.Validators
 {
+    using System;
     using FluentValidation;
     using ViewModels;
 
@@ -17,7 +18,16 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices.Validators
         /// </summary>
         public AddConnectionViewModelValidator()
         {
+            CascadeMode = CascadeMode.StopOnFirstFailure;
+
             RuleFor(viewModel => viewModel.ConnectionName).NotEmpty();
+            RuleFor(viewModel => viewModel.Url).NotEmpty().Must(url =>
+            {
+                Uri result;
+
+                return Uri.TryCreate(url, UriKind.Absolute, out result) && (result.Scheme == Uri.UriSchemeHttp || result.Scheme == Uri.UriSchemeHttps);
+            });
+            RuleFor(viewModel => viewModel.Token).NotEmpty();
         }
     }
 }
