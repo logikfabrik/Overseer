@@ -7,6 +7,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Windows;
     using Caliburn.Micro;
     using EnsureThat;
 
@@ -15,8 +16,10 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     /// </summary>
     public class ConnectionViewModel : PropertyChangedBase
     {
+        private readonly IBuildProvider _buildProvider;
         private readonly Lazy<IEnumerable<ProjectBuildViewModel>> _projectBuildViewModels;
         private bool _isBusy;
+        private bool _isErrored;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ConnectionViewModel" /> class.
@@ -28,10 +31,9 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             Ensure.That(buildMonitor).IsNotNull();
             Ensure.That(buildProvider).IsNotNull();
 
-            Name = buildProvider.BuildProviderSettings.Name;
-            BuildProviderName = buildProvider.Name;
+            _buildProvider = buildProvider;
             _isBusy = true;
-
+            _isErrored = false;
             _projectBuildViewModels = new Lazy<IEnumerable<ProjectBuildViewModel>>(() =>
             {
                 var projectViewModels = buildProvider.GetProjectsAsync().Result.Select(project => new ProjectBuildViewModel(buildMonitor, buildProvider, project));
@@ -40,6 +42,8 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
 
                 return projectViewModels;
             });
+
+            WeakEventManager<IBuildMonitor, BuildMonitorErrorEventArgs>.AddHandler(buildMonitor, nameof(buildMonitor.Error), BuildMonitorError);
         }
 
         /// <summary>
@@ -48,7 +52,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// <value>
         /// The name.
         /// </value>
-        public string Name { get; }
+        public string Name => _buildProvider.BuildProviderSettings.Name;
 
         /// <summary>
         /// Gets the build provider name.
@@ -56,7 +60,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// <value>
         /// The build provider name.
         /// </value>
-        public string BuildProviderName { get; }
+        public string BuildProviderName => _buildProvider.Name;
 
         /// <summary>
         /// Gets a value indicating whether this instance is busy.
@@ -75,6 +79,26 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             {
                 _isBusy = value;
                 NotifyOfPropertyChange(() => IsBusy);
+            }
+        }
+
+        /// <summary>
+        /// Gets a value indicating whether this instance is errored.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if this instance is errored; otherwise, <c>false</c>.
+        /// </value>
+        public bool IsErrored
+        {
+            get
+            {
+                return _isErrored;
+            }
+
+            private set
+            {
+                _isErrored = value;
+                NotifyOfPropertyChange(() => IsErrored);
             }
         }
 
@@ -98,6 +122,26 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// </summary>
         public void Remove()
         {
+        }
+
+        private void BuildMonitorError(object sender, BuildMonitorErrorEventArgs e)
+        {
+            if (e.BuildProvider == null)
+            {
+                return;
+            }
+
+            if (e.Project != null)
+            {
+                return;
+            }
+
+            if (_buildProvider.BuildProviderSettings.Id != e.BuildProvider.BuildProviderSettings.Id)
+            {
+                return;
+            }
+
+            IsErrored = true;
         }
     }
 }
