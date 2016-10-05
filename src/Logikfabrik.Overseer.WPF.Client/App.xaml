@@ -15,7 +15,6 @@
                 <ResourceDictionary Source="pack://application:,,,/Logikfabrik.Overseer.WPF;component/Styles/Controls/ScrollBar.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/Logikfabrik.Overseer.WPF;component/Styles/Controls/ScrollViewer.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/Logikfabrik.Overseer.WPF;component/Styles/Controls/Expander.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/Logikfabrik.Overseer.WPF;component/Styles/Controls/UniformGrid.xaml" />
                 <ResourceDictionary>
                     <client:AppBootstrapper x:Key="Bootstrapper" />
                 </ResourceDictionary>
