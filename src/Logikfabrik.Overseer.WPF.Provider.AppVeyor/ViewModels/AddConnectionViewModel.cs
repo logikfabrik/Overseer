@@ -5,7 +5,9 @@
 namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor.ViewModels
 {
     using Caliburn.Micro;
+    using FluentValidation;
     using Settings;
+    using Validators;
 
     /// <summary>
     /// The <see cref="AddConnectionViewModel" /> class.
@@ -20,6 +22,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor.ViewModels
         public AddConnectionViewModel(IEventAggregator eventAggregator, IBuildProviderSettingsRepository buildProviderSettingsRepository)
             : base(eventAggregator, buildProviderSettingsRepository)
         {
+            Validator = new AddConnectionViewModelValidator();
         }
 
         /// <summary>
@@ -29,6 +32,14 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor.ViewModels
         /// The token.
         /// </value>
         public string Token { get; set; }
+
+        /// <summary>
+        /// Gets the validator.
+        /// </summary>
+        /// <value>
+        /// The validator.
+        /// </value>
+        protected override IValidator Validator { get; }
 
         /// <summary>
         /// Gets the build provider settings.

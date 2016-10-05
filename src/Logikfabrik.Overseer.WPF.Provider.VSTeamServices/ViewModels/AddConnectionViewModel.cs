@@ -4,8 +4,6 @@
 
 namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices.ViewModels
 {
-    using System.ComponentModel;
-    using System.Linq;
     using Caliburn.Micro;
     using FluentValidation;
     using Settings;
@@ -14,7 +12,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices.ViewModels
     /// <summary>
     /// The <see cref="AddConnectionViewModel" /> class.
     /// </summary>
-    public class AddConnectionViewModel : WPF.ViewModels.AddConnectionViewModel, IDataErrorInfo
+    public class AddConnectionViewModel : WPF.ViewModels.AddConnectionViewModel
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="AddConnectionViewModel" /> class.
@@ -24,6 +22,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices.ViewModels
         public AddConnectionViewModel(IEventAggregator eventAggregator, IBuildProviderSettingsRepository buildProviderSettingsRepository)
             : base(eventAggregator, buildProviderSettingsRepository)
         {
+            Validator = new AddConnectionViewModelValidator();
             Url = "https://";
         }
 
@@ -44,23 +43,12 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices.ViewModels
         public string Token { get; set; }
 
         /// <summary>
-        /// Gets an error message indicating what is wrong with this object.
+        /// Gets the validator.
         /// </summary>
-        public string Error => null;
-
-        public string this[string columnName]
-        {
-            get
-            {
-                var validator = new AddConnectionViewModelValidator();
-
-                var results = validator.Validate(this, columnName);
-
-                return results.IsValid
-                    ? null
-                    : results.Errors.First().ErrorMessage;
-            }
-        }
+        /// <value>
+        /// The validator.
+        /// </value>
+        protected override IValidator Validator { get; }
 
         /// <summary>
         /// Gets the build provider settings.

@@ -23,7 +23,7 @@
             <TextBlock Text="AppVeyor" 
                        Style="{StaticResource TextBlockHeading0DefaultStyle}" />
             <StackPanel Margin="0 0 0 20">
-                <TextBlock Text="Name" 
+                <TextBlock Text="Connection Name" 
                            Style="{StaticResource TextBlockDefaultStyle}" />
                 <TextBox x:Name="ConnectionName" 
                          Style="{StaticResource TextBoxDefaultStyle}" />

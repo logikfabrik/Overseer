@@ -4,14 +4,17 @@
 
 namespace Logikfabrik.Overseer.WPF.ViewModels
 {
+    using System.ComponentModel;
+    using System.Linq;
     using Caliburn.Micro;
     using EnsureThat;
+    using FluentValidation;
     using Settings;
 
     /// <summary>
     /// The <see cref="AddConnectionViewModel" /> class.
     /// </summary>
-    public abstract class AddConnectionViewModel : PropertyChangedBase
+    public abstract class AddConnectionViewModel : PropertyChangedBase, IDataErrorInfo
     {
         private readonly IEventAggregator _eventAggregator;
         private readonly IBuildProviderSettingsRepository _buildProviderSettingsRepository;
@@ -39,10 +42,45 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         public string ConnectionName { get; set; }
 
         /// <summary>
+        /// Gets an error message indicating what is wrong with this object.
+        /// </summary>
+        public string Error => null;
+
+        /// <summary>
+        /// Gets the validator.
+        /// </summary>
+        /// <value>
+        /// The validator.
+        /// </value>
+        protected abstract IValidator Validator { get; }
+
+        public string this[string columnName]
+        {
+            get
+            {
+                var result = Validator.Validate(this);
+
+                if (result.IsValid)
+                {
+                    return null;
+                }
+
+                var error = result.Errors.FirstOrDefault(e => e.PropertyName == columnName);
+
+                return error?.ErrorMessage;
+            }
+        }
+
+        /// <summary>
         /// Add the connection.
         /// </summary>
         public void AddConnection()
         {
+            if (!Validator.Validate(this).IsValid)
+            {
+                return;
+            }
+
             _buildProviderSettingsRepository.Add(GetBuildProviderSettings());
 
             ViewConnections();
