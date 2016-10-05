@@ -95,9 +95,6 @@
     <Compile Include="Views\BuildProvidersView.xaml.cs">
       <DependentUpon>BuildProvidersView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\BuildProviderView.xaml.cs">
-      <DependentUpon>BuildProviderView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\BuildView.xaml.cs">
       <DependentUpon>BuildView.xaml</DependentUpon>
     </Compile>
@@ -152,10 +149,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\BuildProvidersView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\BuildProviderView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
