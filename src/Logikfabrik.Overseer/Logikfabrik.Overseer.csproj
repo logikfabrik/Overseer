@@ -53,6 +53,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BuildMonitor.cs" />
+    <Compile Include="BuildMonitorErrorEventArgs.cs" />
     <Compile Include="BuildProviderFactory.cs" />
     <Compile Include="BuildMonitorProgressEventArgs.cs" />
     <Compile Include="BuildProviderRepository.cs" />

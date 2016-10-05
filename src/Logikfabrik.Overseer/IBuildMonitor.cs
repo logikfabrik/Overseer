@@ -17,6 +17,11 @@ namespace Logikfabrik.Overseer
         event EventHandler<BuildMonitorProgressEventArgs> ProgressChanged;
 
         /// <summary>
+        /// Occurs if there is an error.
+        /// </summary>
+        event EventHandler<BuildMonitorErrorEventArgs> Error;
+
+        /// <summary>
         /// Gets a value indicating whether this instance is monitoring.
         /// </summary>
         /// <value>

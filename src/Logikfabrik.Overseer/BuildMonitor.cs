@@ -35,6 +35,11 @@ namespace Logikfabrik.Overseer
         public event EventHandler<BuildMonitorProgressEventArgs> ProgressChanged;
 
         /// <summary>
+        /// Occurs if there is an error.
+        /// </summary>
+        public event EventHandler<BuildMonitorErrorEventArgs> Error;
+
+        /// <summary>
         /// Gets a value indicating whether this instance is monitoring.
         /// </summary>
         /// <value>
@@ -81,6 +86,15 @@ namespace Logikfabrik.Overseer
             ProgressChanged?.Invoke(this, e);
         }
 
+        /// <summary>
+        /// Raises the <see cref="Error" /> event.
+        /// </summary>
+        /// <param name="e">The <see cref="BuildMonitorErrorEventArgs" /> instance containing the event data.</param>
+        protected virtual void OnError(BuildMonitorErrorEventArgs e)
+        {
+            Error?.Invoke(this, e);
+        }
+
         private void Monitor()
         {
             _cancellationTokenSource = new CancellationTokenSource();
@@ -91,9 +105,16 @@ namespace Logikfabrik.Overseer
             {
                 while (true)
                 {
-                    var buildProviders = _buildProviderRepository.GetBuildProviders();
+                    try
+                    {
+                        var buildProviders = _buildProviderRepository.GetBuildProviders();
 
-                    Task.WaitAll(buildProviders.Select(GetProjectsAsync).ToArray());
+                        Task.WaitAll(buildProviders.Select(GetProjectsAsync).ToArray());
+                    }
+                    catch
+                    {
+                        OnError(new BuildMonitorErrorEventArgs());
+                    }
 
                     await Task.Delay(30 * 1000);
                 }
@@ -103,16 +124,28 @@ namespace Logikfabrik.Overseer
 
         private async Task GetProjectsAsync(IBuildProvider buildProvider)
         {
-            var projects = await buildProvider.GetProjectsAsync().ConfigureAwait(false);
-
-            Task.WaitAll(projects.Select(async project =>
+            try
             {
-                var builds = await buildProvider.GetBuildsAsync(project.Id).ConfigureAwait(false);
+                var projects = await buildProvider.GetProjectsAsync().ConfigureAwait(false);
 
-                var args = new BuildMonitorProgressEventArgs(buildProvider, project, builds);
+                Task.WaitAll(projects.Select(async project =>
+                {
+                    try
+                    {
+                        var builds = await buildProvider.GetBuildsAsync(project.Id).ConfigureAwait(false);
 
-                OnProgressChanged(args);
-            }).ToArray());
+                        OnProgressChanged(new BuildMonitorProgressEventArgs(buildProvider, project, builds));
+                    }
+                    catch (Exception)
+                    {
+                        OnError(new BuildMonitorErrorEventArgs(buildProvider, project));
+                    }
+                }).ToArray());
+            }
+            catch
+            {
+                OnError(new BuildMonitorErrorEventArgs(buildProvider));
+            }
         }
     }
 }

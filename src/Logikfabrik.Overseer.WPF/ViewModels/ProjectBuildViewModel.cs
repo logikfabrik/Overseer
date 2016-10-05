@@ -18,6 +18,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         private readonly IProject _project;
         private BuildViewModel _buildViewModel;
         private bool _isBusy;
+        private bool _isErrored;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ProjectBuildViewModel" /> class.
@@ -34,8 +35,10 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             _buildProvider = buildProvider;
             _project = project;
             _isBusy = true;
+            _isErrored = false;
 
             WeakEventManager<IBuildMonitor, BuildMonitorProgressEventArgs>.AddHandler(buildMonitor, nameof(buildMonitor.ProgressChanged), BuildMonitorProgressChanged);
+            WeakEventManager<IBuildMonitor, BuildMonitorErrorEventArgs>.AddHandler(buildMonitor, nameof(buildMonitor.Error), BuildMonitorError);
         }
 
         /// <summary>
@@ -86,6 +89,26 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             }
         }
 
+        /// <summary>
+        /// Gets a value indicating whether this instance is errored.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if this instance is errored; otherwise, <c>false</c>.
+        /// </value>
+        public bool IsErrored
+        {
+            get
+            {
+                return _isErrored;
+            }
+
+            private set
+            {
+                _isErrored = value;
+                NotifyOfPropertyChange(() => IsErrored);
+            }
+        }
+
         private void BuildMonitorProgressChanged(object sender, BuildMonitorProgressEventArgs e)
         {
             if (_buildProvider.BuildProviderSettings.Id != e.BuildProvider.BuildProviderSettings.Id)
@@ -104,6 +127,31 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             }
 
             IsBusy = false;
+        }
+
+        private void BuildMonitorError(object sender, BuildMonitorErrorEventArgs e)
+        {
+            if (e.BuildProvider == null)
+            {
+                return;
+            }
+
+            if (e.Project == null)
+            {
+                return;
+            }
+
+            if (_buildProvider.BuildProviderSettings.Id != e.BuildProvider.BuildProviderSettings.Id)
+            {
+                return;
+            }
+
+            if (_project.Id != e.Project.Id)
+            {
+                return;
+            }
+
+            IsErrored = true;
         }
     }
 }
