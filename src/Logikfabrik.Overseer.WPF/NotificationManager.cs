@@ -38,7 +38,7 @@ namespace Logikfabrik.Overseer.WPF
         {
             Ensure.That(viewModel).IsNotNull();
 
-            Application.Current.Dispatcher.Invoke(() =>
+            Execute.OnUIThread(() =>
             {
                 var settings = new Dictionary<string, object>
                 {

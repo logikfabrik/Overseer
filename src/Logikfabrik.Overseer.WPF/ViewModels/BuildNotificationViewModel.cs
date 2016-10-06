@@ -4,13 +4,14 @@
 
 namespace Logikfabrik.Overseer.WPF.ViewModels
 {
+    using System.Windows.Controls.Primitives;
     using Caliburn.Micro;
     using EnsureThat;
 
     /// <summary>
     /// The <see cref="BuildNotificationViewModel" /> class.
     /// </summary>
-    public class BuildNotificationViewModel : PropertyChangedBase
+    public class BuildNotificationViewModel : ViewAware
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="BuildNotificationViewModel" /> class.
@@ -30,5 +31,20 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// The build view model.
         /// </value>
         public BuildViewModel BuildViewModel { get; }
+
+        /// <summary>
+        /// Closes this instance.
+        /// </summary>
+        public void Close()
+        {
+            var popup = GetView() as Popup;
+
+            if (popup == null)
+            {
+                return;
+            }
+
+            popup.IsOpen = false;
+        }
     }
 }
