@@ -13,6 +13,7 @@ namespace Logikfabrik.Overseer.WPF.Client
     using Caliburn.Micro;
     using Ninject;
     using Ninject.Modules;
+    using Settings;
     using ViewModels;
     using WPF.ViewModels;
 
@@ -72,9 +73,18 @@ namespace Logikfabrik.Overseer.WPF.Client
             // TODO: Discover and add automatically.
             ViewLocator.AddNamespaceMapping("*", "Logikfabrik.Overseer.WPF.Client.Views");
 
-            // Default setup.
+            // Business logic setup.
+            _kernel.Bind<IBuildProviderSettingsStore>().To<BuildProviderSettingsStore>().InSingletonScope();
+            _kernel.Bind<IBuildProviderSettingsRepository>().To<BuildProviderSettingsRepository>().InSingletonScope();
+            _kernel.Bind<IBuildProviderRepository>().To<BuildProviderRepository>().InSingletonScope();
+            _kernel.Bind<IBuildMonitor>().To<BuildMonitor>().InSingletonScope();
+
+            // Caliburn Micro setup.
             _kernel.Bind<IWindowManager>().To<WindowManager>().InSingletonScope();
             _kernel.Bind<IEventAggregator>().To<EventAggregator>().InSingletonScope();
+
+            // WPF client setup.
+            _kernel.Bind<INotificationManager>().To<NotificationManager>().InSingletonScope();
 
             // TODO: Temp when testing the monitor in ConnectionsViewModel.
             _kernel.Bind<ConnectionsViewModel>().To<ConnectionsViewModel>().InSingletonScope();

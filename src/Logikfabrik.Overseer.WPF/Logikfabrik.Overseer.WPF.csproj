@@ -91,7 +91,9 @@
       <DependentUpon>Icon.xaml</DependentUpon>
     </Compile>
     <Compile Include="Extensions\HyperlinkExtensions.cs" />
+    <Compile Include="INotificationManager.cs" />
     <Compile Include="NavigationMessage.cs" />
+    <Compile Include="NotificationManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>

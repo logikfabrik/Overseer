@@ -62,7 +62,6 @@
     <Compile Include="IBuildProvider.cs" />
     <Compile Include="IBuildProviderRepository.cs" />
     <Compile Include="IChange.cs" />
-    <Compile Include="Module.cs" />
     <Compile Include="Settings\BuildProviderSettings.cs" />
     <Compile Include="Settings\BuildProviderSettingsRepository.cs" />
     <Compile Include="Settings\BuildProviderSettingsStore.cs" />

@@ -15,21 +15,21 @@ namespace Logikfabrik.Overseer.WPF.Client.ViewModels
     /// </summary>
     public sealed class AppViewModel : Conductor<PropertyChangedBase>, IHandle<NavigationMessage>
     {
-        private readonly IWindowManager _windowManager;
+        private readonly INotificationManager _notificationManager;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="AppViewModel" /> class.
         /// </summary>
         /// <param name="eventAggregator">The event aggregator.</param>
-        /// <param name="windowManager">The window manager.</param>
+        /// <param name="notificationManager">The notification manager.</param>
         /// <param name="buildMonitor">The build monitor.</param>
         /// <param name="connectionsViewModel">The connections view model.</param>
-        public AppViewModel(IEventAggregator eventAggregator, IWindowManager windowManager, IBuildMonitor buildMonitor, ConnectionsViewModel connectionsViewModel)
+        public AppViewModel(IEventAggregator eventAggregator, INotificationManager notificationManager, IBuildMonitor buildMonitor, ConnectionsViewModel connectionsViewModel)
         {
             Ensure.That(eventAggregator).IsNotNull();
             Ensure.That(connectionsViewModel).IsNotNull();
 
-            _windowManager = windowManager;
+            _notificationManager = notificationManager;
             eventAggregator.Subscribe(this);
 
             WeakEventManager<IBuildMonitor, BuildMonitorProgressEventArgs>.AddHandler(buildMonitor, nameof(buildMonitor.ProgressChanged), BuildMonitorProgressChanged);
@@ -57,10 +57,7 @@ namespace Logikfabrik.Overseer.WPF.Client.ViewModels
                 return;
             }
 
-            Application.Current.Dispatcher.Invoke(() =>
-            {
-                _windowManager.ShowPopup(new BuildNotificationViewModel());
-            });
+            _notificationManager.ShowNotification(new BuildNotificationViewModel(e.Builds.First()));
         }
     }
 }
