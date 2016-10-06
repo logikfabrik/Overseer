@@ -92,6 +92,9 @@
     <Compile Include="Views\AppView.xaml.cs">
       <DependentUpon>AppView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\BuildNotificationView.xaml.cs">
+      <DependentUpon>BuildNotificationView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\BuildProvidersView.xaml.cs">
       <DependentUpon>BuildProvidersView.xaml</DependentUpon>
     </Compile>
@@ -145,6 +148,10 @@
   </ItemGroup>
   <ItemGroup>
     <Page Include="Views\AppView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\BuildNotificationView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

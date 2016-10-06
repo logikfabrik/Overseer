@@ -5,12 +5,13 @@
 namespace Logikfabrik.Overseer.WPF.ViewModels
 {
     using System;
+    using Caliburn.Micro;
     using EnsureThat;
 
     /// <summary>
     /// The <see cref="BuildViewModel" /> class.
     /// </summary>
-    public class ChangeViewModel
+    public class ChangeViewModel : PropertyChangedBase
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ChangeViewModel" /> class.

@@ -4,6 +4,8 @@
 
 namespace Logikfabrik.Overseer.WPF.Client.ViewModels
 {
+    using System.Linq;
+    using System.Windows;
     using Caliburn.Micro;
     using EnsureThat;
     using WPF.ViewModels;
@@ -13,17 +15,24 @@ namespace Logikfabrik.Overseer.WPF.Client.ViewModels
     /// </summary>
     public sealed class AppViewModel : Conductor<PropertyChangedBase>, IHandle<NavigationMessage>
     {
+        private readonly IWindowManager _windowManager;
+
         /// <summary>
         /// Initializes a new instance of the <see cref="AppViewModel" /> class.
         /// </summary>
         /// <param name="eventAggregator">The event aggregator.</param>
+        /// <param name="windowManager">The window manager.</param>
+        /// <param name="buildMonitor">The build monitor.</param>
         /// <param name="connectionsViewModel">The connections view model.</param>
-        public AppViewModel(IEventAggregator eventAggregator, ConnectionsViewModel connectionsViewModel)
+        public AppViewModel(IEventAggregator eventAggregator, IWindowManager windowManager, IBuildMonitor buildMonitor, ConnectionsViewModel connectionsViewModel)
         {
             Ensure.That(eventAggregator).IsNotNull();
             Ensure.That(connectionsViewModel).IsNotNull();
 
+            _windowManager = windowManager;
             eventAggregator.Subscribe(this);
+
+            WeakEventManager<IBuildMonitor, BuildMonitorProgressEventArgs>.AddHandler(buildMonitor, nameof(buildMonitor.ProgressChanged), BuildMonitorProgressChanged);
 
             DisplayName = "Overseer";
 
@@ -39,6 +48,19 @@ namespace Logikfabrik.Overseer.WPF.Client.ViewModels
             var viewModel = IoC.GetInstance(message.ViewModelType, null) as PropertyChangedBase;
 
             ActivateItem(viewModel);
+        }
+
+        private void BuildMonitorProgressChanged(object sender, BuildMonitorProgressEventArgs e)
+        {
+            if (!e.Builds.Any())
+            {
+                return;
+            }
+
+            Application.Current.Dispatcher.Invoke(() =>
+            {
+                _windowManager.ShowPopup(new BuildNotificationViewModel());
+            });
         }
     }
 }
