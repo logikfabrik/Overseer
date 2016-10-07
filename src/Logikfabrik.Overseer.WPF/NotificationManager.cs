@@ -50,9 +50,7 @@ namespace Logikfabrik.Overseer.WPF
 
                             return new[]
                             {
-                                new CustomPopupPlacement(
-                                    new Point(workArea.Right - size.Width, workArea.Bottom - size.Height),
-                                    PopupPrimaryAxis.Horizontal)
+                                new CustomPopupPlacement(new Point(workArea.Right - size.Width, workArea.Bottom - size.Height), PopupPrimaryAxis.Horizontal)
                             };
                         })
                     }

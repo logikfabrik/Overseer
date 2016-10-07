@@ -4,6 +4,8 @@
 
 namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices.Api.Models
 {
+    using System;
+
     /// <summary>
     /// The <see cref="Project" /> class.
     /// </summary>
@@ -31,6 +33,6 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices.Api.Models
         /// <value>
         /// The URL.
         /// </value>
-        public string Url { get; set; }
+        public Uri Url { get; set; }
     }
 }

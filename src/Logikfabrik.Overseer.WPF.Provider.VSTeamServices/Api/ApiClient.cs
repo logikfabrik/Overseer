@@ -14,10 +14,9 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices.Api
     /// <summary>
     /// The <see cref="ApiClient" /> class.
     /// </summary>
-    public class ApiClient
+    public class ApiClient : IDisposable
     {
-        private readonly Uri _baseUri;
-        private readonly string _token;
+        private readonly Lazy<HttpClient> _httpClient;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ApiClient" /> class.
@@ -29,8 +28,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices.Api
             Ensure.That(url).IsNotNullOrWhiteSpace();
             Ensure.That(token).IsNotNullOrWhiteSpace();
 
-            _baseUri = new Uri(url);
-            _token = token;
+            _httpClient = new Lazy<HttpClient>(() => GetHttpClient(new Uri(url), token));
         }
 
         /// <summary>
@@ -41,14 +39,11 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices.Api
         /// <returns>A task.</returns>
         public async Task<Projects> GetProjectsAsync(int skip, int take)
         {
-            using (var client = GetHttpClient())
+            using (var response = await _httpClient.Value.GetAsync($"_apis/projects?api-version=2.0&$skip={skip}&$top={take}").ConfigureAwait(false))
             {
-                using (var response = await client.GetAsync($"_apis/projects?api-version=2.0&$skip={skip}&$top={take}").ConfigureAwait(false))
-                {
-                    response.EnsureSuccessStatusCode();
+                response.EnsureSuccessStatusCode();
 
-                    return await response.Content.ReadAsAsync<Projects>().ConfigureAwait(false);
-                }
+                return await response.Content.ReadAsAsync<Projects>().ConfigureAwait(false);
             }
         }
 
@@ -63,14 +58,11 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices.Api
         {
             Ensure.That(projectId).IsNotNullOrWhiteSpace();
 
-            using (var client = GetHttpClient())
+            using (var response = await _httpClient.Value.GetAsync($"{projectId}/_apis/build/builds?api-version=2.0&$skip={skip}&$top={take}").ConfigureAwait(false))
             {
-                using (var response = await client.GetAsync($"{projectId}/_apis/build/builds?api-version=2.0&$skip={skip}&$top={take}").ConfigureAwait(false))
-                {
-                    response.EnsureSuccessStatusCode();
+                response.EnsureSuccessStatusCode();
 
-                    return await response.Content.ReadAsAsync<Builds>().ConfigureAwait(false);
-                }
+                return await response.Content.ReadAsAsync<Builds>().ConfigureAwait(false);
             }
         }
 
@@ -85,22 +77,46 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices.Api
             Ensure.That(projectId).IsNotNullOrWhiteSpace();
             Ensure.That(buildId).IsNotNullOrWhiteSpace();
 
-            using (var client = GetHttpClient())
+            using (var response = await _httpClient.Value.GetAsync($"{projectId}/_apis/build/builds/{buildId}/changes?api-version=2.0").ConfigureAwait(false))
             {
-                using (var response = await client.GetAsync($"{projectId}/_apis/build/builds/{buildId}/changes?api-version=2.0").ConfigureAwait(false))
-                {
-                    response.EnsureSuccessStatusCode();
+                response.EnsureSuccessStatusCode();
 
-                    return await response.Content.ReadAsAsync<Changes>().ConfigureAwait(false);
-                }
+                return await response.Content.ReadAsAsync<Changes>().ConfigureAwait(false);
             }
         }
 
-        private HttpClient GetHttpClient()
+        /// <summary>
+        /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+        /// </summary>
+        public void Dispose()
         {
-            var credentials = Convert.ToBase64String(System.Text.Encoding.ASCII.GetBytes($"{string.Empty}:{_token}"));
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
 
-            var client = new HttpClient { BaseAddress = _baseUri };
+        /// <summary>
+        /// Releases unmanaged and managed resources.
+        /// </summary>
+        /// <param name="disposing"><c>true</c> to release both managed and unmanaged resources; <c>false</c> to release only unmanaged resources.</param>
+        protected virtual void Dispose(bool disposing)
+        {
+            // ReSharper disable once InvertIf
+            if (disposing)
+            {
+                if (!_httpClient.IsValueCreated)
+                {
+                    return;
+                }
+
+                _httpClient.Value.Dispose();
+            }
+        }
+
+        private static HttpClient GetHttpClient(Uri baseUri, string token)
+        {
+            var credentials = Convert.ToBase64String(System.Text.Encoding.ASCII.GetBytes($"{string.Empty}:{token}"));
+
+            var client = new HttpClient { BaseAddress = baseUri };
 
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", credentials);
