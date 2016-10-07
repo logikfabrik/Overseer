@@ -8,6 +8,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices
     using System.Linq;
     using System.Threading.Tasks;
     using EnsureThat;
+    using Settings;
 
     /// <summary>
     /// The <see cref="BuildProvider" /> class.
@@ -15,12 +16,21 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices
     public class BuildProvider : Overseer.BuildProvider
     {
         /// <summary>
-        /// Gets the name.
+        /// Initializes a new instance of the <see cref="BuildProvider" /> class.
+        /// </summary>
+        /// <param name="buildProviderSettings">The build provider settings.</param>
+        public BuildProvider(BuildProviderSettings buildProviderSettings)
+            : base(buildProviderSettings)
+        {
+        }
+
+        /// <summary>
+        /// Gets the metadata.
         /// </summary>
         /// <value>
-        /// The name.
+        /// The metadata.
         /// </value>
-        public override string Name { get; } = "Visual Studio Team Services";
+        public override IBuildProviderMetadata Metadata { get; } = new BuildProviderMetadata();
 
         /// <summary>
         /// Gets the projects.

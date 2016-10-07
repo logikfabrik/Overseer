@@ -60,6 +60,7 @@
     <Compile Include="Change.cs" />
     <Compile Include="IBuildMonitor.cs" />
     <Compile Include="IBuildProvider.cs" />
+    <Compile Include="IBuildProviderMetadata.cs" />
     <Compile Include="IBuildProviderRepository.cs" />
     <Compile Include="IChange.cs" />
     <Compile Include="Settings\BuildProviderSettings.cs" />

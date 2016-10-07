@@ -6,6 +6,7 @@ namespace Logikfabrik.Overseer
 {
     using System.Collections.Generic;
     using System.Threading.Tasks;
+    using EnsureThat;
     using Settings;
 
     /// <summary>
@@ -14,20 +15,31 @@ namespace Logikfabrik.Overseer
     public abstract class BuildProvider : IBuildProvider
     {
         /// <summary>
-        /// Gets the name.
+        /// Initializes a new instance of the <see cref="BuildProvider" /> class.
         /// </summary>
-        /// <value>
-        /// The name.
-        /// </value>
-        public abstract string Name { get; }
+        /// <param name="buildProviderSettings">The build provider settings.</param>
+        protected BuildProvider(BuildProviderSettings buildProviderSettings)
+        {
+            Ensure.That(buildProviderSettings).IsNotNull();
+
+            BuildProviderSettings = buildProviderSettings;
+        }
 
         /// <summary>
-        /// Gets or sets the build provider settings.
+        /// Gets the metadata.
+        /// </summary>
+        /// <value>
+        /// The metadata.
+        /// </value>
+        public abstract IBuildProviderMetadata Metadata { get; }
+
+        /// <summary>
+        /// Gets the build provider settings.
         /// </summary>
         /// <value>
         /// The build provider settings.
         /// </value>
-        public BuildProviderSettings BuildProviderSettings { get; set; }
+        public BuildProviderSettings BuildProviderSettings { get; }
 
         /// <summary>
         /// Gets the projects.

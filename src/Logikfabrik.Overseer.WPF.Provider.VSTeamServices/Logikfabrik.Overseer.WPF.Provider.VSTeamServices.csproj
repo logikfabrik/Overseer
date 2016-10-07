@@ -94,6 +94,7 @@
     <Compile Include="Api\Models\RepositoryType.cs" />
     <Compile Include="Build.cs" />
     <Compile Include="BuildProvider.cs" />
+    <Compile Include="BuildProviderMetadata.cs" />
     <Compile Include="Module.cs" />
     <Compile Include="Project.cs" />
     <Compile Include="Validators\AddConnectionViewModelValidator.cs" />

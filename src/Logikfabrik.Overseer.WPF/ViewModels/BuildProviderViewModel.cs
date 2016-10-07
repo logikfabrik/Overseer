@@ -13,30 +13,30 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     /// </summary>
     public abstract class BuildProviderViewModel : PropertyChangedBase
     {
-        private readonly IBuildProvider _buildProvider;
+        private readonly IBuildProviderMetadata _buildProviderMetadata;
         private readonly IEventAggregator _eventAggregator;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="BuildProviderViewModel" /> class.
         /// </summary>
         /// <param name="eventAggregator">The event aggregator.</param>
-        /// <param name="buildProvider">The build provider.</param>
-        protected BuildProviderViewModel(IEventAggregator eventAggregator, IBuildProvider buildProvider)
+        /// <param name="buildProviderMetadata">The build provider metadata.</param>
+        protected BuildProviderViewModel(IEventAggregator eventAggregator, IBuildProviderMetadata buildProviderMetadata)
         {
             Ensure.That(eventAggregator).IsNotNull();
-            Ensure.That(buildProvider).IsNotNull();
+            Ensure.That(buildProviderMetadata).IsNotNull();
 
             _eventAggregator = eventAggregator;
-            _buildProvider = buildProvider;
+            _buildProviderMetadata = buildProviderMetadata;
         }
 
         /// <summary>
-        /// Gets build provider name.
+        /// Gets the build provider name.
         /// </summary>
         /// <value>
         /// The build provider name.
         /// </value>
-        public string BuildProviderName => _buildProvider.Name;
+        public string BuildProviderName => _buildProviderMetadata.ProviderName;
 
         /// <summary>
         /// Gets the type of the view model to add connection.

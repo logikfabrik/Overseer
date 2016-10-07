@@ -60,7 +60,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// <value>
         /// The build provider name.
         /// </value>
-        public string BuildProviderName => _buildProvider.Name;
+        public string BuildProviderName => _buildProvider.Metadata.ProviderName;
 
         /// <summary>
         /// Gets a value indicating whether this instance is busy.

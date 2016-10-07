@@ -24,12 +24,10 @@ namespace Logikfabrik.Overseer
 
             var buildProviderType = buildProviderSettings.GetBuildProviderType();
 
-            var constructor = buildProviderType.GetConstructor(Type.EmptyTypes);
+            var constructor = buildProviderType.GetConstructor(new[] { typeof(BuildProviderSettings) });
 
             // ReSharper disable once PossibleNullReferenceException
-            var buildProvider = (IBuildProvider)constructor.Invoke(new object[] { });
-
-            buildProvider.BuildProviderSettings = buildProviderSettings;
+            var buildProvider = (IBuildProvider)constructor.Invoke(new object[] { buildProviderSettings });
 
             return buildProvider;
         }
