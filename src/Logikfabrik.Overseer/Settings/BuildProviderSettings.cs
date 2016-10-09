@@ -5,7 +5,6 @@
 namespace Logikfabrik.Overseer.Settings
 {
     using System;
-    using System.Linq;
     using EnsureThat;
 
     /// <summary>
@@ -108,29 +107,6 @@ namespace Logikfabrik.Overseer.Settings
 
                 _settings = value;
             }
-        }
-
-        /// <summary>
-        /// Gets the build provider type.
-        /// </summary>
-        /// <returns>The build provider type.</returns>
-        public Type GetBuildProviderType()
-        {
-            return string.IsNullOrWhiteSpace(_buildProviderTypeName)
-                ? null
-                : Type.GetType(_buildProviderTypeName, false);
-        }
-
-        /// <summary>
-        /// Gets the setting with the specified name.
-        /// </summary>
-        /// <param name="name">The name.</param>
-        /// <returns>The setting.</returns>
-        public string GetSetting(string name)
-        {
-            Ensure.That(name).IsNotNullOrWhiteSpace();
-
-            return _settings.First(setting => setting.Name == name).Value;
         }
     }
 }

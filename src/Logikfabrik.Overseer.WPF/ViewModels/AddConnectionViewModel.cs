@@ -81,7 +81,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
                 return;
             }
 
-            _buildProviderSettingsRepository.Add(GetBuildProviderSettings());
+            _buildProviderSettingsRepository.AddBuildProviderSettings(GetBuildProviderSettings());
 
             ViewConnections();
         }

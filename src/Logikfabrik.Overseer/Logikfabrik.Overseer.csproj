@@ -54,7 +54,6 @@
   <ItemGroup>
     <Compile Include="BuildMonitor.cs" />
     <Compile Include="BuildMonitorErrorEventArgs.cs" />
-    <Compile Include="BuildProviderFactory.cs" />
     <Compile Include="BuildMonitorProgressEventArgs.cs" />
     <Compile Include="BuildProviderRepository.cs" />
     <Compile Include="Change.cs" />
@@ -69,6 +68,7 @@
     <Compile Include="BuildStatus.cs" />
     <Compile Include="BuildProvider.cs" />
     <Compile Include="IBuild.cs" />
+    <Compile Include="Settings\Extensions\BuildProviderSettingsExtensions.cs" />
     <Compile Include="Settings\IBuildProviderSettingsRepository.cs" />
     <Compile Include="Settings\IBuildProviderSettingsStore.cs" />
     <Compile Include="IProject.cs" />

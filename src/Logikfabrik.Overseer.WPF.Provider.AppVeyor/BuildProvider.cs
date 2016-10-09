@@ -8,6 +8,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor
     using System.Linq;
     using System.Threading.Tasks;
     using Settings;
+    using Settings.Extensions;
 
     /// <summary>
     /// The <see cref="BuildProvider" /> class.

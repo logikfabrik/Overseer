@@ -38,7 +38,7 @@ namespace Logikfabrik.Overseer.Settings
         /// <returns>
         /// The build provider settings.
         /// </returns>
-        public IEnumerable<BuildProviderSettings> Get()
+        public IEnumerable<BuildProviderSettings> GetBuildProviderSettings()
         {
             return _currentBuildProviderSettings.Value.Values;
         }
@@ -47,7 +47,7 @@ namespace Logikfabrik.Overseer.Settings
         /// Adds the specified build provider settings.
         /// </summary>
         /// <param name="buildProviderSettings">The build provider settings.</param>
-        public void Add(BuildProviderSettings buildProviderSettings)
+        public void AddBuildProviderSettings(BuildProviderSettings buildProviderSettings)
         {
             Ensure.That(buildProviderSettings).IsNotNull();
 

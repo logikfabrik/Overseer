@@ -4,6 +4,7 @@
 
 namespace Logikfabrik.Overseer
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using EnsureThat;
@@ -14,7 +15,7 @@ namespace Logikfabrik.Overseer
     /// </summary>
     public class BuildProviderRepository : IBuildProviderRepository
     {
-        private readonly IBuildProviderSettingsRepository _buildProviderSettingsRepository;
+        private readonly Lazy<IDictionary<Guid, IBuildProvider>> _currentBuildProviders;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="BuildProviderRepository" /> class.
@@ -24,7 +25,10 @@ namespace Logikfabrik.Overseer
         {
             Ensure.That(buildProviderSettingsRepository).IsNotNull();
 
-            _buildProviderSettingsRepository = buildProviderSettingsRepository;
+            _currentBuildProviders = new Lazy<IDictionary<Guid, IBuildProvider>>(() =>
+            {
+                return buildProviderSettingsRepository.GetBuildProviderSettings().ToDictionary(buildProviderSettings => buildProviderSettings.Id, GetBuildProvider);
+            });
         }
 
         /// <summary>
@@ -33,11 +37,22 @@ namespace Logikfabrik.Overseer
         /// <returns>The build providers.</returns>
         public IEnumerable<IBuildProvider> GetBuildProviders()
         {
-            var buildProviderSettings = _buildProviderSettingsRepository.Get();
+            // TODO: Refresh the collection if settings are added, removed, or changed.
+            return _currentBuildProviders.Value.Values;
+        }
 
-            var buildProviders = buildProviderSettings.Select(BuildProviderFactory.GetBuildProvider);
+        private static IBuildProvider GetBuildProvider(BuildProviderSettings buildProviderSettings)
+        {
+            Ensure.That(buildProviderSettings).IsNotNull();
 
-            return buildProviders;
+            var buildProviderType = Type.GetType(buildProviderSettings.BuildProviderTypeName, true);
+
+            var constructor = buildProviderType.GetConstructor(new[] { typeof(BuildProviderSettings) });
+
+            // ReSharper disable once PossibleNullReferenceException
+            var buildProvider = (IBuildProvider)constructor.Invoke(new object[] { buildProviderSettings });
+
+            return buildProvider;
         }
     }
 }

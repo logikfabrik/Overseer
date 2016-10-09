@@ -22,7 +22,7 @@ namespace Logikfabrik.Overseer.Settings
         private const string FileWaitHandleName = "b4908818-002e-42fb-a058-86ea4e47e36e";
 
         private readonly string _filePath;
-        private readonly EventWaitHandle _fileWaitHandle;
+        private readonly EventWaitHandle _fileEventWaitHandle;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="BuildProviderSettingsStore" /> class.
@@ -30,7 +30,7 @@ namespace Logikfabrik.Overseer.Settings
         public BuildProviderSettingsStore()
         {
             _filePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), GetProduct(), "Providers.xml");
-            _fileWaitHandle = new EventWaitHandle(true, EventResetMode.AutoReset, FileWaitHandleName);
+            _fileEventWaitHandle = new EventWaitHandle(true, EventResetMode.AutoReset, FileWaitHandleName);
         }
 
         /// <summary>
@@ -67,7 +67,7 @@ namespace Logikfabrik.Overseer.Settings
 
         private IEnumerable<BuildProviderSettings> Load()
         {
-            _fileWaitHandle.WaitOne();
+            _fileEventWaitHandle.WaitOne();
 
             try
             {
@@ -85,7 +85,7 @@ namespace Logikfabrik.Overseer.Settings
             }
             finally
             {
-                _fileWaitHandle.Set();
+                _fileEventWaitHandle.Set();
             }
         }
 
@@ -93,7 +93,7 @@ namespace Logikfabrik.Overseer.Settings
         {
             Ensure.That(buildProviderSettings).IsNotNull();
 
-            _fileWaitHandle.WaitOne();
+            _fileEventWaitHandle.WaitOne();
 
             try
             {
@@ -123,7 +123,7 @@ namespace Logikfabrik.Overseer.Settings
                     File.Encrypt(_filePath);
                 }
 
-                _fileWaitHandle.Set();
+                _fileEventWaitHandle.Set();
             }
         }
     }
