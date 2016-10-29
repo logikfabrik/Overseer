@@ -4,8 +4,6 @@
 
 namespace Logikfabrik.Overseer.WPF.Client.ViewModels
 {
-    using System;
-    using System.Diagnostics;
     using System.Linq;
     using System.Windows;
     using Caliburn.Micro;
@@ -17,22 +15,23 @@ namespace Logikfabrik.Overseer.WPF.Client.ViewModels
     /// </summary>
     public sealed class AppViewModel : Conductor<PropertyChangedBase>, IHandle<NavigationMessage>
     {
-        private readonly INotificationManager _notificationManager;
-        private readonly Lazy<DateTime> _appStartTime = new Lazy<DateTime>(() => Process.GetCurrentProcess().StartTime);
+        private readonly IBuildNotificationManager _buildNotificationManager;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="AppViewModel" /> class.
         /// </summary>
         /// <param name="eventAggregator">The event aggregator.</param>
-        /// <param name="notificationManager">The notification manager.</param>
         /// <param name="buildMonitor">The build monitor.</param>
+        /// /// <param name="buildNotificationManager">The build notification manager.</param>
         /// <param name="connectionsViewModel">The connections view model.</param>
-        public AppViewModel(IEventAggregator eventAggregator, INotificationManager notificationManager, IBuildMonitor buildMonitor, ConnectionsViewModel connectionsViewModel)
+        public AppViewModel(IEventAggregator eventAggregator, IBuildMonitor buildMonitor, IBuildNotificationManager buildNotificationManager, ConnectionsViewModel connectionsViewModel)
         {
             Ensure.That(eventAggregator).IsNotNull();
+            Ensure.That(buildMonitor).IsNotNull();
+            Ensure.That(buildNotificationManager).IsNotNull();
             Ensure.That(connectionsViewModel).IsNotNull();
 
-            _notificationManager = notificationManager;
+            _buildNotificationManager = buildNotificationManager;
             eventAggregator.Subscribe(this);
 
             WeakEventManager<IBuildMonitor, BuildMonitorProgressEventArgs>.AddHandler(buildMonitor, nameof(buildMonitor.ProgressChanged), BuildMonitorProgressChanged);
@@ -60,9 +59,9 @@ namespace Logikfabrik.Overseer.WPF.Client.ViewModels
                 return;
             }
 
-            foreach (var build in e.Builds.Where(build => !(build.Finished <= _appStartTime.Value)))
+            foreach (var build in e.Builds)
             {
-                _notificationManager.ShowNotification(new BuildNotificationViewModel(build));
+                _buildNotificationManager.ShowNotification(build);
             }
         }
     }

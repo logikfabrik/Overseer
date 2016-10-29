@@ -83,8 +83,9 @@ namespace Logikfabrik.Overseer.WPF.Client
             _kernel.Bind<IWindowManager>().To<WindowManager>().InSingletonScope();
             _kernel.Bind<IEventAggregator>().To<EventAggregator>().InSingletonScope();
 
-            // WPF client setup.
+            // WPF client setup (and some business logic setup).
             _kernel.Bind<INotificationManager>().To<NotificationManager>().InSingletonScope();
+            _kernel.Bind<IBuildNotificationManager>().To<BuildNotificationManager>().InSingletonScope();
 
             // TODO: Temp when testing the monitor in ConnectionsViewModel.
             _kernel.Bind<ConnectionsViewModel>().To<ConnectionsViewModel>().InSingletonScope();
