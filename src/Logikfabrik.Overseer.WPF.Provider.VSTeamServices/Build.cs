@@ -24,6 +24,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices
             Ensure.That(build).IsNotNull();
             Ensure.That(lastChanges).IsNotNull();
 
+            Id = build.Id;
             Number = build.BuildNumber;
             Branch = build.SourceBranch;
             Started = build.StartTime;
@@ -37,6 +38,14 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices
                 Comment = lastChange.Message
             });
         }
+
+        /// <summary>
+        /// Gets the identifier.
+        /// </summary>
+        /// <value>
+        /// The identifier.
+        /// </value>
+        public string Id { get; }
 
         /// <summary>
         /// Gets the version.

@@ -5,6 +5,7 @@
 namespace Logikfabrik.Overseer.WPF
 {
     using System;
+    using System.Collections.Generic;
     using System.Diagnostics;
     using EnsureThat;
     using ViewModels;
@@ -16,6 +17,8 @@ namespace Logikfabrik.Overseer.WPF
     {
         private readonly INotificationManager _notificationManager;
         private readonly Lazy<DateTime> _appStartTime = new Lazy<DateTime>(() => Process.GetCurrentProcess().StartTime);
+        private readonly HashSet<string> _finishedBuilds = new HashSet<string>();
+        private readonly HashSet<string> _buildsInProgress = new HashSet<string>();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="BuildNotificationManager" /> class.
@@ -51,7 +54,24 @@ namespace Logikfabrik.Overseer.WPF
                 return false;
             }
 
-            // TODO: Check if a notification has been shown for this build already.
+            if (build.Finished.HasValue)
+            {
+                if (_finishedBuilds.Contains(build.Id))
+                {
+                    return false;
+                }
+
+                _finishedBuilds.Add(build.Id);
+            }
+            else
+            {
+                if (_buildsInProgress.Contains(build.Id))
+                {
+                    return false;
+                }
+
+                _buildsInProgress.Add(build.Id);
+            }
 
             return true;
         }

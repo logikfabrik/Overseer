@@ -13,6 +13,14 @@ namespace Logikfabrik.Overseer
     public interface IBuild
     {
         /// <summary>
+        /// Gets the identifier.
+        /// </summary>
+        /// <value>
+        /// The identifier.
+        /// </value>
+        string Id { get; }
+
+        /// <summary>
         /// Gets the version.
         /// </summary>
         /// <value>

@@ -21,6 +21,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor
         {
             Ensure.That(build).IsNotNull();
 
+            Id = build.BuildId.ToString();
             Version = build.Version;
             Branch = build.Branch;
             Started = build.Started;
@@ -37,6 +38,14 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor
                 }
             };
         }
+
+        /// <summary>
+        /// Gets the identifier.
+        /// </summary>
+        /// <value>
+        /// The identifier.
+        /// </value>
+        public string Id { get; }
 
         /// <summary>
         /// Gets the version.
