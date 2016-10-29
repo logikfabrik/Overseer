@@ -4,7 +4,10 @@
 
 namespace Logikfabrik.Overseer.WPF.ViewModels
 {
+    using System;
+    using System.Windows;
     using System.Windows.Controls.Primitives;
+    using System.Windows.Threading;
     using Caliburn.Micro;
     using EnsureThat;
 
@@ -22,6 +25,10 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             Ensure.That(build).IsNotNull();
 
             BuildViewModel = new BuildViewModel(build);
+
+            var dispatcher = new DispatcherTimer(TimeSpan.FromSeconds(5), DispatcherPriority.Normal, (sender, args) => { Close(); }, Application.Current.Dispatcher);
+
+            dispatcher.Start();
         }
 
         /// <summary>

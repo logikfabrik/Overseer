@@ -116,7 +116,10 @@ namespace Logikfabrik.Overseer
                         OnError(new BuildMonitorErrorEventArgs());
                     }
 
-                    await Task.Delay(30 * 1000);
+                    const int delayInSeconds = 5;
+                    const int delayInMilliseconds = delayInSeconds * 1000;
+
+                    await Task.Delay(delayInMilliseconds);
                 }
             },
             _cancellationTokenSource.Token);

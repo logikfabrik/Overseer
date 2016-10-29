@@ -4,6 +4,8 @@
 
 namespace Logikfabrik.Overseer.WPF.Client.ViewModels
 {
+    using System;
+    using System.Diagnostics;
     using System.Linq;
     using System.Windows;
     using Caliburn.Micro;
@@ -16,6 +18,7 @@ namespace Logikfabrik.Overseer.WPF.Client.ViewModels
     public sealed class AppViewModel : Conductor<PropertyChangedBase>, IHandle<NavigationMessage>
     {
         private readonly INotificationManager _notificationManager;
+        private readonly Lazy<DateTime> _appStartTime = new Lazy<DateTime>(() => Process.GetCurrentProcess().StartTime);
 
         /// <summary>
         /// Initializes a new instance of the <see cref="AppViewModel" /> class.
@@ -57,7 +60,10 @@ namespace Logikfabrik.Overseer.WPF.Client.ViewModels
                 return;
             }
 
-            _notificationManager.ShowNotification(new BuildNotificationViewModel(e.Builds.First()));
+            foreach (var build in e.Builds.Where(build => !(build.Finished <= _appStartTime.Value)))
+            {
+                _notificationManager.ShowNotification(new BuildNotificationViewModel(build));
+            }
         }
     }
 }
