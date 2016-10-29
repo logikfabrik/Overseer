@@ -29,6 +29,8 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             var dispatcher = new DispatcherTimer(TimeSpan.FromSeconds(5), DispatcherPriority.Normal, (sender, args) => { Close(); }, Application.Current.Dispatcher);
 
             dispatcher.Start();
+
+            Notification = GetNotification(build);
         }
 
         /// <summary>
@@ -38,6 +40,14 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// The build view model.
         /// </value>
         public BuildViewModel BuildViewModel { get; }
+
+        /// <summary>
+        /// Gets the notification.
+        /// </summary>
+        /// <value>
+        /// The notification.
+        /// </value>
+        public string Notification { get; }
 
         /// <summary>
         /// Closes this instance.
@@ -52,6 +62,18 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             }
 
             popup.IsOpen = false;
+        }
+
+        private static string GetNotification(IBuild build)
+        {
+            // TODO: Use build status.
+
+            if (!build.Finished.HasValue)
+            {
+                return $"Build requested by {build.RequestedBy} in progress";
+            }
+
+            return $"Build requested by {build.RequestedBy} succeeded";
         }
     }
 }

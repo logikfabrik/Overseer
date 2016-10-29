@@ -58,6 +58,8 @@ namespace Logikfabrik.Overseer.WPF
                 return false;
             }
 
+            // TODO: Use build status.
+
             if (build.Finished.HasValue)
             {
                 if (_finishedBuilds.Contains(id))

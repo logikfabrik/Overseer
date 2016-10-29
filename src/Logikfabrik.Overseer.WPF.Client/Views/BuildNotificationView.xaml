@@ -4,13 +4,23 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:cal="http://www.caliburnproject.org"
+             xmlns:s="clr-namespace:Logikfabrik.Overseer.WPF.Styles;assembly=Logikfabrik.Overseer.WPF"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300"
              Width="300">
-    <Border BorderThickness="1" BorderBrush="Blue">
+    <UserControl.Resources>
+        <SolidColorBrush x:Key="UserControl.Static.Background" 
+                         Color="{x:Static s:CommonColors.ControlStaticBackground}" />
+        <SolidColorBrush x:Key="UserControl.Static.Border" 
+                         Color="#FFBBBBBB" />
+    </UserControl.Resources>
+    <Border Background="{StaticResource UserControl.Static.Background}">
         <StackPanel>
+
+            <TextBlock x:Name="Notification" 
+                       Style="{StaticResource TextBlockDetailDefaultStyle}" />
+
             <Button Content="Close" x:Name="Close" />
-            <TextBlock>Build in progress</TextBlock>
             <ContentControl Focusable="False" 
                             cal:View.Model="{Binding BuildViewModel}" />
         </StackPanel>
