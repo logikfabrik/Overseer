@@ -61,7 +61,7 @@ namespace Logikfabrik.Overseer.WPF.Client.ViewModels
 
             foreach (var build in e.Builds)
             {
-                _buildNotificationManager.ShowNotification(build);
+                _buildNotificationManager.ShowNotification(e.Project, build);
             }
         }
     }

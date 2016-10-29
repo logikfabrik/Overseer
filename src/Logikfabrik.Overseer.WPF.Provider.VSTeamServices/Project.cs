@@ -19,7 +19,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices
         {
             Ensure.That(project).IsNotNull();
 
-            Id = project.Id.ToString();
+            Id = project.Id;
             Name = project.Name;
         }
 

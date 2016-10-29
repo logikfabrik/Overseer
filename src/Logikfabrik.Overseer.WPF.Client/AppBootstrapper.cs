@@ -168,8 +168,8 @@ namespace Logikfabrik.Overseer.WPF.Client
 
             assemblies.AddRange(
                 AppDomain.CurrentDomain.GetAssemblies()
-                    .Where(assembly => !assembly.IsDynamic)
-                    .Where(assembly => assembly.GetExportedTypes().Any(type => typeof(NinjectModule).IsAssignableFrom(type) && !type.IsAbstract)));
+                    .Where(assembly => !assembly.IsDynamic && assembly.GetExportedTypes()
+                        .Any(type => !type.IsAbstract && typeof(NinjectModule).IsAssignableFrom(type))));
 
             return assemblies;
         }

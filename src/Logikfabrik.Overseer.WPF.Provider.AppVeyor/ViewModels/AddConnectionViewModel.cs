@@ -4,7 +4,6 @@
 
 namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor.ViewModels
 {
-    using System;
     using Caliburn.Micro;
     using FluentValidation;
     using Settings;

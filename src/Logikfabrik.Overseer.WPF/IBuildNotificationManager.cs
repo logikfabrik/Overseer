@@ -12,7 +12,8 @@ namespace Logikfabrik.Overseer.WPF
         /// <summary>
         /// Shows a notification for the specified build, if a notification should be shown.
         /// </summary>
+        /// <param name="project">The project.</param>
         /// <param name="build">The build.</param>
-        void ShowNotification(IBuild build);
+        void ShowNotification(IProject project, IBuild build);
     }
 }

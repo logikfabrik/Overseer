@@ -24,15 +24,15 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor
             Id = build.BuildId.ToString();
             Version = build.Version;
             Branch = build.Branch;
-            Started = build.Started;
-            Finished = build.Finished;
+            Started = build.Started?.ToUniversalTime();
+            Finished = build.Finished?.ToUniversalTime();
             RequestedBy = build.AuthorUsername;
             LastChanges = new[]
             {
                 new Change
                 {
                     Id = build.CommitId,
-                    Changed = build.Committed,
+                    Changed = build.Committed?.ToUniversalTime(),
                     ChangedBy = build.CommitterName,
                     Comment = build.Message
                 }

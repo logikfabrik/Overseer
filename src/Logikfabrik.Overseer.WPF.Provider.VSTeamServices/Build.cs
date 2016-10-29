@@ -27,13 +27,13 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices
             Id = build.Id;
             Number = build.BuildNumber;
             Branch = build.SourceBranch;
-            Started = build.StartTime;
-            Finished = build.FinishTime;
+            Started = build.StartTime?.ToUniversalTime();
+            Finished = build.FinishTime?.ToUniversalTime();
             RequestedBy = build.RequestedFor.DisplayName;
             LastChanges = lastChanges.Select(lastChange => new Change
             {
                 Id = lastChange.Id,
-                Changed = lastChange.Timestamp,
+                Changed = lastChange.Timestamp?.ToUniversalTime(),
                 ChangedBy = lastChange.Author.DisplayName,
                 Comment = lastChange.Message
             });

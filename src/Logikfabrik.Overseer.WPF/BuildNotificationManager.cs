@@ -16,7 +16,7 @@ namespace Logikfabrik.Overseer.WPF
     public class BuildNotificationManager : IBuildNotificationManager
     {
         private readonly INotificationManager _notificationManager;
-        private readonly Lazy<DateTime> _appStartTime = new Lazy<DateTime>(() => Process.GetCurrentProcess().StartTime);
+        private readonly Lazy<DateTime> _appStartTime = new Lazy<DateTime>(() => Process.GetCurrentProcess().StartTime.ToUniversalTime());
         private readonly HashSet<string> _finishedBuilds = new HashSet<string>();
         private readonly HashSet<string> _buildsInProgress = new HashSet<string>();
 
@@ -34,12 +34,14 @@ namespace Logikfabrik.Overseer.WPF
         /// <summary>
         /// Shows a notification for the specified build, if a notification should be shown.
         /// </summary>
+        /// <param name="project">The project.</param>
         /// <param name="build">The build.</param>
-        public void ShowNotification(IBuild build)
+        public void ShowNotification(IProject project, IBuild build)
         {
+            Ensure.That(project).IsNotNull();
             Ensure.That(build).IsNotNull();
 
-            if (!ShouldShowNotification(build))
+            if (!ShouldShowNotification(project, build))
             {
                 return;
             }
@@ -47,8 +49,10 @@ namespace Logikfabrik.Overseer.WPF
             _notificationManager.ShowNotification(new BuildNotificationViewModel(build));
         }
 
-        private bool ShouldShowNotification(IBuild build)
+        private bool ShouldShowNotification(IProject project, IBuild build)
         {
+            var id = string.Concat(project.Id, build.Id);
+
             if (build.Finished <= _appStartTime.Value)
             {
                 return false;
@@ -56,21 +60,21 @@ namespace Logikfabrik.Overseer.WPF
 
             if (build.Finished.HasValue)
             {
-                if (_finishedBuilds.Contains(build.Id))
+                if (_finishedBuilds.Contains(id))
                 {
                     return false;
                 }
 
-                _finishedBuilds.Add(build.Id);
+                _finishedBuilds.Add(id);
             }
             else
             {
-                if (_buildsInProgress.Contains(build.Id))
+                if (_buildsInProgress.Contains(id))
                 {
                     return false;
                 }
 
-                _buildsInProgress.Add(build.Id);
+                _buildsInProgress.Add(id);
             }
 
             return true;
