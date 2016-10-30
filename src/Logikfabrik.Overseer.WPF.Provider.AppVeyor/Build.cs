@@ -26,6 +26,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor
             Branch = build.Branch;
             Started = build.Started?.ToUniversalTime();
             Finished = build.Finished?.ToUniversalTime();
+            Status = GetStatus(build);
             RequestedBy = build.AuthorUsername;
             LastChanges = new[]
             {
@@ -110,5 +111,25 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor
         /// The last changes.
         /// </value>
         public IEnumerable<IChange> LastChanges { get; }
+
+        private static BuildStatus? GetStatus(Api.Models.Build build)
+        {
+            if (!build.Finished.HasValue)
+            {
+                return BuildStatus.InProgress;
+            }
+
+            switch (build.Status)
+            {
+                case "success":
+                    return BuildStatus.Succeeded;
+
+                case "failure":
+                    return BuildStatus.Failed;
+
+                default:
+                    return null;
+            }
+        }
     }
 }

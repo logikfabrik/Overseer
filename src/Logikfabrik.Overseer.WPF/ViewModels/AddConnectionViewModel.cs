@@ -54,7 +54,12 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// </value>
         protected abstract IValidator Validator { get; }
 
-        public string this[string columnName]
+        /// <summary>
+        /// Gets the error message for the property with the specified name.
+        /// </summary>
+        /// <param name="name">The property name.</param>
+        /// <returns>The error message, if any.</returns>
+        public string this[string name]
         {
             get
             {
@@ -65,7 +70,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
                     return null;
                 }
 
-                var error = result.Errors.FirstOrDefault(e => e.PropertyName == columnName);
+                var error = result.Errors.FirstOrDefault(e => e.PropertyName == name);
 
                 return error?.ErrorMessage;
             }

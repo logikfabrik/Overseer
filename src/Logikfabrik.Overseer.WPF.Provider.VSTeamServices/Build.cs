@@ -29,6 +29,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices
             Branch = build.SourceBranch;
             Started = build.StartTime?.ToUniversalTime();
             Finished = build.FinishTime?.ToUniversalTime();
+            Status = GetStatus(build);
             RequestedBy = build.RequestedFor.DisplayName;
             LastChanges = lastChanges.Select(lastChange => new Change
             {
@@ -110,5 +111,30 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices
         /// The last changes.
         /// </value>
         public IEnumerable<IChange> LastChanges { get; }
+
+        private static BuildStatus? GetStatus(Api.Models.Build build)
+        {
+            if (!build.FinishTime.HasValue)
+            {
+                return BuildStatus.InProgress;
+            }
+
+            // ReSharper disable once SwitchStatementMissingSomeCases
+            switch (build.Result)
+            {
+                case Api.Models.BuildResult.Cancelled:
+                    return BuildStatus.Stopped;
+
+                case Api.Models.BuildResult.Succeeded:
+                case Api.Models.BuildResult.PartiallySucceeded:
+                    return BuildStatus.Succeeded;
+
+                case Api.Models.BuildResult.Failed:
+                    return BuildStatus.Failed;
+
+                default:
+                    return null;
+            }
+        }
     }
 }

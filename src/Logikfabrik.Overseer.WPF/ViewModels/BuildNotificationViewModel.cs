@@ -66,14 +66,24 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
 
         private static string GetNotification(IBuild build)
         {
-            // TODO: Use build status.
-
-            if (!build.Finished.HasValue)
+            // ReSharper disable once SwitchStatementMissingSomeCases
+            switch (build.Status)
             {
-                return $"Build requested by {build.RequestedBy} in progress";
-            }
+                case BuildStatus.InProgress:
+                    return $"Build requested by {build.RequestedBy} is in progress";
 
-            return $"Build requested by {build.RequestedBy} succeeded";
+                case BuildStatus.Stopped:
+                    return $"Build requested by {build.RequestedBy} was stopped";
+
+                case BuildStatus.Succeeded:
+                    return $"Build requested by {build.RequestedBy} succeeded";
+
+                case BuildStatus.Failed:
+                    return $"Build requested by {build.RequestedBy} failed";
+
+                default:
+                    return null;
+            }
         }
     }
 }

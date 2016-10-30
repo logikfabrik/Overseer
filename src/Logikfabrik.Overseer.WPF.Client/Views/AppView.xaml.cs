@@ -5,7 +5,6 @@
 namespace Logikfabrik.Overseer.WPF.Client.Views
 {
     using System;
-    using System.Runtime.InteropServices;
     using System.Windows;
     using System.Windows.Interop;
 
@@ -14,14 +13,6 @@ namespace Logikfabrik.Overseer.WPF.Client.Views
     /// </summary>
     public partial class AppView
     {
-#pragma warning disable SA1310 // Field names must not contain underscore
-        // ReSharper disable once InconsistentNaming
-        private const int GWL_STYLE = -16;
-
-        // ReSharper disable once InconsistentNaming
-        private const int WS_MAXIMIZEBOX = 0x10000;
-#pragma warning restore SA1310 // Field names must not contain underscore
-
         /// <summary>
         /// Initializes a new instance of the <see cref="AppView" /> class.
         /// </summary>
@@ -35,12 +26,6 @@ namespace Logikfabrik.Overseer.WPF.Client.Views
             });
         }
 
-        [DllImport("user32.dll")]
-        private static extern int GetWindowLong(IntPtr hWnd, int nIndex);
-
-        [DllImport("user32.dll")]
-        private static extern int SetWindowLong(IntPtr hWnd, int nIndex, int dwNewLong);
-
         private void DisableMaximizeButton()
         {
             var handle = new WindowInteropHelper(this).Handle;
@@ -50,7 +35,7 @@ namespace Logikfabrik.Overseer.WPF.Client.Views
                 return;
             }
 
-            SetWindowLong(handle, GWL_STYLE, GetWindowLong(handle, GWL_STYLE) & ~WS_MAXIMIZEBOX);
+            NativeMethods.SetWindowLong(handle, NativeMethods.GWL_STYLE, NativeMethods.GetWindowLong(handle, NativeMethods.GWL_STYLE) & ~NativeMethods.WS_MAXIMIZEBOX);
         }
     }
 }

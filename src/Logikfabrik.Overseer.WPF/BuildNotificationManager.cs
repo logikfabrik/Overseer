@@ -8,6 +8,7 @@ namespace Logikfabrik.Overseer.WPF
     using System.Collections.Generic;
     using System.Diagnostics;
     using EnsureThat;
+    using Overseer.Extensions;
     using ViewModels;
 
     /// <summary>
@@ -51,25 +52,15 @@ namespace Logikfabrik.Overseer.WPF
 
         private bool ShouldShowNotification(IProject project, IBuild build)
         {
-            var id = string.Concat(project.Id, build.Id);
-
+            // Only show notifications for builds running after app start time.
             if (build.Finished <= _appStartTime.Value)
             {
                 return false;
             }
 
-            // TODO: Use build status.
+            var id = string.Concat(project.Id, build.Id);
 
-            if (build.Finished.HasValue)
-            {
-                if (_finishedBuilds.Contains(id))
-                {
-                    return false;
-                }
-
-                _finishedBuilds.Add(id);
-            }
-            else
+            if (build.IsInProgress())
             {
                 if (_buildsInProgress.Contains(id))
                 {
@@ -77,9 +68,24 @@ namespace Logikfabrik.Overseer.WPF
                 }
 
                 _buildsInProgress.Add(id);
+
+                return true;
             }
 
-            return true;
+            // ReSharper disable once InvertIf
+            if (build.IsFinished())
+            {
+                if (_finishedBuilds.Contains(id))
+                {
+                    return false;
+                }
+
+                _finishedBuilds.Add(id);
+
+                return true;
+            }
+
+            return false;
         }
     }
 }

@@ -13,7 +13,7 @@ namespace Logikfabrik.Overseer
     /// <summary>
     /// The <see cref="BuildMonitor" /> class.
     /// </summary>
-    public class BuildMonitor : IBuildMonitor
+    public class BuildMonitor : IBuildMonitor, IDisposable
     {
         private readonly IBuildProviderRepository _buildProviderRepository;
         private CancellationTokenSource _cancellationTokenSource;
@@ -72,9 +72,37 @@ namespace Logikfabrik.Overseer
                 return;
             }
 
-            _cancellationTokenSource.Cancel();
+            _cancellationTokenSource?.Cancel();
 
             IsMonitoring = false;
+        }
+
+        /// <summary>
+        /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+        /// </summary>
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        /// <summary>
+        /// Releases unmanaged and managed resources.
+        /// </summary>
+        /// <param name="disposing"><c>true</c> to release both managed and unmanaged resources; <c>false</c> to release only unmanaged resources.</param>
+        protected virtual void Dispose(bool disposing)
+        {
+            // ReSharper disable once InvertIf
+            if (disposing)
+            {
+                if (_cancellationTokenSource == null)
+                {
+                    return;
+                }
+
+                _cancellationTokenSource.Dispose();
+                _cancellationTokenSource = null;
+            }
         }
 
         /// <summary>
