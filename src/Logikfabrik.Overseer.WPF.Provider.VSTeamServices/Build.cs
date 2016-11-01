@@ -122,7 +122,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices
             // ReSharper disable once SwitchStatementMissingSomeCases
             switch (build.Result)
             {
-                case Api.Models.BuildResult.Cancelled:
+                case Api.Models.BuildResult.Canceled:
                     return BuildStatus.Stopped;
 
                 case Api.Models.BuildResult.Succeeded:

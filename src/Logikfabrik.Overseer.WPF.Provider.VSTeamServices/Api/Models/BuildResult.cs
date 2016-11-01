@@ -32,6 +32,6 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices.Api.Models
         /// <summary>
         /// The build was cancelled.
         /// </summary>
-        Cancelled = 32
+        Canceled = 32
     }
 }

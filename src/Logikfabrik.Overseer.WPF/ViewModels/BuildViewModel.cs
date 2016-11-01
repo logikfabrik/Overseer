@@ -11,6 +11,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     using Caliburn.Micro;
     using EnsureThat;
     using Humanizer;
+    using Overseer.Extensions;
 
     /// <summary>
     /// The <see cref="BuildViewModel" /> class.
@@ -27,7 +28,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
 
             Branch = build.Branch;
 
-            VersionOrNumber = !string.IsNullOrWhiteSpace(build.Version) ? build.Version : build.Number;
+            VersionNumber = build.GetVersionNumber();
 
             Description = GetDescription(build);
 
@@ -51,12 +52,12 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         public string Branch { get; }
 
         /// <summary>
-        /// Gets the version or number.
+        /// Gets the version number.
         /// </summary>
         /// <value>
-        /// The version or number.
+        /// The version number.
         /// </value>
-        public string VersionOrNumber { get; }
+        public string VersionNumber { get; }
 
         /// <summary>
         /// Gets when built.

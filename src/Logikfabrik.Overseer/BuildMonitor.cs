@@ -144,10 +144,10 @@ namespace Logikfabrik.Overseer
                         OnError(new BuildMonitorErrorEventArgs());
                     }
 
-                    const int delayInSeconds = 5;
-                    const int delayInMilliseconds = delayInSeconds * 1000;
+                    const int delayForSeconds = 5;
+                    const int delayForMilliseconds = delayForSeconds * 1000;
 
-                    await Task.Delay(delayInMilliseconds);
+                    await Task.Delay(delayForMilliseconds);
                 }
             },
             _cancellationTokenSource.Token);

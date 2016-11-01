@@ -47,7 +47,7 @@ namespace Logikfabrik.Overseer.WPF
                 return;
             }
 
-            _notificationManager.ShowNotification(new BuildNotificationViewModel(build));
+            _notificationManager.ShowNotification(new BuildNotificationViewModel(project, build));
         }
 
         private bool ShouldShowNotification(IProject project, IBuild build)

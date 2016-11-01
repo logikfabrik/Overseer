@@ -37,5 +37,15 @@ namespace Logikfabrik.Overseer.Extensions
 
             return status == BuildStatus.InProgress;
         }
+
+        /// <summary>
+        /// Gets the version number of the specified <see cref="IBuild" />.
+        /// </summary>
+        /// <param name="build">The build.</param>
+        /// <returns>The version number.</returns>
+        public static string GetVersionNumber(this IBuild build)
+        {
+            return !string.IsNullOrWhiteSpace(build.Version) ? build.Version : build.Number;
+        }
     }
 }

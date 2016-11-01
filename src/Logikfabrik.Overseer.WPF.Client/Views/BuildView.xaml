@@ -13,7 +13,7 @@
     <StackPanel>
         <StackPanel Margin="10 5 10 10">
             <WrapPanel>
-                <TextBlock Text="{Binding VersionOrNumber, Mode=OneTime}"
+                <TextBlock Text="{Binding VersionNumber, Mode=OneTime}"
                            Style="{StaticResource TextBlockHeading2DefaultStyle}" />
                 <TextBlock Text="{Binding Branch, Mode=OneTime}"
                            Style="{StaticResource TextBlockHeading2DefaultStyle}" />

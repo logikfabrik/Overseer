@@ -10,6 +10,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     using System.Windows.Threading;
     using Caliburn.Micro;
     using EnsureThat;
+    using Overseer.Extensions;
 
     /// <summary>
     /// The <see cref="BuildNotificationViewModel" /> class.
@@ -19,52 +20,54 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// <summary>
         /// Initializes a new instance of the <see cref="BuildNotificationViewModel" /> class.
         /// </summary>
+        /// <param name="project">The project.</param>
         /// <param name="build">The build.</param>
-        public BuildNotificationViewModel(IBuild build)
+        public BuildNotificationViewModel(IProject project, IBuild build)
         {
+            Ensure.That(project).IsNotNull();
             Ensure.That(build).IsNotNull();
 
-            BuildViewModel = new BuildViewModel(build);
+            const int showForSeconds = 20;
 
-            var dispatcher = new DispatcherTimer(TimeSpan.FromSeconds(5), DispatcherPriority.Normal, (sender, args) => { Close(); }, Application.Current.Dispatcher);
+            var dispatcher = new DispatcherTimer(TimeSpan.FromSeconds(showForSeconds), DispatcherPriority.Normal, (sender, args) => { Close(); }, Application.Current.Dispatcher);
 
             dispatcher.Start();
 
-            Notification = GetNotification(build);
+            Project = GetProject(project, build);
+            Message = GetMessage(build);
+            Status = build.Status;
         }
 
         /// <summary>
-        /// Gets the build view model.
+        /// Gets the project.
         /// </summary>
         /// <value>
-        /// The build view model.
+        /// The project.
         /// </value>
-        public BuildViewModel BuildViewModel { get; }
+        public string Project { get; }
 
         /// <summary>
-        /// Gets the notification.
+        /// Gets the message.
         /// </summary>
         /// <value>
-        /// The notification.
+        /// The message.
         /// </value>
-        public string Notification { get; }
+        public string Message { get; }
 
         /// <summary>
-        /// Closes this instance.
+        /// Gets the status.
         /// </summary>
-        public void Close()
+        /// <value>
+        /// The status.
+        /// </value>
+        public BuildStatus? Status { get; }
+
+        private static string GetProject(IProject project, IBuild build)
         {
-            var popup = GetView() as Popup;
-
-            if (popup == null)
-            {
-                return;
-            }
-
-            popup.IsOpen = false;
+            return $"{project.Name} {build.GetVersionNumber()}";
         }
 
-        private static string GetNotification(IBuild build)
+        private static string GetMessage(IBuild build)
         {
             // ReSharper disable once SwitchStatementMissingSomeCases
             switch (build.Status)
@@ -84,6 +87,18 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
                 default:
                     return null;
             }
+        }
+
+        private void Close()
+        {
+            var popup = GetView() as Popup;
+
+            if (popup == null)
+            {
+                return;
+            }
+
+            popup.IsOpen = false;
         }
     }
 }

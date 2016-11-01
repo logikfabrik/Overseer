@@ -91,6 +91,7 @@
     <Compile Include="Controls\Icon.xaml.cs">
       <DependentUpon>Icon.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Converters\BuildStatusToStyleConverter.cs" />
     <Compile Include="Extensions\HyperlinkExtensions.cs" />
     <Compile Include="IBuildNotificationManager.cs" />
     <Compile Include="INotificationManager.cs" />
