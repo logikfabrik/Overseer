@@ -5,17 +5,48 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" d:DesignHeight="300" d:DesignWidth="300">
-    <ScrollViewer Style="{StaticResource ScrollViewerDefaultStyle}">
-        <StackPanel Margin="25">
-            <TextBlock Text="Select your provider" 
-                       Style="{StaticResource TextBlockHeading0DefaultStyle}" />
-            <TextBlock Text="Find your CI provider, set it up and have Overseer watch for changes" 
-                       Style="{StaticResource TextBlockHeading2DefaultStyle}" />
+    <UserControl.Resources>
+        <Style x:Key="TextBlockStyle"
+               TargetType="{x:Type TextBlock}">
+            <Setter Property="Foreground" 
+                    Value="#FFFFFFFF" />
+            <Setter Property="TextWrapping" 
+                    Value="WrapWithOverflow" />
+        </Style>
+        <Style x:Key="HeadingTextBlockStyle" 
+               BasedOn="{StaticResource TextBlockStyle}" 
+               TargetType="{x:Type TextBlock}">
+            <Setter Property="FontSize" 
+                    Value="24" />
+            <Setter Property="FontWeight" 
+                    Value="SemiBold" />
+        </Style>
+        <Style x:Key="SummaryTextBlockStyle" 
+               BasedOn="{StaticResource TextBlockStyle}" 
+               TargetType="{x:Type TextBlock}">
+            <Setter Property="FontSize" 
+                    Value="16" />
+        </Style>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" 
+                    Margin="20 10">
+            <StackPanel Margin="0 0 0 30">
+                <TextBlock Text="Select provider type" 
+                           Style="{StaticResource HeadingTextBlockStyle}" />
+                <TextBlock Text="Select your type of CI provider, and set up a connection" 
+                           Style="{StaticResource SummaryTextBlockStyle}" />
+            </StackPanel>
             <ItemsControl Focusable="False" 
                           ItemsSource="{Binding BuildProviderViewModels, Mode=OneTime}">
                 <ItemsControl.ItemContainerStyle>
                     <Style>
-                        <Setter Property="FrameworkElement.Margin" Value="0 0 0 5" />
+                        <Setter Property="FrameworkElement.Margin" Value="0 0 10 10" />
                     </Style>
                 </ItemsControl.ItemContainerStyle>
                 <ItemsControl.ItemTemplate>
@@ -26,13 +57,16 @@
                 </ItemsControl.ItemTemplate>
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
-                        <UniformGrid Columns="2" />
+                        <WrapPanel />
                     </ItemsPanelTemplate>
                 </ItemsControl.ItemsPanel>
             </ItemsControl>
+        </StackPanel>
+        <StackPanel Grid.Row="2"
+                    Margin="20 10">
             <Button x:Name="ViewConnections" 
                     Content="Cancel" 
                     Style="{StaticResource ButtonDefaultStyle}" />
         </StackPanel>
-    </ScrollViewer>
+    </Grid>
 </UserControl>

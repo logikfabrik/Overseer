@@ -53,7 +53,8 @@ namespace Logikfabrik.Overseer.WPF
                                 new CustomPopupPlacement(new Point(workArea.Right - size.Width, workArea.Bottom - size.Height), PopupPrimaryAxis.Horizontal)
                             };
                         })
-                    }
+                    },
+                    { "PopupAnimation", PopupAnimation.Fade }
                 };
 
                 _windowManager.ShowPopup(viewModel, null, settings);

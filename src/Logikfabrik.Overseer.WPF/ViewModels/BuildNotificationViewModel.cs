@@ -27,7 +27,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             Ensure.That(project).IsNotNull();
             Ensure.That(build).IsNotNull();
 
-            const int showForSeconds = 20;
+            const int showForSeconds = 10;
 
             var dispatcher = new DispatcherTimer(TimeSpan.FromSeconds(showForSeconds), DispatcherPriority.Normal, (sender, args) => { Close(); }, Application.Current.Dispatcher);
 

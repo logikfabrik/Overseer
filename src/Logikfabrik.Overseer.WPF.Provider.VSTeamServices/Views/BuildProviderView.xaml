@@ -4,17 +4,26 @@
              xmlns:c="clr-namespace:Logikfabrik.Overseer.WPF.Controls;assembly=Logikfabrik.Overseer.WPF"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             mc:Ignorable="d" d:DesignHeight="150" d:DesignWidth="200">
+             mc:Ignorable="d" d:DesignHeight="150" d:DesignWidth="200"
+             Height="125"
+             Width="125">
     <Button x:Name="AddConnection"
-            Style="{StaticResource ButtonDefaultStyle}">
-        <StackPanel>
-            <c:Icon Width="30" 
+            Style="{StaticResource ButtonDefaultStyle}" 
+            VerticalContentAlignment="Top">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="70" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <c:Icon Grid.Row="0" 
+                    Width="30" 
                     Height="30" 
                     Margin="10"
                     Data="F 1 M 466.627,44.571 L 355.439,0 161.359,189.002 44.486,100.034 0.044,122.385 0,355.698 44.232,377.887 161.01,288.992 355.567,477.821 466.669,433.425 466.627,44.571 Z M 55.593,288.954 L 55.527,189.097 111.077,238.689 55.593,288.954 Z M 233.315,238.651 L 344.373,155.63 344.416,322.325 233.315,238.651 Z" />
-            <TextBlock Text="Visual Studio Team Services" 
+            <TextBlock Grid.Row="1" 
+                       Text="Visual Studio Team Services" 
                        TextAlignment="Center"
                        Style="{StaticResource TextBlockDefaultStyle}" />
-        </StackPanel>
+        </Grid>
     </Button>
 </UserControl>

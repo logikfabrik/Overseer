@@ -4,7 +4,9 @@
              Height="150" 
              Width="400">
     <UserControl.Resources>
-        <SolidColorBrush x:Key="BuildBorder.InProgressOrSucceeded.Border" 
+        <SolidColorBrush x:Key="BuildBorder.InProgress.Border" 
+                         Color="#FF5500FF" />
+        <SolidColorBrush x:Key="BuildBorder.Succeeded.Border" 
                          Color="#FFAAFF00" />
         <SolidColorBrush x:Key="BuildBorder.Stopped.Border" 
                          Color="#FFFFFF00" />
@@ -14,37 +16,35 @@
                TargetType="{x:Type Border}">
             <Setter Property="BorderThickness" 
                     Value="5 0 0 0" />
+            <Setter Property="Margin" 
+                    Value="10" />
             <Setter Property="Background">
                 <Setter.Value>
                     <SolidColorBrush Color="#FF444444" />
                 </Setter.Value>
             </Setter>
+            <Setter Property="Effect">
+                <Setter.Value>
+                    <DropShadowEffect Color="#FF444444" 
+                                      ShadowDepth="2" 
+                                      BlurRadius="2" 
+                                      Opacity="0.4" />
+                </Setter.Value>
+            </Setter>
         </Style>
+        <!-- ReSharper disable once Xaml.RedundantResource -->
         <Style x:Key="BuildSucceededBorderStyle" 
                BasedOn="{StaticResource BuildBorderStyle}"
                TargetType="{x:Type Border}">
             <Setter Property="BorderBrush" 
-                    Value="{StaticResource BuildBorder.InProgressOrSucceeded.Border}" />
+                    Value="{StaticResource BuildBorder.Succeeded.Border}" />
         </Style>
         <!-- ReSharper disable once Xaml.RedundantResource -->
         <Style x:Key="BuildInProgressBorderStyle" 
-               BasedOn="{StaticResource BuildSucceededBorderStyle}"
+               BasedOn="{StaticResource BuildBorderStyle}"
                TargetType="{x:Type Border}">
-            <Style.Triggers>
-                <Trigger Property="Visibility" Value="Visible">
-                    <Trigger.EnterActions>
-                        <BeginStoryboard>
-                            <Storyboard>
-                                <ColorAnimation AutoReverse="True" 
-                                                RepeatBehavior="Forever" 
-                                                Storyboard.TargetProperty="BorderBrush.Color" 
-                                                Duration="00:00:01" 
-                                                To="Transparent" />
-                            </Storyboard>
-                        </BeginStoryboard>
-                    </Trigger.EnterActions>
-                </Trigger>
-            </Style.Triggers>
+            <Setter Property="BorderBrush" 
+                    Value="{StaticResource BuildBorder.InProgress.Border}" />
         </Style>
         <!-- ReSharper disable once Xaml.RedundantResource -->
         <Style x:Key="BuildFailedBorderStyle" 
@@ -112,7 +112,8 @@
             </StackPanel>
             <StackPanel Grid.Row="2"
                         Margin="20 10">
-                <TextBlock Style="{StaticResource OverseerTextBlockStyle}">Overseer</TextBlock>
+                <TextBlock Text="Overseer" 
+                           Style="{StaticResource OverseerTextBlockStyle}" />
             </StackPanel>
         </Grid>
     </Border>
