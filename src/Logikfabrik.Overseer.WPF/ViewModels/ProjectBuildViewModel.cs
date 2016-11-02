@@ -123,7 +123,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
 
             if (e.Builds.Any())
             {
-                BuildViewModel = new BuildViewModel(e.Builds.First());
+                BuildViewModel = new BuildViewModel(e.Project, e.Builds.First());
             }
 
             IsBusy = false;

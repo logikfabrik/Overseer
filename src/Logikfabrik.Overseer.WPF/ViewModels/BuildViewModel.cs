@@ -4,10 +4,8 @@
 
 namespace Logikfabrik.Overseer.WPF.ViewModels
 {
-    using System;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Text;
     using Caliburn.Micro;
     using EnsureThat;
     using Humanizer;
@@ -21,19 +19,42 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// <summary>
         /// Initializes a new instance of the <see cref="BuildViewModel" /> class.
         /// </summary>
+        /// <param name="project">The project.</param>
         /// <param name="build">The build.</param>
-        public BuildViewModel(IBuild build)
+        public BuildViewModel(IProject project, IBuild build)
         {
+            Ensure.That(project).IsNotNull();
             Ensure.That(build).IsNotNull();
 
-            Branch = build.Branch;
-
-            VersionNumber = build.GetVersionNumber();
-
-            Description = GetDescription(build);
-
+            BuildName = GetBuildName(project, build);
+            Message = GetMessage(build);
+            Status = build.Status;
             ChangeViewModels = build.LastChanges.Select(lastChange => new ChangeViewModel(lastChange));
         }
+
+        /// <summary>
+        /// Gets the build name.
+        /// </summary>
+        /// <value>
+        /// The build name.
+        /// </value>
+        public string BuildName { get; }
+
+        /// <summary>
+        /// Gets the message.
+        /// </summary>
+        /// <value>
+        /// The message.
+        /// </value>
+        public string Message { get; }
+
+        /// <summary>
+        /// Gets the status.
+        /// </summary>
+        /// <value>
+        /// The status.
+        /// </value>
+        public BuildStatus? Status { get; }
 
         /// <summary>
         /// Gets the change view models.
@@ -43,59 +64,34 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// </value>
         public IEnumerable<ChangeViewModel> ChangeViewModels { get; }
 
-        /// <summary>
-        /// Gets the branch.
-        /// </summary>
-        /// <value>
-        /// The branch.
-        /// </value>
-        public string Branch { get; }
-
-        /// <summary>
-        /// Gets the version number.
-        /// </summary>
-        /// <value>
-        /// The version number.
-        /// </value>
-        public string VersionNumber { get; }
-
-        /// <summary>
-        /// Gets when built.
-        /// </summary>
-        /// <value>
-        /// When built.
-        /// </value>
-        public string Description { get; }
-
-        private static string GetDescription(IBuild build)
+        private static string GetBuildName(IProject project, IBuild build)
         {
-            var builder = new StringBuilder();
+            return $"{project.Name} {build.GetVersionNumber()} {(!string.IsNullOrWhiteSpace(build.Branch) ? $"({build.Branch})" : string.Empty)}";
+        }
 
-            if (build.Started.HasValue && build.Finished.HasValue)
-            {
-                builder.Append($"Built {build.Started.Humanize()}");
-                builder.Append($" in {(build.Finished.Value - build.Started.Value).Humanize()}");
+        private static string GetMessage(IBuild build)
+        {
+            var buildTime = build.GetBuildTime();
 
-                if (!string.IsNullOrWhiteSpace(build.RequestedBy))
-                {
-                    builder.Append($" for {build.RequestedBy}");
-                }
-            }
-            else if (build.Started.HasValue)
-            {
-                builder.Append($"Building since {(DateTime.UtcNow - build.Started.Value).Humanize()} ago");
+            string message = null;
 
-                if (!string.IsNullOrWhiteSpace(build.RequestedBy))
-                {
-                    builder.Append($" for {build.RequestedBy}");
-                }
-            }
-            else
+            // ReSharper disable once SwitchStatementMissingSomeCases
+            switch (build.Status)
             {
-                // TODO: Build has no started or finished time. What to report?
+                case BuildStatus.InProgress:
+                    message = $"In progress {(build.Started.HasValue ? build.Started.Humanize() : string.Empty)} {(buildTime.HasValue ? $"since {buildTime.Value.Humanize()}" : string.Empty)}";
+                    break;
+
+                case BuildStatus.Stopped:
+                case BuildStatus.Succeeded:
+                case BuildStatus.Failed:
+                    message = $"{build.Status} {(build.Started.HasValue ? build.Started.Humanize() : string.Empty)} {(buildTime.HasValue ? $"in {buildTime.Value.Humanize()}" : string.Empty)}";
+                    break;
             }
 
-            return builder.ToString();
+            return !string.IsNullOrWhiteSpace(message)
+                ? $"{message} {(!string.IsNullOrWhiteSpace(build.RequestedBy) ? $"for {build.RequestedBy}" : string.Empty)}"
+                : null;
         }
     }
 }

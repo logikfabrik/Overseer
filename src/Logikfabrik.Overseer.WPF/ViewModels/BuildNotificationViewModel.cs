@@ -33,18 +33,18 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
 
             dispatcher.Start();
 
-            Project = GetProject(project, build);
+            BuildName = GetBuildName(project, build);
             Message = GetMessage(build);
             Status = build.Status;
         }
 
         /// <summary>
-        /// Gets the project.
+        /// Gets the build name.
         /// </summary>
         /// <value>
-        /// The project.
+        /// The build name.
         /// </value>
-        public string Project { get; }
+        public string BuildName { get; }
 
         /// <summary>
         /// Gets the message.
@@ -62,9 +62,9 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// </value>
         public BuildStatus? Status { get; }
 
-        private static string GetProject(IProject project, IBuild build)
+        private static string GetBuildName(IProject project, IBuild build)
         {
-            return $"{project.Name} {build.GetVersionNumber()}";
+            return $"{project.Name} {build.GetVersionNumber()} {(!string.IsNullOrWhiteSpace(build.Branch) ? $"({build.Branch})" : string.Empty)}";
         }
 
         private static string GetMessage(IBuild build)

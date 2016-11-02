@@ -7,40 +7,106 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              mc:Ignorable="d" d:DesignHeight="300" d:DesignWidth="300">
     <UserControl.Resources>
-        <SolidColorBrush x:Key="UserControl.Static.Background" 
-                         Color="{x:Static s:CommonColors.ControlStaticLightBackground}" />
+        <SolidColorBrush x:Key="BuildBorder.InProgress.Border" 
+                         Color="#FF5500FF" />
+        <SolidColorBrush x:Key="BuildBorder.Succeeded.Border" 
+                         Color="#FFAAFF00" />
+        <SolidColorBrush x:Key="BuildBorder.Stopped.Border" 
+                         Color="#FFFFFF00" />
+        <SolidColorBrush x:Key="BuildBorder.Failed.Border" 
+                         Color="#FFFF3300" />
+        <Style x:Key="BuildBorderStyle" 
+               TargetType="{x:Type Border}">
+            <Setter Property="BorderThickness" 
+                    Value="5 0 0 0" />
+            <Setter Property="Background">
+                <Setter.Value>
+                    <SolidColorBrush Color="#FF444444" />
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <!-- ReSharper disable once Xaml.RedundantResource -->
+        <Style x:Key="BuildSucceededBorderStyle" 
+               BasedOn="{StaticResource BuildBorderStyle}"
+               TargetType="{x:Type Border}">
+            <Setter Property="BorderBrush" 
+                    Value="{StaticResource BuildBorder.Succeeded.Border}" />
+        </Style>
+        <!-- ReSharper disable once Xaml.RedundantResource -->
+        <Style x:Key="BuildInProgressBorderStyle" 
+               BasedOn="{StaticResource BuildBorderStyle}"
+               TargetType="{x:Type Border}">
+            <Setter Property="BorderBrush" 
+                    Value="{StaticResource BuildBorder.InProgress.Border}" />
+        </Style>
+        <!-- ReSharper disable once Xaml.RedundantResource -->
+        <Style x:Key="BuildFailedBorderStyle" 
+               BasedOn="{StaticResource BuildBorderStyle}"
+               TargetType="{x:Type Border}">
+            <Setter Property="BorderBrush" 
+                    Value="{StaticResource BuildBorder.Failed.Border}" />
+        </Style>
+        <!-- ReSharper disable once Xaml.RedundantResource -->
+        <Style x:Key="BuildStoppedBorderStyle" 
+               BasedOn="{StaticResource BuildBorderStyle}"
+               TargetType="{x:Type Border}">
+            <Setter Property="BorderBrush" 
+                    Value="{StaticResource BuildBorder.Stopped.Border}" />
+        </Style>
+        <Style x:Key="TextBlockStyle"
+               TargetType="{x:Type TextBlock}">
+            <Setter Property="Foreground" 
+                    Value="#FFFFFFFF" />
+            <Setter Property="TextWrapping" 
+                    Value="Wrap" />
+        </Style>
+        <Style x:Key="BuildNameTextBlockStyle" 
+               BasedOn="{StaticResource TextBlockStyle}" 
+               TargetType="{x:Type TextBlock}">
+            <Setter Property="FontSize" 
+                    Value="16" />
+            <Setter Property="FontWeight" 
+                    Value="SemiBold" />
+        </Style>
+        <Style x:Key="MessageTextBlockStyle" 
+               BasedOn="{StaticResource TextBlockStyle}" 
+               TargetType="{x:Type TextBlock}">
+            <Setter Property="FontSize" 
+                    Value="16" />
+        </Style>
     </UserControl.Resources>
-    <StackPanel>
-        <StackPanel Margin="10 5 10 10">
-            <WrapPanel>
-                <TextBlock Text="{Binding VersionNumber, Mode=OneTime}"
-                           Style="{StaticResource TextBlockHeading2DefaultStyle}" />
-                <TextBlock Text="{Binding Branch, Mode=OneTime}"
-                           Style="{StaticResource TextBlockHeading2DefaultStyle}" />
-            </WrapPanel>
-            <TextBlock x:Name="Description" 
-                       Style="{StaticResource TextBlockDetailDefaultStyle}" />
+    <Border>
+        <Border.Style>
+            <MultiBinding Converter="{StaticResource BuildStatusToStyleConverter}" ConverterParameter="Build{0}BorderStyle">
+                <Binding RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType=UserControl}"/>
+                <Binding Path="Status" />
+            </MultiBinding>
+        </Border.Style>
+        <StackPanel Margin="20 10">
+            <TextBlock x:Name="BuildName"
+                       Style="{StaticResource BuildNameTextBlockStyle}" />
+            <TextBlock x:Name="Message"
+                       Style="{StaticResource MessageTextBlockStyle}" />
+            <ItemsControl Focusable="False" 
+                          ItemsSource="{Binding ChangeViewModels}">
+                <ItemsControl.ItemContainerStyle>
+                    <Style>
+                        <Setter Property="FrameworkElement.Margin" 
+                                Value="0 0 0 10" />
+                    </Style>
+                </ItemsControl.ItemContainerStyle>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <ContentControl Focusable="False" 
+                                        cal:View.Model="{Binding}" />
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel />
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+            </ItemsControl>
         </StackPanel>
-        <ItemsControl Focusable="False" 
-                      ItemsSource="{Binding ChangeViewModels, Mode=OneTime}"
-                      Background="{StaticResource UserControl.Static.Background}">
-            <ItemsControl.ItemContainerStyle>
-                <Style>
-                    <Setter Property="FrameworkElement.Margin" 
-                            Value="10" />
-                </Style>
-            </ItemsControl.ItemContainerStyle>
-            <ItemsControl.ItemTemplate>
-                <DataTemplate>
-                    <ContentControl Focusable="False" 
-                                    cal:View.Model="{Binding}" />
-                </DataTemplate>
-            </ItemsControl.ItemTemplate>
-            <ItemsControl.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <StackPanel />
-                </ItemsPanelTemplate>
-            </ItemsControl.ItemsPanel>
-        </ItemsControl>
-    </StackPanel>
+    </Border>
 </UserControl>

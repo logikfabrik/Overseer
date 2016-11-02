@@ -4,6 +4,8 @@
 
 namespace Logikfabrik.Overseer.Extensions
 {
+    using System;
+
     /// <summary>
     /// The <see cref="BuildExtensions" /> class.
     /// </summary>
@@ -46,6 +48,26 @@ namespace Logikfabrik.Overseer.Extensions
         public static string GetVersionNumber(this IBuild build)
         {
             return !string.IsNullOrWhiteSpace(build.Version) ? build.Version : build.Number;
+        }
+
+        /// <summary>
+        /// Gets the build time.
+        /// </summary>
+        /// <param name="build">The build.</param>
+        /// <returns>The build time.</returns>
+        public static TimeSpan? GetBuildTime(this IBuild build)
+        {
+            if (build.IsInProgress())
+            {
+                return DateTime.UtcNow - build.Started;
+            }
+
+            if (build.IsFinished())
+            {
+                return build.Finished - build.Started;
+            }
+
+            return null;
         }
     }
 }

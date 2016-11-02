@@ -7,6 +7,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     using System;
     using Caliburn.Micro;
     using EnsureThat;
+    using Humanizer;
 
     /// <summary>
     /// The <see cref="BuildViewModel" /> class.
@@ -22,34 +23,17 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             Ensure.That(change).IsNotNull();
 
             Id = change.Id;
-            Changed = change.Changed;
-            ChangedBy = change.ChangedBy;
             Comment = change.Comment;
+            Message = GetMessage(change);
         }
 
         /// <summary>
-        /// Gets or sets the identifier.
+        /// Gets the identifier.
         /// </summary>
         /// <value>
         /// The identifier.
         /// </value>
-        public string Id { get; set; }
-
-        /// <summary>
-        /// Gets the changed date.
-        /// </summary>
-        /// <value>
-        /// The changed date.
-        /// </value>
-        public DateTime? Changed { get; }
-
-        /// <summary>
-        /// Gets the name of whoever made the last change.
-        /// </summary>
-        /// <value>
-        /// The name of whoever made the last change.
-        /// </value>
-        public string ChangedBy { get; }
+        public string Id { get; }
 
         /// <summary>
         /// Gets the comment.
@@ -58,5 +42,18 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// The comment.
         /// </value>
         public string Comment { get; }
+
+        /// <summary>
+        /// Gets the message.
+        /// </summary>
+        /// <value>
+        /// The message.
+        /// </value>
+        public string Message { get; }
+
+        private static string GetMessage(IChange change)
+        {
+            return $"{(!string.IsNullOrWhiteSpace(change.ChangedBy) ? $"by {change.ChangedBy}" : string.Empty)} {(change.Changed.HasValue ? $"{(DateTime.UtcNow - change.Changed).Value.Humanize()} ago" : string.Empty)}";
+        }
     }
 }

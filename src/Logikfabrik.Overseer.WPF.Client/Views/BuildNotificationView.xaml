@@ -25,10 +25,10 @@
             </Setter>
             <Setter Property="Effect">
                 <Setter.Value>
-                    <DropShadowEffect Color="#FF444444" 
+                    <DropShadowEffect Color="#FF000000" 
                                       ShadowDepth="2" 
                                       BlurRadius="2" 
-                                      Opacity="0.4" />
+                                      Opacity="0.2" />
                 </Setter.Value>
             </Setter>
         </Style>
@@ -65,9 +65,9 @@
             <Setter Property="Foreground" 
                     Value="#FFFFFFFF" />
             <Setter Property="TextWrapping" 
-                    Value="WrapWithOverflow" />
+                    Value="Wrap" />
         </Style>
-        <Style x:Key="ProjectTextBlockStyle" 
+        <Style x:Key="BuildNameTextBlockStyle" 
                BasedOn="{StaticResource TextBlockStyle}" 
                TargetType="{x:Type TextBlock}">
             <Setter Property="FontSize" 
@@ -105,8 +105,8 @@
             </Grid.RowDefinitions>
             <StackPanel Grid.Row="0"
                         Margin="20 10">
-                <TextBlock x:Name="Project" 
-                           Style="{StaticResource ProjectTextBlockStyle}" />
+                <TextBlock x:Name="BuildName" 
+                           Style="{StaticResource BuildNameTextBlockStyle}" />
                 <TextBlock x:Name="Message" 
                            Style="{StaticResource MessageTextBlockStyle}" />
             </StackPanel>

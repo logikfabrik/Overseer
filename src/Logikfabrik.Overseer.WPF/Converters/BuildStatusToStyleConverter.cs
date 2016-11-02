@@ -18,7 +18,7 @@ namespace Logikfabrik.Overseer.WPF.Converters
         {
             var element = (FrameworkElement)values[0];
 
-            var status = (BuildStatus?)values[1];
+            var status = values[1] as BuildStatus?;
 
             if (!status.HasValue)
             {
