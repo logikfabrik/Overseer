@@ -1,8 +1,5 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:s="clr-namespace:Logikfabrik.Overseer.WPF.Styles">
-    <SolidColorBrush x:Key="Window.Static.Background" 
-                     Color="{x:Static s:CommonColors.WindowStaticBackground}" />
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <Style x:Key="WindowDefaultStyle" 
            TargetType="{x:Type Window}">
         <Setter Property="Width" 
@@ -13,8 +10,11 @@
                 Value="650" />
         <Setter Property="MinHeight" 
                 Value="400" />
-        <Setter Property="Background" 
-                Value="{StaticResource Window.Static.Background}" />
+        <Setter Property="Background">
+            <Setter.Value>
+                <SolidColorBrush Color="#FF444444" />
+            </Setter.Value>
+        </Setter>
         <Setter Property="UseLayoutRounding" 
                 Value="True" />
     </Style>

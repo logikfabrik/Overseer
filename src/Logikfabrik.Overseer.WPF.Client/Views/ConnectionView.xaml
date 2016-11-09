@@ -8,42 +8,88 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              mc:Ignorable="d" d:DesignHeight="300" d:DesignWidth="300">
     <UserControl.Resources>
-        <SolidColorBrush x:Key="UserControl.Static.Background" 
-                         Color="{x:Static s:CommonColors.ControlStaticDarkBackground}" />
+        <Style x:Key="TextBlockStyle"
+               TargetType="{x:Type TextBlock}">
+            <Setter Property="Foreground" 
+                    Value="#FFFFFFFF" />
+            <Setter Property="TextWrapping" 
+                    Value="Wrap" />
+        </Style>
+        <Style x:Key="ConnectionNameTextBlockStyle" 
+               BasedOn="{StaticResource TextBlockStyle}" 
+               TargetType="{x:Type TextBlock}">
+            <Setter Property="FontSize" 
+                    Value="16" />
+            <Setter Property="FontWeight" 
+                    Value="Bold" />
+            <Setter Property="TextAlignment" 
+                    Value="Center" />
+            <Setter Property="Margin" 
+                    Value="10 5" />
+        </Style>
+        <Style x:Key="ConnectionBorderStyle"
+               TargetType="{x:Type Border}">
+            <Setter Property="BorderBrush">
+                <Setter.Value>
+                    <SolidColorBrush Color="#FF595959" />
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Background">
+                <Setter.Value>
+                    <SolidColorBrush Color="#FF525252" />
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="ConnectionHeaderBorderStyle"
+               BasedOn="{StaticResource ConnectionBorderStyle}"
+               TargetType="{x:Type Border}">
+            <Setter Property="BorderThickness" 
+                    Value="1" />
+            <Setter Property="Padding" 
+                    Value="10 0" />
+        </Style>
+        <Style x:Key="ConnectionContentBorderStyle"
+               BasedOn="{StaticResource ConnectionBorderStyle}"
+               TargetType="{x:Type Border}">
+            <Setter Property="BorderThickness" 
+                    Value="1 0 1 1" />
+            <Setter Property="Padding" 
+                    Value="10 10 10 0" />
+        </Style>
     </UserControl.Resources>
-    <Grid Background="{StaticResource UserControl.Static.Background}">
-        <Expander Style="{StaticResource ExpanderDefaultStyle}">
-            <Expander.Header>
+
+    <Expander Style="{StaticResource ExpanderDefaultStyle}">
+        <Expander.Header>
+            <Border Style="{StaticResource ConnectionHeaderBorderStyle}">
                 <Grid Grid.Column="0">
                     <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="Auto" />
                     </Grid.ColumnDefinitions>
-                    <TextBlock Grid.Column="0" 
-                               Style="{StaticResource TextBlockHeading1DefaultStyle}"
+                    <c:Icon 
+                                    Height="10"
+                                    Width="10"
+                             Foreground="#FFFFFFFF"
+                                    Data="{StaticResource IconArrowUp}"  />
+                    <TextBlock Grid.Column="1" 
+                               Style="{StaticResource ConnectionNameTextBlockStyle}"
                                Text="{Binding Name, Mode=OneTime}" />
-                    <StackPanel Grid.Column="1" 
-                                Orientation="Horizontal" >
-                        <Button Style="{StaticResource ButtonDefaultStyle}" 
-                                Visibility="{Binding IsExpanded, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Expander}}, Converter={StaticResource BooleanToVisibilityConverter}}">
-                            <c:Icon Data="F 1 M 21.536,3.536 L 18,0 10.767,7.234 3.536,0 0,3.536 7.232,10.769 0,18 3.536,21.536 10.767,14.304 18,21.536 21.536,18 14.302,10.769 Z" />
-                        </Button>
-                        <Button Style="{StaticResource ButtonDefaultStyle}" 
-                                Visibility="{Binding IsExpanded, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Expander}}, Converter={StaticResource BooleanToVisibilityConverter}}">
-                            <c:Icon Data="F 1 M 21.536,3.536 L 18,0 10.767,7.234 3.536,0 0,3.536 7.232,10.769 0,18 3.536,21.536 10.767,14.304 18,21.536 21.536,18 14.302,10.769 Z" />
-                        </Button>
-                        <c:BusyIndicator Visibility="{Binding IsBusy, Converter={StaticResource BooleanToVisibilityConverter}}" />
-                    </StackPanel>
+                    <c:Icon Grid.Column="2" 
+                                    Height="10"
+                                    Width="10"
+                             Foreground="#FFFFFFFF" Data="{StaticResource IconMenu}"  />
                 </Grid>
-            </Expander.Header>
-            <Expander.Content>
+            </Border>
+        </Expander.Header>
+        <Expander.Content>
+            <Border Style="{StaticResource ConnectionContentBorderStyle}">
                 <ItemsControl Focusable="False" 
-                              ItemsSource="{Binding ProjectBuildViewModels, IsAsync=True}"
-                              Margin="0 5 0 0">
+                              ItemsSource="{Binding ProjectBuildViewModels, IsAsync=True}">
                     <ItemsControl.ItemContainerStyle>
                         <Style>
                             <Setter Property="FrameworkElement.Margin" 
-                                    Value="5 0 5 5" />
+                                    Value="0 0 0 10" />
                         </Style>
                     </ItemsControl.ItemContainerStyle>
                     <ItemsControl.ItemTemplate>
@@ -58,7 +104,7 @@
                         </ItemsPanelTemplate>
                     </ItemsControl.ItemsPanel>
                 </ItemsControl>
-            </Expander.Content>
-        </Expander>
-    </Grid>
+            </Border>
+        </Expander.Content>
+    </Expander>
 </UserControl>

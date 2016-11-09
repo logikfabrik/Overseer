@@ -22,15 +22,53 @@
                     Value="16" />
             <Setter Property="FontWeight" 
                     Value="SemiBold" />
+            <Setter Property="TextAlignment" 
+                    Value="Center" />
+            <Setter Property="Margin" 
+                    Value="10 5" />
+        </Style>
+        <Style x:Key="ProjectBorderStyle"
+               TargetType="{x:Type Border}">
+            <Setter Property="BorderThickness" 
+                    Value="1" />
+            <Setter Property="BorderBrush">
+                <Setter.Value>
+                    <SolidColorBrush Color="#FF616161" />
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Background">
+                <Setter.Value>
+                    <SolidColorBrush Color="#FF595959" />
+                </Setter.Value>
+            </Setter>
         </Style>
     </UserControl.Resources>
-    <StackPanel Margin="20 10">
-        <TextBlock x:Name="ProjectName" 
-                   Style="{StaticResource ProjectNameTextBlockStyle}" />
-        <ContentControl Focusable="False" 
-                        cal:View.Model="{Binding BuildViewModel}" />
-    </StackPanel>
-
+    <Border Style="{StaticResource ProjectBorderStyle}">
+        <StackPanel Margin="10 0">
+            <TextBlock x:Name="ProjectName" 
+                       Style="{StaticResource ProjectNameTextBlockStyle}" />
+            <ItemsControl Focusable="False" 
+                          ItemsSource="{Binding BuildViewModels}">
+                <ItemsControl.ItemContainerStyle>
+                    <Style>
+                        <Setter Property="FrameworkElement.Margin" 
+                                Value="0 0 0 10" />
+                    </Style>
+                </ItemsControl.ItemContainerStyle>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <ContentControl Focusable="False" 
+                                        cal:View.Model="{Binding}" />
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel />
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+            </ItemsControl>
+        </StackPanel>
+    </Border>
 
     <!--
     <Button Style="{StaticResource ButtonDefaultStyle}"

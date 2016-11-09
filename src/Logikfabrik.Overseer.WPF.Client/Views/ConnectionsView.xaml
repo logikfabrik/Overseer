@@ -11,13 +11,15 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        <ScrollViewer Style="{StaticResource ScrollViewerDefaultStyle}"
-                      Grid.Row="0">
+        <ScrollViewer Grid.Row="0"
+                      Style="{StaticResource ScrollViewerDefaultStyle}">
             <ItemsControl Focusable="False" 
-                          ItemsSource="{Binding ConnectionViewModels, Mode=OneTime}">
+                          ItemsSource="{Binding ConnectionViewModels, Mode=OneTime}"
+                          Margin="20 20 15 20">
                 <ItemsControl.ItemContainerStyle>
                     <Style>
-                        <Setter Property="FrameworkElement.Margin" Value="10 5" />
+                        <Setter Property="FrameworkElement.Margin" 
+                                    Value="0 0 0 5" />
                     </Style>
                 </ItemsControl.ItemContainerStyle>
                 <ItemsControl.ItemTemplate>

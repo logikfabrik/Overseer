@@ -4,6 +4,7 @@
 
 namespace Logikfabrik.Overseer.WPF.ViewModels
 {
+    using System.Collections.Generic;
     using System.Linq;
     using System.Windows;
     using Caliburn.Micro;
@@ -16,7 +17,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     {
         private readonly IBuildProvider _buildProvider;
         private readonly IProject _project;
-        private BuildViewModel _buildViewModel;
+        private IEnumerable<BuildViewModel> _buildViewModels;
         private bool _isBusy;
         private bool _isErrored;
 
@@ -50,22 +51,22 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         public string ProjectName => _project.Name;
 
         /// <summary>
-        /// Gets the build view model.
+        /// Gets the build view models.
         /// </summary>
         /// <value>
-        /// The build view model.
+        /// The build view models.
         /// </value>
-        public BuildViewModel BuildViewModel
+        public IEnumerable<BuildViewModel> BuildViewModels
         {
             get
             {
-                return _buildViewModel;
+                return _buildViewModels;
             }
 
             private set
             {
-                _buildViewModel = value;
-                NotifyOfPropertyChange(() => BuildViewModel);
+                _buildViewModels = value;
+                NotifyOfPropertyChange(() => BuildViewModels);
             }
         }
 
@@ -123,7 +124,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
 
             if (e.Builds.Any())
             {
-                BuildViewModel = new BuildViewModel(e.Project, e.Builds.First());
+                BuildViewModels = e.Builds.Select(build => new BuildViewModel(e.Project, build));
             }
 
             IsBusy = false;

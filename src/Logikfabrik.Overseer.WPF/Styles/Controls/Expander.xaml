@@ -53,7 +53,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ToggleButton}">
-                    <Grid>
+                    <!--<Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto" />
                             <ColumnDefinition Width="*" />
@@ -65,25 +65,27 @@
                                 Background="{TemplateBinding Background}"
                                 Padding="{TemplateBinding Padding}" >
                             <c:Icon x:Name="Icon"
+                                    Height="10"
+                                    Width="10"
                                     Foreground="{TemplateBinding Foreground}"
                                     Data="{StaticResource IconArrowUp}" />
-                        </Border>
+                        </Border>-->
                         <ContentPresenter x:Name="PART_ContentPresenter" 
                                           Grid.Column="1"
                                           Focusable="False" 
                                           RecognizesAccessKey="True" 
                                           HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
                                           VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
-                    </Grid>
+                    <!--</Grid>-->
                     <ControlTemplate.Triggers>
-                        <Trigger Property="IsChecked" 
+                        <!--<Trigger Property="IsChecked" 
                                     Value="True">
                             <Setter Property="Data" 
                                     TargetName="Icon"
                                     Value="{StaticResource IconArrowDown}">
                             </Setter>
-                        </Trigger>
-                        <Trigger Property="IsMouseOver" 
+                        </Trigger>-->
+                        <!--<Trigger Property="IsMouseOver" 
                                     Value="True">
                             <Setter Property="Background" 
                                     TargetName="PART_Border" 
@@ -118,7 +120,7 @@
                             <Setter Property="BorderBrush" 
                                     TargetName="PART_Border" 
                                     Value="{StaticResource Expander.Disabled.Border}" />
-                        </Trigger>
+                        </Trigger>-->
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
