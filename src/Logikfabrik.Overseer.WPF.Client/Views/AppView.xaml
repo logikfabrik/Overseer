@@ -45,7 +45,7 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <Border Grid.Row="0" Style="{StaticResource MenuBorderStyle}">
-            <TextBlock Text="Overseer" 
+            <TextBlock Text="Connections" 
                            Style="{StaticResource OverseerTextBlockStyle}" />
         </Border>
         <ContentControl Grid.Row="1" HorizontalAlignment="Stretch"
