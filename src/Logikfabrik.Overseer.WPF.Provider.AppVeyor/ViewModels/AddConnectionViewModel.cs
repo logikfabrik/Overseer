@@ -26,6 +26,14 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor.ViewModels
         }
 
         /// <summary>
+        /// Gets the view name.
+        /// </summary>
+        /// <value>
+        /// The view name.
+        /// </value>
+        public override string ViewName => "Add AppVeyor connection";
+
+        /// <summary>
         /// Gets or sets the token.
         /// </summary>
         /// <value>

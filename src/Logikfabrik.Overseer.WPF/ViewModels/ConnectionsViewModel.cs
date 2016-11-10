@@ -12,7 +12,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     /// <summary>
     /// The <see cref="ConnectionsViewModel" /> class.
     /// </summary>
-    public class ConnectionsViewModel : PropertyChangedBase
+    public class ConnectionsViewModel : ViewModel
     {
         private readonly IEventAggregator _eventAggregator;
 
@@ -33,6 +33,14 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
 
             buildMonitor.StartMonitoring();
         }
+
+        /// <summary>
+        /// Gets the view name.
+        /// </summary>
+        /// <value>
+        /// The view name.
+        /// </value>
+        public override string ViewName => "Connections";
 
         /// <summary>
         /// Gets the connections

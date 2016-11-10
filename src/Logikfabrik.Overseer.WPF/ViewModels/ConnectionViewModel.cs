@@ -79,6 +79,22 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             {
                 _isBusy = value;
                 NotifyOfPropertyChange(() => IsBusy);
+                NotifyOfPropertyChange(() => IsNotBusy);
+            }
+        }
+
+        public bool IsNotBusy
+        {
+            get
+            {
+                return !_isBusy;
+            }
+
+            set
+            {
+                _isBusy = !value;
+                NotifyOfPropertyChange(() => IsBusy);
+                NotifyOfPropertyChange(() => IsNotBusy);
             }
         }
 

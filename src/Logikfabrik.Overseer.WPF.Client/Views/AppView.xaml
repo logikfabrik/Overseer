@@ -10,7 +10,7 @@
             <Setter Property="TextWrapping" 
                     Value="Wrap" />
         </Style>
-        <Style x:Key="OverseerTextBlockStyle" 
+        <Style x:Key="ViewNameTextBlockStyle" 
                BasedOn="{StaticResource TextBlockStyle}" 
                TargetType="{x:Type TextBlock}">
             <Setter Property="FontSize" 
@@ -45,8 +45,8 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <Border Grid.Row="0" Style="{StaticResource MenuBorderStyle}">
-            <TextBlock Text="Connections" 
-                           Style="{StaticResource OverseerTextBlockStyle}" />
+            <TextBlock x:Name="ViewName"
+                       Style="{StaticResource ViewNameTextBlockStyle}" />
         </Border>
         <ContentControl Grid.Row="1" HorizontalAlignment="Stretch"
                         VerticalAlignment="Stretch"

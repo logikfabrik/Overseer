@@ -14,7 +14,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     /// <summary>
     /// The <see cref="AddConnectionViewModel" /> class.
     /// </summary>
-    public abstract class AddConnectionViewModel : PropertyChangedBase, IDataErrorInfo
+    public abstract class AddConnectionViewModel : ViewModel, IDataErrorInfo
     {
         private readonly IEventAggregator _eventAggregator;
         private readonly IBuildProviderSettingsRepository _buildProviderSettingsRepository;

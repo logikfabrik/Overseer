@@ -13,7 +13,7 @@ namespace Logikfabrik.Overseer.WPF.Client.ViewModels
     /// <summary>
     /// The <see cref="AppViewModel" /> class.
     /// </summary>
-    public sealed class AppViewModel : Conductor<PropertyChangedBase>, IHandle<NavigationMessage>
+    public sealed class AppViewModel : Conductor<ViewModel>, IHandle<NavigationMessage>
     {
         private readonly IBuildNotificationManager _buildNotificationManager;
 
@@ -42,12 +42,20 @@ namespace Logikfabrik.Overseer.WPF.Client.ViewModels
         }
 
         /// <summary>
+        /// Gets the view name.
+        /// </summary>
+        /// <value>
+        /// The view name.
+        /// </value>
+        public string ViewName => ActiveItem.ViewName;
+
+        /// <summary>
         /// Handles the specified message.
         /// </summary>
         /// <param name="message">The message to handle.</param>
         public void Handle(NavigationMessage message)
         {
-            var viewModel = IoC.GetInstance(message.ViewModelType, null) as PropertyChangedBase;
+            var viewModel = IoC.GetInstance(message.ViewModelType, null) as ViewModel;
 
             ActivateItem(viewModel);
         }
@@ -63,6 +71,13 @@ namespace Logikfabrik.Overseer.WPF.Client.ViewModels
             {
                 _buildNotificationManager.ShowNotification(e.Project, build);
             }
+        }
+
+        public override void ActivateItem(ViewModel item)
+        {
+            base.ActivateItem(item);
+
+            NotifyOfPropertyChange(() => ViewName);
         }
     }
 }

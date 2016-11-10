@@ -11,7 +11,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     /// <summary>
     /// The <see cref="BuildProvidersViewModel" /> class.
     /// </summary>
-    public class BuildProvidersViewModel : PropertyChangedBase
+    public class BuildProvidersViewModel : ViewModel
     {
         private readonly IEventAggregator _eventAggregator;
 
@@ -28,6 +28,14 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             _eventAggregator = eventAggregator;
             BuildProviderViewModels = buildProviderViewModels;
         }
+
+        /// <summary>
+        /// Gets the view name.
+        /// </summary>
+        /// <value>
+        /// The view name.
+        /// </value>
+        public override string ViewName => "Add connection";
 
         /// <summary>
         /// Gets the build providers.
