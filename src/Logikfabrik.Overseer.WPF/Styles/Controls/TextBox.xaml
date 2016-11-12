@@ -75,7 +75,7 @@
                         </Border>
                         <TextBlock Style="{StaticResource TextBlockErrorDetailDefaultStyle}" 
                                    Text="{Binding (Validation.Errors)[0].ErrorContent, RelativeSource={RelativeSource TemplatedParent}}"
-                                   Visibility="{Binding (Validation.HasError), Converter={StaticResource BooleanToVisibilityConverter}, RelativeSource={RelativeSource TemplatedParent}}" />
+                                   Visibility="{Binding (Validation.HasError), Converter={StaticResource BooleanToVisibleOrCollapsedConverter}, RelativeSource={RelativeSource TemplatedParent}}" />
                     </StackPanel>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsEnabled" 
