@@ -24,7 +24,6 @@
         </Style>
         <Style x:Key="MenuBorderStyle"
                TargetType="{x:Type Border}">
-            
             <Setter Property="BorderBrush">
                 <Setter.Value>
                     <SolidColorBrush Color="#FF595959" />

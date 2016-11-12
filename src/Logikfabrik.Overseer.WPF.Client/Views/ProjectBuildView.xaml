@@ -25,14 +25,13 @@
                     Value="SemiBold" />
             <Setter Property="Margin" 
                     Value="30 5" />
-
         </Style>
         <Style x:Key="ProjectBorderStyle"
                TargetType="{x:Type Border}">
             <Setter Property="BorderBrush" 
-                    Value="#FF616161" />
-            <Setter Property="Background" 
                     Value="#FF595959" />
+            <Setter Property="Background" 
+                    Value="#FF525252" />
         </Style>
         <Style x:Key="ProjectHeaderBorderStyle"
                BasedOn="{StaticResource ProjectBorderStyle}"
