@@ -18,11 +18,7 @@
                     Value="5 0 0 0" />
             <Setter Property="Margin" 
                     Value="10" />
-            <Setter Property="Background">
-                <Setter.Value>
-                    <SolidColorBrush Color="#FF444444" />
-                </Setter.Value>
-            </Setter>
+            <Setter Property="Background" Value="#FF444444" />
             <Setter Property="Effect">
                 <Setter.Value>
                     <DropShadowEffect Color="#FF000000" 

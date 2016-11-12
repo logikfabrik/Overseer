@@ -90,8 +90,74 @@
                                                                 <TextBlock Grid.Column="1" 
                                                                            Style="{StaticResource ConnectionNameTextBlockStyle}"
                                                                            Text="{Binding Name, Mode=OneTime}" />
-                                                                <c:Icon Grid.Column="2" 
-                                                                        Data="{StaticResource IconMenu}" />
+                                                                <StackPanel Grid.Column="2" 
+                                                                            VerticalAlignment="Center">
+                                                                    <ToggleButton>
+                                                                        <ToggleButton.Resources>
+                                                                            <Style TargetType="{x:Type Button}">
+                                                                                <Setter Property="Template">
+                                                                                    <Setter.Value>
+                                                                                        <ControlTemplate TargetType="{x:Type Button}">
+                                                                                            <Border Background="#00FFFFFF">
+                                                                                                <ContentPresenter Focusable="False" />
+                                                                                            </Border>
+                                                                                        </ControlTemplate>
+                                                                                    </Setter.Value>
+                                                                                </Setter>
+                                                                            </Style>
+                                                                        </ToggleButton.Resources>
+                                                                        <ToggleButton.Style>
+                                                                            <Style TargetType="{x:Type ToggleButton}">
+                                                                                <Setter Property="Focusable" Value="False" />
+                                                                                <Setter Property="Template">
+                                                                                    <Setter.Value>
+                                                                                        <ControlTemplate TargetType="{x:Type ToggleButton}">
+                                                                                            <StackPanel>
+                                                                                                <c:Icon Data="{StaticResource IconMenu}" />
+                                                                                                <Popup x:Name="PART_Popup" 
+                                                                                                       AllowsTransparency="True"
+                                                                                                       Placement="Left" StaysOpen="False">
+                                                                                                    <Border Width="100" 
+                                                                                                            Background="#FF444444"
+                                                                                                            Margin="10"
+                                                                                                            Padding="5"
+                                                                                                            BorderThickness="1"
+                                                                                                            BorderBrush="#FF494949">
+                                                                                                        <Border.Effect>
+                                                                                                            <DropShadowEffect Color="#FF000000" 
+                                                                                                                              ShadowDepth="2" 
+                                                                                                                              BlurRadius="2" 
+                                                                                                                              Opacity="0.2" />
+                                                                                                        </Border.Effect>
+                                                                                                        <StackPanel>
+                                                                                                            <Button>
+                                                                                                                <TextBlock Text="Edit" />
+                                                                                                            </Button>
+                                                                                                            <Rectangle Height="1" 
+                                                                                                                       Fill="#FF494949" 
+                                                                                                                       Margin="0 4" />
+                                                                                                            <Button>
+                                                                                                                <TextBlock Text="Remove" />
+                                                                                                            </Button>
+                                                                                                        </StackPanel>
+                                                                                                    </Border>
+                                                                                                </Popup>
+                                                                                            </StackPanel>
+                                                                                            <ControlTemplate.Triggers>
+                                                                                                <Trigger Property="IsChecked" 
+                                                                                                         Value="True">
+                                                                                                    <Setter TargetName="PART_Popup" 
+                                                                                                            Property="IsOpen"
+                                                                                                            Value="True" />
+                                                                                                </Trigger>
+                                                                                            </ControlTemplate.Triggers>
+                                                                                        </ControlTemplate>
+                                                                                    </Setter.Value>
+                                                                                </Setter>
+                                                                            </Style>
+                                                                        </ToggleButton.Style>
+                                                                    </ToggleButton>
+                                                                </StackPanel>
                                                             </Grid>
                                                         </Border>
                                                         <ControlTemplate.Triggers>
