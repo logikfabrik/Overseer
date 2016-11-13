@@ -7,6 +7,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices.Api
     using System;
     using System.Net.Http;
     using System.Net.Http.Headers;
+    using System.Text;
     using System.Threading.Tasks;
     using EnsureThat;
     using Models;
@@ -37,9 +38,16 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices.Api
         /// <param name="skip">The skip count.</param>
         /// <param name="take">The take count.</param>
         /// <returns>A task.</returns>
-        public async Task<Projects> GetProjectsAsync(int skip, int take)
+        public async Task<Projects> GetProjectsAsync(int skip, int? take)
         {
-            using (var response = await _httpClient.Value.GetAsync($"_apis/projects?api-version=2.0&$skip={skip}&$top={take}").ConfigureAwait(false))
+            var builder = new StringBuilder($"_apis/projects?api-version=2.0&$skip={skip}");
+
+            if (take.HasValue)
+            {
+                builder.Append("&$top={take}");
+            }
+
+            using (var response = await _httpClient.Value.GetAsync(builder.ToString()).ConfigureAwait(false))
             {
                 response.EnsureSuccessStatusCode();
 
@@ -114,7 +122,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices.Api
 
         private static HttpClient GetHttpClient(Uri baseUri, string token)
         {
-            var credentials = Convert.ToBase64String(System.Text.Encoding.ASCII.GetBytes($"{string.Empty}:{token}"));
+            var credentials = Convert.ToBase64String(Encoding.ASCII.GetBytes($"{string.Empty}:{token}"));
 
             var client = new HttpClient { BaseAddress = baseUri };
 

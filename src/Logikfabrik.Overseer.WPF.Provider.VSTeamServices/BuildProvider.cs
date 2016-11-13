@@ -45,7 +45,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices
         /// </returns>
         public override async Task<IEnumerable<IProject>> GetProjectsAsync()
         {
-            var projects = await _apiClient.Value.GetProjectsAsync(0, 10).ConfigureAwait(false);
+            var projects = await _apiClient.Value.GetProjectsAsync(0, null).ConfigureAwait(false);
 
             return projects.Value.Select(project => new Project(project));
         }
@@ -63,7 +63,9 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices
 
             var builds = new List<IBuild>();
 
-            foreach (var build in (await _apiClient.Value.GetBuildsAsync(projectId, 0, 10).ConfigureAwait(false)).Value)
+            const int numberOfBuilds = 3;
+
+            foreach (var build in (await _apiClient.Value.GetBuildsAsync(projectId, 0, numberOfBuilds).ConfigureAwait(false)).Value)
             {
                 var changes = await _apiClient.Value.GetChangesAsync(projectId, build.Id).ConfigureAwait(false);
 
