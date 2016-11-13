@@ -54,15 +54,16 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor.Api
         /// </summary>
         /// <param name="accountName">The account name.</param>
         /// <param name="projectSlug">The project slug.</param>
+        /// <param name="recordsNumber">Number of records.</param>
         /// <returns>A task.</returns>
-        public async Task<ProjectHistory> GetProjectHistoryAsync(string accountName, string projectSlug)
+        public async Task<ProjectHistory> GetProjectHistoryAsync(string accountName, string projectSlug, int recordsNumber)
         {
             Ensure.That(accountName).IsNotNullOrWhiteSpace();
             Ensure.That(projectSlug).IsNotNullOrWhiteSpace();
 
             using (var client = GetHttpClient())
             {
-                using (var response = await client.GetAsync($"api/projects/{accountName}/{projectSlug}/history?recordsNumber=10").ConfigureAwait(false))
+                using (var response = await client.GetAsync($"api/projects/{accountName}/{projectSlug}/history?recordsNumber={recordsNumber}").ConfigureAwait(false))
                 {
                     response.EnsureSuccessStatusCode();
 

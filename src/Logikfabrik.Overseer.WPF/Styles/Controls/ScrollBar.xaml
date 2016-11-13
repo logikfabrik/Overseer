@@ -5,15 +5,15 @@
         <ResourceDictionary Source="../Resources/FocusVisualResources.xaml" />
     </ResourceDictionary.MergedDictionaries>
     <SolidColorBrush x:Key="ScrollBar.Static.Thumb" 
-                     Color="{x:Static s:CommonColors.ControlStaticBackground}" />
+                     Color="#FF595959" />
     <SolidColorBrush x:Key="ScrollBar.MouseOver.Thumb" 
-                     Color="{x:Static s:CommonColors.ControlMouseOverBackground}" />
+                     Color="#FF595959" />
     <SolidColorBrush x:Key="ScrollBar.Pressed.Thumb" 
-                     Color="{x:Static s:CommonColors.ControlPressedBackground}" />
+                     Color="#FFAAFF00" />
     <Style x:Key="ScrollBarRepeatButtonDefaultStyle" 
            TargetType="{x:Type RepeatButton}">
         <Setter Property="OverridesDefaultStyle" 
-                Value="True"/>
+                Value="True" />
         <Setter Property="Background" 
                 Value="Transparent" />
         <Setter Property="Focusable" 

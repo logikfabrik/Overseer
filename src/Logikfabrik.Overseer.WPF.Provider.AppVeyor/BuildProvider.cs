@@ -67,7 +67,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor
                 return new IBuild[] { };
             }
 
-            var projectHistory = await apiClient.GetProjectHistoryAsync(project.AccountName, project.Slug).ConfigureAwait(false);
+            var projectHistory = await apiClient.GetProjectHistoryAsync(project.AccountName, project.Slug, 10).ConfigureAwait(false);
 
             return projectHistory.Builds.Select(build => new Build(build));
         }

@@ -35,32 +35,6 @@
                 </ItemsControl.ItemsPanel>
             </ItemsControl>
         </ScrollViewer>
-        <Rectangle Grid.Row="0" 
-                   Height="20" 
-                   VerticalAlignment="Top">
-            <Rectangle.Fill>
-                <LinearGradientBrush StartPoint="0,0" 
-                                     EndPoint="0,1">
-                    <GradientStop Color="#FF444444" 
-                                  Offset="0" />
-                    <GradientStop Color="#00444444" 
-                                  Offset="1"/>
-                </LinearGradientBrush>
-            </Rectangle.Fill>
-        </Rectangle>
-        <Rectangle Grid.Row="0" 
-                   Height="20" 
-                   VerticalAlignment="Bottom">
-            <Rectangle.Fill>
-                <LinearGradientBrush StartPoint="0,0" 
-                                     EndPoint="0,1">
-                    <GradientStop Color="#00444444" 
-                                  Offset="0" />
-                    <GradientStop Color="#FF444444" 
-                                  Offset="1"/>
-                </LinearGradientBrush>
-            </Rectangle.Fill>
-        </Rectangle>
         <Button x:Name="AddConnection"
                 Grid.Row="1"
                 Height="55"
