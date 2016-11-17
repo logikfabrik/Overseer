@@ -144,12 +144,12 @@
                                                                                                                               Opacity="0.2" />
                                                                                                         </Border.Effect>
                                                                                                         <StackPanel>
-                                                                                                            <Button>
+                                                                                                            <Button cal:Message.Attach="Edit">
                                                                                                                 <TextBlock Text="Edit" />
                                                                                                             </Button>
                                                                                                             <Rectangle Height="1" 
                                                                                                                        Fill="#FF595959" />
-                                                                                                            <Button>
+                                                                                                            <Button cal:Message.Attach="Remove">
                                                                                                                 <TextBlock Text="Remove" />
                                                                                                             </Button>
                                                                                                         </StackPanel>

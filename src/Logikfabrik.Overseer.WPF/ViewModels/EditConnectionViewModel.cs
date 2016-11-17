@@ -15,19 +15,23 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     {
         private readonly IEventAggregator _eventAggregator;
         private readonly IBuildProviderSettingsRepository _buildProviderSettingsRepository;
+        private readonly BuildProviderSettings _currentSettings;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="EditConnectionViewModel" /> class.
         /// </summary>
         /// <param name="eventAggregator">The event aggregator.</param>
         /// <param name="buildProviderSettingsRepository">The build provider settings repository.</param>
-        protected EditConnectionViewModel(IEventAggregator eventAggregator, IBuildProviderSettingsRepository buildProviderSettingsRepository)
+        /// <param name="currentSettings">The current settings.</param>
+        protected EditConnectionViewModel(IEventAggregator eventAggregator, IBuildProviderSettingsRepository buildProviderSettingsRepository, BuildProviderSettings currentSettings)
         {
             Ensure.That(eventAggregator).IsNotNull();
             Ensure.That(buildProviderSettingsRepository).IsNotNull();
+            Ensure.That(currentSettings).IsNotNull();
 
             _eventAggregator = eventAggregator;
             _buildProviderSettingsRepository = buildProviderSettingsRepository;
+            _currentSettings = currentSettings;
         }
 
         /// <summary>
@@ -48,7 +52,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
                 return;
             }
 
-            _buildProviderSettingsRepository.Add(GetSettings());
+            _buildProviderSettingsRepository.Add(GetSettings(_currentSettings));
 
             ViewConnections();
         }
@@ -66,7 +70,8 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// <summary>
         /// Gets the settings.
         /// </summary>
+        /// <param name="currentSettings">The current settings.</param>
         /// <returns>The settings.</returns>
-        protected abstract BuildProviderSettings GetSettings();
+        protected abstract BuildProviderSettings GetSettings(BuildProviderSettings currentSettings);
     }
 }

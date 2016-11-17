@@ -16,6 +16,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     /// </summary>
     public abstract class ConnectionViewModel : PropertyChangedBase
     {
+        private readonly IEventAggregator _eventAggregator;
         private readonly IBuildProvider _buildProvider;
         private readonly Lazy<IEnumerable<ProjectBuildViewModel>> _projectBuildViewModels;
         private bool _isBusy;
@@ -24,13 +25,16 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// <summary>
         /// Initializes a new instance of the <see cref="ConnectionViewModel" /> class.
         /// </summary>
+        /// <param name="eventAggregator">The event aggregator.</param>
         /// <param name="buildMonitor">The build monitor.</param>
         /// <param name="buildProvider">The build provider.</param>
-        protected ConnectionViewModel(IBuildMonitor buildMonitor, IBuildProvider buildProvider)
+        protected ConnectionViewModel(IEventAggregator eventAggregator, IBuildMonitor buildMonitor, IBuildProvider buildProvider)
         {
+            Ensure.That(eventAggregator).IsNotNull();
             Ensure.That(buildMonitor).IsNotNull();
             Ensure.That(buildProvider).IsNotNull();
 
+            _eventAggregator = eventAggregator;
             _buildProvider = buildProvider;
             _isBusy = true;
             _isErrored = false;
@@ -147,8 +151,10 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// </summary>
         public void Edit()
         {
-            // TODO: Navigate to the right view/view model.
-            throw new NotImplementedException();
+            // TODO: Navigate to the view/view model to edit.
+            var message = new NavigationMessage(EditConnectionViewModelType);
+
+            _eventAggregator.PublishOnUIThread(message);
         }
 
         /// <summary>

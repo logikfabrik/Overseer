@@ -5,6 +5,7 @@
 namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices.ViewModels
 {
     using System;
+    using System.Linq;
     using Caliburn.Micro;
     using FluentValidation;
     using Settings;
@@ -20,10 +21,13 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices.ViewModels
         /// </summary>
         /// <param name="eventAggregator">The event aggregator.</param>
         /// <param name="buildProviderSettingsRepository">The build provider settings repository.</param>
-        public EditConnectionViewModel(IEventAggregator eventAggregator, IBuildProviderSettingsRepository buildProviderSettingsRepository)
-            : base(eventAggregator, buildProviderSettingsRepository)
+        /// <param name="currentSettings">The current settings.</param>
+        public EditConnectionViewModel(IEventAggregator eventAggregator, IBuildProviderSettingsRepository buildProviderSettingsRepository, BuildProviderSettings currentSettings)
+            : base(eventAggregator, buildProviderSettingsRepository, currentSettings)
         {
             Validator = new EditConnectionViewModelValidator();
+            Url = currentSettings.Settings.SingleOrDefault(setting => setting.Name == "Url")?.Value;
+            Token = currentSettings.Settings.SingleOrDefault(setting => setting.Name == "Token")?.Value;
         }
 
         /// <summary>
@@ -33,6 +37,22 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices.ViewModels
         /// The view name.
         /// </value>
         public override string ViewName => "Edit VSTS connection";
+
+        /// <summary>
+        /// Gets or sets the URL.
+        /// </summary>
+        /// <value>
+        /// The URL.
+        /// </value>
+        public string Url { get; set; }
+
+        /// <summary>
+        /// Gets or sets the token.
+        /// </summary>
+        /// <value>
+        /// The token.
+        /// </value>
+        public string Token { get; set; }
 
         /// <summary>
         /// Gets the validator.
@@ -45,10 +65,9 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices.ViewModels
         /// <summary>
         /// Gets the settings.
         /// </summary>
-        /// <returns>
-        /// The settings.
-        /// </returns>
-        protected override BuildProviderSettings GetSettings()
+        /// <param name="currentSettings">The current settings.</param>
+        /// <returns>The settings.</returns>
+        protected override BuildProviderSettings GetSettings(BuildProviderSettings currentSettings)
         {
             throw new NotImplementedException();
         }

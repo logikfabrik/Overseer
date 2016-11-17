@@ -108,6 +108,9 @@
     <Compile Include="Views\BuildProviderView.xaml.cs">
       <DependentUpon>BuildProviderView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\EditConnectionView.xaml.cs">
+      <DependentUpon>EditConnectionView.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -138,6 +141,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\BuildProviderView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\EditConnectionView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

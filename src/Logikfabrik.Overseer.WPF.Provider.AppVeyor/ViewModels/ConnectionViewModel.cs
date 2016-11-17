@@ -5,6 +5,7 @@
 namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor.ViewModels
 {
     using System;
+    using Caliburn.Micro;
 
     /// <summary>
     /// The <see cref="ConnectionViewModel" /> class.
@@ -14,10 +15,11 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor.ViewModels
         /// <summary>
         /// Initializes a new instance of the <see cref="ConnectionViewModel" /> class.
         /// </summary>
+        /// <param name="eventAggregator">The event aggregator.</param>
         /// <param name="buildMonitor">The build monitor.</param>
         /// <param name="buildProvider">The build provider.</param>
-        public ConnectionViewModel(IBuildMonitor buildMonitor, IBuildProvider buildProvider)
-            : base(buildMonitor, buildProvider)
+        public ConnectionViewModel(IEventAggregator eventAggregator, IBuildMonitor buildMonitor, IBuildProvider buildProvider)
+            : base(eventAggregator, buildMonitor, buildProvider)
         {
         }
 
