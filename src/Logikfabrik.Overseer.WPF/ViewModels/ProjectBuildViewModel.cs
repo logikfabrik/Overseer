@@ -91,6 +91,12 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             }
         }
 
+        /// <summary>
+        /// Gets a value indicating whether this instance is not busy.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if this instance is not busy; otherwise, <c>false</c>.
+        /// </value>
         public bool IsNotBusy
         {
             get
@@ -98,7 +104,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
                 return !_isBusy;
             }
 
-            set
+            private set
             {
                 _isBusy = !value;
                 NotifyOfPropertyChange(() => IsBusy);

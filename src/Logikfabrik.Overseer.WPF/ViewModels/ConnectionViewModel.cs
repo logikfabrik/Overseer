@@ -14,7 +14,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     /// <summary>
     /// The <see cref="ConnectionViewModel" /> class.
     /// </summary>
-    public class ConnectionViewModel : PropertyChangedBase
+    public abstract class ConnectionViewModel : PropertyChangedBase
     {
         private readonly IBuildProvider _buildProvider;
         private readonly Lazy<IEnumerable<ProjectBuildViewModel>> _projectBuildViewModels;
@@ -25,8 +25,8 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// Initializes a new instance of the <see cref="ConnectionViewModel" /> class.
         /// </summary>
         /// <param name="buildMonitor">The build monitor.</param>
-        /// <param name="buildProvider">The build provider settings.</param>
-        public ConnectionViewModel(IBuildMonitor buildMonitor, IBuildProvider buildProvider)
+        /// <param name="buildProvider">The build provider.</param>
+        protected ConnectionViewModel(IBuildMonitor buildMonitor, IBuildProvider buildProvider)
         {
             Ensure.That(buildMonitor).IsNotNull();
             Ensure.That(buildProvider).IsNotNull();
@@ -44,6 +44,8 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             });
 
             WeakEventManager<IBuildMonitor, BuildMonitorErrorEventArgs>.AddHandler(buildMonitor, nameof(buildMonitor.Error), BuildMonitorError);
+
+            buildMonitor.StartMonitoring();
         }
 
         /// <summary>
@@ -83,6 +85,12 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             }
         }
 
+        /// <summary>
+        /// Gets a value indicating whether this instance is not busy.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if this instance is not busy; otherwise, <c>false</c>.
+        /// </value>
         public bool IsNotBusy
         {
             get
@@ -90,7 +98,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
                 return !_isBusy;
             }
 
-            set
+            private set
             {
                 _isBusy = !value;
                 NotifyOfPropertyChange(() => IsBusy);

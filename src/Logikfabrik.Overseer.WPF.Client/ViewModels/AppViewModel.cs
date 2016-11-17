@@ -58,6 +58,8 @@ namespace Logikfabrik.Overseer.WPF.Client.ViewModels
             var viewModel = IoC.GetInstance(message.ViewModelType, null) as ViewModel;
 
             ActivateItem(viewModel);
+
+            NotifyOfPropertyChange(() => ViewName);
         }
 
         private void BuildMonitorProgressChanged(object sender, BuildMonitorProgressEventArgs e)
@@ -71,13 +73,6 @@ namespace Logikfabrik.Overseer.WPF.Client.ViewModels
             {
                 _buildNotificationManager.ShowNotification(e.Project, build);
             }
-        }
-
-        public override void ActivateItem(ViewModel item)
-        {
-            base.ActivateItem(item);
-
-            NotifyOfPropertyChange(() => ViewName);
         }
     }
 }

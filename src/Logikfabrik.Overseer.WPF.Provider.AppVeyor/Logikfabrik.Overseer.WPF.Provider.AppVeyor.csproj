@@ -100,6 +100,7 @@
     <Compile Include="Validators\AddConnectionViewModelValidator.cs" />
     <Compile Include="ViewModels\AddConnectionViewModel.cs" />
     <Compile Include="ViewModels\BuildProviderViewModel.cs" />
+    <Compile Include="ViewModels\ConnectionViewModel.cs" />
     <Compile Include="ViewModels\EditConnectionViewModel.cs" />
     <Compile Include="Views\AddConnectionView.xaml.cs">
       <DependentUpon>AddConnectionView.xaml</DependentUpon>

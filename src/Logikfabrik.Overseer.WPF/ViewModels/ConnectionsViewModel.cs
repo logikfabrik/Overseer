@@ -5,7 +5,6 @@
 namespace Logikfabrik.Overseer.WPF.ViewModels
 {
     using System.Collections.Generic;
-    using System.Linq;
     using Caliburn.Micro;
     using EnsureThat;
 
@@ -20,18 +19,14 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// Initializes a new instance of the <see cref="ConnectionsViewModel" /> class.
         /// </summary>
         /// <param name="eventAggregator">The event aggregator.</param>
-        /// <param name="buildMonitor">The build monitor.</param>
-        /// <param name="buildProviderRepository">The build provider repository.</param>
-        public ConnectionsViewModel(IEventAggregator eventAggregator, IBuildMonitor buildMonitor, IBuildProviderRepository buildProviderRepository)
+        /// <param name="connectionViewModels">The connection view models.</param>
+        public ConnectionsViewModel(IEventAggregator eventAggregator, IEnumerable<ConnectionViewModel> connectionViewModels)
         {
             Ensure.That(eventAggregator).IsNotNull();
-            Ensure.That(buildProviderRepository).IsNotNull();
-            Ensure.That(buildMonitor).IsNotNull();
+            Ensure.That(connectionViewModels).IsNotNull();
 
             _eventAggregator = eventAggregator;
-            ConnectionViewModels = buildProviderRepository.GetBuildProviders().Select(buildProvider => new ConnectionViewModel(buildMonitor, buildProvider));
-
-            buildMonitor.StartMonitoring();
+            ConnectionViewModels = connectionViewModels;
         }
 
         /// <summary>
@@ -43,10 +38,10 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         public override string ViewName => "Connections";
 
         /// <summary>
-        /// Gets the connections
+        /// Gets the connection view models.
         /// </summary>
         /// <value>
-        /// The connections.
+        /// The connection view models.
         /// </value>
         public IEnumerable<ConnectionViewModel> ConnectionViewModels { get; }
 

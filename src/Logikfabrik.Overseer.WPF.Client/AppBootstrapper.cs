@@ -11,8 +11,10 @@ namespace Logikfabrik.Overseer.WPF.Client
     using System.Reflection;
     using System.Windows;
     using Caliburn.Micro;
+    using Extensions;
     using Ninject;
     using Ninject.Modules;
+    using Ninject.Parameters;
     using Settings;
     using ViewModels;
     using WPF.ViewModels;
@@ -87,8 +89,14 @@ namespace Logikfabrik.Overseer.WPF.Client
             _kernel.Bind<INotificationManager>().To<NotificationManager>().InSingletonScope();
             _kernel.Bind<IBuildNotificationManager>().To<BuildNotificationManager>().InSingletonScope();
 
-            // TODO: Temp when testing the monitor in ConnectionsViewModel.
-            _kernel.Bind<ConnectionsViewModel>().To<ConnectionsViewModel>().InSingletonScope();
+            _kernel.Bind<ConnectionsViewModel>().ToMethod(context =>
+            {
+                var providers = context.Kernel.Get<IBuildProviderRepository>().GetBuildProviders();
+
+                var viewModels = providers.Select(provider => context.Kernel.Get<ConnectionViewModel>(ModuleHelper.GetModuleName(provider), new ConstructorArgument("buildProvider", provider)));
+
+                return new ConnectionsViewModel(context.Kernel.Get<IEventAggregator>(), viewModels);
+            });
 
             _kernel.Load(SelectAssemblies());
         }
