@@ -26,14 +26,6 @@ namespace Logikfabrik.Overseer
         }
 
         /// <summary>
-        /// Gets the metadata.
-        /// </summary>
-        /// <value>
-        /// The metadata.
-        /// </value>
-        public abstract IBuildProviderMetadata Metadata { get; }
-
-        /// <summary>
         /// Gets the build provider settings.
         /// </summary>
         /// <value>

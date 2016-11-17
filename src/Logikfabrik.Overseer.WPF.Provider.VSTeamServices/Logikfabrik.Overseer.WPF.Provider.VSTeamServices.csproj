@@ -94,10 +94,10 @@
     <Compile Include="Api\Models\RepositoryType.cs" />
     <Compile Include="Build.cs" />
     <Compile Include="BuildProvider.cs" />
-    <Compile Include="BuildProviderMetadata.cs" />
     <Compile Include="Module.cs" />
     <Compile Include="Project.cs" />
     <Compile Include="Validators\AddConnectionViewModelValidator.cs" />
+    <Compile Include="Validators\EditConnectionViewModelValidator.cs" />
     <Compile Include="ViewModels\AddConnectionViewModel.cs" />
     <Compile Include="ViewModels\BuildProviderViewModel.cs" />
     <Compile Include="ViewModels\ConnectionViewModel.cs" />

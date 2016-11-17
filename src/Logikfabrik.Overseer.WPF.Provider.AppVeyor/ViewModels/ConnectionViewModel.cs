@@ -18,5 +18,13 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor.ViewModels
             : base(buildMonitor, buildProvider)
         {
         }
+
+        /// <summary>
+        /// Gets the build provider name.
+        /// </summary>
+        /// <value>
+        /// The build provider name.
+        /// </value>
+        public override string BuildProviderName { get; } = "AppVeyor";
     }
 }

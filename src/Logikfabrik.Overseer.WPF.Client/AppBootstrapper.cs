@@ -11,7 +11,6 @@ namespace Logikfabrik.Overseer.WPF.Client
     using System.Reflection;
     using System.Windows;
     using Caliburn.Micro;
-    using Extensions;
     using Ninject;
     using Ninject.Modules;
     using Ninject.Parameters;
@@ -22,7 +21,7 @@ namespace Logikfabrik.Overseer.WPF.Client
     /// <summary>
     /// The <see cref="AppBootstrapper" /> class.
     /// </summary>
-    public class AppBootstrapper : BootstrapperBase
+    public class AppBootstrapper : BootstrapperBase, IDisposable
     {
         private readonly IKernel _kernel;
         private readonly Lazy<IEnumerable<Assembly>> _assemblies;
@@ -36,6 +35,15 @@ namespace Logikfabrik.Overseer.WPF.Client
             _assemblies = new Lazy<IEnumerable<Assembly>>(GetAssemblies);
 
             Initialize();
+        }
+
+        /// <summary>
+        /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+        /// </summary>
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
         }
 
         /// <summary>
@@ -140,6 +148,24 @@ namespace Logikfabrik.Overseer.WPF.Client
         protected override IEnumerable<Assembly> SelectAssemblies()
         {
             return _assemblies.Value;
+        }
+
+        /// <summary>
+        /// Releases unmanaged and managed resources.
+        /// </summary>
+        /// <param name="disposing"><c>true</c> to release both managed and unmanaged resources; <c>false</c> to release only unmanaged resources.</param>
+        protected virtual void Dispose(bool disposing)
+        {
+            // ReSharper disable once InvertIf
+            if (disposing)
+            {
+                if (_kernel == null || _kernel.IsDisposed)
+                {
+                    return;
+                }
+
+                _kernel.Dispose();
+            }
         }
 
         private static void LoadAllAssemblies()

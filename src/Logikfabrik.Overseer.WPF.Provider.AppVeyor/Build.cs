@@ -23,6 +23,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor
 
             Id = build.BuildId.ToString();
             Version = build.Version;
+            Number = null;
             Branch = build.Branch;
             Started = build.Started?.ToUniversalTime();
             Finished = build.Finished?.ToUniversalTime();

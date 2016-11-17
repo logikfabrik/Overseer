@@ -17,10 +17,18 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor.ViewModels
         /// </summary>
         /// <param name="eventAggregator">The event aggregator.</param>
         public BuildProviderViewModel(IEventAggregator eventAggregator)
-            : base(eventAggregator, new BuildProviderMetadata())
+            : base(eventAggregator)
         {
             AddConnectionViewModel = typeof(AddConnectionViewModel);
         }
+
+        /// <summary>
+        /// Gets the build provider name.
+        /// </summary>
+        /// <value>
+        /// The build provider name.
+        /// </value>
+        public override string BuildProviderName { get; } = "AppVeyor";
 
         /// <summary>
         /// Gets the type of the view model to add connection.

@@ -93,11 +93,11 @@
     <Compile Include="BuildProvider.cs" />
     <Compile Include="Api\Models\Job.cs" />
     <Compile Include="Api\Models\Project.cs" />
-    <Compile Include="BuildProviderMetadata.cs" />
     <Compile Include="Module.cs" />
     <Compile Include="Project.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Validators\AddConnectionViewModelValidator.cs" />
+    <Compile Include="Validators\EditConnectionViewModelValidator.cs" />
     <Compile Include="ViewModels\AddConnectionViewModel.cs" />
     <Compile Include="ViewModels\BuildProviderViewModel.cs" />
     <Compile Include="ViewModels\ConnectionViewModel.cs" />

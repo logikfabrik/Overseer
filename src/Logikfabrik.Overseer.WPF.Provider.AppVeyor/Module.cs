@@ -4,7 +4,6 @@
 
 namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor
 {
-    using Extensions;
     using Ninject.Modules;
     using ViewModels;
 

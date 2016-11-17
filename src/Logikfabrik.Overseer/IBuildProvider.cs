@@ -14,14 +14,6 @@ namespace Logikfabrik.Overseer
     public interface IBuildProvider
     {
         /// <summary>
-        /// Gets the metadata.
-        /// </summary>
-        /// <value>
-        /// The metadata.
-        /// </value>
-        IBuildProviderMetadata Metadata { get; }
-
-        /// <summary>
         /// Gets the build provider settings.
         /// </summary>
         /// <value>

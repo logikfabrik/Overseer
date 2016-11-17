@@ -4,7 +4,6 @@
 
 namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices
 {
-    using Extensions;
     using Ninject.Modules;
     using ViewModels;
 

@@ -117,6 +117,7 @@
                                                   ItemsSource="{Binding BuildViewModels, Mode=OneWay}">
                                         <ItemsControl.ItemContainerStyle>
                                             <Style>
+                                                <!-- ReSharper disable once Xaml.RedundantPropertyTypeQualifier -->
                                                 <Setter Property="FrameworkElement.Margin" 
                                                         Value="0 0 0 10" />
                                             </Style>

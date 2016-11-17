@@ -25,6 +25,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices
             Ensure.That(lastChanges).IsNotNull();
 
             Id = build.Id;
+            Version = null;
             Number = build.BuildNumber;
             Branch = build.SourceBranch;
             Started = build.StartTime?.ToUniversalTime();

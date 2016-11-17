@@ -30,14 +30,6 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices
         }
 
         /// <summary>
-        /// Gets the metadata.
-        /// </summary>
-        /// <value>
-        /// The metadata.
-        /// </value>
-        public override IBuildProviderMetadata Metadata { get; } = new BuildProviderMetadata();
-
-        /// <summary>
         /// Gets the projects.
         /// </summary>
         /// <returns>
