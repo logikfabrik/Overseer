@@ -19,7 +19,6 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor.ViewModels
         public BuildProviderViewModel(IEventAggregator eventAggregator)
             : base(eventAggregator)
         {
-            AddConnectionViewModel = typeof(AddConnectionViewModel);
         }
 
         /// <summary>
@@ -31,11 +30,11 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor.ViewModels
         public override string BuildProviderName { get; } = "AppVeyor";
 
         /// <summary>
-        /// Gets the type of the view model to add connection.
+        /// Gets the type of the view model to add a connection.
         /// </summary>
         /// <value>
-        /// The type of the view model to add connection.
+        /// The type of the view model to add a connection.
         /// </value>
-        protected override Type AddConnectionViewModel { get; }
+        protected override Type AddConnectionViewModelType { get; } = typeof(AddConnectionViewModel);
     }
 }

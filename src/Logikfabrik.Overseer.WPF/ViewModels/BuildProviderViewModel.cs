@@ -35,19 +35,19 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         public abstract string BuildProviderName { get; }
 
         /// <summary>
-        /// Gets the type of the view model to add connection.
+        /// Gets the type of the view model to add a connection.
         /// </summary>
         /// <value>
-        /// The type of the view model to add connection.
+        /// The type of the view model to add a connection.
         /// </value>
-        protected abstract Type AddConnectionViewModel { get; }
+        protected abstract Type AddConnectionViewModelType { get; }
 
         /// <summary>
         /// Navigates to the view to add connection.
         /// </summary>
         public void AddConnection()
         {
-            var message = new NavigationMessage(AddConnectionViewModel);
+            var message = new NavigationMessage(AddConnectionViewModelType);
 
             _eventAggregator.PublishOnUIThread(message);
         }

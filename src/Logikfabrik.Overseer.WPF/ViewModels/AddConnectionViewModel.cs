@@ -48,7 +48,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
                 return;
             }
 
-            _buildProviderSettingsRepository.AddBuildProviderSettings(GetBuildProviderSettings());
+            _buildProviderSettingsRepository.Add(GetSettings());
 
             ViewConnections();
         }
@@ -64,9 +64,9 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         }
 
         /// <summary>
-        /// Gets the build provider settings.
+        /// Gets the settings.
         /// </summary>
-        /// <returns>The build provider settings.</returns>
-        protected abstract BuildProviderSettings GetBuildProviderSettings();
+        /// <returns>The settings.</returns>
+        protected abstract BuildProviderSettings GetSettings();
     }
 }

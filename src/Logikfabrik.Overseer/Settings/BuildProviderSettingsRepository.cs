@@ -15,7 +15,7 @@ namespace Logikfabrik.Overseer.Settings
     public class BuildProviderSettingsRepository : IBuildProviderSettingsRepository
     {
         private readonly IBuildProviderSettingsStore _buildProviderSettingsStore;
-        private readonly Lazy<IDictionary<Guid, BuildProviderSettings>> _currentBuildProviderSettings;
+        private readonly Lazy<IDictionary<Guid, BuildProviderSettings>> _settings;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="BuildProviderSettingsRepository" /> class.
@@ -26,34 +26,73 @@ namespace Logikfabrik.Overseer.Settings
             Ensure.That(buildProviderSettingsStore).IsNotNull();
 
             _buildProviderSettingsStore = buildProviderSettingsStore;
-            _currentBuildProviderSettings = new Lazy<IDictionary<Guid, BuildProviderSettings>>(() =>
+            _settings = new Lazy<IDictionary<Guid, BuildProviderSettings>>(() =>
             {
                 return _buildProviderSettingsStore.LoadAsync().Result.ToDictionary(buildProviderSettings => buildProviderSettings.Id, buildProviderSettings => buildProviderSettings);
             });
         }
 
         /// <summary>
-        /// Gets the build provider settings.
+        /// Adds the specified settings.
         /// </summary>
-        /// <returns>
-        /// The build provider settings.
-        /// </returns>
-        public IEnumerable<BuildProviderSettings> GetBuildProviderSettings()
+        /// <param name="settings">The build provider settings.</param>
+        public void Add(BuildProviderSettings settings)
         {
-            return _currentBuildProviderSettings.Value.Values;
+            Ensure.That(settings).IsNotNull();
+
+            _settings.Value.Add(settings.Id, settings);
+
+            Save();
         }
 
         /// <summary>
-        /// Adds the specified build provider settings.
+        /// Removes the settings with the specified identifier.
         /// </summary>
-        /// <param name="buildProviderSettings">The build provider settings.</param>
-        public void AddBuildProviderSettings(BuildProviderSettings buildProviderSettings)
+        /// <param name="id">The identifier.</param>
+        public void Remove(Guid id)
         {
-            Ensure.That(buildProviderSettings).IsNotNull();
+            if (!_settings.Value.ContainsKey(id))
+            {
+                return;
+            }
 
-            _currentBuildProviderSettings.Value.Add(buildProviderSettings.Id, buildProviderSettings);
+            _settings.Value.Remove(id);
 
-            _buildProviderSettingsStore.SaveAsync(_currentBuildProviderSettings.Value.Values);
+            Save();
+        }
+
+        /// <summary>
+        /// Updates the specified settings.
+        /// </summary>
+        /// <param name="settings">The settings.</param>
+        public void Update(BuildProviderSettings settings)
+        {
+            Ensure.That(settings).IsNotNull();
+
+            if (!_settings.Value.ContainsKey(settings.Id))
+            {
+                return;
+            }
+
+            _settings.Value[settings.Id] = settings;
+
+            Save();
+        }
+
+        /// <summary>
+        /// Gets all the settings.
+        /// </summary>
+        /// <returns>
+        /// All the settings.
+        /// </returns>
+        public IEnumerable<BuildProviderSettings> GetAll()
+        {
+            return _settings.Value.Values;
+        }
+
+        private void Save()
+        {
+            _buildProviderSettingsStore.SaveAsync(_settings.Value.Values);
         }
     }
 }

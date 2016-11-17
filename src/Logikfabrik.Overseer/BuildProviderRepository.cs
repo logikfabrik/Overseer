@@ -27,7 +27,7 @@ namespace Logikfabrik.Overseer
 
             _currentBuildProviders = new Lazy<IDictionary<Guid, IBuildProvider>>(() =>
             {
-                return buildProviderSettingsRepository.GetBuildProviderSettings().ToDictionary(buildProviderSettings => buildProviderSettings.Id, GetBuildProvider);
+                return buildProviderSettingsRepository.GetAll().ToDictionary(buildProviderSettings => buildProviderSettings.Id, GetBuildProvider);
             });
         }
 

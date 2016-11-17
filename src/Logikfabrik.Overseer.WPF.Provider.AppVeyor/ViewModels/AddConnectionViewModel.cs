@@ -55,7 +55,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor.ViewModels
         /// <returns>
         /// The build provider settings.
         /// </returns>
-        protected override BuildProviderSettings GetBuildProviderSettings()
+        protected override BuildProviderSettings GetSettings()
         {
             return new BuildProviderSettings
             {

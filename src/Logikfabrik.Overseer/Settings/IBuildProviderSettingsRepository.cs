@@ -4,6 +4,7 @@
 
 namespace Logikfabrik.Overseer.Settings
 {
+    using System;
     using System.Collections.Generic;
 
     /// <summary>
@@ -12,15 +13,27 @@ namespace Logikfabrik.Overseer.Settings
     public interface IBuildProviderSettingsRepository
     {
         /// <summary>
-        /// Adds the specified build provider settings.
+        /// Adds the specified settings.
         /// </summary>
-        /// <param name="buildProviderSettings">The build provider settings.</param>
-        void AddBuildProviderSettings(BuildProviderSettings buildProviderSettings);
+        /// <param name="settings">The build provider settings.</param>
+        void Add(BuildProviderSettings settings);
 
         /// <summary>
-        /// Gets the build provider settings.
+        /// Removes the settings with the specified identifier.
         /// </summary>
-        /// <returns>The build provider settings.</returns>
-        IEnumerable<BuildProviderSettings> GetBuildProviderSettings();
+        /// <param name="id">The identifier.</param>
+        void Remove(Guid id);
+
+        /// <summary>
+        /// Updates the specified settings.
+        /// </summary>
+        /// <param name="settings">The settings.</param>
+        void Update(BuildProviderSettings settings);
+
+        /// <summary>
+        /// Gets all the settings.
+        /// </summary>
+        /// <returns>All the settings.</returns>
+        IEnumerable<BuildProviderSettings> GetAll();
     }
 }

@@ -135,17 +135,29 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         public IEnumerable<ProjectBuildViewModel> ProjectBuildViewModels => _projectBuildViewModels.Value;
 
         /// <summary>
-        /// Edit this connection.
+        /// Gets the type of the view model to edit the connection.
+        /// </summary>
+        /// <value>
+        /// The type of the view model to edit the connection.
+        /// </value>
+        protected abstract Type EditConnectionViewModelType { get; }
+
+        /// <summary>
+        /// Edit the connection.
         /// </summary>
         public void Edit()
         {
+            // TODO: Navigate to the right view/view model.
+            throw new NotImplementedException();
         }
 
         /// <summary>
-        /// Remove this connection.
+        /// Remove the connection.
         /// </summary>
         public void Remove()
         {
+            // TODO: Navigate to the right view/view model.
+            throw new NotImplementedException();
         }
 
         private void BuildMonitorError(object sender, BuildMonitorErrorEventArgs e)

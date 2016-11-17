@@ -4,13 +4,28 @@
 
 namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices.ViewModels
 {
+    using System;
+    using Caliburn.Micro;
     using FluentValidation;
+    using Settings;
+    using Validators;
 
     /// <summary>
     /// The <see cref="EditConnectionViewModel" /> class.
     /// </summary>
     public class EditConnectionViewModel : WPF.ViewModels.EditConnectionViewModel
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="EditConnectionViewModel" /> class.
+        /// </summary>
+        /// <param name="eventAggregator">The event aggregator.</param>
+        /// <param name="buildProviderSettingsRepository">The build provider settings repository.</param>
+        public EditConnectionViewModel(IEventAggregator eventAggregator, IBuildProviderSettingsRepository buildProviderSettingsRepository)
+            : base(eventAggregator, buildProviderSettingsRepository)
+        {
+            Validator = new EditConnectionViewModelValidator();
+        }
+
         /// <summary>
         /// Gets the view name.
         /// </summary>
@@ -26,5 +41,16 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices.ViewModels
         /// The validator.
         /// </value>
         protected override IValidator Validator { get; }
+
+        /// <summary>
+        /// Gets the settings.
+        /// </summary>
+        /// <returns>
+        /// The settings.
+        /// </returns>
+        protected override BuildProviderSettings GetSettings()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

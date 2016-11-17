@@ -45,6 +45,9 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// </value>
         public IEnumerable<ConnectionViewModel> ConnectionViewModels { get; }
 
+        /// <summary>
+        /// Add a connection.
+        /// </summary>
         public void AddConnection()
         {
             var message = new NavigationMessage(typeof(BuildProvidersViewModel));
