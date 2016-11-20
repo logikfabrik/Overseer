@@ -4,7 +4,6 @@
 
 namespace Logikfabrik.Overseer.Settings
 {
-    using System.Collections.Generic;
     using System.Threading.Tasks;
 
     /// <summary>
@@ -12,17 +11,8 @@ namespace Logikfabrik.Overseer.Settings
     /// </summary>
     public interface IBuildProviderSettingsStore
     {
-        /// <summary>
-        /// Saves the specified build provider settings.
-        /// </summary>
-        /// <param name="buildProviderSettings">The build provider settings.</param>
-        /// <returns>A task.</returns>
-        Task SaveAsync(IEnumerable<BuildProviderSettings> buildProviderSettings);
+        Task<BuildProviderSettings[]> LoadAsync();
 
-        /// <summary>
-        /// Loads the build provider settings.
-        /// </summary>
-        /// <returns>A task.</returns>
-        Task<IEnumerable<BuildProviderSettings>> LoadAsync();
+        Task SaveAsync(BuildProviderSettings[] settings);
     }
 }

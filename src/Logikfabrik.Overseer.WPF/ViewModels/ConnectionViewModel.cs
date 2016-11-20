@@ -151,7 +151,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// </summary>
         public void Edit()
         {
-            // TODO: Navigate to the view/view model to edit.
+            // TODO: Navigate to the view/view model to edit, including the current settings for the provider to edit.
             var message = new NavigationMessage(EditConnectionViewModelType);
 
             _eventAggregator.PublishOnUIThread(message);

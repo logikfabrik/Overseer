@@ -51,6 +51,8 @@ namespace Logikfabrik.Overseer.Settings
         /// <param name="id">The identifier.</param>
         public void Remove(Guid id)
         {
+            Ensure.That(id).IsNotEmpty();
+
             if (!_settings.Value.ContainsKey(id))
             {
                 return;
@@ -92,7 +94,7 @@ namespace Logikfabrik.Overseer.Settings
 
         private void Save()
         {
-            _buildProviderSettingsStore.SaveAsync(_settings.Value.Values);
+            _buildProviderSettingsStore.SaveAsync(_settings.Value.Values.ToArray());
         }
     }
 }

@@ -41,16 +41,14 @@ namespace Logikfabrik.Overseer
             return _currentBuildProviders.Value.Values;
         }
 
-        private static IBuildProvider GetBuildProvider(BuildProviderSettings buildProviderSettings)
+        private static IBuildProvider GetBuildProvider(BuildProviderSettings settings)
         {
-            Ensure.That(buildProviderSettings).IsNotNull();
+            Ensure.That(settings).IsNotNull();
 
-            var buildProviderType = Type.GetType(buildProviderSettings.BuildProviderTypeName, true);
-
-            var constructor = buildProviderType.GetConstructor(new[] { typeof(BuildProviderSettings) });
+            var constructor = settings.BuildProviderType.GetConstructor(new[] { typeof(BuildProviderSettings) });
 
             // ReSharper disable once PossibleNullReferenceException
-            var buildProvider = (IBuildProvider)constructor.Invoke(new object[] { buildProviderSettings });
+            var buildProvider = (IBuildProvider)constructor.Invoke(new object[] { settings });
 
             return buildProvider;
         }

@@ -4,14 +4,7 @@
 
 namespace Logikfabrik.Overseer.Settings
 {
-    using System;
-    using System.Collections.Generic;
-    using System.IO;
-    using System.Linq;
-    using System.Reflection;
-    using System.Threading;
     using System.Threading.Tasks;
-    using System.Xml.Serialization;
     using EnsureThat;
 
     /// <summary>
@@ -19,112 +12,49 @@ namespace Logikfabrik.Overseer.Settings
     /// </summary>
     public class BuildProviderSettingsStore : IBuildProviderSettingsStore
     {
-        private const string FileWaitHandleName = "b4908818-002e-42fb-a058-86ea4e47e36e";
-
-        private readonly string _filePath;
-        private readonly EventWaitHandle _fileEventWaitHandle;
+        private readonly IBuildProviderSettingsSerializer _serializer;
+        private readonly IFileStore _fileStore;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="BuildProviderSettingsStore" /> class.
         /// </summary>
-        public BuildProviderSettingsStore()
+        /// <param name="serializer">The serializer.</param>
+        /// <param name="fileStore">The file store.</param>
+        public BuildProviderSettingsStore(IBuildProviderSettingsSerializer serializer, IFileStore fileStore)
         {
-            _filePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), GetProduct(), "Providers.xml");
-            _fileEventWaitHandle = new EventWaitHandle(true, EventResetMode.AutoReset, FileWaitHandleName);
+            Ensure.That(serializer).IsNotNull();
+            Ensure.That(fileStore).IsNotNull();
+
+            _serializer = serializer;
+            _fileStore = fileStore;
         }
 
-        /// <summary>
-        /// Loads the build provider settings.
-        /// </summary>
-        /// <returns>
-        /// A task.
-        /// </returns>
-        public async Task<IEnumerable<BuildProviderSettings>> LoadAsync()
+        public async Task<BuildProviderSettings[]> LoadAsync()
         {
             return await Task.Run(() => Load()).ConfigureAwait(false);
         }
 
-        /// <summary>
-        /// Saves the specified build provider settings.
-        /// </summary>
-        /// <param name="buildProviderSettings">The build provider settings.</param>
-        /// <returns>
-        /// A task.
-        /// </returns>
-        public async Task SaveAsync(IEnumerable<BuildProviderSettings> buildProviderSettings)
+        public async Task SaveAsync(BuildProviderSettings[] settings)
         {
-            Ensure.That(buildProviderSettings).IsNotNull();
-
-            await Task.Run(() => Save(buildProviderSettings)).ConfigureAwait(false);
+            await Task.Run(() => Save(settings)).ConfigureAwait(false);
         }
 
-        private static string GetProduct()
+        private BuildProviderSettings[] Load()
         {
-            var attribute = Attribute.GetCustomAttribute(Assembly.GetExecutingAssembly(), typeof(AssemblyProductAttribute), false) as AssemblyProductAttribute;
+            var fileContents = _fileStore.Read();
 
-            return attribute?.Product;
+            return string.IsNullOrWhiteSpace(fileContents)
+                ? new BuildProviderSettings[] { }
+                : _serializer.Deserialize(fileContents);
         }
 
-        private IEnumerable<BuildProviderSettings> Load()
+        private void Save(BuildProviderSettings[] settings)
         {
-            _fileEventWaitHandle.WaitOne();
+            Ensure.That(settings).IsNotNull();
 
-            try
-            {
-                if (!File.Exists(_filePath))
-                {
-                    return new BuildProviderSettings[] { };
-                }
+            var fileContents = _serializer.Serialize(settings);
 
-                using (var reader = new StreamReader(_filePath))
-                {
-                    var serializer = XmlSerializer.FromTypes(new[] { typeof(BuildProviderSettings[]) })[0];
-
-                    return (BuildProviderSettings[])serializer.Deserialize(reader);
-                }
-            }
-            finally
-            {
-                _fileEventWaitHandle.Set();
-            }
-        }
-
-        private void Save(IEnumerable<BuildProviderSettings> buildProviderSettings)
-        {
-            Ensure.That(buildProviderSettings).IsNotNull();
-
-            _fileEventWaitHandle.WaitOne();
-
-            try
-            {
-                var directoryPath = Path.GetDirectoryName(_filePath);
-
-                if (string.IsNullOrWhiteSpace(directoryPath))
-                {
-                    throw new Exception();
-                }
-
-                if (!Directory.Exists(directoryPath))
-                {
-                    Directory.CreateDirectory(directoryPath);
-                }
-
-                using (var writer = new StreamWriter(_filePath, false))
-                {
-                    var serializer = XmlSerializer.FromTypes(new[] { typeof(BuildProviderSettings[]) })[0];
-
-                    serializer.Serialize(writer, buildProviderSettings.ToArray());
-                }
-            }
-            finally
-            {
-                if (File.Exists(_filePath) && !File.GetAttributes(_filePath).HasFlag(FileAttributes.Encrypted))
-                {
-                    File.Encrypt(_filePath);
-                }
-
-                _fileEventWaitHandle.Set();
-            }
+            _fileStore.Write(fileContents);
         }
     }
 }

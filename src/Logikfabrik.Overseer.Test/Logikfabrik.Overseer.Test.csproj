@@ -62,6 +62,9 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="Settings\BuildProviderSettingsA.cs" />
+    <Compile Include="Settings\BuildProviderSettingsB.cs" />
+    <Compile Include="Settings\BuildProviderSettingsSerializerTest.cs" />
     <Compile Include="Settings\BuildProviderSettingsStoreTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

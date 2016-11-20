@@ -64,15 +64,19 @@
     <Compile Include="IChange.cs" />
     <Compile Include="Settings\BuildProviderSettings.cs" />
     <Compile Include="Settings\BuildProviderSettingsRepository.cs" />
+    <Compile Include="Settings\BuildProviderSettingsSerializer.cs" />
     <Compile Include="Settings\BuildProviderSettingsStore.cs" />
     <Compile Include="BuildStatus.cs" />
     <Compile Include="BuildProvider.cs" />
     <Compile Include="IBuild.cs" />
     <Compile Include="Settings\Extensions\BuildProviderSettingsExtensions.cs" />
+    <Compile Include="Settings\FileStore.cs" />
     <Compile Include="Settings\IBuildProviderSettingsRepository.cs" />
+    <Compile Include="Settings\IBuildProviderSettingsSerializer.cs" />
     <Compile Include="Settings\IBuildProviderSettingsStore.cs" />
     <Compile Include="IProject.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Settings\IFileStore.cs" />
     <Compile Include="Settings\Setting.cs" />
   </ItemGroup>
   <ItemGroup>

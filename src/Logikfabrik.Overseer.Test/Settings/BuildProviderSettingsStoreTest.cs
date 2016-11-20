@@ -5,6 +5,7 @@
 namespace Logikfabrik.Overseer.Test.Settings
 {
     using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using Moq;
     using Overseer.Settings;
 
     [TestClass]
@@ -13,20 +14,12 @@ namespace Logikfabrik.Overseer.Test.Settings
         [TestMethod]
         public void BuildProviderSettingsStore_CanSave()
         {
-            var settings = new[]
-            {
-                new BuildProviderSettings
-                {
-                    Name = "Name",
-                    BuildProviderTypeName = typeof(object).AssemblyQualifiedName,
-                    Settings = new[]
-                    {
-                        new Setting { Name = "Name", Value = "Value" }
-                    }
-                }
-            };
+            var settings = new BuildProviderSettings[] { };
 
-            var store = new BuildProviderSettingsStore();
+            var serializerMock = new Mock<IBuildProviderSettingsSerializer>();
+            var fileStoreMock = new Mock<IFileStore>();
+
+            var store = new BuildProviderSettingsStore(serializerMock.Object, fileStoreMock.Object);
 
             store.SaveAsync(settings).Wait();
         }
@@ -34,7 +27,10 @@ namespace Logikfabrik.Overseer.Test.Settings
         [TestMethod]
         public void BuildProviderSettingsStore_CanLoad()
         {
-            var store = new BuildProviderSettingsStore();
+            var serializerMock = new Mock<IBuildProviderSettingsSerializer>();
+            var fileStoreMock = new Mock<IFileStore>();
+
+            var store = new BuildProviderSettingsStore(serializerMock.Object, fileStoreMock.Object);
 
             var settings = store.LoadAsync().Result;
 

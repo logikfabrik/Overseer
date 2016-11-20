@@ -9,7 +9,6 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices
     using System.Linq;
     using System.Threading.Tasks;
     using EnsureThat;
-    using Settings;
     using Settings.Extensions;
 
     /// <summary>

@@ -7,7 +7,6 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
-    using Settings;
     using Settings.Extensions;
 
     /// <summary>
@@ -19,6 +18,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor
         /// Initializes a new instance of the <see cref="BuildProvider" /> class.
         /// </summary>
         /// <param name="buildProviderSettings">The build provider settings.</param>
+        // ReSharper disable once SuggestBaseTypeForParameter
         public BuildProvider(BuildProviderSettings buildProviderSettings)
             : base(buildProviderSettings)
         {

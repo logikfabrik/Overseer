@@ -10,17 +10,15 @@ namespace Logikfabrik.Overseer.Settings
     /// <summary>
     /// The <see cref="BuildProvider" /> class.
     /// </summary>
-    public class BuildProviderSettings
+    public abstract class BuildProviderSettings
     {
         private Guid _id;
         private string _name;
-        private string _buildProviderTypeName;
-        private Setting[] _settings;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="BuildProviderSettings" /> class.
         /// </summary>
-        public BuildProviderSettings()
+        protected BuildProviderSettings()
         {
             _id = Guid.NewGuid();
         }
@@ -68,45 +66,11 @@ namespace Logikfabrik.Overseer.Settings
         }
 
         /// <summary>
-        /// Gets or sets the provider type name.
+        /// Gets the build provider type.
         /// </summary>
         /// <value>
-        /// The provider type name.
+        /// The build provider type.
         /// </value>
-        public string BuildProviderTypeName
-        {
-            get
-            {
-                return _buildProviderTypeName;
-            }
-
-            set
-            {
-                Ensure.That(value).IsNotNullOrWhiteSpace();
-
-                _buildProviderTypeName = value;
-            }
-        }
-
-        /// <summary>
-        /// Gets or sets the settings.
-        /// </summary>
-        /// <value>
-        /// The settings.
-        /// </value>
-        public Setting[] Settings
-        {
-            get
-            {
-                return _settings;
-            }
-
-            set
-            {
-                Ensure.That(value).IsNotNull();
-
-                _settings = value;
-            }
-        }
+        public abstract Type BuildProviderType { get; }
     }
 }
