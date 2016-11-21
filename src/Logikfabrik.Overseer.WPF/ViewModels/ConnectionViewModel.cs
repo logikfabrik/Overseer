@@ -17,8 +17,8 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     public abstract class ConnectionViewModel : PropertyChangedBase
     {
         private readonly IEventAggregator _eventAggregator;
-        private readonly IBuildProvider _buildProvider;
-        private readonly Lazy<IEnumerable<ProjectBuildViewModel>> _projectBuildViewModels;
+        private readonly IBuildProvider _provider;
+        private readonly Lazy<IEnumerable<ProjectBuildViewModel>> _projects;
         private bool _isBusy;
         private bool _isErrored;
 
@@ -27,24 +27,24 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// </summary>
         /// <param name="eventAggregator">The event aggregator.</param>
         /// <param name="buildMonitor">The build monitor.</param>
-        /// <param name="buildProvider">The build provider.</param>
-        protected ConnectionViewModel(IEventAggregator eventAggregator, IBuildMonitor buildMonitor, IBuildProvider buildProvider)
+        /// <param name="provider">The provider.</param>
+        protected ConnectionViewModel(IEventAggregator eventAggregator, IBuildMonitor buildMonitor, IBuildProvider provider)
         {
             Ensure.That(eventAggregator).IsNotNull();
             Ensure.That(buildMonitor).IsNotNull();
-            Ensure.That(buildProvider).IsNotNull();
+            Ensure.That(provider).IsNotNull();
 
             _eventAggregator = eventAggregator;
-            _buildProvider = buildProvider;
+            _provider = provider;
             _isBusy = true;
             _isErrored = false;
-            _projectBuildViewModels = new Lazy<IEnumerable<ProjectBuildViewModel>>(() =>
+            _projects = new Lazy<IEnumerable<ProjectBuildViewModel>>(() =>
             {
-                var projectViewModels = buildProvider.GetProjectsAsync().Result.Select(project => new ProjectBuildViewModel(buildMonitor, buildProvider, project));
+                var projects = provider.GetProjectsAsync().Result.Select(project => new ProjectBuildViewModel(buildMonitor, provider, project));
 
                 IsBusy = false;
 
-                return projectViewModels;
+                return projects;
             });
 
             WeakEventManager<IBuildMonitor, BuildMonitorErrorEventArgs>.AddHandler(buildMonitor, nameof(buildMonitor.Error), BuildMonitorError);
@@ -53,20 +53,12 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         }
 
         /// <summary>
-        /// Gets the name.
+        /// Gets the connection name.
         /// </summary>
         /// <value>
-        /// The name.
+        /// The connection name.
         /// </value>
-        public string Name => _buildProvider.Settings.Name;
-
-        /// <summary>
-        /// Gets the build provider name.
-        /// </summary>
-        /// <value>
-        /// The build provider name.
-        /// </value>
-        public abstract string BuildProviderName { get; }
+        public string ConnectionName => _provider.Settings.Name;
 
         /// <summary>
         /// Gets a value indicating whether this instance is busy.
@@ -131,12 +123,12 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         }
 
         /// <summary>
-        /// Gets the project build view models.
+        /// Gets the projects
         /// </summary>
         /// <value>
-        /// The project build view models.
+        /// The projects
         /// </value>
-        public IEnumerable<ProjectBuildViewModel> ProjectBuildViewModels => _projectBuildViewModels.Value;
+        public IEnumerable<ProjectBuildViewModel> Projects => _projects.Value;
 
         /// <summary>
         /// Gets the type of the view model to edit the connection.
@@ -178,7 +170,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
                 return;
             }
 
-            if (_buildProvider.Settings.Id != e.Provider.Settings.Id)
+            if (_provider.Settings.Id != e.Provider.Settings.Id)
             {
                 return;
             }

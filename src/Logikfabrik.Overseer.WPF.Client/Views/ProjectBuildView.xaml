@@ -114,7 +114,7 @@
                                 </ToggleButton>
                                 <Border x:Name="PART_Content" Style="{StaticResource ProjectContentBorderStyle}">
                                     <ItemsControl Focusable="False" 
-                                                  ItemsSource="{Binding BuildViewModels, Mode=OneWay}">
+                                                  ItemsSource="{Binding Builds, Mode=OneWay}">
                                         <ItemsControl.ItemContainerStyle>
                                             <Style>
                                                 <!-- ReSharper disable once Xaml.RedundantPropertyTypeQualifier -->

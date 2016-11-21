@@ -19,14 +19,14 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// Initializes a new instance of the <see cref="BuildProvidersViewModel" /> class.
         /// </summary>
         /// <param name="eventAggregator">The event aggregator.</param>
-        /// <param name="buildProviderViewModels">The build provider view models.</param>
-        public BuildProvidersViewModel(IEventAggregator eventAggregator, IEnumerable<BuildProviderViewModel> buildProviderViewModels)
+        /// <param name="providers">The providers.</param>
+        public BuildProvidersViewModel(IEventAggregator eventAggregator, IEnumerable<BuildProviderViewModel> providers)
         {
             Ensure.That(eventAggregator).IsNotNull();
-            Ensure.That(buildProviderViewModels).IsNotNull();
+            Ensure.That(providers).IsNotNull();
 
             _eventAggregator = eventAggregator;
-            BuildProviderViewModels = buildProviderViewModels;
+            Providers = providers;
         }
 
         /// <summary>
@@ -38,12 +38,12 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         public override string ViewName => "Add connection";
 
         /// <summary>
-        /// Gets the build providers.
+        /// Gets the providers.
         /// </summary>
         /// <value>
-        /// The build providers.
+        /// The providers.
         /// </value>
-        public IEnumerable<BuildProviderViewModel> BuildProviderViewModels { get; }
+        public IEnumerable<BuildProviderViewModel> Providers { get; }
 
         /// <summary>
         /// View the connections.

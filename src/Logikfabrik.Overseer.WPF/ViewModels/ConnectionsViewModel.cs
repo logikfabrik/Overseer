@@ -19,14 +19,14 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// Initializes a new instance of the <see cref="ConnectionsViewModel" /> class.
         /// </summary>
         /// <param name="eventAggregator">The event aggregator.</param>
-        /// <param name="connectionViewModels">The connection view models.</param>
-        public ConnectionsViewModel(IEventAggregator eventAggregator, IEnumerable<ConnectionViewModel> connectionViewModels)
+        /// <param name="connections">The connections.</param>
+        public ConnectionsViewModel(IEventAggregator eventAggregator, IEnumerable<ConnectionViewModel> connections)
         {
             Ensure.That(eventAggregator).IsNotNull();
-            Ensure.That(connectionViewModels).IsNotNull();
+            Ensure.That(connections).IsNotNull();
 
             _eventAggregator = eventAggregator;
-            ConnectionViewModels = connectionViewModels;
+            Connections = connections;
         }
 
         /// <summary>
@@ -38,12 +38,12 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         public override string ViewName => "Connections";
 
         /// <summary>
-        /// Gets the connection view models.
+        /// Gets the connections.
         /// </summary>
         /// <value>
-        /// The connection view models.
+        /// The connections.
         /// </value>
-        public IEnumerable<ConnectionViewModel> ConnectionViewModels { get; }
+        public IEnumerable<ConnectionViewModel> Connections { get; }
 
         /// <summary>
         /// Add a connection.

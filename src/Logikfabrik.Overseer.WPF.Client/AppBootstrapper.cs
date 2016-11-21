@@ -118,7 +118,7 @@ namespace Logikfabrik.Overseer.WPF.Client
             {
                 var providers = context.Kernel.Get<IBuildProviderRepository>().GetProviders();
 
-                var viewModels = providers.Select(provider => context.Kernel.Get<ConnectionViewModel>(ModuleHelper.GetModuleName(provider), new ConstructorArgument("buildProvider", provider)));
+                var viewModels = providers.Select(provider => context.Kernel.Get<ConnectionViewModel>(ModuleHelper.GetModuleName(provider), new ConstructorArgument("provider", provider)));
 
                 return new ConnectionsViewModel(context.Kernel.Get<IEventAggregator>(), viewModels);
             });

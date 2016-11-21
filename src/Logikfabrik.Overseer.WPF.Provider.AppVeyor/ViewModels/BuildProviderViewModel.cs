@@ -22,12 +22,12 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor.ViewModels
         }
 
         /// <summary>
-        /// Gets the build provider name.
+        /// Gets the provider name.
         /// </summary>
         /// <value>
-        /// The build provider name.
+        /// The provider name.
         /// </value>
-        public override string BuildProviderName { get; } = "AppVeyor";
+        public override string ProviderName { get; } = "AppVeyor";
 
         /// <summary>
         /// Gets the type of the view model to add a connection.

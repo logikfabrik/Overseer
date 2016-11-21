@@ -15,9 +15,9 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     /// </summary>
     public class ProjectBuildViewModel : PropertyChangedBase
     {
-        private readonly IBuildProvider _buildProvider;
+        private readonly IBuildProvider _provider;
         private readonly IProject _project;
-        private IEnumerable<BuildViewModel> _buildViewModels;
+        private IEnumerable<BuildViewModel> _builds;
         private bool _isBusy;
         private bool _isErrored;
 
@@ -25,15 +25,15 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// Initializes a new instance of the <see cref="ProjectBuildViewModel" /> class.
         /// </summary>
         /// <param name="buildMonitor">The build monitor.</param>
-        /// <param name="buildProvider">The build provider.</param>
+        /// <param name="provider">The provider.</param>
         /// <param name="project">The project.</param>
-        public ProjectBuildViewModel(IBuildMonitor buildMonitor, IBuildProvider buildProvider, IProject project)
+        public ProjectBuildViewModel(IBuildMonitor buildMonitor, IBuildProvider provider, IProject project)
         {
             Ensure.That(buildMonitor).IsNotNull();
-            Ensure.That(buildProvider).IsNotNull();
+            Ensure.That(provider).IsNotNull();
             Ensure.That(project).IsNotNull();
 
-            _buildProvider = buildProvider;
+            _provider = provider;
             _project = project;
             _isBusy = true;
             _isErrored = false;
@@ -56,17 +56,17 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// <value>
         /// The build view models.
         /// </value>
-        public IEnumerable<BuildViewModel> BuildViewModels
+        public IEnumerable<BuildViewModel> Builds
         {
             get
             {
-                return _buildViewModels;
+                return _builds;
             }
 
             private set
             {
-                _buildViewModels = value;
-                NotifyOfPropertyChange(() => BuildViewModels);
+                _builds = value;
+                NotifyOfPropertyChange(() => Builds);
             }
         }
 
@@ -134,7 +134,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
 
         private void BuildMonitorProgressChanged(object sender, BuildMonitorProgressEventArgs e)
         {
-            if (_buildProvider.Settings.Id != e.Provider.Settings.Id)
+            if (_provider.Settings.Id != e.Provider.Settings.Id)
             {
                 return;
             }
@@ -146,7 +146,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
 
             if (e.Builds.Any())
             {
-                BuildViewModels = e.Builds.Select(build => new BuildViewModel(e.Project, build));
+                Builds = e.Builds.Select(build => new BuildViewModel(e.Project, build));
             }
 
             IsBusy = false;
@@ -164,7 +164,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
                 return;
             }
 
-            if (_buildProvider.Settings.Id != e.Provider.Settings.Id)
+            if (_provider.Settings.Id != e.Provider.Settings.Id)
             {
                 return;
             }

@@ -43,7 +43,7 @@
                            Style="{StaticResource SummaryTextBlockStyle}" />
             </StackPanel>
             <ItemsControl Focusable="False" 
-                          ItemsSource="{Binding BuildProviderViewModels, Mode=OneTime}">
+                          ItemsSource="{Binding Providers, Mode=OneTime}">
                 <ItemsControl.ItemContainerStyle>
                     <Style>
                         <Setter Property="FrameworkElement.Margin" Value="0 0 10 10" />

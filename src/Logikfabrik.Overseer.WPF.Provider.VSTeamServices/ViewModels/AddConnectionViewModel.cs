@@ -18,7 +18,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices.ViewModels
         /// Initializes a new instance of the <see cref="AddConnectionViewModel" /> class.
         /// </summary>
         /// <param name="eventAggregator">The event aggregator.</param>
-        /// <param name="settingsRepository">The build provider settings repository.</param>
+        /// <param name="settingsRepository">The settings repository.</param>
         public AddConnectionViewModel(IEventAggregator eventAggregator, IConnectionSettingsRepository settingsRepository)
             : base(eventAggregator, settingsRepository)
         {
@@ -66,7 +66,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices.ViewModels
         /// </returns>
         protected override VSTeamServices.ConnectionSettings GetSettings()
         {
-            return new VSTeamServices.ConnectionSettings()
+            return new VSTeamServices.ConnectionSettings
             {
                 Name = ConnectionName,
                 Url = Url,

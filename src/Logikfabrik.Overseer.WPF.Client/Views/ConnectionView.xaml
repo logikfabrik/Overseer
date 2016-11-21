@@ -89,7 +89,7 @@
                                                                         Data="{StaticResource IconArrowUp}" />
                                                                 <TextBlock Grid.Column="1" 
                                                                            Style="{StaticResource ConnectionNameTextBlockStyle}"
-                                                                           Text="{Binding Name, Mode=OneTime}" />
+                                                                           Text="{Binding ConnectionName, Mode=OneTime}" />
                                                                 <StackPanel Grid.Column="2" 
                                                                             VerticalAlignment="Center"
                                                                             Margin="5 0">
@@ -187,7 +187,7 @@
                                 </ToggleButton>
                                 <Border x:Name="PART_Content" Style="{StaticResource ConnectionContentBorderStyle}">
                                     <ItemsControl Focusable="False" 
-                                                  ItemsSource="{Binding ProjectBuildViewModels, Mode=OneWay, IsAsync=True}">
+                                                  ItemsSource="{Binding Projects, Mode=OneWay, IsAsync=True}">
                                         <ItemsControl.ItemContainerStyle>
                                             <Style>
                                                 <!-- ReSharper disable once Xaml.RedundantPropertyTypeQualifier -->

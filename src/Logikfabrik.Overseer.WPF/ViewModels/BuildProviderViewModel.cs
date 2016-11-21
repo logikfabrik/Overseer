@@ -27,12 +27,12 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         }
 
         /// <summary>
-        /// Gets the build provider name.
+        /// Gets the provider name.
         /// </summary>
         /// <value>
-        /// The build provider name.
+        /// The provider name.
         /// </value>
-        public abstract string BuildProviderName { get; }
+        public abstract string ProviderName { get; }
 
         /// <summary>
         /// Gets the type of the view model to add a connection.
