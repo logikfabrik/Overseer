@@ -4,7 +4,6 @@
 
 namespace Logikfabrik.Overseer
 {
-    using System;
     using System.Collections.Generic;
     using System.Linq;
     using EnsureThat;
@@ -15,7 +14,7 @@ namespace Logikfabrik.Overseer
     /// </summary>
     public class BuildProviderRepository : IBuildProviderRepository
     {
-        private readonly Lazy<IDictionary<Guid, IBuildProvider>> _currentProviders;
+        private readonly IConnectionSettingsRepository _settingsRepository;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="BuildProviderRepository" /> class.
@@ -25,28 +24,24 @@ namespace Logikfabrik.Overseer
         {
             Ensure.That(settingsRepository).IsNotNull();
 
-            _currentProviders = new Lazy<IDictionary<Guid, IBuildProvider>>(() =>
-            {
-                return settingsRepository.GetAll().ToDictionary(buildProviderSettings => buildProviderSettings.Id, GetProvider);
-            });
+            _settingsRepository = settingsRepository;
         }
 
         /// <summary>
-        /// Gets the providers.
+        /// Gets all the providers.
         /// </summary>
         /// <returns>
-        /// The providers.
+        /// All the providers.
         /// </returns>
-        public IEnumerable<IBuildProvider> GetProviders()
+        public IEnumerable<IBuildProvider> GetAll()
         {
-            // TODO: Refresh the collection if settings are added, removed, or changed.
-            return _currentProviders.Value.Values;
+            var settings = _settingsRepository.GetAll();
+
+            return settings.Select(GetProvider);
         }
 
         private static IBuildProvider GetProvider(ConnectionSettings settings)
         {
-            Ensure.That(settings).IsNotNull();
-
             var constructor = settings.ProviderType.GetConstructor(new[] { settings.GetType() });
 
             // ReSharper disable once PossibleNullReferenceException

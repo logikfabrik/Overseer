@@ -62,6 +62,10 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="BuildMonitorTest.cs" />
+    <Compile Include="BuildProviderA.cs" />
+    <Compile Include="BuildProviderB.cs" />
+    <Compile Include="BuildProviderRepositoryTest.cs" />
     <Compile Include="Settings\ConnectionSettingsA.cs" />
     <Compile Include="Settings\ConnectionSettingsB.cs" />
     <Compile Include="Settings\ConnectionSettingsSerializerTest.cs" />

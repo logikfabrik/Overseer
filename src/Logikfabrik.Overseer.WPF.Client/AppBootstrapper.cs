@@ -97,13 +97,12 @@ namespace Logikfabrik.Overseer.WPF.Client
                         .SelectMany(assembly => assembly.GetTypes())
                         .Where(type => typeof(ConnectionSettings).IsAssignableFrom(type))
                         .ToArray();
-                
 
                 return new ConnectionSettingsSerializer(types);
             });
-            _kernel.Bind<IConnectionSettingsStore>().To<ConnectionSettingsStore>().InSingletonScope();
-            _kernel.Bind<IConnectionSettingsRepository>().To<ConnectionSettingsRepository>().InSingletonScope();
-            _kernel.Bind<IBuildProviderRepository>().To<BuildProviderRepository>().InSingletonScope();
+            _kernel.Bind<IConnectionSettingsStore>().To<ConnectionSettingsStore>();
+            _kernel.Bind<IConnectionSettingsRepository>().To<ConnectionSettingsRepository>();
+            _kernel.Bind<IBuildProviderRepository>().To<BuildProviderRepository>();
             _kernel.Bind<IBuildMonitor>().To<BuildMonitor>().InSingletonScope();
 
             // Caliburn Micro setup.
@@ -116,7 +115,7 @@ namespace Logikfabrik.Overseer.WPF.Client
 
             _kernel.Bind<ConnectionsViewModel>().ToMethod(context =>
             {
-                var providers = context.Kernel.Get<IBuildProviderRepository>().GetProviders();
+                var providers = context.Kernel.Get<IBuildProviderRepository>().GetAll();
 
                 var viewModels = providers.Select(provider => context.Kernel.Get<ConnectionViewModel>(ModuleHelper.GetModuleName(provider), new ConstructorArgument("provider", provider)));
 

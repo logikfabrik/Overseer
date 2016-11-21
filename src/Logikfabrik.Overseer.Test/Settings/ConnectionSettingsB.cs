@@ -11,6 +11,6 @@ namespace Logikfabrik.Overseer.Test.Settings
     {
         public string SettingB { get; set; }
 
-        public override Type ProviderType { get; } = typeof(object);
+        public override Type ProviderType { get; } = typeof(BuildProviderB);
     }
 }

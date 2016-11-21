@@ -12,11 +12,11 @@ namespace Logikfabrik.Overseer
     public interface IBuildProviderRepository
     {
         /// <summary>
-        /// Gets the providers.
+        /// Gets all the providers.
         /// </summary>
         /// <returns>
-        /// The providers.
+        /// All the providers.
         /// </returns>
-        IEnumerable<IBuildProvider> GetProviders();
+        IEnumerable<IBuildProvider> GetAll();
     }
 }

@@ -135,7 +135,7 @@ namespace Logikfabrik.Overseer
                 {
                     try
                     {
-                        var buildProviders = _providerRepository.GetProviders();
+                        var buildProviders = _providerRepository.GetAll();
 
                         Task.WaitAll(buildProviders.Select(GetProjectsAsync).ToArray());
                     }
@@ -145,9 +145,8 @@ namespace Logikfabrik.Overseer
                     }
 
                     const int delayForSeconds = 5;
-                    const int delayForMilliseconds = delayForSeconds * 1000;
 
-                    await Task.Delay(delayForMilliseconds);
+                    await Task.Delay(TimeSpan.FromSeconds(delayForSeconds).Milliseconds);
                 }
             },
             _cancellationTokenSource.Token);

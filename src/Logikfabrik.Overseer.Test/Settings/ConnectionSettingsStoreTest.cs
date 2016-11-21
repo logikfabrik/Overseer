@@ -22,6 +22,8 @@ namespace Logikfabrik.Overseer.Test.Settings
             var store = new ConnectionSettingsStore(serializerMock.Object, fileStoreMock.Object);
 
             store.SaveAsync(settings).Wait();
+
+            fileStoreMock.Verify(m => m.Write(It.IsAny<string>()), Times.Once);
         }
 
         [TestMethod]
@@ -35,6 +37,8 @@ namespace Logikfabrik.Overseer.Test.Settings
             var settings = store.LoadAsync().Result;
 
             Assert.IsNotNull(settings);
+
+            fileStoreMock.Verify(m => m.Read(), Times.Once);
         }
     }
 }
