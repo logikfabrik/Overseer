@@ -15,18 +15,18 @@ namespace Logikfabrik.Overseer
     /// </summary>
     public class BuildMonitor : IBuildMonitor, IDisposable
     {
-        private readonly IBuildProviderRepository _buildProviderRepository;
+        private readonly IBuildProviderRepository _providerRepository;
         private CancellationTokenSource _cancellationTokenSource;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="BuildMonitor" /> class.
         /// </summary>
-        /// <param name="buildProviderRepository">The build provider repository.</param>
-        public BuildMonitor(IBuildProviderRepository buildProviderRepository)
+        /// <param name="providerRepository">The provider repository.</param>
+        public BuildMonitor(IBuildProviderRepository providerRepository)
         {
-            Ensure.That(buildProviderRepository).IsNotNull();
+            Ensure.That(providerRepository).IsNotNull();
 
-            _buildProviderRepository = buildProviderRepository;
+            _providerRepository = providerRepository;
         }
 
         /// <summary>
@@ -43,7 +43,7 @@ namespace Logikfabrik.Overseer
         /// Gets a value indicating whether this instance is monitoring.
         /// </summary>
         /// <value>
-        /// <c>true</c> if this instance is monitoring; otherwise, <c>false</c>.
+        ///   <c>true</c> if this instance is monitoring; otherwise, <c>false</c>.
         /// </value>
         public bool IsMonitoring { get; private set; }
 
@@ -135,7 +135,7 @@ namespace Logikfabrik.Overseer
                 {
                     try
                     {
-                        var buildProviders = _buildProviderRepository.GetBuildProviders();
+                        var buildProviders = _providerRepository.GetProviders();
 
                         Task.WaitAll(buildProviders.Select(GetProjectsAsync).ToArray());
                     }

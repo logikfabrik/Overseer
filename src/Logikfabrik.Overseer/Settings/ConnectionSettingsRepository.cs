@@ -1,4 +1,4 @@
-﻿// <copyright file="BuildProviderSettingsRepository.cs" company="Logikfabrik">
+﻿// <copyright file="ConnectionSettingsRepository.cs" company="Logikfabrik">
 //   Copyright (c) 2016 anton(at)logikfabrik.se. Licensed under the MIT license.
 // </copyright>
 
@@ -10,33 +10,33 @@ namespace Logikfabrik.Overseer.Settings
     using EnsureThat;
 
     /// <summary>
-    /// The <see cref="BuildProviderSettingsRepository" /> class.
+    /// The <see cref="ConnectionSettingsRepository" /> class.
     /// </summary>
-    public class BuildProviderSettingsRepository : IBuildProviderSettingsRepository
+    public class ConnectionSettingsRepository : IConnectionSettingsRepository
     {
-        private readonly IBuildProviderSettingsStore _buildProviderSettingsStore;
-        private readonly Lazy<IDictionary<Guid, BuildProviderSettings>> _settings;
+        private readonly IConnectionSettingsStore _settingsStore;
+        private readonly Lazy<IDictionary<Guid, ConnectionSettings>> _settings;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="BuildProviderSettingsRepository" /> class.
+        /// Initializes a new instance of the <see cref="ConnectionSettingsRepository" /> class.
         /// </summary>
-        /// <param name="buildProviderSettingsStore">The build provider settings store.</param>
-        public BuildProviderSettingsRepository(IBuildProviderSettingsStore buildProviderSettingsStore)
+        /// <param name="settingsStore">The settings store.</param>
+        public ConnectionSettingsRepository(IConnectionSettingsStore settingsStore)
         {
-            Ensure.That(buildProviderSettingsStore).IsNotNull();
+            Ensure.That(settingsStore).IsNotNull();
 
-            _buildProviderSettingsStore = buildProviderSettingsStore;
-            _settings = new Lazy<IDictionary<Guid, BuildProviderSettings>>(() =>
+            _settingsStore = settingsStore;
+            _settings = new Lazy<IDictionary<Guid, ConnectionSettings>>(() =>
             {
-                return _buildProviderSettingsStore.LoadAsync().Result.ToDictionary(buildProviderSettings => buildProviderSettings.Id, buildProviderSettings => buildProviderSettings);
+                return _settingsStore.LoadAsync().Result.ToDictionary(buildProviderSettings => buildProviderSettings.Id, buildProviderSettings => buildProviderSettings);
             });
         }
 
         /// <summary>
         /// Adds the specified settings.
         /// </summary>
-        /// <param name="settings">The build provider settings.</param>
-        public void Add(BuildProviderSettings settings)
+        /// <param name="settings">The settings.</param>
+        public void Add(ConnectionSettings settings)
         {
             Ensure.That(settings).IsNotNull();
 
@@ -67,7 +67,7 @@ namespace Logikfabrik.Overseer.Settings
         /// Updates the specified settings.
         /// </summary>
         /// <param name="settings">The settings.</param>
-        public void Update(BuildProviderSettings settings)
+        public void Update(ConnectionSettings settings)
         {
             Ensure.That(settings).IsNotNull();
 
@@ -87,14 +87,14 @@ namespace Logikfabrik.Overseer.Settings
         /// <returns>
         /// All the settings.
         /// </returns>
-        public IEnumerable<BuildProviderSettings> GetAll()
+        public IEnumerable<ConnectionSettings> GetAll()
         {
             return _settings.Value.Values;
         }
 
         private void Save()
         {
-            _buildProviderSettingsStore.SaveAsync(_settings.Value.Values.ToArray());
+            _settingsStore.SaveAsync(_settings.Value.Values.ToArray());
         }
     }
 }

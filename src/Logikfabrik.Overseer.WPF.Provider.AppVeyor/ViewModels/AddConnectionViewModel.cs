@@ -12,15 +12,15 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor.ViewModels
     /// <summary>
     /// The <see cref="AddConnectionViewModel" /> class.
     /// </summary>
-    public class AddConnectionViewModel : WPF.ViewModels.AddConnectionViewModel
+    public class AddConnectionViewModel : WPF.ViewModels.AddConnectionViewModel<AppVeyor.ConnectionSettings>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="AddConnectionViewModel" /> class.
         /// </summary>
         /// <param name="eventAggregator">The event aggregator.</param>
-        /// <param name="buildProviderSettingsRepository">The build provider settings repository.</param>
-        public AddConnectionViewModel(IEventAggregator eventAggregator, IBuildProviderSettingsRepository buildProviderSettingsRepository)
-            : base(eventAggregator, buildProviderSettingsRepository)
+        /// <param name="settingsRepository">The build provider settings repository.</param>
+        public AddConnectionViewModel(IEventAggregator eventAggregator, IConnectionSettingsRepository settingsRepository)
+            : base(eventAggregator, settingsRepository)
         {
             Validator = new AddConnectionViewModelValidator();
         }
@@ -50,21 +50,17 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor.ViewModels
         protected override IValidator Validator { get; }
 
         /// <summary>
-        /// Gets the build provider settings.
+        /// Gets the settings.
         /// </summary>
         /// <returns>
-        /// The build provider settings.
+        /// The settings.
         /// </returns>
-        protected override BuildProviderSettings GetSettings()
+        protected override AppVeyor.ConnectionSettings GetSettings()
         {
-            return new BuildProviderSettings
+            return new AppVeyor.ConnectionSettings
             {
                 Name = ConnectionName,
-                BuildProviderTypeName = typeof(BuildProvider).AssemblyQualifiedName,
-                Settings = new[]
-                {
-                    new Setting { Name = "Token", Value = Token }
-                }
+                Token = Token
             };
         }
     }

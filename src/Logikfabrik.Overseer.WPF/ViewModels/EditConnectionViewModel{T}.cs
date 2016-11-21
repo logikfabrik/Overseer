@@ -1,4 +1,4 @@
-﻿// <copyright file="EditConnectionViewModel.cs" company="Logikfabrik">
+﻿// <copyright file="EditConnectionViewModel{T}.cs" company="Logikfabrik">
 //   Copyright (c) 2016 anton(at)logikfabrik.se. Licensed under the MIT license.
 // </copyright>
 
@@ -9,28 +9,29 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     using Settings;
 
     /// <summary>
-    /// The <see cref="EditConnectionViewModel" /> class.
+    /// The <see cref="EditConnectionViewModel{T}" /> class.
     /// </summary>
-    public abstract class EditConnectionViewModel : ValidationViewModel
+    /// <typeparam name="T">The <see cref="ConnectionSettings" /> type.</typeparam>
+    public abstract class EditConnectionViewModel<T> : ValidationViewModel where T : ConnectionSettings
     {
         private readonly IEventAggregator _eventAggregator;
-        private readonly IBuildProviderSettingsRepository _buildProviderSettingsRepository;
-        private readonly BuildProviderSettings _currentSettings;
+        private readonly IConnectionSettingsRepository _settingsRepository;
+        private readonly T _currentSettings;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="EditConnectionViewModel" /> class.
+        /// Initializes a new instance of the <see cref="EditConnectionViewModel{T}" /> class.
         /// </summary>
         /// <param name="eventAggregator">The event aggregator.</param>
-        /// <param name="buildProviderSettingsRepository">The build provider settings repository.</param>
+        /// <param name="settingsRepository">The settings repository.</param>
         /// <param name="currentSettings">The current settings.</param>
-        protected EditConnectionViewModel(IEventAggregator eventAggregator, IBuildProviderSettingsRepository buildProviderSettingsRepository, BuildProviderSettings currentSettings)
+        protected EditConnectionViewModel(IEventAggregator eventAggregator, IConnectionSettingsRepository settingsRepository, T currentSettings)
         {
             Ensure.That(eventAggregator).IsNotNull();
-            Ensure.That(buildProviderSettingsRepository).IsNotNull();
+            Ensure.That(settingsRepository).IsNotNull();
             Ensure.That(currentSettings).IsNotNull();
 
             _eventAggregator = eventAggregator;
-            _buildProviderSettingsRepository = buildProviderSettingsRepository;
+            _settingsRepository = settingsRepository;
             _currentSettings = currentSettings;
         }
 
@@ -52,7 +53,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
                 return;
             }
 
-            _buildProviderSettingsRepository.Add(GetSettings(_currentSettings));
+            _settingsRepository.Add(GetSettings(_currentSettings));
 
             ViewConnections();
         }
@@ -71,7 +72,9 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// Gets the settings.
         /// </summary>
         /// <param name="currentSettings">The current settings.</param>
-        /// <returns>The settings.</returns>
-        protected abstract BuildProviderSettings GetSettings(BuildProviderSettings currentSettings);
+        /// <returns>
+        /// The settings.
+        /// </returns>
+        protected abstract T GetSettings(T currentSettings);
     }
 }

@@ -1,4 +1,4 @@
-﻿// <copyright file="AddConnectionViewModel.cs" company="Logikfabrik">
+﻿// <copyright file="AddConnectionViewModel{T}.cs" company="Logikfabrik">
 //   Copyright (c) 2016 anton(at)logikfabrik.se. Licensed under the MIT license.
 // </copyright>
 
@@ -9,25 +9,27 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     using Settings;
 
     /// <summary>
-    /// The <see cref="AddConnectionViewModel" /> class.
+    /// The <see cref="AddConnectionViewModel{T}" /> class.
     /// </summary>
-    public abstract class AddConnectionViewModel : ValidationViewModel
+    /// <typeparam name="T">The <see cref="ConnectionSettings" /> type.</typeparam>
+    public abstract class AddConnectionViewModel<T> : ValidationViewModel
+        where T : ConnectionSettings
     {
         private readonly IEventAggregator _eventAggregator;
-        private readonly IBuildProviderSettingsRepository _buildProviderSettingsRepository;
+        private readonly IConnectionSettingsRepository _settingsRepository;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="AddConnectionViewModel" /> class.
+        /// Initializes a new instance of the <see cref="AddConnectionViewModel{T}" /> class.
         /// </summary>
         /// <param name="eventAggregator">The event aggregator.</param>
-        /// <param name="buildProviderSettingsRepository">The build provider settings repository.</param>
-        protected AddConnectionViewModel(IEventAggregator eventAggregator, IBuildProviderSettingsRepository buildProviderSettingsRepository)
+        /// <param name="settingsRepository">The settings repository.</param>
+        protected AddConnectionViewModel(IEventAggregator eventAggregator, IConnectionSettingsRepository settingsRepository)
         {
             Ensure.That(eventAggregator).IsNotNull();
-            Ensure.That(buildProviderSettingsRepository).IsNotNull();
+            Ensure.That(settingsRepository).IsNotNull();
 
             _eventAggregator = eventAggregator;
-            _buildProviderSettingsRepository = buildProviderSettingsRepository;
+            _settingsRepository = settingsRepository;
         }
 
         /// <summary>
@@ -48,7 +50,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
                 return;
             }
 
-            _buildProviderSettingsRepository.Add(GetSettings());
+            _settingsRepository.Add(GetSettings());
 
             ViewConnections();
         }
@@ -66,7 +68,9 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// <summary>
         /// Gets the settings.
         /// </summary>
-        /// <returns>The settings.</returns>
-        protected abstract BuildProviderSettings GetSettings();
+        /// <returns>
+        /// The settings.
+        /// </returns>
+        protected abstract T GetSettings();
     }
 }

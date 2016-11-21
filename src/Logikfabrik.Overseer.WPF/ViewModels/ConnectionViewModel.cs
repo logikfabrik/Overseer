@@ -58,7 +58,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// <value>
         /// The name.
         /// </value>
-        public string Name => _buildProvider.BuildProviderSettings.Name;
+        public string Name => _buildProvider.Settings.Name;
 
         /// <summary>
         /// Gets the build provider name.
@@ -168,7 +168,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
 
         private void BuildMonitorError(object sender, BuildMonitorErrorEventArgs e)
         {
-            if (e.BuildProvider == null)
+            if (e.Provider == null)
             {
                 return;
             }
@@ -178,7 +178,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
                 return;
             }
 
-            if (_buildProvider.BuildProviderSettings.Id != e.BuildProvider.BuildProviderSettings.Id)
+            if (_buildProvider.Settings.Id != e.Provider.Settings.Id)
             {
                 return;
             }

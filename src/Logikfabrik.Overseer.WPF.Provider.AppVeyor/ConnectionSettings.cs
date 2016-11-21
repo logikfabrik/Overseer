@@ -1,26 +1,28 @@
-﻿// <copyright file="BuildProviderSettings.cs" company="Logikfabrik">
+﻿// <copyright file="ConnectionSettings.cs" company="Logikfabrik">
 //   Copyright (c) 2016 anton(at)logikfabrik.se. Licensed under the MIT license.
 // </copyright>
 
 namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor
 {
     using System;
+    using System.Xml.Serialization;
     using EnsureThat;
 
     /// <summary>
-    /// The <see cref="BuildProviderSettings" /> class.
+    /// The <see cref="ConnectionSettings" /> class.
     /// </summary>
-    public class BuildProviderSettings : Settings.BuildProviderSettings
+    [XmlType("AppVeyor")]
+    public class ConnectionSettings : Settings.ConnectionSettings
     {
         private string _token;
 
         /// <summary>
-        /// Gets the build provider type.
+        /// Gets the provider type.
         /// </summary>
         /// <value>
-        /// The build provider type.
+        /// The provider type.
         /// </value>
-        public override Type BuildProviderType { get; } = typeof(BuildProvider);
+        public override Type ProviderType { get; } = typeof(BuildProvider);
 
         /// <summary>
         /// Gets or sets the token.

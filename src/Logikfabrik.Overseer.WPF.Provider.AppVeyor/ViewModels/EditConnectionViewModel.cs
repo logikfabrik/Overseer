@@ -5,7 +5,6 @@
 namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor.ViewModels
 {
     using System;
-    using System.Linq;
     using Caliburn.Micro;
     using FluentValidation;
     using Settings;
@@ -14,19 +13,19 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor.ViewModels
     /// <summary>
     /// The <see cref="EditConnectionViewModel" /> class.
     /// </summary>
-    public class EditConnectionViewModel : WPF.ViewModels.EditConnectionViewModel
+    public class EditConnectionViewModel : WPF.ViewModels.EditConnectionViewModel<AppVeyor.ConnectionSettings>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="EditConnectionViewModel" /> class.
         /// </summary>
         /// <param name="eventAggregator">The event aggregator.</param>
-        /// <param name="buildProviderSettingsRepository">The build provider settings repository.</param>
+        /// <param name="settingsRepository">The build provider settings repository.</param>
         /// <param name="currentSettings">The current settings.</param>
-        public EditConnectionViewModel(IEventAggregator eventAggregator, IBuildProviderSettingsRepository buildProviderSettingsRepository, BuildProviderSettings currentSettings)
-            : base(eventAggregator, buildProviderSettingsRepository, currentSettings)
+        public EditConnectionViewModel(IEventAggregator eventAggregator, IConnectionSettingsRepository settingsRepository, AppVeyor.ConnectionSettings currentSettings)
+            : base(eventAggregator, settingsRepository, currentSettings)
         {
             Validator = new EditConnectionViewModelValidator();
-            Token = currentSettings.Settings.SingleOrDefault(setting => setting.Name == "Token")?.Value;
+            Token = currentSettings.Token;
         }
 
         /// <summary>
@@ -57,8 +56,10 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor.ViewModels
         /// Gets the settings.
         /// </summary>
         /// <param name="currentSettings">The current settings.</param>
-        /// <returns>The settings.</returns>
-        protected override BuildProviderSettings GetSettings(BuildProviderSettings currentSettings)
+        /// <returns>
+        /// The settings.
+        /// </returns>
+        protected override AppVeyor.ConnectionSettings GetSettings(AppVeyor.ConnectionSettings currentSettings)
         {
             throw new NotImplementedException();
         }

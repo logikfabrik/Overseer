@@ -62,10 +62,10 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="Settings\BuildProviderSettingsA.cs" />
-    <Compile Include="Settings\BuildProviderSettingsB.cs" />
-    <Compile Include="Settings\BuildProviderSettingsSerializerTest.cs" />
-    <Compile Include="Settings\BuildProviderSettingsStoreTest.cs" />
+    <Compile Include="Settings\ConnectionSettingsA.cs" />
+    <Compile Include="Settings\ConnectionSettingsB.cs" />
+    <Compile Include="Settings\ConnectionSettingsSerializerTest.cs" />
+    <Compile Include="Settings\ConnectionSettingsStoreTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

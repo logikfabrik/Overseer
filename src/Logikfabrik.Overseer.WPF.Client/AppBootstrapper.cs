@@ -84,8 +84,25 @@ namespace Logikfabrik.Overseer.WPF.Client
             ViewLocator.AddNamespaceMapping("*", "Logikfabrik.Overseer.WPF.Client.Views");
 
             // Business logic setup.
-            _kernel.Bind<IBuildProviderSettingsStore>().To<BuildProviderSettingsStore>().InSingletonScope();
-            _kernel.Bind<IBuildProviderSettingsRepository>().To<BuildProviderSettingsRepository>().InSingletonScope();
+            _kernel.Bind<IFileStore>().ToMethod(context =>
+            {
+                var path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Overseer", "Providers2.xml");
+
+                return new FileStore(path);
+            });
+            _kernel.Bind<IConnectionSettingsSerializer>().ToMethod(context =>
+            {
+                var types =
+                    SelectAssemblies()
+                        .SelectMany(assembly => assembly.GetTypes())
+                        .Where(type => typeof(ConnectionSettings).IsAssignableFrom(type))
+                        .ToArray();
+                
+
+                return new ConnectionSettingsSerializer(types);
+            });
+            _kernel.Bind<IConnectionSettingsStore>().To<ConnectionSettingsStore>().InSingletonScope();
+            _kernel.Bind<IConnectionSettingsRepository>().To<ConnectionSettingsRepository>().InSingletonScope();
             _kernel.Bind<IBuildProviderRepository>().To<BuildProviderRepository>().InSingletonScope();
             _kernel.Bind<IBuildMonitor>().To<BuildMonitor>().InSingletonScope();
 
@@ -99,7 +116,7 @@ namespace Logikfabrik.Overseer.WPF.Client
 
             _kernel.Bind<ConnectionsViewModel>().ToMethod(context =>
             {
-                var providers = context.Kernel.Get<IBuildProviderRepository>().GetBuildProviders();
+                var providers = context.Kernel.Get<IBuildProviderRepository>().GetProviders();
 
                 var viewModels = providers.Select(provider => context.Kernel.Get<ConnectionViewModel>(ModuleHelper.GetModuleName(provider), new ConstructorArgument("buildProvider", provider)));
 

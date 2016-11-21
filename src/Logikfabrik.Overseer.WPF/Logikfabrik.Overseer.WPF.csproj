@@ -110,14 +110,14 @@
     <Compile Include="Validators\SettingsViewModelValidator.cs" />
     <Compile Include="ViewModels\ValidationViewModel.cs" />
     <Compile Include="ViewModels\ViewModel.cs" />
-    <Compile Include="ViewModels\AddConnectionViewModel.cs" />
+    <Compile Include="ViewModels\AddConnectionViewModel{T}.cs" />
     <Compile Include="ViewModels\BuildNotificationViewModel.cs" />
     <Compile Include="ViewModels\BuildProviderViewModel.cs" />
     <Compile Include="ViewModels\BuildViewModel.cs" />
     <Compile Include="ViewModels\ChangeViewModel.cs" />
     <Compile Include="ViewModels\ConnectionsViewModel.cs" />
     <Compile Include="ViewModels\ConnectionViewModel.cs" />
-    <Compile Include="ViewModels\EditConnectionViewModel.cs" />
+    <Compile Include="ViewModels\EditConnectionViewModel{T}.cs" />
     <Compile Include="ViewModels\ProjectBuildViewModel.cs" />
     <Compile Include="ViewModels\BuildProvidersViewModel.cs" />
     <Compile Include="ViewModels\SettingsViewModel.cs" />

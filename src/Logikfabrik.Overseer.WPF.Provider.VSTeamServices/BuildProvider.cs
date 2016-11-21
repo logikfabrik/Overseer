@@ -9,23 +9,22 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices
     using System.Linq;
     using System.Threading.Tasks;
     using EnsureThat;
-    using Settings.Extensions;
 
     /// <summary>
     /// The <see cref="BuildProvider" /> class.
     /// </summary>
-    public class BuildProvider : Overseer.BuildProvider, IDisposable
+    public class BuildProvider : BuildProvider<ConnectionSettings>, IDisposable
     {
         private readonly Lazy<Api.ApiClient> _apiClient;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="BuildProvider" /> class.
         /// </summary>
-        /// <param name="buildProviderSettings">The build provider settings.</param>
-        public BuildProvider(BuildProviderSettings buildProviderSettings)
-            : base(buildProviderSettings)
+        /// <param name="settings">The settings.</param>
+        public BuildProvider(ConnectionSettings settings)
+            : base(settings)
         {
-            _apiClient = new Lazy<Api.ApiClient>(() => GetApiClient(buildProviderSettings));
+            _apiClient = new Lazy<Api.ApiClient>(() => GetApiClient(settings));
         }
 
         /// <summary>
@@ -93,12 +92,9 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices
             }
         }
 
-        private static Api.ApiClient GetApiClient(BuildProviderSettings buildProviderSettings)
+        private static Api.ApiClient GetApiClient(ConnectionSettings settings)
         {
-            var url = buildProviderSettings.GetSetting("Url");
-            var token = buildProviderSettings.GetSetting("Token");
-
-            return new Api.ApiClient(url, token);
+            return new Api.ApiClient(settings.Url, settings.Token);
         }
     }
 }

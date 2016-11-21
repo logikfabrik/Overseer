@@ -1,4 +1,4 @@
-﻿// <copyright file="BuildProviderSettings.cs" company="Logikfabrik">
+﻿// <copyright file="ConnectionSettings.cs" company="Logikfabrik">
 //   Copyright (c) 2016 anton(at)logikfabrik.se. Licensed under the MIT license.
 // </copyright>
 
@@ -8,17 +8,17 @@ namespace Logikfabrik.Overseer.Settings
     using EnsureThat;
 
     /// <summary>
-    /// The <see cref="BuildProvider" /> class.
+    /// The <see cref="ConnectionSettings" /> class.
     /// </summary>
-    public abstract class BuildProviderSettings
+    public abstract class ConnectionSettings
     {
         private Guid _id;
         private string _name;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="BuildProviderSettings" /> class.
+        /// Initializes a new instance of the <see cref="ConnectionSettings" /> class.
         /// </summary>
-        protected BuildProviderSettings()
+        protected ConnectionSettings()
         {
             _id = Guid.NewGuid();
         }
@@ -66,11 +66,11 @@ namespace Logikfabrik.Overseer.Settings
         }
 
         /// <summary>
-        /// Gets the build provider type.
+        /// Gets the provider type.
         /// </summary>
         /// <value>
-        /// The build provider type.
+        /// The provider type.
         /// </value>
-        public abstract Type BuildProviderType { get; }
+        public abstract Type ProviderType { get; }
     }
 }

@@ -15,42 +15,44 @@ namespace Logikfabrik.Overseer
     /// </summary>
     public class BuildProviderRepository : IBuildProviderRepository
     {
-        private readonly Lazy<IDictionary<Guid, IBuildProvider>> _currentBuildProviders;
+        private readonly Lazy<IDictionary<Guid, IBuildProvider>> _currentProviders;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="BuildProviderRepository" /> class.
         /// </summary>
-        /// <param name="buildProviderSettingsRepository">The build provider settings repository.</param>
-        public BuildProviderRepository(IBuildProviderSettingsRepository buildProviderSettingsRepository)
+        /// <param name="settingsRepository">The settings repository.</param>
+        public BuildProviderRepository(IConnectionSettingsRepository settingsRepository)
         {
-            Ensure.That(buildProviderSettingsRepository).IsNotNull();
+            Ensure.That(settingsRepository).IsNotNull();
 
-            _currentBuildProviders = new Lazy<IDictionary<Guid, IBuildProvider>>(() =>
+            _currentProviders = new Lazy<IDictionary<Guid, IBuildProvider>>(() =>
             {
-                return buildProviderSettingsRepository.GetAll().ToDictionary(buildProviderSettings => buildProviderSettings.Id, GetBuildProvider);
+                return settingsRepository.GetAll().ToDictionary(buildProviderSettings => buildProviderSettings.Id, GetProvider);
             });
         }
 
         /// <summary>
-        /// Gets the build providers.
+        /// Gets the providers.
         /// </summary>
-        /// <returns>The build providers.</returns>
-        public IEnumerable<IBuildProvider> GetBuildProviders()
+        /// <returns>
+        /// The providers.
+        /// </returns>
+        public IEnumerable<IBuildProvider> GetProviders()
         {
             // TODO: Refresh the collection if settings are added, removed, or changed.
-            return _currentBuildProviders.Value.Values;
+            return _currentProviders.Value.Values;
         }
 
-        private static IBuildProvider GetBuildProvider(BuildProviderSettings settings)
+        private static IBuildProvider GetProvider(ConnectionSettings settings)
         {
             Ensure.That(settings).IsNotNull();
 
-            var constructor = settings.BuildProviderType.GetConstructor(new[] { typeof(BuildProviderSettings) });
+            var constructor = settings.ProviderType.GetConstructor(new[] { settings.GetType() });
 
             // ReSharper disable once PossibleNullReferenceException
-            var buildProvider = (IBuildProvider)constructor.Invoke(new object[] { settings });
+            var provider = (IBuildProvider)constructor.Invoke(new object[] { settings });
 
-            return buildProvider;
+            return provider;
         }
     }
 }

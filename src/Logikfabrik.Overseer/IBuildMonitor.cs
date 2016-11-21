@@ -25,7 +25,7 @@ namespace Logikfabrik.Overseer
         /// Gets a value indicating whether this instance is monitoring.
         /// </summary>
         /// <value>
-        /// <c>true</c> if this instance is monitoring; otherwise, <c>false</c>.
+        ///   <c>true</c> if this instance is monitoring; otherwise, <c>false</c>.
         /// </value>
         bool IsMonitoring { get; }
 

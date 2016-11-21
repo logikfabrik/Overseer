@@ -22,30 +22,30 @@ namespace Logikfabrik.Overseer
         /// <summary>
         /// Initializes a new instance of the <see cref="BuildMonitorErrorEventArgs" /> class.
         /// </summary>
-        /// <param name="buildProvider">The build provider.</param>
-        public BuildMonitorErrorEventArgs(IBuildProvider buildProvider)
-            : this(buildProvider, null)
+        /// <param name="provider">The provider.</param>
+        public BuildMonitorErrorEventArgs(IBuildProvider provider)
+            : this(provider, null)
         {
         }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="BuildMonitorErrorEventArgs" /> class.
         /// </summary>
-        /// <param name="buildProvider">The build provider.</param>
+        /// <param name="provider">The provider.</param>
         /// <param name="project">The project.</param>
-        public BuildMonitorErrorEventArgs(IBuildProvider buildProvider, IProject project)
+        public BuildMonitorErrorEventArgs(IBuildProvider provider, IProject project)
         {
-            BuildProvider = buildProvider;
+            Provider = provider;
             Project = project;
         }
 
         /// <summary>
-        /// Gets the build provider.
+        /// Gets the provider.
         /// </summary>
         /// <value>
-        /// The build provider.
+        /// The provider.
         /// </value>
-        public IBuildProvider BuildProvider { get; }
+        public IBuildProvider Provider { get; }
 
         /// <summary>
         /// Gets the project.

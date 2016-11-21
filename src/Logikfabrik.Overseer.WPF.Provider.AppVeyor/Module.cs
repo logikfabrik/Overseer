@@ -27,6 +27,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor
         {
             Bind<WPF.ViewModels.BuildProviderViewModel>().To<BuildProviderViewModel>().Named(Name);
             Bind<WPF.ViewModels.ConnectionViewModel>().To<ConnectionViewModel>().Named(Name);
+            Bind<Settings.ConnectionSettings>().To<ConnectionSettings>().Named(Name);
         }
     }
 }

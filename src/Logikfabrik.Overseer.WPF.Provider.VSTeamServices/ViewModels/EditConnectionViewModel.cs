@@ -5,7 +5,6 @@
 namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices.ViewModels
 {
     using System;
-    using System.Linq;
     using Caliburn.Micro;
     using FluentValidation;
     using Settings;
@@ -14,20 +13,20 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices.ViewModels
     /// <summary>
     /// The <see cref="EditConnectionViewModel" /> class.
     /// </summary>
-    public class EditConnectionViewModel : WPF.ViewModels.EditConnectionViewModel
+    public class EditConnectionViewModel : WPF.ViewModels.EditConnectionViewModel<VSTeamServices.ConnectionSettings>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="EditConnectionViewModel" /> class.
         /// </summary>
         /// <param name="eventAggregator">The event aggregator.</param>
-        /// <param name="buildProviderSettingsRepository">The build provider settings repository.</param>
+        /// <param name="settingsRepository">The build provider settings repository.</param>
         /// <param name="currentSettings">The current settings.</param>
-        public EditConnectionViewModel(IEventAggregator eventAggregator, IBuildProviderSettingsRepository buildProviderSettingsRepository, BuildProviderSettings currentSettings)
-            : base(eventAggregator, buildProviderSettingsRepository, currentSettings)
+        public EditConnectionViewModel(IEventAggregator eventAggregator, IConnectionSettingsRepository settingsRepository, VSTeamServices.ConnectionSettings currentSettings)
+            : base(eventAggregator, settingsRepository, currentSettings)
         {
             Validator = new EditConnectionViewModelValidator();
-            Url = currentSettings.Settings.SingleOrDefault(setting => setting.Name == "Url")?.Value;
-            Token = currentSettings.Settings.SingleOrDefault(setting => setting.Name == "Token")?.Value;
+            Url = currentSettings.Url;
+            Token = currentSettings.Token;
         }
 
         /// <summary>
@@ -66,8 +65,10 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices.ViewModels
         /// Gets the settings.
         /// </summary>
         /// <param name="currentSettings">The current settings.</param>
-        /// <returns>The settings.</returns>
-        protected override BuildProviderSettings GetSettings(BuildProviderSettings currentSettings)
+        /// <returns>
+        /// The settings.
+        /// </returns>
+        protected override VSTeamServices.ConnectionSettings GetSettings(VSTeamServices.ConnectionSettings currentSettings)
         {
             throw new NotImplementedException();
         }

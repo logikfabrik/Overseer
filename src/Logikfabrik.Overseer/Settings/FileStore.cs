@@ -18,6 +18,10 @@ namespace Logikfabrik.Overseer.Settings
         private readonly EventWaitHandle _handle;
         private bool _isDisposed;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="FileStore" /> class.
+        /// </summary>
+        /// <param name="path">The path.</param>
         public FileStore(string path)
         {
             Ensure.That(path).IsNotNullOrWhiteSpace();
@@ -26,12 +30,23 @@ namespace Logikfabrik.Overseer.Settings
             _handle = new EventWaitHandle(true, EventResetMode.AutoReset, "b4908818-002e-42fb-a058-86ea4e47e36e");
         }
 
+        /// <summary>
+        /// Reads the file.
+        /// </summary>
+        /// <returns>
+        /// The contents.
+        /// </returns>
         public string Read()
         {
             _handle.WaitOne();
 
             try
             {
+                if (!File.Exists(_path))
+                {
+                    return null;
+                }
+
                 return File.ReadAllText(_path);
             }
             finally
@@ -40,6 +55,10 @@ namespace Logikfabrik.Overseer.Settings
             }
         }
 
+        /// <summary>
+        /// Writes the specified contents to the file.
+        /// </summary>
+        /// <param name="contents">The contents.</param>
         public void Write(string contents)
         {
             _handle.WaitOne();

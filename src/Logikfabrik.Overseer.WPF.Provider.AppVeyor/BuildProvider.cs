@@ -7,20 +7,18 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
-    using Settings.Extensions;
 
     /// <summary>
     /// The <see cref="BuildProvider" /> class.
     /// </summary>
-    public class BuildProvider : Overseer.BuildProvider
+    public class BuildProvider : BuildProvider<ConnectionSettings>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="BuildProvider" /> class.
         /// </summary>
-        /// <param name="buildProviderSettings">The build provider settings.</param>
-        // ReSharper disable once SuggestBaseTypeForParameter
-        public BuildProvider(BuildProviderSettings buildProviderSettings)
-            : base(buildProviderSettings)
+        /// <param name="settings">The settings.</param>
+        public BuildProvider(ConnectionSettings settings)
+            : base(settings)
         {
         }
 
@@ -68,9 +66,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor
 
         private Api.ApiClient GetApiClient()
         {
-            var token = BuildProviderSettings.GetSetting("Token");
-
-            return new Api.ApiClient(token);
+            return new Api.ApiClient(Settings.Token);
         }
     }
 }

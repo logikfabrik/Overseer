@@ -134,7 +134,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
 
         private void BuildMonitorProgressChanged(object sender, BuildMonitorProgressEventArgs e)
         {
-            if (_buildProvider.BuildProviderSettings.Id != e.BuildProvider.BuildProviderSettings.Id)
+            if (_buildProvider.Settings.Id != e.Provider.Settings.Id)
             {
                 return;
             }
@@ -154,7 +154,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
 
         private void BuildMonitorError(object sender, BuildMonitorErrorEventArgs e)
         {
-            if (e.BuildProvider == null)
+            if (e.Provider == null)
             {
                 return;
             }
@@ -164,7 +164,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
                 return;
             }
 
-            if (_buildProvider.BuildProviderSettings.Id != e.BuildProvider.BuildProviderSettings.Id)
+            if (_buildProvider.Settings.Id != e.Provider.Settings.Id)
             {
                 return;
             }

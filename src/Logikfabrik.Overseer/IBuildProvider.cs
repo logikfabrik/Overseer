@@ -14,24 +14,28 @@ namespace Logikfabrik.Overseer
     public interface IBuildProvider
     {
         /// <summary>
-        /// Gets the build provider settings.
+        /// Gets the settings.
         /// </summary>
         /// <value>
-        /// The build provider settings.
+        /// The settings.
         /// </value>
-        BuildProviderSettings BuildProviderSettings { get; }
+        ConnectionSettings Settings { get; }
 
         /// <summary>
         /// Gets the projects.
         /// </summary>
-        /// <returns>A task.</returns>
+        /// <returns>
+        /// A task.
+        /// </returns>
         Task<IEnumerable<IProject>> GetProjectsAsync();
 
         /// <summary>
         /// Gets the builds for the project with the specified project identifier.
         /// </summary>
         /// <param name="projectId">The project identifier.</param>
-        /// <returns>A task.</returns>
+        /// <returns>
+        /// A task.
+        /// </returns>
         Task<IEnumerable<IBuild>> GetBuildsAsync(string projectId);
     }
 }

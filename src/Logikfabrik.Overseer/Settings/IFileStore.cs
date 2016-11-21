@@ -11,8 +11,18 @@ namespace Logikfabrik.Overseer.Settings
     /// </summary>
     public interface IFileStore : IDisposable
     {
+        /// <summary>
+        /// Reads the file.
+        /// </summary>
+        /// <returns>
+        /// The contents.
+        /// </returns>
         string Read();
 
+        /// <summary>
+        /// Writes the specified contents to the file.
+        /// </summary>
+        /// <param name="contents">The contents.</param>
         void Write(string contents);
     }
 }
