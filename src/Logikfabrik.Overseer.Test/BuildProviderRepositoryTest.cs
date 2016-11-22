@@ -13,7 +13,7 @@ namespace Logikfabrik.Overseer.Test
     public class BuildProviderRepositoryTest
     {
         [Fact]
-        public void BuildProviderRepository_CanGetAll()
+        public void CanGetAll()
         {
             var settingsRepositoryMock = new Mock<IConnectionSettingsRepository>();
 

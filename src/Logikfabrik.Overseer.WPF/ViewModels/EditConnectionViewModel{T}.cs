@@ -12,7 +12,8 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     /// The <see cref="EditConnectionViewModel{T}" /> class.
     /// </summary>
     /// <typeparam name="T">The <see cref="ConnectionSettings" /> type.</typeparam>
-    public abstract class EditConnectionViewModel<T> : ValidationViewModel where T : ConnectionSettings
+    public abstract class EditConnectionViewModel<T> : ValidationViewModel
+        where T : ConnectionSettings
     {
         private readonly IEventAggregator _eventAggregator;
         private readonly IConnectionSettingsRepository _settingsRepository;

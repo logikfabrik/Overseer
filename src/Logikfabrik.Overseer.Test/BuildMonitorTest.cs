@@ -10,7 +10,7 @@ namespace Logikfabrik.Overseer.Test
     public class BuildMonitorTest
     {
         [Fact]
-        public void BuildMonitor_CanStartMonitoring()
+        public void CanStartMonitoring()
         {
             var providerRepositoryMock = new Mock<IBuildProviderRepository>();
 
@@ -22,7 +22,7 @@ namespace Logikfabrik.Overseer.Test
         }
 
         [Fact]
-        public void BuildMonitor_CanStopMonitoring()
+        public void CanStopMonitoring()
         {
             var providerRepositoryMock = new Mock<IBuildProviderRepository>();
 

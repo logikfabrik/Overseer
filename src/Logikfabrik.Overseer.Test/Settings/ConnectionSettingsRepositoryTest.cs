@@ -13,7 +13,7 @@ namespace Logikfabrik.Overseer.Test.Settings
     public class ConnectionSettingsRepositoryTest
     {
         [Fact]
-        public void ConnectionSettingsRepository_CanAdd()
+        public void CanAdd()
         {
             var settingsStoreMock = new Mock<IConnectionSettingsStore>();
 
@@ -30,7 +30,7 @@ namespace Logikfabrik.Overseer.Test.Settings
         }
 
         [Fact]
-        public void ConnectionSettingsRepository_CanRemove()
+        public void CanRemove()
         {
             var settingsStoreMock = new Mock<IConnectionSettingsStore>();
 
@@ -45,7 +45,7 @@ namespace Logikfabrik.Overseer.Test.Settings
         }
 
         [Fact]
-        public void ConnectionSettingsRepository_CanUpdate()
+        public void CanUpdate()
         {
             var settingsStoreMock = new Mock<IConnectionSettingsStore>();
 
@@ -69,7 +69,7 @@ namespace Logikfabrik.Overseer.Test.Settings
         }
 
         [Fact]
-        public void ConnectionSettingsRepository_CanGetAll()
+        public void CanGetAll()
         {
             var settingsStoreMock = new Mock<IConnectionSettingsStore>();
 

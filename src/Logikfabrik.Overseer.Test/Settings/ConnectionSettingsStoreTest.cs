@@ -11,7 +11,7 @@ namespace Logikfabrik.Overseer.Test.Settings
     public class ConnectionSettingsStoreTest
     {
         [Fact]
-        public void ConnectionSettingsStore_CanSaveAsync()
+        public void CanSaveAsync()
         {
             var settings = new ConnectionSettings[] { };
 
@@ -26,7 +26,7 @@ namespace Logikfabrik.Overseer.Test.Settings
         }
 
         [Fact]
-        public void ConnectionSettingsStore_CanLoadAsync()
+        public void CanLoadAsync()
         {
             var serializerMock = new Mock<IConnectionSettingsSerializer>();
             var fileStoreMock = new Mock<IFileStore>();

@@ -10,7 +10,7 @@ namespace Logikfabrik.Overseer.Test.Settings
     public class ConnectionSettingsSerializerTest
     {
         [Fact]
-        public void ConnectionSettingsSerializer_CanDeserialize()
+        public void CanDeserialize()
         {
             var supportedTypes = new[]
             {
@@ -30,7 +30,7 @@ namespace Logikfabrik.Overseer.Test.Settings
         }
 
         [Fact]
-        public void ConnectionSettingsSerializer_CanSerialize()
+        public void CanSerialize()
         {
             var supportedTypes = new[]
             {
