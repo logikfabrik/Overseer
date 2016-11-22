@@ -11,7 +11,7 @@ namespace Logikfabrik.Overseer.Test.Settings
     public class ConnectionSettingsStoreTest
     {
         [Fact]
-        public void ConnectionSettingsStore_CanSave()
+        public void ConnectionSettingsStore_CanSaveAsync()
         {
             var settings = new ConnectionSettings[] { };
 
@@ -26,16 +26,14 @@ namespace Logikfabrik.Overseer.Test.Settings
         }
 
         [Fact]
-        public void ConnectionSettingsStore_CanLoad()
+        public void ConnectionSettingsStore_CanLoadAsync()
         {
             var serializerMock = new Mock<IConnectionSettingsSerializer>();
             var fileStoreMock = new Mock<IFileStore>();
 
             var store = new ConnectionSettingsStore(serializerMock.Object, fileStoreMock.Object);
 
-            var settings = store.LoadAsync().Result;
-
-            Assert.NotNull(settings);
+            store.LoadAsync().Wait();
 
             fileStoreMock.Verify(m => m.Read(), Times.Once);
         }

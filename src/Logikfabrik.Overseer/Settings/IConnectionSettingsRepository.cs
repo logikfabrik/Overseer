@@ -31,6 +31,15 @@ namespace Logikfabrik.Overseer.Settings
         void Update(ConnectionSettings settings);
 
         /// <summary>
+        /// Gets the settings with the specified identifier.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns>
+        /// The settings with the specified identifier.
+        /// </returns>
+        ConnectionSettings Get(Guid id);
+
+        /// <summary>
         /// Gets all the settings.
         /// </summary>
         /// <returns>

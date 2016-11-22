@@ -72,5 +72,16 @@ namespace Logikfabrik.Overseer.Settings
         /// The provider type.
         /// </value>
         public abstract Type ProviderType { get; }
+
+        /// <summary>
+        /// Clones this instance.
+        /// </summary>
+        /// <returns>
+        /// A clone of this instance.
+        /// </returns>
+        public virtual ConnectionSettings Clone()
+        {
+            return (ConnectionSettings)MemberwiseClone();
+        }
     }
 }

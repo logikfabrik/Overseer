@@ -40,7 +40,9 @@ namespace Logikfabrik.Overseer.Settings
         {
             Ensure.That(settings).IsNotNull();
 
-            _settings.Value.Add(settings.Id, settings);
+            var clone = settings.Clone();
+
+            _settings.Value.Add(clone.Id, clone);
 
             Save();
         }
@@ -76,9 +78,27 @@ namespace Logikfabrik.Overseer.Settings
                 return;
             }
 
-            _settings.Value[settings.Id] = settings;
+            var clone = settings.Clone();
+
+            _settings.Value[clone.Id] = clone;
 
             Save();
+        }
+
+        /// <summary>
+        /// Gets the settings with the specified identifier.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns>
+        /// The settings with the specified identifier.
+        /// </returns>
+        public ConnectionSettings Get(Guid id)
+        {
+            Ensure.That(id).IsNotEmpty();
+
+            ConnectionSettings settings;
+
+            return _settings.Value.TryGetValue(id, out settings) ? settings.Clone() : null;
         }
 
         /// <summary>
@@ -89,7 +109,7 @@ namespace Logikfabrik.Overseer.Settings
         /// </returns>
         public IEnumerable<ConnectionSettings> GetAll()
         {
-            return _settings.Value.Values;
+            return _settings.Value.Values.Select(settings => settings.Clone());
         }
 
         private void Save()
