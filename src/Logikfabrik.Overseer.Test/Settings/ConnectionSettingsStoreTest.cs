@@ -4,14 +4,13 @@
 
 namespace Logikfabrik.Overseer.Test.Settings
 {
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Moq;
     using Overseer.Settings;
+    using Xunit;
 
-    [TestClass]
     public class ConnectionSettingsStoreTest
     {
-        [TestMethod]
+        [Fact]
         public void ConnectionSettingsStore_CanSave()
         {
             var settings = new ConnectionSettings[] { };
@@ -26,7 +25,7 @@ namespace Logikfabrik.Overseer.Test.Settings
             fileStoreMock.Verify(m => m.Write(It.IsAny<string>()), Times.Once);
         }
 
-        [TestMethod]
+        [Fact]
         public void ConnectionSettingsStore_CanLoad()
         {
             var serializerMock = new Mock<IConnectionSettingsSerializer>();
@@ -36,7 +35,7 @@ namespace Logikfabrik.Overseer.Test.Settings
 
             var settings = store.LoadAsync().Result;
 
-            Assert.IsNotNull(settings);
+            Assert.NotNull(settings);
 
             fileStoreMock.Verify(m => m.Read(), Times.Once);
         }

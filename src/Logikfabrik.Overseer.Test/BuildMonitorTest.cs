@@ -8,13 +8,12 @@ namespace Logikfabrik.Overseer.Test
     using System.Collections.Generic;
     using System.Threading;
     using System.Threading.Tasks;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Moq;
+    using Xunit;
 
-    [TestClass]
     public class BuildMonitorTest
     {
-        [TestMethod]
+        [Fact]
         public void BuildMonitor_CanStartMonitoring()
         {
             var providerRepositoryMock = new Mock<IBuildProviderRepository>();
@@ -23,10 +22,10 @@ namespace Logikfabrik.Overseer.Test
 
             buildMonitor.StartMonitoring();
 
-            Assert.IsTrue(buildMonitor.IsMonitoring);
+            Assert.True(buildMonitor.IsMonitoring);
         }
 
-        [TestMethod]
+        [Fact]
         public void BuildMonitor_CanStopMonitoring()
         {
             var providerRepositoryMock = new Mock<IBuildProviderRepository>();
@@ -35,10 +34,10 @@ namespace Logikfabrik.Overseer.Test
 
             buildMonitor.StopMonitoring();
 
-            Assert.IsFalse(buildMonitor.IsMonitoring);
+            Assert.False(buildMonitor.IsMonitoring);
         }
 
-        [TestMethod]
+        [Fact]
         public void BuildMonitor_OnProgressChanged()
         {
             var projectMock = new Mock<IProject>();
@@ -53,14 +52,14 @@ namespace Logikfabrik.Overseer.Test
 
             var resetEvent = new ManualResetEventSlim(false);
 
-            buildMonitor.ProgressChanged += GetEventHandler<BuildMonitorProgressEventArgs>(resetEvent, (sender, args) => Assert.AreSame(providerMock.Object, args.Provider));
+            buildMonitor.ProgressChanged += GetEventHandler<BuildMonitorProgressEventArgs>(resetEvent, (sender, args) => Assert.Same(providerMock.Object, args.Provider));
 
             buildMonitor.StartMonitoring();
 
             WaitForResetEvent(resetEvent);
         }
 
-        [TestMethod]
+        [Fact]
         public void BuildMonitor_OnError()
         {
             var providerRepositoryMock = new Mock<IBuildProviderRepository>();
@@ -73,8 +72,8 @@ namespace Logikfabrik.Overseer.Test
 
             buildMonitor.Error += GetEventHandler<BuildMonitorErrorEventArgs>(resetEvent, (sender, args) =>
             {
-                Assert.IsNull(args.Provider);
-                Assert.IsNull(args.Project);
+                Assert.Null(args.Provider);
+                Assert.Null(args.Project);
             });
 
             buildMonitor.StartMonitoring();
@@ -82,7 +81,7 @@ namespace Logikfabrik.Overseer.Test
             WaitForResetEvent(resetEvent);
         }
 
-        [TestMethod]
+        [Fact]
         public void BuildMonitor_OnGetProjectsError()
         {
             var providerMock = new Mock<IBuildProvider>();
@@ -98,8 +97,8 @@ namespace Logikfabrik.Overseer.Test
 
             buildMonitor.Error += GetEventHandler<BuildMonitorErrorEventArgs>(resetEvent, (sender, args) =>
             {
-                Assert.AreSame(providerMock.Object, args.Provider);
-                Assert.IsNull(args.Project);
+                Assert.Same(providerMock.Object, args.Provider);
+                Assert.Null(args.Project);
             });
 
             buildMonitor.StartMonitoring();
@@ -107,7 +106,7 @@ namespace Logikfabrik.Overseer.Test
             WaitForResetEvent(resetEvent);
         }
 
-        [TestMethod]
+        [Fact]
         public void BuildMonitor_OnGetBuildsError()
         {
             var projectMock = new Mock<IProject>();
@@ -126,8 +125,8 @@ namespace Logikfabrik.Overseer.Test
 
             buildMonitor.Error += GetEventHandler<BuildMonitorErrorEventArgs>(resetEvent, (sender, args) =>
             {
-                Assert.AreSame(providerMock.Object, args.Provider);
-                Assert.AreSame(projectMock.Object, args.Project);
+                Assert.Same(providerMock.Object, args.Provider);
+                Assert.Same(projectMock.Object, args.Project);
             });
 
             buildMonitor.StartMonitoring();
@@ -152,7 +151,6 @@ namespace Logikfabrik.Overseer.Test
 
             if (!resetEvent.IsSet)
             {
-                Assert.Fail();
             }
         }
     }

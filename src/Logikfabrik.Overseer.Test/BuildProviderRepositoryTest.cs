@@ -5,15 +5,14 @@
 namespace Logikfabrik.Overseer.Test
 {
     using System.Linq;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Moq;
     using Overseer.Settings;
     using Settings;
+    using Xunit;
 
-    [TestClass]
     public class BuildProviderRepositoryTest
     {
-        [TestMethod]
+        [Fact]
         public void BuildProviderRepository_CanGetAll()
         {
             var settingsRepositoryMock = new Mock<IConnectionSettingsRepository>();
@@ -24,7 +23,7 @@ namespace Logikfabrik.Overseer.Test
 
             var providers = repository.GetAll();
 
-            Assert.AreEqual(2, providers.Count());
+            Assert.Equal(2, providers.Count());
         }
     }
 }

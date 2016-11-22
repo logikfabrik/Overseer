@@ -4,13 +4,12 @@
 
 namespace Logikfabrik.Overseer.Test.Settings
 {
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Overseer.Settings;
+    using Xunit;
 
-    [TestClass]
     public class ConnectionSettingsSerializerTest
     {
-        [TestMethod]
+        [Fact]
         public void ConnectionSettingsSerializer_CanDeserialize()
         {
             var supportedTypes = new[]
@@ -27,10 +26,10 @@ namespace Logikfabrik.Overseer.Test.Settings
                 new ConnectionSettingsB { SettingB = "SettingB" }
             });
 
-            Assert.IsNotNull(serializer.Deserialize(settings));
+            Assert.NotNull(serializer.Deserialize(settings));
         }
 
-        [TestMethod]
+        [Fact]
         public void ConnectionSettingsSerializer_CanSerialize()
         {
             var supportedTypes = new[]
@@ -47,7 +46,7 @@ namespace Logikfabrik.Overseer.Test.Settings
                 new ConnectionSettingsB { SettingB = "SettingB" }
             });
 
-            Assert.IsNotNull(settings);
+            Assert.NotNull(settings);
         }
     }
 }

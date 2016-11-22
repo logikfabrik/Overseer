@@ -13,7 +13,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Logikfabrik.Overseer.WPF.Pr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Logikfabrik.Overseer.WPF.Provider.VSTeamServices", "Logikfabrik.Overseer.WPF.Provider.VSTeamServices\Logikfabrik.Overseer.WPF.Provider.VSTeamServices.csproj", "{6080EDC7-5BC4-4BDA-9FC7-B745A38F0EFB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Logikfabrik.Overseer.Test", "Logikfabrik.Overseer.Test\Logikfabrik.Overseer.Test.csproj", "{49E16744-45A7-4432-81B5-D5C1EA2F4D32}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Logikfabrik.Overseer.Test", "Logikfabrik.Overseer.Test\Logikfabrik.Overseer.Test.csproj", "{8D66C1CD-1215-478B-B1E7-BB7630FFDDD9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,10 +41,10 @@ Global
 		{6080EDC7-5BC4-4BDA-9FC7-B745A38F0EFB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6080EDC7-5BC4-4BDA-9FC7-B745A38F0EFB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6080EDC7-5BC4-4BDA-9FC7-B745A38F0EFB}.Release|Any CPU.Build.0 = Release|Any CPU
-		{49E16744-45A7-4432-81B5-D5C1EA2F4D32}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{49E16744-45A7-4432-81B5-D5C1EA2F4D32}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{49E16744-45A7-4432-81B5-D5C1EA2F4D32}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{49E16744-45A7-4432-81B5-D5C1EA2F4D32}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8D66C1CD-1215-478B-B1E7-BB7630FFDDD9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8D66C1CD-1215-478B-B1E7-BB7630FFDDD9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8D66C1CD-1215-478B-B1E7-BB7630FFDDD9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8D66C1CD-1215-478B-B1E7-BB7630FFDDD9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
