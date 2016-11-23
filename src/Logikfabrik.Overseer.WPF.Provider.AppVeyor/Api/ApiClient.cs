@@ -15,10 +15,9 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor.Api
     /// <summary>
     /// The <see cref="ApiClient" /> class.
     /// </summary>
-    public class ApiClient
+    public class ApiClient : IDisposable
     {
-        private readonly Uri _baseUri;
-        private readonly string _token;
+        private readonly Lazy<HttpClient> _httpClient;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ApiClient" /> class.
@@ -28,8 +27,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor.Api
         {
             Ensure.That(token).IsNotNullOrWhiteSpace();
 
-            _baseUri = new Uri("https://ci.appveyor.com/");
-            _token = token;
+            _httpClient = new Lazy<HttpClient>(() => GetHttpClient(new Uri("https://ci.appveyor.com/"), token));
         }
 
         /// <summary>
@@ -38,14 +36,11 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor.Api
         /// <returns>A task.</returns>
         public async Task<IEnumerable<Project>> GetProjectsAsync()
         {
-            using (var client = GetHttpClient())
+            using (var response = await _httpClient.Value.GetAsync("api/projects").ConfigureAwait(false))
             {
-                using (var response = await client.GetAsync("api/projects").ConfigureAwait(false))
-                {
-                    response.EnsureSuccessStatusCode();
+                response.EnsureSuccessStatusCode();
 
-                    return await response.Content.ReadAsAsync<IEnumerable<Project>>().ConfigureAwait(false);
-                }
+                return await response.Content.ReadAsAsync<IEnumerable<Project>>().ConfigureAwait(false);
             }
         }
 
@@ -61,23 +56,47 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor.Api
             Ensure.That(accountName).IsNotNullOrWhiteSpace();
             Ensure.That(projectSlug).IsNotNullOrWhiteSpace();
 
-            using (var client = GetHttpClient())
+            using (var response = await _httpClient.Value.GetAsync($"api/projects/{accountName}/{projectSlug}/history?recordsNumber={recordsNumber}").ConfigureAwait(false))
             {
-                using (var response = await client.GetAsync($"api/projects/{accountName}/{projectSlug}/history?recordsNumber={recordsNumber}").ConfigureAwait(false))
-                {
-                    response.EnsureSuccessStatusCode();
+                response.EnsureSuccessStatusCode();
 
-                    return await response.Content.ReadAsAsync<ProjectHistory>().ConfigureAwait(false);
-                }
+                return await response.Content.ReadAsAsync<ProjectHistory>().ConfigureAwait(false);
             }
         }
 
-        private HttpClient GetHttpClient()
+        /// <summary>
+        /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+        /// </summary>
+        public void Dispose()
         {
-            var client = new HttpClient { BaseAddress = _baseUri };
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        /// <summary>
+        /// Releases unmanaged and managed resources.
+        /// </summary>
+        /// <param name="disposing"><c>true</c> to release both managed and unmanaged resources; <c>false</c> to release only unmanaged resources.</param>
+        protected virtual void Dispose(bool disposing)
+        {
+            // ReSharper disable once InvertIf
+            if (disposing)
+            {
+                if (!_httpClient.IsValueCreated)
+                {
+                    return;
+                }
+
+                _httpClient.Value.Dispose();
+            }
+        }
+
+        private static HttpClient GetHttpClient(Uri baseUri, string token)
+        {
+            var client = new HttpClient { BaseAddress = baseUri };
 
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", _token);
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
 
             return client;
         }

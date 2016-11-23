@@ -4,6 +4,7 @@
 
 namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
@@ -11,8 +12,10 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor
     /// <summary>
     /// The <see cref="BuildProvider" /> class.
     /// </summary>
-    public class BuildProvider : BuildProvider<ConnectionSettings>
+    public class BuildProvider : BuildProvider<ConnectionSettings>, IDisposable
     {
+        private readonly Lazy<Api.ApiClient> _apiClient;
+
         /// <summary>
         /// Initializes a new instance of the <see cref="BuildProvider" /> class.
         /// </summary>
@@ -20,6 +23,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor
         public BuildProvider(ConnectionSettings settings)
             : base(settings)
         {
+            _apiClient = new Lazy<Api.ApiClient>(() => GetApiClient(settings));
         }
 
         /// <summary>
@@ -30,9 +34,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor
         /// </returns>
         public override async Task<IEnumerable<IProject>> GetProjectsAsync()
         {
-            var apiClient = GetApiClient();
-
-            var projects = await apiClient.GetProjectsAsync().ConfigureAwait(false);
+            var projects = await _apiClient.Value.GetProjectsAsync().ConfigureAwait(false);
 
             return projects.Select(project => new Project(project));
         }
@@ -46,9 +48,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor
         /// </returns>
         public override async Task<IEnumerable<IBuild>> GetBuildsAsync(string projectId)
         {
-            var apiClient = GetApiClient();
-
-            var projects = await apiClient.GetProjectsAsync().ConfigureAwait(false);
+            var projects = await _apiClient.Value.GetProjectsAsync().ConfigureAwait(false);
 
             var project = projects.SingleOrDefault(p => p.ProjectId == int.Parse(projectId));
 
@@ -59,14 +59,41 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor
 
             const int numberOfBuilds = 3;
 
-            var projectHistory = await apiClient.GetProjectHistoryAsync(project.AccountName, project.Slug, numberOfBuilds).ConfigureAwait(false);
+            var projectHistory = await _apiClient.Value.GetProjectHistoryAsync(project.AccountName, project.Slug, numberOfBuilds).ConfigureAwait(false);
 
             return projectHistory.Builds.Select(build => new Build(build));
         }
 
-        private Api.ApiClient GetApiClient()
+        /// <summary>
+        /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+        /// </summary>
+        public void Dispose()
         {
-            return new Api.ApiClient(Settings.Token);
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        /// <summary>
+        /// Releases unmanaged and managed resources.
+        /// </summary>
+        /// <param name="disposing"><c>true</c> to release both managed and unmanaged resources; <c>false</c> to release only unmanaged resources.</param>
+        protected virtual void Dispose(bool disposing)
+        {
+            // ReSharper disable once InvertIf
+            if (disposing)
+            {
+                if (!_apiClient.IsValueCreated)
+                {
+                    return;
+                }
+
+                _apiClient.Value.Dispose();
+            }
+        }
+
+        private static Api.ApiClient GetApiClient(ConnectionSettings settings)
+        {
+            return new Api.ApiClient(settings.Token);
         }
     }
 }

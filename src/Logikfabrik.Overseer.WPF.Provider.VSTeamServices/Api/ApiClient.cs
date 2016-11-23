@@ -62,11 +62,18 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices.Api
         /// <param name="skip">The skip count.</param>
         /// <param name="take">The take count.</param>
         /// <returns>A task.</returns>
-        public async Task<Builds> GetBuildsAsync(string projectId, int skip, int take)
+        public async Task<Builds> GetBuildsAsync(string projectId, int skip, int? take)
         {
             Ensure.That(projectId).IsNotNullOrWhiteSpace();
 
-            using (var response = await _httpClient.Value.GetAsync($"{projectId}/_apis/build/builds?api-version=2.0&$skip={skip}&$top={take}").ConfigureAwait(false))
+            var builder = new StringBuilder($"{projectId}/_apis/build/builds?api-version=2.0&$skip={skip}");
+
+            if (take.HasValue)
+            {
+                builder.Append("&$top={take}");
+            }
+
+            using (var response = await _httpClient.Value.GetAsync(builder.ToString()).ConfigureAwait(false))
             {
                 response.EnsureSuccessStatusCode();
 
