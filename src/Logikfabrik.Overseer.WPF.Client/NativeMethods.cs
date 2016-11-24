@@ -29,7 +29,9 @@ namespace Logikfabrik.Overseer.WPF.Client
         /// </summary>
         /// <param name="hWnd">The window.</param>
         /// <param name="nIndex">The index of the information to get.</param>
-        /// <returns>The information about the specified window.</returns>
+        /// <returns>
+        /// Information about the specified window.
+        /// </returns>
         [DllImport("user32.dll")]
         public static extern int GetWindowLong(IntPtr hWnd, int nIndex);
 
@@ -39,7 +41,9 @@ namespace Logikfabrik.Overseer.WPF.Client
         /// <param name="hWnd">The window.</param>
         /// <param name="nIndex">The index of the information to set.</param>
         /// <param name="dwNewLong">The information to set.</param>
-        /// <returns>The information set.</returns>
+        /// <returns>
+        /// The information set.
+        /// </returns>
         [DllImport("user32.dll")]
         public static extern int SetWindowLong(IntPtr hWnd, int nIndex, int dwNewLong);
     }

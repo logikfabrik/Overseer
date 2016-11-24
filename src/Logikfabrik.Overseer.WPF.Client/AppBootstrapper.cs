@@ -14,6 +14,7 @@ namespace Logikfabrik.Overseer.WPF.Client
     using Ninject;
     using Ninject.Modules;
     using Ninject.Parameters;
+    using Providers;
     using Settings;
     using ViewModels;
     using WPF.ViewModels;
@@ -84,24 +85,10 @@ namespace Logikfabrik.Overseer.WPF.Client
             ViewLocator.AddNamespaceMapping("*", "Logikfabrik.Overseer.WPF.Client.Views");
 
             // Business logic setup.
-            _kernel.Bind<IFileStore>().ToMethod(context =>
-            {
-                var path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Overseer", "Providers2.xml");
-
-                return new FileStore(path);
-            });
-            _kernel.Bind<IConnectionSettingsSerializer>().ToMethod(context =>
-            {
-                var types =
-                    SelectAssemblies()
-                        .SelectMany(assembly => assembly.GetTypes())
-                        .Where(type => typeof(ConnectionSettings).IsAssignableFrom(type))
-                        .ToArray();
-
-                return new ConnectionSettingsSerializer(types);
-            });
+            _kernel.Bind<IFileStore>().ToProvider<FileStoreProvider>().InSingletonScope();
+            _kernel.Bind<IConnectionSettingsSerializer>().ToProvider<ConnectionSettingsSerializerProvider>().InSingletonScope();
             _kernel.Bind<IConnectionSettingsStore>().To<ConnectionSettingsStore>();
-            _kernel.Bind<IConnectionSettingsRepository>().To<ConnectionSettingsRepository>();
+            _kernel.Bind<IConnectionSettingsRepository>().To<ConnectionSettingsRepository>().InSingletonScope();
             _kernel.Bind<IBuildProviderRepository>().To<BuildProviderRepository>();
             _kernel.Bind<IBuildMonitor>().To<BuildMonitor>().InSingletonScope();
 
@@ -110,7 +97,7 @@ namespace Logikfabrik.Overseer.WPF.Client
             _kernel.Bind<IEventAggregator>().To<EventAggregator>().InSingletonScope();
 
             // WPF client setup (and some business logic setup).
-            _kernel.Bind<INotificationManager>().To<NotificationManager>().InSingletonScope();
+            _kernel.Bind<INotificationManager>().To<NotificationManager>();
             _kernel.Bind<IBuildNotificationManager>().To<BuildNotificationManager>().InSingletonScope();
 
             _kernel.Bind<ConnectionsViewModel>().ToMethod(context =>
