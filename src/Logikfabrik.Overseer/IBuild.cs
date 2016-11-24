@@ -77,11 +77,11 @@ namespace Logikfabrik.Overseer
         string RequestedBy { get; }
 
         /// <summary>
-        /// Gets the last changes.
+        /// Gets the changes.
         /// </summary>
         /// <value>
-        /// The last changes.
+        /// The changes.
         /// </value>
-        IEnumerable<IChange> LastChanges { get; }
+        IEnumerable<IChange> Changes { get; }
     }
 }

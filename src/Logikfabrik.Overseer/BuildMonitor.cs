@@ -146,7 +146,7 @@ namespace Logikfabrik.Overseer
 
                     const int delayForSeconds = 5;
 
-                    await Task.Delay(TimeSpan.FromSeconds(delayForSeconds).Milliseconds);
+                    await Task.Delay(TimeSpan.FromSeconds(delayForSeconds).Milliseconds).ConfigureAwait(false);
                 }
             },
             _cancellationTokenSource.Token);

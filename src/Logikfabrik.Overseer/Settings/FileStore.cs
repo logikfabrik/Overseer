@@ -15,7 +15,7 @@ namespace Logikfabrik.Overseer.Settings
     public class FileStore : IFileStore
     {
         private readonly string _path;
-        private readonly EventWaitHandle _handle;
+        private readonly ManualResetEventSlim _resetEvent;
         private bool _isDisposed;
 
         /// <summary>
@@ -27,7 +27,7 @@ namespace Logikfabrik.Overseer.Settings
             Ensure.That(path).IsNotNullOrWhiteSpace();
 
             _path = path;
-            _handle = new EventWaitHandle(true, EventResetMode.AutoReset, "b4908818-002e-42fb-a058-86ea4e47e36e");
+            _resetEvent = new ManualResetEventSlim(true);
         }
 
         /// <summary>
@@ -38,20 +38,15 @@ namespace Logikfabrik.Overseer.Settings
         /// </returns>
         public string Read()
         {
-            _handle.WaitOne();
+            _resetEvent.Wait();
 
             try
             {
-                if (!File.Exists(_path))
-                {
-                    return null;
-                }
-
-                return File.ReadAllText(_path);
+                return !File.Exists(_path) ? null : File.ReadAllText(_path);
             }
             finally
             {
-                _handle.Set();
+                _resetEvent.Set();
             }
         }
 
@@ -61,7 +56,7 @@ namespace Logikfabrik.Overseer.Settings
         /// <param name="contents">The contents.</param>
         public void Write(string contents)
         {
-            _handle.WaitOne();
+            _resetEvent.Wait();
 
             try
             {
@@ -69,7 +64,7 @@ namespace Logikfabrik.Overseer.Settings
             }
             finally
             {
-                _handle.Set();
+                _resetEvent.Set();
             }
         }
 
@@ -95,7 +90,7 @@ namespace Logikfabrik.Overseer.Settings
 
             if (disposing)
             {
-                _handle.Dispose();
+                _resetEvent.Dispose();
             }
 
             _isDisposed = true;

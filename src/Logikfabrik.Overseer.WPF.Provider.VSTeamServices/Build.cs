@@ -18,11 +18,11 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices
         /// Initializes a new instance of the <see cref="Build" /> class.
         /// </summary>
         /// <param name="build">The build.</param>
-        /// <param name="lastChanges">The last changes.</param>
-        public Build(Api.Models.Build build, IEnumerable<Api.Models.Change> lastChanges)
+        /// <param name="changes">The changes.</param>
+        public Build(Api.Models.Build build, IEnumerable<Api.Models.Change> changes)
         {
             Ensure.That(build).IsNotNull();
-            Ensure.That(lastChanges).IsNotNull();
+            Ensure.That(changes).IsNotNull();
 
             Id = build.Id;
             Version = null;
@@ -32,7 +32,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices
             Finished = build.FinishTime?.ToUniversalTime();
             Status = GetStatus(build);
             RequestedBy = build.RequestedFor.DisplayName;
-            LastChanges = lastChanges.Select(lastChange => new Change
+            Changes = changes.Select(lastChange => new Change
             {
                 Id = lastChange.Id,
                 Changed = lastChange.Timestamp?.ToUniversalTime(),
@@ -106,12 +106,12 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices
         public string RequestedBy { get; }
 
         /// <summary>
-        /// Gets the last changes.
+        /// Gets the changes.
         /// </summary>
         /// <value>
-        /// The last changes.
+        /// The changes.
         /// </value>
-        public IEnumerable<IChange> LastChanges { get; }
+        public IEnumerable<IChange> Changes { get; }
 
         private static BuildStatus? GetStatus(Api.Models.Build build)
         {

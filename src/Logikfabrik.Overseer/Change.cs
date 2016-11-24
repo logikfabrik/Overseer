@@ -28,10 +28,10 @@ namespace Logikfabrik.Overseer
         public DateTime? Changed { get; set; }
 
         /// <summary>
-        /// Gets or sets the name of whoever made the last change.
+        /// Gets or sets the name of whoever made the change.
         /// </summary>
         /// <value>
-        /// The name of whoever made the last change.
+        /// The name of whoever made the change.
         /// </value>
         public string ChangedBy { get; set; }
 

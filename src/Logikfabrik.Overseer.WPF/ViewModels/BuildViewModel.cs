@@ -29,7 +29,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             BuildName = GetBuildName(project, build);
             Message = GetMessage(build);
             Status = build.Status;
-            ChangeViewModels = build.LastChanges.Select(lastChange => new ChangeViewModel(lastChange));
+            Changes = build.Changes.Select(lastChange => new ChangeViewModel(lastChange));
         }
 
         /// <summary>
@@ -57,12 +57,12 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         public BuildStatus? Status { get; }
 
         /// <summary>
-        /// Gets the change view models.
+        /// Gets the changes.
         /// </summary>
         /// <value>
-        /// The change view models.
+        /// The changes.
         /// </value>
-        public IEnumerable<ChangeViewModel> ChangeViewModels { get; }
+        public IEnumerable<ChangeViewModel> Changes { get; }
 
         private static string GetBuildName(IProject project, IBuild build)
         {

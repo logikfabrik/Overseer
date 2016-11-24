@@ -29,7 +29,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor
             Finished = build.Finished?.ToUniversalTime();
             Status = GetStatus(build);
             RequestedBy = build.AuthorUsername;
-            LastChanges = new[]
+            Changes = new[]
             {
                 new Change
                 {
@@ -106,12 +106,12 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor
         public string RequestedBy { get; }
 
         /// <summary>
-        /// Gets the last changes.
+        /// Gets the changes.
         /// </summary>
         /// <value>
-        /// The last changes.
+        /// The changes.
         /// </value>
-        public IEnumerable<IChange> LastChanges { get; }
+        public IEnumerable<IChange> Changes { get; }
 
         private static BuildStatus? GetStatus(Api.Models.Build build)
         {
