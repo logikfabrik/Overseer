@@ -4,22 +4,11 @@
 
 namespace Logikfabrik.Overseer.WPF.ViewModels
 {
-    using FluentValidation;
-    using Validators;
-
     /// <summary>
     /// The <see cref="SettingsViewModel" /> class.
     /// </summary>
-    public class SettingsViewModel : ValidationViewModel
+    public class SettingsViewModel : ViewModel
     {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="SettingsViewModel" /> class.
-        /// </summary>
-        public SettingsViewModel()
-        {
-            Validator = new SettingsViewModelValidator();
-        }
-
         /// <summary>
         /// Gets the view name.
         /// </summary>
@@ -27,13 +16,5 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// The view name.
         /// </value>
         public override string ViewName { get; } = "Settings";
-
-        /// <summary>
-        /// Gets the validator.
-        /// </summary>
-        /// <value>
-        /// The validator.
-        /// </value>
-        protected override IValidator Validator { get; }
     }
 }

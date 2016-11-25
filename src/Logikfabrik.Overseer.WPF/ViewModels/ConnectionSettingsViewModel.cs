@@ -1,4 +1,4 @@
-﻿// <copyright file="ValidationViewModel.cs" company="Logikfabrik">
+﻿// <copyright file="ConnectionSettingsViewModel.cs" company="Logikfabrik">
 //   Copyright (c) 2016 anton(at)logikfabrik.se. Licensed under the MIT license.
 // </copyright>
 
@@ -6,17 +6,15 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
 {
     using System.ComponentModel;
     using System.Linq;
+    using Caliburn.Micro;
     using FluentValidation;
 
     /// <summary>
-    /// The <see cref="ValidationViewModel" /> class.
+    /// The <see cref="ConnectionSettingsViewModel" /> class.
     /// </summary>
-    public abstract class ValidationViewModel : ViewModel, IDataErrorInfo
+    public abstract class ConnectionSettingsViewModel : PropertyChangedBase, IDataErrorInfo
     {
-        /// <summary>
-        /// Gets an error message indicating what is wrong with this object.
-        /// </summary>
-        public string Error => null;
+        private string _name;
 
         /// <summary>
         /// Gets the validator.
@@ -24,13 +22,40 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// <value>
         /// The validator.
         /// </value>
-        protected abstract IValidator Validator { get; }
+        public abstract IValidator Validator { get; }
+
+        /// <summary>
+        /// Gets or sets the name.
+        /// </summary>
+        /// <value>
+        /// The name.
+        /// </value>
+        public string Name
+        {
+            get
+            {
+                return _name;
+            }
+
+            set
+            {
+                _name = value;
+                NotifyOfPropertyChange(() => Name);
+            }
+        }
+
+        /// <summary>
+        /// Gets an error message indicating what is wrong with this object.
+        /// </summary>
+        public string Error => null;
 
         /// <summary>
         /// Gets the error message for the property with the specified name.
         /// </summary>
         /// <param name="name">The property name.</param>
-        /// <returns>The error message, if any.</returns>
+        /// <returns>
+        /// The error message, if any.
+        /// </returns>
         public string this[string name]
         {
             get

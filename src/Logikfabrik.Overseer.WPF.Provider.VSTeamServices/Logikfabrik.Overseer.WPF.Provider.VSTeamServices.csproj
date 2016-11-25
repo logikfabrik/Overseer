@@ -97,31 +97,24 @@
     <Compile Include="ConnectionSettings.cs" />
     <Compile Include="Module.cs" />
     <Compile Include="Project.cs" />
-    <Compile Include="Validators\AddConnectionViewModelValidator.cs" />
-    <Compile Include="Validators\EditConnectionViewModelValidator.cs" />
+    <Compile Include="Validators\ConnectionSettingsViewModelValidator.cs" />
     <Compile Include="ViewModels\AddConnectionViewModel.cs" />
     <Compile Include="ViewModels\BuildProviderViewModel.cs" />
+    <Compile Include="ViewModels\ConnectionSettingsViewModel.cs" />
     <Compile Include="ViewModels\ConnectionViewModel.cs" />
     <Compile Include="ViewModels\EditConnectionViewModel.cs" />
-    <Compile Include="Views\AddConnectionView.xaml.cs">
-      <DependentUpon>AddConnectionView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Api\ApiClient.cs" />
     <Compile Include="Views\BuildProviderView.xaml.cs">
       <DependentUpon>BuildProviderView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\EditConnectionView.xaml.cs">
-      <DependentUpon>EditConnectionView.xaml</DependentUpon>
+    <Compile Include="Views\ConnectionSettingsView.xaml.cs">
+      <DependentUpon>ConnectionSettingsView.xaml</DependentUpon>
     </Compile>
-    <Page Include="Views\AddConnectionView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Views\BuildProviderView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\EditConnectionView.xaml">
+    <Page Include="Views\ConnectionSettingsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

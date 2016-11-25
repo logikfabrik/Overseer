@@ -107,8 +107,9 @@
     </Compile>
     <Compile Include="Styles\CommonBrushes.cs" />
     <Compile Include="Styles\CommonColors.cs" />
+    <Compile Include="Validators\ConnectionSettingsViewModelValidator{T}.cs" />
     <Compile Include="Validators\SettingsViewModelValidator.cs" />
-    <Compile Include="ViewModels\ValidationViewModel.cs" />
+    <Compile Include="ViewModels\ConnectionSettingsViewModel.cs" />
     <Compile Include="ViewModels\ViewModel.cs" />
     <Compile Include="ViewModels\AddConnectionViewModel{T}.cs" />
     <Compile Include="ViewModels\BuildNotificationViewModel.cs" />

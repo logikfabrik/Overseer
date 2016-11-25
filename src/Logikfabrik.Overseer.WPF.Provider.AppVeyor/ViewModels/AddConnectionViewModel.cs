@@ -5,15 +5,15 @@
 namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor.ViewModels
 {
     using Caliburn.Micro;
-    using FluentValidation;
     using Settings;
-    using Validators;
 
     /// <summary>
     /// The <see cref="AddConnectionViewModel" /> class.
     /// </summary>
     public class AddConnectionViewModel : WPF.ViewModels.AddConnectionViewModel<AppVeyor.ConnectionSettings>
     {
+        private readonly ConnectionSettingsViewModel _settings;
+
         /// <summary>
         /// Initializes a new instance of the <see cref="AddConnectionViewModel" /> class.
         /// </summary>
@@ -22,8 +22,16 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor.ViewModels
         public AddConnectionViewModel(IEventAggregator eventAggregator, IConnectionSettingsRepository settingsRepository)
             : base(eventAggregator, settingsRepository)
         {
-            Validator = new AddConnectionViewModelValidator();
+            _settings = new ConnectionSettingsViewModel();
         }
+
+        /// <summary>
+        /// Gets the settings.
+        /// </summary>
+        /// <value>
+        /// The settings.
+        /// </value>
+        public override WPF.ViewModels.ConnectionSettingsViewModel Settings => _settings;
 
         /// <summary>
         /// Gets the view name.
@@ -32,22 +40,6 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor.ViewModels
         /// The view name.
         /// </value>
         public override string ViewName => "Add AppVeyor connection";
-
-        /// <summary>
-        /// Gets or sets the token.
-        /// </summary>
-        /// <value>
-        /// The token.
-        /// </value>
-        public string Token { get; set; }
-
-        /// <summary>
-        /// Gets the validator.
-        /// </summary>
-        /// <value>
-        /// The validator.
-        /// </value>
-        protected override IValidator Validator { get; }
 
         /// <summary>
         /// Gets the settings.
@@ -59,8 +51,8 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor.ViewModels
         {
             return new AppVeyor.ConnectionSettings
             {
-                Name = ConnectionName,
-                Token = Token
+                Name = _settings.Name,
+                Token = _settings.Token
             };
         }
     }

@@ -5,15 +5,15 @@
 namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices.ViewModels
 {
     using Caliburn.Micro;
-    using FluentValidation;
     using Settings;
-    using Validators;
 
     /// <summary>
     /// The <see cref="AddConnectionViewModel" /> class.
     /// </summary>
     public class AddConnectionViewModel : WPF.ViewModels.AddConnectionViewModel<VSTeamServices.ConnectionSettings>
     {
+        private readonly ConnectionSettingsViewModel _settings;
+
         /// <summary>
         /// Initializes a new instance of the <see cref="AddConnectionViewModel" /> class.
         /// </summary>
@@ -22,9 +22,19 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices.ViewModels
         public AddConnectionViewModel(IEventAggregator eventAggregator, IConnectionSettingsRepository settingsRepository)
             : base(eventAggregator, settingsRepository)
         {
-            Validator = new AddConnectionViewModelValidator();
-            Url = "https://";
+            _settings = new ConnectionSettingsViewModel
+            {
+                Url = "https://"
+            };
         }
+
+        /// <summary>
+        /// Gets the settings.
+        /// </summary>
+        /// <value>
+        /// The settings.
+        /// </value>
+        public override WPF.ViewModels.ConnectionSettingsViewModel Settings => _settings;
 
         /// <summary>
         /// Gets the view name.
@@ -33,30 +43,6 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices.ViewModels
         /// The view name.
         /// </value>
         public override string ViewName => "Add VSTS connection";
-
-        /// <summary>
-        /// Gets or sets the URL.
-        /// </summary>
-        /// <value>
-        /// The URL.
-        /// </value>
-        public string Url { get; set; }
-
-        /// <summary>
-        /// Gets or sets the token.
-        /// </summary>
-        /// <value>
-        /// The token.
-        /// </value>
-        public string Token { get; set; }
-
-        /// <summary>
-        /// Gets the validator.
-        /// </summary>
-        /// <value>
-        /// The validator.
-        /// </value>
-        protected override IValidator Validator { get; }
 
         /// <summary>
         /// Gets the settings.
@@ -68,9 +54,9 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices.ViewModels
         {
             return new VSTeamServices.ConnectionSettings
             {
-                Name = ConnectionName,
-                Url = Url,
-                Token = Token
+                Name = _settings.Name,
+                Url = _settings.Url,
+                Token = _settings.Token
             };
         }
     }

@@ -2,7 +2,7 @@
 //   Copyright (c) 2016 anton(at)logikfabrik.se. Licensed under the MIT license.
 // </copyright>
 
-namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices.Views
+namespace Logikfabrik.Overseer.WPF.Client.Views
 {
     /// <summary>
     /// The <see cref="EditConnectionView" /> class.

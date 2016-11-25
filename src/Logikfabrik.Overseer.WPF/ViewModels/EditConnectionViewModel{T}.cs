@@ -12,7 +12,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     /// The <see cref="EditConnectionViewModel{T}" /> class.
     /// </summary>
     /// <typeparam name="T">The <see cref="ConnectionSettings" /> type.</typeparam>
-    public abstract class EditConnectionViewModel<T> : ValidationViewModel
+    public abstract class EditConnectionViewModel<T> : ViewModel
         where T : ConnectionSettings
     {
         private readonly IEventAggregator _eventAggregator;
@@ -37,24 +37,24 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         }
 
         /// <summary>
-        /// Gets or sets the connection name.
+        /// Gets the settings.
         /// </summary>
         /// <value>
-        /// The connection name.
+        /// The settings.
         /// </value>
-        public string ConnectionName { get; set; }
+        public abstract ConnectionSettingsViewModel Settings { get; }
 
         /// <summary>
         /// Edit the connection.
         /// </summary>
         public void EditConnection()
         {
-            if (!Validator.Validate(this).IsValid)
+            if (!Settings.Validator.Validate(Settings).IsValid)
             {
                 return;
             }
 
-            _settingsRepository.Add(GetSettings(_currentSettings));
+            _settingsRepository.Update(GetSettings(_currentSettings));
 
             ViewConnections();
         }

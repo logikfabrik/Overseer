@@ -12,7 +12,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     /// The <see cref="AddConnectionViewModel{T}" /> class.
     /// </summary>
     /// <typeparam name="T">The <see cref="ConnectionSettings" /> type.</typeparam>
-    public abstract class AddConnectionViewModel<T> : ValidationViewModel
+    public abstract class AddConnectionViewModel<T> : ViewModel
         where T : ConnectionSettings
     {
         private readonly IEventAggregator _eventAggregator;
@@ -33,19 +33,19 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         }
 
         /// <summary>
-        /// Gets or sets the connection name.
+        /// Gets the settings.
         /// </summary>
         /// <value>
-        /// The connection name.
+        /// The settings.
         /// </value>
-        public string ConnectionName { get; set; }
+        public abstract ConnectionSettingsViewModel Settings { get; }
 
         /// <summary>
         /// Add the connection.
         /// </summary>
         public void AddConnection()
         {
-            if (!Validator.Validate(this).IsValid)
+            if (!Settings.Validator.Validate(Settings).IsValid)
             {
                 return;
             }

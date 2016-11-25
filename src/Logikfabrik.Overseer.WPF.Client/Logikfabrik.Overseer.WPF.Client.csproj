@@ -92,6 +92,9 @@
     <Compile Include="Providers\ConnectionSettingsSerializerProvider.cs" />
     <Compile Include="Providers\FileStoreProvider.cs" />
     <Compile Include="ViewModels\AppViewModel.cs" />
+    <Compile Include="Views\AddConnectionView.xaml.cs">
+      <DependentUpon>AddConnectionView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\AppView.xaml.cs">
       <DependentUpon>AppView.xaml</DependentUpon>
     </Compile>
@@ -106,6 +109,9 @@
     </Compile>
     <Compile Include="Views\ChangeView.xaml.cs">
       <DependentUpon>ChangeView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\EditConnectionView.xaml.cs">
+      <DependentUpon>EditConnectionView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ProjectBuildView.xaml.cs">
       <DependentUpon>ProjectBuildView.xaml</DependentUpon>
@@ -150,6 +156,10 @@
     <Analyzer Include="..\packages\StyleCop.Analyzers.1.0.0\analyzers\dotnet\cs\StyleCop.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Views\AddConnectionView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\AppView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -169,6 +179,10 @@
     <Page Include="Views\ChangeView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\EditConnectionView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\ProjectBuildView.xaml">
       <SubType>Designer</SubType>
