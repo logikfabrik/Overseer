@@ -2,6 +2,9 @@
 //   Copyright (c) 2016 anton(at)logikfabrik.se. Licensed under the MIT license.
 // </copyright>
 
+using System.Collections.ObjectModel;
+using System.Windows.Data;
+
 namespace Logikfabrik.Overseer.WPF.ViewModels
 {
     using System;
@@ -10,6 +13,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     using System.Windows;
     using Caliburn.Micro;
     using EnsureThat;
+    using Settings;
 
     /// <summary>
     /// The <see cref="ConnectionViewModel" /> class.
@@ -17,39 +21,35 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     public abstract class ConnectionViewModel : PropertyChangedBase
     {
         private readonly IEventAggregator _eventAggregator;
-        private readonly IBuildProvider _provider;
-        private readonly Lazy<IEnumerable<ProjectBuildViewModel>> _projects;
+        private readonly IBuildMonitor _buildMonitor;
+        private readonly ConnectionSettings _settings;
         private bool _isBusy;
         private bool _isErrored;
+        object _lock = new object();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ConnectionViewModel" /> class.
         /// </summary>
         /// <param name="eventAggregator">The event aggregator.</param>
         /// <param name="buildMonitor">The build monitor.</param>
-        /// <param name="provider">The provider.</param>
-        protected ConnectionViewModel(IEventAggregator eventAggregator, IBuildMonitor buildMonitor, IBuildProvider provider)
+        /// <param name="settings">The settings.</param>
+        protected ConnectionViewModel(IEventAggregator eventAggregator, IBuildMonitor buildMonitor, ConnectionSettings settings)
         {
             Ensure.That(eventAggregator).IsNotNull();
             Ensure.That(buildMonitor).IsNotNull();
-            Ensure.That(provider).IsNotNull();
+            Ensure.That(settings).IsNotNull();
 
             _eventAggregator = eventAggregator;
-            _provider = provider;
+            _buildMonitor = buildMonitor;
+            _settings = settings;
             _isBusy = true;
             _isErrored = false;
-            _projects = new Lazy<IEnumerable<ProjectBuildViewModel>>(() =>
-            {
-                var projects = provider.GetProjectsAsync().Result.Select(project => new ProjectBuildViewModel(buildMonitor, provider, project));
+            Projects = new ObservableCollection<ProjectBuildViewModel>();
 
-                IsBusy = false;
+            BindingOperations.EnableCollectionSynchronization(Projects, _lock);
 
-                return projects;
-            });
-
-            WeakEventManager<IBuildMonitor, BuildMonitorErrorEventArgs>.AddHandler(buildMonitor, nameof(buildMonitor.Error), BuildMonitorError);
-
-            buildMonitor.StartMonitoring();
+            WeakEventManager<IBuildMonitor, BuildMonitorConnectionErrorEventArgs>.AddHandler(buildMonitor, nameof(buildMonitor.ConnectionError), BuildMonitorConnectionError);
+            WeakEventManager<IBuildMonitor, BuildMonitorConnectionProgressEventArgs>.AddHandler(buildMonitor, nameof(buildMonitor.ConnectionProgressChanged), BuildMonitorConnectionProgressChanged);
         }
 
         /// <summary>
@@ -58,7 +58,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// <value>
         /// The connection name.
         /// </value>
-        public string ConnectionName => _provider.Settings.Name;
+        public string ConnectionName => _settings.Name;
 
         /// <summary>
         /// Gets a value indicating whether this instance is busy.
@@ -128,7 +128,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// <value>
         /// The projects
         /// </value>
-        public IEnumerable<ProjectBuildViewModel> Projects => _projects.Value;
+        public ObservableCollection<ProjectBuildViewModel> Projects { get; }
 
         /// <summary>
         /// Gets the type of the view model to edit the connection.
@@ -158,24 +158,42 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             throw new NotImplementedException();
         }
 
-        private void BuildMonitorError(object sender, BuildMonitorErrorEventArgs e)
+        private void BuildMonitorConnectionError(object sender, BuildMonitorConnectionErrorEventArgs e)
         {
-            if (e.Provider == null)
+            if (e.Settings == null)
             {
                 return;
             }
 
-            if (e.Project != null)
-            {
-                return;
-            }
-
-            if (_provider.Settings.Id != e.Provider.Settings.Id)
+            if (_settings.Id != e.Settings.Id)
             {
                 return;
             }
 
             IsErrored = true;
+        }
+
+        private void BuildMonitorConnectionProgressChanged(object sender, BuildMonitorConnectionProgressEventArgs e)
+        {
+            if (e.Settings == null)
+            {
+                return;
+            }
+
+            if (_settings.Id != e.Settings.Id)
+            {
+                return;
+            }
+
+            Projects.Clear();
+
+            // TODO: Rewrite.
+            foreach (var project in e.Projects)
+            {
+                Projects.Add(new ProjectBuildViewModel(_buildMonitor, _settings, project));
+            }
+
+            IsBusy = false;
         }
     }
 }

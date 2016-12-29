@@ -10,7 +10,7 @@ namespace Logikfabrik.Overseer.Settings
     /// <summary>
     /// The <see cref="IConnectionSettingsRepository" /> interface.
     /// </summary>
-    public interface IConnectionSettingsRepository
+    public interface IConnectionSettingsRepository : IObservable<ConnectionSettings[]>, IDisposable
     {
         /// <summary>
         /// Adds the specified settings.
@@ -39,12 +39,6 @@ namespace Logikfabrik.Overseer.Settings
         /// </returns>
         ConnectionSettings Get(Guid id);
 
-        /// <summary>
-        /// Gets all the settings.
-        /// </summary>
-        /// <returns>
-        /// All the settings.
-        /// </returns>
-        IEnumerable<ConnectionSettings> GetAll();
+        IEnumerable<ConnectionSettings> Get();
     }
 }

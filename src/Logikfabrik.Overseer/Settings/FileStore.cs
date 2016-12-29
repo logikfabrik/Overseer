@@ -15,7 +15,7 @@ namespace Logikfabrik.Overseer.Settings
     public class FileStore : IFileStore
     {
         private readonly string _path;
-        private readonly ManualResetEventSlim _resetEvent;
+        private ManualResetEventSlim _resetEvent;
         private bool _isDisposed;
 
         /// <summary>
@@ -38,6 +38,11 @@ namespace Logikfabrik.Overseer.Settings
         /// </returns>
         public string Read()
         {
+            if (_isDisposed)
+            {
+                throw new ObjectDisposedException(GetType().FullName);
+            }
+
             _resetEvent.Wait();
 
             try
@@ -56,6 +61,11 @@ namespace Logikfabrik.Overseer.Settings
         /// <param name="contents">The contents.</param>
         public void Write(string contents)
         {
+            if (_isDisposed)
+            {
+                throw new ObjectDisposedException(GetType().FullName);
+            }
+
             _resetEvent.Wait();
 
             try
@@ -83,14 +93,10 @@ namespace Logikfabrik.Overseer.Settings
         /// <param name="disposing"><c>true</c> to release both managed and unmanaged resources; <c>false</c> to release only unmanaged resources.</param>
         protected virtual void Dispose(bool disposing)
         {
-            if (_isDisposed)
-            {
-                return;
-            }
-
             if (disposing)
             {
-                _resetEvent.Dispose();
+                _resetEvent?.Dispose();
+                _resetEvent = null;
             }
 
             _isDisposed = true;

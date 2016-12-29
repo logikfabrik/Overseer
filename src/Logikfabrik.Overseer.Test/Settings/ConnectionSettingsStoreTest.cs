@@ -26,14 +26,14 @@ namespace Logikfabrik.Overseer.Test.Settings
         }
 
         [Fact]
-        public void CanLoadAsync()
+        public void CanLoad()
         {
             var serializerMock = new Mock<IConnectionSettingsSerializer>();
             var fileStoreMock = new Mock<IFileStore>();
 
             var store = new ConnectionSettingsStore(serializerMock.Object, fileStoreMock.Object);
 
-            store.LoadAsync().Wait();
+            store.Load();
 
             fileStoreMock.Verify(m => m.Read(), Times.Once);
         }

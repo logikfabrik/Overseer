@@ -30,14 +30,18 @@ namespace Logikfabrik.Overseer.Settings
         }
 
         /// <summary>
-        /// Loads the settings.
+        /// Loads the settings instance.
         /// </summary>
         /// <returns>
-        /// A task.
+        /// The settings.
         /// </returns>
-        public async Task<ConnectionSettings[]> LoadAsync()
+        public ConnectionSettings[] Load()
         {
-            return await Task.Run(() => Load()).ConfigureAwait(false);
+            var contents = _fileStore.Read();
+
+            return string.IsNullOrWhiteSpace(contents)
+                ? new ConnectionSettings[] { }
+                : _serializer.Deserialize(contents);
         }
 
         /// <summary>
@@ -50,15 +54,6 @@ namespace Logikfabrik.Overseer.Settings
         public async Task SaveAsync(ConnectionSettings[] settings)
         {
             await Task.Run(() => Save(settings)).ConfigureAwait(false);
-        }
-
-        private ConnectionSettings[] Load()
-        {
-            var contents = _fileStore.Read();
-
-            return string.IsNullOrWhiteSpace(contents)
-                ? new ConnectionSettings[] { }
-                : _serializer.Deserialize(contents);
         }
 
         private void Save(ConnectionSettings[] settings)

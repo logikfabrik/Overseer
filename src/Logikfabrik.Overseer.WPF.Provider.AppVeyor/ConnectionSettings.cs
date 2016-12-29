@@ -44,5 +44,18 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor
                 _token = value;
             }
         }
+
+        /// <summary>
+        /// Returns a hash code for this instance.
+        /// </summary>
+        /// <returns>
+        /// A hash code for this instance, suitable for use in hashing algorithms and data structures like a hash table. 
+        /// </returns>
+        public override int GetHashCode()
+        {
+            var obj = new { Id, Name, ProviderType, Token };
+
+            return obj.GetHashCode();
+        }
     }
 }

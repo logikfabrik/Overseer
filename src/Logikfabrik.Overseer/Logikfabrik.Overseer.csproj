@@ -53,17 +53,21 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BuildMonitor.cs" />
-    <Compile Include="BuildMonitorErrorEventArgs.cs" />
-    <Compile Include="BuildMonitorProgressEventArgs.cs" />
-    <Compile Include="BuildProviderRepository.cs" />
+    <Compile Include="BuildMonitorConnectionErrorEventArgs.cs" />
+    <Compile Include="BuildMonitorConnectionProgressEventArgs.cs" />
+    <Compile Include="BuildMonitorProjectErrorEventArgs.cs" />
+    <Compile Include="BuildMonitorProjectProgressEventArgs.cs" />
+    <Compile Include="BuildProviderFactory.cs" />
     <Compile Include="Change.cs" />
     <Compile Include="Extensions\BuildExtensions.cs" />
     <Compile Include="IBuildMonitor.cs" />
     <Compile Include="IBuildProvider.cs" />
-    <Compile Include="IBuildProviderRepository.cs" />
     <Compile Include="IChange.cs" />
+    <Compile Include="Labs\Connection.cs" />
+    <Compile Include="Labs\ConnectionPool.cs" />
     <Compile Include="Settings\ConnectionSettings.cs" />
     <Compile Include="Settings\ConnectionSettingsRepository.cs" />
+    <Compile Include="Settings\Subscription{T}.cs" />
     <Compile Include="Settings\ConnectionSettingsSerializer.cs" />
     <Compile Include="Settings\ConnectionSettingsStore.cs" />
     <Compile Include="BuildStatus.cs" />

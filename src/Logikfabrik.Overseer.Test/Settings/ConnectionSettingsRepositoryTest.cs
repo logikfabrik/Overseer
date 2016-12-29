@@ -5,7 +5,6 @@
 namespace Logikfabrik.Overseer.Test.Settings
 {
     using System;
-    using System.Linq;
     using Moq;
     using Overseer.Settings;
     using Xunit;
@@ -66,19 +65,6 @@ namespace Logikfabrik.Overseer.Test.Settings
             var settingsAfterUpdate = repository.Get(id);
 
             Assert.Equal("Name after update", settingsAfterUpdate.Name);
-        }
-
-        [Fact]
-        public void CanGetAll()
-        {
-            var settingsStoreMock = new Mock<IConnectionSettingsStore>();
-
-            var repository = new ConnectionSettingsRepository(settingsStoreMock.Object);
-
-            repository.Add(new ConnectionSettingsA());
-            repository.Add(new ConnectionSettingsB());
-
-            Assert.Equal(2, repository.GetAll().Count());
         }
     }
 }

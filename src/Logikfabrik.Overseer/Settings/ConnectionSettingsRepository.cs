@@ -14,8 +14,10 @@ namespace Logikfabrik.Overseer.Settings
     /// </summary>
     public class ConnectionSettingsRepository : IConnectionSettingsRepository
     {
+        private readonly HashSet<IObserver<ConnectionSettings[]>> _observers;
         private readonly IConnectionSettingsStore _settingsStore;
-        private readonly Lazy<IDictionary<Guid, ConnectionSettings>> _settings;
+        private readonly IDictionary<Guid, ConnectionSettings> _settings;
+        private bool _isDisposed;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ConnectionSettingsRepository" /> class.
@@ -25,11 +27,9 @@ namespace Logikfabrik.Overseer.Settings
         {
             Ensure.That(settingsStore).IsNotNull();
 
+            _observers = new HashSet<IObserver<ConnectionSettings[]>>();
             _settingsStore = settingsStore;
-            _settings = new Lazy<IDictionary<Guid, ConnectionSettings>>(() =>
-            {
-                return _settingsStore.LoadAsync().Result.ToDictionary(buildProviderSettings => buildProviderSettings.Id, buildProviderSettings => buildProviderSettings);
-            });
+            _settings = _settingsStore.Load().ToDictionary(settings => settings.Id, settings => settings);
         }
 
         /// <summary>
@@ -38,11 +38,18 @@ namespace Logikfabrik.Overseer.Settings
         /// <param name="settings">The settings.</param>
         public void Add(ConnectionSettings settings)
         {
+            if (_isDisposed)
+            {
+                throw new ObjectDisposedException(GetType().FullName);
+            }
+
             Ensure.That(settings).IsNotNull();
 
             var clone = settings.Clone();
 
-            _settings.Value.Add(clone.Id, clone);
+            _settings.Add(clone.Id, clone);
+
+            Next();
 
             Save();
         }
@@ -53,14 +60,19 @@ namespace Logikfabrik.Overseer.Settings
         /// <param name="id">The identifier.</param>
         public void Remove(Guid id)
         {
+            if (_isDisposed)
+            {
+                throw new ObjectDisposedException(GetType().FullName);
+            }
+
             Ensure.That(id).IsNotEmpty();
 
-            if (!_settings.Value.ContainsKey(id))
+            if (!_settings.Remove(id))
             {
                 return;
             }
 
-            _settings.Value.Remove(id);
+            Next();
 
             Save();
         }
@@ -71,18 +83,34 @@ namespace Logikfabrik.Overseer.Settings
         /// <param name="settings">The settings.</param>
         public void Update(ConnectionSettings settings)
         {
+            if (_isDisposed)
+            {
+                throw new ObjectDisposedException(GetType().FullName);
+            }
+
             Ensure.That(settings).IsNotNull();
 
-            if (!_settings.Value.ContainsKey(settings.Id))
+            if (settings.Equals(_settings[settings.Id]))
             {
                 return;
             }
 
             var clone = settings.Clone();
 
-            _settings.Value[clone.Id] = clone;
+            _settings[clone.Id] = clone;
+
+            Next();
 
             Save();
+        }
+
+        /// <summary>
+        /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+        /// </summary>
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
         }
 
         /// <summary>
@@ -94,27 +122,80 @@ namespace Logikfabrik.Overseer.Settings
         /// </returns>
         public ConnectionSettings Get(Guid id)
         {
+            if (_isDisposed)
+            {
+                throw new ObjectDisposedException(GetType().FullName);
+            }
+
             Ensure.That(id).IsNotEmpty();
 
             ConnectionSettings settings;
 
-            return _settings.Value.TryGetValue(id, out settings) ? settings.Clone() : null;
+            return _settings.TryGetValue(id, out settings) ? settings.Clone() : null;
+        }
+
+        public IEnumerable<ConnectionSettings> Get()
+        {
+            var clones = _settings.Values.Select(settings => settings.Clone()).ToArray();
+
+            return clones;
         }
 
         /// <summary>
-        /// Gets all the settings.
+        /// Notifies the provider that an observer is to receive notifications.
         /// </summary>
+        /// <param name="observer">The object that is to receive notifications.</param>
         /// <returns>
-        /// All the settings.
+        /// A reference to an interface that allows observers to stop receiving notifications before the provider has finished sending them.
         /// </returns>
-        public IEnumerable<ConnectionSettings> GetAll()
+        public IDisposable Subscribe(IObserver<ConnectionSettings[]> observer)
         {
-            return _settings.Value.Values.Select(settings => settings.Clone());
+            if (_isDisposed)
+            {
+                throw new ObjectDisposedException(GetType().FullName);
+            }
+
+            Ensure.That(observer).IsNotNull();
+
+            // ReSharper disable once InvertIf
+            if (_observers.Add(observer))
+            {
+                var clones = _settings.Values.Select(settings => settings.Clone()).ToArray();
+
+                observer.OnNext(clones);
+            }
+
+            return new Subscription<ConnectionSettings[]>(_observers, observer);
+        }
+
+        /// <summary>
+        /// Releases unmanaged and managed resources.
+        /// </summary>
+        /// <param name="disposing"><c>true</c> to release both managed and unmanaged resources; <c>false</c> to release only unmanaged resources.</param>
+        protected virtual void Dispose(bool disposing)
+        {
+            // ReSharper disable once InvertIf
+            if (disposing)
+            {
+                _observers.Clear();
+            }
+
+            _isDisposed = true;
+        }
+
+        private void Next()
+        {
+            var clones = _settings.Values.Select(settings => settings.Clone()).ToArray();
+
+            foreach (var observer in _observers)
+            {
+                observer.OnNext(clones);
+            }
         }
 
         private void Save()
         {
-            _settingsStore.SaveAsync(_settings.Value.Values.ToArray());
+            _settingsStore.SaveAsync(_settings.Values.ToArray());
         }
     }
 }

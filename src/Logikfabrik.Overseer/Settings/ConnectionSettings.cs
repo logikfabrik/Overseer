@@ -5,12 +5,13 @@
 namespace Logikfabrik.Overseer.Settings
 {
     using System;
+    using System.Reflection;
     using EnsureThat;
 
     /// <summary>
     /// The <see cref="ConnectionSettings" /> class.
     /// </summary>
-    public abstract class ConnectionSettings
+    public abstract class ConnectionSettings : IEquatable<ConnectionSettings>
     {
         private Guid _id;
         private string _name;
@@ -82,6 +83,67 @@ namespace Logikfabrik.Overseer.Settings
         public virtual ConnectionSettings Clone()
         {
             return (ConnectionSettings)MemberwiseClone();
+        }
+
+        /// <summary>
+        /// Determines whether the specified <see cref="object" />, is equal to this instance.
+        /// </summary>
+        /// <param name="obj">The <see cref="object" /> to compare with this instance.</param>
+        /// <returns>
+        ///   <c>true</c> if the specified <see cref="object" /> is equal to this instance; otherwise, <c>false</c>.
+        /// </returns>
+        public override bool Equals(object obj)
+        {
+            return Equals(obj as ConnectionSettings);
+        }
+
+        /// <summary>
+        /// Returns a hash code for this instance.
+        /// </summary>
+        /// <returns>
+        /// A hash code for this instance, suitable for use in hashing algorithms and data structures like a hash table.
+        /// </returns>
+        public override int GetHashCode()
+        {
+            var obj = new { Id, Name, ProviderType };
+
+            return obj.GetHashCode();
+        }
+
+        /// <summary>
+        /// Indicates whether the current object is equal to another object of the same type.
+        /// </summary>
+        /// <param name="other">An object to compare with this object.</param>
+        /// <returns>
+        ///   <c>true</c> if the current object is equal to the <paramref name="other" /> parameter; otherwise, <c>false</c>.
+        /// </returns>
+        public bool Equals(ConnectionSettings other)
+        {
+            var type = GetType();
+
+            if (other == null || other.GetType() != type)
+            {
+                return false;
+            }
+
+            if (ReferenceEquals(this, other))
+            {
+                return true;
+            }
+
+            // ReSharper disable once LoopCanBeConvertedToQuery
+            foreach (var property in type.GetProperties(BindingFlags.Public | BindingFlags.Instance))
+            {
+                var thisValue = type.GetProperty(property.Name).GetValue(this, null);
+                var otherValue = type.GetProperty(property.Name).GetValue(other, null);
+
+                if (thisValue != otherValue && (thisValue == null || !thisValue.Equals(otherValue)))
+                {
+                    return false;
+                }
+            }
+
+            return true;
         }
     }
 }

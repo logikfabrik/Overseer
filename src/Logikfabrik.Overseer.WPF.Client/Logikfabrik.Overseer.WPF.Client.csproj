@@ -89,8 +89,9 @@
     </Compile>
     <Compile Include="AppBootstrapper.cs" />
     <Compile Include="NativeMethods.cs" />
-    <Compile Include="Providers\ConnectionSettingsSerializerProvider.cs" />
-    <Compile Include="Providers\FileStoreProvider.cs" />
+    <Compile Include="Providers\Settings\ConnectionSettingsSerializerProvider.cs" />
+    <Compile Include="Providers\Settings\FileStoreProvider.cs" />
+    <Compile Include="Providers\ViewModels\ConnectionsViewModelProvider.cs" />
     <Compile Include="ViewModels\AppViewModel.cs" />
     <Compile Include="Views\AddConnectionView.xaml.cs">
       <DependentUpon>AddConnectionView.xaml</DependentUpon>

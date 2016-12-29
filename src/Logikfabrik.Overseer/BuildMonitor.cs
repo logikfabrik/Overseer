@@ -5,76 +5,105 @@
 namespace Logikfabrik.Overseer
 {
     using System;
+    using System.Collections.Generic;
     using System.Linq;
     using System.Threading;
     using System.Threading.Tasks;
     using EnsureThat;
+    using Labs;
 
     /// <summary>
     /// The <see cref="BuildMonitor" /> class.
     /// </summary>
-    public class BuildMonitor : IBuildMonitor, IDisposable
+    public class BuildMonitor : IBuildMonitor, IDisposable, IObserver<Connection[]>
     {
-        private readonly IBuildProviderRepository _providerRepository;
+        private readonly IDisposable _subscription;
+        private readonly IDictionary<Guid, IProject> _projects;
+        private readonly IDictionary<Tuple<Guid, string>, IEnumerable<IBuild>> _projectBuilds;
         private CancellationTokenSource _cancellationTokenSource;
+        private bool _isDisposed;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="BuildMonitor" /> class.
+        /// Initializes a new instance of the <see cref="BuildMonitor"/> class.
         /// </summary>
-        /// <param name="providerRepository">The provider repository.</param>
-        public BuildMonitor(IBuildProviderRepository providerRepository)
+        /// <param name="connectionPool">The connection pool.</param>
+        public BuildMonitor(ConnectionPool connectionPool)
         {
-            Ensure.That(providerRepository).IsNotNull();
+            Ensure.That(connectionPool).IsNotNull();
 
-            _providerRepository = providerRepository;
+            _subscription = connectionPool.Subscribe(this);
+            _projects = new Dictionary<Guid, IProject>();
+            _projectBuilds = new Dictionary<Tuple<Guid, string>, IEnumerable<IBuild>>();
         }
 
         /// <summary>
-        /// Occurs when progress changes.
+        /// Occurs if there is an connection error.
         /// </summary>
-        public event EventHandler<BuildMonitorProgressEventArgs> ProgressChanged;
+        public event EventHandler<BuildMonitorConnectionErrorEventArgs> ConnectionError;
 
         /// <summary>
-        /// Occurs if there is an error.
+        /// Occurs when connection progress changes.
         /// </summary>
-        public event EventHandler<BuildMonitorErrorEventArgs> Error;
+        public event EventHandler<BuildMonitorConnectionProgressEventArgs> ConnectionProgressChanged;
 
         /// <summary>
-        /// Gets a value indicating whether this instance is monitoring.
+        /// Occurs if there is an project error.
         /// </summary>
-        /// <value>
-        ///   <c>true</c> if this instance is monitoring; otherwise, <c>false</c>.
-        /// </value>
-        public bool IsMonitoring { get; private set; }
+        public event EventHandler<BuildMonitorProjectErrorEventArgs> ProjectError;
 
         /// <summary>
-        /// Starts the monitoring.
+        /// Occurs when project progress changes.
         /// </summary>
-        public void StartMonitoring()
+        public event EventHandler<BuildMonitorProjectProgressEventArgs> ProjectProgressChanged;
+
+        /// <summary>
+        /// Provides the observer with new data.
+        /// </summary>
+        /// <param name="value">The current notification information.</param>
+        public void OnNext(Connection[] value)
         {
-            if (IsMonitoring)
-            {
-                return;
-            }
-
-            Monitor();
-
-            IsMonitoring = true;
-        }
-
-        /// <summary>
-        /// Stops the monitoring.
-        /// </summary>
-        public void StopMonitoring()
-        {
-            if (!IsMonitoring)
-            {
-                return;
-            }
-
             _cancellationTokenSource?.Cancel();
 
-            IsMonitoring = false;
+            _cancellationTokenSource = new CancellationTokenSource();
+
+            // ReSharper disable once FunctionNeverReturns
+            Task.Run(
+                async () =>
+                {
+                    while (true)
+                    {
+                        try
+                        {
+                            Task.WaitAll(value.Select(GetProjectsAsync).ToArray());
+                        }
+                        catch
+                        {
+                            // TODO: Handle exceptions.
+                        }
+
+                        const int delayForSeconds = 5;
+
+                        await Task.Delay(TimeSpan.FromSeconds(delayForSeconds).Milliseconds).ConfigureAwait(false);
+                    }
+                },
+                _cancellationTokenSource.Token);
+        }
+
+        /// <summary>
+        /// Notifies the observer that the provider has experienced an error condition.
+        /// </summary>
+        /// <param name="error">An object that provides additional information about the error.</param>
+        public void OnError(Exception error)
+        {
+            // Do nothing, even if disposed (pattern practice).
+        }
+
+        /// <summary>
+        /// Notifies the observer that the provider has finished sending push-based notifications.
+        /// </summary>
+        public void OnCompleted()
+        {
+            // Do nothing, even if disposed (pattern practice).
         }
 
         /// <summary>
@@ -106,75 +135,98 @@ namespace Logikfabrik.Overseer
         }
 
         /// <summary>
-        /// Raises the <see cref="ProgressChanged" /> event.
+        /// Raises the <see cref="ConnectionError" /> event.
         /// </summary>
-        /// <param name="e">The <see cref="BuildMonitorProgressEventArgs" /> instance containing the event data.</param>
-        protected virtual void OnProgressChanged(BuildMonitorProgressEventArgs e)
+        /// <param name="e">The <see cref="BuildMonitorConnectionErrorEventArgs" /> instance containing the event data.</param>
+        protected virtual void OnConnectionError(BuildMonitorConnectionErrorEventArgs e)
         {
-            ProgressChanged?.Invoke(this, e);
+            ConnectionError?.Invoke(this, e);
         }
 
         /// <summary>
-        /// Raises the <see cref="Error" /> event.
+        /// Raises the <see cref="ConnectionProgressChanged" /> event.
         /// </summary>
-        /// <param name="e">The <see cref="BuildMonitorErrorEventArgs" /> instance containing the event data.</param>
-        protected virtual void OnError(BuildMonitorErrorEventArgs e)
+        /// <param name="e">The <see cref="BuildMonitorConnectionProgressEventArgs" /> instance containing the event data.</param>
+        protected virtual void OnConnectionProgressChanged(BuildMonitorConnectionProgressEventArgs e)
         {
-            Error?.Invoke(this, e);
+            ConnectionProgressChanged?.Invoke(this, e);
         }
 
-        private void Monitor()
+        /// <summary>
+        /// Raises the <see cref="ProjectError" /> event.
+        /// </summary>
+        /// <param name="e">The <see cref="BuildMonitorProjectErrorEventArgs" /> instance containing the event data.</param>
+        protected virtual void OnProjectError(BuildMonitorProjectErrorEventArgs e)
         {
-            _cancellationTokenSource = new CancellationTokenSource();
-
-            // ReSharper disable once FunctionNeverReturns
-            Task.Run(
-                async () =>
-            {
-                while (true)
-                {
-                    try
-                    {
-                        var buildProviders = _providerRepository.GetAll();
-
-                        Task.WaitAll(buildProviders.Select(GetProjectsAsync).ToArray());
-                    }
-                    catch
-                    {
-                        OnError(new BuildMonitorErrorEventArgs());
-                    }
-
-                    const int delayForSeconds = 5;
-
-                    await Task.Delay(TimeSpan.FromSeconds(delayForSeconds).Milliseconds).ConfigureAwait(false);
-                }
-            },
-            _cancellationTokenSource.Token);
+            ProjectError?.Invoke(this, e);
         }
 
-        private async Task GetProjectsAsync(IBuildProvider buildProvider)
+        /// <summary>
+        /// Raises the <see cref="ProjectProgressChanged" /> event.
+        /// </summary>
+        /// <param name="e">The <see cref="BuildMonitorProjectProgressEventArgs" /> instance containing the event data.</param>
+        protected virtual void OnProjectProgressChanged(BuildMonitorProjectProgressEventArgs e)
+        {
+            ProjectProgressChanged?.Invoke(this, e);
+        }
+
+        private async Task GetProjectsAsync(Connection connection)
         {
             try
             {
-                var projects = await buildProvider.GetProjectsAsync().ConfigureAwait(false);
+                var projects = await connection.GetProjectsAsync().ConfigureAwait(false);
+
+                OnConnectionProgressChanged(new BuildMonitorConnectionProgressEventArgs(connection.Settings, projects));
 
                 Task.WaitAll(projects.Select(async project =>
                 {
                     try
                     {
-                        var builds = await buildProvider.GetBuildsAsync(project.Id).ConfigureAwait(false);
+                        AddOrUpdateProject(connection, project);
 
-                        OnProgressChanged(new BuildMonitorProgressEventArgs(buildProvider, project, builds));
+                        var builds = await connection.GetBuildsAsync(project).ConfigureAwait(false);
+
+                        AddOrUpdateProjectBuilds(connection, project, builds);
+
+                        OnProjectProgressChanged(new BuildMonitorProjectProgressEventArgs(connection.Settings, project, builds));
                     }
                     catch (Exception)
                     {
-                        OnError(new BuildMonitorErrorEventArgs(buildProvider, project));
+                        OnProjectError(new BuildMonitorProjectErrorEventArgs(connection.Settings, project));
                     }
                 }).ToArray());
             }
             catch
             {
-                OnError(new BuildMonitorErrorEventArgs(buildProvider));
+                OnConnectionError(new BuildMonitorConnectionErrorEventArgs(connection.Settings));
+            }
+        }
+
+        private void AddOrUpdateProject(Connection connection, IProject project)
+        {
+            var key = connection.Settings.Id;
+
+            if (_projects.ContainsKey(key))
+            {
+                _projects[key] = project;
+            }
+            else
+            {
+                _projects.Add(key, project);
+            }
+        }
+
+        private void AddOrUpdateProjectBuilds(Connection connection, IProject project, IEnumerable<IBuild> builds)
+        {
+            var key = new Tuple<Guid, string>(connection.Settings.Id, project.Id);
+
+            if (_projectBuilds.ContainsKey(key))
+            {
+                _projectBuilds[key] = builds;
+            }
+            else
+            {
+                _projectBuilds.Add(key, builds);
             }
         }
     }

@@ -13,7 +13,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices
     /// <summary>
     /// The <see cref="BuildProvider" /> class.
     /// </summary>
-    public class BuildProvider : BuildProvider<ConnectionSettings>, IDisposable
+    public class BuildProvider : BuildProvider<ConnectionSettings>
     {
         private readonly Lazy<Api.ApiClient> _apiClient;
 
@@ -68,7 +68,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices
         /// <summary>
         /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
         /// </summary>
-        public void Dispose()
+        public override void Dispose()
         {
             Dispose(true);
             GC.SuppressFinalize(this);

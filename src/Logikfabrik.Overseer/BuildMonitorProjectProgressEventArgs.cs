@@ -1,4 +1,4 @@
-﻿// <copyright file="BuildMonitorProgressEventArgs.cs" company="Logikfabrik">
+﻿// <copyright file="BuildMonitorProjectProgressEventArgs.cs" company="Logikfabrik">
 //   Copyright (c) 2016 anton(at)logikfabrik.se. Licensed under the MIT license.
 // </copyright>
 
@@ -7,36 +7,37 @@ namespace Logikfabrik.Overseer
     using System;
     using System.Collections.Generic;
     using EnsureThat;
+    using Settings;
 
     /// <summary>
-    /// The <see cref="BuildMonitorProgressEventArgs" /> class.
+    /// The <see cref="BuildMonitorProjectProgressEventArgs" /> class.
     /// </summary>
-    public class BuildMonitorProgressEventArgs : EventArgs
+    public class BuildMonitorProjectProgressEventArgs : EventArgs
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="BuildMonitorProgressEventArgs" /> class.
+        /// Initializes a new instance of the <see cref="BuildMonitorProjectProgressEventArgs" /> class.
         /// </summary>
-        /// <param name="provider">The provider.</param>
+        /// <param name="settings">The settings.</param>
         /// <param name="project">The project.</param>
         /// <param name="builds">The builds.</param>
-        public BuildMonitorProgressEventArgs(IBuildProvider provider, IProject project, IEnumerable<IBuild> builds)
+        public BuildMonitorProjectProgressEventArgs(ConnectionSettings settings, IProject project, IEnumerable<IBuild> builds)
         {
-            Ensure.That(provider).IsNotNull();
+            Ensure.That(settings).IsNotNull();
             Ensure.That(project).IsNotNull();
             Ensure.That(builds).IsNotNull();
 
-            Provider = provider;
+            Settings = settings;
             Project = project;
             Builds = builds;
         }
 
         /// <summary>
-        /// Gets the provider.
+        /// Gets the settings.
         /// </summary>
         /// <value>
-        /// The provider.
+        /// The settings.
         /// </value>
-        public IBuildProvider Provider { get; }
+        public ConnectionSettings Settings { get; }
 
         /// <summary>
         /// Gets the project.

@@ -96,7 +96,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor.Api.Models
         /// Gets or sets a value indicating whether this project is private.
         /// </summary>
         /// <value>
-        /// <c>true</c> if this project is private; otherwise, <c>false</c>.
+        ///   <c>true</c> if this project is private; otherwise, <c>false</c>.
         /// </value>
         public bool IsPrivate { get; set; }
 

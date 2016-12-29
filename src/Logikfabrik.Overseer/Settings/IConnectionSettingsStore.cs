@@ -12,12 +12,12 @@ namespace Logikfabrik.Overseer.Settings
     public interface IConnectionSettingsStore
     {
         /// <summary>
-        /// Loads the settings.
+        /// Loads the settings instance.
         /// </summary>
         /// <returns>
-        /// A task.
+        /// The settings.
         /// </returns>
-        Task<ConnectionSettings[]> LoadAsync();
+        ConnectionSettings[] Load();
 
         /// <summary>
         /// Saves the specified settings.

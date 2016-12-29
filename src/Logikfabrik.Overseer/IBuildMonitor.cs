@@ -12,31 +12,24 @@ namespace Logikfabrik.Overseer
     public interface IBuildMonitor
     {
         /// <summary>
-        /// Occurs when progress changes.
+        /// Occurs if there is an connection error.
         /// </summary>
-        event EventHandler<BuildMonitorProgressEventArgs> ProgressChanged;
+        event EventHandler<BuildMonitorConnectionErrorEventArgs> ConnectionError;
 
         /// <summary>
-        /// Occurs if there is an error.
+        /// Occurs when connection progress changes.
         /// </summary>
-        event EventHandler<BuildMonitorErrorEventArgs> Error;
+        event EventHandler<BuildMonitorConnectionProgressEventArgs> ConnectionProgressChanged;
+
 
         /// <summary>
-        /// Gets a value indicating whether this instance is monitoring.
+        /// Occurs if there is an project error.
         /// </summary>
-        /// <value>
-        ///   <c>true</c> if this instance is monitoring; otherwise, <c>false</c>.
-        /// </value>
-        bool IsMonitoring { get; }
+        event EventHandler<BuildMonitorProjectErrorEventArgs> ProjectError;
 
         /// <summary>
-        /// Starts the monitoring.
+        /// Occurs when project progress changes.
         /// </summary>
-        void StartMonitoring();
-
-        /// <summary>
-        /// Stops the monitoring.
-        /// </summary>
-        void StopMonitoring();
+        event EventHandler<BuildMonitorProjectProgressEventArgs> ProjectProgressChanged;
     }
 }

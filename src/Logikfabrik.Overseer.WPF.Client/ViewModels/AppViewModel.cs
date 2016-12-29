@@ -34,7 +34,7 @@ namespace Logikfabrik.Overseer.WPF.Client.ViewModels
             _buildNotificationManager = buildNotificationManager;
             eventAggregator.Subscribe(this);
 
-            WeakEventManager<IBuildMonitor, BuildMonitorProgressEventArgs>.AddHandler(buildMonitor, nameof(buildMonitor.ProgressChanged), BuildMonitorProgressChanged);
+            WeakEventManager<IBuildMonitor, BuildMonitorProjectProgressEventArgs>.AddHandler(buildMonitor, nameof(buildMonitor.ProjectProgressChanged), BuildMonitorProgressChanged);
 
             DisplayName = "Overseer";
 
@@ -62,7 +62,7 @@ namespace Logikfabrik.Overseer.WPF.Client.ViewModels
             NotifyOfPropertyChange(() => ViewName);
         }
 
-        private void BuildMonitorProgressChanged(object sender, BuildMonitorProgressEventArgs e)
+        private void BuildMonitorProgressChanged(object sender, BuildMonitorProjectProgressEventArgs e)
         {
             if (!e.Builds.Any())
             {

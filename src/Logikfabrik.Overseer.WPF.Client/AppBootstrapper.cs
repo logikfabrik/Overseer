@@ -11,10 +11,11 @@ namespace Logikfabrik.Overseer.WPF.Client
     using System.Reflection;
     using System.Windows;
     using Caliburn.Micro;
+    using Labs;
     using Ninject;
     using Ninject.Modules;
-    using Ninject.Parameters;
-    using Providers;
+    using Providers.Settings;
+    using Providers.ViewModels;
     using Settings;
     using ViewModels;
     using WPF.ViewModels;
@@ -85,11 +86,11 @@ namespace Logikfabrik.Overseer.WPF.Client
             ViewLocator.AddNamespaceMapping("*", "Logikfabrik.Overseer.WPF.Client.Views");
 
             // Business logic setup.
-            _kernel.Bind<IFileStore>().ToProvider<FileStoreProvider>().InSingletonScope();
             _kernel.Bind<IConnectionSettingsSerializer>().ToProvider<ConnectionSettingsSerializerProvider>().InSingletonScope();
+            _kernel.Bind<IFileStore>().ToProvider<FileStoreProvider>().InSingletonScope();
             _kernel.Bind<IConnectionSettingsStore>().To<ConnectionSettingsStore>();
             _kernel.Bind<IConnectionSettingsRepository>().To<ConnectionSettingsRepository>().InSingletonScope();
-            _kernel.Bind<IBuildProviderRepository>().To<BuildProviderRepository>();
+            _kernel.Bind<ConnectionPool>().To<ConnectionPool>().InSingletonScope();
             _kernel.Bind<IBuildMonitor>().To<BuildMonitor>().InSingletonScope();
 
             // Caliburn Micro setup.
@@ -100,14 +101,8 @@ namespace Logikfabrik.Overseer.WPF.Client
             _kernel.Bind<INotificationManager>().To<NotificationManager>();
             _kernel.Bind<IBuildNotificationManager>().To<BuildNotificationManager>().InSingletonScope();
 
-            _kernel.Bind<ConnectionsViewModel>().ToMethod(context =>
-            {
-                var providers = context.Kernel.Get<IBuildProviderRepository>().GetAll();
-
-                var viewModels = providers.Select(provider => context.Kernel.Get<ConnectionViewModel>(ModuleHelper.GetModuleName(provider), new ConstructorArgument("provider", provider)));
-
-                return new ConnectionsViewModel(context.Kernel.Get<IEventAggregator>(), viewModels);
-            });
+            // TODO: This should not be a provider. The view model should subscribe to the repository.
+            _kernel.Bind<ConnectionsViewModel>().ToProvider<ConnectionsViewModelProvider>();
 
             _kernel.Load(SelectAssemblies());
         }
