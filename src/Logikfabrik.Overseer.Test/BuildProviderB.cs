@@ -26,8 +26,9 @@ namespace Logikfabrik.Overseer.Test
             throw new NotImplementedException();
         }
 
-        public override void Dispose()
+        protected override void Dispose(bool disposing)
         {
+            throw new NotImplementedException();
         }
     }
 }

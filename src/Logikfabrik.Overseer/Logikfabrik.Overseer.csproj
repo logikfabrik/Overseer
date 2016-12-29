@@ -54,8 +54,10 @@
   <ItemGroup>
     <Compile Include="BuildMonitor.cs" />
     <Compile Include="BuildMonitorConnectionErrorEventArgs.cs" />
+    <Compile Include="BuildMonitorConnectionEventArgs.cs" />
     <Compile Include="BuildMonitorConnectionProgressEventArgs.cs" />
     <Compile Include="BuildMonitorProjectErrorEventArgs.cs" />
+    <Compile Include="BuildMonitorProjectEventArgs.cs" />
     <Compile Include="BuildMonitorProjectProgressEventArgs.cs" />
     <Compile Include="BuildProviderFactory.cs" />
     <Compile Include="Change.cs" />

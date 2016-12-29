@@ -4,6 +4,7 @@
 
 namespace Logikfabrik.Overseer
 {
+    using System;
     using System.Collections.Generic;
     using System.Threading.Tasks;
     using EnsureThat;
@@ -86,6 +87,16 @@ namespace Logikfabrik.Overseer
         /// <summary>
         /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
         /// </summary>
-        public abstract void Dispose();
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        /// <summary>
+        /// Releases unmanaged and managed resources.
+        /// </summary>
+        /// <param name="disposing"><c>true</c> to release both managed and unmanaged resources; <c>false</c> to release only unmanaged resources.</param>
+        protected abstract void Dispose(bool disposing);
     }
 }

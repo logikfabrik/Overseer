@@ -5,7 +5,7 @@
 namespace Logikfabrik.Overseer.WPF.ViewModels
 {
     /// <summary>
-    /// The <see cref="SettingsViewModel" /> class.
+    /// The <see cref="SettingsViewModel" /> class. View model for application wide settings.
     /// </summary>
     public class SettingsViewModel : ViewModel
     {

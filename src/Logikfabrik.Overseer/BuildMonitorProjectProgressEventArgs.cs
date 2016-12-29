@@ -7,45 +7,25 @@ namespace Logikfabrik.Overseer
     using System;
     using System.Collections.Generic;
     using EnsureThat;
-    using Settings;
 
     /// <summary>
     /// The <see cref="BuildMonitorProjectProgressEventArgs" /> class.
     /// </summary>
-    public class BuildMonitorProjectProgressEventArgs : EventArgs
+    public class BuildMonitorProjectProgressEventArgs : BuildMonitorProjectEventArgs
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="BuildMonitorProjectProgressEventArgs" /> class.
         /// </summary>
-        /// <param name="settings">The settings.</param>
+        /// <param name="settingsId">The settings ID.</param>
         /// <param name="project">The project.</param>
         /// <param name="builds">The builds.</param>
-        public BuildMonitorProjectProgressEventArgs(ConnectionSettings settings, IProject project, IEnumerable<IBuild> builds)
+        public BuildMonitorProjectProgressEventArgs(Guid settingsId, IProject project, IEnumerable<IBuild> builds)
+            : base(settingsId, project)
         {
-            Ensure.That(settings).IsNotNull();
-            Ensure.That(project).IsNotNull();
             Ensure.That(builds).IsNotNull();
 
-            Settings = settings;
-            Project = project;
             Builds = builds;
         }
-
-        /// <summary>
-        /// Gets the settings.
-        /// </summary>
-        /// <value>
-        /// The settings.
-        /// </value>
-        public ConnectionSettings Settings { get; }
-
-        /// <summary>
-        /// Gets the project.
-        /// </summary>
-        /// <value>
-        /// The project.
-        /// </value>
-        public IProject Project { get; }
 
         /// <summary>
         /// Gets the builds.

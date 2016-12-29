@@ -1,41 +1,42 @@
-﻿// <copyright file="ProjectBuildViewModel.cs" company="Logikfabrik">
+﻿// <copyright file="ProjectViewModel.cs" company="Logikfabrik">
 //   Copyright (c) 2016 anton(at)logikfabrik.se. Licensed under the MIT license.
 // </copyright>
 
 namespace Logikfabrik.Overseer.WPF.ViewModels
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Windows;
     using Caliburn.Micro;
     using EnsureThat;
-    using Settings;
 
     /// <summary>
-    /// The <see cref="ProjectBuildViewModel" /> class.
+    /// The <see cref="ProjectViewModel" /> class. View model for CI projects.
     /// </summary>
-    public class ProjectBuildViewModel : PropertyChangedBase
+    public class ProjectViewModel : PropertyChangedBase
     {
-        private readonly ConnectionSettings _settings;
-        private readonly IProject _project;
+        private readonly Guid _settingsId;
+        private readonly string _projectId;
         private IEnumerable<BuildViewModel> _builds;
+        private string _projectName;
         private bool _isBusy;
         private bool _isErrored;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ProjectBuildViewModel" /> class.
+        /// Initializes a new instance of the <see cref="ProjectViewModel" /> class.
         /// </summary>
         /// <param name="buildMonitor">The build monitor.</param>
-        /// <param name="settings">The settings.</param>
-        /// <param name="project">The project.</param>
-        public ProjectBuildViewModel(IBuildMonitor buildMonitor, ConnectionSettings settings, IProject project)
+        /// <param name="settingsId">The settings ID.</param>
+        /// <param name="projectId">The project ID.</param>
+        public ProjectViewModel(IBuildMonitor buildMonitor, Guid settingsId, string projectId)
         {
             Ensure.That(buildMonitor).IsNotNull();
-            Ensure.That(settings).IsNotNull();
-            Ensure.That(project).IsNotNull();
+            Ensure.That(settingsId).IsNotEmpty();
+            Ensure.That(projectId).IsNotNullOrWhiteSpace();
 
-            _settings = settings;
-            _project = project;
+            _settingsId = settingsId;
+            _projectId = projectId;
             _isBusy = true;
             _isErrored = false;
 
@@ -44,12 +45,24 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         }
 
         /// <summary>
-        /// Gets the project name.
+        /// Gets or sets the project name.
         /// </summary>
         /// <value>
         /// The project name.
         /// </value>
-        public string ProjectName => _project.Name;
+        public string ProjectName
+        {
+            get
+            {
+                return _projectName;
+            }
+
+            set
+            {
+                _projectName = value;
+                NotifyOfPropertyChange(() => ProjectName);
+            }
+        }
 
         /// <summary>
         /// Gets the build view models.
@@ -133,14 +146,19 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             }
         }
 
-        private void BuildMonitorProjectProgressChanged(object sender, BuildMonitorProjectProgressEventArgs e)
+        private void BuildMonitorProjectError(object sender, BuildMonitorProjectErrorEventArgs e)
         {
-            if (_settings.Id != e.Settings.Id)
+            if (ShouldExitHandler(e))
             {
                 return;
             }
 
-            if (_project.Id != e.Project.Id)
+            IsErrored = true;
+        }
+
+        private void BuildMonitorProjectProgressChanged(object sender, BuildMonitorProjectProgressEventArgs e)
+        {
+            if (ShouldExitHandler(e))
             {
                 return;
             }
@@ -152,19 +170,9 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             IsBusy = false;
         }
 
-        private void BuildMonitorProjectError(object sender, BuildMonitorProjectErrorEventArgs e)
+        private bool ShouldExitHandler(BuildMonitorProjectEventArgs e)
         {
-            if (_settings.Id != e.Settings.Id)
-            {
-                return;
-            }
-
-            if (_project.Id != e.Project.Id)
-            {
-                return;
-            }
-
-            IsErrored = true;
+            return _settingsId != e.SettingsId || _projectId != e.Project.Id;
         }
     }
 }

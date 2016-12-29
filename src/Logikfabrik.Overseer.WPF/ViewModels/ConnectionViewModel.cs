@@ -2,15 +2,12 @@
 //   Copyright (c) 2016 anton(at)logikfabrik.se. Licensed under the MIT license.
 // </copyright>
 
-using System.Collections.ObjectModel;
-using System.Windows.Data;
-
 namespace Logikfabrik.Overseer.WPF.ViewModels
 {
     using System;
-    using System.Collections.Generic;
-    using System.Linq;
+    using System.Collections.ObjectModel;
     using System.Windows;
+    using System.Windows.Data;
     using Caliburn.Micro;
     using EnsureThat;
     using Settings;
@@ -25,7 +22,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         private readonly ConnectionSettings _settings;
         private bool _isBusy;
         private bool _isErrored;
-        object _lock = new object();
+        private object _lock = new object();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ConnectionViewModel" /> class.
@@ -44,7 +41,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             _settings = settings;
             _isBusy = true;
             _isErrored = false;
-            Projects = new ObservableCollection<ProjectBuildViewModel>();
+            Projects = new ObservableCollection<ProjectViewModel>();
 
             BindingOperations.EnableCollectionSynchronization(Projects, _lock);
 
@@ -128,7 +125,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// <value>
         /// The projects
         /// </value>
-        public ObservableCollection<ProjectBuildViewModel> Projects { get; }
+        public ObservableCollection<ProjectViewModel> Projects { get; }
 
         /// <summary>
         /// Gets the type of the view model to edit the connection.
@@ -160,12 +157,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
 
         private void BuildMonitorConnectionError(object sender, BuildMonitorConnectionErrorEventArgs e)
         {
-            if (e.Settings == null)
-            {
-                return;
-            }
-
-            if (_settings.Id != e.Settings.Id)
+            if (ShouldExitHandler(e))
             {
                 return;
             }
@@ -175,12 +167,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
 
         private void BuildMonitorConnectionProgressChanged(object sender, BuildMonitorConnectionProgressEventArgs e)
         {
-            if (e.Settings == null)
-            {
-                return;
-            }
-
-            if (_settings.Id != e.Settings.Id)
+            if (ShouldExitHandler(e))
             {
                 return;
             }
@@ -190,10 +177,15 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             // TODO: Rewrite.
             foreach (var project in e.Projects)
             {
-                Projects.Add(new ProjectBuildViewModel(_buildMonitor, _settings, project));
+                Projects.Add(new ProjectViewModel(_buildMonitor, _settings.Id, project.Id) { ProjectName = project.Name });
             }
 
             IsBusy = false;
+        }
+
+        private bool ShouldExitHandler(BuildMonitorConnectionEventArgs e)
+        {
+            return _settings.Id != e.SettingsId;
         }
     }
 }

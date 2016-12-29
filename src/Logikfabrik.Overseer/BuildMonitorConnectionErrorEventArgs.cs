@@ -5,31 +5,19 @@
 namespace Logikfabrik.Overseer
 {
     using System;
-    using EnsureThat;
-    using Settings;
 
     /// <summary>
     /// The <see cref="BuildMonitorConnectionErrorEventArgs" /> class.
     /// </summary>
-    public class BuildMonitorConnectionErrorEventArgs : EventArgs
+    public class BuildMonitorConnectionErrorEventArgs : BuildMonitorConnectionEventArgs
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="BuildMonitorConnectionErrorEventArgs" /> class.
         /// </summary>
-        /// <param name="settings">The settings.</param>
-        public BuildMonitorConnectionErrorEventArgs(ConnectionSettings settings)
+        /// <param name="settingsId">The settings ID.</param>
+        public BuildMonitorConnectionErrorEventArgs(Guid settingsId)
+            : base(settingsId)
         {
-            Ensure.That(settings).IsNotNull();
-
-            Settings = settings;
         }
-
-        /// <summary>
-        /// Gets the settings.
-        /// </summary>
-        /// <value>
-        /// The settings.
-        /// </value>
-        public ConnectionSettings Settings { get; }
     }
 }

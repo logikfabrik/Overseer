@@ -119,7 +119,7 @@
     <Compile Include="ViewModels\ConnectionsViewModel.cs" />
     <Compile Include="ViewModels\ConnectionViewModel.cs" />
     <Compile Include="ViewModels\EditConnectionViewModel{T}.cs" />
-    <Compile Include="ViewModels\ProjectBuildViewModel.cs" />
+    <Compile Include="ViewModels\ProjectViewModel.cs" />
     <Compile Include="ViewModels\BuildProvidersViewModel.cs" />
     <Compile Include="ViewModels\SettingsViewModel.cs" />
     <None Include="packages.config" />

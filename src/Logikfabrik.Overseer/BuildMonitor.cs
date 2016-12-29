@@ -176,7 +176,7 @@ namespace Logikfabrik.Overseer
             {
                 var projects = await connection.GetProjectsAsync().ConfigureAwait(false);
 
-                OnConnectionProgressChanged(new BuildMonitorConnectionProgressEventArgs(connection.Settings, projects));
+                OnConnectionProgressChanged(new BuildMonitorConnectionProgressEventArgs(connection.Settings.Id, projects));
 
                 Task.WaitAll(projects.Select(async project =>
                 {
@@ -188,17 +188,17 @@ namespace Logikfabrik.Overseer
 
                         AddOrUpdateProjectBuilds(connection, project, builds);
 
-                        OnProjectProgressChanged(new BuildMonitorProjectProgressEventArgs(connection.Settings, project, builds));
+                        OnProjectProgressChanged(new BuildMonitorProjectProgressEventArgs(connection.Settings.Id, project, builds));
                     }
                     catch (Exception)
                     {
-                        OnProjectError(new BuildMonitorProjectErrorEventArgs(connection.Settings, project));
+                        OnProjectError(new BuildMonitorProjectErrorEventArgs(connection.Settings.Id, project));
                     }
                 }).ToArray());
             }
             catch
             {
-                OnConnectionError(new BuildMonitorConnectionErrorEventArgs(connection.Settings));
+                OnConnectionError(new BuildMonitorConnectionErrorEventArgs(connection.Settings.Id));
             }
         }
 

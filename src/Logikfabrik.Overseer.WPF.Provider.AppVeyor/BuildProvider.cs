@@ -8,6 +8,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
+    using EnsureThat;
 
     /// <summary>
     /// The <see cref="BuildProvider" /> class.
@@ -35,6 +36,11 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor
         /// </returns>
         public override async Task<IEnumerable<IProject>> GetProjectsAsync()
         {
+            if (_isDisposed)
+            {
+                throw new ObjectDisposedException(GetType().FullName);
+            }
+
             var projects = await _apiClient.Value.GetProjectsAsync().ConfigureAwait(false);
 
             return projects.Select(project => new Project(project));
@@ -49,6 +55,13 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor
         /// </returns>
         public override async Task<IEnumerable<IBuild>> GetBuildsAsync(string projectId)
         {
+            if (_isDisposed)
+            {
+                throw new ObjectDisposedException(GetType().FullName);
+            }
+
+            Ensure.That(projectId).IsNotNullOrWhiteSpace();
+
             var projects = await _apiClient.Value.GetProjectsAsync().ConfigureAwait(false);
 
             var project = projects.SingleOrDefault(p => p.ProjectId == int.Parse(projectId));
@@ -66,19 +79,10 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor
         }
 
         /// <summary>
-        /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
-        /// </summary>
-        public override void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
-        }
-
-        /// <summary>
         /// Releases unmanaged and managed resources.
         /// </summary>
         /// <param name="disposing"><c>true</c> to release both managed and unmanaged resources; <c>false</c> to release only unmanaged resources.</param>
-        protected virtual void Dispose(bool disposing)
+        protected override void Dispose(bool disposing)
         {
             // ReSharper disable once InvertIf
             if (disposing)
@@ -90,6 +94,8 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor
 
                 _apiClient.Value.Dispose();
             }
+
+            _isDisposed = true;
         }
 
         private static Api.ApiClient GetApiClient(ConnectionSettings settings)

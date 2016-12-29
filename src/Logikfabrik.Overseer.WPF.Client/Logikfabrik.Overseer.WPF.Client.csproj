@@ -114,8 +114,8 @@
     <Compile Include="Views\EditConnectionView.xaml.cs">
       <DependentUpon>EditConnectionView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\ProjectBuildView.xaml.cs">
-      <DependentUpon>ProjectBuildView.xaml</DependentUpon>
+    <Compile Include="Views\ProjectView.xaml.cs">
+      <DependentUpon>ProjectView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ConnectionsView.xaml.cs">
       <DependentUpon>ConnectionsView.xaml</DependentUpon>
@@ -185,7 +185,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\ProjectBuildView.xaml">
+    <Page Include="Views\ProjectView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
