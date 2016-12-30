@@ -9,7 +9,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     using Settings;
 
     /// <summary>
-    /// The <see cref="EditConnectionViewModel{T}" /> class.
+    /// The <see cref="EditConnectionViewModel{T}" /> class. Base class for view models for editing connections.
     /// </summary>
     /// <typeparam name="T">The <see cref="ConnectionSettings" /> type.</typeparam>
     public abstract class EditConnectionViewModel<T> : ViewModel

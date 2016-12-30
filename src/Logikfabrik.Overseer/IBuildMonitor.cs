@@ -21,7 +21,6 @@ namespace Logikfabrik.Overseer
         /// </summary>
         event EventHandler<BuildMonitorConnectionProgressEventArgs> ConnectionProgressChanged;
 
-
         /// <summary>
         /// Occurs if there is an project error.
         /// </summary>

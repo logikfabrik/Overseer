@@ -26,11 +26,20 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             Ensure.That(project).IsNotNull();
             Ensure.That(build).IsNotNull();
 
+            BuildId = build.Id;
             BuildName = GetBuildName(project, build);
             Message = GetMessage(build);
             Status = build.Status;
             Changes = build.Changes.Select(lastChange => new ChangeViewModel(lastChange));
         }
+
+        /// <summary>
+        /// Gets the build ID.
+        /// </summary>
+        /// <value>
+        /// The build ID.
+        /// </value>
+        public string BuildId { get; }
 
         /// <summary>
         /// Gets the build name.

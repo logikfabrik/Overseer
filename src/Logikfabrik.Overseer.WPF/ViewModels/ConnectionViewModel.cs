@@ -5,9 +5,9 @@
 namespace Logikfabrik.Overseer.WPF.ViewModels
 {
     using System;
-    using System.Collections.ObjectModel;
+    using System.Collections.Generic;
+    using System.Linq;
     using System.Windows;
-    using System.Windows.Data;
     using Caliburn.Micro;
     using EnsureThat;
     using Settings;
@@ -20,9 +20,9 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         private readonly IEventAggregator _eventAggregator;
         private readonly IBuildMonitor _buildMonitor;
         private readonly ConnectionSettings _settings;
+        private readonly List<ProjectViewModel> _projects;
         private bool _isBusy;
         private bool _isErrored;
-        private object _lock = new object();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ConnectionViewModel" /> class.
@@ -41,9 +41,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             _settings = settings;
             _isBusy = true;
             _isErrored = false;
-            Projects = new ObservableCollection<ProjectViewModel>();
-
-            BindingOperations.EnableCollectionSynchronization(Projects, _lock);
+            _projects = new List<ProjectViewModel>();
 
             WeakEventManager<IBuildMonitor, BuildMonitorConnectionErrorEventArgs>.AddHandler(buildMonitor, nameof(buildMonitor.ConnectionError), BuildMonitorConnectionError);
             WeakEventManager<IBuildMonitor, BuildMonitorConnectionProgressEventArgs>.AddHandler(buildMonitor, nameof(buildMonitor.ConnectionProgressChanged), BuildMonitorConnectionProgressChanged);
@@ -84,20 +82,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// <value>
         ///   <c>true</c> if this instance is not busy; otherwise, <c>false</c>.
         /// </value>
-        public bool IsNotBusy
-        {
-            get
-            {
-                return !_isBusy;
-            }
-
-            private set
-            {
-                _isBusy = !value;
-                NotifyOfPropertyChange(() => IsBusy);
-                NotifyOfPropertyChange(() => IsNotBusy);
-            }
-        }
+        public bool IsNotBusy => !_isBusy;
 
         /// <summary>
         /// Gets a value indicating whether this instance is errored.
@@ -125,7 +110,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// <value>
         /// The projects
         /// </value>
-        public ObservableCollection<ProjectViewModel> Projects { get; }
+        public IEnumerable<ProjectViewModel> Projects => _projects;
 
         /// <summary>
         /// Gets the type of the view model to edit the connection.
@@ -172,12 +157,36 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
                 return;
             }
 
-            Projects.Clear();
+            var isDirty = false;
 
-            // TODO: Rewrite.
             foreach (var project in e.Projects)
             {
-                Projects.Add(new ProjectViewModel(_buildMonitor, _settings.Id, project.Id) { ProjectName = project.Name });
+                var projectToUpdate = _projects.SingleOrDefault(p => p.ProjectId == project.Id);
+
+                if (projectToUpdate != null)
+                {
+                    projectToUpdate.ProjectName = project.Name;
+                }
+                else
+                {
+                    var projectToAdd = new ProjectViewModel(_buildMonitor, _settings.Id, project.Id)
+                    {
+                        ProjectName = project.Name
+                    };
+
+                    _projects.Add(projectToAdd);
+
+                    isDirty = true;
+                }
+            }
+
+            var projectsToKeep = e.Projects.Select(project => project.Id).ToArray();
+
+            isDirty = isDirty || _projects.RemoveAll(project => !projectsToKeep.Contains(project.ProjectId)) == 0;
+
+            if (isDirty)
+            {
+                NotifyOfPropertyChange(() => Projects);
             }
 
             IsBusy = false;

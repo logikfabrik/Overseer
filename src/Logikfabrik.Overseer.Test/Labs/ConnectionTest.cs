@@ -1,4 +1,8 @@
-﻿namespace Logikfabrik.Overseer.Test.Labs
+﻿// <copyright file="ConnectionTest.cs" company="Logikfabrik">
+//   Copyright (c) 2016 anton(at)logikfabrik.se. Licensed under the MIT license.
+// </copyright>
+
+namespace Logikfabrik.Overseer.Test.Labs
 {
     using System;
     using Overseer.Labs;

@@ -78,17 +78,17 @@ namespace Logikfabrik.Overseer.Labs
 
                         _connections.Add(settings.Id, connectionToAdd);
                     }
+                }
 
-                    var connectionsToRemove = _connections.Keys.Except(value.Select(s => s.Id));
+                var connectionsToRemove = _connections.Keys.Except(value.Select(s => s.Id));
 
-                    foreach (var id in connectionsToRemove)
-                    {
-                        var connectionToRemove = _connections[id];
+                foreach (var id in connectionsToRemove)
+                {
+                    var connectionToRemove = _connections[id];
 
-                        _connections.Remove(id);
+                    _connections.Remove(id);
 
-                        connectionToRemove.Dispose();
-                    }
+                    connectionToRemove.Dispose();
                 }
             }
 

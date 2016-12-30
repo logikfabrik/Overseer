@@ -17,8 +17,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     public class ProjectViewModel : PropertyChangedBase
     {
         private readonly Guid _settingsId;
-        private readonly string _projectId;
-        private IEnumerable<BuildViewModel> _builds;
+        private readonly List<BuildViewModel> _builds;
         private string _projectName;
         private bool _isBusy;
         private bool _isErrored;
@@ -36,13 +35,22 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             Ensure.That(projectId).IsNotNullOrWhiteSpace();
 
             _settingsId = settingsId;
-            _projectId = projectId;
+            ProjectId = projectId;
             _isBusy = true;
             _isErrored = false;
+            _builds = new List<BuildViewModel>();
 
             WeakEventManager<IBuildMonitor, BuildMonitorProjectErrorEventArgs>.AddHandler(buildMonitor, nameof(buildMonitor.ProjectError), BuildMonitorProjectError);
             WeakEventManager<IBuildMonitor, BuildMonitorProjectProgressEventArgs>.AddHandler(buildMonitor, nameof(buildMonitor.ProjectProgressChanged), BuildMonitorProjectProgressChanged);
         }
+
+        /// <summary>
+        /// Gets the project identifier.
+        /// </summary>
+        /// <value>
+        /// The project identifier.
+        /// </value>
+        public string ProjectId { get; }
 
         /// <summary>
         /// Gets or sets the project name.
@@ -70,19 +78,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// <value>
         /// The build view models.
         /// </value>
-        public IEnumerable<BuildViewModel> Builds
-        {
-            get
-            {
-                return _builds;
-            }
-
-            private set
-            {
-                _builds = value;
-                NotifyOfPropertyChange(() => Builds);
-            }
-        }
+        public IEnumerable<BuildViewModel> Builds => _builds;
 
         /// <summary>
         /// Gets a value indicating whether this instance is busy.
@@ -111,20 +107,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// <value>
         ///   <c>true</c> if this instance is not busy; otherwise, <c>false</c>.
         /// </value>
-        public bool IsNotBusy
-        {
-            get
-            {
-                return !_isBusy;
-            }
-
-            private set
-            {
-                _isBusy = !value;
-                NotifyOfPropertyChange(() => IsBusy);
-                NotifyOfPropertyChange(() => IsNotBusy);
-            }
-        }
+        public bool IsNotBusy => !_isBusy;
 
         /// <summary>
         /// Gets a value indicating whether this instance is errored.
@@ -163,16 +146,41 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
                 return;
             }
 
-            Builds = e.Builds.Any()
-                ? e.Builds.Select(build => new BuildViewModel(e.Project, build))
-                : new BuildViewModel[] { };
+            var isDirty = false;
+
+            foreach (var build in e.Builds)
+            {
+                var buildToUpdate = _builds.SingleOrDefault(b => b.BuildId == build.Id);
+
+                if (buildToUpdate != null)
+                {
+                    // TODO: Update the build time, status (and message). Nothing else can/should change.
+                }
+                else
+                {
+                    var buildToAdd = new BuildViewModel(e.Project, build);
+
+                    _builds.Add(buildToAdd);
+
+                    isDirty = true;
+                }
+            }
+
+            var buildsToKeep = e.Builds.Select(build => build.Id).ToArray();
+
+            isDirty = isDirty || _builds.RemoveAll(build => !buildsToKeep.Contains(build.BuildId)) == 0;
+
+            if (isDirty)
+            {
+                NotifyOfPropertyChange(() => Builds);
+            }
 
             IsBusy = false;
         }
 
         private bool ShouldExitHandler(BuildMonitorProjectEventArgs e)
         {
-            return _settingsId != e.SettingsId || _projectId != e.Project.Id;
+            return _settingsId != e.SettingsId || ProjectId != e.Project.Id;
         }
     }
 }
