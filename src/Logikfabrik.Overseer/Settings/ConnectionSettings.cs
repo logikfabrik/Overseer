@@ -5,6 +5,9 @@
 namespace Logikfabrik.Overseer.Settings
 {
     using System;
+    using System.Collections;
+    using System.Collections.Generic;
+    using System.Linq;
     using System.Reflection;
     using EnsureThat;
 
@@ -13,6 +16,7 @@ namespace Logikfabrik.Overseer.Settings
     /// </summary>
     public abstract class ConnectionSettings : IEquatable<ConnectionSettings>
     {
+        private readonly Lazy<IEnumerable<PropertyInfo>> _properties;
         private Guid _id;
         private string _name;
 
@@ -22,6 +26,7 @@ namespace Logikfabrik.Overseer.Settings
         protected ConnectionSettings()
         {
             _id = Guid.NewGuid();
+            _properties = new Lazy<IEnumerable<PropertyInfo>>(GetProperties);
         }
 
         /// <summary>
@@ -105,9 +110,9 @@ namespace Logikfabrik.Overseer.Settings
         /// </returns>
         public override int GetHashCode()
         {
-            var obj = new { Id, Name, ProviderType };
+            var values = _properties.Value.Select(property => property.GetValue(this, null)).ToArray();
 
-            return obj.GetHashCode();
+            return GetHashCode(values);
         }
 
         /// <summary>
@@ -132,10 +137,10 @@ namespace Logikfabrik.Overseer.Settings
             }
 
             // ReSharper disable once LoopCanBeConvertedToQuery
-            foreach (var property in type.GetProperties(BindingFlags.Public | BindingFlags.Instance))
+            foreach (var property in _properties.Value)
             {
-                var thisValue = type.GetProperty(property.Name).GetValue(this, null);
-                var otherValue = type.GetProperty(property.Name).GetValue(other, null);
+                var thisValue = property.GetValue(this, null);
+                var otherValue = property.GetValue(other, null);
 
                 if (thisValue != otherValue && (thisValue == null || !thisValue.Equals(otherValue)))
                 {
@@ -144,6 +149,43 @@ namespace Logikfabrik.Overseer.Settings
             }
 
             return true;
+        }
+
+        private static int GetHashCode(params object[] args)
+        {
+            if (args == null)
+            {
+                return 0;
+            }
+
+            var hash = 42;
+
+            unchecked
+            {
+                foreach (var arg in args)
+                {
+                    if (ReferenceEquals(arg, null))
+                    {
+                        continue;
+                    }
+
+                    if (arg.GetType().IsArray)
+                    {
+                        hash = ((IEnumerable)arg).Cast<object>().Aggregate(hash, (source, accumulate) => (source * 37) + GetHashCode(accumulate));
+                    }
+                    else
+                    {
+                        hash = (hash * 37) + arg.GetHashCode();
+                    }
+                }
+            }
+
+            return hash;
+        }
+
+        private IEnumerable<PropertyInfo> GetProperties()
+        {
+            return GetType().GetProperties(BindingFlags.Public | BindingFlags.Instance);
         }
     }
 }

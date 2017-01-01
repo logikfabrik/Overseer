@@ -123,6 +123,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices.Api
                     return;
                 }
 
+                _httpClient.Value.CancelPendingRequests();
                 _httpClient.Value.Dispose();
             }
         }

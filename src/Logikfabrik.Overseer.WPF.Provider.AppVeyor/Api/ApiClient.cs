@@ -87,6 +87,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor.Api
                     return;
                 }
 
+                _httpClient.Value.CancelPendingRequests();
                 _httpClient.Value.Dispose();
             }
         }
