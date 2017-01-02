@@ -27,12 +27,16 @@ namespace Logikfabrik.Overseer.WPF.Client.Providers.ViewModels
         /// </returns>
         protected override ConnectionsViewModel CreateInstance(IContext context)
         {
-            Func<ConnectionSettings, ConnectionViewModel> getViewModel = (settings) =>
+            Func<ConnectionSettings, ConnectionViewModel> getViewModel = settings =>
             {
                 var moduleName = ModuleHelper.GetModuleName(settings);
-                var parameters = new ConstructorArgument(nameof(settings), settings);
+                var parameters = new ConstructorArgument("settingsId", settings.Id);
 
-                return context.Kernel.Get<ConnectionViewModel>(moduleName, parameters);
+                var viewModel = context.Kernel.Get<ConnectionViewModel>(moduleName, parameters);
+
+                viewModel.SettingsName = settings.Name;
+
+                return viewModel;
             };
 
             var repository = context.Kernel.Get<IConnectionSettingsRepository>();

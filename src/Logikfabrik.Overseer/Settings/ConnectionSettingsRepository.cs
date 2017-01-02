@@ -134,6 +134,12 @@ namespace Logikfabrik.Overseer.Settings
             return _settings.TryGetValue(id, out settings) ? settings.Clone() : null;
         }
 
+        /// <summary>
+        /// Gets the settings.
+        /// </summary>
+        /// <returns>
+        /// The settings.
+        /// </returns>
         public IEnumerable<ConnectionSettings> Get()
         {
             var clones = _settings.Values.Select(settings => settings.Clone()).ToArray();

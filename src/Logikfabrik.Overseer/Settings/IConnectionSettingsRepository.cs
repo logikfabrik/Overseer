@@ -39,6 +39,12 @@ namespace Logikfabrik.Overseer.Settings
         /// </returns>
         ConnectionSettings Get(Guid id);
 
+        /// <summary>
+        /// Gets the settings.
+        /// </summary>
+        /// <returns>
+        /// The settings.
+        /// </returns>
         IEnumerable<ConnectionSettings> Get();
     }
 }

@@ -13,7 +13,7 @@ namespace Logikfabrik.Overseer.Labs
     /// <summary>
     /// The <see cref="ConnectionPool" /> class.
     /// </summary>
-    public class ConnectionPool : IObserver<ConnectionSettings[]>, IObservable<Connection[]>, IDisposable
+    public class ConnectionPool : IConnectionPool
     {
         private readonly IDisposable _subscription;
         private readonly HashSet<IObserver<Connection[]>> _observers;

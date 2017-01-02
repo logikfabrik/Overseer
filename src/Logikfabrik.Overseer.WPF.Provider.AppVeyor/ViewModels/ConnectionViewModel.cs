@@ -17,9 +17,9 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor.ViewModels
         /// </summary>
         /// <param name="eventAggregator">The event aggregator.</param>
         /// <param name="buildMonitor">The build monitor.</param>
-        /// <param name="settings">The settings.</param>
-        public ConnectionViewModel(IEventAggregator eventAggregator, IBuildMonitor buildMonitor, ConnectionSettings settings)
-            : base(eventAggregator, buildMonitor, settings)
+        /// <param name="settingsId">The settings ID.</param>
+        public ConnectionViewModel(IEventAggregator eventAggregator, IBuildMonitor buildMonitor, Guid settingsId)
+            : base(eventAggregator, buildMonitor, settingsId)
         {
         }
 

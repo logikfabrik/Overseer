@@ -20,20 +20,21 @@ namespace Logikfabrik.Overseer
         private readonly IDisposable _subscription;
         private readonly IDictionary<Guid, IProject> _projects;
         private readonly IDictionary<Tuple<Guid, string>, IEnumerable<IBuild>> _projectBuilds;
-        private CancellationTokenSource _cancellationTokenSource;
+        private readonly CancellationTokenSource _cancellationTokenSource;
         private bool _isDisposed;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="BuildMonitor"/> class.
+        /// Initializes a new instance of the <see cref="BuildMonitor" /> class.
         /// </summary>
         /// <param name="connectionPool">The connection pool.</param>
-        public BuildMonitor(ConnectionPool connectionPool)
+        public BuildMonitor(IConnectionPool connectionPool)
         {
             Ensure.That(connectionPool).IsNotNull();
 
-            _subscription = connectionPool.Subscribe(this);
+            _cancellationTokenSource = new CancellationTokenSource();
             _projects = new Dictionary<Guid, IProject>();
             _projectBuilds = new Dictionary<Tuple<Guid, string>, IEnumerable<IBuild>>();
+            _subscription = connectionPool.Subscribe(this);
         }
 
         /// <summary>
@@ -62,9 +63,11 @@ namespace Logikfabrik.Overseer
         /// <param name="value">The current notification information.</param>
         public void OnNext(Connection[] value)
         {
-            _cancellationTokenSource?.Cancel();
-
-            _cancellationTokenSource = new CancellationTokenSource();
+            if (_isDisposed)
+            {
+                // Do nothing if disposed (pattern practice).
+                return;
+            }
 
             // ReSharper disable once FunctionNeverReturns
             Task.Run(
@@ -72,14 +75,12 @@ namespace Logikfabrik.Overseer
                 {
                     while (true)
                     {
-                        try
+                        if (_cancellationTokenSource == null || _cancellationTokenSource.IsCancellationRequested)
                         {
-                            Task.WaitAll(value.Select(GetProjectsAsync).ToArray());
+                            return;
                         }
-                        catch
-                        {
-                            // TODO: Handle exceptions.
-                        }
+
+                        Task.WaitAll(value.Select(GetProjectsAsync).ToArray(), _cancellationTokenSource.Token);
 
                         const int delayForSeconds = 5;
 
@@ -124,14 +125,11 @@ namespace Logikfabrik.Overseer
             // ReSharper disable once InvertIf
             if (disposing)
             {
-                if (_cancellationTokenSource == null)
-                {
-                    return;
-                }
-
-                _cancellationTokenSource.Dispose();
-                _cancellationTokenSource = null;
+                _subscription?.Dispose();
+                _cancellationTokenSource?.Dispose();
             }
+
+            _isDisposed = true;
         }
 
         /// <summary>
@@ -174,27 +172,46 @@ namespace Logikfabrik.Overseer
         {
             try
             {
-                var projects = await connection.GetProjectsAsync().ConfigureAwait(false);
+                if (_cancellationTokenSource == null || _cancellationTokenSource.IsCancellationRequested)
+                {
+                    return;
+                }
+
+                var projects = (await connection.GetProjectsAsync().ConfigureAwait(false)).ToArray();
 
                 OnConnectionProgressChanged(new BuildMonitorConnectionProgressEventArgs(connection.Settings.Id, projects));
 
-                Task.WaitAll(projects.Select(async project =>
-                {
-                    try
+                Task.WaitAll(
+                    projects.Select(async project =>
                     {
-                        AddOrUpdateProject(connection, project);
+                        if (_cancellationTokenSource == null || _cancellationTokenSource.IsCancellationRequested)
+                        {
+                            return;
+                        }
 
-                        var builds = await connection.GetBuildsAsync(project).ConfigureAwait(false);
+                        try
+                        {
+                            AddOrUpdateProject(connection, project);
 
-                        AddOrUpdateProjectBuilds(connection, project, builds);
+                            var builds = (await connection.GetBuildsAsync(project).ConfigureAwait(false)).ToArray();
 
-                        OnProjectProgressChanged(new BuildMonitorProjectProgressEventArgs(connection.Settings.Id, project, builds));
-                    }
-                    catch (Exception)
-                    {
-                        OnProjectError(new BuildMonitorProjectErrorEventArgs(connection.Settings.Id, project));
-                    }
-                }).ToArray());
+                            AddOrUpdateProjectBuilds(connection, project, builds);
+
+                            OnProjectProgressChanged(new BuildMonitorProjectProgressEventArgs(connection.Settings.Id, project, builds));
+                        }
+                        catch (OperationCanceledException)
+                        {
+                            // Do nothing.
+                        }
+                        catch
+                        {
+                            OnProjectError(new BuildMonitorProjectErrorEventArgs(connection.Settings.Id, project));
+                        }
+                    }).ToArray(), _cancellationTokenSource.Token);
+            }
+            catch (OperationCanceledException)
+            {
+                // Do nothing.
             }
             catch
             {

@@ -90,7 +90,7 @@ namespace Logikfabrik.Overseer.WPF.Client
             _kernel.Bind<IFileStore>().ToProvider<FileStoreProvider>().InSingletonScope();
             _kernel.Bind<IConnectionSettingsStore>().To<ConnectionSettingsStore>();
             _kernel.Bind<IConnectionSettingsRepository>().To<ConnectionSettingsRepository>().InSingletonScope();
-            _kernel.Bind<ConnectionPool>().To<ConnectionPool>().InSingletonScope();
+            _kernel.Bind<IConnectionPool>().To<ConnectionPool>().InSingletonScope();
             _kernel.Bind<IBuildMonitor>().To<BuildMonitor>().InSingletonScope();
 
             // Caliburn Micro setup.
@@ -101,7 +101,7 @@ namespace Logikfabrik.Overseer.WPF.Client
             _kernel.Bind<INotificationManager>().To<NotificationManager>();
             _kernel.Bind<IBuildNotificationManager>().To<BuildNotificationManager>().InSingletonScope();
 
-            // TODO: This should not be a provider. The view model should subscribe to the repository.
+            // TODO: This should not be a provider. The view model should subscribe to the repository (not through IoC/DI). And then it can be a singleton.
             _kernel.Bind<ConnectionsViewModel>().ToProvider<ConnectionsViewModelProvider>();
 
             _kernel.Load(SelectAssemblies());

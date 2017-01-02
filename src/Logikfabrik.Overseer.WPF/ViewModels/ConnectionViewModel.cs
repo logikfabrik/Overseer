@@ -19,26 +19,29 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     {
         private readonly IEventAggregator _eventAggregator;
         private readonly IBuildMonitor _buildMonitor;
-        private readonly ConnectionSettings _settings;
+        private readonly Guid _settingsId;
         private readonly List<ProjectViewModel> _projects;
+        private string _settingsName;
         private bool _isBusy;
         private bool _isErrored;
+
+        // TODO: Take setting ID as input. Change ConnectionName into getter/setter, so that the view model can be updated if the settings changes.
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ConnectionViewModel" /> class.
         /// </summary>
         /// <param name="eventAggregator">The event aggregator.</param>
         /// <param name="buildMonitor">The build monitor.</param>
-        /// <param name="settings">The settings.</param>
-        protected ConnectionViewModel(IEventAggregator eventAggregator, IBuildMonitor buildMonitor, ConnectionSettings settings)
+        /// <param name="settingsId">The settings ID.</param>
+        protected ConnectionViewModel(IEventAggregator eventAggregator, IBuildMonitor buildMonitor, Guid settingsId)
         {
             Ensure.That(eventAggregator).IsNotNull();
             Ensure.That(buildMonitor).IsNotNull();
-            Ensure.That(settings).IsNotNull();
+            Ensure.That(settingsId).IsNotEmpty();
 
             _eventAggregator = eventAggregator;
             _buildMonitor = buildMonitor;
-            _settings = settings;
+            _settingsId = settingsId;
             _isBusy = true;
             _isErrored = false;
             _projects = new List<ProjectViewModel>();
@@ -48,12 +51,24 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         }
 
         /// <summary>
-        /// Gets the connection name.
+        /// Gets or sets the settings name.
         /// </summary>
         /// <value>
-        /// The connection name.
+        /// The settings name.
         /// </value>
-        public string ConnectionName => _settings.Name;
+        public string SettingsName
+        {
+            get
+            {
+                return _settingsName;
+            }
+
+            set
+            {
+                _settingsName = value;
+                NotifyOfPropertyChange(() => SettingsName);
+            }
+        }
 
         /// <summary>
         /// Gets a value indicating whether this instance is busy.
@@ -169,7 +184,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
                 }
                 else
                 {
-                    var projectToAdd = new ProjectViewModel(_buildMonitor, _settings.Id, project.Id)
+                    var projectToAdd = new ProjectViewModel(_buildMonitor, _settingsId, project.Id)
                     {
                         ProjectName = project.Name
                     };
@@ -194,7 +209,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
 
         private bool ShouldExitHandler(BuildMonitorConnectionEventArgs e)
         {
-            return _settings.Id != e.SettingsId;
+            return _settingsId != e.SettingsId;
         }
     }
 }

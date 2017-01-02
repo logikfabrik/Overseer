@@ -14,7 +14,7 @@
             <Setter Property="TextWrapping" 
                     Value="Wrap" />
         </Style>
-        <Style x:Key="ConnectionNameTextBlockStyle" 
+        <Style x:Key="SettingsNameTextBlockStyle" 
                BasedOn="{StaticResource TextBlockStyle}" 
                TargetType="{x:Type TextBlock}">
             <Setter Property="FontSize" 
@@ -88,8 +88,8 @@
                                                                         x:Name="PART_Icon"
                                                                         Data="{StaticResource IconArrowUp}" />
                                                                 <TextBlock Grid.Column="1" 
-                                                                           Style="{StaticResource ConnectionNameTextBlockStyle}"
-                                                                           Text="{Binding ConnectionName, Mode=OneTime}" />
+                                                                           Style="{StaticResource SettingsNameTextBlockStyle}"
+                                                                           Text="{Binding SettingsName, Mode=OneTime}" />
                                                                 <StackPanel Grid.Column="2" 
                                                                             VerticalAlignment="Center"
                                                                             Margin="5 0">

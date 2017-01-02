@@ -67,6 +67,7 @@
     <Compile Include="IChange.cs" />
     <Compile Include="Labs\Connection.cs" />
     <Compile Include="Labs\ConnectionPool.cs" />
+    <Compile Include="Labs\IConnectionPool.cs" />
     <Compile Include="Settings\ConnectionSettings.cs" />
     <Compile Include="Settings\ConnectionSettingsRepository.cs" />
     <Compile Include="Settings\Subscription{T}.cs" />
