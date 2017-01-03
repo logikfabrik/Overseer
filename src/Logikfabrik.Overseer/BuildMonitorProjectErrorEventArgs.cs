@@ -14,7 +14,7 @@ namespace Logikfabrik.Overseer
         /// <summary>
         /// Initializes a new instance of the <see cref="BuildMonitorProjectErrorEventArgs" /> class.
         /// </summary>
-        /// <param name="settingsId">The settings ID.</param>
+        /// <param name="settingsId">The settings identifier.</param>
         /// <param name="project">The project.</param>
         public BuildMonitorProjectErrorEventArgs(Guid settingsId, IProject project)
             : base(settingsId, project)

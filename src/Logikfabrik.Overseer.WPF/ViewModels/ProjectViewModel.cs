@@ -26,8 +26,8 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// Initializes a new instance of the <see cref="ProjectViewModel" /> class.
         /// </summary>
         /// <param name="buildMonitor">The build monitor.</param>
-        /// <param name="settingsId">The settings ID.</param>
-        /// <param name="projectId">The project ID.</param>
+        /// <param name="settingsId">The settings identifier.</param>
+        /// <param name="projectId">The project identifier.</param>
         public ProjectViewModel(IBuildMonitor buildMonitor, Guid settingsId, string projectId)
         {
             Ensure.That(buildMonitor).IsNotNull();

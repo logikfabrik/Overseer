@@ -10,7 +10,6 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     using System.Windows;
     using Caliburn.Micro;
     using EnsureThat;
-    using Settings;
 
     /// <summary>
     /// The <see cref="ConnectionViewModel" /> class.
@@ -19,20 +18,17 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     {
         private readonly IEventAggregator _eventAggregator;
         private readonly IBuildMonitor _buildMonitor;
-        private readonly Guid _settingsId;
         private readonly List<ProjectViewModel> _projects;
         private string _settingsName;
         private bool _isBusy;
         private bool _isErrored;
-
-        // TODO: Take setting ID as input. Change ConnectionName into getter/setter, so that the view model can be updated if the settings changes.
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ConnectionViewModel" /> class.
         /// </summary>
         /// <param name="eventAggregator">The event aggregator.</param>
         /// <param name="buildMonitor">The build monitor.</param>
-        /// <param name="settingsId">The settings ID.</param>
+        /// <param name="settingsId">The settings identifier.</param>
         protected ConnectionViewModel(IEventAggregator eventAggregator, IBuildMonitor buildMonitor, Guid settingsId)
         {
             Ensure.That(eventAggregator).IsNotNull();
@@ -41,7 +37,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
 
             _eventAggregator = eventAggregator;
             _buildMonitor = buildMonitor;
-            _settingsId = settingsId;
+            SettingsId = settingsId;
             _isBusy = true;
             _isErrored = false;
             _projects = new List<ProjectViewModel>();
@@ -49,6 +45,14 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             WeakEventManager<IBuildMonitor, BuildMonitorConnectionErrorEventArgs>.AddHandler(buildMonitor, nameof(buildMonitor.ConnectionError), BuildMonitorConnectionError);
             WeakEventManager<IBuildMonitor, BuildMonitorConnectionProgressEventArgs>.AddHandler(buildMonitor, nameof(buildMonitor.ConnectionProgressChanged), BuildMonitorConnectionProgressChanged);
         }
+
+        /// <summary>
+        /// Gets the settings identifier.
+        /// </summary>
+        /// <value>
+        /// The settings identifier.
+        /// </value>
+        public Guid SettingsId { get; }
 
         /// <summary>
         /// Gets or sets the settings name.
@@ -151,8 +155,10 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// </summary>
         public void Remove()
         {
-            // TODO: Navigate to the right view/view model.
-            throw new NotImplementedException();
+            // TODO: Navigate to the view/view model to remove, including the current settings for the provider to remove.
+            var message = new NavigationMessage(typeof(RemoveConnectionViewModel));
+
+            _eventAggregator.PublishOnUIThread(message);
         }
 
         private void BuildMonitorConnectionError(object sender, BuildMonitorConnectionErrorEventArgs e)
@@ -184,7 +190,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
                 }
                 else
                 {
-                    var projectToAdd = new ProjectViewModel(_buildMonitor, _settingsId, project.Id)
+                    var projectToAdd = new ProjectViewModel(_buildMonitor, SettingsId, project.Id)
                     {
                         ProjectName = project.Name
                     };
@@ -209,7 +215,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
 
         private bool ShouldExitHandler(BuildMonitorConnectionEventArgs e)
         {
-            return _settingsId != e.SettingsId;
+            return SettingsId != e.SettingsId;
         }
     }
 }

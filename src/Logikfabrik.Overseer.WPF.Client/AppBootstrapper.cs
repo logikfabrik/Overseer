@@ -15,7 +15,6 @@ namespace Logikfabrik.Overseer.WPF.Client
     using Ninject;
     using Ninject.Modules;
     using Providers.Settings;
-    using Providers.ViewModels;
     using Settings;
     using ViewModels;
     using WPF.ViewModels;
@@ -100,9 +99,7 @@ namespace Logikfabrik.Overseer.WPF.Client
             // WPF client setup (and some business logic setup).
             _kernel.Bind<INotificationManager>().To<NotificationManager>();
             _kernel.Bind<IBuildNotificationManager>().To<BuildNotificationManager>().InSingletonScope();
-
-            // TODO: This should not be a provider. The view model should subscribe to the repository (not through IoC/DI). And then it can be a singleton.
-            _kernel.Bind<ConnectionsViewModel>().ToProvider<ConnectionsViewModelProvider>();
+            _kernel.Bind<ConnectionsViewModel>().ToSelf().InSingletonScope();
 
             _kernel.Load(SelectAssemblies());
         }

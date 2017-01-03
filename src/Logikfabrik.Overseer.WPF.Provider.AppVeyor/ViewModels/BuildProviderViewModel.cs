@@ -35,6 +35,6 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor.ViewModels
         /// <value>
         /// The type of the view model to add a connection.
         /// </value>
-        protected override Type AddConnectionViewModelType { get; } = typeof(AddConnectionViewModel);
+        protected override Type AddConnectionViewModelType => typeof(AddConnectionViewModel);
     }
 }

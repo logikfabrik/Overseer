@@ -15,7 +15,7 @@ namespace Logikfabrik.Overseer
         /// <summary>
         /// Initializes a new instance of the <see cref="BuildMonitorConnectionEventArgs" /> class.
         /// </summary>
-        /// <param name="settingsId">The settings ID.</param>
+        /// <param name="settingsId">The settings identifier.</param>
         protected BuildMonitorConnectionEventArgs(Guid settingsId)
         {
             Ensure.That(settingsId).IsNotEmpty();
@@ -24,10 +24,10 @@ namespace Logikfabrik.Overseer
         }
 
         /// <summary>
-        /// Gets the settings ID.
+        /// Gets the settings identifier.
         /// </summary>
         /// <value>
-        /// The settings ID.
+        /// The settings identifier.
         /// </value>
         public Guid SettingsId { get; }
     }

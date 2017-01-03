@@ -14,7 +14,7 @@ namespace Logikfabrik.Overseer
         /// <summary>
         /// Initializes a new instance of the <see cref="BuildMonitorConnectionErrorEventArgs" /> class.
         /// </summary>
-        /// <param name="settingsId">The settings ID.</param>
+        /// <param name="settingsId">The settings identifier.</param>
         public BuildMonitorConnectionErrorEventArgs(Guid settingsId)
             : base(settingsId)
         {

@@ -18,7 +18,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices
         /// <value>
         /// The module name.
         /// </value>
-        public override string Name => ModuleHelper.GetModuleName();
+        public override string Name { get; } = ModuleHelper.GetModuleName();
 
         /// <summary>
         /// Loads the module into the kernel.

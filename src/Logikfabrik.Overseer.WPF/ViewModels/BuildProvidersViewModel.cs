@@ -35,7 +35,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// <value>
         /// The view name.
         /// </value>
-        public override string ViewName => "Add connection";
+        public override string ViewName { get; } = "Add connection";
 
         /// <summary>
         /// Gets the providers.

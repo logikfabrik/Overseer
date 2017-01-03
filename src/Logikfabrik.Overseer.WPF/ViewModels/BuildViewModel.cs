@@ -34,10 +34,10 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         }
 
         /// <summary>
-        /// Gets the build ID.
+        /// Gets the build identifier.
         /// </summary>
         /// <value>
-        /// The build ID.
+        /// The build identifier.
         /// </value>
         public string BuildId { get; }
 

@@ -39,7 +39,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor.ViewModels
         /// <value>
         /// The view name.
         /// </value>
-        public override string ViewName => "Add AppVeyor connection";
+        public override string ViewName { get; } = "Add AppVeyor connection";
 
         /// <summary>
         /// Gets the settings.

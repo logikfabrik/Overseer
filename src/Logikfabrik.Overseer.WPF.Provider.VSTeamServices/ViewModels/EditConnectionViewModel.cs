@@ -45,7 +45,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices.ViewModels
         /// <value>
         /// The view name.
         /// </value>
-        public override string ViewName => "Edit VSTS connection";
+        public override string ViewName { get; } = "Edit VSTS connection";
 
         /// <summary>
         /// Gets the settings.

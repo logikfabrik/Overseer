@@ -16,7 +16,7 @@ namespace Logikfabrik.Overseer
         /// <summary>
         /// Initializes a new instance of the <see cref="BuildMonitorConnectionProgressEventArgs" /> class.
         /// </summary>
-        /// <param name="settingsId">The settings ID.</param>
+        /// <param name="settingsId">The settings identifier.</param>
         /// <param name="projects">The projects.</param>
         public BuildMonitorConnectionProgressEventArgs(Guid settingsId, IEnumerable<IProject> projects)
             : base(settingsId)
