@@ -9,6 +9,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     using System.Linq;
     using Caliburn.Micro;
     using EnsureThat;
+    using Factories;
     using Settings;
 
     /// <summary>
@@ -18,6 +19,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     {
         private readonly IDisposable _subscription;
         private readonly IEventAggregator _eventAggregator;
+        private readonly IConnectionViewModelStrategy _connectionStrategy;
         private readonly List<ConnectionViewModel> _connections;
 
         /// <summary>
@@ -25,12 +27,15 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// </summary>
         /// <param name="eventAggregator">The event aggregator.</param>
         /// <param name="settingsRepository">The settings repository.</param>
-        public ConnectionsViewModel(IEventAggregator eventAggregator, IConnectionSettingsRepository settingsRepository)
+        /// <param name="connectionStrategy">The connection strategy.</param>
+        public ConnectionsViewModel(IEventAggregator eventAggregator, IConnectionSettingsRepository settingsRepository, IConnectionViewModelStrategy connectionStrategy)
         {
             Ensure.That(eventAggregator).IsNotNull();
             Ensure.That(settingsRepository).IsNotNull();
+            Ensure.That(connectionStrategy).IsNotNull();
 
             _eventAggregator = eventAggregator;
+            _connectionStrategy = connectionStrategy;
             _connections = new List<ConnectionViewModel>();
             _subscription = settingsRepository.Subscribe(this);
         }
@@ -79,10 +84,9 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
                 }
                 else
                 {
-                    // TODO: Create and add view model.
-                    //var connectionToAdd = IoC.
+                    var connectionToAdd = _connectionStrategy.Create(settings);
 
-                    //_connections.Add(connectionToAdd);
+                    _connections.Add(connectionToAdd);
 
                     isDirty = true;
                 }

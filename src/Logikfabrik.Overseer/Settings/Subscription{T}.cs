@@ -11,7 +11,7 @@ namespace Logikfabrik.Overseer.Settings
     /// <summary>
     /// The <see cref="Subscription{T}" /> class.
     /// </summary>
-    /// <typeparam name="T"></typeparam>
+    /// <typeparam name="T">The notification type.</typeparam>
     internal class Subscription<T> : IDisposable
     {
         private readonly HashSet<IObserver<T>> _observers;

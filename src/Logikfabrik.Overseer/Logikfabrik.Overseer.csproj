@@ -61,9 +61,9 @@
     <Compile Include="IBuildMonitor.cs" />
     <Compile Include="IBuildProvider.cs" />
     <Compile Include="IChange.cs" />
-    <Compile Include="Labs\Connection.cs" />
-    <Compile Include="Labs\ConnectionPool.cs" />
-    <Compile Include="Labs\IConnectionPool.cs" />
+    <Compile Include="Connection.cs" />
+    <Compile Include="ConnectionPool.cs" />
+    <Compile Include="IConnectionPool.cs" />
     <Compile Include="Settings\ConnectionSettings.cs" />
     <Compile Include="Settings\ConnectionSettingsRepository.cs" />
     <Compile Include="Settings\Subscription{T}.cs" />

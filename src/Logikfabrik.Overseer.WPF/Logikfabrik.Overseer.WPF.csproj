@@ -93,7 +93,6 @@
     <Compile Include="Converters\BooleanToVisibilityConverter.cs" />
     <Compile Include="Converters\BuildStatusToStyleConverter.cs" />
     <Compile Include="Extensions\HyperlinkExtensions.cs" />
-    <Compile Include="ModuleHelper.cs" />
     <Compile Include="IBuildNotificationManager.cs" />
     <Compile Include="INotificationManager.cs" />
     <Compile Include="NavigationMessage.cs" />
@@ -106,6 +105,15 @@
     <Compile Include="Validators\ConnectionSettingsViewModelValidator{T}.cs" />
     <Compile Include="Validators\SettingsViewModelValidator.cs" />
     <Compile Include="ViewModels\ConnectionSettingsViewModel.cs" />
+    <Compile Include="ViewModels\Factories\BuildViewModelFactory.cs" />
+    <Compile Include="ViewModels\Factories\ChangeViewModelFactory.cs" />
+    <Compile Include="ViewModels\Factories\ConnectionViewModelStrategy.cs" />
+    <Compile Include="ViewModels\Factories\IBuildViewModelFactory.cs" />
+    <Compile Include="ViewModels\Factories\IChangeViewModelFactory.cs" />
+    <Compile Include="ViewModels\Factories\IConnectionViewModelFactory.cs" />
+    <Compile Include="ViewModels\Factories\IConnectionViewModelStrategy.cs" />
+    <Compile Include="ViewModels\Factories\IProjectViewModelFactory.cs" />
+    <Compile Include="ViewModels\Factories\ProjectViewModelFactory.cs" />
     <Compile Include="ViewModels\RemoveConnectionViewModel.cs" />
     <Compile Include="ViewModels\ViewModel.cs" />
     <Compile Include="ViewModels\AddConnectionViewModel{T}.cs" />

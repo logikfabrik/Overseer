@@ -10,12 +10,14 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     using System.Windows;
     using Caliburn.Micro;
     using EnsureThat;
+    using Factories;
 
     /// <summary>
     /// The <see cref="ProjectViewModel" /> class. View model for CI projects.
     /// </summary>
     public class ProjectViewModel : PropertyChangedBase
     {
+        private readonly IBuildViewModelFactory _buildFactory;
         private readonly Guid _settingsId;
         private readonly List<BuildViewModel> _builds;
         private string _projectName;
@@ -26,14 +28,17 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// Initializes a new instance of the <see cref="ProjectViewModel" /> class.
         /// </summary>
         /// <param name="buildMonitor">The build monitor.</param>
+        /// <param name="buildFactory">The build factory.</param>
         /// <param name="settingsId">The settings identifier.</param>
         /// <param name="projectId">The project identifier.</param>
-        public ProjectViewModel(IBuildMonitor buildMonitor, Guid settingsId, string projectId)
+        public ProjectViewModel(IBuildMonitor buildMonitor, IBuildViewModelFactory buildFactory, Guid settingsId, string projectId)
         {
             Ensure.That(buildMonitor).IsNotNull();
+            Ensure.That(buildFactory).IsNotNull();
             Ensure.That(settingsId).IsNotEmpty();
             Ensure.That(projectId).IsNotNullOrWhiteSpace();
 
+            _buildFactory = buildFactory;
             _settingsId = settingsId;
             ProjectId = projectId;
             _isBusy = true;
@@ -158,7 +163,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
                 }
                 else
                 {
-                    var buildToAdd = new BuildViewModel(e.Project, build);
+                    var buildToAdd = _buildFactory.Create(e.Project, build);
 
                     _builds.Add(buildToAdd);
 

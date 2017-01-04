@@ -10,7 +10,6 @@ namespace Logikfabrik.Overseer
     using System.Threading;
     using System.Threading.Tasks;
     using EnsureThat;
-    using Labs;
 
     /// <summary>
     /// The <see cref="BuildMonitor" /> class.
@@ -125,8 +124,17 @@ namespace Logikfabrik.Overseer
             // ReSharper disable once InvertIf
             if (disposing)
             {
-                _subscription?.Dispose();
-                _cancellationTokenSource?.Dispose();
+                // ReSharper disable once UseNullPropagation
+                if (_subscription != null)
+                {
+                    _subscription.Dispose();
+                }
+
+                // ReSharper disable once UseNullPropagation
+                if (_cancellationTokenSource != null)
+                {
+                    _cancellationTokenSource.Dispose();
+                }
             }
 
             _isDisposed = true;

@@ -103,6 +103,7 @@
     <Compile Include="ViewModels\ConnectionSettingsViewModel.cs" />
     <Compile Include="ViewModels\ConnectionViewModel.cs" />
     <Compile Include="ViewModels\EditConnectionViewModel.cs" />
+    <Compile Include="ViewModels\Factories\ConnectionViewModelFactory.cs" />
     <Compile Include="Views\BuildProviderView.xaml.cs">
       <DependentUpon>BuildProviderView.xaml</DependentUpon>
     </Compile>

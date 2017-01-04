@@ -10,6 +10,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     using System.Windows;
     using Caliburn.Micro;
     using EnsureThat;
+    using Factories;
 
     /// <summary>
     /// The <see cref="ConnectionViewModel" /> class.
@@ -17,7 +18,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     public abstract class ConnectionViewModel : PropertyChangedBase
     {
         private readonly IEventAggregator _eventAggregator;
-        private readonly IBuildMonitor _buildMonitor;
+        private readonly IProjectViewModelFactory _projectFactory;
         private readonly List<ProjectViewModel> _projects;
         private string _settingsName;
         private bool _isBusy;
@@ -28,15 +29,17 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// </summary>
         /// <param name="eventAggregator">The event aggregator.</param>
         /// <param name="buildMonitor">The build monitor.</param>
+        /// <param name="projectFactory">The project factory.</param>
         /// <param name="settingsId">The settings identifier.</param>
-        protected ConnectionViewModel(IEventAggregator eventAggregator, IBuildMonitor buildMonitor, Guid settingsId)
+        protected ConnectionViewModel(IEventAggregator eventAggregator, IBuildMonitor buildMonitor, IProjectViewModelFactory projectFactory, Guid settingsId)
         {
             Ensure.That(eventAggregator).IsNotNull();
             Ensure.That(buildMonitor).IsNotNull();
+            Ensure.That(projectFactory).IsNotNull();
             Ensure.That(settingsId).IsNotEmpty();
 
             _eventAggregator = eventAggregator;
-            _buildMonitor = buildMonitor;
+            _projectFactory = projectFactory;
             SettingsId = settingsId;
             _isBusy = true;
             _isErrored = false;
@@ -190,10 +193,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
                 }
                 else
                 {
-                    var projectToAdd = new ProjectViewModel(_buildMonitor, SettingsId, project.Id)
-                    {
-                        ProjectName = project.Name
-                    };
+                    var projectToAdd = _projectFactory.Create(SettingsId, project);
 
                     _projects.Add(projectToAdd);
 

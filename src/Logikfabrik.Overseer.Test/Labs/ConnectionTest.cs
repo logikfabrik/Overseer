@@ -5,7 +5,6 @@
 namespace Logikfabrik.Overseer.Test.Labs
 {
     using System;
-    using Overseer.Labs;
     using Settings;
     using Xunit;
 

@@ -6,6 +6,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices.ViewModels
 {
     using System;
     using Caliburn.Micro;
+    using WPF.ViewModels.Factories;
 
     /// <summary>
     /// The <see cref="ConnectionViewModel" /> class.
@@ -17,9 +18,10 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices.ViewModels
         /// </summary>
         /// <param name="eventAggregator">The event aggregator.</param>
         /// <param name="buildMonitor">The build monitor.</param>
+        /// <param name="projectFactory">The project factory.</param>
         /// <param name="settingsId">The settings identifier.</param>
-        public ConnectionViewModel(IEventAggregator eventAggregator, IBuildMonitor buildMonitor, Guid settingsId)
-            : base(eventAggregator, buildMonitor, settingsId)
+        public ConnectionViewModel(IEventAggregator eventAggregator, IBuildMonitor buildMonitor, IProjectViewModelFactory projectFactory, Guid settingsId)
+            : base(eventAggregator, buildMonitor, projectFactory, settingsId)
         {
         }
 

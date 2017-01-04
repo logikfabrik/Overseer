@@ -93,9 +93,9 @@ namespace Logikfabrik.Overseer.Settings
         /// <param name="disposing"><c>true</c> to release both managed and unmanaged resources; <c>false</c> to release only unmanaged resources.</param>
         protected virtual void Dispose(bool disposing)
         {
-            if (disposing)
+            if (disposing && _resetEvent != null)
             {
-                _resetEvent?.Dispose();
+                _resetEvent.Dispose();
                 _resetEvent = null;
             }
 

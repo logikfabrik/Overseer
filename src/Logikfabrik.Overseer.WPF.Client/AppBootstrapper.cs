@@ -11,13 +11,13 @@ namespace Logikfabrik.Overseer.WPF.Client
     using System.Reflection;
     using System.Windows;
     using Caliburn.Micro;
-    using Labs;
     using Ninject;
     using Ninject.Modules;
     using Providers.Settings;
     using Settings;
     using ViewModels;
     using WPF.ViewModels;
+    using WPF.ViewModels.Factories;
 
     /// <summary>
     /// The <see cref="AppBootstrapper" /> class.
@@ -96,9 +96,13 @@ namespace Logikfabrik.Overseer.WPF.Client
             _kernel.Bind<IWindowManager>().To<WindowManager>().InSingletonScope();
             _kernel.Bind<IEventAggregator>().To<EventAggregator>().InSingletonScope();
 
-            // WPF client setup (and some business logic setup).
+            // WPF client setup.
             _kernel.Bind<INotificationManager>().To<NotificationManager>();
             _kernel.Bind<IBuildNotificationManager>().To<BuildNotificationManager>().InSingletonScope();
+            _kernel.Bind<IChangeViewModelFactory>().To<ChangeViewModelFactory>();
+            _kernel.Bind<IBuildViewModelFactory>().To<BuildViewModelFactory>();
+            _kernel.Bind<IProjectViewModelFactory>().To<ProjectViewModelFactory>();
+            _kernel.Bind<IConnectionViewModelStrategy>().To<ConnectionViewModelStrategy>();
             _kernel.Bind<ConnectionsViewModel>().ToSelf().InSingletonScope();
 
             _kernel.Load(SelectAssemblies());

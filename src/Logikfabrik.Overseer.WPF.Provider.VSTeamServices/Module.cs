@@ -6,6 +6,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices
 {
     using Ninject.Modules;
     using ViewModels;
+    using ViewModels.Factories;
 
     /// <summary>
     /// The <see cref="Module" /> class.
@@ -13,21 +14,14 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices
     public class Module : NinjectModule
     {
         /// <summary>
-        /// Gets the module name.
-        /// </summary>
-        /// <value>
-        /// The module name.
-        /// </value>
-        public override string Name { get; } = ModuleHelper.GetModuleName();
-
-        /// <summary>
         /// Loads the module into the kernel.
         /// </summary>
         public override void Load()
         {
-            Bind<WPF.ViewModels.BuildProviderViewModel>().To<BuildProviderViewModel>().Named(Name);
-            Bind<WPF.ViewModels.ConnectionViewModel>().To<ConnectionViewModel>().Named(Name);
-            Bind<Settings.ConnectionSettings>().To<ConnectionSettings>().Named(Name);
+            Bind<WPF.ViewModels.BuildProviderViewModel>().To<BuildProviderViewModel>();
+            Bind<WPF.ViewModels.ConnectionViewModel>().To<ConnectionViewModel>();
+            Bind<Settings.ConnectionSettings>().To<ConnectionSettings>();
+            Bind<WPF.ViewModels.Factories.IConnectionViewModelFactory>().To<ConnectionViewModelFactory>();
         }
     }
 }

@@ -8,6 +8,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     using System.Linq;
     using Caliburn.Micro;
     using EnsureThat;
+    using Factories;
     using Humanizer;
     using Overseer.Extensions;
 
@@ -19,10 +20,12 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// <summary>
         /// Initializes a new instance of the <see cref="BuildViewModel" /> class.
         /// </summary>
+        /// <param name="changeFactory">The change factory.</param>
         /// <param name="project">The project.</param>
         /// <param name="build">The build.</param>
-        public BuildViewModel(IProject project, IBuild build)
+        public BuildViewModel(IChangeViewModelFactory changeFactory, IProject project, IBuild build)
         {
+            Ensure.That(changeFactory).IsNotNull();
             Ensure.That(project).IsNotNull();
             Ensure.That(build).IsNotNull();
 
@@ -30,7 +33,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             BuildName = GetBuildName(project, build);
             Message = GetMessage(build);
             Status = build.Status;
-            Changes = build.Changes.Select(lastChange => new ChangeViewModel(lastChange));
+            Changes = build.Changes.Select(changeFactory.Create);
         }
 
         /// <summary>

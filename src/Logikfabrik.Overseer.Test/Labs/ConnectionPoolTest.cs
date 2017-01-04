@@ -7,7 +7,6 @@ namespace Logikfabrik.Overseer.Test.Labs
     using System;
     using System.Linq;
     using Moq;
-    using Overseer.Labs;
     using Overseer.Settings;
     using Settings;
     using Xunit;
