@@ -147,8 +147,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// </summary>
         public void Edit()
         {
-            // TODO: Navigate to the view/view model to edit, including the current settings for the provider to edit.
-            var message = new NavigationMessage(EditConnectionViewModelType);
+            var message = new NavigationMessage(EditConnectionViewModelType, SettingsId);
 
             _eventAggregator.PublishOnUIThread(message);
         }
@@ -158,8 +157,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// </summary>
         public void Remove()
         {
-            // TODO: Navigate to the view/view model to remove, including the current settings for the provider to remove.
-            var message = new NavigationMessage(typeof(RemoveConnectionViewModel));
+            var message = new NavigationMessage(typeof(RemoveConnectionViewModel), SettingsId);
 
             _eventAggregator.PublishOnUIThread(message);
         }

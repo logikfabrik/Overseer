@@ -5,6 +5,7 @@
 namespace Logikfabrik.Overseer.WPF
 {
     using System;
+    using System.Collections.Generic;
     using EnsureThat;
 
     /// <summary>
@@ -17,10 +18,21 @@ namespace Logikfabrik.Overseer.WPF
         /// </summary>
         /// <param name="viewModelType">The view model type to navigate to.</param>
         public NavigationMessage(Type viewModelType)
+            : this(viewModelType, null)
+        {
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="NavigationMessage" /> class.
+        /// </summary>
+        /// <param name="viewModelType">The view model type to navigate to.</param>
+        /// <param name="parameters">The parameters.</param>
+        public NavigationMessage(Type viewModelType, params object[] parameters)
         {
             Ensure.That(viewModelType).IsNotNull();
 
             ViewModelType = viewModelType;
+            Parameters = parameters;
         }
 
         /// <summary>
@@ -30,5 +42,13 @@ namespace Logikfabrik.Overseer.WPF
         /// The type of the view model to navigate to.
         /// </value>
         public Type ViewModelType { get; }
+
+        /// <summary>
+        /// Gets the parameters.
+        /// </summary>
+        /// <value>
+        /// The parameters.
+        /// </value>
+        public IEnumerable<object> Parameters { get; }
     }
 }
