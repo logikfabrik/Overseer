@@ -91,6 +91,29 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         }
 
         /// <summary>
+        /// Gets or sets the started date.
+        /// </summary>
+        /// <value>
+        /// The started date.
+        /// </value>
+        public DateTime? Started
+        {
+            get
+            {
+                return _started;
+            }
+
+            set
+            {
+                _started = value;
+
+                NotifyOfPropertyChange(() => Started);
+
+                UpdateMessage();
+            }
+        }
+
+        /// <summary>
         /// Gets the changes.
         /// </summary>
         /// <value>
@@ -138,17 +161,6 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         public void SetBuildTime(TimeSpan? buildTime)
         {
             _buildTime = buildTime;
-
-            UpdateMessage();
-        }
-
-        /// <summary>
-        /// Sets the started date.
-        /// </summary>
-        /// <param name="started">The started date.</param>
-        public void SetStarted(DateTime? started)
-        {
-            _started = started;
 
             UpdateMessage();
         }

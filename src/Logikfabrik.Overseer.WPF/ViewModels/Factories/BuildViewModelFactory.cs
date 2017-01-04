@@ -43,7 +43,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels.Factories
             viewModel.SetVersionNumber(build.GetVersionNumber());
             viewModel.SetBranch(build.Branch);
             viewModel.Status = build.Status;
-            viewModel.SetStarted(build.Started);
+            viewModel.Started = build.Started;
             viewModel.SetBuildTime(build.GetBuildTime());
 
             return viewModel;

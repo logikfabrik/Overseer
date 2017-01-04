@@ -203,7 +203,9 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
 
             var projectsToKeep = e.Projects.Select(project => project.Id).ToArray();
 
-            isDirty = isDirty || _projects.RemoveAll(project => !projectsToKeep.Contains(project.ProjectId)) == 0;
+            var removedProjects = _projects.RemoveAll(project => !projectsToKeep.Contains(project.ProjectId)) > 0;
+
+            isDirty = isDirty || removedProjects;
 
             if (isDirty)
             {

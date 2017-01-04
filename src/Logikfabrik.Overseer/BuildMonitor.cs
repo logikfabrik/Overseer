@@ -81,7 +81,7 @@ namespace Logikfabrik.Overseer
 
                         Task.WaitAll(value.Select(GetProjectsAsync).ToArray(), _cancellationTokenSource.Token);
 
-                        const int delayForSeconds = 5;
+                        const int delayForSeconds = 15;
 
                         await Task.Delay(TimeSpan.FromSeconds(delayForSeconds).Milliseconds).ConfigureAwait(false);
                     }

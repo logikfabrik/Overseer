@@ -20,7 +20,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     {
         private readonly IBuildViewModelFactory _buildFactory;
         private readonly Guid _settingsId;
-        private readonly List<BuildViewModel> _builds;
+        private List<BuildViewModel> _builds;
         private string _projectName;
         private bool _isBusy;
         private bool _isErrored;
@@ -164,7 +164,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
                     buildToUpdate.SetVersionNumber(build.GetVersionNumber());
                     buildToUpdate.SetBranch(build.Branch);
                     buildToUpdate.Status = build.Status;
-                    buildToUpdate.SetStarted(build.Started);
+                    buildToUpdate.Started = build.Started;
                     buildToUpdate.SetBuildTime(build.GetBuildTime());
                 }
                 else
@@ -179,10 +179,13 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
 
             var buildsToKeep = e.Builds.Select(build => build.Id).ToArray();
 
-            isDirty = isDirty || _builds.RemoveAll(build => !buildsToKeep.Contains(build.BuildId)) == 0;
+            var removedBuilds = _builds.RemoveAll(build => !buildsToKeep.Contains(build.BuildId)) > 0;
+
+            isDirty = isDirty || removedBuilds;
 
             if (isDirty)
             {
+                _builds = _builds.OrderByDescending(build => build.Started ?? DateTime.MaxValue).ToList();
                 NotifyOfPropertyChange(() => Builds);
             }
 
