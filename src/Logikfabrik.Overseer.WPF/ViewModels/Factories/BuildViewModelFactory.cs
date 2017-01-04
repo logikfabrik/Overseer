@@ -5,6 +5,7 @@
 namespace Logikfabrik.Overseer.WPF.ViewModels.Factories
 {
     using EnsureThat;
+    using Overseer.Extensions;
 
     /// <summary>
     /// The <see cref="BuildViewModelFactory" /> class.
@@ -27,14 +28,25 @@ namespace Logikfabrik.Overseer.WPF.ViewModels.Factories
         /// <summary>
         /// Creates a view model.
         /// </summary>
-        /// <param name="project">The project.</param>
+        /// <param name="projectName">The project name.</param>
         /// <param name="build">The build.</param>
         /// <returns>
         /// A view model.
         /// </returns>
-        public BuildViewModel Create(IProject project, IBuild build)
+        public BuildViewModel Create(string projectName, IBuild build)
         {
-            return new BuildViewModel(_changeFactory, project, build);
+            Ensure.That(build).IsNotNull();
+
+            var viewModel = new BuildViewModel(_changeFactory, build.Id, build.RequestedBy, build.Changes);
+
+            viewModel.SetProjectName(projectName);
+            viewModel.SetVersionNumber(build.GetVersionNumber());
+            viewModel.SetBranch(build.Branch);
+            viewModel.Status = build.Status;
+            viewModel.SetStarted(build.Started);
+            viewModel.SetBuildTime(build.GetBuildTime());
+
+            return viewModel;
         }
     }
 }

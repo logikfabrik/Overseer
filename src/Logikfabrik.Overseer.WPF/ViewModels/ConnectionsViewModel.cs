@@ -15,12 +15,13 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     /// <summary>
     /// The <see cref="ConnectionsViewModel" /> class.
     /// </summary>
-    public class ConnectionsViewModel : ViewModel, IObserver<ConnectionSettings[]>
+    public class ConnectionsViewModel : ViewModel, IObserver<ConnectionSettings[]>, IDisposable
     {
         private readonly IDisposable _subscription;
         private readonly IEventAggregator _eventAggregator;
         private readonly IConnectionViewModelStrategy _connectionStrategy;
         private readonly List<ConnectionViewModel> _connections;
+        private bool _isDisposed;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ConnectionsViewModel" /> class.
@@ -72,6 +73,12 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// <param name="value">The current notification information.</param>
         public void OnNext(ConnectionSettings[] value)
         {
+            if (_isDisposed)
+            {
+                // Do nothing if disposed (pattern practice).
+                return;
+            }
+
             var isDirty = false;
 
             foreach (var settings in value)
@@ -80,7 +87,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
 
                 if (connectionToUpdate != null)
                 {
-                    // TODO: Update the view model.
+                    connectionToUpdate.SettingsName = settings.Name;
                 }
                 else
                 {
@@ -117,6 +124,30 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         public void OnCompleted()
         {
             // Do nothing, even if disposed (pattern practice).
+        }
+
+        /// <summary>
+        /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+        /// </summary>
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        /// <summary>
+        /// Releases unmanaged and managed resources.
+        /// </summary>
+        /// <param name="disposing"><c>true</c> to release both managed and unmanaged resources; <c>false</c> to release only unmanaged resources.</param>
+        protected virtual void Dispose(bool disposing)
+        {
+            // ReSharper disable once UseNullPropagation
+            if (disposing && _subscription != null)
+            {
+                _subscription.Dispose();
+            }
+
+            _isDisposed = true;
         }
     }
 }

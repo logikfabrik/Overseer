@@ -127,10 +127,10 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         }
 
         /// <summary>
-        /// Gets the projects
+        /// Gets the projects.
         /// </summary>
         /// <value>
-        /// The projects
+        /// The projects.
         /// </value>
         public IEnumerable<ProjectViewModel> Projects => _projects;
 

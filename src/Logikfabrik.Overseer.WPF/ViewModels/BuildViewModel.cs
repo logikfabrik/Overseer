@@ -4,36 +4,43 @@
 
 namespace Logikfabrik.Overseer.WPF.ViewModels
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using Caliburn.Micro;
     using EnsureThat;
     using Factories;
     using Humanizer;
-    using Overseer.Extensions;
 
     /// <summary>
     /// The <see cref="BuildViewModel" /> class.
     /// </summary>
     public class BuildViewModel : PropertyChangedBase
     {
+        private readonly string _requestedBy;
+        private string _projectName;
+        private string _versionNumber;
+        private string _branch;
+        private BuildStatus? _status;
+        private TimeSpan? _buildTime;
+        private DateTime? _started;
+
         /// <summary>
         /// Initializes a new instance of the <see cref="BuildViewModel" /> class.
         /// </summary>
         /// <param name="changeFactory">The change factory.</param>
-        /// <param name="project">The project.</param>
-        /// <param name="build">The build.</param>
-        public BuildViewModel(IChangeViewModelFactory changeFactory, IProject project, IBuild build)
+        /// <param name="buildId">The build identifier.</param>
+        /// <param name="requestedBy">The name of whoever requested the build.</param>
+        /// <param name="changes">The changes.</param>
+        public BuildViewModel(IChangeViewModelFactory changeFactory, string buildId, string requestedBy, IEnumerable<IChange> changes)
         {
             Ensure.That(changeFactory).IsNotNull();
-            Ensure.That(project).IsNotNull();
-            Ensure.That(build).IsNotNull();
+            Ensure.That(buildId).IsNotNullOrWhiteSpace();
+            Ensure.That(changes).IsNotNull();
 
-            BuildId = build.Id;
-            BuildName = GetBuildName(project, build);
-            Message = GetMessage(build);
-            Status = build.Status;
-            Changes = build.Changes.Select(changeFactory.Create);
+            BuildId = buildId;
+            _requestedBy = requestedBy;
+            Changes = changes.Select(changeFactory.Create);
         }
 
         /// <summary>
@@ -50,7 +57,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// <value>
         /// The build name.
         /// </value>
-        public string BuildName { get; }
+        public string BuildName { get; private set; }
 
         /// <summary>
         /// Gets the message.
@@ -58,15 +65,30 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// <value>
         /// The message.
         /// </value>
-        public string Message { get; }
+        public string Message { get; private set; }
 
         /// <summary>
-        /// Gets the status.
+        /// Gets or sets the status.
         /// </summary>
         /// <value>
         /// The status.
         /// </value>
-        public BuildStatus? Status { get; }
+        public BuildStatus? Status
+        {
+            get
+            {
+                return _status;
+            }
+
+            set
+            {
+                _status = value;
+
+                NotifyOfPropertyChange(() => Status);
+
+                UpdateMessage();
+            }
+        }
 
         /// <summary>
         /// Gets the changes.
@@ -76,34 +98,91 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// </value>
         public IEnumerable<ChangeViewModel> Changes { get; }
 
-        private static string GetBuildName(IProject project, IBuild build)
+        /// <summary>
+        /// Sets the project name.
+        /// </summary>
+        /// <param name="projectName">The project name.</param>
+        public void SetProjectName(string projectName)
         {
-            return $"{project.Name} {build.GetVersionNumber()} {(!string.IsNullOrWhiteSpace(build.Branch) ? $"({build.Branch})" : string.Empty)}";
+            _projectName = projectName;
+
+            UpdateBuildName();
         }
 
-        private static string GetMessage(IBuild build)
+        /// <summary>
+        /// Sets the version number.
+        /// </summary>
+        /// <param name="versionNumber">The version number.</param>
+        public void SetVersionNumber(string versionNumber)
         {
-            var buildTime = build.GetBuildTime();
+            _versionNumber = versionNumber;
 
+            UpdateBuildName();
+        }
+
+        /// <summary>
+        /// Sets the branch.
+        /// </summary>
+        /// <param name="branch">The branch.</param>
+        public void SetBranch(string branch)
+        {
+            _branch = branch;
+
+            UpdateBuildName();
+        }
+
+        /// <summary>
+        /// Sets the build time.
+        /// </summary>
+        /// <param name="buildTime">The build time.</param>
+        public void SetBuildTime(TimeSpan? buildTime)
+        {
+            _buildTime = buildTime;
+
+            UpdateMessage();
+        }
+
+        /// <summary>
+        /// Sets the started date.
+        /// </summary>
+        /// <param name="started">The started date.</param>
+        public void SetStarted(DateTime? started)
+        {
+            _started = started;
+
+            UpdateMessage();
+        }
+
+        private void UpdateBuildName()
+        {
+            BuildName = $"{_projectName} {_versionNumber} {(!string.IsNullOrWhiteSpace(_branch) ? $"({_branch})" : string.Empty)}";
+
+            NotifyOfPropertyChange(() => BuildName);
+        }
+
+        private void UpdateMessage()
+        {
             string message = null;
 
             // ReSharper disable once SwitchStatementMissingSomeCases
-            switch (build.Status)
+            switch (_status)
             {
                 case BuildStatus.InProgress:
-                    message = $"In progress {(build.Started.HasValue ? build.Started.Humanize() : string.Empty)} {(buildTime.HasValue ? $"since {buildTime.Value.Humanize()}" : string.Empty)}";
+                    message = $"In progress {(_started.HasValue ? _started.Humanize() : string.Empty)} {(_buildTime.HasValue ? $"since {_buildTime.Value.Humanize()}" : string.Empty)}";
                     break;
 
                 case BuildStatus.Stopped:
                 case BuildStatus.Succeeded:
                 case BuildStatus.Failed:
-                    message = $"{build.Status} {(build.Started.HasValue ? build.Started.Humanize() : string.Empty)} {(buildTime.HasValue ? $"in {buildTime.Value.Humanize()}" : string.Empty)}";
+                    message = $"{_status} {(_started.HasValue ? _started.Humanize() : string.Empty)} {(_buildTime.HasValue ? $"in {_buildTime.Value.Humanize()}" : string.Empty)}";
                     break;
             }
 
-            return !string.IsNullOrWhiteSpace(message)
-                ? $"{message} {(!string.IsNullOrWhiteSpace(build.RequestedBy) ? $"for {build.RequestedBy}" : string.Empty)}"
+            Message = !string.IsNullOrWhiteSpace(message)
+                ? $"{message} {(!string.IsNullOrWhiteSpace(_requestedBy) ? $"for {_requestedBy}" : string.Empty)}"
                 : null;
+
+            NotifyOfPropertyChange(() => Message);
         }
     }
 }

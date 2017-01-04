@@ -12,9 +12,11 @@ namespace Logikfabrik.Overseer.WPF.ViewModels.Factories
         /// <summary>
         /// Creates a view model.
         /// </summary>
-        /// <param name="project">The project.</param>
+        /// <param name="projectName">The project name.</param>
         /// <param name="build">The build.</param>
-        /// <returns>A view model.</returns>
-        BuildViewModel Create(IProject project, IBuild build);
+        /// <returns>
+        /// A view model.
+        /// </returns>
+        BuildViewModel Create(string projectName, IBuild build);
     }
 }

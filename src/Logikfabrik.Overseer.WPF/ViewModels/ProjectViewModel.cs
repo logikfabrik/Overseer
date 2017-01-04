@@ -11,6 +11,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     using Caliburn.Micro;
     using EnsureThat;
     using Factories;
+    using Overseer.Extensions;
 
     /// <summary>
     /// The <see cref="ProjectViewModel" /> class. View model for CI projects.
@@ -159,11 +160,16 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
 
                 if (buildToUpdate != null)
                 {
-                    // TODO: Update the build time, status (and message). Nothing else can/should change.
+                    buildToUpdate.SetProjectName(e.Project.Name);
+                    buildToUpdate.SetVersionNumber(build.GetVersionNumber());
+                    buildToUpdate.SetBranch(build.Branch);
+                    buildToUpdate.Status = build.Status;
+                    buildToUpdate.SetStarted(build.Started);
+                    buildToUpdate.SetBuildTime(build.GetBuildTime());
                 }
                 else
                 {
-                    var buildToAdd = _buildFactory.Create(e.Project, build);
+                    var buildToAdd = _buildFactory.Create(e.Project.Name, build);
 
                     _builds.Add(buildToAdd);
 
