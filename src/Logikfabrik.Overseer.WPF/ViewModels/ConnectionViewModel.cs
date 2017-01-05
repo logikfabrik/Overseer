@@ -135,22 +135,9 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         public IEnumerable<ProjectViewModel> Projects => _projects;
 
         /// <summary>
-        /// Gets the type of the view model to edit the connection.
-        /// </summary>
-        /// <value>
-        /// The type of the view model to edit the connection.
-        /// </value>
-        protected abstract Type EditConnectionViewModelType { get; }
-
-        /// <summary>
         /// Edit the connection.
         /// </summary>
-        public void Edit()
-        {
-            var message = new NavigationMessage(EditConnectionViewModelType, SettingsId);
-
-            _eventAggregator.PublishOnUIThread(message);
-        }
+        public abstract void Edit();
 
         /// <summary>
         /// Remove the connection.

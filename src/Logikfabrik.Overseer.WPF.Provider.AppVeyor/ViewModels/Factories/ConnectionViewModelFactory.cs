@@ -16,6 +16,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor.ViewModels.Factories
     {
         private readonly IEventAggregator _eventAggregator;
         private readonly IBuildMonitor _buildMonitor;
+        private readonly IEditConnectionViewModelFactory<ConnectionSettings> _editConnectionFactory;
         private readonly IProjectViewModelFactory _projectFactory;
 
         /// <summary>
@@ -24,15 +25,18 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor.ViewModels.Factories
         /// <param name="eventAggregator">The event aggregator.</param>
         /// <param name="buildMonitor">The build monitor.</param>
         /// <param name="projectFactory">The project factory.</param>
-        public ConnectionViewModelFactory(IEventAggregator eventAggregator, IBuildMonitor buildMonitor, IProjectViewModelFactory projectFactory)
+        /// <param name="editConnectionFactory">The edit connection factory.</param>
+        public ConnectionViewModelFactory(IEventAggregator eventAggregator, IBuildMonitor buildMonitor, IProjectViewModelFactory projectFactory, IEditConnectionViewModelFactory<ConnectionSettings> editConnectionFactory)
         {
             Ensure.That(eventAggregator).IsNotNull();
             Ensure.That(buildMonitor).IsNotNull();
             Ensure.That(projectFactory).IsNotNull();
+            Ensure.That(editConnectionFactory).IsNotNull();
 
             _eventAggregator = eventAggregator;
             _buildMonitor = buildMonitor;
             _projectFactory = projectFactory;
+            _editConnectionFactory = editConnectionFactory;
         }
 
         /// <summary>
@@ -54,7 +58,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor.ViewModels.Factories
         {
             Ensure.That(settings).IsNotNull();
 
-            return new ConnectionViewModel(_eventAggregator, _buildMonitor, _projectFactory, settings.Id)
+            return new ConnectionViewModel(_eventAggregator, _buildMonitor, _projectFactory, _editConnectionFactory, settings.Id)
             {
                 SettingsName = settings.Name
             };

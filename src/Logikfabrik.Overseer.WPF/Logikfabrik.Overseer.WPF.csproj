@@ -96,6 +96,7 @@
     <Compile Include="IBuildNotificationManager.cs" />
     <Compile Include="INotificationManager.cs" />
     <Compile Include="NavigationMessage.cs" />
+    <Compile Include="NavigationMessage2.cs" />
     <Compile Include="NotificationManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
@@ -112,6 +113,7 @@
     <Compile Include="ViewModels\Factories\IChangeViewModelFactory.cs" />
     <Compile Include="ViewModels\Factories\IConnectionViewModelFactory.cs" />
     <Compile Include="ViewModels\Factories\IConnectionViewModelStrategy.cs" />
+    <Compile Include="ViewModels\Factories\IEditConnectionViewModelFactory{T}.cs" />
     <Compile Include="ViewModels\Factories\IProjectViewModelFactory.cs" />
     <Compile Include="ViewModels\Factories\ProjectViewModelFactory.cs" />
     <Compile Include="ViewModels\RemoveConnectionViewModel.cs" />

@@ -55,7 +55,18 @@ namespace Logikfabrik.Overseer.WPF.Client.ViewModels
         /// <param name="message">The message to handle.</param>
         public void Handle(NavigationMessage message)
         {
-            var viewModel = IoC.GetInstance(message.ViewModelType, null) as ViewModel;
+            ViewModel viewModel;
+
+            var message2 = message as NavigationMessage2;
+
+            if (message2 != null)
+            {
+                viewModel = message2.ViewModel;
+            }
+            else
+            {
+                viewModel = IoC.GetInstance(message.ViewModelType, null) as ViewModel;
+            }
 
             ActivateItem(viewModel);
 

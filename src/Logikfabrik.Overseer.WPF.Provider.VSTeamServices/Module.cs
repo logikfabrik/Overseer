@@ -22,6 +22,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices
             Bind<WPF.ViewModels.ConnectionViewModel>().To<ConnectionViewModel>();
             Bind<Settings.ConnectionSettings>().To<ConnectionSettings>();
             Bind<WPF.ViewModels.Factories.IConnectionViewModelFactory>().To<ConnectionViewModelFactory>();
+            Bind<WPF.ViewModels.Factories.IEditConnectionViewModelFactory<ConnectionSettings>>().To<EditConnectionViewModelFactory>();
         }
     }
 }
