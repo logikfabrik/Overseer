@@ -7,6 +7,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Threading;
     using System.Threading.Tasks;
     using EnsureThat;
 
@@ -31,17 +32,18 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices
         /// <summary>
         /// Gets the projects.
         /// </summary>
+        /// <param name="cancellationToken">A cancellation token.</param>
         /// <returns>
         /// A task.
         /// </returns>
-        public override async Task<IEnumerable<IProject>> GetProjectsAsync()
+        public override async Task<IEnumerable<IProject>> GetProjectsAsync(CancellationToken cancellationToken)
         {
             if (_isDisposed)
             {
                 throw new ObjectDisposedException(GetType().FullName);
             }
 
-            var projects = await _apiClient.Value.GetProjectsAsync(0, null).ConfigureAwait(false);
+            var projects = await _apiClient.Value.GetProjectsAsync(0, null, cancellationToken).ConfigureAwait(false);
 
             return projects.Value.Select(project => new Project(project));
         }
@@ -50,10 +52,11 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices
         /// Gets the builds for the project with the specified project identifier.
         /// </summary>
         /// <param name="projectId">The project identifier.</param>
+        /// <param name="cancellationToken">A cancellation token.</param>
         /// <returns>
         /// A task.
         /// </returns>
-        public override async Task<IEnumerable<IBuild>> GetBuildsAsync(string projectId)
+        public override async Task<IEnumerable<IBuild>> GetBuildsAsync(string projectId, CancellationToken cancellationToken)
         {
             if (_isDisposed)
             {
@@ -66,9 +69,9 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices
 
             const int numberOfBuilds = 3;
 
-            foreach (var build in (await _apiClient.Value.GetBuildsAsync(projectId, 0, numberOfBuilds).ConfigureAwait(false)).Value)
+            foreach (var build in (await _apiClient.Value.GetBuildsAsync(projectId, 0, numberOfBuilds, cancellationToken).ConfigureAwait(false)).Value)
             {
-                var changes = await _apiClient.Value.GetChangesAsync(projectId, build.Id).ConfigureAwait(false);
+                var changes = await _apiClient.Value.GetChangesAsync(projectId, build.Id, cancellationToken).ConfigureAwait(false);
 
                 builds.Add(new Build(build, changes.Value));
             }

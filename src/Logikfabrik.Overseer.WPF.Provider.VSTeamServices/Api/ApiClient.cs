@@ -8,6 +8,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices.Api
     using System.Net.Http;
     using System.Net.Http.Headers;
     using System.Text;
+    using System.Threading;
     using System.Threading.Tasks;
     using EnsureThat;
     using Models;
@@ -37,8 +38,9 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices.Api
         /// </summary>
         /// <param name="skip">The skip count.</param>
         /// <param name="take">The take count.</param>
+        /// <param name="cancellationToken">A cancellation token.</param>
         /// <returns>A task.</returns>
-        public async Task<Projects> GetProjectsAsync(int skip, int? take)
+        public async Task<Projects> GetProjectsAsync(int skip, int? take, CancellationToken cancellationToken)
         {
             var builder = new StringBuilder($"_apis/projects?api-version=2.0&$skip={skip}");
 
@@ -47,11 +49,11 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices.Api
                 builder.Append("&$top={take}");
             }
 
-            using (var response = await _httpClient.Value.GetAsync(builder.ToString()).ConfigureAwait(false))
+            using (var response = await _httpClient.Value.GetAsync(builder.ToString(), cancellationToken).ConfigureAwait(false))
             {
                 response.EnsureSuccessStatusCode();
 
-                return await response.Content.ReadAsAsync<Projects>().ConfigureAwait(false);
+                return await response.Content.ReadAsAsync<Projects>(cancellationToken).ConfigureAwait(false);
             }
         }
 
@@ -61,8 +63,9 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices.Api
         /// <param name="projectId">The project identifier.</param>
         /// <param name="skip">The skip count.</param>
         /// <param name="take">The take count.</param>
+        /// <param name="cancellationToken">A cancellation token.</param>
         /// <returns>A task.</returns>
-        public async Task<Builds> GetBuildsAsync(string projectId, int skip, int? take)
+        public async Task<Builds> GetBuildsAsync(string projectId, int skip, int? take, CancellationToken cancellationToken)
         {
             Ensure.That(projectId).IsNotNullOrWhiteSpace();
 
@@ -73,11 +76,11 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices.Api
                 builder.Append("&$top={take}");
             }
 
-            using (var response = await _httpClient.Value.GetAsync(builder.ToString()).ConfigureAwait(false))
+            using (var response = await _httpClient.Value.GetAsync(builder.ToString(), cancellationToken).ConfigureAwait(false))
             {
                 response.EnsureSuccessStatusCode();
 
-                return await response.Content.ReadAsAsync<Builds>().ConfigureAwait(false);
+                return await response.Content.ReadAsAsync<Builds>(cancellationToken).ConfigureAwait(false);
             }
         }
 
@@ -86,17 +89,18 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices.Api
         /// </summary>
         /// <param name="projectId">The project identifier.</param>
         /// <param name="buildId">The build identifier.</param>
+        /// <param name="cancellationToken">A cancellation token.</param>
         /// <returns>A task.</returns>
-        public async Task<Changes> GetChangesAsync(string projectId, string buildId)
+        public async Task<Changes> GetChangesAsync(string projectId, string buildId, CancellationToken cancellationToken)
         {
             Ensure.That(projectId).IsNotNullOrWhiteSpace();
             Ensure.That(buildId).IsNotNullOrWhiteSpace();
 
-            using (var response = await _httpClient.Value.GetAsync($"{projectId}/_apis/build/builds/{buildId}/changes?api-version=2.0").ConfigureAwait(false))
+            using (var response = await _httpClient.Value.GetAsync($"{projectId}/_apis/build/builds/{buildId}/changes?api-version=2.0", cancellationToken).ConfigureAwait(false))
             {
                 response.EnsureSuccessStatusCode();
 
-                return await response.Content.ReadAsAsync<Changes>().ConfigureAwait(false);
+                return await response.Content.ReadAsAsync<Changes>(cancellationToken).ConfigureAwait(false);
             }
         }
 

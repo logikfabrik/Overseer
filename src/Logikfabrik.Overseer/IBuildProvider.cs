@@ -6,6 +6,7 @@ namespace Logikfabrik.Overseer
 {
     using System;
     using System.Collections.Generic;
+    using System.Threading;
     using System.Threading.Tasks;
     using Settings;
 
@@ -25,18 +26,20 @@ namespace Logikfabrik.Overseer
         /// <summary>
         /// Gets the projects.
         /// </summary>
+        /// <param name="cancellationToken">A cancellation token.</param>
         /// <returns>
         /// A task.
         /// </returns>
-        Task<IEnumerable<IProject>> GetProjectsAsync();
+        Task<IEnumerable<IProject>> GetProjectsAsync(CancellationToken cancellationToken);
 
         /// <summary>
         /// Gets the builds for the project with the specified project identifier.
         /// </summary>
         /// <param name="projectId">The project identifier.</param>
+        /// <param name="cancellationToken">A cancellation token.</param>
         /// <returns>
         /// A task.
         /// </returns>
-        Task<IEnumerable<IBuild>> GetBuildsAsync(string projectId);
+        Task<IEnumerable<IBuild>> GetBuildsAsync(string projectId, CancellationToken cancellationToken);
     }
 }

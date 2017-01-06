@@ -8,6 +8,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor.Api
     using System.Collections.Generic;
     using System.Net.Http;
     using System.Net.Http.Headers;
+    using System.Threading;
     using System.Threading.Tasks;
     using EnsureThat;
     using Models;
@@ -33,14 +34,15 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor.Api
         /// <summary>
         /// Gets the projects.
         /// </summary>
+        /// <param name="cancellationToken">A cancellation token.</param>
         /// <returns>A task.</returns>
-        public async Task<IEnumerable<Project>> GetProjectsAsync()
+        public async Task<IEnumerable<Project>> GetProjectsAsync(CancellationToken cancellationToken)
         {
-            using (var response = await _httpClient.Value.GetAsync("api/projects").ConfigureAwait(false))
+            using (var response = await _httpClient.Value.GetAsync("api/projects", cancellationToken).ConfigureAwait(false))
             {
                 response.EnsureSuccessStatusCode();
 
-                return await response.Content.ReadAsAsync<IEnumerable<Project>>().ConfigureAwait(false);
+                return await response.Content.ReadAsAsync<IEnumerable<Project>>(cancellationToken).ConfigureAwait(false);
             }
         }
 
@@ -50,17 +52,18 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor.Api
         /// <param name="accountName">The account name.</param>
         /// <param name="projectSlug">The project slug.</param>
         /// <param name="recordsNumber">Number of records.</param>
+        /// <param name="cancellationToken">A cancellation token.</param>
         /// <returns>A task.</returns>
-        public async Task<ProjectHistory> GetProjectHistoryAsync(string accountName, string projectSlug, int recordsNumber)
+        public async Task<ProjectHistory> GetProjectHistoryAsync(string accountName, string projectSlug, int recordsNumber, CancellationToken cancellationToken)
         {
             Ensure.That(accountName).IsNotNullOrWhiteSpace();
             Ensure.That(projectSlug).IsNotNullOrWhiteSpace();
 
-            using (var response = await _httpClient.Value.GetAsync($"api/projects/{accountName}/{projectSlug}/history?recordsNumber={recordsNumber}").ConfigureAwait(false))
+            using (var response = await _httpClient.Value.GetAsync($"api/projects/{accountName}/{projectSlug}/history?recordsNumber={recordsNumber}", cancellationToken).ConfigureAwait(false))
             {
                 response.EnsureSuccessStatusCode();
 
-                return await response.Content.ReadAsAsync<ProjectHistory>().ConfigureAwait(false);
+                return await response.Content.ReadAsAsync<ProjectHistory>(cancellationToken).ConfigureAwait(false);
             }
         }
 

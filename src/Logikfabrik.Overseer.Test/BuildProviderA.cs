@@ -6,6 +6,7 @@ namespace Logikfabrik.Overseer.Test
 {
     using System;
     using System.Collections.Generic;
+    using System.Threading;
     using System.Threading.Tasks;
     using Settings;
 
@@ -16,12 +17,12 @@ namespace Logikfabrik.Overseer.Test
         {
         }
 
-        public override Task<IEnumerable<IProject>> GetProjectsAsync()
+        public override Task<IEnumerable<IProject>> GetProjectsAsync(CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
         }
 
-        public override Task<IEnumerable<IBuild>> GetBuildsAsync(string projectId)
+        public override Task<IEnumerable<IBuild>> GetBuildsAsync(string projectId, CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
         }

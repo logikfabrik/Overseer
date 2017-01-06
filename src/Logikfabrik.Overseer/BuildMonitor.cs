@@ -185,7 +185,7 @@ namespace Logikfabrik.Overseer
                     return;
                 }
 
-                var projects = (await connection.GetProjectsAsync().ConfigureAwait(false)).ToArray();
+                var projects = (await connection.GetProjectsAsync(_cancellationTokenSource.Token).ConfigureAwait(false)).ToArray();
 
                 OnConnectionProgressChanged(new BuildMonitorConnectionProgressEventArgs(connection.Settings.Id, projects));
 
@@ -201,7 +201,7 @@ namespace Logikfabrik.Overseer
                         {
                             AddOrUpdateProject(connection, project);
 
-                            var builds = (await connection.GetBuildsAsync(project).ConfigureAwait(false)).ToArray();
+                            var builds = (await connection.GetBuildsAsync(project, _cancellationTokenSource.Token).ConfigureAwait(false)).ToArray();
 
                             AddOrUpdateProjectBuilds(connection, project, builds);
 

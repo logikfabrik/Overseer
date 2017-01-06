@@ -6,6 +6,7 @@ namespace Logikfabrik.Overseer
 {
     using System;
     using System.Collections.Generic;
+    using System.Threading;
     using System.Threading.Tasks;
     using EnsureThat;
     using Settings;
@@ -47,41 +48,45 @@ namespace Logikfabrik.Overseer
         /// <summary>
         /// Gets the projects.
         /// </summary>
+        /// <param name="cancellationToken">A cancellation token.</param>
         /// <returns>
         /// A task.
         /// </returns>
-        public abstract Task<IEnumerable<IProject>> GetProjectsAsync();
+        public abstract Task<IEnumerable<IProject>> GetProjectsAsync(CancellationToken cancellationToken);
 
         /// <summary>
         /// Gets the builds for the project with the specified project identifier.
         /// </summary>
         /// <param name="projectId">The project identifier.</param>
+        /// <param name="cancellationToken">A cancellation token.</param>
         /// <returns>
         /// A task.
         /// </returns>
-        public abstract Task<IEnumerable<IBuild>> GetBuildsAsync(string projectId);
+        public abstract Task<IEnumerable<IBuild>> GetBuildsAsync(string projectId, CancellationToken cancellationToken);
 
         /// <summary>
         /// Gets the projects.
         /// </summary>
+        /// <param name="cancellationToken">A cancellation token.</param>
         /// <returns>
         /// A task.
         /// </returns>
-        Task<IEnumerable<IProject>> IBuildProvider.GetProjectsAsync()
+        Task<IEnumerable<IProject>> IBuildProvider.GetProjectsAsync(CancellationToken cancellationToken)
         {
-            return GetProjectsAsync();
+            return GetProjectsAsync(cancellationToken);
         }
 
         /// <summary>
         /// Gets the builds for the project with the specified project identifier.
         /// </summary>
         /// <param name="projectId">The project identifier.</param>
+        /// <param name="cancellationToken">A cancellation token.</param>
         /// <returns>
         /// A task.
         /// </returns>
-        Task<IEnumerable<IBuild>> IBuildProvider.GetBuildsAsync(string projectId)
+        Task<IEnumerable<IBuild>> IBuildProvider.GetBuildsAsync(string projectId, CancellationToken cancellationToken)
         {
-            return GetBuildsAsync(projectId);
+            return GetBuildsAsync(projectId, cancellationToken);
         }
 
         /// <summary>

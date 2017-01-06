@@ -7,6 +7,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Threading;
     using System.Threading.Tasks;
     using EnsureThat;
 
@@ -31,17 +32,18 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor
         /// <summary>
         /// Gets the projects.
         /// </summary>
+        /// <param name="cancellationToken">A cancellation token.</param>
         /// <returns>
         /// A task.
         /// </returns>
-        public override async Task<IEnumerable<IProject>> GetProjectsAsync()
+        public override async Task<IEnumerable<IProject>> GetProjectsAsync(CancellationToken cancellationToken)
         {
             if (_isDisposed)
             {
                 throw new ObjectDisposedException(GetType().FullName);
             }
 
-            var projects = await _apiClient.Value.GetProjectsAsync().ConfigureAwait(false);
+            var projects = await _apiClient.Value.GetProjectsAsync(cancellationToken).ConfigureAwait(false);
 
             return projects.Select(project => new Project(project));
         }
@@ -50,10 +52,11 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor
         /// Gets the builds for the project with the specified project identifier.
         /// </summary>
         /// <param name="projectId">The project identifier.</param>
+        /// <param name="cancellationToken">A cancellation token.</param>
         /// <returns>
         /// A task.
         /// </returns>
-        public override async Task<IEnumerable<IBuild>> GetBuildsAsync(string projectId)
+        public override async Task<IEnumerable<IBuild>> GetBuildsAsync(string projectId, CancellationToken cancellationToken)
         {
             if (_isDisposed)
             {
@@ -62,7 +65,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor
 
             Ensure.That(projectId).IsNotNullOrWhiteSpace();
 
-            var projects = await _apiClient.Value.GetProjectsAsync().ConfigureAwait(false);
+            var projects = await _apiClient.Value.GetProjectsAsync(cancellationToken).ConfigureAwait(false);
 
             var project = projects.SingleOrDefault(p => p.ProjectId == int.Parse(projectId));
 
@@ -73,7 +76,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor
 
             const int numberOfBuilds = 3;
 
-            var projectHistory = await _apiClient.Value.GetProjectHistoryAsync(project.AccountName, project.Slug, numberOfBuilds).ConfigureAwait(false);
+            var projectHistory = await _apiClient.Value.GetProjectHistoryAsync(project.AccountName, project.Slug, numberOfBuilds, cancellationToken).ConfigureAwait(false);
 
             return projectHistory.Builds.Select(build => new Build(build));
         }

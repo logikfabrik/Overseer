@@ -80,7 +80,7 @@ namespace Logikfabrik.Overseer
                     }
                 }
 
-                var connectionsToRemove = _connections.Keys.Except(value.Select(s => s.Id));
+                var connectionsToRemove = _connections.Keys.Except(value.Select(s => s.Id)).ToArray();
 
                 foreach (var id in connectionsToRemove)
                 {

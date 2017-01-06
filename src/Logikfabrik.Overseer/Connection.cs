@@ -6,6 +6,7 @@ namespace Logikfabrik.Overseer
 {
     using System;
     using System.Collections.Generic;
+    using System.Threading;
     using System.Threading.Tasks;
     using EnsureThat;
     using Settings;
@@ -60,27 +61,29 @@ namespace Logikfabrik.Overseer
         /// <summary>
         /// Gets the projects.
         /// </summary>
+        /// <param name="cancellationToken">A cancellation token.</param>
         /// <returns>
         /// A task.
         /// </returns>
-        public async Task<IEnumerable<IProject>> GetProjectsAsync()
+        public async Task<IEnumerable<IProject>> GetProjectsAsync(CancellationToken cancellationToken)
         {
             if (_isDisposed)
             {
                 throw new ObjectDisposedException(GetType().FullName);
             }
 
-            return await GetProvider().GetProjectsAsync().ConfigureAwait(false);
+            return await GetProvider().GetProjectsAsync(cancellationToken).ConfigureAwait(false);
         }
 
         /// <summary>
         /// Gets the builds for the specified project.
         /// </summary>
         /// <param name="project">The project.</param>
+        /// <param name="cancellationToken">A cancellation token.</param>
         /// <returns>
         /// A task.
         /// </returns>
-        public async Task<IEnumerable<IBuild>> GetBuildsAsync(IProject project)
+        public async Task<IEnumerable<IBuild>> GetBuildsAsync(IProject project, CancellationToken cancellationToken)
         {
             if (_isDisposed)
             {
@@ -89,7 +92,7 @@ namespace Logikfabrik.Overseer
 
             Ensure.That(project).IsNotNull();
 
-            return await GetProvider().GetBuildsAsync(project.Id).ConfigureAwait(false);
+            return await GetProvider().GetBuildsAsync(project.Id, cancellationToken).ConfigureAwait(false);
         }
 
         /// <summary>
