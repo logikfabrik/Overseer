@@ -122,6 +122,9 @@
     <Compile Include="Views\ConnectionView.xaml.cs">
       <DependentUpon>ConnectionView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\RemoveConnectionView.xaml.cs">
+      <DependentUpon>RemoveConnectionView.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -193,6 +196,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\ConnectionView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\RemoveConnectionView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

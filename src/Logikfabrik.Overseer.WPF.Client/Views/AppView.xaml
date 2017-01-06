@@ -44,10 +44,14 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <Border Grid.Row="0" Style="{StaticResource MenuBorderStyle}">
-            <TextBlock x:Name="ViewName"
-                       Style="{StaticResource ViewNameTextBlockStyle}" />
+            <StackPanel>
+                <TextBlock x:Name="ViewName"
+                           Style="{StaticResource ViewNameTextBlockStyle}" />
+                <Button Content="Settings"></Button>
+            </StackPanel>
         </Border>
-        <ContentControl Grid.Row="1" HorizontalAlignment="Stretch"
+        <ContentControl Grid.Row="1" 
+                        HorizontalAlignment="Stretch"
                         VerticalAlignment="Stretch"
                         Focusable="False"
                         x:Name="ActiveItem" />

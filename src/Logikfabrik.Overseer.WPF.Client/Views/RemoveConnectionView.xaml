@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="Logikfabrik.Overseer.WPF.Client.Views.AddConnectionView"
+﻿<UserControl x:Class="Logikfabrik.Overseer.WPF.Client.Views.RemoveConnectionView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -6,13 +6,10 @@
              mc:Ignorable="d" d:DesignHeight="800" d:DesignWidth="400">
     <ScrollViewer Style="{StaticResource ScrollViewerDefaultStyle}">
         <StackPanel Margin="25">
-            <ContentControl x:Name="Settings"
-                            HorizontalAlignment="Stretch"
-                            VerticalAlignment="Stretch"
-                            Focusable="False" />
+            <TextBlock Text="Do you want to remove the connection?" />
             <StackPanel Orientation="Horizontal">
-                <Button x:Name="AddConnection" 
-                        Content="OK" 
+                <Button x:Name="RemoveConnection" 
+                        Content="Yes" 
                         Style="{StaticResource ButtonDefaultStyle}" 
                         Margin="0 0 2 0" />
                 <Button x:Name="ViewConnections" 

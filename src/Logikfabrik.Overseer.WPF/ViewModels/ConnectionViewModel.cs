@@ -19,6 +19,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     {
         private readonly IEventAggregator _eventAggregator;
         private readonly IProjectViewModelFactory _projectFactory;
+        private readonly IRemoveConnectionViewModelFactory _removeConnectionFactory;
         private readonly List<ProjectViewModel> _projects;
         private string _settingsName;
         private bool _isBusy;
@@ -30,16 +31,19 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// <param name="eventAggregator">The event aggregator.</param>
         /// <param name="buildMonitor">The build monitor.</param>
         /// <param name="projectFactory">The project factory.</param>
+        /// <param name="removeConnectionFactory">The remove connection factory.</param>
         /// <param name="settingsId">The settings identifier.</param>
-        protected ConnectionViewModel(IEventAggregator eventAggregator, IBuildMonitor buildMonitor, IProjectViewModelFactory projectFactory, Guid settingsId)
+        protected ConnectionViewModel(IEventAggregator eventAggregator, IBuildMonitor buildMonitor, IProjectViewModelFactory projectFactory, IRemoveConnectionViewModelFactory removeConnectionFactory, Guid settingsId)
         {
             Ensure.That(eventAggregator).IsNotNull();
             Ensure.That(buildMonitor).IsNotNull();
             Ensure.That(projectFactory).IsNotNull();
+            Ensure.That(removeConnectionFactory).IsNotNull();
             Ensure.That(settingsId).IsNotEmpty();
 
             _eventAggregator = eventAggregator;
             _projectFactory = projectFactory;
+            _removeConnectionFactory = removeConnectionFactory;
             SettingsId = settingsId;
             _isBusy = true;
             _isErrored = false;
@@ -144,7 +148,9 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// </summary>
         public void Remove()
         {
-            var message = new NavigationMessage(typeof(RemoveConnectionViewModel), SettingsId);
+            var viewModel = _removeConnectionFactory.Create(SettingsId);
+
+            var message = new NavigationMessage2(viewModel);
 
             _eventAggregator.PublishOnUIThread(message);
         }

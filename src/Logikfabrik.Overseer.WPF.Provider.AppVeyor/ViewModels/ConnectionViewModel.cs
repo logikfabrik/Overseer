@@ -23,10 +23,11 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor.ViewModels
         /// <param name="eventAggregator">The event aggregator.</param>
         /// <param name="buildMonitor">The build monitor.</param>
         /// <param name="projectFactory">The project factory.</param>
+        /// <param name="removeConnectionFactory">The remove connection factory.</param>
         /// <param name="editConnectionFactory">The edit connection factory.</param>
         /// <param name="settingsId">The settings identifier.</param>
-        public ConnectionViewModel(IEventAggregator eventAggregator, IBuildMonitor buildMonitor, IProjectViewModelFactory projectFactory, IEditConnectionViewModelFactory<ConnectionSettings> editConnectionFactory, Guid settingsId)
-            : base(eventAggregator, buildMonitor, projectFactory, settingsId)
+        public ConnectionViewModel(IEventAggregator eventAggregator, IBuildMonitor buildMonitor, IProjectViewModelFactory projectFactory, IRemoveConnectionViewModelFactory removeConnectionFactory, IEditConnectionViewModelFactory<ConnectionSettings> editConnectionFactory, Guid settingsId)
+            : base(eventAggregator, buildMonitor, projectFactory, removeConnectionFactory, settingsId)
         {
             Ensure.That(eventAggregator).IsNotNull();
             Ensure.That(editConnectionFactory).IsNotNull();

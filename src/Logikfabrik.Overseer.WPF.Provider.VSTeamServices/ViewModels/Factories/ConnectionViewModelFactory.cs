@@ -16,8 +16,9 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices.ViewModels.Factories
     {
         private readonly IEventAggregator _eventAggregator;
         private readonly IBuildMonitor _buildMonitor;
-        private readonly IEditConnectionViewModelFactory<ConnectionSettings> _editConnectionFactory;
         private readonly IProjectViewModelFactory _projectFactory;
+        private readonly IRemoveConnectionViewModelFactory _removeConnectionFactory;
+        private readonly IEditConnectionViewModelFactory<ConnectionSettings> _editConnectionFactory;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ConnectionViewModelFactory" /> class.
@@ -25,17 +26,20 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices.ViewModels.Factories
         /// <param name="eventAggregator">The event aggregator.</param>
         /// <param name="buildMonitor">The build monitor.</param>
         /// <param name="projectFactory">The project factory.</param>
+        /// <param name="removeConnectionFactory">The remove connection factory.</param>
         /// <param name="editConnectionFactory">The edit connection factory.</param>
-        public ConnectionViewModelFactory(IEventAggregator eventAggregator, IBuildMonitor buildMonitor, IProjectViewModelFactory projectFactory, IEditConnectionViewModelFactory<ConnectionSettings> editConnectionFactory)
+        public ConnectionViewModelFactory(IEventAggregator eventAggregator, IBuildMonitor buildMonitor, IProjectViewModelFactory projectFactory, IRemoveConnectionViewModelFactory removeConnectionFactory, IEditConnectionViewModelFactory<ConnectionSettings> editConnectionFactory)
         {
             Ensure.That(eventAggregator).IsNotNull();
             Ensure.That(buildMonitor).IsNotNull();
             Ensure.That(projectFactory).IsNotNull();
+            Ensure.That(removeConnectionFactory).IsNotNull();
             Ensure.That(editConnectionFactory).IsNotNull();
 
             _eventAggregator = eventAggregator;
             _buildMonitor = buildMonitor;
             _projectFactory = projectFactory;
+            _removeConnectionFactory = removeConnectionFactory;
             _editConnectionFactory = editConnectionFactory;
         }
 
@@ -58,7 +62,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices.ViewModels.Factories
         {
             Ensure.That(settings).IsNotNull();
 
-            return new ConnectionViewModel(_eventAggregator, _buildMonitor, _projectFactory, _editConnectionFactory, settings.Id)
+            return new ConnectionViewModel(_eventAggregator, _buildMonitor, _projectFactory, _removeConnectionFactory, _editConnectionFactory, settings.Id)
             {
                 SettingsName = settings.Name
             };
