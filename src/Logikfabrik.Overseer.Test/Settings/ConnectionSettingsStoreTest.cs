@@ -4,6 +4,7 @@
 
 namespace Logikfabrik.Overseer.Test.Settings
 {
+    using System.Threading.Tasks;
     using Moq;
     using Overseer.Settings;
     using Xunit;
@@ -11,7 +12,7 @@ namespace Logikfabrik.Overseer.Test.Settings
     public class ConnectionSettingsStoreTest
     {
         [Fact]
-        public void CanSaveAsync()
+        public async Task CanSaveAsync()
         {
             var settings = new ConnectionSettings[] { };
 
@@ -20,7 +21,7 @@ namespace Logikfabrik.Overseer.Test.Settings
 
             var store = new ConnectionSettingsStore(serializerMock.Object, fileStoreMock.Object);
 
-            store.SaveAsync(settings).Wait();
+            await store.SaveAsync(settings);
 
             fileStoreMock.Verify(m => m.Write(It.IsAny<string>()), Times.Once);
         }

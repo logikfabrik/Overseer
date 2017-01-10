@@ -10,7 +10,7 @@ namespace Logikfabrik.Overseer
     /// <summary>
     /// The <see cref="IConnectionPool" /> class.
     /// </summary>
-    public interface IConnectionPool : IObserver<ConnectionSettings[]>, IObservable<Connection[]>, IDisposable
+    public interface IConnectionPool : IObserver<ConnectionSettings[]>, IObservable<IConnection[]>, IDisposable
     {
     }
 }

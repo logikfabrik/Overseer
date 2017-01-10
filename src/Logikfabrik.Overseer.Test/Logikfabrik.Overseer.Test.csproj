@@ -71,6 +71,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BuildMonitorTest.cs" />
     <Compile Include="BuildProviderA.cs" />
     <Compile Include="BuildProviderB.cs" />
     <Compile Include="Labs\ConnectionPoolTest.cs" />

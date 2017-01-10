@@ -16,8 +16,8 @@ namespace Logikfabrik.Overseer
     public class ConnectionPool : IConnectionPool
     {
         private readonly IDisposable _subscription;
-        private readonly HashSet<IObserver<Connection[]>> _observers;
-        private IDictionary<Guid, Connection> _connections;
+        private readonly HashSet<IObserver<IConnection[]>> _observers;
+        private IDictionary<Guid, IConnection> _connections;
         private bool _isDisposed;
 
         /// <summary>
@@ -28,8 +28,8 @@ namespace Logikfabrik.Overseer
         {
             Ensure.That(settingsRepository).IsNotNull();
 
-            _connections = new Dictionary<Guid, Connection>();
-            _observers = new HashSet<IObserver<Connection[]>>();
+            _connections = new Dictionary<Guid, IConnection>();
+            _observers = new HashSet<IObserver<IConnection[]>>();
             _subscription = settingsRepository.Subscribe(this);
         }
 
@@ -39,7 +39,7 @@ namespace Logikfabrik.Overseer
         /// <value>
         /// The current connections.
         /// </value>
-        internal IEnumerable<Connection> CurrentConnections => _connections.Values;
+        internal IEnumerable<IConnection> CurrentConnections => _connections.Values;
 
         /// <summary>
         /// Provides the observer with new data.
@@ -61,7 +61,7 @@ namespace Logikfabrik.Overseer
             {
                 foreach (var settings in value)
                 {
-                    Connection connectionToUpdate;
+                    IConnection connectionToUpdate;
 
                     if (_connections.TryGetValue(settings.Id, out connectionToUpdate))
                     {
@@ -128,7 +128,7 @@ namespace Logikfabrik.Overseer
         /// <returns>
         /// A reference to an interface that allows observers to stop receiving notifications before the provider has finished sending them.
         /// </returns>
-        public IDisposable Subscribe(IObserver<Connection[]> observer)
+        public IDisposable Subscribe(IObserver<IConnection[]> observer)
         {
             Ensure.That(observer).IsNotNull();
 
@@ -143,7 +143,7 @@ namespace Logikfabrik.Overseer
                 observer.OnNext(_connections.Values.ToArray());
             }
 
-            return new Subscription<Connection[]>(_observers, observer);
+            return new Subscription<IConnection[]>(_observers, observer);
         }
 
         /// <summary>

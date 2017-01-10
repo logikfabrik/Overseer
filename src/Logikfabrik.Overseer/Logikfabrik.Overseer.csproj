@@ -63,6 +63,7 @@
     <Compile Include="IChange.cs" />
     <Compile Include="Connection.cs" />
     <Compile Include="ConnectionPool.cs" />
+    <Compile Include="IConnection.cs" />
     <Compile Include="IConnectionPool.cs" />
     <Compile Include="Settings\ConnectionSettings.cs" />
     <Compile Include="Settings\ConnectionSettingsRepository.cs" />

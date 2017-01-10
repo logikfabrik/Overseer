@@ -14,13 +14,12 @@ namespace Logikfabrik.Overseer
     /// <summary>
     /// The <see cref="BuildMonitor" /> class.
     /// </summary>
-    public class BuildMonitor : IBuildMonitor, IDisposable, IObserver<Connection[]>
+    public class BuildMonitor : IBuildMonitor, IDisposable, IObserver<IConnection[]>
     {
         private readonly IDisposable _subscription;
-        private readonly IDictionary<Guid, IProject> _projects;
-        private readonly IDictionary<Tuple<Guid, string>, IEnumerable<IBuild>> _projectBuilds;
-        private readonly CancellationTokenSource _cancellationTokenSource;
+        private CancellationTokenSource _cancellationTokenSource;
         private bool _isDisposed;
+        private Task _poll;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="BuildMonitor" /> class.
@@ -30,9 +29,6 @@ namespace Logikfabrik.Overseer
         {
             Ensure.That(connectionPool).IsNotNull();
 
-            _cancellationTokenSource = new CancellationTokenSource();
-            _projects = new Dictionary<Guid, IProject>();
-            _projectBuilds = new Dictionary<Tuple<Guid, string>, IEnumerable<IBuild>>();
             _subscription = connectionPool.Subscribe(this);
         }
 
@@ -60,7 +56,7 @@ namespace Logikfabrik.Overseer
         /// Provides the observer with new data.
         /// </summary>
         /// <param name="value">The current notification information.</param>
-        public void OnNext(Connection[] value)
+        public void OnNext(IConnection[] value)
         {
             if (_isDisposed)
             {
@@ -68,25 +64,31 @@ namespace Logikfabrik.Overseer
                 return;
             }
 
-            // ReSharper disable once FunctionNeverReturns
-            Task.Run(
-                async () =>
+            if (_poll != null)
+            {
+                _cancellationTokenSource.Cancel();
+
+                try
                 {
-                    while (true)
-                    {
-                        if (_cancellationTokenSource == null || _cancellationTokenSource.IsCancellationRequested)
-                        {
-                            return;
-                        }
+                    _poll.Wait();
+                }
+                catch (AggregateException aex)
+                {
+                    aex.Flatten().Handle(ex => ex is OperationCanceledException);
 
-                        Task.WaitAll(value.Select(GetProjectsAsync).ToArray(), _cancellationTokenSource.Token);
+                    throw;
+                }
+            }
 
-                        const int delayForSeconds = 15;
+            _cancellationTokenSource = new CancellationTokenSource();
 
-                        await Task.Delay(TimeSpan.FromSeconds(delayForSeconds).Milliseconds).ConfigureAwait(false);
-                    }
-                },
-                _cancellationTokenSource.Token);
+            _poll = Task.Run(async () =>
+            {
+                while (!_cancellationTokenSource.IsCancellationRequested)
+                {
+                    await GetProjectsAndBuildsAsync(value, _cancellationTokenSource.Token).ConfigureAwait(false);
+                }
+            });
         }
 
         /// <summary>
@@ -115,6 +117,13 @@ namespace Logikfabrik.Overseer
             GC.SuppressFinalize(this);
         }
 
+        internal async Task GetProjectsAndBuildsAsync(IEnumerable<IConnection> connections, CancellationToken cancellationToken)
+        {
+            var tasks = connections.Select(connection => GetProjectsAsync(connection, cancellationToken)).Concat(new[] { Task.Delay(TimeSpan.FromSeconds(15), cancellationToken) });
+
+            await Task.WhenAll(tasks);
+        }
+
         /// <summary>
         /// Releases unmanaged and managed resources.
         /// </summary>
@@ -124,17 +133,24 @@ namespace Logikfabrik.Overseer
             // ReSharper disable once InvertIf
             if (disposing)
             {
-                // ReSharper disable once UseNullPropagation
-                if (_subscription != null)
+                if (_poll != null)
                 {
-                    _subscription.Dispose();
+                    _cancellationTokenSource.Cancel();
+
+                    try
+                    {
+                        _poll.Wait();
+                    }
+                    catch (Exception)
+                    {
+                        // Do not throw exceptions while disposing.
+                    }
                 }
 
-                // ReSharper disable once UseNullPropagation
-                if (_cancellationTokenSource != null)
-                {
-                    _cancellationTokenSource.Dispose();
-                }
+                _subscription.Dispose();
+
+                _cancellationTokenSource?.Dispose();
+                _cancellationTokenSource = null;
             }
 
             _isDisposed = true;
@@ -176,82 +192,39 @@ namespace Logikfabrik.Overseer
             ProjectProgressChanged?.Invoke(this, e);
         }
 
-        private async Task GetProjectsAsync(Connection connection)
+        private async Task GetProjectsAsync(IConnection connection, CancellationToken cancellationToken)
         {
             try
             {
-                if (_cancellationTokenSource == null || _cancellationTokenSource.IsCancellationRequested)
-                {
-                    return;
-                }
-
-                var projects = (await connection.GetProjectsAsync(_cancellationTokenSource.Token).ConfigureAwait(false)).ToArray();
+                var projects = (await connection.GetProjectsAsync(cancellationToken)).ToArray();
 
                 OnConnectionProgressChanged(new BuildMonitorConnectionProgressEventArgs(connection.Settings.Id, projects));
 
-                Task.WaitAll(
-                    projects.Select(async project =>
-                    {
-                        if (_cancellationTokenSource == null || _cancellationTokenSource.IsCancellationRequested)
-                        {
-                            return;
-                        }
+                var tasks = projects.Select(project => GetBuildsAsync(connection, project, cancellationToken)).ToArray();
 
-                        try
-                        {
-                            AddOrUpdateProject(connection, project);
-
-                            var builds = (await connection.GetBuildsAsync(project, _cancellationTokenSource.Token).ConfigureAwait(false)).ToArray();
-
-                            AddOrUpdateProjectBuilds(connection, project, builds);
-
-                            OnProjectProgressChanged(new BuildMonitorProjectProgressEventArgs(connection.Settings.Id, project, builds));
-                        }
-                        catch (OperationCanceledException)
-                        {
-                            // Do nothing.
-                        }
-                        catch
-                        {
-                            OnProjectError(new BuildMonitorProjectErrorEventArgs(connection.Settings.Id, project));
-                        }
-                    }).ToArray(), _cancellationTokenSource.Token);
+                await Task.WhenAll(tasks);
             }
-            catch (OperationCanceledException)
-            {
-                // Do nothing.
-            }
-            catch
+            catch (Exception)
             {
                 OnConnectionError(new BuildMonitorConnectionErrorEventArgs(connection.Settings.Id));
+
+                throw;
             }
         }
 
-        private void AddOrUpdateProject(Connection connection, IProject project)
+        private async Task GetBuildsAsync(IConnection connection, IProject project, CancellationToken cancellationToken)
         {
-            var key = connection.Settings.Id;
+            try
+            {
+                var builds = await connection.GetBuildsAsync(project, cancellationToken).ConfigureAwait(false);
 
-            if (_projects.ContainsKey(key))
-            {
-                _projects[key] = project;
+                OnProjectProgressChanged(new BuildMonitorProjectProgressEventArgs(connection.Settings.Id, project, builds));
             }
-            else
+            catch (Exception)
             {
-                _projects.Add(key, project);
-            }
-        }
+                OnProjectError(new BuildMonitorProjectErrorEventArgs(connection.Settings.Id, project));
 
-        private void AddOrUpdateProjectBuilds(Connection connection, IProject project, IEnumerable<IBuild> builds)
-        {
-            var key = new Tuple<Guid, string>(connection.Settings.Id, project.Id);
-
-            if (_projectBuilds.ContainsKey(key))
-            {
-                _projectBuilds[key] = builds;
-            }
-            else
-            {
-                _projectBuilds.Add(key, builds);
+                throw;
             }
         }
     }

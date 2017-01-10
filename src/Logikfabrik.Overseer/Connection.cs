@@ -14,7 +14,7 @@ namespace Logikfabrik.Overseer
     /// <summary>
     /// The <see cref="Connection" /> class.
     /// </summary>
-    public class Connection : IDisposable
+    public class Connection : IConnection
     {
         private IBuildProvider _provider;
         private ConnectionSettings _settings;
@@ -37,7 +37,7 @@ namespace Logikfabrik.Overseer
         /// <value>
         /// The settings.
         /// </value>
-        internal ConnectionSettings Settings
+        public ConnectionSettings Settings
         {
             get
             {
