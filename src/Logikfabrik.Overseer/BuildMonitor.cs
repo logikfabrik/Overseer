@@ -89,7 +89,7 @@ namespace Logikfabrik.Overseer
             {
                 while (!_cancellationTokenSource.IsCancellationRequested)
                 {
-                    await GetProjectsAndBuildsAsync(value, _cancellationTokenSource.Token).ConfigureAwait(false);
+                    await GetProjectsAndBuildsAsync(value, 15, _cancellationTokenSource.Token).ConfigureAwait(false);
                 }
             });
         }
@@ -120,11 +120,13 @@ namespace Logikfabrik.Overseer
             GC.SuppressFinalize(this);
         }
 
-        internal async Task GetProjectsAndBuildsAsync(IEnumerable<IConnection> connections, CancellationToken cancellationToken)
+        internal async Task GetProjectsAndBuildsAsync(IEnumerable<IConnection> connections, int intervalInSeconds, CancellationToken cancellationToken)
         {
-            var tasks = connections.Select(connection => GetProjectsAsync(connection, cancellationToken)).Concat(new[] { Task.Delay(TimeSpan.FromSeconds(15), cancellationToken) });
+            var tasks = connections.Select(connection => GetProjectsAsync(connection, cancellationToken));
 
             await Task.WhenAll(tasks);
+
+            await Task.Delay(TimeSpan.FromSeconds(intervalInSeconds), cancellationToken);
         }
 
         /// <summary>
@@ -133,6 +135,11 @@ namespace Logikfabrik.Overseer
         /// <param name="disposing"><c>true</c> to release both managed and unmanaged resources; <c>false</c> to release only unmanaged resources.</param>
         protected virtual void Dispose(bool disposing)
         {
+            if (_isDisposed)
+            {
+                return;
+            }
+
             // ReSharper disable once InvertIf
             if (disposing)
             {
@@ -152,8 +159,7 @@ namespace Logikfabrik.Overseer
 
                 _subscription.Dispose();
 
-                _cancellationTokenSource?.Dispose();
-                _cancellationTokenSource = null;
+                _cancellationTokenSource.Dispose();
             }
 
             _isDisposed = true;

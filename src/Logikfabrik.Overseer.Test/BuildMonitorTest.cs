@@ -7,6 +7,7 @@ namespace Logikfabrik.Overseer.Test
     using System.Linq;
     using System.Threading;
     using System.Threading.Tasks;
+    using Logging;
     using Moq;
     using Overseer.Settings;
     using Xunit;
@@ -31,9 +32,11 @@ namespace Logikfabrik.Overseer.Test
 
             var poolMock = new Mock<IConnectionPool>();
 
-            var monitor = new BuildMonitor(poolMock.Object);
+            var logMock = new Mock<ILogService>();
 
-            await monitor.GetProjectsAndBuildsAsync(new[] { connectionMock.Object }, CancellationToken.None);
+            var monitor = new BuildMonitor(poolMock.Object, logMock.Object);
+
+            await monitor.GetProjectsAndBuildsAsync(new[] { connectionMock.Object }, 0, CancellationToken.None);
 
             connectionMock.Verify(m => m.GetProjectsAsync(It.IsAny<CancellationToken>()), Times.Once);
             connectionMock.Verify(m => m.GetBuildsAsync(It.IsAny<IProject>(), It.IsAny<CancellationToken>()), Times.Once);

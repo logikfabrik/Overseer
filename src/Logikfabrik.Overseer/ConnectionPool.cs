@@ -152,20 +152,20 @@ namespace Logikfabrik.Overseer
         /// <param name="disposing"><c>true</c> to release both managed and unmanaged resources; <c>false</c> to release only unmanaged resources.</param>
         protected virtual void Dispose(bool disposing)
         {
+            if (_isDisposed)
+            {
+                return;
+            }
+
             // ReSharper disable once InvertIf
             if (disposing)
             {
-                _subscription?.Dispose();
+                _subscription.Dispose();
                 _observers.Clear();
 
-                if (_connections != null)
+                foreach (var connection in _connections.Values)
                 {
-                    foreach (var connection in _connections.Values)
-                    {
-                        connection.Dispose();
-                    }
-
-                    _connections = null;
+                    connection.Dispose();
                 }
             }
 

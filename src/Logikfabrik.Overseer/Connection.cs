@@ -110,11 +110,15 @@ namespace Logikfabrik.Overseer
         /// <param name="disposing"><c>true</c> to release both managed and unmanaged resources; <c>false</c> to release only unmanaged resources.</param>
         protected virtual void Dispose(bool disposing)
         {
+            if (_isDisposed)
+            {
+                return;
+            }
+
             // ReSharper disable once InvertIf
             if (disposing)
             {
                 _provider?.Dispose();
-                _provider = null;
             }
 
             _isDisposed = true;

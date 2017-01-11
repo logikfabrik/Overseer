@@ -141,8 +141,13 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// <param name="disposing"><c>true</c> to release both managed and unmanaged resources; <c>false</c> to release only unmanaged resources.</param>
         protected virtual void Dispose(bool disposing)
         {
+            if (_isDisposed)
+            {
+                return;
+            }
+
             // ReSharper disable once UseNullPropagation
-            if (disposing && _subscription != null)
+            if (disposing)
             {
                 _subscription.Dispose();
             }
