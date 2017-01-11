@@ -10,12 +10,14 @@ namespace Logikfabrik.Overseer
     using System.Threading;
     using System.Threading.Tasks;
     using EnsureThat;
+    using Logging;
 
     /// <summary>
     /// The <see cref="BuildMonitor" /> class.
     /// </summary>
     public class BuildMonitor : IBuildMonitor, IDisposable, IObserver<IConnection[]>
     {
+        private readonly ILogService _logService;
         private readonly IDisposable _subscription;
         private CancellationTokenSource _cancellationTokenSource;
         private bool _isDisposed;
@@ -25,10 +27,13 @@ namespace Logikfabrik.Overseer
         /// Initializes a new instance of the <see cref="BuildMonitor" /> class.
         /// </summary>
         /// <param name="connectionPool">The connection pool.</param>
-        public BuildMonitor(IConnectionPool connectionPool)
+        /// <param name="logService">The log service.</param>
+        public BuildMonitor(IConnectionPool connectionPool, ILogService logService)
         {
             Ensure.That(connectionPool).IsNotNull();
+            Ensure.That(logService).IsNotNull();
 
+            _logService = logService;
             _subscription = connectionPool.Subscribe(this);
         }
 
@@ -72,11 +77,9 @@ namespace Logikfabrik.Overseer
                 {
                     _poll.Wait();
                 }
-                catch (AggregateException aex)
+                catch (Exception ex)
                 {
-                    aex.Flatten().Handle(ex => ex is OperationCanceledException);
-
-                    throw;
+                    _logService.Log<BuildMonitor>(new LogEntry(LogEntryType.Error, "An error occurred while cancelling.", ex));
                 }
             }
 
@@ -141,9 +144,9 @@ namespace Logikfabrik.Overseer
                     {
                         _poll.Wait();
                     }
-                    catch (Exception)
+                    catch (Exception ex)
                     {
-                        // Do not throw exceptions while disposing.
+                        _logService.Log<BuildMonitor>(new LogEntry(LogEntryType.Error, "An error occurred while disposing.", ex));
                     }
                 }
 
@@ -204,11 +207,11 @@ namespace Logikfabrik.Overseer
 
                 await Task.WhenAll(tasks);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 OnConnectionError(new BuildMonitorConnectionErrorEventArgs(connection.Settings.Id));
 
-                throw;
+                _logService.Log<BuildMonitor>(new LogEntry(LogEntryType.Error, "An error occurred while polling.", ex));
             }
         }
 
@@ -220,11 +223,11 @@ namespace Logikfabrik.Overseer
 
                 OnProjectProgressChanged(new BuildMonitorProjectProgressEventArgs(connection.Settings.Id, project, builds));
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 OnProjectError(new BuildMonitorProjectErrorEventArgs(connection.Settings.Id, project));
 
-                throw;
+                _logService.Log<BuildMonitor>(new LogEntry(LogEntryType.Error, "An error occurred while polling.", ex));
             }
         }
     }

@@ -11,6 +11,8 @@ namespace Logikfabrik.Overseer.WPF.Client
     using System.Reflection;
     using System.Windows;
     using Caliburn.Micro;
+    using log4net.Config;
+    using Logging;
     using Ninject;
     using Ninject.Modules;
     using Providers.Settings;
@@ -36,6 +38,8 @@ namespace Logikfabrik.Overseer.WPF.Client
             _assemblies = new Lazy<IEnumerable<Assembly>>(GetAssemblies);
 
             Initialize();
+
+            XmlConfigurator.Configure();
         }
 
         /// <summary>
@@ -85,6 +89,7 @@ namespace Logikfabrik.Overseer.WPF.Client
             ViewLocator.AddNamespaceMapping("*", "Logikfabrik.Overseer.WPF.Client.Views");
 
             // Business logic setup.
+            _kernel.Bind<ILogService>().To<LogService>();
             _kernel.Bind<IConnectionSettingsSerializer>().ToProvider<ConnectionSettingsSerializerProvider>().InSingletonScope();
             _kernel.Bind<IFileStore>().ToProvider<FileStoreProvider>().InSingletonScope();
             _kernel.Bind<IConnectionSettingsStore>().To<ConnectionSettingsStore>();
