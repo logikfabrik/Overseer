@@ -19,6 +19,18 @@ namespace Logikfabrik.Overseer.WPF.Client
         public const int GWL_STYLE = -16;
 
         /// <summary>
+        /// The extended style index.
+        /// </summary>
+        // ReSharper disable once InconsistentNaming
+        public const int GWL_EXSTYLE = -20;
+
+        /// <summary>
+        /// The extended modal frame index.
+        /// </summary>
+        // ReSharper disable once InconsistentNaming
+        public const int WS_EX_DLGMODALFRAME = 0x0001;
+
+        /// <summary>
         /// The maximize box index.
         /// </summary>
         // ReSharper disable once InconsistentNaming

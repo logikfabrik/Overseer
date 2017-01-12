@@ -22,20 +22,26 @@ namespace Logikfabrik.Overseer.WPF.Client.Views
 
             WeakEventManager<AppView, EventArgs>.AddHandler(this, nameof(SourceInitialized), (sender, e) =>
             {
-                DisableMaximizeButton();
+                var hWnd = new WindowInteropHelper(this).Handle;
+
+                if (hWnd == IntPtr.Zero)
+                {
+                    return;
+                }
+
+                HideIcon(hWnd);
+                DisableMaximizeButton(hWnd);
             });
         }
 
-        private void DisableMaximizeButton()
+        private static void HideIcon(IntPtr hWnd)
         {
-            var handle = new WindowInteropHelper(this).Handle;
+            NativeMethods.SetWindowLong(hWnd, NativeMethods.GWL_EXSTYLE, NativeMethods.GetWindowLong(hWnd, NativeMethods.GWL_EXSTYLE) | NativeMethods.WS_EX_DLGMODALFRAME);
+        }
 
-            if (handle == IntPtr.Zero)
-            {
-                return;
-            }
-
-            NativeMethods.SetWindowLong(handle, NativeMethods.GWL_STYLE, NativeMethods.GetWindowLong(handle, NativeMethods.GWL_STYLE) & ~NativeMethods.WS_MAXIMIZEBOX);
+        private static void DisableMaximizeButton(IntPtr hWnd)
+        {
+            NativeMethods.SetWindowLong(hWnd, NativeMethods.GWL_STYLE, NativeMethods.GetWindowLong(hWnd, NativeMethods.GWL_STYLE) & ~NativeMethods.WS_MAXIMIZEBOX);
         }
     }
 }
