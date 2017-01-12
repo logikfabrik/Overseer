@@ -101,7 +101,7 @@
     <Compile Include="Styles\CommonBrushes.cs" />
     <Compile Include="Styles\CommonColors.cs" />
     <Compile Include="Validators\ConnectionSettingsViewModelValidator{T}.cs" />
-    <Compile Include="Validators\SettingsViewModelValidator.cs" />
+    <Compile Include="Validators\EditSettingsViewModelValidator.cs" />
     <Compile Include="ViewModels\ConnectionSettingsViewModel.cs" />
     <Compile Include="ViewModels\Factories\BuildViewModelFactory.cs" />
     <Compile Include="ViewModels\Factories\ChangeViewModelFactory.cs" />
@@ -127,7 +127,7 @@
     <Compile Include="ViewModels\EditConnectionViewModel{T}.cs" />
     <Compile Include="ViewModels\ProjectViewModel.cs" />
     <Compile Include="ViewModels\BuildProvidersViewModel.cs" />
-    <Compile Include="ViewModels\SettingsViewModel.cs" />
+    <Compile Include="ViewModels\EditSettingsViewModel.cs" />
     <None Include="packages.config" />
     <AppDesigner Include="Properties\" />
     <AdditionalFiles Include="stylecop.json" />

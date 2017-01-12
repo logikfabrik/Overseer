@@ -19,7 +19,7 @@
                 <ItemsControl.ItemContainerStyle>
                     <Style>
                         <Setter Property="FrameworkElement.Margin" 
-                                    Value="0 0 0 5" />
+                                Value="0 0 0 5" />
                     </Style>
                 </ItemsControl.ItemContainerStyle>
                 <ItemsControl.ItemTemplate>

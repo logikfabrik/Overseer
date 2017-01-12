@@ -47,7 +47,10 @@
             <StackPanel>
                 <TextBlock x:Name="ViewName"
                            Style="{StaticResource ViewNameTextBlockStyle}" />
-                <Button Content="Settings"></Button>
+                <Button x:Name="ViewConnections"
+                        Content="Connections" />
+                <Button x:Name="EditSettings"
+                        Content="Settings" />
             </StackPanel>
         </Border>
         <ContentControl Grid.Row="1" 

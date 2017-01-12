@@ -15,6 +15,7 @@ namespace Logikfabrik.Overseer.WPF.Client.ViewModels
     /// </summary>
     public sealed class AppViewModel : Conductor<ViewModel>, IHandle<NavigationMessage>
     {
+        private readonly IEventAggregator _eventAggregator;
         private readonly IBuildNotificationManager _buildNotificationManager;
 
         /// <summary>
@@ -31,8 +32,10 @@ namespace Logikfabrik.Overseer.WPF.Client.ViewModels
             Ensure.That(buildNotificationManager).IsNotNull();
             Ensure.That(connectionsViewModel).IsNotNull();
 
+            _eventAggregator = eventAggregator;
             _buildNotificationManager = buildNotificationManager;
-            eventAggregator.Subscribe(this);
+
+            _eventAggregator.Subscribe(this);
 
             WeakEventManager<IBuildMonitor, BuildMonitorProjectProgressEventArgs>.AddHandler(buildMonitor, nameof(buildMonitor.ProjectProgressChanged), BuildMonitorProgressChanged);
 
@@ -71,6 +74,26 @@ namespace Logikfabrik.Overseer.WPF.Client.ViewModels
             ActivateItem(viewModel);
 
             NotifyOfPropertyChange(() => ViewName);
+        }
+
+        /// <summary>
+        /// Edit the settings.
+        /// </summary>
+        public void EditSettings()
+        {
+            var message = new NavigationMessage(typeof(EditSettingsViewModel));
+
+            _eventAggregator.PublishOnUIThread(message);
+        }
+
+        /// <summary>
+        /// View the connections.
+        /// </summary>
+        public void ViewConnections()
+        {
+            var message = new NavigationMessage(typeof(ConnectionsViewModel));
+
+            _eventAggregator.PublishOnUIThread(message);
         }
 
         private void BuildMonitorProgressChanged(object sender, BuildMonitorProjectProgressEventArgs e)
