@@ -155,11 +155,11 @@ namespace Logikfabrik.Overseer
                     {
                         _logService.Log<BuildMonitor>(new LogEntry(LogEntryType.Error, "An error occurred while disposing.", ex));
                     }
+
+                    _cancellationTokenSource.Dispose();
                 }
 
                 _subscription.Dispose();
-
-                _cancellationTokenSource.Dispose();
             }
 
             _isDisposed = true;

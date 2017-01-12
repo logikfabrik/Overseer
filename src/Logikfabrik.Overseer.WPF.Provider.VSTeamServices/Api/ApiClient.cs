@@ -40,14 +40,12 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices.Api
         /// <param name="take">The take count.</param>
         /// <param name="cancellationToken">A cancellation token.</param>
         /// <returns>A task.</returns>
-        public async Task<Projects> GetProjectsAsync(int skip, int? take, CancellationToken cancellationToken)
+        public async Task<Projects> GetProjectsAsync(int skip, int take, CancellationToken cancellationToken)
         {
-            var builder = new StringBuilder($"_apis/projects?api-version=2.0&$skip={skip}");
+            Ensure.That(skip).IsInRange(0, int.MaxValue);
+            Ensure.That(take).IsInRange(1, int.MaxValue);
 
-            if (take.HasValue)
-            {
-                builder.Append("&$top={take}");
-            }
+            var builder = new StringBuilder($"_apis/projects?api-version=2.0&$skip={skip}&$top={take}");
 
             using (var response = await _httpClient.Value.GetAsync(builder.ToString(), cancellationToken).ConfigureAwait(false))
             {
@@ -65,16 +63,13 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices.Api
         /// <param name="take">The take count.</param>
         /// <param name="cancellationToken">A cancellation token.</param>
         /// <returns>A task.</returns>
-        public async Task<Builds> GetBuildsAsync(string projectId, int skip, int? take, CancellationToken cancellationToken)
+        public async Task<Builds> GetBuildsAsync(string projectId, int skip, int take, CancellationToken cancellationToken)
         {
             Ensure.That(projectId).IsNotNullOrWhiteSpace();
+            Ensure.That(skip).IsInRange(0, int.MaxValue);
+            Ensure.That(take).IsInRange(1, int.MaxValue);
 
-            var builder = new StringBuilder($"{projectId}/_apis/build/builds?api-version=2.0&$skip={skip}");
-
-            if (take.HasValue)
-            {
-                builder.Append("&$top={take}");
-            }
+            var builder = new StringBuilder($"{projectId}/_apis/build/builds?api-version=2.0&$skip={skip}&$top={take}");
 
             using (var response = await _httpClient.Value.GetAsync(builder.ToString(), cancellationToken).ConfigureAwait(false))
             {

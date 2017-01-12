@@ -17,7 +17,7 @@ namespace Logikfabrik.Overseer
     {
         private readonly IDisposable _subscription;
         private readonly HashSet<IObserver<IConnection[]>> _observers;
-        private IDictionary<Guid, IConnection> _connections;
+        private readonly IDictionary<Guid, IConnection> _connections;
         private bool _isDisposed;
 
         /// <summary>
@@ -130,12 +130,12 @@ namespace Logikfabrik.Overseer
         /// </returns>
         public IDisposable Subscribe(IObserver<IConnection[]> observer)
         {
-            Ensure.That(observer).IsNotNull();
-
             if (_isDisposed)
             {
                 throw new ObjectDisposedException(GetType().FullName);
             }
+
+            Ensure.That(observer).IsNotNull();
 
             // ReSharper disable once InvertIf
             if (_observers.Add(observer))
@@ -161,12 +161,15 @@ namespace Logikfabrik.Overseer
             if (disposing)
             {
                 _subscription.Dispose();
+
                 _observers.Clear();
 
                 foreach (var connection in _connections.Values)
                 {
                     connection.Dispose();
                 }
+
+                _connections.Clear();
             }
 
             _isDisposed = true;

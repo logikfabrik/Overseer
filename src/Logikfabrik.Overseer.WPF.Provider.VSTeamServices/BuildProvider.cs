@@ -43,7 +43,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices
                 throw new ObjectDisposedException(GetType().FullName);
             }
 
-            var projects = await _apiClient.Value.GetProjectsAsync(0, null, cancellationToken).ConfigureAwait(false);
+            var projects = await _apiClient.Value.GetProjectsAsync(0, int.MaxValue, cancellationToken).ConfigureAwait(false);
 
             return projects.Value.Select(project => new Project(project));
         }

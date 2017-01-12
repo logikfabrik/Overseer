@@ -58,6 +58,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor.Api
         {
             Ensure.That(accountName).IsNotNullOrWhiteSpace();
             Ensure.That(projectSlug).IsNotNullOrWhiteSpace();
+            Ensure.That(recordsNumber).IsInRange(1, int.MaxValue);
 
             using (var response = await _httpClient.Value.GetAsync($"api/projects/{accountName}/{projectSlug}/history?recordsNumber={recordsNumber}", cancellationToken).ConfigureAwait(false))
             {
