@@ -6,6 +6,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor.Api
 {
     using System;
     using System.Collections.Generic;
+    using System.Net;
     using System.Net.Http;
     using System.Net.Http.Headers;
     using System.Threading;
@@ -29,6 +30,23 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor.Api
             Ensure.That(token).IsNotNullOrWhiteSpace();
 
             _httpClient = new Lazy<HttpClient>(() => GetHttpClient(new Uri("https://ci.appveyor.com/"), token));
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ApiClient" /> class.
+        /// </summary>
+        /// <param name="url">The URL.</param>
+        /// <param name="token">The token.</param>
+        /// <param name="proxyUrl">The proxy URL.</param>
+        /// <param name="proxyUsername">The proxy username.</param>
+        /// <param name="proxyPassword">The proxy password.</param>
+        public ApiClient(string url, string token, string proxyUrl, string proxyUsername, string proxyPassword)
+        {
+            Ensure.That(url).IsNotNullOrWhiteSpace();
+            Ensure.That(token).IsNotNullOrWhiteSpace();
+            Ensure.That(proxyUrl).IsNotNullOrWhiteSpace();
+
+            _httpClient = new Lazy<HttpClient>(() => GetHttpClient(new Uri(url), token, new Uri(proxyUrl), proxyUsername, proxyPassword));
         }
 
         /// <summary>
@@ -100,10 +118,31 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor.Api
         {
             var client = new HttpClient { BaseAddress = baseUri };
 
-            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+            SetDefaultRequestHeaders(client, token);
 
             return client;
+        }
+
+        private static HttpClient GetHttpClient(Uri baseUri, string token, Uri proxyUri, string proxyUsername, string proxyPassword)
+        {
+            var handler = new HttpClientHandler
+            {
+                Proxy = new WebProxy(proxyUri),
+                Credentials = new NetworkCredential { UserName = proxyUsername, Password = proxyPassword },
+                UseProxy = true
+            };
+
+            var client = new HttpClient(handler) { BaseAddress = baseUri };
+
+            SetDefaultRequestHeaders(client, token);
+
+            return client;
+        }
+
+        private static void SetDefaultRequestHeaders(HttpClient client, string token)
+        {
+            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
         }
     }
 }
