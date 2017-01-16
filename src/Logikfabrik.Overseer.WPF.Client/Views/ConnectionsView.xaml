@@ -63,18 +63,6 @@
                                           Margin="{TemplateBinding Padding}" />
                     </Grid>
                     <ControlTemplate.Triggers>
-                        <Trigger Property="IsMouseOver" 
-                                 Value="true">
-                            <Setter Property="Fill" 
-                                    TargetName="PART_Ellipse" 
-                                    Value="{StaticResource Button.MouseOver.Background}" />
-                            <Setter Property="TextElement.Foreground" 
-                                    TargetName="contentPresenter" 
-                                    Value="{StaticResource Button.MouseOver.Foreground}" />
-                            <Setter Property="Stroke" 
-                                    TargetName="PART_Ellipse" 
-                                    Value="{StaticResource Button.MouseOver.Border}" />
-                        </Trigger>
                         <Trigger Property="IsPressed" 
                                  Value="true">
                             <Setter Property="Fill" 

@@ -1,4 +1,4 @@
-﻿<Window x:Class="Logikfabrik.Overseer.WPF.Client.Views.AppView"
+﻿<Window x:Class="Logikfabrik.Overseer.WPF.Client.Views.AppView" 
         Style="{StaticResource WindowDefaultStyle}"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
@@ -47,10 +47,21 @@
             <StackPanel>
                 <TextBlock x:Name="ViewName"
                            Style="{StaticResource ViewNameTextBlockStyle}" />
-                <Button x:Name="ViewConnections"
-                        Content="Connections" />
-                <Button x:Name="EditSettings"
-                        Content="Settings" />
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Button x:Name="ViewConnections"
+                            Grid.Column="0"
+                            Style="{DynamicResource ButtonDefaultStyle}"
+                            Content="Connections" 
+                            IsEnabled="False" />
+                    <Button x:Name="EditSettings"
+                            Grid.Column="1"
+                            Style="{DynamicResource ButtonDefaultStyle}"
+                            Content="Settings" />
+                </Grid>
             </StackPanel>
         </Border>
         <ContentControl Grid.Row="1" 

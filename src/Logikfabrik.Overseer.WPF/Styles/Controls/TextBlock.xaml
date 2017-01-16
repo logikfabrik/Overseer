@@ -3,7 +3,7 @@
     <Style x:Key="TextBlockDefaultStyle"
            TargetType="{x:Type TextBlock}">
         <Setter Property="Foreground" 
-                Value="#FFFFFFFF" />
+                Value="{DynamicResource TextBlock.Foreground}" />
         <Setter Property="TextWrapping" 
                 Value="Wrap" />
         <Setter Property="TextTrimming" 

@@ -4,7 +4,6 @@
 
 using System.Reflection;
 using System.Runtime.InteropServices;
-using System.Windows;
 
 [assembly: AssemblyTitle("Logikfabrik.Overseer.WPF.Provider.VSTeamServices")]
 [assembly: AssemblyDescription("")]
@@ -16,6 +15,5 @@ using System.Windows;
 [assembly: AssemblyCulture("")]
 [assembly: ComVisible(false)]
 [assembly: Guid("464de98c-c4ee-4452-8417-6293ab686ff5")]
-[assembly: ThemeInfo(ResourceDictionaryLocation.None, ResourceDictionaryLocation.SourceAssembly)]
 [assembly: AssemblyVersion("0.0.1.0")]
 [assembly: AssemblyFileVersion("0.0.1.0")]

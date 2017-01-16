@@ -4,7 +4,6 @@
 
 using System.Reflection;
 using System.Runtime.InteropServices;
-using System.Windows;
 using log4net.Config;
 
 [assembly: AssemblyTitle("Logikfabrik.Overseer.WPF.Client")]
@@ -17,7 +16,6 @@ using log4net.Config;
 [assembly: AssemblyCulture("")]
 [assembly: ComVisible(false)]
 [assembly: Guid("629fa0bd-9148-4553-abdb-9b8d0bd1f522")]
-[assembly: ThemeInfo(ResourceDictionaryLocation.None, ResourceDictionaryLocation.SourceAssembly)]
 [assembly: AssemblyVersion("0.0.1.0")]
 [assembly: AssemblyFileVersion("0.0.1.0")]
 [assembly: XmlConfigurator(Watch = true)]

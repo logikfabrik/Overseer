@@ -15,7 +15,7 @@ namespace Logikfabrik.Overseer.Settings
     public class FileStore : IFileStore
     {
         private readonly string _path;
-        private ManualResetEventSlim _resetEvent;
+        private readonly ManualResetEventSlim _resetEvent;
         private bool _isDisposed;
 
         /// <summary>

@@ -98,8 +98,6 @@
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Styles\CommonBrushes.cs" />
-    <Compile Include="Styles\CommonColors.cs" />
     <Compile Include="Validators\ConnectionSettingsViewModelValidator{T}.cs" />
     <Compile Include="Validators\EditSettingsViewModelValidator.cs" />
     <Compile Include="ViewModels\ConnectionSettingsViewModel.cs" />
@@ -185,6 +183,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Styles\Controls\TextBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Styles\Brushes.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

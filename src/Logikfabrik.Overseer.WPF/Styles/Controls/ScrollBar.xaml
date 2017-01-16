@@ -3,12 +3,6 @@
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="../Resources/FocusVisualResources.xaml" />
     </ResourceDictionary.MergedDictionaries>
-    <SolidColorBrush x:Key="ScrollBar.Static.Thumb" 
-                     Color="#FF595959" />
-    <SolidColorBrush x:Key="ScrollBar.MouseOver.Thumb" 
-                     Color="#FF595959" />
-    <SolidColorBrush x:Key="ScrollBar.Pressed.Thumb" 
-                     Color="#FFAAFF00" />
     <Style x:Key="ScrollBarRepeatButtonDefaultStyle" 
            TargetType="{x:Type RepeatButton}">
         <Setter Property="OverridesDefaultStyle" 
@@ -39,7 +33,7 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Thumb}">
                     <Rectangle x:Name="Rectangle" 
-                               Fill="{StaticResource ScrollBar.Static.Thumb}" 
+                               Fill="{DynamicResource ScrollBar.Static.Thumb}" 
                                Height="{TemplateBinding Height}" 
                                Width="{TemplateBinding Width}" />
                     <ControlTemplate.Triggers>
@@ -47,13 +41,13 @@
                                  Value="True">
                             <Setter Property="Fill" 
                                     TargetName="Rectangle" 
-                                    Value="{StaticResource ScrollBar.MouseOver.Thumb}" />
+                                    Value="{DynamicResource ScrollBar.MouseOver.Thumb}" />
                         </Trigger>
                         <Trigger Property="IsDragging" 
                                  Value="True">
                             <Setter Property="Fill" 
                                     TargetName="Rectangle" 
-                                    Value="{StaticResource ScrollBar.Pressed.Thumb}" />
+                                    Value="{DynamicResource ScrollBar.Pressed.Thumb}" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>

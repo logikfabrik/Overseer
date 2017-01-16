@@ -13,6 +13,7 @@
             <StackPanel Orientation="Horizontal">
                 <Button x:Name="AddConnection" 
                         Content="OK" 
+                        IsDefault="True"
                         Style="{StaticResource ButtonDefaultStyle}" 
                         Margin="0 0 2 0" />
                 <Button x:Name="ViewConnections" 

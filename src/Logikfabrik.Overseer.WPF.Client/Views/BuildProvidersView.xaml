@@ -65,7 +65,8 @@
         <StackPanel Grid.Row="2"
                     Margin="20 10">
             <Button x:Name="ViewConnections" 
-                    Content="Cancel" 
+                    Content="Cancel"
+                    IsDefault="True"
                     Style="{StaticResource ButtonDefaultStyle}" />
         </StackPanel>
     </Grid>

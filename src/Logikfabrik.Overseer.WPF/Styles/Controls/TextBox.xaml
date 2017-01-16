@@ -1,49 +1,19 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:s="clr-namespace:Logikfabrik.Overseer.WPF.Styles">
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="../Resources/ConverterResources.xaml" />
-        <ResourceDictionary Source="../Resources/FocusVisualResources.xaml" />
         <ResourceDictionary Source="TextBlock.xaml" />
     </ResourceDictionary.MergedDictionaries>
-    <SolidColorBrush x:Key="TextBox.Static.Background" 
-                     Color="{x:Static s:CommonColors.InputControlStaticBackground}" />
-    <SolidColorBrush x:Key="TextBox.Static.Foreground" 
-                     Color="{x:Static s:CommonColors.InputControlStaticForeground}" />
-    <SolidColorBrush x:Key="TextBox.Static.Border" 
-                     Color="{x:Static s:CommonColors.InputControlStaticBorder}" 
-                     Opacity="0" />
-    <SolidColorBrush x:Key="TextBox.MouseOver.Background" 
-                     Color="{x:Static s:CommonColors.InputControlMouseOverBackground}" />
-    <SolidColorBrush x:Key="TextBox.MouseOver.Foreground" 
-                     Color="{x:Static s:CommonColors.InputControlMouseOverForeground}" />
-    <SolidColorBrush x:Key="TextBox.MouseOver.Border" 
-                     Color="{x:Static s:CommonColors.InputControlMouseOverBorder}" 
-                     Opacity="0" />
-    <SolidColorBrush x:Key="TextBox.Focus.Background" 
-                     Color="{x:Static s:CommonColors.InputControlFocusBackground}" />
-    <SolidColorBrush x:Key="TextBox.Focus.Foreground" 
-                     Color="{x:Static s:CommonColors.InputControlFocusForeground}" />
-    <SolidColorBrush x:Key="TextBox.Focus.Border" 
-                     Color="{x:Static s:CommonColors.InputControlFocusBorder}" 
-                     Opacity="1" />
-    <SolidColorBrush x:Key="TextBox.Disabled.Background" 
-                     Color="{x:Static s:CommonColors.InputControlDisabledBackground}" />
-    <SolidColorBrush x:Key="TextBox.Disabled.Foreground" 
-                     Color="{x:Static s:CommonColors.InputControlDisabledForeground}" />
-    <SolidColorBrush x:Key="TextBox.Disabled.Border" 
-                     Color="{x:Static s:CommonColors.InputControlDisabledBorder}"
-                     Opacity="0" />
     <Style x:Key="TextBoxDefaultStyle" 
            TargetType="{x:Type TextBox}">
         <Setter Property="FocusVisualStyle" 
-                Value="{StaticResource FocusVisual}" />
+                Value="{x:Null}" />
         <Setter Property="Background" 
-                Value="{StaticResource TextBox.Static.Background}" />
+                Value="{DynamicResource TextBox.Static.Background}" />
         <Setter Property="Foreground" 
-                Value="{StaticResource TextBox.Static.Foreground}" />
+                Value="{DynamicResource TextBox.Static.Foreground}" />
         <Setter Property="BorderBrush" 
-                Value="{StaticResource TextBox.Static.Border}" />
+                Value="{DynamicResource TextBox.Static.Border}" />
         <Setter Property="BorderThickness" 
                 Value="0 0 0 2" />
         <Setter Property="KeyboardNavigation.TabNavigation" 
@@ -82,28 +52,19 @@
                                  Value="False">
                             <Setter Property="Background"
                                     TargetName="PART_Border" 
-                                    Value="{StaticResource TextBox.Disabled.Background}" />
+                                    Value="{DynamicResource TextBox.Disabled.Background}" />
                             <Setter Property="BorderBrush" 
                                     TargetName="PART_Border" 
-                                    Value="{StaticResource TextBox.Disabled.Border}" />
-                        </Trigger>
-                        <Trigger Property="IsMouseOver" 
-                                 Value="True">
-                            <Setter Property="Background"
-                                    TargetName="PART_Border" 
-                                    Value="{StaticResource TextBox.MouseOver.Background}" />
-                            <Setter Property="BorderBrush" 
-                                    TargetName="PART_Border" 
-                                    Value="{StaticResource TextBox.MouseOver.Border}" />
+                                    Value="{DynamicResource TextBox.Disabled.Border}" />
                         </Trigger>
                         <Trigger Property="IsKeyboardFocused" 
                                  Value="True">
                             <Setter Property="Background"
                                     TargetName="PART_Border" 
-                                    Value="{StaticResource TextBox.Focus.Background}" />
+                                    Value="{DynamicResource TextBox.Focus.Background}" />
                             <Setter Property="BorderBrush"
                                     TargetName="PART_Border" 
-                                    Value="{StaticResource TextBox.Focus.Border}" />
+                                    Value="{DynamicResource TextBox.Focus.Border}" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>

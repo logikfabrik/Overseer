@@ -7,12 +7,12 @@
              xmlns:controls="clr-namespace:Logikfabrik.Overseer.WPF.Controls;assembly=Logikfabrik.Overseer.WPF"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
-    <StackPanel Margin="25">
+    <StackPanel>
         <controls:Icon Foreground="#FFFFFFFF" 
-                    Margin="5" 
-                    HorizontalAlignment="Left" 
-                    Width="50" 
-                    Height="50">
+                       Margin="5" 
+                       HorizontalAlignment="Left" 
+                       Width="50" 
+                       Height="50">
             <controls:Icon.Data>
                 <GeometryGroup>
                     <Geometry>F 1 M 308.194,190.55 C 273.398,164.038 222.033,170.666 192.208,205.463 164.04,241.916 169.011,293.281 203.807,319.793 238.603,347.961 289.969,341.333 318.137,304.88 347.961,270.084 342.99,218.718 308.194,190.55 Z</Geometry>
@@ -21,20 +21,20 @@
             </controls:Icon.Data>
         </controls:Icon>
         <TextBlock Text="AppVeyor" 
-                       Style="{StaticResource TextBlockHeading0DefaultStyle}" />
+                   Style="{StaticResource TextBlockHeading0DefaultStyle}" />
         <StackPanel Margin="0 0 0 20">
             <TextBlock Text="Connection Name" 
-                           Style="{StaticResource TextBlockDefaultStyle}" />
+                       Style="{StaticResource TextBlockDefaultStyle}" />
             <TextBox Text="{Binding Path=Name, Mode=TwoWay, ValidatesOnDataErrors=True}"
-                         Style="{StaticResource TextBoxDefaultStyle}" />
+                     Style="{StaticResource TextBoxDefaultStyle}" />
         </StackPanel>
         <StackPanel Margin="0 0 0 40">
             <TextBlock Text="Token" 
-                           Style="{StaticResource TextBlockDefaultStyle}" />
+                       Style="{StaticResource TextBlockDefaultStyle}" />
             <TextBox Text="{Binding Path=Token, Mode=TwoWay, ValidatesOnDataErrors=True}"
-                         Style="{StaticResource TextBoxDefaultStyle}" />
+                     Style="{StaticResource TextBoxDefaultStyle}" />
             <TextBlock Style="{StaticResource TextBlockDetailDefaultStyle}">
-                    You create your token at <Hyperlink NavigateUri="https://ci.appveyor.com" extensions:HyperlinkExtensions.IsExternal="True">appveyor.com</Hyperlink>
+                You create your token at <Hyperlink NavigateUri="https://ci.appveyor.com" extensions:HyperlinkExtensions.IsExternal="True">appveyor.com</Hyperlink>
             </TextBlock>
         </StackPanel>
     </StackPanel>
