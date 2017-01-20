@@ -3,15 +3,17 @@
 
     <SolidColorBrush x:Key="Control.Focus" 
                      Color="#FFAAFF00" />
+    <SolidColorBrush x:Key="Control.Error" 
+                     Color="#FFFF3300" />
     
     <SolidColorBrush x:Key="Window.Background" 
                      Color="#FF444444" />
-
+    
     <SolidColorBrush x:Key="TextBlock.Foreground" 
                      Color="#FFFFFFFF" />
 
     <SolidColorBrush x:Key="Button.Defaulted.Background" 
-                     Color="#FF444444" />
+                     Color="Transparent" />
     <SolidColorBrush x:Key="Button.Defaulted.Foreground" 
                      Color="#FFFFFFFF" />
     <SolidColorBrush x:Key="Button.Defaulted.Border" 
@@ -39,9 +41,9 @@
                      Color="#FF525252" />
 
     <SolidColorBrush x:Key="ScrollBar.Static.Thumb" 
-                     Color="#FF595959" />
+                     Color="#FF525252" />
     <SolidColorBrush x:Key="ScrollBar.MouseOver.Thumb" 
-                     Color="#FF595959" />
+                     Color="#FF525252" />
     <SolidColorBrush x:Key="ScrollBar.Pressed.Thumb" 
                      Color="#FFAAFF00" />
 
@@ -50,21 +52,72 @@
     <SolidColorBrush x:Key="TextBox.Static.Foreground" 
                      Color="#FF000000" />
     <SolidColorBrush x:Key="TextBox.Static.Border" 
-                     Opacity="0" />
+                     Color="Transparent" />
     
     <SolidColorBrush x:Key="TextBox.Focus.Background" 
                      Color="#FFFFFFFF" />
     <SolidColorBrush x:Key="TextBox.Focus.Foreground" 
                      Color="#FF000000" />
     <SolidColorBrush x:Key="TextBox.Focus.Border" 
-                     Color="#FFAAFF00" 
-                     Opacity="1" />
+                     Color="#FFAAFF00" />
     
     <SolidColorBrush x:Key="TextBox.Disabled.Background" 
                      Color="#FFFFFFFF" />
     <SolidColorBrush x:Key="TextBox.Disabled.Foreground" 
                      Color="#FF000000" />
     <SolidColorBrush x:Key="TextBox.Disabled.Border" 
-                     Opacity="0" />
+                     Color="Transparent" />
 
+    <SolidColorBrush x:Key="ToggleButton.Static.Background" 
+                     Color="Transparent" />
+    <SolidColorBrush x:Key="ToggleButton.Static.Foreground" 
+                     Color="#FFFFFFFF" />
+    <SolidColorBrush x:Key="ToggleButton.Static.Border" 
+                     Color="#FF595959" />
+
+    <SolidColorBrush x:Key="ToggleButton.Checked.Background" 
+                     Color="#FF595959" />
+    <SolidColorBrush x:Key="ToggleButton.Checked.Foreground" 
+                     Color="#FFFFFFFF" />
+    <SolidColorBrush x:Key="ToggleButton.Checked.Border" 
+                     Color="#FF595959" />
+
+    <SolidColorBrush x:Key="ToggleButton.Pressed.Background" 
+                     Color="#FFAAFF00" />
+    <SolidColorBrush x:Key="ToggleButton.Pressed.Foreground" 
+                     Color="#FFFFFFFF" />
+    <SolidColorBrush x:Key="ToggleButton.Pressed.Border" 
+                     Color="#FFAAFF00" />
+
+    <SolidColorBrush x:Key="ToggleButton.Disabled.Background" 
+                     Color="Transparent" />
+    <SolidColorBrush x:Key="ToggleButton.Disabled.Foreground" 
+                     Color="#FF666666" />
+    <SolidColorBrush x:Key="ToggleButton.Disabled.Border" 
+                     Color="#FF595959" />
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+    <SolidColorBrush x:Key="Status.InProgress" 
+                     Color="#FF5500FF" />
+    <SolidColorBrush x:Key="Status.Succeeded" 
+                     Color="#FFAAFF00" />
+    <SolidColorBrush x:Key="Status.Stopped" 
+                     Color="#FFFFFF00" />
+    <SolidColorBrush x:Key="Status.Failed" 
+                     Color="#FFFF3300" />
+    
 </ResourceDictionary>

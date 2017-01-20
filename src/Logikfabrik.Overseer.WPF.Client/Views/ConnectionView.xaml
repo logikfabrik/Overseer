@@ -2,190 +2,44 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:cal="http://www.caliburnproject.org"
-             xmlns:c="clr-namespace:Logikfabrik.Overseer.WPF.Controls;assembly=Logikfabrik.Overseer.WPF"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             mc:Ignorable="d" d:DesignHeight="300" d:DesignWidth="300">
-    <UserControl.Resources>
-        <Style x:Key="TextBlockStyle"
-               TargetType="{x:Type TextBlock}">
-            <Setter Property="Foreground" 
-                    Value="#FFFFFFFF" />
-            <Setter Property="TextWrapping" 
-                    Value="Wrap" />
-        </Style>
-        <Style x:Key="SettingsNameTextBlockStyle" 
-               BasedOn="{StaticResource TextBlockStyle}" 
-               TargetType="{x:Type TextBlock}">
-            <Setter Property="FontSize" 
-                    Value="16" />
-            <Setter Property="FontWeight" 
-                    Value="Bold" />
-            <Setter Property="TextAlignment" 
-                    Value="Center" />
-            <Setter Property="Margin" 
-                    Value="0 5" />
-        </Style>
-        <Style x:Key="ConnectionBorderStyle"
-               TargetType="{x:Type Border}">
-            <Setter Property="BorderBrush" 
-                    Value="#FF595959" />
-            <Setter Property="Background" 
-                    Value="#FF525252" />
-        </Style>
-        <Style x:Key="ConnectionHeaderBorderStyle"
-               BasedOn="{StaticResource ConnectionBorderStyle}"
-               TargetType="{x:Type Border}">
-            <Setter Property="BorderThickness" 
-                    Value="1" />
-        </Style>
-        <Style x:Key="ConnectionContentBorderStyle"
-               BasedOn="{StaticResource ConnectionBorderStyle}"
-               TargetType="{x:Type Border}">
-            <Setter Property="BorderThickness" 
-                    Value="1 0 1 1" />
-            <Setter Property="Padding" 
-                    Value="10 10 10 0" />
-        </Style>
-    </UserControl.Resources>
+             mc:Ignorable="d" 
+             d:DesignHeight="300" 
+             d:DesignWidth="300">
     <Expander IsEnabled="{Binding IsNotBusy, Mode=OneWay}">
         <Expander.Style>
             <Style TargetType="{x:Type Expander}">
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="{x:Type Expander}">
-                            <StackPanel>
-                                <ToggleButton IsChecked="{Binding IsExpanded, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}" >
-                                    <ToggleButton.Resources>
-                                        <Style TargetType="{x:Type c:Icon}">
-                                            <Setter Property="Height" 
-                                                    Value="10" />
-                                            <Setter Property="Width" 
-                                                    Value="10" />
-                                            <Setter Property="Margin" 
-                                                    Value="10 0" />
-                                            <Setter Property="Foreground" 
-                                                    Value="#FFFFFFFF" />
+                            <StackPanel Background="#FF525252">
+                                <ToggleButton Style="{StaticResource ToggleButtonDefaultStyle}" 
+                                              FontSize="18"
+                                              IsChecked="{Binding IsExpanded, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
+                                              Content="{Binding SettingsName, Mode=OneWay}" />
+                                <Grid>
+                                    <Grid.Resources>
+                                        <Style TargetType="{x:Type Button}" 
+                                               BasedOn="{StaticResource ButtonDefaultStyle}">
+                                            <Setter Property="Background" 
+                                                    Value="#FF595959" />
+                                            <Setter Property="BorderBrush" 
+                                                    Value="#FF595959" />
                                         </Style>
-                                    </ToggleButton.Resources>
-                                    <ToggleButton.Style>
-                                        <Style TargetType="{x:Type ToggleButton}">
-                                            <Setter Property="Template">
-                                                <Setter.Value>
-                                                    <ControlTemplate TargetType="{x:Type ToggleButton}">
-                                                        <Border Style="{StaticResource ConnectionHeaderBorderStyle}">
-                                                            <Grid>
-                                                                <Grid.ColumnDefinitions>
-                                                                    <ColumnDefinition Width="Auto" />
-                                                                    <ColumnDefinition Width="*" />
-                                                                    <ColumnDefinition Width="Auto" />
-                                                                </Grid.ColumnDefinitions>
-                                                                <c:ProgressBar Grid.Column="0"
-                                                                               Grid.ColumnSpan="3" 
-                                                                               VerticalAlignment="Bottom"
-                                                                               Visibility="{Binding IsBusy, Mode=OneWay, Converter={StaticResource BooleanToVisibleOrHiddenConverter}}" />
-                                                                <c:Icon Grid.Column="0"
-                                                                        x:Name="PART_Icon"
-                                                                        Data="{StaticResource IconArrowUp}" />
-                                                                <TextBlock Grid.Column="1" 
-                                                                           Style="{StaticResource SettingsNameTextBlockStyle}"
-                                                                           Text="{Binding SettingsName, Mode=OneTime}" />
-                                                                <StackPanel Grid.Column="2" 
-                                                                            VerticalAlignment="Center"
-                                                                            Margin="5 0">
-                                                                    <ToggleButton>
-                                                                        <ToggleButton.Resources>
-                                                                            <Style TargetType="{x:Type Button}">
-                                                                                <Setter Property="Template">
-                                                                                    <Setter.Value>
-                                                                                        <ControlTemplate TargetType="{x:Type Button}">
-                                                                                            <Border Background="#00FFFFFF" 
-                                                                                                    Padding="5">
-                                                                                                <ContentPresenter Focusable="False" />
-                                                                                            </Border>
-                                                                                        </ControlTemplate>
-                                                                                    </Setter.Value>
-                                                                                </Setter>
-                                                                            </Style>
-                                                                            <Style TargetType="{x:Type TextBlock}">
-                                                                                <Setter Property="Foreground" 
-                                                                                        Value="#FFFFFFFF" />
-                                                                                <Setter Property="FontSize" 
-                                                                                        Value="12" />
-                                                                            </Style>
-                                                                        </ToggleButton.Resources>
-                                                                        <ToggleButton.Style>
-                                                                            <Style TargetType="{x:Type ToggleButton}">
-                                                                                <Setter Property="Focusable" 
-                                                                                        Value="False" />
-                                                                                <Setter Property="Template">
-                                                                                    <Setter.Value>
-                                                                                        <ControlTemplate TargetType="{x:Type ToggleButton}">
-                                                                                            <StackPanel>
-                                                                                                <Border Background="#00FFFFFF" 
-                                                                                                        Padding="5">
-                                                                                                    <c:Icon Data="{StaticResource IconMenu}" 
-                                                                                                            Margin="0" />
-                                                                                                </Border>
-                                                                                                <Popup AllowsTransparency="True"
-                                                                                                       Placement="Left"
-                                                                                                       IsOpen="{Binding IsChecked, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
-                                                                                                       StaysOpen="False">
-                                                                                                    <Border MinWidth="135" 
-                                                                                                            Background="#FF444444"
-                                                                                                            Margin="10"
-                                                                                                            Padding="5"
-                                                                                                            BorderThickness="1"
-                                                                                                            BorderBrush="#FF595959">
-                                                                                                        <Border.Effect>
-                                                                                                            <DropShadowEffect Color="#FF000000" 
-                                                                                                                              ShadowDepth="2" 
-                                                                                                                              BlurRadius="2" 
-                                                                                                                              Opacity="0.2" />
-                                                                                                        </Border.Effect>
-                                                                                                        <StackPanel>
-                                                                                                            <Button cal:Message.Attach="Edit">
-                                                                                                                <TextBlock Text="Edit" />
-                                                                                                            </Button>
-                                                                                                            <Rectangle Height="1" 
-                                                                                                                       Fill="#FF595959" />
-                                                                                                            <Button cal:Message.Attach="Remove">
-                                                                                                                <TextBlock Text="Remove" />
-                                                                                                            </Button>
-                                                                                                        </StackPanel>
-                                                                                                    </Border>
-                                                                                                </Popup>
-                                                                                            </StackPanel>
-                                                                                        </ControlTemplate>
-                                                                                    </Setter.Value>
-                                                                                </Setter>
-                                                                            </Style>
-                                                                        </ToggleButton.Style>
-                                                                    </ToggleButton>
-                                                                </StackPanel>
-                                                            </Grid>
-                                                        </Border>
-                                                        <ControlTemplate.Triggers>
-                                                            <Trigger Property="IsChecked" 
-                                                                     Value="True">
-                                                                <Setter TargetName="PART_Icon" 
-                                                                        Property="Data" 
-                                                                        Value="{StaticResource IconArrowDown}" />
-                                                            </Trigger>
-                                                            <Trigger Property="IsEnabled" 
-                                                                     Value="False">
-                                                                <Setter TargetName="PART_Icon" 
-                                                                        Property="Visibility" 
-                                                                        Value="Hidden" />
-                                                            </Trigger>
-                                                        </ControlTemplate.Triggers>
-                                                    </ControlTemplate>
-                                                </Setter.Value>
-                                            </Setter>
-                                        </Style>
-                                    </ToggleButton.Style>
-                                </ToggleButton>
-                                <Border x:Name="PART_Content" Style="{StaticResource ConnectionContentBorderStyle}">
+                                    </Grid.Resources>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <Button cal:Message.Attach="Edit"
+                                            Content="Edit" />
+                                    <Button cal:Message.Attach="Remove"
+                                            Grid.Column="1"
+                                            Content="Remove" />
+                                </Grid>
+                                <Border x:Name="PART_Content"
+                                        Padding="10 10 10 0">
                                     <ItemsControl Focusable="False" 
                                                   ItemsSource="{Binding Projects, Mode=OneWay}">
                                         <ItemsControl.ItemContainerStyle>

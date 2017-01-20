@@ -4,13 +4,14 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
+             d:DesignHeight="300" 
+             d:DesignWidth="300">
     <ScrollViewer Style="{StaticResource ScrollViewerDefaultStyle}">
         <StackPanel Margin="25">
-            <ContentControl HorizontalAlignment="Stretch"
-                        VerticalAlignment="Stretch"
-                        Focusable="False"
-                        x:Name="Settings" />
+            <ContentControl x:Name="Settings"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Stretch"
+                            Focusable="False" />
             <StackPanel Orientation="Horizontal">
                 <Button x:Name="EditConnection" 
                         Content="OK" 
@@ -23,5 +24,4 @@
             </StackPanel>
         </StackPanel>
     </ScrollViewer>
-
 </UserControl>

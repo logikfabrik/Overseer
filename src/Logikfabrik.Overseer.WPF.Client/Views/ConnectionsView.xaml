@@ -5,19 +5,21 @@
              xmlns:c="clr-namespace:Logikfabrik.Overseer.WPF.Controls;assembly=Logikfabrik.Overseer.WPF"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             mc:Ignorable="d" d:DesignHeight="500" d:DesignWidth="500">
+             mc:Ignorable="d" 
+             d:DesignHeight="500" 
+             d:DesignWidth="500">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        <ScrollViewer Grid.Row="0"
-                      Style="{StaticResource ScrollViewerDefaultStyle}">
+        <ScrollViewer Style="{StaticResource ScrollViewerDefaultStyle}">
             <ItemsControl Focusable="False" 
-                          ItemsSource="{Binding Connections, Mode=OneTime}"
+                          ItemsSource="{Binding Connections, Mode=OneWay}"
                           Margin="10 10 5 10">
                 <ItemsControl.ItemContainerStyle>
                     <Style>
+                        <!-- ReSharper disable once Xaml.RedundantPropertyTypeQualifier -->
                         <Setter Property="FrameworkElement.Margin" 
                                 Value="0 0 0 5" />
                     </Style>

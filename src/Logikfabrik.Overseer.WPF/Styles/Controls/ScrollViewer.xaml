@@ -28,7 +28,7 @@
                                                 Margin="{TemplateBinding Padding}" />
                         <Rectangle Grid.Row="0" 
                                    Grid.Column="0"
-                                   Height="20" 
+                                   Height="10" 
                                    VerticalAlignment="Top">
                             <Rectangle.Fill>
                                 <LinearGradientBrush StartPoint="0,0" 
@@ -42,7 +42,7 @@
                         </Rectangle>
                         <Rectangle Grid.Row="0" 
                                    Grid.Column="0" 
-                                   Height="20" 
+                                   Height="10" 
                                    VerticalAlignment="Bottom">
                             <Rectangle.Fill>
                                 <LinearGradientBrush StartPoint="0,0" 

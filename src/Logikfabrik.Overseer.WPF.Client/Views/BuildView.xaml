@@ -4,7 +4,9 @@
              xmlns:cal="http://www.caliburnproject.org"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             mc:Ignorable="d" d:DesignHeight="300" d:DesignWidth="300">
+             mc:Ignorable="d" 
+             d:DesignHeight="300" 
+             d:DesignWidth="300">
     <UserControl.Resources>
         <SolidColorBrush x:Key="BuildBorder.InProgress.Border" 
                          Color="#FF5500FF" />
@@ -87,9 +89,10 @@
             <TextBlock x:Name="Message"
                        Style="{StaticResource MessageTextBlockStyle}" />
             <ItemsControl Focusable="False" 
-                          ItemsSource="{Binding Changes}">
+                          ItemsSource="{Binding Changes, Mode=OneWay}">
                 <ItemsControl.ItemContainerStyle>
                     <Style>
+                        <!-- ReSharper disable once Xaml.RedundantPropertyTypeQualifier -->
                         <Setter Property="FrameworkElement.Margin" 
                                 Value="0 0 0 10" />
                     </Style>

@@ -43,9 +43,16 @@
                                           HorizontalScrollBarVisibility="Hidden" 
                                           VerticalScrollBarVisibility="Hidden" />
                         </Border>
-                        <TextBlock Style="{StaticResource TextBlockErrorDetailDefaultStyle}" 
-                                   Text="{Binding (Validation.Errors)[0].ErrorContent, RelativeSource={RelativeSource TemplatedParent}}"
-                                   Visibility="{Binding (Validation.HasError), Converter={StaticResource BooleanToVisibleOrCollapsedConverter}, RelativeSource={RelativeSource TemplatedParent}}" />
+                        <ItemsControl ItemsSource="{Binding (Validation.Errors), Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate DataType="{x:Type ValidationError}">
+                                    <TextBlock Style="{StaticResource TextBlockDefaultStyle}"
+                                               FontSize="10"
+                                               Foreground="{DynamicResource Control.Error}"
+                                               Text="{Binding ErrorContent, Mode=OneWay}" />
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
                     </StackPanel>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsEnabled" 

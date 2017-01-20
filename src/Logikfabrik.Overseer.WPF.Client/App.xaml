@@ -15,6 +15,7 @@
                 <ResourceDictionary Source="pack://application:,,,/Logikfabrik.Overseer.WPF;component/Styles/Controls/TextBox.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/Logikfabrik.Overseer.WPF;component/Styles/Controls/ScrollBar.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/Logikfabrik.Overseer.WPF;component/Styles/Controls/ScrollViewer.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/Logikfabrik.Overseer.WPF;component/Styles/Controls/ToggleButton.xaml" />
                 <ResourceDictionary>
                     <client:AppBootstrapper x:Key="Bootstrapper" />
                 </ResourceDictionary>
