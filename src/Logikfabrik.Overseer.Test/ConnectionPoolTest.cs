@@ -2,7 +2,7 @@
 //   Copyright (c) 2016 anton(at)logikfabrik.se. Licensed under the MIT license.
 // </copyright>
 
-namespace Logikfabrik.Overseer.Test.Labs
+namespace Logikfabrik.Overseer.Test
 {
     using System;
     using System.Linq;

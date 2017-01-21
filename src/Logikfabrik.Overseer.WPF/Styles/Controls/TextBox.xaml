@@ -1,77 +1,56 @@
-﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="../Resources/ConverterResources.xaml" />
+        <ResourceDictionary Source="../Resources/Converters.xaml" />
         <ResourceDictionary Source="TextBlock.xaml" />
     </ResourceDictionary.MergedDictionaries>
-    <Style x:Key="TextBoxDefaultStyle" 
-           TargetType="{x:Type TextBox}">
-        <Setter Property="FocusVisualStyle" 
-                Value="{x:Null}" />
-        <Setter Property="Background" 
-                Value="{DynamicResource TextBox.Static.Background}" />
-        <Setter Property="Foreground" 
-                Value="{DynamicResource TextBox.Static.Foreground}" />
-        <Setter Property="BorderBrush" 
-                Value="{DynamicResource TextBox.Static.Border}" />
-        <Setter Property="BorderThickness" 
-                Value="0 0 0 2" />
-        <Setter Property="KeyboardNavigation.TabNavigation" 
-                Value="None" />
-        <Setter Property="HorizontalContentAlignment" 
-                Value="Left" />
-        <Setter Property="AllowDrop" 
-                Value="True" />
-        <Setter Property="ScrollViewer.PanningMode" 
-                Value="VerticalFirst" />
-        <Setter Property="Stylus.IsFlicksEnabled" 
-                Value="False" />
-        <Setter Property="Padding" 
-                Value="10" />
-        <Setter Property="FontSize" 
-                Value="14" />
+    <Style x:Key="TextBoxDefaultStyle" TargetType="{x:Type TextBox}">
+        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+        <Setter Property="Background" Value="{DynamicResource TextBox.Static.Background}" />
+        <Setter Property="Foreground" Value="{DynamicResource TextBox.Static.Foreground}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource TextBox.Static.Border}" />
+        <Setter Property="BorderThickness" Value="0,0,0,2" />
+        <Setter Property="KeyboardNavigation.TabNavigation" Value="None" />
+        <Setter Property="HorizontalContentAlignment" Value="Left" />
+        <Setter Property="AllowDrop" Value="True" />
+        <Setter Property="ScrollViewer.PanningMode" Value="VerticalFirst" />
+        <Setter Property="Stylus.IsFlicksEnabled" Value="False" />
+        <Setter Property="Padding" Value="10" />
+        <Setter Property="FontSize" Value="14" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type TextBox}">
                     <StackPanel>
-                        <Border x:Name="PART_Border" 
-                                BorderBrush="{TemplateBinding BorderBrush}" 
-                                BorderThickness="{TemplateBinding BorderThickness}" 
-                                Background="{TemplateBinding Background}">
-                            <ScrollViewer x:Name="PART_ContentHost" 
-                                          Focusable="False" 
-                                          HorizontalScrollBarVisibility="Hidden" 
-                                          VerticalScrollBarVisibility="Hidden" />
+                        <Border
+                            x:Name="PART_Border"
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}">
+                            <ScrollViewer
+                                x:Name="PART_ContentHost"
+                                Focusable="False"
+                                HorizontalScrollBarVisibility="Hidden"
+                                VerticalScrollBarVisibility="Hidden" />
                         </Border>
                         <ItemsControl ItemsSource="{Binding (Validation.Errors), Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}">
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate DataType="{x:Type ValidationError}">
-                                    <TextBlock Style="{StaticResource TextBlockDefaultStyle}"
-                                               FontSize="10"
-                                               Foreground="{DynamicResource Control.Error}"
-                                               Text="{Binding ErrorContent, Mode=OneWay}" />
+                                    <TextBlock
+                                        FontSize="10"
+                                        Foreground="{DynamicResource Control.Error}"
+                                        Style="{StaticResource TextBlockDefaultStyle}"
+                                        Text="{Binding ErrorContent, Mode=OneWay}" />
                                 </DataTemplate>
                             </ItemsControl.ItemTemplate>
                         </ItemsControl>
                     </StackPanel>
                     <ControlTemplate.Triggers>
-                        <Trigger Property="IsEnabled" 
-                                 Value="False">
-                            <Setter Property="Background"
-                                    TargetName="PART_Border" 
-                                    Value="{DynamicResource TextBox.Disabled.Background}" />
-                            <Setter Property="BorderBrush" 
-                                    TargetName="PART_Border" 
-                                    Value="{DynamicResource TextBox.Disabled.Border}" />
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter TargetName="PART_Border" Property="Background" Value="{DynamicResource TextBox.Disabled.Background}" />
+                            <Setter TargetName="PART_Border" Property="BorderBrush" Value="{DynamicResource TextBox.Disabled.Border}" />
                         </Trigger>
-                        <Trigger Property="IsKeyboardFocused" 
-                                 Value="True">
-                            <Setter Property="Background"
-                                    TargetName="PART_Border" 
-                                    Value="{DynamicResource TextBox.Focus.Background}" />
-                            <Setter Property="BorderBrush"
-                                    TargetName="PART_Border" 
-                                    Value="{DynamicResource TextBox.Focus.Border}" />
+                        <Trigger Property="IsKeyboardFocused" Value="True">
+                            <Setter TargetName="PART_Border" Property="Background" Value="{DynamicResource TextBox.Focus.Background}" />
+                            <Setter TargetName="PART_Border" Property="BorderBrush" Value="{DynamicResource TextBox.Focus.Border}" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>

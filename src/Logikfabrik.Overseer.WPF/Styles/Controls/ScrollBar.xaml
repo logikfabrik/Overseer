@@ -1,69 +1,51 @@
-﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="../Resources/FocusVisualResources.xaml" />
+        <ResourceDictionary Source="../Resources/FocusVisuals.xaml" />
     </ResourceDictionary.MergedDictionaries>
-    <Style x:Key="ScrollBarRepeatButtonDefaultStyle" 
-           TargetType="{x:Type RepeatButton}">
-        <Setter Property="OverridesDefaultStyle" 
-                Value="True" />
-        <Setter Property="Background" 
-                Value="Transparent" />
-        <Setter Property="Focusable" 
-                Value="False" />
-        <Setter Property="IsTabStop" 
-                Value="False" />
+    <Style x:Key="ScrollBarRepeatButtonDefaultStyle" TargetType="{x:Type RepeatButton}">
+        <Setter Property="OverridesDefaultStyle" Value="True" />
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Focusable" Value="False" />
+        <Setter Property="IsTabStop" Value="False" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type RepeatButton}">
-                    <Rectangle Fill="{TemplateBinding Background}" 
-                               Height="{TemplateBinding Height}" 
-                               Width="{TemplateBinding Width}" />
+                    <Rectangle
+                        Width="{TemplateBinding Width}"
+                        Height="{TemplateBinding Height}"
+                        Fill="{TemplateBinding Background}" />
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
     </Style>
-    <Style x:Key="ScrollBarThumbDefaultStyle" 
-           TargetType="{x:Type Thumb}">
-        <Setter Property="OverridesDefaultStyle" 
-                Value="True" />
-        <Setter Property="IsTabStop" 
-                Value="False" />
+    <Style x:Key="ScrollBarThumbDefaultStyle" TargetType="{x:Type Thumb}">
+        <Setter Property="OverridesDefaultStyle" Value="True" />
+        <Setter Property="IsTabStop" Value="False" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Thumb}">
-                    <Rectangle x:Name="Rectangle" 
-                               Fill="{DynamicResource ScrollBar.Static.Thumb}" 
-                               Height="{TemplateBinding Height}" 
-                               Width="{TemplateBinding Width}" />
+                    <Rectangle
+                        x:Name="Rectangle"
+                        Width="{TemplateBinding Width}"
+                        Height="{TemplateBinding Height}"
+                        Fill="{DynamicResource ScrollBar.Static.Thumb}" />
                     <ControlTemplate.Triggers>
-                        <Trigger Property="IsMouseOver" 
-                                 Value="True">
-                            <Setter Property="Fill" 
-                                    TargetName="Rectangle" 
-                                    Value="{DynamicResource ScrollBar.MouseOver.Thumb}" />
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="Rectangle" Property="Fill" Value="{DynamicResource ScrollBar.MouseOver.Thumb}" />
                         </Trigger>
-                        <Trigger Property="IsDragging" 
-                                 Value="True">
-                            <Setter Property="Fill" 
-                                    TargetName="Rectangle" 
-                                    Value="{DynamicResource ScrollBar.Pressed.Thumb}" />
+                        <Trigger Property="IsDragging" Value="True">
+                            <Setter TargetName="Rectangle" Property="Fill" Value="{DynamicResource ScrollBar.Pressed.Thumb}" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
     </Style>
-    <Style x:Key="ScrollBarDefaultStyle" 
-           TargetType="{x:Type ScrollBar}">
-        <Setter Property="Stylus.IsPressAndHoldEnabled" 
-                Value="False" />
-        <Setter Property="Stylus.IsFlicksEnabled" 
-                Value="False" />
-        <Setter Property="Width" 
-                Value="5" />
-        <Setter Property="MinWidth" 
-                Value="5" />
+    <Style x:Key="ScrollBarDefaultStyle" TargetType="{x:Type ScrollBar}">
+        <Setter Property="Stylus.IsPressAndHoldEnabled" Value="False" />
+        <Setter Property="Stylus.IsFlicksEnabled" Value="False" />
+        <Setter Property="Width" Value="5" />
+        <Setter Property="MinWidth" Value="5" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ScrollBar}">
@@ -71,16 +53,15 @@
                         <Grid.RowDefinitions>
                             <RowDefinition Height="*" />
                         </Grid.RowDefinitions>
-                        <Track x:Name="PART_Track" 
-                               IsDirectionReversed="True" 
-                               IsEnabled="{TemplateBinding IsMouseOver}">
+                        <Track
+                            x:Name="PART_Track"
+                            IsDirectionReversed="True"
+                            IsEnabled="{TemplateBinding IsMouseOver}">
                             <Track.DecreaseRepeatButton>
-                                <RepeatButton Command="{x:Static ScrollBar.PageUpCommand}" 
-                                              Style="{StaticResource ScrollBarRepeatButtonDefaultStyle}" />
+                                <RepeatButton Command="{x:Static ScrollBar.PageUpCommand}" Style="{StaticResource ScrollBarRepeatButtonDefaultStyle}" />
                             </Track.DecreaseRepeatButton>
                             <Track.IncreaseRepeatButton>
-                                <RepeatButton Command="{x:Static ScrollBar.PageDownCommand}" 
-                                              Style="{StaticResource ScrollBarRepeatButtonDefaultStyle}" />
+                                <RepeatButton Command="{x:Static ScrollBar.PageDownCommand}" Style="{StaticResource ScrollBarRepeatButtonDefaultStyle}" />
                             </Track.IncreaseRepeatButton>
                             <Track.Thumb>
                                 <Thumb Style="{StaticResource ScrollBarThumbDefaultStyle}" />
@@ -91,16 +72,11 @@
             </Setter.Value>
         </Setter>
         <Style.Triggers>
-            <Trigger Property="Orientation" 
-                     Value="Horizontal">
-                <Setter Property="Width" 
-                        Value="Auto" />
-                <Setter Property="MinWidth" 
-                        Value="0" />
-                <Setter Property="Height" 
-                        Value="10" />
-                <Setter Property="MinHeight" 
-                        Value="10" />
+            <Trigger Property="Orientation" Value="Horizontal">
+                <Setter Property="Width" Value="Auto" />
+                <Setter Property="MinWidth" Value="0" />
+                <Setter Property="Height" Value="10" />
+                <Setter Property="MinHeight" Value="10" />
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="{x:Type ScrollBar}">
@@ -108,15 +84,12 @@
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*" />
                                 </Grid.ColumnDefinitions>
-                                <Track x:Name="PART_Track"
-                                       IsEnabled="{TemplateBinding IsMouseOver}">
+                                <Track x:Name="PART_Track" IsEnabled="{TemplateBinding IsMouseOver}">
                                     <Track.DecreaseRepeatButton>
-                                        <RepeatButton Command="{x:Static ScrollBar.PageLeftCommand}" 
-                                                      Style="{StaticResource ScrollBarRepeatButtonDefaultStyle}" />
+                                        <RepeatButton Command="{x:Static ScrollBar.PageLeftCommand}" Style="{StaticResource ScrollBarRepeatButtonDefaultStyle}" />
                                     </Track.DecreaseRepeatButton>
                                     <Track.IncreaseRepeatButton>
-                                        <RepeatButton Command="{x:Static ScrollBar.PageRightCommand}" 
-                                                      Style="{StaticResource ScrollBarRepeatButtonDefaultStyle}" />
+                                        <RepeatButton Command="{x:Static ScrollBar.PageRightCommand}" Style="{StaticResource ScrollBarRepeatButtonDefaultStyle}" />
                                     </Track.IncreaseRepeatButton>
                                     <Track.Thumb>
                                         <Thumb Style="{StaticResource ScrollBarThumbDefaultStyle}" />

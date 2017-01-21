@@ -41,6 +41,14 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         public abstract ConnectionSettingsViewModel Settings { get; }
 
         /// <summary>
+        /// Gets the view name.
+        /// </summary>
+        /// <value>
+        /// The view name.
+        /// </value>
+        public override string ViewName { get; } = "Add connection";
+
+        /// <summary>
         /// Add the connection.
         /// </summary>
         public void AddConnection()

@@ -1,95 +1,85 @@
-﻿<UserControl x:Class="Logikfabrik.Overseer.WPF.Client.Views.BuildNotificationView"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             Height="150" 
-             Width="400">
+﻿<UserControl
+    x:Class="Logikfabrik.Overseer.WPF.Client.Views.BuildNotificationView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Width="400"
+    Height="150">
     <UserControl.Resources>
-        <SolidColorBrush x:Key="BuildBorder.InProgress.Border" 
-                         Color="#FF5500FF" />
-        <SolidColorBrush x:Key="BuildBorder.Succeeded.Border" 
-                         Color="#FFAAFF00" />
-        <SolidColorBrush x:Key="BuildBorder.Stopped.Border" 
-                         Color="#FFFFFF00" />
-        <SolidColorBrush x:Key="BuildBorder.Failed.Border" 
-                         Color="#FFFF3300" />
-        <Style x:Key="BuildBorderStyle" 
-               TargetType="{x:Type Border}">
-            <Setter Property="BorderThickness" 
-                    Value="5 0 0 0" />
-            <Setter Property="Margin" 
-                    Value="10" />
+        <SolidColorBrush x:Key="BuildBorder.InProgress.Border" Color="#FF5500FF" />
+        <SolidColorBrush x:Key="BuildBorder.Succeeded.Border" Color="#FFAAFF00" />
+        <SolidColorBrush x:Key="BuildBorder.Stopped.Border" Color="#FFFFFF00" />
+        <SolidColorBrush x:Key="BuildBorder.Failed.Border" Color="#FFFF3300" />
+        <Style x:Key="BuildBorderStyle" TargetType="{x:Type Border}">
+            <Setter Property="BorderThickness" Value="5,0,0,0" />
+            <Setter Property="Margin" Value="10" />
             <Setter Property="Background" Value="#FF444444" />
             <Setter Property="Effect">
                 <Setter.Value>
-                    <DropShadowEffect Color="#FF000000" 
-                                      ShadowDepth="2" 
-                                      BlurRadius="2" 
-                                      Opacity="0.2" />
+                    <DropShadowEffect
+                        BlurRadius="2"
+                        Opacity="0.2"
+                        ShadowDepth="2"
+                        Color="#FF000000" />
                 </Setter.Value>
             </Setter>
         </Style>
-        <!-- ReSharper disable once Xaml.RedundantResource -->
-        <Style x:Key="BuildSucceededBorderStyle" 
-               BasedOn="{StaticResource BuildBorderStyle}"
-               TargetType="{x:Type Border}">
-            <Setter Property="BorderBrush" 
-                    Value="{StaticResource BuildBorder.Succeeded.Border}" />
+        <!--  ReSharper disable once Xaml.RedundantResource  -->
+        <Style
+            x:Key="BuildSucceededBorderStyle"
+            BasedOn="{StaticResource BuildBorderStyle}"
+            TargetType="{x:Type Border}">
+            <Setter Property="BorderBrush" Value="{StaticResource BuildBorder.Succeeded.Border}" />
         </Style>
-        <!-- ReSharper disable once Xaml.RedundantResource -->
-        <Style x:Key="BuildInProgressBorderStyle" 
-               BasedOn="{StaticResource BuildBorderStyle}"
-               TargetType="{x:Type Border}">
-            <Setter Property="BorderBrush" 
-                    Value="{StaticResource BuildBorder.InProgress.Border}" />
+        <!--  ReSharper disable once Xaml.RedundantResource  -->
+        <Style
+            x:Key="BuildInProgressBorderStyle"
+            BasedOn="{StaticResource BuildBorderStyle}"
+            TargetType="{x:Type Border}">
+            <Setter Property="BorderBrush" Value="{StaticResource BuildBorder.InProgress.Border}" />
         </Style>
-        <!-- ReSharper disable once Xaml.RedundantResource -->
-        <Style x:Key="BuildFailedBorderStyle" 
-               BasedOn="{StaticResource BuildBorderStyle}"
-               TargetType="{x:Type Border}">
-            <Setter Property="BorderBrush" 
-                    Value="{StaticResource BuildBorder.Failed.Border}" />
+        <!--  ReSharper disable once Xaml.RedundantResource  -->
+        <Style
+            x:Key="BuildFailedBorderStyle"
+            BasedOn="{StaticResource BuildBorderStyle}"
+            TargetType="{x:Type Border}">
+            <Setter Property="BorderBrush" Value="{StaticResource BuildBorder.Failed.Border}" />
         </Style>
-        <!-- ReSharper disable once Xaml.RedundantResource -->
-        <Style x:Key="BuildStoppedBorderStyle" 
-               BasedOn="{StaticResource BuildBorderStyle}"
-               TargetType="{x:Type Border}">
-            <Setter Property="BorderBrush" 
-                    Value="{StaticResource BuildBorder.Stopped.Border}" />
+        <!--  ReSharper disable once Xaml.RedundantResource  -->
+        <Style
+            x:Key="BuildStoppedBorderStyle"
+            BasedOn="{StaticResource BuildBorderStyle}"
+            TargetType="{x:Type Border}">
+            <Setter Property="BorderBrush" Value="{StaticResource BuildBorder.Stopped.Border}" />
         </Style>
-        <Style x:Key="TextBlockStyle"
-               TargetType="{x:Type TextBlock}">
-            <Setter Property="Foreground" 
-                    Value="#FFFFFFFF" />
-            <Setter Property="TextWrapping" 
-                    Value="Wrap" />
+        <Style x:Key="TextBlockStyle" TargetType="{x:Type TextBlock}">
+            <Setter Property="Foreground" Value="#FFFFFFFF" />
+            <Setter Property="TextWrapping" Value="Wrap" />
         </Style>
-        <Style x:Key="BuildNameTextBlockStyle" 
-               BasedOn="{StaticResource TextBlockStyle}" 
-               TargetType="{x:Type TextBlock}">
-            <Setter Property="FontSize" 
-                    Value="16" />
-            <Setter Property="FontWeight" 
-                    Value="SemiBold" />
+        <Style
+            x:Key="BuildNameTextBlockStyle"
+            BasedOn="{StaticResource TextBlockStyle}"
+            TargetType="{x:Type TextBlock}">
+            <Setter Property="FontSize" Value="16" />
+            <Setter Property="FontWeight" Value="SemiBold" />
         </Style>
-        <Style x:Key="MessageTextBlockStyle" 
-               BasedOn="{StaticResource TextBlockStyle}" 
-               TargetType="{x:Type TextBlock}">
-            <Setter Property="FontSize" 
-                    Value="16" />
+        <Style
+            x:Key="MessageTextBlockStyle"
+            BasedOn="{StaticResource TextBlockStyle}"
+            TargetType="{x:Type TextBlock}">
+            <Setter Property="FontSize" Value="16" />
         </Style>
-        <Style x:Key="OverseerTextBlockStyle" 
-               BasedOn="{StaticResource TextBlockStyle}" 
-               TargetType="{x:Type TextBlock}">
-            <Setter Property="FontSize" 
-                    Value="10" />
-            <Setter Property="FontWeight" 
-                    Value="SemiBold" />
+        <Style
+            x:Key="OverseerTextBlockStyle"
+            BasedOn="{StaticResource TextBlockStyle}"
+            TargetType="{x:Type TextBlock}">
+            <Setter Property="FontSize" Value="10" />
+            <Setter Property="FontWeight" Value="SemiBold" />
         </Style>
     </UserControl.Resources>
     <Border>
         <Border.Style>
             <MultiBinding Converter="{StaticResource BuildStatusToStyleConverter}" ConverterParameter="Build{0}BorderStyle">
-                <Binding RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType=UserControl}"/>
+                <Binding RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType=UserControl}" />
                 <Binding Path="Status" />
             </MultiBinding>
         </Border.Style>
@@ -99,17 +89,12 @@
                 <RowDefinition Height="*" />
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
-            <StackPanel Grid.Row="0"
-                        Margin="20 10">
-                <TextBlock x:Name="BuildName" 
-                           Style="{StaticResource BuildNameTextBlockStyle}" />
-                <TextBlock x:Name="Message" 
-                           Style="{StaticResource MessageTextBlockStyle}" />
+            <StackPanel Grid.Row="0" Margin="20,10">
+                <TextBlock x:Name="BuildName" Style="{StaticResource BuildNameTextBlockStyle}" />
+                <TextBlock x:Name="Message" Style="{StaticResource MessageTextBlockStyle}" />
             </StackPanel>
-            <StackPanel Grid.Row="2"
-                        Margin="20 10">
-                <TextBlock Text="Overseer" 
-                           Style="{StaticResource OverseerTextBlockStyle}" />
+            <StackPanel Grid.Row="2" Margin="20,10">
+                <TextBlock Style="{StaticResource OverseerTextBlockStyle}" Text="Overseer" />
             </StackPanel>
         </Grid>
     </Border>

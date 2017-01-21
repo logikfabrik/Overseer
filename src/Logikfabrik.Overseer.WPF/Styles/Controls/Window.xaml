@@ -1,18 +1,10 @@
-﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-    <Style x:Key="WindowDefaultStyle" 
-           TargetType="{x:Type Window}">
-        <Setter Property="Width" 
-                Value="350" />
-        <Setter Property="MinWidth" 
-                Value="300" />
-        <Setter Property="Height" 
-                Value="650" />
-        <Setter Property="MinHeight" 
-                Value="400" />
-        <Setter Property="Background" 
-                Value="{DynamicResource Window.Background}"/>
-        <Setter Property="UseLayoutRounding" 
-                Value="True" />
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Style x:Key="WindowDefaultStyle" TargetType="{x:Type Window}">
+        <Setter Property="Width" Value="350" />
+        <Setter Property="MinWidth" Value="300" />
+        <Setter Property="Height" Value="650" />
+        <Setter Property="MinHeight" Value="400" />
+        <Setter Property="Background" Value="{DynamicResource Window.Background}" />
+        <Setter Property="UseLayoutRounding" Value="True" />
     </Style>
 </ResourceDictionary>
