@@ -5,6 +5,8 @@
 namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices.ViewModels
 {
     using Caliburn.Micro;
+    using EnsureThat;
+    using Factories;
     using Settings;
 
     /// <summary>
@@ -19,16 +21,18 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices.ViewModels
         /// </summary>
         /// <param name="eventAggregator">The event aggregator.</param>
         /// <param name="settingsRepository">The build provider settings repository.</param>
+        /// <param name="connectionSettingsFactory">The connection settings factory.</param>
         /// <param name="currentSettings">The current settings.</param>
-        public EditConnectionViewModel(IEventAggregator eventAggregator, IConnectionSettingsRepository settingsRepository, VSTeamServices.ConnectionSettings currentSettings)
+        public EditConnectionViewModel(IEventAggregator eventAggregator, IConnectionSettingsRepository settingsRepository, IConnectionSettingsViewModelFactory connectionSettingsFactory, VSTeamServices.ConnectionSettings currentSettings)
             : base(eventAggregator, settingsRepository, currentSettings)
         {
-            _settings = new ConnectionSettingsViewModel
-            {
-                Name = currentSettings.Name,
-                Url = currentSettings.Url,
-                Token = currentSettings.Token
-            };
+            Ensure.That(connectionSettingsFactory).IsNotNull();
+
+            _settings = connectionSettingsFactory.Create();
+
+            _settings.Name = currentSettings.Name;
+            _settings.Url = currentSettings.Url;
+            _settings.Token = currentSettings.Token;
         }
 
         /// <summary>

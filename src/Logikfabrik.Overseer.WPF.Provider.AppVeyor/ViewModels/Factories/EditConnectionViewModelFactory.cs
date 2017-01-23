@@ -40,7 +40,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor.ViewModels.Factories
         /// <returns>
         /// A view model.
         /// </returns>
-        EditConnectionViewModel<AppVeyor.ConnectionSettings> IEditConnectionViewModelFactory<AppVeyor.ConnectionSettings>.Create(Guid settingsId)
+        public EditConnectionViewModel<AppVeyor.ConnectionSettings> Create(Guid settingsId)
         {
             Ensure.That(settingsId).IsNotEmpty();
 

@@ -4,7 +4,10 @@
 
 namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices.ViewModels
 {
+    using System.Linq;
     using Caliburn.Micro;
+    using EnsureThat;
+    using Factories;
     using Settings;
 
     /// <summary>
@@ -19,13 +22,15 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices.ViewModels
         /// </summary>
         /// <param name="eventAggregator">The event aggregator.</param>
         /// <param name="settingsRepository">The settings repository.</param>
-        public AddConnectionViewModel(IEventAggregator eventAggregator, IConnectionSettingsRepository settingsRepository)
+        /// <param name="connectionSettingsFactory">The connection settings factory.</param>
+        public AddConnectionViewModel(IEventAggregator eventAggregator, IConnectionSettingsRepository settingsRepository, IConnectionSettingsViewModelFactory connectionSettingsFactory)
             : base(eventAggregator, settingsRepository)
         {
-            _settings = new ConnectionSettingsViewModel
-            {
-                Url = "https://"
-            };
+            Ensure.That(connectionSettingsFactory).IsNotNull();
+
+            _settings = connectionSettingsFactory.Create();
+
+            _settings.Url = "https://";
         }
 
         /// <summary>
@@ -48,7 +53,8 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices.ViewModels
             {
                 Name = _settings.Name,
                 Url = _settings.Url,
-                Token = _settings.Token
+                Token = _settings.Token,
+                ProjectsToMonitor = _settings.ProjectsToMonitor.Where(project => project.Monitor).Select(project => project.Id).ToArray()
             };
         }
     }

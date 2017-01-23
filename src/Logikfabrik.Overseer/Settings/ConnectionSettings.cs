@@ -19,6 +19,7 @@ namespace Logikfabrik.Overseer.Settings
         private readonly Lazy<IEnumerable<PropertyInfo>> _properties;
         private Guid _id;
         private string _name;
+        private string[] _projectsToMonitor;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ConnectionSettings" /> class.
@@ -68,6 +69,27 @@ namespace Logikfabrik.Overseer.Settings
                 Ensure.That(value).IsNotNullOrWhiteSpace();
 
                 _name = value;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the projects to monitor.
+        /// </summary>
+        /// <value>
+        /// The projects to monitor.
+        /// </value>
+        public string[] ProjectsToMonitor
+        {
+            get
+            {
+                return _projectsToMonitor;
+            }
+
+            set
+            {
+                Ensure.That(value).IsNotNull();
+
+                _projectsToMonitor = value;
             }
         }
 

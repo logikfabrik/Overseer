@@ -4,23 +4,37 @@
 
 namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices.ViewModels
 {
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading;
+    using System.Threading.Tasks;
+    using EnsureThat;
     using FluentValidation;
     using Validators;
+    using WPF.ViewModels;
+    using WPF.ViewModels.Factories;
 
     /// <summary>
     /// The <see cref="ConnectionSettingsViewModel" /> class.
     /// </summary>
     public class ConnectionSettingsViewModel : WPF.ViewModels.ConnectionSettingsViewModel
     {
+        private readonly IProjectToMonitorViewModelFactory _projectToMonitorFactory;
         private string _url;
         private string _token;
+        private IEnumerable<ProjectToMonitorViewModel> _projectsToMonitor;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ConnectionSettingsViewModel" /> class.
         /// </summary>
-        public ConnectionSettingsViewModel()
+        /// <param name="projectToMonitorFactory">The project to monitor factory.</param>
+        public ConnectionSettingsViewModel(IProjectToMonitorViewModelFactory projectToMonitorFactory)
         {
+            Ensure.That(projectToMonitorFactory).IsNotNull();
+
+            _projectToMonitorFactory = projectToMonitorFactory;
             Validator = new ConnectionSettingsViewModelValidator();
+            _projectsToMonitor = new ProjectToMonitorViewModel[] { };
         }
 
         /// <summary>
@@ -63,6 +77,8 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices.ViewModels
             }
         }
 
+        public IEnumerable<ProjectToMonitorViewModel> ProjectsToMonitor => _projectsToMonitor;
+
         /// <summary>
         /// Gets the validator.
         /// </summary>
@@ -70,5 +86,22 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices.ViewModels
         /// The validator.
         /// </value>
         public override IValidator Validator { get; }
+
+        public async Task GetProjectsAsync()
+        {
+            if (!Validator.Validate(this).IsValid)
+            {
+                return;
+            }
+
+            using (var provider = new BuildProvider(new ConnectionSettings { Url = _url, Token = _token }))
+            {
+                var projects = await provider.GetProjectsAsync(CancellationToken.None).ConfigureAwait(false);
+
+                _projectsToMonitor = projects.Select(project => _projectToMonitorFactory.Create(project, false));
+
+                NotifyOfPropertyChange(() => ProjectsToMonitor);
+            }
+        }
     }
 }
