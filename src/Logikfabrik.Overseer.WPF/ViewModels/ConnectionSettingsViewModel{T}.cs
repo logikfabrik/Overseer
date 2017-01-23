@@ -4,7 +4,7 @@
 
 namespace Logikfabrik.Overseer.WPF.ViewModels
 {
-    using System.Collections.Generic;
+    using System.Collections.ObjectModel;
     using System.ComponentModel;
     using System.Linq;
     using System.Threading;
@@ -23,7 +23,6 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         where T : ConnectionSettings
     {
         private readonly IProjectToMonitorViewModelFactory _projectToMonitorFactory;
-        private IEnumerable<ProjectToMonitorViewModel> _projectsToMonitor;
         private string _name;
 
         /// <summary>
@@ -35,7 +34,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             Ensure.That(projectToMonitorFactory).IsNotNull();
 
             _projectToMonitorFactory = projectToMonitorFactory;
-            _projectsToMonitor = new ProjectToMonitorViewModel[] { };
+            ProjectsToMonitor = new ObservableCollection<ProjectToMonitorViewModel>();
         }
 
         /// <summary>
@@ -72,7 +71,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// <value>
         /// The projects to monitor.
         /// </value>
-        public IEnumerable<ProjectToMonitorViewModel> ProjectsToMonitor => _projectsToMonitor;
+        public ObservableCollection<ProjectToMonitorViewModel> ProjectsToMonitor { get; private set; }
 
         /// <summary>
         /// Gets an error message indicating what is wrong with this object.
@@ -114,7 +113,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// </summary>
         /// <param name="current">The current settings.</param>
         /// <returns>The updated settings.</returns>
-        public abstract T GetSettings(T current);
+        public abstract T GetUpdatedSettings(T current);
 
         // TODO: Should be protected?
         public async Task GetProjectsAsync()
@@ -130,7 +129,8 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             {
                 var projects = await provider.GetProjectsAsync(CancellationToken.None).ConfigureAwait(false);
 
-                _projectsToMonitor = projects.Select(project => _projectToMonitorFactory.Create(project, false));
+                // TODO: Known issue; settings.ProjectsToMonitor is null/empty. Needs to be loaded.
+                ProjectsToMonitor = new ObservableCollection<ProjectToMonitorViewModel>(projects.Select(project => _projectToMonitorFactory.Create(project, settings.ProjectsToMonitor.Contains(project.Id))));
 
                 NotifyOfPropertyChange(() => ProjectsToMonitor);
             }

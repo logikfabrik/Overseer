@@ -95,7 +95,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices.ViewModels
         /// </summary>
         /// <param name="current">The current settings.</param>
         /// <returns>The updated settings.</returns>
-        public override ConnectionSettings GetSettings(ConnectionSettings current)
+        public override ConnectionSettings GetUpdatedSettings(ConnectionSettings current)
         {
             current.Name = Name;
             current.Url = Url;

@@ -62,7 +62,9 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
                 return;
             }
 
-            _settingsRepository.Update(Settings.GetSettings(_currentSettings));
+            var updatedSettings = Settings.GetUpdatedSettings(_currentSettings);
+
+            _settingsRepository.Update(updatedSettings);
 
             ViewConnections();
         }

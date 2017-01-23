@@ -76,7 +76,7 @@
     <Compile Include="Logging\LogService.cs" />
     <Compile Include="Settings\ConnectionSettings.cs" />
     <Compile Include="Settings\ConnectionSettingsRepository.cs" />
-    <Compile Include="Settings\Subscription{T}.cs" />
+    <Compile Include="Subscription{T}.cs" />
     <Compile Include="Settings\ConnectionSettingsSerializer.cs" />
     <Compile Include="Settings\ConnectionSettingsStore.cs" />
     <Compile Include="BuildStatus.cs" />
