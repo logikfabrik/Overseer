@@ -42,7 +42,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// <value>
         /// The settings.
         /// </value>
-        public abstract ConnectionSettingsViewModel Settings { get; }
+        public abstract ConnectionSettingsViewModel<T> Settings { get; }
 
         /// <summary>
         /// Gets the view name.
@@ -62,7 +62,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
                 return;
             }
 
-            _settingsRepository.Update(GetSettings(_currentSettings));
+            _settingsRepository.Update(Settings.GetSettings(_currentSettings));
 
             ViewConnections();
         }
@@ -76,14 +76,5 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
 
             _eventAggregator.PublishOnUIThread(message);
         }
-
-        /// <summary>
-        /// Gets the settings.
-        /// </summary>
-        /// <param name="currentSettings">The current settings.</param>
-        /// <returns>
-        /// The settings.
-        /// </returns>
-        protected abstract T GetSettings(T currentSettings);
     }
 }

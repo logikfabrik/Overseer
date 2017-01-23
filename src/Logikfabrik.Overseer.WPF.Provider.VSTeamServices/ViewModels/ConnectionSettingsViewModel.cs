@@ -4,37 +4,27 @@
 
 namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices.ViewModels
 {
-    using System.Collections.Generic;
     using System.Linq;
-    using System.Threading;
-    using System.Threading.Tasks;
-    using EnsureThat;
     using FluentValidation;
     using Validators;
-    using WPF.ViewModels;
     using WPF.ViewModels.Factories;
 
     /// <summary>
     /// The <see cref="ConnectionSettingsViewModel" /> class.
     /// </summary>
-    public class ConnectionSettingsViewModel : WPF.ViewModels.ConnectionSettingsViewModel
+    public class ConnectionSettingsViewModel : WPF.ViewModels.ConnectionSettingsViewModel<ConnectionSettings>
     {
-        private readonly IProjectToMonitorViewModelFactory _projectToMonitorFactory;
         private string _url;
         private string _token;
-        private IEnumerable<ProjectToMonitorViewModel> _projectsToMonitor;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ConnectionSettingsViewModel" /> class.
         /// </summary>
         /// <param name="projectToMonitorFactory">The project to monitor factory.</param>
         public ConnectionSettingsViewModel(IProjectToMonitorViewModelFactory projectToMonitorFactory)
+            : base(projectToMonitorFactory)
         {
-            Ensure.That(projectToMonitorFactory).IsNotNull();
-
-            _projectToMonitorFactory = projectToMonitorFactory;
             Validator = new ConnectionSettingsViewModelValidator();
-            _projectsToMonitor = new ProjectToMonitorViewModel[] { };
         }
 
         /// <summary>
@@ -77,8 +67,6 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices.ViewModels
             }
         }
 
-        public IEnumerable<ProjectToMonitorViewModel> ProjectsToMonitor => _projectsToMonitor;
-
         /// <summary>
         /// Gets the validator.
         /// </summary>
@@ -87,21 +75,34 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices.ViewModels
         /// </value>
         public override IValidator Validator { get; }
 
-        public async Task GetProjectsAsync()
+        /// <summary>
+        /// Gets the settings.
+        /// </summary>
+        /// <returns>The settings.</returns>
+        public override ConnectionSettings GetSettings()
         {
-            if (!Validator.Validate(this).IsValid)
+            return new ConnectionSettings
             {
-                return;
-            }
+                Name = Name,
+                Url = Url,
+                Token = Token,
+                ProjectsToMonitor = ProjectsToMonitor.Where(project => project.Monitor).Select(project => project.Id).ToArray()
+            };
+        }
 
-            using (var provider = new BuildProvider(new ConnectionSettings { Url = _url, Token = _token }))
-            {
-                var projects = await provider.GetProjectsAsync(CancellationToken.None).ConfigureAwait(false);
+        /// <summary>
+        /// Gets the updated settings.
+        /// </summary>
+        /// <param name="current">The current settings.</param>
+        /// <returns>The updated settings.</returns>
+        public override ConnectionSettings GetSettings(ConnectionSettings current)
+        {
+            current.Name = Name;
+            current.Url = Url;
+            current.Token = Token;
+            current.ProjectsToMonitor = ProjectsToMonitor.Where(project => project.Monitor).Select(project => project.Id).ToArray();
 
-                _projectsToMonitor = projects.Select(project => _projectToMonitorFactory.Create(project, false));
-
-                NotifyOfPropertyChange(() => ProjectsToMonitor);
-            }
+            return current;
         }
     }
 }

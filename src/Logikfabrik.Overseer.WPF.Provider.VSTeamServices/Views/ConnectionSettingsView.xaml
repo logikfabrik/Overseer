@@ -45,7 +45,7 @@
             </TextBlock>
         </StackPanel>
         <StackPanel Margin="0,0,0,20">
-            <Button x:Name="GetProjects" Content="Get projects" />
+            <Button x:Name="GetProjectsAsync" Content="Get projects" />
             <ItemsControl Focusable="False" ItemsSource="{Binding ProjectsToMonitor, Mode=OneWay}">
                 <ItemsControl.ItemContainerStyle>
                     <Style>

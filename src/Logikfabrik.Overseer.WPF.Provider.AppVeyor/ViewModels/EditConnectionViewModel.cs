@@ -5,6 +5,8 @@
 namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor.ViewModels
 {
     using Caliburn.Micro;
+    using EnsureThat;
+    using Factories;
     using Settings;
 
     /// <summary>
@@ -19,15 +21,17 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor.ViewModels
         /// </summary>
         /// <param name="eventAggregator">The event aggregator.</param>
         /// <param name="settingsRepository">The build provider settings repository.</param>
+        /// <param name="connectionSettingsFactory">The connection settings factory.</param>
         /// <param name="currentSettings">The current settings.</param>
-        public EditConnectionViewModel(IEventAggregator eventAggregator, IConnectionSettingsRepository settingsRepository, AppVeyor.ConnectionSettings currentSettings)
+        public EditConnectionViewModel(IEventAggregator eventAggregator, IConnectionSettingsRepository settingsRepository, IConnectionSettingsViewModelFactory connectionSettingsFactory, AppVeyor.ConnectionSettings currentSettings)
             : base(eventAggregator, settingsRepository, currentSettings)
         {
-            _settings = new ConnectionSettingsViewModel
-            {
-                Name = currentSettings.Name,
-                Token = currentSettings.Token
-            };
+            Ensure.That(connectionSettingsFactory).IsNotNull();
+
+            _settings = connectionSettingsFactory.Create();
+
+            _settings.Name = currentSettings.Name;
+            _settings.Token = currentSettings.Token;
         }
 
         /// <summary>
@@ -36,21 +40,6 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor.ViewModels
         /// <value>
         /// The settings.
         /// </value>
-        public override WPF.ViewModels.ConnectionSettingsViewModel Settings => _settings;
-
-        /// <summary>
-        /// Gets the settings.
-        /// </summary>
-        /// <param name="currentSettings">The current settings.</param>
-        /// <returns>
-        /// The settings.
-        /// </returns>
-        protected override AppVeyor.ConnectionSettings GetSettings(AppVeyor.ConnectionSettings currentSettings)
-        {
-            currentSettings.Name = _settings.Name;
-            currentSettings.Token = _settings.Token;
-
-            return currentSettings;
-        }
+        public override WPF.ViewModels.ConnectionSettingsViewModel<AppVeyor.ConnectionSettings> Settings => _settings;
     }
 }

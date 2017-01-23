@@ -5,6 +5,8 @@
 namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor.ViewModels
 {
     using Caliburn.Micro;
+    using EnsureThat;
+    using Factories;
     using Settings;
 
     /// <summary>
@@ -19,10 +21,13 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor.ViewModels
         /// </summary>
         /// <param name="eventAggregator">The event aggregator.</param>
         /// <param name="settingsRepository">The settings repository.</param>
-        public AddConnectionViewModel(IEventAggregator eventAggregator, IConnectionSettingsRepository settingsRepository)
+        /// <param name="connectionSettingsFactory">The connection settings factory.</param>
+        public AddConnectionViewModel(IEventAggregator eventAggregator, IConnectionSettingsRepository settingsRepository, IConnectionSettingsViewModelFactory connectionSettingsFactory)
             : base(eventAggregator, settingsRepository)
         {
-            _settings = new ConnectionSettingsViewModel();
+            Ensure.That(connectionSettingsFactory).IsNotNull();
+
+            _settings = connectionSettingsFactory.Create();
         }
 
         /// <summary>
@@ -31,21 +36,6 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor.ViewModels
         /// <value>
         /// The settings.
         /// </value>
-        public override WPF.ViewModels.ConnectionSettingsViewModel Settings => _settings;
-
-        /// <summary>
-        /// Gets the settings.
-        /// </summary>
-        /// <returns>
-        /// The settings.
-        /// </returns>
-        protected override AppVeyor.ConnectionSettings GetSettings()
-        {
-            return new AppVeyor.ConnectionSettings
-            {
-                Name = _settings.Name,
-                Token = _settings.Token
-            };
-        }
+        public override WPF.ViewModels.ConnectionSettingsViewModel<AppVeyor.ConnectionSettings> Settings => _settings;
     }
 }

@@ -41,22 +41,6 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices.ViewModels
         /// <value>
         /// The settings.
         /// </value>
-        public override WPF.ViewModels.ConnectionSettingsViewModel Settings => _settings;
-
-        /// <summary>
-        /// Gets the settings.
-        /// </summary>
-        /// <param name="currentSettings">The current settings.</param>
-        /// <returns>
-        /// The settings.
-        /// </returns>
-        protected override VSTeamServices.ConnectionSettings GetSettings(VSTeamServices.ConnectionSettings currentSettings)
-        {
-            currentSettings.Name = _settings.Name;
-            currentSettings.Url = _settings.Url;
-            currentSettings.Token = _settings.Token;
-
-            return currentSettings;
-        }
+        public override WPF.ViewModels.ConnectionSettingsViewModel<VSTeamServices.ConnectionSettings> Settings => _settings;
     }
 }

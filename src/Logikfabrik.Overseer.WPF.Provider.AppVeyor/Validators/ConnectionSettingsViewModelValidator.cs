@@ -10,7 +10,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor.Validators
     /// <summary>
     /// The <see cref="ConnectionSettingsViewModelValidator" /> class.
     /// </summary>
-    public class ConnectionSettingsViewModelValidator : WPF.Validators.ConnectionSettingsViewModelValidator<ConnectionSettingsViewModel>
+    public class ConnectionSettingsViewModelValidator : WPF.Validators.ConnectionSettingsViewModelValidator<ConnectionSettingsViewModel, ConnectionSettings>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ConnectionSettingsViewModelValidator" /> class.

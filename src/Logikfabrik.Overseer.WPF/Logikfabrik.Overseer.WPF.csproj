@@ -95,9 +95,9 @@
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Validators\ConnectionSettingsViewModelValidator{T}.cs" />
+    <Compile Include="Validators\ConnectionSettingsViewModelValidator{T1,T2}.cs" />
     <Compile Include="Validators\EditSettingsViewModelValidator.cs" />
-    <Compile Include="ViewModels\ConnectionSettingsViewModel.cs" />
+    <Compile Include="ViewModels\ConnectionSettingsViewModel{T}.cs" />
     <Compile Include="ViewModels\Factories\BuildViewModelFactory.cs" />
     <Compile Include="ViewModels\Factories\ChangeViewModelFactory.cs" />
     <Compile Include="ViewModels\Factories\ConnectionViewModelStrategy.cs" />

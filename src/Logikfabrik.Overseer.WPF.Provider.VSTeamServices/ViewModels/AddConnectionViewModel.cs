@@ -4,7 +4,6 @@
 
 namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices.ViewModels
 {
-    using System.Linq;
     using Caliburn.Micro;
     using EnsureThat;
     using Factories;
@@ -39,23 +38,6 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices.ViewModels
         /// <value>
         /// The settings.
         /// </value>
-        public override WPF.ViewModels.ConnectionSettingsViewModel Settings => _settings;
-
-        /// <summary>
-        /// Gets the settings.
-        /// </summary>
-        /// <returns>
-        /// The settings.
-        /// </returns>
-        protected override VSTeamServices.ConnectionSettings GetSettings()
-        {
-            return new VSTeamServices.ConnectionSettings
-            {
-                Name = _settings.Name,
-                Url = _settings.Url,
-                Token = _settings.Token,
-                ProjectsToMonitor = _settings.ProjectsToMonitor.Where(project => project.Monitor).Select(project => project.Id).ToArray()
-            };
-        }
+        public override WPF.ViewModels.ConnectionSettingsViewModel<VSTeamServices.ConnectionSettings> Settings => _settings;
     }
 }
