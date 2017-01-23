@@ -31,18 +31,18 @@
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsDefault" Value="True">
                             <Setter TargetName="PART_Border" Property="Background" Value="{DynamicResource Button.Defaulted.Background}" />
-                            <Setter TargetName="PART_ContentPresenter" Property="TextElement.Foreground" Value="{DynamicResource Button.Defaulted.Foreground}" />
                             <Setter TargetName="PART_Border" Property="BorderBrush" Value="{DynamicResource Button.Defaulted.Border}" />
+                            <Setter TargetName="PART_ContentPresenter" Property="TextElement.Foreground" Value="{DynamicResource Button.Defaulted.Foreground}" />
                         </Trigger>
                         <Trigger Property="IsPressed" Value="True">
                             <Setter TargetName="PART_Border" Property="Background" Value="{DynamicResource Button.Pressed.Background}" />
-                            <Setter TargetName="PART_ContentPresenter" Property="TextElement.Foreground" Value="{DynamicResource Button.Pressed.Foreground}" />
                             <Setter TargetName="PART_Border" Property="BorderBrush" Value="{DynamicResource Button.Pressed.Border}" />
+                            <Setter TargetName="PART_ContentPresenter" Property="TextElement.Foreground" Value="{DynamicResource Button.Pressed.Foreground}" />
                         </Trigger>
                         <Trigger Property="IsEnabled" Value="False">
                             <Setter TargetName="PART_Border" Property="Background" Value="{DynamicResource Button.Disabled.Background}" />
-                            <Setter TargetName="PART_ContentPresenter" Property="TextElement.Foreground" Value="{DynamicResource Button.Disabled.Foreground}" />
                             <Setter TargetName="PART_Border" Property="BorderBrush" Value="{DynamicResource Button.Disabled.Border}" />
+                            <Setter TargetName="PART_ContentPresenter" Property="TextElement.Foreground" Value="{DynamicResource Button.Disabled.Foreground}" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>

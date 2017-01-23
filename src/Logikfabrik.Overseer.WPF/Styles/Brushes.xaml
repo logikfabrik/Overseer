@@ -23,6 +23,22 @@
     <SolidColorBrush x:Key="Button.Disabled.Foreground" Color="#FF666666" />
     <SolidColorBrush x:Key="Button.Disabled.Border" Color="#FF525252" />
 
+    <SolidColorBrush x:Key="CheckBox.Static.Background" Color="Transparent" />
+    <SolidColorBrush x:Key="CheckBox.Static.Foreground" Color="#FFFFFFFF" />
+    <SolidColorBrush x:Key="CheckBox.Static.Border" Color="#FF525252" />
+
+    <SolidColorBrush x:Key="CheckBox.Checked.Background" Color="Transparent" />
+    <SolidColorBrush x:Key="CheckBox.Checked.Foreground" Color="#FFFFFFFF" />
+    <SolidColorBrush x:Key="CheckBox.Checked.Border" Color="#FF525252" />
+
+    <SolidColorBrush x:Key="CheckBox.Pressed.Background" Color="Transparent" />
+    <SolidColorBrush x:Key="CheckBox.Pressed.Foreground" Color="#FFFFFFFF" />
+    <SolidColorBrush x:Key="CheckBox.Pressed.Border" Color="#FFAAFF00" />
+
+    <SolidColorBrush x:Key="CheckBox.Disabled.Background" Color="Transparent" />
+    <SolidColorBrush x:Key="CheckBox.Disabled.Foreground" Color="#FF666666" />
+    <SolidColorBrush x:Key="CheckBox.Disabled.Border" Color="#FF525252" />
+
     <SolidColorBrush x:Key="ScrollBar.Static.Thumb" Color="#FF525252" />
     <SolidColorBrush x:Key="ScrollBar.MouseOver.Thumb" Color="#FF525252" />
     <SolidColorBrush x:Key="ScrollBar.Pressed.Thumb" Color="#FFAAFF00" />

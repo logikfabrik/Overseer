@@ -8,6 +8,9 @@
     d:DesignWidth="300"
     mc:Ignorable="d">
     <Grid>
-        <CheckBox Content="{Binding Name, Mode=OneWay}" IsChecked="{Binding Monitor, Mode=OneWayToSource}" />
+        <CheckBox
+            Content="{Binding Name, Mode=OneWay}"
+            IsChecked="{Binding Monitor, Mode=OneWayToSource}"
+            Style="{StaticResource CheckBoxDefaultStyle}" />
     </Grid>
 </UserControl>
