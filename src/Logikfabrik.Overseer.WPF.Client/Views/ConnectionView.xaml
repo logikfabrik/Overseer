@@ -8,7 +8,7 @@
     d:DesignHeight="300"
     d:DesignWidth="300"
     mc:Ignorable="d">
-    <Expander IsEnabled="{Binding IsNotBusy, Mode=OneWay}">
+    <Expander>
         <Expander.Style>
             <Style TargetType="{x:Type Expander}">
                 <Setter Property="Template">
@@ -19,6 +19,7 @@
                                     Content="{Binding SettingsName, Mode=OneWay}"
                                     FontSize="18"
                                     IsChecked="{Binding IsExpanded, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
+                                    IsEnabled="{Binding IsNotBusy, Mode=OneWay}"
                                     Style="{StaticResource ToggleButtonDefaultStyle}" />
                                 <Grid>
                                     <Grid.Resources>
@@ -31,11 +32,15 @@
                                         <ColumnDefinition Width="*" />
                                         <ColumnDefinition Width="*" />
                                     </Grid.ColumnDefinitions>
-                                    <Button cal:Message.Attach="Edit" Content="Edit" />
+                                    <Button
+                                        cal:Message.Attach="Edit"
+                                        Content="Edit"
+                                        IsEnabled="{Binding IsEditable, Mode=OneWay}" />
                                     <Button
                                         Grid.Column="1"
                                         cal:Message.Attach="Remove"
-                                        Content="Remove" />
+                                        Content="Remove"
+                                        IsEnabled="{Binding IsEditable, Mode=OneWay}" />
                                 </Grid>
                                 <Border x:Name="PART_Content" Padding="10,10,10,0">
                                     <ItemsControl Focusable="False" ItemsSource="{Binding Projects, Mode=OneWay}">

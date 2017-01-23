@@ -99,6 +99,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
                 _isBusy = value;
                 NotifyOfPropertyChange(() => IsBusy);
                 NotifyOfPropertyChange(() => IsNotBusy);
+                NotifyOfPropertyChange(() => IsEditable);
             }
         }
 
@@ -109,6 +110,14 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         ///   <c>true</c> if this instance is not busy; otherwise, <c>false</c>.
         /// </value>
         public bool IsNotBusy => !_isBusy;
+
+        /// <summary>
+        /// Gets a value indicating whether this instance is editable.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if this instance is editable; otherwise, <c>false</c>.
+        /// </value>
+        public bool IsEditable => IsErrored || IsNotBusy;
 
         /// <summary>
         /// Gets a value indicating whether this instance is errored.
@@ -127,6 +136,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             {
                 _isErrored = value;
                 NotifyOfPropertyChange(() => IsErrored);
+                NotifyOfPropertyChange(() => IsEditable);
             }
         }
 

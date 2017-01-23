@@ -79,7 +79,7 @@ namespace Logikfabrik.Overseer
                 }
                 catch (Exception ex)
                 {
-                    _logService.Log<BuildMonitor>(new LogEntry(LogEntryType.Error, "An error occurred while cancelling.", ex));
+                    _logService.Log<BuildMonitor>(new LogEntry(LogEntryType.Error, "An expected error occurred while cancelling.", ex));
                 }
             }
 
@@ -217,7 +217,7 @@ namespace Logikfabrik.Overseer
             {
                 OnConnectionError(new BuildMonitorConnectionErrorEventArgs(connection.Settings.Id));
 
-                _logService.Log<BuildMonitor>(new LogEntry(LogEntryType.Error, "An error occurred while polling.", ex));
+                _logService.Log<BuildMonitor>(new LogEntry(LogEntryType.Error, "An error occurred while polling projects.", ex));
             }
         }
 
@@ -233,7 +233,7 @@ namespace Logikfabrik.Overseer
             {
                 OnProjectError(new BuildMonitorProjectErrorEventArgs(connection.Settings.Id, project));
 
-                _logService.Log<BuildMonitor>(new LogEntry(LogEntryType.Error, "An error occurred while polling.", ex));
+                _logService.Log<BuildMonitor>(new LogEntry(LogEntryType.Error, "An error occurred while polling builds.", ex));
             }
         }
     }
