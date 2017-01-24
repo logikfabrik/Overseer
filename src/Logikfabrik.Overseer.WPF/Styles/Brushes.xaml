@@ -15,12 +15,16 @@
     <SolidColorBrush x:Key="Button.Static.Foreground" Color="#FFFFFFFF" />
     <SolidColorBrush x:Key="Button.Static.Border" Color="#FF525252" />
 
+    <SolidColorBrush x:Key="Button.MouseOver.Background" Color="#FF626262" />
+    <SolidColorBrush x:Key="Button.MouseOver.Foreground" Color="#FFFFFFFF" />
+    <SolidColorBrush x:Key="Button.MouseOver.Border" Color="#FF626262" />
+
     <SolidColorBrush x:Key="Button.Pressed.Background" Color="#FFAAFF00" />
     <SolidColorBrush x:Key="Button.Pressed.Foreground" Color="#FFFFFFFF" />
     <SolidColorBrush x:Key="Button.Pressed.Border" Color="#FFAAFF00" />
 
     <SolidColorBrush x:Key="Button.Disabled.Background" Color="#FF525252" />
-    <SolidColorBrush x:Key="Button.Disabled.Foreground" Color="#FF666666" />
+    <SolidColorBrush x:Key="Button.Disabled.Foreground" Color="#FF626262" />
     <SolidColorBrush x:Key="Button.Disabled.Border" Color="#FF525252" />
 
     <SolidColorBrush x:Key="CheckBox.Static.Background" Color="Transparent" />
@@ -36,11 +40,13 @@
     <SolidColorBrush x:Key="CheckBox.Pressed.Border" Color="#FFAAFF00" />
 
     <SolidColorBrush x:Key="CheckBox.Disabled.Background" Color="Transparent" />
-    <SolidColorBrush x:Key="CheckBox.Disabled.Foreground" Color="#FF666666" />
+    <SolidColorBrush x:Key="CheckBox.Disabled.Foreground" Color="#FF626262" />
     <SolidColorBrush x:Key="CheckBox.Disabled.Border" Color="#FF525252" />
 
     <SolidColorBrush x:Key="ScrollBar.Static.Thumb" Color="#FF525252" />
-    <SolidColorBrush x:Key="ScrollBar.MouseOver.Thumb" Color="#FF525252" />
+    
+    <SolidColorBrush x:Key="ScrollBar.MouseOver.Thumb" Color="#FF626262" />
+    
     <SolidColorBrush x:Key="ScrollBar.Pressed.Thumb" Color="#FFAAFF00" />
 
     <SolidColorBrush x:Key="TextBox.Static.Background" Color="#FFFFFFFF" />
@@ -59,16 +65,24 @@
     <SolidColorBrush x:Key="ToggleButton.Static.Foreground" Color="#FFFFFFFF" />
     <SolidColorBrush x:Key="ToggleButton.Static.Border" Color="#FF595959" />
 
+    <SolidColorBrush x:Key="ToggleButton.MouseOver.Background" Color="Transparent" />
+    <SolidColorBrush x:Key="ToggleButton.MouseOver.Foreground" Color="#FFFFFFFF" />
+    <SolidColorBrush x:Key="ToggleButton.MouseOver.Border" Color="#FF626262" />
+
     <SolidColorBrush x:Key="ToggleButton.Checked.Background" Color="#FF595959" />
     <SolidColorBrush x:Key="ToggleButton.Checked.Foreground" Color="#FFFFFFFF" />
     <SolidColorBrush x:Key="ToggleButton.Checked.Border" Color="#FF595959" />
+
+    <SolidColorBrush x:Key="ToggleButton.CheckedMouseOver.Background" Color="#FF595959" />
+    <SolidColorBrush x:Key="ToggleButton.CheckedMouseOver.Foreground" Color="#FFFFFFFF" />
+    <SolidColorBrush x:Key="ToggleButton.CheckedMouseOver.Border" Color="#FF626262" />
 
     <SolidColorBrush x:Key="ToggleButton.Pressed.Background" Color="#FFAAFF00" />
     <SolidColorBrush x:Key="ToggleButton.Pressed.Foreground" Color="#FFFFFFFF" />
     <SolidColorBrush x:Key="ToggleButton.Pressed.Border" Color="#FFAAFF00" />
 
     <SolidColorBrush x:Key="ToggleButton.Disabled.Background" Color="Transparent" />
-    <SolidColorBrush x:Key="ToggleButton.Disabled.Foreground" Color="#FF666666" />
+    <SolidColorBrush x:Key="ToggleButton.Disabled.Foreground" Color="#FF626262" />
     <SolidColorBrush x:Key="ToggleButton.Disabled.Border" Color="#FF595959" />
 
 

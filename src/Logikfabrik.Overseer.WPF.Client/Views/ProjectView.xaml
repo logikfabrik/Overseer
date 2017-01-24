@@ -20,7 +20,13 @@
                                     IsChecked="{Binding IsExpanded, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
                                     Style="{StaticResource ToggleButtonDefaultStyle}" />
                                 <Border
-                                    x:Name="PART_Content"
+                                    x:Name="PART_Build"
+                                    Padding="10,10,10,0"
+                                    Background="#FF595959"
+                                    Visibility="{Binding IsNotBusy, Mode=OneWay, Converter={StaticResource BooleanToVisibleOrCollapsedConverter}}" />
+                                <!--  TODO: Show summary for latest build  -->
+                                <Border
+                                    x:Name="PART_Builds"
                                     Padding="10,10,10,0"
                                     Background="#FF595959">
                                     <ItemsControl Focusable="False" ItemsSource="{Binding Builds, Mode=OneWay}">
@@ -44,8 +50,12 @@
                                 </Border>
                             </StackPanel>
                             <ControlTemplate.Triggers>
+                                <DataTrigger Binding="{Binding HasBuilds, Mode=OneWay}" Value="False">
+                                    <Setter TargetName="PART_Build" Property="Visibility" Value="Collapsed" />
+                                </DataTrigger>
+                                <!--  TODO: Trigger if HasBuilds and IsExpanded  -->
                                 <Trigger Property="IsExpanded" Value="False">
-                                    <Setter TargetName="PART_Content" Property="Visibility" Value="Collapsed" />
+                                    <Setter TargetName="PART_Builds" Property="Visibility" Value="Collapsed" />
                                 </Trigger>
                             </ControlTemplate.Triggers>
                         </ControlTemplate>

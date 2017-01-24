@@ -86,6 +86,8 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// </value>
         public IEnumerable<BuildViewModel> Builds => _builds;
 
+        public bool HasBuilds => _builds.Any();
+
         /// <summary>
         /// Gets a value indicating whether this instance is busy.
         /// </summary>
@@ -187,6 +189,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             {
                 _builds = _builds.OrderByDescending(build => build.Started ?? DateTime.MaxValue).ToList();
                 NotifyOfPropertyChange(() => Builds);
+                NotifyOfPropertyChange(() => HasBuilds);
             }
 
             IsBusy = false;

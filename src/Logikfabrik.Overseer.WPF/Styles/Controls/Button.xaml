@@ -34,6 +34,11 @@
                             <Setter TargetName="PART_Border" Property="BorderBrush" Value="{DynamicResource Button.Defaulted.Border}" />
                             <Setter TargetName="PART_ContentPresenter" Property="TextElement.Foreground" Value="{DynamicResource Button.Defaulted.Foreground}" />
                         </Trigger>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="PART_Border" Property="Background" Value="{DynamicResource Button.MouseOver.Background}" />
+                            <Setter TargetName="PART_Border" Property="BorderBrush" Value="{DynamicResource Button.MouseOver.Border}" />
+                            <Setter TargetName="PART_ContentPresenter" Property="TextElement.Foreground" Value="{DynamicResource Button.MouseOver.Foreground}" />
+                        </Trigger>
                         <Trigger Property="IsPressed" Value="True">
                             <Setter TargetName="PART_Border" Property="Background" Value="{DynamicResource Button.Pressed.Background}" />
                             <Setter TargetName="PART_Border" Property="BorderBrush" Value="{DynamicResource Button.Pressed.Border}" />

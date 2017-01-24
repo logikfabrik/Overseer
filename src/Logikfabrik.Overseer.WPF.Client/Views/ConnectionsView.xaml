@@ -68,12 +68,12 @@
                             RecognizesAccessKey="True" />
                     </Grid>
                     <ControlTemplate.Triggers>
-                        <Trigger Property="IsPressed" Value="true">
+                        <Trigger Property="IsPressed" Value="True">
                             <Setter TargetName="PART_Ellipse" Property="Fill" Value="{StaticResource Button.Pressed.Background}" />
                             <Setter TargetName="contentPresenter" Property="TextElement.Foreground" Value="{StaticResource Button.Pressed.Foreground}" />
                             <Setter TargetName="PART_Ellipse" Property="Stroke" Value="{StaticResource Button.Pressed.Border}" />
                         </Trigger>
-                        <Trigger Property="IsEnabled" Value="false">
+                        <Trigger Property="IsEnabled" Value="False">
                             <Setter TargetName="PART_Ellipse" Property="Fill" Value="{StaticResource Button.Disabled.Background}" />
                             <Setter TargetName="contentPresenter" Property="TextElement.Foreground" Value="{StaticResource Button.Disabled.Foreground}" />
                             <Setter TargetName="PART_Ellipse" Property="Stroke" Value="{StaticResource Button.Disabled.Border}" />

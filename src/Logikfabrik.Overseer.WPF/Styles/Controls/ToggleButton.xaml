@@ -32,18 +32,32 @@
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsChecked" Value="True">
                             <Setter TargetName="PART_Border" Property="Background" Value="{DynamicResource ToggleButton.Checked.Background}" />
-                            <Setter TargetName="PART_ContentPresenter" Property="TextElement.Foreground" Value="{DynamicResource ToggleButton.Checked.Foreground}" />
                             <Setter TargetName="PART_Border" Property="BorderBrush" Value="{DynamicResource ToggleButton.Checked.Border}" />
+                            <Setter TargetName="PART_ContentPresenter" Property="TextElement.Foreground" Value="{DynamicResource ToggleButton.Checked.Foreground}" />
                         </Trigger>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="PART_Border" Property="Background" Value="{DynamicResource ToggleButton.MouseOver.Background}" />
+                            <Setter TargetName="PART_Border" Property="BorderBrush" Value="{DynamicResource ToggleButton.MouseOver.Border}" />
+                            <Setter TargetName="PART_ContentPresenter" Property="TextElement.Foreground" Value="{DynamicResource ToggleButton.MouseOver.Foreground}" />
+                        </Trigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsChecked" Value="True" />
+                                <Condition Property="IsMouseOver" Value="True" />
+                            </MultiTrigger.Conditions>
+                            <Setter TargetName="PART_Border" Property="Background" Value="{DynamicResource ToggleButton.CheckedMouseOver.Background}" />
+                            <Setter TargetName="PART_Border" Property="BorderBrush" Value="{DynamicResource ToggleButton.CheckedMouseOver.Border}" />
+                            <Setter TargetName="PART_ContentPresenter" Property="TextElement.Foreground" Value="{DynamicResource ToggleButton.CheckedMouseOver.Foreground}" />
+                        </MultiTrigger>
                         <Trigger Property="IsPressed" Value="True">
                             <Setter TargetName="PART_Border" Property="Background" Value="{DynamicResource ToggleButton.Pressed.Background}" />
-                            <Setter TargetName="PART_ContentPresenter" Property="TextElement.Foreground" Value="{DynamicResource ToggleButton.Pressed.Foreground}" />
                             <Setter TargetName="PART_Border" Property="BorderBrush" Value="{DynamicResource ToggleButton.Pressed.Border}" />
+                            <Setter TargetName="PART_ContentPresenter" Property="TextElement.Foreground" Value="{DynamicResource ToggleButton.Pressed.Foreground}" />
                         </Trigger>
                         <Trigger Property="IsEnabled" Value="False">
                             <Setter TargetName="PART_Border" Property="Background" Value="{DynamicResource ToggleButton.Disabled.Background}" />
-                            <Setter TargetName="PART_ContentPresenter" Property="TextElement.Foreground" Value="{DynamicResource ToggleButton.Disabled.Foreground}" />
                             <Setter TargetName="PART_Border" Property="BorderBrush" Value="{DynamicResource ToggleButton.Disabled.Border}" />
+                            <Setter TargetName="PART_ContentPresenter" Property="TextElement.Foreground" Value="{DynamicResource ToggleButton.Disabled.Foreground}" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>

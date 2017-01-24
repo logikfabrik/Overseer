@@ -42,7 +42,7 @@
                                         Content="Remove"
                                         IsEnabled="{Binding IsEditable, Mode=OneWay}" />
                                 </Grid>
-                                <Border x:Name="PART_Content" Padding="10,10,10,0">
+                                <Border x:Name="PART_Connections" Padding="10,10,10,0">
                                     <ItemsControl Focusable="False" ItemsSource="{Binding Projects, Mode=OneWay}">
                                         <ItemsControl.ItemContainerStyle>
                                             <Style>
@@ -65,7 +65,7 @@
                             </StackPanel>
                             <ControlTemplate.Triggers>
                                 <Trigger Property="IsExpanded" Value="False">
-                                    <Setter TargetName="PART_Content" Property="Visibility" Value="Collapsed" />
+                                    <Setter TargetName="PART_Connections" Property="Visibility" Value="Collapsed" />
                                 </Trigger>
                             </ControlTemplate.Triggers>
                         </ControlTemplate>
