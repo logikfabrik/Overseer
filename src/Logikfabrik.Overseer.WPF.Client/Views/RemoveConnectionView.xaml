@@ -26,6 +26,7 @@
                 <Button
                     x:Name="ViewConnections"
                     Content="Cancel"
+                    IsCancel="True"
                     Style="{StaticResource ButtonDefaultStyle}" />
             </StackPanel>
         </StackPanel>
