@@ -15,10 +15,17 @@
                     <Setter.Value>
                         <ControlTemplate TargetType="{x:Type Expander}">
                             <StackPanel>
-                                <ToggleButton
-                                    Content="{Binding ProjectName, Mode=OneWay}"
-                                    IsChecked="{Binding IsExpanded, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
-                                    Style="{StaticResource ToggleButtonDefaultStyle}" />
+                                <Grid>
+                                    <ToggleButton
+                                        Content="{Binding ProjectName, Mode=OneWay}"
+                                        IsChecked="{Binding IsExpanded, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
+                                        Style="{StaticResource ToggleButtonDefaultStyle}" />
+                                    <Rectangle
+                                        x:Name="PART_Error"
+                                        Height="2"
+                                        VerticalAlignment="Bottom"
+                                        Fill="{DynamicResource Control.Error}" />
+                                </Grid>
                                 <Border
                                     x:Name="PART_Build"
                                     Padding="10,10,10,0"
@@ -56,6 +63,9 @@
                                 <Trigger Property="IsExpanded" Value="False">
                                     <Setter TargetName="PART_Builds" Property="Visibility" Value="Collapsed" />
                                 </Trigger>
+                                <DataTrigger Binding="{Binding IsErrored, Mode=OneWay}" Value="False">
+                                    <Setter TargetName="PART_Error" Property="Visibility" Value="Collapsed" />
+                                </DataTrigger>
                             </ControlTemplate.Triggers>
                         </ControlTemplate>
                     </Setter.Value>

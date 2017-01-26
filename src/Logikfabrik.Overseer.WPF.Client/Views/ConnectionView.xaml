@@ -15,13 +15,20 @@
                     <Setter.Value>
                         <ControlTemplate TargetType="{x:Type Expander}">
                             <StackPanel Background="#FF525252">
-                                <ToggleButton
-                                    Content="{Binding SettingsName, Mode=OneWay}"
-                                    FontSize="18"
-                                    IsChecked="{Binding IsExpanded, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
-                                    IsEnabled="{Binding HasProjects, Mode=OneWay}"
-                                    Style="{StaticResource ToggleButtonDefaultStyle}" />
                                 <Grid>
+                                    <ToggleButton
+                                        Content="{Binding SettingsName, Mode=OneWay}"
+                                        FontSize="18"
+                                        IsChecked="{Binding IsExpanded, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
+                                        IsEnabled="{Binding HasProjects, Mode=OneWay}"
+                                        Style="{StaticResource ToggleButtonDefaultStyle}" />
+                                    <Rectangle
+                                        x:Name="PART_Error"
+                                        Height="2"
+                                        VerticalAlignment="Bottom"
+                                        Fill="{DynamicResource Control.Error}" />
+                                </Grid>
+                                <Grid IsEnabled="{Binding IsEditable, Mode=OneWay}">
                                     <Grid.Resources>
                                         <Style BasedOn="{StaticResource ButtonDefaultStyle}" TargetType="{x:Type Button}">
                                             <Setter Property="Background" Value="#FF595959" />
@@ -32,15 +39,15 @@
                                         <ColumnDefinition Width="*" />
                                         <ColumnDefinition Width="*" />
                                     </Grid.ColumnDefinitions>
-                                    <Button
-                                        cal:Message.Attach="Edit"
-                                        Content="Edit"
-                                        IsEnabled="{Binding IsEditable, Mode=OneWay}" />
-                                    <Button
-                                        Grid.Column="1"
-                                        cal:Message.Attach="Remove"
-                                        Content="Remove"
-                                        IsEnabled="{Binding IsEditable, Mode=OneWay}" />
+                                    <Button cal:Message.Attach="Edit" Content="Edit" />
+                                    <Button Grid.Column="1" cal:Message.Attach="Remove">
+                                        <Viewbox Height="16">
+                                            <Path
+                                                Data="M10,1.6C5.361,1.6 1.6,5.361 1.6,10 1.6,14.639 5.361,18.4 10,18.4 14.639,18.4 18.4,14.639 18.4,10 18.4,5.361 14.639,1.6 10,1.6z M14.789,13.061L13.06,14.79 10,11.729 6.939,14.789 5.21,13.06 8.272,10 5.211,6.939 6.94,5.211 10,8.271 13.061,5.21 14.79,6.939 11.728,10 14.789,13.061z"
+                                                Fill="{Binding Path=(TextElement.Foreground), RelativeSource={RelativeSource AncestorType=ContentPresenter}}"
+                                                Stretch="Uniform" />
+                                        </Viewbox>
+                                    </Button>
                                 </Grid>
                                 <Border x:Name="PART_Connections" Padding="10,10,10,0">
                                     <ItemsControl Focusable="False" ItemsSource="{Binding Projects, Mode=OneWay}">
@@ -67,6 +74,9 @@
                                 <Trigger Property="IsExpanded" Value="False">
                                     <Setter TargetName="PART_Connections" Property="Visibility" Value="Collapsed" />
                                 </Trigger>
+                                <DataTrigger Binding="{Binding IsErrored, Mode=OneWay}" Value="False">
+                                    <Setter TargetName="PART_Error" Property="Visibility" Value="Collapsed" />
+                                </DataTrigger>
                             </ControlTemplate.Triggers>
                         </ControlTemplate>
                     </Setter.Value>
