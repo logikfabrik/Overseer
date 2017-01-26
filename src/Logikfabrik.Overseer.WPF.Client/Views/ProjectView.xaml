@@ -8,7 +8,7 @@
     d:DesignHeight="300"
     d:DesignWidth="300"
     mc:Ignorable="d">
-    <Expander IsEnabled="{Binding IsNotBusy, Mode=OneWay}">
+    <Expander>
         <Expander.Style>
             <Style TargetType="{x:Type Expander}">
                 <Setter Property="Template">
@@ -22,8 +22,7 @@
                                 <Border
                                     x:Name="PART_Build"
                                     Padding="10,10,10,0"
-                                    Background="#FF595959"
-                                    Visibility="{Binding IsNotBusy, Mode=OneWay, Converter={StaticResource BooleanToVisibleOrCollapsedConverter}}" />
+                                    Background="#FF595959" />
                                 <!--  TODO: Show summary for latest build  -->
                                 <Border
                                     x:Name="PART_Builds"
@@ -51,9 +50,9 @@
                             </StackPanel>
                             <ControlTemplate.Triggers>
                                 <DataTrigger Binding="{Binding HasBuilds, Mode=OneWay}" Value="False">
+                                    <Setter Property="IsEnabled" Value="False" />
                                     <Setter TargetName="PART_Build" Property="Visibility" Value="Collapsed" />
                                 </DataTrigger>
-                                <!--  TODO: Trigger if HasBuilds and IsExpanded  -->
                                 <Trigger Property="IsExpanded" Value="False">
                                     <Setter TargetName="PART_Builds" Property="Visibility" Value="Collapsed" />
                                 </Trigger>

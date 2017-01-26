@@ -98,18 +98,9 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             {
                 _isBusy = value;
                 NotifyOfPropertyChange(() => IsBusy);
-                NotifyOfPropertyChange(() => IsNotBusy);
                 NotifyOfPropertyChange(() => IsEditable);
             }
         }
-
-        /// <summary>
-        /// Gets a value indicating whether this instance is not busy.
-        /// </summary>
-        /// <value>
-        ///   <c>true</c> if this instance is not busy; otherwise, <c>false</c>.
-        /// </value>
-        public bool IsNotBusy => !_isBusy;
 
         /// <summary>
         /// Gets a value indicating whether this instance is editable.
@@ -117,7 +108,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// <value>
         ///   <c>true</c> if this instance is editable; otherwise, <c>false</c>.
         /// </value>
-        public bool IsEditable => IsErrored || IsNotBusy;
+        public bool IsEditable => IsErrored || !IsBusy;
 
         /// <summary>
         /// Gets a value indicating whether this instance is errored.
@@ -149,6 +140,14 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         public IEnumerable<ProjectViewModel> Projects => _projects;
 
         /// <summary>
+        /// Gets a value indicating whether this instance has projects.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if this instance has projects; otherwise, <c>false</c>.
+        /// </value>
+        public bool HasProjects => _projects.Any();
+
+        /// <summary>
         /// Edit the connection.
         /// </summary>
         public abstract void Edit();
@@ -173,6 +172,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             }
 
             IsErrored = true;
+            IsBusy = false;
         }
 
         private void BuildMonitorConnectionProgressChanged(object sender, BuildMonitorConnectionProgressEventArgs e)
@@ -211,6 +211,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             if (isDirty)
             {
                 NotifyOfPropertyChange(() => Projects);
+                NotifyOfPropertyChange(() => HasProjects);
             }
 
             IsBusy = false;

@@ -19,7 +19,7 @@
                                     Content="{Binding SettingsName, Mode=OneWay}"
                                     FontSize="18"
                                     IsChecked="{Binding IsExpanded, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
-                                    IsEnabled="{Binding IsNotBusy, Mode=OneWay}"
+                                    IsEnabled="{Binding HasProjects, Mode=OneWay}"
                                     Style="{StaticResource ToggleButtonDefaultStyle}" />
                                 <Grid>
                                     <Grid.Resources>

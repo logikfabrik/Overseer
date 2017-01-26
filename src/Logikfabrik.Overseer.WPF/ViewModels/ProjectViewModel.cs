@@ -86,6 +86,12 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// </value>
         public IEnumerable<BuildViewModel> Builds => _builds;
 
+        /// <summary>
+        /// Gets a value indicating whether this instance has builds.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if this instance has builds; otherwise, <c>false</c>.
+        /// </value>
         public bool HasBuilds => _builds.Any();
 
         /// <summary>
@@ -105,17 +111,8 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             {
                 _isBusy = value;
                 NotifyOfPropertyChange(() => IsBusy);
-                NotifyOfPropertyChange(() => IsNotBusy);
             }
         }
-
-        /// <summary>
-        /// Gets a value indicating whether this instance is not busy.
-        /// </summary>
-        /// <value>
-        ///   <c>true</c> if this instance is not busy; otherwise, <c>false</c>.
-        /// </value>
-        public bool IsNotBusy => !_isBusy;
 
         /// <summary>
         /// Gets a value indicating whether this instance is errored.
@@ -145,6 +142,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             }
 
             IsErrored = true;
+            IsBusy = false;
         }
 
         private void BuildMonitorProjectProgressChanged(object sender, BuildMonitorProjectProgressEventArgs e)
