@@ -166,13 +166,13 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
 
         private void UpdateBuildName()
         {
-            BuildName = BuildMessageUtil.GetBuildName(_projectName, _versionNumber, _branch);
+            BuildName = BuildMessageUtility.GetBuildName(_projectName, _versionNumber, _branch);
             NotifyOfPropertyChange(() => BuildName);
         }
 
         private void UpdateBuildRunTimeMessage()
         {
-            BuildRunTimeMessage = BuildMessageUtil.GetBuildRunTimeMessage(_status, _runTime, _startTime);
+            BuildRunTimeMessage = BuildMessageUtility.GetBuildRunTimeMessage(_status, _runTime, _startTime);
             NotifyOfPropertyChange(() => BuildRunTimeMessage);
         }
     }

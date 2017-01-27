@@ -161,7 +161,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
                 return _digest;
             }
 
-            set
+            private set
             {
                 _digest = value;
                 NotifyOfPropertyChange(() => Digest);

@@ -80,7 +80,7 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BuildMessageUtil.cs" />
+    <Compile Include="BuildMessageUtility.cs" />
     <Compile Include="BuildNotificationManager.cs" />
     <Compile Include="Controls\Icon.xaml.cs">
       <DependentUpon>Icon.xaml</DependentUpon>

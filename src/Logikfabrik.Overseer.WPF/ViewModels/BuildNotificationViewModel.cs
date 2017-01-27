@@ -33,8 +33,8 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
 
             dispatcher.Start();
 
-            BuildName = BuildMessageUtil.GetBuildName(project, build);
-            BuildStatusMessage = BuildMessageUtil.GetBuildStatusMessage(build.Status, new Dictionary<string, string> { { "requested by", build.RequestedBy } });
+            BuildName = BuildMessageUtility.GetBuildName(project, build);
+            BuildStatusMessage = BuildMessageUtility.GetBuildStatusMessage(build.Status, new Dictionary<string, string> { { "requested by", build.RequestedBy } });
             Status = build.Status;
         }
 

@@ -24,7 +24,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
 
             var finishedBuilds = builds.Where(build => build.IsFinished()).ToArray();
 
-            SuccessRateMessage = BuildMessageUtil.GetSuccessRateMessage(finishedBuilds);
+            SuccessRateMessage = BuildMessageUtility.GetSuccessRateMessage(finishedBuilds);
 
             var latestBuild = finishedBuilds.Where(build => build.IsFinished()).OrderBy(build => build.StartTime).FirstOrDefault();
 
@@ -33,8 +33,8 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
                 return;
             }
 
-            LatestBuildStatusMessage = BuildMessageUtil.GetBuildStatusMessage(latestBuild.Status);
-            LatestBuildRunTimeMessage = BuildMessageUtil.GetBuildRunTimeMessage(latestBuild);
+            LatestBuildStatusMessage = BuildMessageUtility.GetBuildStatusMessage(latestBuild.Status);
+            LatestBuildRunTimeMessage = BuildMessageUtility.GetBuildRunTimeMessage(latestBuild);
         }
 
         /// <summary>

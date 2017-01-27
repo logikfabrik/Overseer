@@ -83,15 +83,27 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="BuildMessageUtilityTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <AdditionalFiles Include="stylecop.json" />
   </ItemGroup>
   <ItemGroup>
     <Analyzer Include="..\packages\StyleCop.Analyzers.1.0.0\analyzers\dotnet\cs\Newtonsoft.Json.dll" />
     <Analyzer Include="..\packages\StyleCop.Analyzers.1.0.0\analyzers\dotnet\cs\StyleCop.Analyzers.CodeFixes.dll" />
     <Analyzer Include="..\packages\StyleCop.Analyzers.1.0.0\analyzers\dotnet\cs\StyleCop.Analyzers.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Logikfabrik.Overseer.WPF\Logikfabrik.Overseer.WPF.csproj">
+      <Project>{e0b1c813-0741-4d07-b641-026afd7bc508}</Project>
+      <Name>Logikfabrik.Overseer.WPF</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Logikfabrik.Overseer\Logikfabrik.Overseer.csproj">
+      <Project>{c5200750-c9e9-43f5-8ee5-da7fecc32135}</Project>
+      <Name>Logikfabrik.Overseer</Name>
+    </ProjectReference>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
