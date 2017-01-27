@@ -45,20 +45,20 @@ namespace Logikfabrik.Overseer
         string Branch { get; }
 
         /// <summary>
-        /// Gets the started date.
+        /// Gets the start time.
         /// </summary>
         /// <value>
-        /// The started date.
+        /// The start time.
         /// </value>
-        DateTime? Started { get; }
+        DateTime? StartTime { get; }
 
         /// <summary>
-        /// Gets the finished date.
+        /// Gets the end time.
         /// </summary>
         /// <value>
-        /// The finished date.
+        /// The end time.
         /// </value>
-        DateTime? Finished { get; }
+        DateTime? EndTime { get; }
 
         /// <summary>
         /// Gets the status.

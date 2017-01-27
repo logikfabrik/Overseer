@@ -24,6 +24,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         private string _projectName;
         private bool _isBusy;
         private bool _isErrored;
+        private ProjectDigestViewModel _digest;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ProjectViewModel" /> class.
@@ -84,7 +85,20 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// <value>
         /// The build view models.
         /// </value>
-        public IEnumerable<BuildViewModel> Builds => _builds;
+        public IEnumerable<BuildViewModel> Builds
+        {
+            get
+            {
+                return _builds;
+            }
+
+            private set
+            {
+                _builds = value.ToList();
+                NotifyOfPropertyChange(() => Builds);
+                NotifyOfPropertyChange(() => HasBuilds);
+            }
+        }
 
         /// <summary>
         /// Gets a value indicating whether this instance has builds.
@@ -92,7 +106,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// <value>
         ///   <c>true</c> if this instance has builds; otherwise, <c>false</c>.
         /// </value>
-        public bool HasBuilds => _builds.Any();
+        public bool HasBuilds => Builds.Any();
 
         /// <summary>
         /// Gets a value indicating whether this instance is busy.
@@ -134,6 +148,26 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             }
         }
 
+        /// <summary>
+        /// Gets the digest.
+        /// </summary>
+        /// <value>
+        /// The digest.
+        /// </value>
+        public ProjectDigestViewModel Digest
+        {
+            get
+            {
+                return _digest;
+            }
+
+            set
+            {
+                _digest = value;
+                NotifyOfPropertyChange(() => Digest);
+            }
+        }
+
         private void BuildMonitorProjectError(object sender, BuildMonitorProjectErrorEventArgs e)
         {
             if (ShouldExitHandler(e))
@@ -153,10 +187,11 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             }
 
             var isDirty = false;
+            var currentBuilds = new List<BuildViewModel>(Builds);
 
             foreach (var build in e.Builds)
             {
-                var buildToUpdate = _builds.SingleOrDefault(b => b.BuildId == build.Id);
+                var buildToUpdate = currentBuilds.SingleOrDefault(b => b.BuildId == build.Id);
 
                 if (buildToUpdate != null)
                 {
@@ -164,14 +199,14 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
                     buildToUpdate.SetVersionNumber(build.GetVersionNumber());
                     buildToUpdate.SetBranch(build.Branch);
                     buildToUpdate.Status = build.Status;
-                    buildToUpdate.Started = build.Started;
-                    buildToUpdate.SetBuildTime(build.GetBuildTime());
+                    buildToUpdate.StartTime = build.StartTime;
+                    buildToUpdate.SetRunTime(build.GetRunTime());
                 }
                 else
                 {
                     var buildToAdd = _buildFactory.Create(e.Project.Name, build);
 
-                    _builds.Add(buildToAdd);
+                    currentBuilds.Add(buildToAdd);
 
                     isDirty = true;
                 }
@@ -179,15 +214,16 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
 
             var buildsToKeep = e.Builds.Select(build => build.Id).ToArray();
 
-            var removedBuilds = _builds.RemoveAll(build => !buildsToKeep.Contains(build.BuildId)) > 0;
+            var removedBuilds = currentBuilds.RemoveAll(build => !buildsToKeep.Contains(build.BuildId)) > 0;
 
             isDirty = isDirty || removedBuilds;
 
             if (isDirty)
             {
-                _builds = _builds.OrderByDescending(build => build.Started ?? DateTime.MaxValue).ToList();
-                NotifyOfPropertyChange(() => Builds);
-                NotifyOfPropertyChange(() => HasBuilds);
+                Builds = currentBuilds.OrderByDescending(build => build.StartTime ?? DateTime.MaxValue);
+
+                // TODO: Create factory.
+                Digest = new ProjectDigestViewModel(e.Builds);
             }
 
             IsBusy = false;

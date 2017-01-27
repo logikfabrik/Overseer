@@ -91,7 +91,7 @@
             </Grid.RowDefinitions>
             <StackPanel Grid.Row="0" Margin="20,10">
                 <TextBlock x:Name="BuildName" Style="{StaticResource BuildNameTextBlockStyle}" />
-                <TextBlock x:Name="Message" Style="{StaticResource MessageTextBlockStyle}" />
+                <TextBlock x:Name="BuildStatusMessage" Style="{StaticResource MessageTextBlockStyle}" />
             </StackPanel>
             <StackPanel Grid.Row="2" Margin="20,10">
                 <TextBlock Style="{StaticResource OverseerTextBlockStyle}" Text="Overseer" />

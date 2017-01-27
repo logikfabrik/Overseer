@@ -5,12 +5,12 @@
 namespace Logikfabrik.Overseer.WPF.ViewModels
 {
     using System;
+    using System.Collections.Generic;
     using System.Windows;
     using System.Windows.Controls.Primitives;
     using System.Windows.Threading;
     using Caliburn.Micro;
     using EnsureThat;
-    using Overseer.Extensions;
 
     /// <summary>
     /// The <see cref="BuildNotificationViewModel" /> class.
@@ -33,8 +33,8 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
 
             dispatcher.Start();
 
-            BuildName = GetBuildName(project, build);
-            Message = GetMessage(build);
+            BuildName = BuildMessageUtil.GetBuildName(project, build);
+            BuildStatusMessage = BuildMessageUtil.GetBuildStatusMessage(build.Status, new Dictionary<string, string> { { "requested by", build.RequestedBy } });
             Status = build.Status;
         }
 
@@ -47,12 +47,12 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         public string BuildName { get; }
 
         /// <summary>
-        /// Gets the message.
+        /// Gets the build status message.
         /// </summary>
         /// <value>
-        /// The message.
+        /// The build status message.
         /// </value>
-        public string Message { get; }
+        public string BuildStatusMessage { get; }
 
         /// <summary>
         /// Gets the status.
@@ -61,33 +61,6 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// The status.
         /// </value>
         public BuildStatus? Status { get; }
-
-        private static string GetBuildName(IProject project, IBuild build)
-        {
-            return $"{project.Name} {build.GetVersionNumber()} {(!string.IsNullOrWhiteSpace(build.Branch) ? $"({build.Branch})" : string.Empty)}";
-        }
-
-        private static string GetMessage(IBuild build)
-        {
-            // ReSharper disable once SwitchStatementMissingSomeCases
-            switch (build.Status)
-            {
-                case BuildStatus.InProgress:
-                    return $"Build requested by {build.RequestedBy} is in progress";
-
-                case BuildStatus.Stopped:
-                    return $"Build requested by {build.RequestedBy} was stopped";
-
-                case BuildStatus.Succeeded:
-                    return $"Build requested by {build.RequestedBy} succeeded";
-
-                case BuildStatus.Failed:
-                    return $"Build requested by {build.RequestedBy} failed";
-
-                default:
-                    return null;
-            }
-        }
 
         private void Close()
         {

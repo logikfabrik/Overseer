@@ -28,8 +28,8 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices
             Version = null;
             Number = build.BuildNumber;
             Branch = build.SourceBranch;
-            Started = build.StartTime?.ToUniversalTime();
-            Finished = build.FinishTime?.ToUniversalTime();
+            StartTime = build.StartTime?.ToUniversalTime();
+            EndTime = build.FinishTime?.ToUniversalTime();
             Status = GetStatus(build);
             RequestedBy = build.RequestedFor.DisplayName;
             Changes = changes.Select(lastChange => new Change
@@ -74,20 +74,20 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices
         public string Branch { get; }
 
         /// <summary>
-        /// Gets the started date.
+        /// Gets the start time.
         /// </summary>
         /// <value>
-        /// The started date.
+        /// The start time.
         /// </value>
-        public DateTime? Started { get; }
+        public DateTime? StartTime { get; }
 
         /// <summary>
-        /// Gets the finished date.
+        /// Gets the end time.
         /// </summary>
         /// <value>
-        /// The finished date.
+        /// The end time.
         /// </value>
-        public DateTime? Finished { get; }
+        public DateTime? EndTime { get; }
 
         /// <summary>
         /// Gets the status.

@@ -53,7 +53,7 @@ namespace Logikfabrik.Overseer.WPF
         private bool ShouldShowNotification(IProject project, IBuild build)
         {
             // Only show notifications for builds running after app start time.
-            if (build.Finished <= _appStartTime.Value)
+            if (build.EndTime <= _appStartTime.Value)
             {
                 return false;
             }

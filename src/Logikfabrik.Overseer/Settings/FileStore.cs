@@ -70,6 +70,9 @@ namespace Logikfabrik.Overseer.Settings
 
             try
             {
+                // ReSharper disable once AssignNullToNotNullAttribute
+                Directory.CreateDirectory(Path.GetDirectoryName(_path));
+
                 File.WriteAllText(_path, contents);
             }
             finally

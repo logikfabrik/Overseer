@@ -76,7 +76,7 @@
         </Border.Style>
         <StackPanel Margin="20,10">
             <TextBlock x:Name="BuildName" Style="{StaticResource BuildNameTextBlockStyle}" />
-            <TextBlock x:Name="Message" Style="{StaticResource MessageTextBlockStyle}" />
+            <TextBlock x:Name="BuildRunTimeMessage" Style="{StaticResource MessageTextBlockStyle}" />
             <ItemsControl Focusable="False" ItemsSource="{Binding Changes, Mode=OneWay}">
                 <ItemsControl.ItemContainerStyle>
                     <Style>

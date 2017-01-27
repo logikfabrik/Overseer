@@ -29,8 +29,13 @@
                                 <Border
                                     x:Name="PART_Build"
                                     Padding="10,10,10,0"
-                                    Background="#FF595959" />
-                                <!--  TODO: Show summary for latest build  -->
+                                    Background="#FF595959">
+                                    <ContentControl
+                                        HorizontalAlignment="Stretch"
+                                        VerticalAlignment="Stretch"
+                                        cal:View.Model="{Binding Digest, Mode=OneWay}"
+                                        Focusable="False" />
+                                </Border>
                                 <Border
                                     x:Name="PART_Builds"
                                     Padding="10,10,10,0"

@@ -53,6 +53,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
 
         private static string GetMessage(IChange change)
         {
+            // TODO: Use BuildMessageUtil.
             return $"{(!string.IsNullOrWhiteSpace(change.ChangedBy) ? $"by {change.ChangedBy}" : string.Empty)} {(change.Changed.HasValue ? $"{(DateTime.UtcNow - change.Changed).Value.Humanize()} ago" : string.Empty)}";
         }
     }

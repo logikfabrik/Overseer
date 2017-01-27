@@ -35,7 +35,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices.Api.Models
         Postponed = 8,
 
         /// <summary>
-        /// The is not started.
+        /// The build is not started.
         /// </summary>
         NotStarted = 32,
 

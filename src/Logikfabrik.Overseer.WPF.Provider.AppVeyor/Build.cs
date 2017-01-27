@@ -25,8 +25,8 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor
             Version = build.Version;
             Number = null;
             Branch = build.Branch;
-            Started = build.Started?.ToUniversalTime();
-            Finished = build.Finished?.ToUniversalTime();
+            StartTime = build.Started?.ToUniversalTime();
+            EndTime = build.Finished?.ToUniversalTime();
             Status = GetStatus(build);
             RequestedBy = build.AuthorUsername;
             Changes = new[]
@@ -74,20 +74,20 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor
         public string Branch { get; }
 
         /// <summary>
-        /// Gets the started date.
+        /// Gets the start time.
         /// </summary>
         /// <value>
-        /// The started date.
+        /// The start time.
         /// </value>
-        public DateTime? Started { get; }
+        public DateTime? StartTime { get; }
 
         /// <summary>
-        /// Gets the finished date.
+        /// Gets the end time.
         /// </summary>
         /// <value>
-        /// The finished date.
+        /// The end time.
         /// </value>
-        public DateTime? Finished { get; }
+        public DateTime? EndTime { get; }
 
         /// <summary>
         /// Gets the status.

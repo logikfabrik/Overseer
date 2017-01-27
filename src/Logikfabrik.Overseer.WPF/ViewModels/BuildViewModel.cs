@@ -10,7 +10,6 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     using Caliburn.Micro;
     using EnsureThat;
     using Factories;
-    using Humanizer;
 
     /// <summary>
     /// The <see cref="BuildViewModel" /> class.
@@ -22,8 +21,8 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         private string _versionNumber;
         private string _branch;
         private BuildStatus? _status;
-        private TimeSpan? _buildTime;
-        private DateTime? _started;
+        private TimeSpan? _runTime;
+        private DateTime? _startTime;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="BuildViewModel" /> class.
@@ -60,12 +59,12 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         public string BuildName { get; private set; }
 
         /// <summary>
-        /// Gets the message.
+        /// Gets the build run time message.
         /// </summary>
         /// <value>
-        /// The message.
+        /// The build run time message.
         /// </value>
-        public string Message { get; private set; }
+        public string BuildRunTimeMessage { get; private set; }
 
         /// <summary>
         /// Gets or sets the status.
@@ -86,30 +85,30 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
 
                 NotifyOfPropertyChange(() => Status);
 
-                UpdateMessage();
+                UpdateBuildRunTimeMessage();
             }
         }
 
         /// <summary>
-        /// Gets or sets the started date.
+        /// Gets or sets the start time.
         /// </summary>
         /// <value>
-        /// The started date.
+        /// The start time.
         /// </value>
-        public DateTime? Started
+        public DateTime? StartTime
         {
             get
             {
-                return _started;
+                return _startTime;
             }
 
             set
             {
-                _started = value;
+                _startTime = value;
 
-                NotifyOfPropertyChange(() => Started);
+                NotifyOfPropertyChange(() => StartTime);
 
-                UpdateMessage();
+                UpdateBuildRunTimeMessage();
             }
         }
 
@@ -155,46 +154,26 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         }
 
         /// <summary>
-        /// Sets the build time.
+        /// Sets the run time.
         /// </summary>
-        /// <param name="buildTime">The build time.</param>
-        public void SetBuildTime(TimeSpan? buildTime)
+        /// <param name="runTime">The run time.</param>
+        public void SetRunTime(TimeSpan? runTime)
         {
-            _buildTime = buildTime;
+            _runTime = runTime;
 
-            UpdateMessage();
+            UpdateBuildRunTimeMessage();
         }
 
         private void UpdateBuildName()
         {
-            BuildName = $"{_projectName} {_versionNumber} {(!string.IsNullOrWhiteSpace(_branch) ? $"({_branch})" : string.Empty)}";
-
+            BuildName = BuildMessageUtil.GetBuildName(_projectName, _versionNumber, _branch);
             NotifyOfPropertyChange(() => BuildName);
         }
 
-        private void UpdateMessage()
+        private void UpdateBuildRunTimeMessage()
         {
-            string message = null;
-
-            // ReSharper disable once SwitchStatementMissingSomeCases
-            switch (_status)
-            {
-                case BuildStatus.InProgress:
-                    message = $"In progress {(_started.HasValue ? _started.Humanize() : string.Empty)} {(_buildTime.HasValue ? $"since {_buildTime.Value.Humanize()}" : string.Empty)}";
-                    break;
-
-                case BuildStatus.Stopped:
-                case BuildStatus.Succeeded:
-                case BuildStatus.Failed:
-                    message = $"{_status} {(_started.HasValue ? _started.Humanize() : string.Empty)} {(_buildTime.HasValue ? $"in {_buildTime.Value.Humanize()}" : string.Empty)}";
-                    break;
-            }
-
-            Message = !string.IsNullOrWhiteSpace(message)
-                ? $"{message} {(!string.IsNullOrWhiteSpace(_requestedBy) ? $"for {_requestedBy}" : string.Empty)}"
-                : null;
-
-            NotifyOfPropertyChange(() => Message);
+            BuildRunTimeMessage = BuildMessageUtil.GetBuildRunTimeMessage(_status, _runTime, _startTime);
+            NotifyOfPropertyChange(() => BuildRunTimeMessage);
         }
     }
 }
