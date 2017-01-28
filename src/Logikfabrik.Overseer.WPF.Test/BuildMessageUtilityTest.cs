@@ -4,6 +4,7 @@
 
 namespace Logikfabrik.Overseer.WPF.Test
 {
+    using System;
     using System.Collections.Generic;
     using Moq;
     using Xunit;
@@ -99,6 +100,44 @@ namespace Logikfabrik.Overseer.WPF.Test
             var buildStatusMessage5 = BuildMessageUtility.GetBuildStatusMessage(null, parts);
 
             Assert.Null(buildStatusMessage5);
+        }
+
+        [Fact]
+        public void CanGetBuildRunTimeMessage()
+        {
+            var buildRunTimeMessage1 = BuildMessageUtility.GetBuildRunTimeMessage(BuildStatus.InProgress, null, null);
+
+            Assert.Equal("In progress", buildRunTimeMessage1);
+
+            var buildRunTimeMessage2 = BuildMessageUtility.GetBuildRunTimeMessage(BuildStatus.InProgress, TimeSpan.FromHours(1), null);
+
+            Assert.Equal("In progress for 1 hour", buildRunTimeMessage2);
+
+            var buildRunTimeMessage3 = BuildMessageUtility.GetBuildRunTimeMessage(BuildStatus.Succeeded, null, null);
+
+            Assert.Equal("Succeeded", buildRunTimeMessage3);
+
+            var buildRunTimeMessage4 = BuildMessageUtility.GetBuildRunTimeMessage(BuildStatus.Succeeded, TimeSpan.FromHours(1), null);
+
+            Assert.Equal("Succeeded in 1 hour", buildRunTimeMessage4);
+
+            var buildRunTimeMessage5 = BuildMessageUtility.GetBuildRunTimeMessage(BuildStatus.Succeeded, TimeSpan.FromHours(1), DateTime.UtcNow.AddHours(-1));
+
+            Assert.Equal("Succeeded in 1 hour, an hour ago", buildRunTimeMessage5);
+
+            var buildRunTimeMessage6 = BuildMessageUtility.GetBuildRunTimeMessage(BuildStatus.Succeeded, null, DateTime.UtcNow.AddHours(-1));
+
+            Assert.Equal("Succeeded an hour ago", buildRunTimeMessage6);
+
+            var buildRunTimeMessage7 = BuildMessageUtility.GetBuildRunTimeMessage(null, null, null);
+
+            Assert.Null(buildRunTimeMessage7);
+        }
+
+        [Fact(Skip = "TODO")]
+        public void CanGetSuccessRateMessage()
+        {
+            // TODO: This unit test.
         }
     }
 }

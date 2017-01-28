@@ -113,12 +113,24 @@ namespace Logikfabrik.Overseer.WPF
         {
             if (status.IsInProgress())
             {
-                return $"{status.Humanize()} for {runTime?.Humanize()}";
+                return !runTime.HasValue
+                    ? status.Humanize()
+                    : $"{status.Humanize()} for {runTime.Value.Humanize()}";
             }
 
+            // ReSharper disable once InvertIf
             if (status.IsFinished())
             {
-                return $"{status.Humanize()} in {runTime?.Humanize()}, {startTime?.Humanize()}";
+                if (!runTime.HasValue)
+                {
+                    return !startTime.HasValue
+                        ? status.Humanize()
+                        : $"{status.Humanize()} {startTime.Value.Humanize()}";
+                }
+
+                return !startTime.HasValue
+                    ? $"{status.Humanize()} in {runTime.Value.Humanize()}"
+                    : $"{status.Humanize()} in {runTime.Value.Humanize()}, {startTime.Value.Humanize()}";
             }
 
             return null;
