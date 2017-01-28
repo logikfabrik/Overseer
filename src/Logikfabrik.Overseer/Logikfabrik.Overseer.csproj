@@ -63,6 +63,7 @@
     <Compile Include="BuildProviderFactory.cs" />
     <Compile Include="Change.cs" />
     <Compile Include="Extensions\BuildExtensions.cs" />
+    <Compile Include="Extensions\BuildStatusExtensions.cs" />
     <Compile Include="IBuildMonitor.cs" />
     <Compile Include="IBuildProvider.cs" />
     <Compile Include="IChange.cs" />

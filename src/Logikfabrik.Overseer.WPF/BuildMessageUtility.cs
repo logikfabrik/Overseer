@@ -7,6 +7,7 @@ namespace Logikfabrik.Overseer.WPF
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Text;
     using EnsureThat;
     using Humanizer;
     using Overseer.Extensions;
@@ -39,7 +40,24 @@ namespace Logikfabrik.Overseer.WPF
         /// <returns>The build name.</returns>
         public static string GetBuildName(string projectName, string versionNumber, string branch)
         {
-            return $"{projectName} {versionNumber} {(!string.IsNullOrWhiteSpace(branch) ? $"({branch})" : string.Empty)}";
+            var builder = new StringBuilder();
+
+            if (!string.IsNullOrWhiteSpace(projectName))
+            {
+                builder.AppendFormat("{0} ", projectName);
+            }
+
+            if (!string.IsNullOrWhiteSpace(versionNumber))
+            {
+                builder.AppendFormat("{0} ", versionNumber);
+            }
+
+            if (!string.IsNullOrWhiteSpace(branch))
+            {
+                builder.AppendFormat("({0})", branch);
+            }
+
+            return builder.Length > 0 ? builder.ToString() : null;
         }
 
         /// <summary>
@@ -62,7 +80,16 @@ namespace Logikfabrik.Overseer.WPF
         {
             Ensure.That(parts).IsNotNull();
 
-            return $"Build {GetMessageParts(parts)} {status?.Humanize().Transform(To.LowerCase)}";
+            if (!status.HasValue)
+            {
+                return null;
+            }
+
+            var messageParts = GetMessageParts(parts);
+
+            return string.IsNullOrWhiteSpace(messageParts)
+                ? $"Build {status.Value.Humanize().Transform(To.LowerCase)}"
+                : $"Build {GetMessageParts(parts)} {status.Value.Humanize().Transform(To.LowerCase)}";
         }
 
         /// <summary>
@@ -84,19 +111,17 @@ namespace Logikfabrik.Overseer.WPF
         /// <returns>The build run time message.</returns>
         public static string GetBuildRunTimeMessage(BuildStatus? status, TimeSpan? runTime, DateTime? startTime)
         {
-            // ReSharper disable once SwitchStatementMissingSomeCases
-            switch (status)
+            if (status.IsInProgress())
             {
-                case BuildStatus.InProgress:
-                    return $"{status.Humanize()} for {runTime?.Humanize()}";
-
-                case BuildStatus.Stopped:
-                case BuildStatus.Succeeded:
-                case BuildStatus.Failed:
-                    return $"{status.Humanize()} in {runTime?.Humanize()}, {startTime?.Humanize()}";
-                default:
-                    return null;
+                return $"{status.Humanize()} for {runTime?.Humanize()}";
             }
+
+            if (status.IsFinished())
+            {
+                return $"{status.Humanize()} in {runTime?.Humanize()}, {startTime?.Humanize()}";
+            }
+
+            return null;
         }
 
         /// <summary>

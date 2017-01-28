@@ -12,6 +12,16 @@ namespace Logikfabrik.Overseer.Test
     public class BuildExtensionsTest
     {
         [Fact]
+        public void CanNotGetVersionNumber()
+        {
+            var buildMock = new Mock<IBuild>();
+
+            var versionNumber = buildMock.Object.GetVersionNumber();
+
+            Assert.Null(versionNumber);
+        }
+
+        [Fact]
         public void CanGetVersionNumberForBuildVersion()
         {
             var buildMock = new Mock<IBuild>();
@@ -36,7 +46,7 @@ namespace Logikfabrik.Overseer.Test
         }
 
         [Fact]
-        public void CanGetRunTimeForBuild()
+        public void CanNotGetRunTimeForBuild()
         {
             var buildMock = new Mock<IBuild>();
 
@@ -60,7 +70,7 @@ namespace Logikfabrik.Overseer.Test
         }
 
         [Fact]
-        public void CanGetRunTimeForInProgressBuildWithoutStartTime()
+        public void CanNotGetRunTimeForInProgressBuildWithoutStartTime()
         {
             var buildMock = new Mock<IBuild>();
 
@@ -82,20 +92,20 @@ namespace Logikfabrik.Overseer.Test
             var buildMock = new Mock<IBuild>();
 
             buildMock.Setup(m => m.Status).Returns(status);
-            buildMock.Setup(m => m.StartTime).Returns(utcNow.AddHours(-2));
+            buildMock.Setup(m => m.StartTime).Returns(utcNow.AddHours(-1));
             buildMock.Setup(m => m.EndTime).Returns(utcNow);
 
             var runTime = buildMock.Object.GetRunTime();
 
             // ReSharper disable once PossibleInvalidOperationException
-            Assert.Equal(2, runTime.Value.TotalHours);
+            Assert.Equal(1, runTime.Value.TotalHours);
         }
 
         [Theory]
         [InlineData(BuildStatus.Failed)]
         [InlineData(BuildStatus.Succeeded)]
         [InlineData(BuildStatus.Stopped)]
-        public void CanGetRunTimeForFinishedBuildWithoutStartTime(BuildStatus status)
+        public void CanNotGetRunTimeForFinishedBuildWithoutStartTime(BuildStatus status)
         {
             var utcNow = DateTime.UtcNow;
 
@@ -113,7 +123,7 @@ namespace Logikfabrik.Overseer.Test
         [InlineData(BuildStatus.Failed)]
         [InlineData(BuildStatus.Succeeded)]
         [InlineData(BuildStatus.Stopped)]
-        public void CanGetRunTimeForFinishedBuildWithoutEndTime(BuildStatus status)
+        public void CanNotGetRunTimeForFinishedBuildWithoutEndTime(BuildStatus status)
         {
             var utcNow = DateTime.UtcNow;
 
@@ -131,7 +141,7 @@ namespace Logikfabrik.Overseer.Test
         [InlineData(BuildStatus.Failed)]
         [InlineData(BuildStatus.Succeeded)]
         [InlineData(BuildStatus.Stopped)]
-        public void CanGetRunTimeForFinishedBuildWithoutStartAndEndTime(BuildStatus status)
+        public void CanNotGetRunTimeForFinishedBuildWithoutStartAndEndTime(BuildStatus status)
         {
             var buildMock = new Mock<IBuild>();
 

@@ -18,14 +18,7 @@ namespace Logikfabrik.Overseer.Extensions
         /// <returns><c>true</c> if finished; otherwise <c>false</c>.</returns>
         public static bool IsFinished(this IBuild build)
         {
-            var status = build.Status;
-
-            if (status == null)
-            {
-                return false;
-            }
-
-            return status != BuildStatus.InProgress;
+            return build.Status.IsFinished();
         }
 
         /// <summary>
@@ -35,9 +28,7 @@ namespace Logikfabrik.Overseer.Extensions
         /// <returns><c>true</c> if in progress; otherwise <c>false</c>.</returns>
         public static bool IsInProgress(this IBuild build)
         {
-            var status = build.Status;
-
-            return status == BuildStatus.InProgress;
+            return build.Status.IsInProgress();
         }
 
         /// <summary>
