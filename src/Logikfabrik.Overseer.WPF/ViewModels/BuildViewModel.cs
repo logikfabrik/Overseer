@@ -16,58 +16,106 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     /// </summary>
     public class BuildViewModel : PropertyChangedBase
     {
-        private readonly string _requestedBy;
-        private string _projectName;
-        private string _versionNumber;
-        private string _branch;
+        private readonly string _versionNumber;
+        private readonly string _branch;
+        private string _name;
+        private string _message;
         private BuildStatus? _status;
-        private TimeSpan? _runTime;
         private DateTime? _startTime;
+        private DateTime? _endTime;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="BuildViewModel" /> class.
         /// </summary>
         /// <param name="changeFactory">The change factory.</param>
-        /// <param name="buildId">The build identifier.</param>
+        /// <param name="projectName">The project name.</param>
+        /// <param name="id">The identifier.</param>
+        /// <param name="branch">The branch.</param>
+        /// <param name="versionNumber">The version number.</param>
         /// <param name="requestedBy">The name of whoever requested the build.</param>
         /// <param name="changes">The changes.</param>
-        public BuildViewModel(IChangeViewModelFactory changeFactory, string buildId, string requestedBy, IEnumerable<IChange> changes)
+        /// <param name="status">The status.</param>
+        /// <param name="startTime">The start time.</param>
+        /// <param name="endTime">The end time.</param>
+        /// <param name="runTime">The run time.</param>
+        public BuildViewModel(IChangeViewModelFactory changeFactory, string projectName, string id, string branch, string versionNumber, string requestedBy, IEnumerable<IChange> changes, BuildStatus? status, DateTime? startTime, DateTime? endTime, TimeSpan? runTime)
         {
             Ensure.That(changeFactory).IsNotNull();
-            Ensure.That(buildId).IsNotNullOrWhiteSpace();
+            Ensure.That(id).IsNotNullOrWhiteSpace();
             Ensure.That(changes).IsNotNull();
 
-            BuildId = buildId;
-            _requestedBy = requestedBy;
+            Id = id;
+            _branch = branch;
+            _versionNumber = versionNumber;
+
+            if (!string.IsNullOrWhiteSpace(requestedBy))
+            {
+                RequestedBy = $"by {requestedBy}";
+            }
+
             Changes = changes.Select(changeFactory.Create);
+
+            TryUpdate(projectName, status, startTime, endTime, runTime);
         }
 
         /// <summary>
-        /// Gets the build identifier.
+        /// Gets the identifier.
         /// </summary>
         /// <value>
-        /// The build identifier.
+        /// The identifier.
         /// </value>
-        public string BuildId { get; }
+        public string Id { get; }
 
         /// <summary>
-        /// Gets the build name.
+        /// Gets the name.
         /// </summary>
         /// <value>
-        /// The build name.
+        /// The name.
         /// </value>
-        public string BuildName { get; private set; }
+        public string Name
+        {
+            get
+            {
+                return _name;
+            }
+
+            private set
+            {
+                _name = value;
+                NotifyOfPropertyChange(() => Name);
+            }
+        }
 
         /// <summary>
-        /// Gets the build run time message.
+        /// Gets the name of whoever requested the build.
         /// </summary>
         /// <value>
-        /// The build run time message.
+        /// The name of whoever requested the build.
         /// </value>
-        public string BuildRunTimeMessage { get; private set; }
+        public string RequestedBy { get; }
 
         /// <summary>
-        /// Gets or sets the status.
+        /// Gets the message.
+        /// </summary>
+        /// <value>
+        /// The message.
+        /// </value>
+        public string Message
+        {
+            get
+            {
+                return _message;
+            }
+
+            private set
+            {
+                _message = value;
+                NotifyOfPropertyChange(() => Message);
+            }
+        }
+
+        /// <summary>
+        /// Gets the status.
         /// </summary>
         /// <value>
         /// The status.
@@ -79,18 +127,15 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
                 return _status;
             }
 
-            set
+            private set
             {
                 _status = value;
-
                 NotifyOfPropertyChange(() => Status);
-
-                UpdateBuildRunTimeMessage();
             }
         }
 
         /// <summary>
-        /// Gets or sets the start time.
+        /// Gets the start time.
         /// </summary>
         /// <value>
         /// The start time.
@@ -102,13 +147,30 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
                 return _startTime;
             }
 
-            set
+            private set
             {
                 _startTime = value;
-
                 NotifyOfPropertyChange(() => StartTime);
+            }
+        }
 
-                UpdateBuildRunTimeMessage();
+        /// <summary>
+        /// Gets the end time.
+        /// </summary>
+        /// <value>
+        /// The end time.
+        /// </value>
+        public DateTime? EndTime
+        {
+            get
+            {
+                return _endTime;
+            }
+
+            private set
+            {
+                _endTime = value;
+                NotifyOfPropertyChange(() => EndTime);
             }
         }
 
@@ -121,59 +183,44 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         public IEnumerable<ChangeViewModel> Changes { get; }
 
         /// <summary>
-        /// Sets the project name.
+        /// Tries to update this instance.
         /// </summary>
         /// <param name="projectName">The project name.</param>
-        public void SetProjectName(string projectName)
-        {
-            _projectName = projectName;
-
-            UpdateBuildName();
-        }
-
-        /// <summary>
-        /// Sets the version number.
-        /// </summary>
-        /// <param name="versionNumber">The version number.</param>
-        public void SetVersionNumber(string versionNumber)
-        {
-            _versionNumber = versionNumber;
-
-            UpdateBuildName();
-        }
-
-        /// <summary>
-        /// Sets the branch.
-        /// </summary>
-        /// <param name="branch">The branch.</param>
-        public void SetBranch(string branch)
-        {
-            _branch = branch;
-
-            UpdateBuildName();
-        }
-
-        /// <summary>
-        /// Sets the run time.
-        /// </summary>
+        /// <param name="status">The status.</param>
+        /// <param name="startTime">The start time.</param>
+        /// <param name="endTime">The end time.</param>
         /// <param name="runTime">The run time.</param>
-        public void SetRunTime(TimeSpan? runTime)
+        /// <returns><c>true</c> if this instance was updated; otherwise, <c>false</c>.</returns>
+        public bool TryUpdate(string projectName, BuildStatus? status, DateTime? startTime, DateTime? endTime, TimeSpan? runTime)
         {
-            _runTime = runTime;
+            var name = BuildMessageUtility.GetBuildName(projectName, _versionNumber, _branch);
 
-            UpdateBuildRunTimeMessage();
-        }
+            var isUpdated = false;
 
-        private void UpdateBuildName()
-        {
-            BuildName = BuildMessageUtility.GetBuildName(_projectName, _versionNumber, _branch);
-            NotifyOfPropertyChange(() => BuildName);
-        }
+            if (Name != name)
+            {
+                Name = name;
+                isUpdated = true;
+            }
 
-        private void UpdateBuildRunTimeMessage()
-        {
-            BuildRunTimeMessage = BuildMessageUtility.GetBuildRunTimeMessage(_status, _runTime, _startTime);
-            NotifyOfPropertyChange(() => BuildRunTimeMessage);
+            var message = BuildMessageUtility.GetBuildRunTimeMessage(status, endTime, runTime);
+
+            if (Message != message)
+            {
+                Message = message;
+                Status = status;
+                EndTime = endTime;
+                isUpdated = true;
+            }
+
+            // ReSharper disable once InvertIf
+            if (StartTime != startTime)
+            {
+                StartTime = startTime;
+                isUpdated = true;
+            }
+
+            return isUpdated;
         }
     }
 }

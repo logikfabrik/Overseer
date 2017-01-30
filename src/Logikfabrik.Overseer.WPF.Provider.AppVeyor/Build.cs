@@ -128,6 +128,9 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor
                 case "failure":
                     return BuildStatus.Failed;
 
+                case "cancelled":
+                    return BuildStatus.Stopped;
+
                 default:
                     return null;
             }

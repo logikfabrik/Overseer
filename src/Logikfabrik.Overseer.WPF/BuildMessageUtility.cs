@@ -99,17 +99,17 @@ namespace Logikfabrik.Overseer.WPF
         /// <returns>The build run time message.</returns>
         public static string GetBuildRunTimeMessage(IBuild build)
         {
-            return GetBuildRunTimeMessage(build.Status, build.GetRunTime(), build.StartTime);
+            return GetBuildRunTimeMessage(build.Status, build.EndTime, build.GetRunTime());
         }
 
         /// <summary>
         /// Gets the build run time message.
         /// </summary>
         /// <param name="status">The status.</param>
+        /// <param name="endTime">The end time.</param>
         /// <param name="runTime">The run time.</param>
-        /// <param name="startTime">The start time.</param>
         /// <returns>The build run time message.</returns>
-        public static string GetBuildRunTimeMessage(BuildStatus? status, TimeSpan? runTime, DateTime? startTime)
+        public static string GetBuildRunTimeMessage(BuildStatus? status, DateTime? endTime, TimeSpan? runTime)
         {
             if (status.IsInProgress())
             {
@@ -123,14 +123,14 @@ namespace Logikfabrik.Overseer.WPF
             {
                 if (!runTime.HasValue)
                 {
-                    return !startTime.HasValue
+                    return !endTime.HasValue
                         ? status.Humanize()
-                        : $"{status.Humanize()} {startTime.Value.Humanize()}";
+                        : $"{status.Humanize()} {endTime.Value.Humanize()}";
                 }
 
-                return !startTime.HasValue
+                return !endTime.HasValue
                     ? $"{status.Humanize()} in {runTime.Value.Humanize()}"
-                    : $"{status.Humanize()} in {runTime.Value.Humanize()}, {startTime.Value.Humanize()}";
+                    : $"{status.Humanize()} in {runTime.Value.Humanize()}, {endTime.Value.Humanize()}";
             }
 
             return null;

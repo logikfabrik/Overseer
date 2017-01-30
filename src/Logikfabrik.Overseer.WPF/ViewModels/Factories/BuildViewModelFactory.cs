@@ -37,14 +37,18 @@ namespace Logikfabrik.Overseer.WPF.ViewModels.Factories
         {
             Ensure.That(build).IsNotNull();
 
-            var viewModel = new BuildViewModel(_changeFactory, build.Id, build.RequestedBy, build.Changes);
-
-            viewModel.SetProjectName(projectName);
-            viewModel.SetVersionNumber(build.GetVersionNumber());
-            viewModel.SetBranch(build.Branch);
-            viewModel.Status = build.Status;
-            viewModel.StartTime = build.StartTime;
-            viewModel.SetRunTime(build.GetRunTime());
+            var viewModel = new BuildViewModel(
+                _changeFactory,
+                projectName,
+                build.Id,
+                build.Branch,
+                build.GetVersionNumber(),
+                build.RequestedBy,
+                build.Changes,
+                build.Status,
+                build.StartTime,
+                build.EndTime,
+                build.GetRunTime());
 
             return viewModel;
         }

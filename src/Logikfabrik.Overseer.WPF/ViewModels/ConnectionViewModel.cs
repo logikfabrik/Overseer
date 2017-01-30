@@ -186,11 +186,11 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
 
             foreach (var project in e.Projects)
             {
-                var projectToUpdate = _projects.SingleOrDefault(p => p.ProjectId == project.Id);
+                var projectToUpdate = _projects.SingleOrDefault(p => p.Id == project.Id);
 
                 if (projectToUpdate != null)
                 {
-                    projectToUpdate.ProjectName = project.Name;
+                    projectToUpdate.TryUpdate(project.Name);
                 }
                 else
                 {
@@ -204,7 +204,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
 
             var projectsToKeep = e.Projects.Select(project => project.Id).ToArray();
 
-            var removedProjects = _projects.RemoveAll(project => !projectsToKeep.Contains(project.ProjectId)) > 0;
+            var removedProjects = _projects.RemoveAll(project => !projectsToKeep.Contains(project.Id)) > 0;
 
             isDirty = isDirty || removedProjects;
 

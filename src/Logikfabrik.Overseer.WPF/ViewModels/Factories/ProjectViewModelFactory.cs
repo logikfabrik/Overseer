@@ -33,7 +33,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels.Factories
         /// Creates a view model.
         /// </summary>
         /// <param name="settingsId">The settings identifier.</param>
-        /// <param name="project">The project identifier.</param>
+        /// <param name="project">The project.</param>
         /// <returns>
         /// A view model.
         /// </returns>
@@ -41,10 +41,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels.Factories
         {
             Ensure.That(project).IsNotNull();
 
-            return new ProjectViewModel(_buildMonitor, _buildFactory, settingsId, project.Id)
-            {
-                ProjectName = project.Name
-            };
+            return new ProjectViewModel(_buildMonitor, _buildFactory, settingsId, project.Id, project.Name);
         }
     }
 }

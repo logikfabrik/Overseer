@@ -17,7 +17,7 @@
                             <StackPanel>
                                 <Grid>
                                     <ToggleButton
-                                        Content="{Binding ProjectName, Mode=OneWay}"
+                                        Content="{Binding Name, Mode=OneWay}"
                                         IsChecked="{Binding IsExpanded, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
                                         Style="{StaticResource ToggleButtonDefaultStyle}" />
                                     <Rectangle

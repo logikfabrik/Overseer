@@ -21,7 +21,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         private readonly IBuildViewModelFactory _buildFactory;
         private readonly Guid _settingsId;
         private List<BuildViewModel> _builds;
-        private string _projectName;
+        private string _name;
         private bool _isBusy;
         private bool _isErrored;
         private ProjectDigestViewModel _digest;
@@ -33,7 +33,8 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// <param name="buildFactory">The build factory.</param>
         /// <param name="settingsId">The settings identifier.</param>
         /// <param name="projectId">The project identifier.</param>
-        public ProjectViewModel(IBuildMonitor buildMonitor, IBuildViewModelFactory buildFactory, Guid settingsId, string projectId)
+        /// <param name="projectName">The project name.</param>
+        public ProjectViewModel(IBuildMonitor buildMonitor, IBuildViewModelFactory buildFactory, Guid settingsId, string projectId, string projectName)
         {
             Ensure.That(buildMonitor).IsNotNull();
             Ensure.That(buildFactory).IsNotNull();
@@ -42,7 +43,8 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
 
             _buildFactory = buildFactory;
             _settingsId = settingsId;
-            ProjectId = projectId;
+            Id = projectId;
+            _name = projectName;
             _isBusy = true;
             _isErrored = false;
             _builds = new List<BuildViewModel>();
@@ -52,30 +54,30 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         }
 
         /// <summary>
-        /// Gets the project identifier.
+        /// Gets the identifier.
         /// </summary>
         /// <value>
-        /// The project identifier.
+        /// The identifier.
         /// </value>
-        public string ProjectId { get; }
+        public string Id { get; }
 
         /// <summary>
-        /// Gets or sets the project name.
+        /// Gets the name.
         /// </summary>
         /// <value>
-        /// The project name.
+        /// The name.
         /// </value>
-        public string ProjectName
+        public string Name
         {
             get
             {
-                return _projectName;
+                return _name;
             }
 
-            set
+            private set
             {
-                _projectName = value;
-                NotifyOfPropertyChange(() => ProjectName);
+                _name = value;
+                NotifyOfPropertyChange(() => Name);
             }
         }
 
@@ -168,6 +170,23 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             }
         }
 
+        /// <summary>
+        /// Tries to update this instance.
+        /// </summary>
+        /// <param name="name">The name.</param>
+        /// <returns><c>true</c> if this instance was updated; otherwise, <c>false</c>.</returns>
+        public bool TryUpdate(string name)
+        {
+            if (Name == name)
+            {
+                return false;
+            }
+
+            Name = name;
+
+            return true;
+        }
+
         private void BuildMonitorProjectError(object sender, BuildMonitorProjectErrorEventArgs e)
         {
             if (ShouldExitHandler(e))
@@ -187,38 +206,35 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             }
 
             var isDirty = false;
+            var isUpdated = false;
+
             var currentBuilds = new List<BuildViewModel>(Builds);
 
             foreach (var build in e.Builds)
             {
-                var buildToUpdate = currentBuilds.SingleOrDefault(b => b.BuildId == build.Id);
+                var buildToUpdate = currentBuilds.SingleOrDefault(b => b.Id == build.Id);
 
                 if (buildToUpdate != null)
                 {
-                    buildToUpdate.SetProjectName(e.Project.Name);
-                    buildToUpdate.SetVersionNumber(build.GetVersionNumber());
-                    buildToUpdate.SetBranch(build.Branch);
-                    buildToUpdate.Status = build.Status;
-                    buildToUpdate.StartTime = build.StartTime;
-                    buildToUpdate.SetRunTime(build.GetRunTime());
+                    buildToUpdate.TryUpdate(e.Project.Name, build.Status, build.StartTime, build.EndTime, build.GetRunTime());
+                    isUpdated = true;
                 }
                 else
                 {
                     var buildToAdd = _buildFactory.Create(e.Project.Name, build);
 
                     currentBuilds.Add(buildToAdd);
-
                     isDirty = true;
                 }
             }
 
             var buildsToKeep = e.Builds.Select(build => build.Id).ToArray();
 
-            var removedBuilds = currentBuilds.RemoveAll(build => !buildsToKeep.Contains(build.BuildId)) > 0;
+            var removedBuilds = currentBuilds.RemoveAll(build => !buildsToKeep.Contains(build.Id)) > 0;
 
             isDirty = isDirty || removedBuilds;
 
-            if (isDirty)
+            if (isDirty || isUpdated)
             {
                 Builds = currentBuilds.OrderByDescending(build => build.StartTime ?? DateTime.MaxValue);
 
@@ -231,7 +247,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
 
         private bool ShouldExitHandler(BuildMonitorProjectEventArgs e)
         {
-            return _settingsId != e.SettingsId || ProjectId != e.Project.Id;
+            return _settingsId != e.SettingsId || Id != e.Project.Id;
         }
     }
 }

@@ -26,7 +26,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
 
             SuccessRateMessage = BuildMessageUtility.GetSuccessRateMessage(finishedBuilds);
 
-            var latestBuild = finishedBuilds.Where(build => build.IsFinished()).OrderBy(build => build.StartTime).FirstOrDefault();
+            var latestBuild = finishedBuilds.Where(build => build.IsFinished()).OrderByDescending(build => build.StartTime).FirstOrDefault();
 
             if (latestBuild == null)
             {

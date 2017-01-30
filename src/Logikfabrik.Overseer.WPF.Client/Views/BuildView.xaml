@@ -49,23 +49,6 @@
             TargetType="{x:Type Border}">
             <Setter Property="BorderBrush" Value="{StaticResource BuildBorder.Stopped.Border}" />
         </Style>
-        <Style x:Key="TextBlockStyle" TargetType="{x:Type TextBlock}">
-            <Setter Property="Foreground" Value="#FFFFFFFF" />
-            <Setter Property="TextWrapping" Value="Wrap" />
-        </Style>
-        <Style
-            x:Key="BuildNameTextBlockStyle"
-            BasedOn="{StaticResource TextBlockStyle}"
-            TargetType="{x:Type TextBlock}">
-            <Setter Property="FontSize" Value="16" />
-            <Setter Property="FontWeight" Value="SemiBold" />
-        </Style>
-        <Style
-            x:Key="MessageTextBlockStyle"
-            BasedOn="{StaticResource TextBlockStyle}"
-            TargetType="{x:Type TextBlock}">
-            <Setter Property="FontSize" Value="16" />
-        </Style>
     </UserControl.Resources>
     <Border>
         <Border.Style>
@@ -75,8 +58,16 @@
             </MultiBinding>
         </Border.Style>
         <StackPanel Margin="20,10">
-            <TextBlock x:Name="BuildName" Style="{StaticResource BuildNameTextBlockStyle}" />
-            <TextBlock x:Name="BuildRunTimeMessage" Style="{StaticResource MessageTextBlockStyle}" />
+            <TextBlock
+                x:Name="Name"
+                FontSize="16"
+                FontWeight="SemiBold"
+                Style="{StaticResource TextBlockDefaultStyle}" />
+            <TextBlock
+                x:Name="Message"
+                FontSize="16"
+                Style="{StaticResource TextBlockDefaultStyle}" />
+            <TextBlock x:Name="RequestedBy" Style="{StaticResource TextBlockDefaultStyle}" />
             <ItemsControl Focusable="False" ItemsSource="{Binding Changes, Mode=OneWay}">
                 <ItemsControl.ItemContainerStyle>
                     <Style>

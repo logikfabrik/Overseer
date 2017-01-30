@@ -109,7 +109,7 @@ namespace Logikfabrik.Overseer.WPF.Test
 
             Assert.Equal("In progress", buildRunTimeMessage1);
 
-            var buildRunTimeMessage2 = BuildMessageUtility.GetBuildRunTimeMessage(BuildStatus.InProgress, TimeSpan.FromHours(1), null);
+            var buildRunTimeMessage2 = BuildMessageUtility.GetBuildRunTimeMessage(BuildStatus.InProgress, null, TimeSpan.FromHours(1));
 
             Assert.Equal("In progress for 1 hour", buildRunTimeMessage2);
 
@@ -117,15 +117,15 @@ namespace Logikfabrik.Overseer.WPF.Test
 
             Assert.Equal("Succeeded", buildRunTimeMessage3);
 
-            var buildRunTimeMessage4 = BuildMessageUtility.GetBuildRunTimeMessage(BuildStatus.Succeeded, TimeSpan.FromHours(1), null);
+            var buildRunTimeMessage4 = BuildMessageUtility.GetBuildRunTimeMessage(BuildStatus.Succeeded, null, TimeSpan.FromHours(1));
 
             Assert.Equal("Succeeded in 1 hour", buildRunTimeMessage4);
 
-            var buildRunTimeMessage5 = BuildMessageUtility.GetBuildRunTimeMessage(BuildStatus.Succeeded, TimeSpan.FromHours(1), DateTime.UtcNow.AddHours(-1));
+            var buildRunTimeMessage5 = BuildMessageUtility.GetBuildRunTimeMessage(BuildStatus.Succeeded, DateTime.UtcNow.AddHours(-1), TimeSpan.FromHours(1));
 
             Assert.Equal("Succeeded in 1 hour, an hour ago", buildRunTimeMessage5);
 
-            var buildRunTimeMessage6 = BuildMessageUtility.GetBuildRunTimeMessage(BuildStatus.Succeeded, null, DateTime.UtcNow.AddHours(-1));
+            var buildRunTimeMessage6 = BuildMessageUtility.GetBuildRunTimeMessage(BuildStatus.Succeeded, DateTime.UtcNow.AddHours(-1), null);
 
             Assert.Equal("Succeeded an hour ago", buildRunTimeMessage6);
 
