@@ -4,7 +4,9 @@
 
 namespace Logikfabrik.Overseer.WPF.ViewModels
 {
+    using System;
     using System.Linq;
+    using System.Net.Http;
     using System.Threading;
     using System.Threading.Tasks;
     using Caliburn.Micro;
@@ -66,10 +68,22 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
 
             using (var provider = BuildProviderFactory.GetProvider(candidateSettings))
             {
-                var projects = await provider.GetProjectsAsync(CancellationToken.None).ConfigureAwait(false);
+                try
+                {
+                    var projects = await provider.GetProjectsAsync(CancellationToken.None).ConfigureAwait(false);
 
-                Settings.ProjectsToMonitor = projects.Select(project => project.Id).ToArray();
-                Settings.IsDirty = false;
+                    Settings.ProjectsToMonitor = projects.Select(project => project.Id).ToArray();
+                    Settings.IsDirty = false;
+                }
+                catch (HttpRequestException)
+                {
+                    // TODO: Show error message; the connection failed. And log.
+                }
+                catch (Exception)
+                {
+                    // TODO: Show warning message; the connection failed. And log.
+                    Settings.IsDirty = false;
+                }
             }
         }
 

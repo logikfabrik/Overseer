@@ -19,7 +19,7 @@
                 <StackPanel Margin="0,0,0,20">
                     <Button
                         x:Name="TryConnection"
-                        Content="Connect"
+                        Content="Try connection"
                         IsEnabled="{Binding Settings.IsDirty, Mode=OneWay}"
                         Style="{StaticResource ButtonDefaultStyle}" />
                     <TextBox Text="{Binding Settings.ProjectsToMonitor, Mode=OneWay}" />

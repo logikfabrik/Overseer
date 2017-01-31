@@ -27,6 +27,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         protected ConnectionSettingsViewModel()
         {
             _isDirty = true;
+            _projectsToMonitor = new string[] { };
         }
 
         /// <summary>
