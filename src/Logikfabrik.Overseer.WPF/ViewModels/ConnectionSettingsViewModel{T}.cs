@@ -4,14 +4,9 @@
 
 namespace Logikfabrik.Overseer.WPF.ViewModels
 {
-    using System.Collections.ObjectModel;
     using System.ComponentModel;
     using System.Linq;
-    using System.Threading;
-    using System.Threading.Tasks;
     using Caliburn.Micro;
-    using EnsureThat;
-    using Factories;
     using FluentValidation;
     using Settings;
 
@@ -22,19 +17,16 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     public abstract class ConnectionSettingsViewModel<T> : PropertyChangedBase, IDataErrorInfo
         where T : ConnectionSettings
     {
-        private readonly IProjectToMonitorViewModelFactory _projectToMonitorFactory;
+        private bool _isDirty;
         private string _name;
+        private string[] _projectsToMonitor;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ConnectionSettingsViewModel{T}" /> class.
         /// </summary>
-        /// <param name="projectToMonitorFactory">The project to monitor factory.</param>
-        protected ConnectionSettingsViewModel(IProjectToMonitorViewModelFactory projectToMonitorFactory)
+        protected ConnectionSettingsViewModel()
         {
-            Ensure.That(projectToMonitorFactory).IsNotNull();
-
-            _projectToMonitorFactory = projectToMonitorFactory;
-            ProjectsToMonitor = new ObservableCollection<ProjectToMonitorViewModel>();
+            _isDirty = true;
         }
 
         /// <summary>
@@ -66,12 +58,53 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         }
 
         /// <summary>
-        /// Gets the projects to monitor.
+        /// Gets or sets the projects to monitor.
         /// </summary>
         /// <value>
         /// The projects to monitor.
         /// </value>
-        public ObservableCollection<ProjectToMonitorViewModel> ProjectsToMonitor { get; private set; }
+        public string[] ProjectsToMonitor
+        {
+            get
+            {
+                return _projectsToMonitor;
+            }
+
+            set
+            {
+                _projectsToMonitor = value;
+                NotifyOfPropertyChange(() => ProjectsToMonitor);
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether this instance is dirty. Dirty settings are settings yet to be tried.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if this instance is dirty; otherwise, <c>false</c>.
+        /// </value>
+        public bool IsDirty
+        {
+            get
+            {
+                return _isDirty;
+            }
+
+            set
+            {
+                _isDirty = value;
+                NotifyOfPropertyChange(() => IsDirty);
+                NotifyOfPropertyChange(() => IsNotDirty);
+            }
+        }
+
+        /// <summary>
+        /// Gets a value indicating whether this instance is not dirty.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if this instance is not dirty; otherwise, <c>false</c>.
+        /// </value>
+        public bool IsNotDirty => !IsDirty;
 
         /// <summary>
         /// Gets an error message indicating what is wrong with this object.
@@ -109,31 +142,9 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         public abstract T GetSettings();
 
         /// <summary>
-        /// Gets the updated settings.
+        /// Updates the settings.
         /// </summary>
         /// <param name="current">The current settings.</param>
-        /// <returns>The updated settings.</returns>
-        public abstract T GetUpdatedSettings(T current);
-
-        // TODO: Should be protected?
-        public async Task GetProjectsAsync()
-        {
-            if (!Validator.Validate(this).IsValid)
-            {
-                return;
-            }
-
-            var settings = GetSettings();
-
-            using (var provider = BuildProviderFactory.GetProvider(settings))
-            {
-                var projects = await provider.GetProjectsAsync(CancellationToken.None).ConfigureAwait(false);
-
-                // TODO: Known issue; settings.ProjectsToMonitor is null/empty. Needs to be loaded.
-                ProjectsToMonitor = new ObservableCollection<ProjectToMonitorViewModel>(projects.Select(project => _projectToMonitorFactory.Create(project, settings.ProjectsToMonitor.Contains(project.Id))));
-
-                NotifyOfPropertyChange(() => ProjectsToMonitor);
-            }
-        }
+        public abstract void UpdateSettings(T current);
     }
 }

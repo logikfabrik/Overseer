@@ -14,8 +14,6 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices.ViewModels
     /// </summary>
     public class AddConnectionViewModel : WPF.ViewModels.AddConnectionViewModel<VSTeamServices.ConnectionSettings>
     {
-        private readonly ConnectionSettingsViewModel _settings;
-
         /// <summary>
         /// Initializes a new instance of the <see cref="AddConnectionViewModel" /> class.
         /// </summary>
@@ -27,9 +25,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices.ViewModels
         {
             Ensure.That(connectionSettingsFactory).IsNotNull();
 
-            _settings = connectionSettingsFactory.Create();
-
-            _settings.Url = "https://";
+            Settings = connectionSettingsFactory.Create();
         }
 
         /// <summary>
@@ -38,6 +34,6 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices.ViewModels
         /// <value>
         /// The settings.
         /// </value>
-        public override WPF.ViewModels.ConnectionSettingsViewModel<VSTeamServices.ConnectionSettings> Settings => _settings;
+        public override WPF.ViewModels.ConnectionSettingsViewModel<VSTeamServices.ConnectionSettings> Settings { get; }
     }
 }

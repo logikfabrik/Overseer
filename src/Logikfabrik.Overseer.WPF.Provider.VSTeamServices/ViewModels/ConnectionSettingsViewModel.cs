@@ -4,7 +4,6 @@
 
 namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices.ViewModels
 {
-    using System.Linq;
     using FluentValidation;
     using Validators;
     using WPF.ViewModels.Factories;
@@ -22,8 +21,8 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices.ViewModels
         /// </summary>
         /// <param name="projectToMonitorFactory">The project to monitor factory.</param>
         public ConnectionSettingsViewModel(IProjectToMonitorViewModelFactory projectToMonitorFactory)
-            : base(projectToMonitorFactory)
         {
+            // TODO: What to do with the factory?
             Validator = new ConnectionSettingsViewModelValidator();
         }
 
@@ -86,23 +85,20 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices.ViewModels
                 Name = Name,
                 Url = Url,
                 Token = Token,
-                ProjectsToMonitor = ProjectsToMonitor.Where(project => project.Monitor).Select(project => project.Id).ToArray()
+                ProjectsToMonitor = ProjectsToMonitor
             };
         }
 
         /// <summary>
-        /// Gets the updated settings.
+        /// Updates the settings.
         /// </summary>
         /// <param name="current">The current settings.</param>
-        /// <returns>The updated settings.</returns>
-        public override ConnectionSettings GetUpdatedSettings(ConnectionSettings current)
+        public override void UpdateSettings(ConnectionSettings current)
         {
             current.Name = Name;
             current.Url = Url;
             current.Token = Token;
-            current.ProjectsToMonitor = ProjectsToMonitor.Where(project => project.Monitor).Select(project => project.Id).ToArray();
-
-            return current;
+            current.ProjectsToMonitor = ProjectsToMonitor;
         }
     }
 }

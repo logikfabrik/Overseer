@@ -14,8 +14,6 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor.ViewModels
     /// </summary>
     public class EditConnectionViewModel : WPF.ViewModels.EditConnectionViewModel<AppVeyor.ConnectionSettings>
     {
-        private readonly ConnectionSettingsViewModel _settings;
-
         /// <summary>
         /// Initializes a new instance of the <see cref="EditConnectionViewModel" /> class.
         /// </summary>
@@ -28,10 +26,13 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor.ViewModels
         {
             Ensure.That(connectionSettingsFactory).IsNotNull();
 
-            _settings = connectionSettingsFactory.Create();
+            var settings = connectionSettingsFactory.Create();
 
-            _settings.Name = currentSettings.Name;
-            _settings.Token = currentSettings.Token;
+            settings.Name = currentSettings.Name;
+            settings.Token = currentSettings.Token;
+            settings.ProjectsToMonitor = currentSettings.ProjectsToMonitor;
+
+            Settings = settings;
         }
 
         /// <summary>
@@ -40,6 +41,6 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor.ViewModels
         /// <value>
         /// The settings.
         /// </value>
-        public override WPF.ViewModels.ConnectionSettingsViewModel<AppVeyor.ConnectionSettings> Settings => _settings;
+        public override WPF.ViewModels.ConnectionSettingsViewModel<AppVeyor.ConnectionSettings> Settings { get; }
     }
 }

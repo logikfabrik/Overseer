@@ -4,6 +4,9 @@
 
 namespace Logikfabrik.Overseer.WPF.ViewModels
 {
+    using System.Linq;
+    using System.Threading;
+    using System.Threading.Tasks;
     using Caliburn.Micro;
     using EnsureThat;
     using Settings;
@@ -53,18 +56,40 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         public override string ViewName { get; } = "Edit connection";
 
         /// <summary>
-        /// Edit the connection.
+        /// Tries the connection.
         /// </summary>
-        public void EditConnection()
+        /// <returns>A task.</returns>
+        public async Task TryConnection()
         {
             if (!Settings.Validator.Validate(Settings).IsValid)
             {
                 return;
             }
 
-            var updatedSettings = Settings.GetUpdatedSettings(_currentSettings);
+            var candidateSettings = Settings.GetSettings();
 
-            _settingsRepository.Update(updatedSettings);
+            using (var provider = BuildProviderFactory.GetProvider(candidateSettings))
+            {
+                var projects = await provider.GetProjectsAsync(CancellationToken.None).ConfigureAwait(false);
+
+                Settings.ProjectsToMonitor = projects.Select(project => project.Id).ToArray();
+                Settings.IsDirty = false;
+            }
+        }
+
+        /// <summary>
+        /// Edit the connection.
+        /// </summary>
+        public void EditConnection()
+        {
+            if (Settings.IsDirty || !Settings.Validator.Validate(Settings).IsValid)
+            {
+                return;
+            }
+
+            Settings.UpdateSettings(_currentSettings);
+
+            _settingsRepository.Update(_currentSettings);
 
             ViewConnections();
         }

@@ -14,8 +14,6 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor.ViewModels
     /// </summary>
     public class AddConnectionViewModel : WPF.ViewModels.AddConnectionViewModel<AppVeyor.ConnectionSettings>
     {
-        private readonly ConnectionSettingsViewModel _settings;
-
         /// <summary>
         /// Initializes a new instance of the <see cref="AddConnectionViewModel" /> class.
         /// </summary>
@@ -27,7 +25,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor.ViewModels
         {
             Ensure.That(connectionSettingsFactory).IsNotNull();
 
-            _settings = connectionSettingsFactory.Create();
+            Settings = connectionSettingsFactory.Create();
         }
 
         /// <summary>
@@ -36,6 +34,6 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor.ViewModels
         /// <value>
         /// The settings.
         /// </value>
-        public override WPF.ViewModels.ConnectionSettingsViewModel<AppVeyor.ConnectionSettings> Settings => _settings;
+        public override WPF.ViewModels.ConnectionSettingsViewModel<AppVeyor.ConnectionSettings> Settings { get; }
     }
 }
