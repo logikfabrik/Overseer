@@ -31,6 +31,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor.ViewModels
             settings.Name = currentSettings.Name;
             settings.Token = currentSettings.Token;
             settings.ProjectsToMonitor = currentSettings.ProjectsToMonitor;
+            settings.IsDirty = false;
 
             Settings = settings;
         }

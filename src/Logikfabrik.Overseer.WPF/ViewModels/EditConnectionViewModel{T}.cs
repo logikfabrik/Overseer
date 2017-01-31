@@ -61,7 +61,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// <returns>A task.</returns>
         public async Task TryConnection()
         {
-            if (!Settings.Validator.Validate(Settings).IsValid)
+            if (Settings.IsNotDirty || !Settings.Validator.Validate(Settings).IsValid)
             {
                 return;
             }

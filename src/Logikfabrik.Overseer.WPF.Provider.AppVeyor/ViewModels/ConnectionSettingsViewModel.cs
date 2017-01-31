@@ -42,6 +42,8 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor.ViewModels
             {
                 _token = value;
                 NotifyOfPropertyChange(() => Token);
+
+                IsDirty = true;
             }
         }
 

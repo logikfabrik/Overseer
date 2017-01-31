@@ -17,7 +17,11 @@
                     cal:View.Model="{Binding Settings, Mode=OneWay}"
                     Focusable="False" />
                 <StackPanel Margin="0,0,0,20">
-                    <Button x:Name="TryConnection" Content="Connect" />
+                    <Button
+                        x:Name="TryConnection"
+                        Content="Connect"
+                        IsEnabled="{Binding Settings.IsDirty, Mode=OneWay}"
+                        Style="{StaticResource ButtonDefaultStyle}" />
                     <TextBox Text="{Binding Settings.ProjectsToMonitor, Mode=OneWay}" />
                 </StackPanel>
             </StackPanel>

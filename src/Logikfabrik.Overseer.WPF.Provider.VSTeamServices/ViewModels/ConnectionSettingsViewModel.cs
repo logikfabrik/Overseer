@@ -43,6 +43,8 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices.ViewModels
             {
                 _url = value;
                 NotifyOfPropertyChange(() => Url);
+
+                IsDirty = true;
             }
         }
 
@@ -63,6 +65,8 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices.ViewModels
             {
                 _token = value;
                 NotifyOfPropertyChange(() => Token);
+
+                IsDirty = true;
             }
         }
 
