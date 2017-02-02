@@ -2,15 +2,15 @@
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi"
      xmlns:netfx="http://schemas.microsoft.com/wix/NetFxExtension">
   <?define VERSION="1.0.0.0"?>
-  <Product Id="e644ea3a-a90b-4913-83ed-d6f55fdc0d49" 
-           Name="Overseer $(var.VERSION)" 
-           Language="1033" 
-           Version="$(var.VERSION)" 
-           Manufacturer="Logikfabrik" 
+  <Product Id="e644ea3a-a90b-4913-83ed-d6f55fdc0d49"
+           Name="Overseer $(var.VERSION)"
+           Language="1033"
+           Version="$(var.VERSION)"
+           Manufacturer="Logikfabrik"
            UpgradeCode="ed8983db-d29e-452d-aa49-773792d344da">
-    <Package InstallerVersion="200" 
-             Compressed="yes" 
-             InstallScope="perMachine" 
+    <Package InstallerVersion="200"
+             Compressed="yes"
+             InstallScope="perMachine"
              Description="Overseer is a Windows task bar app for build notifications."/>
     <MajorUpgrade DowngradeErrorMessage="A newer version of Overseer is already installed." />
     <MediaTemplate EmbedCab="yes" />
@@ -18,37 +18,55 @@
     <Condition Message="Overseer requires the .NET Framework 4.6 to be installed.">
       <![CDATA[Installed OR WIX_IS_NETFRAMEWORK_46_OR_LATER_INSTALLED]]>
     </Condition>
-    <Feature Id="ProductFeature" 
-             Title="Overseer" 
+    <Feature Id="ProductFeature"
+             Title="Overseer"
              Level="1">
       <ComponentGroupRef Id="ProductComponents" />
+      <ComponentGroupRef Id="ProductShortcuts" />
     </Feature>
     <UIRef Id="WixUI_InstallDir" />
-    <WixVariable Id="WixUILicenseRtf" 
-                 Value="LICENSE.rtf" />
-    <Property Id="WIXUI_INSTALLDIR" 
-              Value="INSTALLFOLDER" />
+    <WixVariable Id="WixUILicenseRtf" Value="LICENSE.rtf" />
+    <Property Id="WIXUI_INSTALLDIR" Value="INSTALLFOLDER" />
   </Product>
   <Fragment>
     <Directory Id="TARGETDIR" Name="SourceDir">
+
       <Directory Id="ProgramFilesFolder">
-        <Directory Id="ManufacturerFolder" 
-                   Name="Logikfabrik">
-          <Directory Id="INSTALLFOLDER" 
-                     Name="Overseer" />
+        <Directory Id="ManufacturerFolder" Name="Logikfabrik">
+          <Directory Id="INSTALLFOLDER" Name="Overseer" />
         </Directory>
       </Directory>
+
+      <Directory Id="ProgramMenuFolder">
+        <Directory Id="ApplicationProgramsFolder" Name="Logikfabrik" />
+      </Directory>
+
     </Directory>
   </Fragment>
   <Fragment>
-    <ComponentGroup Id="ProductComponents" 
-                    Directory="INSTALLFOLDER">
+
+    <ComponentGroup Id="ProductShortcuts" Directory="ApplicationProgramsFolder">
+      <Component Id="ProductShortcut" Guid="b1302ead-22c3-4e97-b216-51dedcc92158">
+        <Shortcut Id="ApplicationStartMenuShortcut"
+                  Name="Overseer "
+                  Target="[#Logikfabrik.Overseer.WPF.Client.exe]"
+                  WorkingDirectory="INSTALLFOLDER" />
+        <RemoveFolder Id="ApplicationProgramsFolder" On="uninstall" />
+        <RegistryValue Root="HKCU"
+                       Key="Software\Logikfabrik\Overseer"
+                       Name="installed"
+                       Type="integer"
+                       Value="1"
+                       KeyPath="yes" />
+      </Component>
+    </ComponentGroup>
+
+    <ComponentGroup Id="ProductComponents" Directory="INSTALLFOLDER">
       <Component Id="ProductComponent" Guid="d2f851dd-77aa-42fe-8b4c-87bcd75f0dcc">
-        
         <File Source="$(var.Logikfabrik.Overseer.TargetDir)Logikfabrik.Overseer.dll" />
         <File Source="$(var.Logikfabrik.Overseer.TargetDir)Ensure.That.dll" />
         <File Source="$(var.Logikfabrik.Overseer.TargetDir)log4net.dll" />
-        
+
         <File Source="$(var.Logikfabrik.Overseer.WPF.TargetDir)Logikfabrik.Overseer.WPF.dll" />
         <File Source="$(var.Logikfabrik.Overseer.WPF.TargetDir)Caliburn.Micro.dll" />
         <File Source="$(var.Logikfabrik.Overseer.WPF.TargetDir)Caliburn.Micro.Platform.dll" />
@@ -56,7 +74,7 @@
         <File Source="$(var.Logikfabrik.Overseer.WPF.TargetDir)FluentValidation.dll" />
         <File Source="$(var.Logikfabrik.Overseer.WPF.TargetDir)Humanizer.dll" />
         <File Source="$(var.Logikfabrik.Overseer.WPF.TargetDir)System.Windows.Interactivity.dll" />
-        
+
         <File Source="$(var.Logikfabrik.Overseer.WPF.Client.TargetDir)Logikfabrik.Overseer.WPF.Client.exe" />
         <File Source="$(var.Logikfabrik.Overseer.WPF.Client.TargetDir)Logikfabrik.Overseer.WPF.Client.exe.config" />
         <File Source="$(var.Logikfabrik.Overseer.WPF.Client.TargetDir)Ninject.dll" />
@@ -64,10 +82,10 @@
         <File Source="$(var.Logikfabrik.Overseer.WPF.Provider.AppVeyor.TargetDir)Logikfabrik.Overseer.WPF.Provider.AppVeyor.dll" />
         <File Source="$(var.Logikfabrik.Overseer.WPF.Provider.AppVeyor.TargetDir)System.Net.Http.Formatting.dll" />
         <File Source="$(var.Logikfabrik.Overseer.WPF.Provider.AppVeyor.TargetDir)Newtonsoft.Json.dll" />
-        
+
         <File Source="$(var.Logikfabrik.Overseer.WPF.Provider.VSTeamServices.TargetDir)Logikfabrik.Overseer.WPF.Provider.VSTeamServices.dll" />
-        
       </Component>
     </ComponentGroup>
+
   </Fragment>
 </Wix>
