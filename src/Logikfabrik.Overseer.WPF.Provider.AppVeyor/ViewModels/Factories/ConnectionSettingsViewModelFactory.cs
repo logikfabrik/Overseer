@@ -4,27 +4,11 @@
 
 namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor.ViewModels.Factories
 {
-    using EnsureThat;
-    using WPF.ViewModels.Factories;
-
     /// <summary>
     /// The <see cref="ConnectionSettingsViewModelFactory" /> class.
     /// </summary>
     public class ConnectionSettingsViewModelFactory : IConnectionSettingsViewModelFactory
     {
-        private readonly IProjectToMonitorViewModelFactory _projectToMonitorFactory;
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="ConnectionSettingsViewModelFactory" /> class.
-        /// </summary>
-        /// <param name="projectToMonitorFactory">The project to monitor factory.</param>
-        public ConnectionSettingsViewModelFactory(IProjectToMonitorViewModelFactory projectToMonitorFactory)
-        {
-            Ensure.That(projectToMonitorFactory).IsNotNull();
-
-            _projectToMonitorFactory = projectToMonitorFactory;
-        }
-
         /// <summary>
         /// Creates a view model.
         /// </summary>
@@ -33,7 +17,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor.ViewModels.Factories
         /// </returns>
         public ConnectionSettingsViewModel Create()
         {
-            return new ConnectionSettingsViewModel(_projectToMonitorFactory);
+            return new ConnectionSettingsViewModel();
         }
     }
 }

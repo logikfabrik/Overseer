@@ -11,6 +11,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     using System.Threading.Tasks;
     using Caliburn.Micro;
     using EnsureThat;
+    using Factories;
     using Settings;
 
     /// <summary>
@@ -22,6 +23,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     {
         private readonly IEventAggregator _eventAggregator;
         private readonly IConnectionSettingsRepository _settingsRepository;
+        private readonly IProjectToMonitorViewModelFactory _projectToMonitorFactory;
         private readonly T _currentSettings;
 
         /// <summary>
@@ -29,15 +31,18 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// </summary>
         /// <param name="eventAggregator">The event aggregator.</param>
         /// <param name="settingsRepository">The settings repository.</param>
+        /// <param name="projectToMonitorFactory">The project to monitor factory.</param>
         /// <param name="currentSettings">The current settings.</param>
-        protected EditConnectionViewModel(IEventAggregator eventAggregator, IConnectionSettingsRepository settingsRepository, T currentSettings)
+        protected EditConnectionViewModel(IEventAggregator eventAggregator, IConnectionSettingsRepository settingsRepository, IProjectToMonitorViewModelFactory projectToMonitorFactory, T currentSettings)
         {
             Ensure.That(eventAggregator).IsNotNull();
             Ensure.That(settingsRepository).IsNotNull();
+            Ensure.That(projectToMonitorFactory).IsNotNull();
             Ensure.That(currentSettings).IsNotNull();
 
             _eventAggregator = eventAggregator;
             _settingsRepository = settingsRepository;
+            _projectToMonitorFactory = projectToMonitorFactory;
             _currentSettings = currentSettings;
         }
 
@@ -76,7 +81,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
                 {
                     var projects = await provider.GetProjectsAsync(CancellationToken.None).ConfigureAwait(false);
 
-                    Settings.ProjectsToMonitor = projects.Select(project => new ProjectToMonitorViewModel(project.Name, project.Id, _currentSettings.ProjectsToMonitor.Contains(project.Id))).ToArray();
+                    Settings.ProjectsToMonitor = projects.Select(project => _projectToMonitorFactory.Create(project, _currentSettings.ProjectsToMonitor.Contains(project.Id))).ToArray();
                     Settings.IsDirty = false;
                 }
                 catch (HttpRequestException)

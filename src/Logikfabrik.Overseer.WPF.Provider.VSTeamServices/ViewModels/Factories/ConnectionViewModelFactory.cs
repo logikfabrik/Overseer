@@ -30,6 +30,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices.ViewModels.Factories
         /// <param name="editConnectionFactory">The edit connection factory.</param>
         public ConnectionViewModelFactory(IEventAggregator eventAggregator, IBuildMonitor buildMonitor, IProjectViewModelFactory projectFactory, IRemoveConnectionViewModelFactory removeConnectionFactory, IEditConnectionViewModelFactory<ConnectionSettings> editConnectionFactory)
         {
+            // TODO: Make generic.
             Ensure.That(eventAggregator).IsNotNull();
             Ensure.That(buildMonitor).IsNotNull();
             Ensure.That(projectFactory).IsNotNull();

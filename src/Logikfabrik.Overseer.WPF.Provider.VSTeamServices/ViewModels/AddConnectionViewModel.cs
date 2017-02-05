@@ -8,6 +8,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices.ViewModels
     using EnsureThat;
     using Factories;
     using Settings;
+    using WPF.ViewModels.Factories;
 
     /// <summary>
     /// The <see cref="AddConnectionViewModel" /> class.
@@ -19,9 +20,10 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices.ViewModels
         /// </summary>
         /// <param name="eventAggregator">The event aggregator.</param>
         /// <param name="settingsRepository">The settings repository.</param>
+        /// <param name="projectToMonitorFactory">The project to monitor factory.</param>
         /// <param name="connectionSettingsFactory">The connection settings factory.</param>
-        public AddConnectionViewModel(IEventAggregator eventAggregator, IConnectionSettingsRepository settingsRepository, IConnectionSettingsViewModelFactory connectionSettingsFactory)
-            : base(eventAggregator, settingsRepository)
+        public AddConnectionViewModel(IEventAggregator eventAggregator, IConnectionSettingsRepository settingsRepository, IProjectToMonitorViewModelFactory projectToMonitorFactory, IConnectionSettingsViewModelFactory connectionSettingsFactory)
+            : base(eventAggregator, settingsRepository, projectToMonitorFactory)
         {
             Ensure.That(connectionSettingsFactory).IsNotNull();
 

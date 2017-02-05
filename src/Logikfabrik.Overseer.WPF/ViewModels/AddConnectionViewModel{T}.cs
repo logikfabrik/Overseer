@@ -11,6 +11,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     using System.Threading.Tasks;
     using Caliburn.Micro;
     using EnsureThat;
+    using Factories;
     using Settings;
 
     /// <summary>
@@ -22,19 +23,23 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     {
         private readonly IEventAggregator _eventAggregator;
         private readonly IConnectionSettingsRepository _settingsRepository;
+        private readonly IProjectToMonitorViewModelFactory _projectToMonitorFactory;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="AddConnectionViewModel{T}" /> class.
         /// </summary>
         /// <param name="eventAggregator">The event aggregator.</param>
         /// <param name="settingsRepository">The settings repository.</param>
-        protected AddConnectionViewModel(IEventAggregator eventAggregator, IConnectionSettingsRepository settingsRepository)
+        /// <param name="projectToMonitorFactory">The project to monitor factory.</param>
+        protected AddConnectionViewModel(IEventAggregator eventAggregator, IConnectionSettingsRepository settingsRepository, IProjectToMonitorViewModelFactory projectToMonitorFactory)
         {
             Ensure.That(eventAggregator).IsNotNull();
             Ensure.That(settingsRepository).IsNotNull();
+            Ensure.That(projectToMonitorFactory).IsNotNull();
 
             _eventAggregator = eventAggregator;
             _settingsRepository = settingsRepository;
+            _projectToMonitorFactory = projectToMonitorFactory;
         }
 
         /// <summary>
@@ -72,7 +77,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
                 {
                     var projects = await provider.GetProjectsAsync(CancellationToken.None).ConfigureAwait(false);
 
-                    Settings.ProjectsToMonitor = projects.Select(project => new ProjectToMonitorViewModel(project.Name, project.Id, true)).ToArray();
+                    Settings.ProjectsToMonitor = projects.Select(project => _projectToMonitorFactory.Create(project, true)).ToArray();
                     Settings.IsDirty = false;
                 }
                 catch (HttpRequestException)

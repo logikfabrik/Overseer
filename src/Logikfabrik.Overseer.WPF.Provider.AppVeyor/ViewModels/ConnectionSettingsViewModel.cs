@@ -7,7 +7,6 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor.ViewModels
     using System.Linq;
     using FluentValidation;
     using Validators;
-    using WPF.ViewModels.Factories;
 
     /// <summary>
     /// The <see cref="ConnectionSettingsViewModel" /> class.
@@ -19,10 +18,8 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor.ViewModels
         /// <summary>
         /// Initializes a new instance of the <see cref="ConnectionSettingsViewModel" /> class.
         /// </summary>
-        /// <param name="projectToMonitorFactory">The project to monitor factory.</param>
-        public ConnectionSettingsViewModel(IProjectToMonitorViewModelFactory projectToMonitorFactory)
+        public ConnectionSettingsViewModel()
         {
-            // TODO: What to do with the factory?
             Validator = new ConnectionSettingsViewModelValidator();
         }
 
