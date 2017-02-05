@@ -31,7 +31,6 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices.ViewModels
             settings.Name = currentSettings.Name;
             settings.Url = currentSettings.Url;
             settings.Token = currentSettings.Token;
-            settings.ProjectsToMonitor = currentSettings.ProjectsToMonitor;
             settings.IsDirty = false;
 
             Settings = settings;

@@ -4,6 +4,7 @@
 
 namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices.ViewModels
 {
+    using System.Linq;
     using FluentValidation;
     using Validators;
     using WPF.ViewModels.Factories;
@@ -89,7 +90,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices.ViewModels
                 Name = Name,
                 Url = Url,
                 Token = Token,
-                ProjectsToMonitor = ProjectsToMonitor
+                ProjectsToMonitor = ProjectsToMonitor.Where(project => project.Monitor).Select(project => project.Id).ToArray()
             };
         }
 
@@ -102,7 +103,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices.ViewModels
             current.Name = Name;
             current.Url = Url;
             current.Token = Token;
-            current.ProjectsToMonitor = ProjectsToMonitor;
+            current.ProjectsToMonitor = ProjectsToMonitor.Where(project => project.Monitor).Select(project => project.Id).ToArray();
         }
     }
 }

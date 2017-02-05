@@ -4,6 +4,7 @@
 
 namespace Logikfabrik.Overseer.WPF.ViewModels
 {
+    using System.Collections.Generic;
     using System.ComponentModel;
     using System.Linq;
     using Caliburn.Micro;
@@ -19,7 +20,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     {
         private bool _isDirty;
         private string _name;
-        private string[] _projectsToMonitor;
+        private IEnumerable<ProjectToMonitorViewModel> _projectsToMonitor;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ConnectionSettingsViewModel{T}" /> class.
@@ -27,7 +28,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         protected ConnectionSettingsViewModel()
         {
             _isDirty = true;
-            _projectsToMonitor = new string[] { };
+            _projectsToMonitor = new ProjectToMonitorViewModel[] { };
         }
 
         /// <summary>
@@ -64,7 +65,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// <value>
         /// The projects to monitor.
         /// </value>
-        public string[] ProjectsToMonitor
+        public IEnumerable<ProjectToMonitorViewModel> ProjectsToMonitor
         {
             get
             {
@@ -100,7 +101,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         }
 
         /// <summary>
-        /// Gets a value indicating whether this instance is not dirty.
+        /// Gets a value indicating whether this instance is not dirty. Dirty settings are settings yet to be tried.
         /// </summary>
         /// <value>
         ///   <c>true</c> if this instance is not dirty; otherwise, <c>false</c>.

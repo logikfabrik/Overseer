@@ -10,7 +10,7 @@
     <Grid>
         <CheckBox
             Content="{Binding Name, Mode=OneWay}"
-            IsChecked="{Binding Monitor, Mode=OneWayToSource}"
+            IsChecked="{Binding Monitor, Mode=TwoWay}"
             Style="{StaticResource CheckBoxDefaultStyle}" />
     </Grid>
 </UserControl>

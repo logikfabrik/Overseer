@@ -25,30 +25,6 @@
                             CanVerticallyScroll="False"
                             Content="{TemplateBinding Content}"
                             ContentTemplate="{TemplateBinding ContentTemplate}" />
-                        <Rectangle
-                            Grid.Row="0"
-                            Grid.Column="0"
-                            Height="10"
-                            VerticalAlignment="Top">
-                            <Rectangle.Fill>
-                                <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
-                                    <GradientStop Offset="0" Color="#FF444444" />
-                                    <GradientStop Offset="1" Color="#00444444" />
-                                </LinearGradientBrush>
-                            </Rectangle.Fill>
-                        </Rectangle>
-                        <Rectangle
-                            Grid.Row="0"
-                            Grid.Column="0"
-                            Height="10"
-                            VerticalAlignment="Bottom">
-                            <Rectangle.Fill>
-                                <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
-                                    <GradientStop Offset="0" Color="#00444444" />
-                                    <GradientStop Offset="1" Color="#FF444444" />
-                                </LinearGradientBrush>
-                            </Rectangle.Fill>
-                        </Rectangle>
                         <ScrollBar
                             x:Name="PART_VerticalScrollBar"
                             Grid.Row="0"

@@ -72,7 +72,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
                 {
                     var projects = await provider.GetProjectsAsync(CancellationToken.None).ConfigureAwait(false);
 
-                    Settings.ProjectsToMonitor = projects.Select(project => project.Id).ToArray();
+                    Settings.ProjectsToMonitor = projects.Select(project => new ProjectToMonitorViewModel(project.Name, project.Id, true)).ToArray();
                     Settings.IsDirty = false;
                 }
                 catch (HttpRequestException)

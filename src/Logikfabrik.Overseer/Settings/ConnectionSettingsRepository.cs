@@ -49,9 +49,9 @@ namespace Logikfabrik.Overseer.Settings
 
             _settings.Add(clone.Id, clone);
 
-            Next();
-
             Save();
+
+            Next();
         }
 
         /// <summary>
@@ -72,9 +72,9 @@ namespace Logikfabrik.Overseer.Settings
                 return;
             }
 
-            Next();
-
             Save();
+
+            Next();
         }
 
         /// <summary>
@@ -99,9 +99,9 @@ namespace Logikfabrik.Overseer.Settings
 
             _settings[clone.Id] = clone;
 
-            Next();
-
             Save();
+
+            Next();
         }
 
         /// <summary>
