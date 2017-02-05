@@ -2,7 +2,6 @@
     <Style x:Key="TextBlockDefaultStyle" TargetType="{x:Type TextBlock}">
         <Setter Property="Foreground" Value="{DynamicResource TextBlock.Foreground}" />
         <Setter Property="TextWrapping" Value="Wrap" />
-        <Setter Property="TextTrimming" Value="CharacterEllipsis" />
         <Setter Property="Margin" Value="5" />
         <Setter Property="FontSize" Value="14" />
     </Style>

@@ -30,7 +30,6 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor.ViewModels.Factories
         /// <param name="projectToMonitorFactory">The project to monitor factory.</param>
         public EditConnectionViewModelFactory(IEventAggregator eventAggregator, IConnectionSettingsRepository settingsRepository, IConnectionSettingsViewModelFactory connectionSettingsFactory, IProjectToMonitorViewModelFactory projectToMonitorFactory)
         {
-            // TODO: Make generic.
             Ensure.That(eventAggregator).IsNotNull();
             Ensure.That(settingsRepository).IsNotNull();
             Ensure.That(connectionSettingsFactory).IsNotNull();

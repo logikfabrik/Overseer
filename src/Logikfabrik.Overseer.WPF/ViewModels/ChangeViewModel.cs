@@ -22,9 +22,10 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         {
             Ensure.That(change).IsNotNull();
 
-            Id = change.Id;
+            Id = change.Id.Truncate(10, "...");
+            Changed = change.Changed;
+            ChangedBy = change.ChangedBy;
             Comment = change.Comment;
-            Message = GetMessage(change);
         }
 
         /// <summary>
@@ -36,25 +37,27 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         public string Id { get; }
 
         /// <summary>
+        /// Gets the changed date.
+        /// </summary>
+        /// <value>
+        /// The changed date.
+        /// </value>
+        public DateTime? Changed { get; }
+
+        /// <summary>
+        /// Gets the name of whoever made the change.
+        /// </summary>
+        /// <value>
+        /// The name of whoever made the change.
+        /// </value>
+        public string ChangedBy { get; }
+
+        /// <summary>
         /// Gets the comment.
         /// </summary>
         /// <value>
         /// The comment.
         /// </value>
         public string Comment { get; }
-
-        /// <summary>
-        /// Gets the message.
-        /// </summary>
-        /// <value>
-        /// The message.
-        /// </value>
-        public string Message { get; }
-
-        private static string GetMessage(IChange change)
-        {
-            // TODO: Use BuildMessageUtil.
-            return $"{(!string.IsNullOrWhiteSpace(change.ChangedBy) ? $"by {change.ChangedBy}" : string.Empty)} {(change.Changed.HasValue ? $"{(DateTime.UtcNow - change.Changed).Value.Humanize()} ago" : string.Empty)}";
-        }
     }
 }

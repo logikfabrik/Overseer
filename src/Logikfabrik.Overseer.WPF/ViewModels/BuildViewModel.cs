@@ -17,7 +17,6 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     public class BuildViewModel : PropertyChangedBase
     {
         private readonly string _versionNumber;
-        private readonly string _branch;
         private string _name;
         private string _message;
         private BuildStatus? _status;
@@ -45,13 +44,9 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             Ensure.That(changes).IsNotNull();
 
             Id = id;
-            _branch = branch;
+            Branch = branch;
             _versionNumber = versionNumber;
-
-            if (!string.IsNullOrWhiteSpace(requestedBy))
-            {
-                RequestedBy = $"by {requestedBy}";
-            }
+            RequestedBy = requestedBy;
 
             Changes = changes.Select(changeFactory.Create);
 
@@ -93,6 +88,8 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// The name of whoever requested the build.
         /// </value>
         public string RequestedBy { get; }
+
+        public string Branch { get; }
 
         /// <summary>
         /// Gets the message.
@@ -193,7 +190,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// <returns><c>true</c> if this instance was updated; otherwise, <c>false</c>.</returns>
         public bool TryUpdate(string projectName, BuildStatus? status, DateTime? startTime, DateTime? endTime, TimeSpan? runTime)
         {
-            var name = BuildMessageUtility.GetBuildName(projectName, _versionNumber, _branch);
+            var name = BuildMessageUtility.GetBuildName(projectName, _versionNumber, Branch);
 
             var isUpdated = false;
 
