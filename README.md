@@ -17,5 +17,6 @@ If you have a bug report, feature request, or suggestion, please open a new issu
 - log4net
 - Moq
 - xUnit
+- AutoFixture
 - WiX
 - Entypo pictograms by Daniel Bruce

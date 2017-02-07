@@ -7,6 +7,7 @@ namespace Logikfabrik.Overseer.Test
     using System;
     using Extensions;
     using Moq;
+    using Ploeh.AutoFixture.Xunit2;
     using Xunit;
 
     public class BuildExtensionsTest
@@ -21,28 +22,30 @@ namespace Logikfabrik.Overseer.Test
             Assert.Null(versionNumber);
         }
 
-        [Fact]
-        public void CanGetVersionNumberForBuildVersion()
+        [Theory]
+        [AutoData]
+        public void CanGetVersionNumberForBuildVersion(string version)
         {
             var buildMock = new Mock<IBuild>();
 
-            buildMock.Setup(m => m.Version).Returns("1.2.3");
+            buildMock.Setup(m => m.Version).Returns(version);
 
             var versionNumber = buildMock.Object.GetVersionNumber();
 
-            Assert.Equal("1.2.3", versionNumber);
+            Assert.Equal(version, versionNumber);
         }
 
-        [Fact]
-        public void CanGetVersionNumberForBuildNumber()
+        [Theory]
+        [AutoData]
+        public void CanGetVersionNumberForBuildNumber(string number)
         {
             var buildMock = new Mock<IBuild>();
 
-            buildMock.Setup(m => m.Number).Returns("123");
+            buildMock.Setup(m => m.Number).Returns(number);
 
             var versionNumber = buildMock.Object.GetVersionNumber();
 
-            Assert.Equal("123", versionNumber);
+            Assert.Equal(number, versionNumber);
         }
 
         [Fact]
