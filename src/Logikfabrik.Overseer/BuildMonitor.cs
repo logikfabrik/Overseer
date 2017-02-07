@@ -77,9 +77,13 @@ namespace Logikfabrik.Overseer
                 {
                     _poll.Wait();
                 }
+                catch (TaskCanceledException ex)
+                {
+                    _logService.Log<BuildMonitor>(new LogEntry(LogEntryType.Information, "An expected error occurred while cancelling.", ex));
+                }
                 catch (Exception ex)
                 {
-                    _logService.Log<BuildMonitor>(new LogEntry(LogEntryType.Error, "An expected error occurred while cancelling.", ex));
+                    _logService.Log<BuildMonitor>(new LogEntry(LogEntryType.Error, "An error occurred while disposing.", ex));
                 }
             }
 
@@ -120,6 +124,13 @@ namespace Logikfabrik.Overseer
             GC.SuppressFinalize(this);
         }
 
+        /// <summary>
+        /// Gets the projects and builds for the specified connections.
+        /// </summary>
+        /// <param name="connections">The connections.</param>
+        /// <param name="intervalInSeconds">The interval in seconds.</param>
+        /// <param name="cancellationToken">A cancellation token.</param>
+        /// <returns>A task.</returns>
         internal async Task GetProjectsAndBuildsAsync(IEnumerable<IConnection> connections, int intervalInSeconds, CancellationToken cancellationToken)
         {
             var tasks = connections.Select(connection => GetProjectsAsync(connection, cancellationToken));
@@ -150,6 +161,10 @@ namespace Logikfabrik.Overseer
                     try
                     {
                         _poll.Wait();
+                    }
+                    catch (TaskCanceledException ex)
+                    {
+                        _logService.Log<BuildMonitor>(new LogEntry(LogEntryType.Information, "An expected error occurred while disposing.", ex));
                     }
                     catch (Exception ex)
                     {
@@ -213,6 +228,10 @@ namespace Logikfabrik.Overseer
 
                 await Task.WhenAll(tasks);
             }
+            catch (TaskCanceledException ex)
+            {
+                _logService.Log<BuildMonitor>(new LogEntry(LogEntryType.Information, "An expected error occurred while polling projects.", ex));
+            }
             catch (Exception ex)
             {
                 OnConnectionError(new BuildMonitorConnectionErrorEventArgs(connection.Settings.Id));
@@ -228,6 +247,10 @@ namespace Logikfabrik.Overseer
                 var builds = await connection.GetBuildsAsync(project, cancellationToken).ConfigureAwait(false);
 
                 OnProjectProgressChanged(new BuildMonitorProjectProgressEventArgs(connection.Settings.Id, project, builds));
+            }
+            catch (TaskCanceledException ex)
+            {
+                _logService.Log<BuildMonitor>(new LogEntry(LogEntryType.Information, "An expected error occurred while polling builds.", ex));
             }
             catch (Exception ex)
             {

@@ -19,9 +19,13 @@ namespace Logikfabrik.Overseer.Test
         {
             var projectMock = new Mock<IProject>();
 
+            projectMock.SetupGet(m => m.Id).Returns("Id");
+
             var buildMock = new Mock<IBuild>();
 
             var settingsMock = new Mock<ConnectionSettings>();
+
+            settingsMock.Object.ProjectsToMonitor = new[] { "Id" };
 
             var connectionMock = new Mock<IConnection>();
 

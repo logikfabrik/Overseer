@@ -41,7 +41,14 @@ namespace Logikfabrik.Overseer.Logging
                         break;
                     }
 
-                    logger.Debug(entry.Message);
+                    if (entry.Exception == null)
+                    {
+                        logger.Debug(entry.Message);
+                    }
+                    else
+                    {
+                        logger.Debug(entry.Message, entry.Exception);
+                    }
 
                     break;
 
@@ -51,7 +58,14 @@ namespace Logikfabrik.Overseer.Logging
                         break;
                     }
 
-                    logger.Info(entry.Message);
+                    if (entry.Exception == null)
+                    {
+                        logger.Info(entry.Message);
+                    }
+                    else
+                    {
+                        logger.Info(entry.Message, entry.Exception);
+                    }
 
                     break;
 
@@ -78,7 +92,14 @@ namespace Logikfabrik.Overseer.Logging
                         break;
                     }
 
-                    logger.Error(entry.Message, entry.Exception);
+                    if (entry.Exception == null)
+                    {
+                        logger.Error(entry.Message);
+                    }
+                    else
+                    {
+                        logger.Error(entry.Message, entry.Exception);
+                    }
 
                     break;
             }
