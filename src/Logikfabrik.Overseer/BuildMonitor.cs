@@ -205,7 +205,7 @@ namespace Logikfabrik.Overseer
         {
             try
             {
-                var projects = (await connection.GetProjectsAsync(cancellationToken)).ToArray();
+                var projects = (await connection.GetProjectsAsync(cancellationToken)).Where(project => connection.Settings.ProjectsToMonitor.Contains(project.Id)).ToArray();
 
                 OnConnectionProgressChanged(new BuildMonitorConnectionProgressEventArgs(connection.Settings.Id, projects));
 

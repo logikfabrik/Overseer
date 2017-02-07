@@ -20,7 +20,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         private readonly IEventAggregator _eventAggregator;
         private readonly IProjectViewModelFactory _projectFactory;
         private readonly IRemoveConnectionViewModelFactory _removeConnectionFactory;
-        private readonly List<ProjectViewModel> _projects;
+        private List<ProjectViewModel> _projects;
         private string _settingsName;
         private bool _isBusy;
         private bool _isErrored;
@@ -137,7 +137,20 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// <value>
         /// The projects.
         /// </value>
-        public IEnumerable<ProjectViewModel> Projects => _projects;
+        public IEnumerable<ProjectViewModel> Projects
+        {
+            get
+            {
+                return _projects;
+            }
+
+            private set
+            {
+                _projects = value.ToList();
+                NotifyOfPropertyChange(() => Projects);
+                NotifyOfPropertyChange(() => HasProjects);
+            }
+        }
 
         /// <summary>
         /// Gets a value indicating whether this instance has projects.
@@ -184,9 +197,11 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
 
             var isDirty = false;
 
+            var currentProjects = new List<ProjectViewModel>(Projects);
+
             foreach (var project in e.Projects)
             {
-                var projectToUpdate = _projects.SingleOrDefault(p => p.Id == project.Id);
+                var projectToUpdate = currentProjects.SingleOrDefault(p => p.Id == project.Id);
 
                 if (projectToUpdate != null)
                 {
@@ -196,22 +211,20 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
                 {
                     var projectToAdd = _projectFactory.Create(SettingsId, project);
 
-                    _projects.Add(projectToAdd);
-
+                    currentProjects.Add(projectToAdd);
                     isDirty = true;
                 }
             }
 
             var projectsToKeep = e.Projects.Select(project => project.Id).ToArray();
 
-            var removedProjects = _projects.RemoveAll(project => !projectsToKeep.Contains(project.Id)) > 0;
+            var removedProjects = currentProjects.RemoveAll(project => !projectsToKeep.Contains(project.Id)) > 0;
 
             isDirty = isDirty || removedProjects;
 
             if (isDirty)
             {
-                NotifyOfPropertyChange(() => Projects);
-                NotifyOfPropertyChange(() => HasProjects);
+                Projects = currentProjects.OrderBy(project => project.Name);
             }
 
             IsBusy = false;
