@@ -4,9 +4,7 @@
 
 namespace Logikfabrik.Overseer.WPF.ViewModels
 {
-    using System;
     using System.Linq;
-    using System.Net.Http;
     using System.Threading;
     using System.Threading.Tasks;
     using Caliburn.Micro;
@@ -24,6 +22,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         private readonly IEventAggregator _eventAggregator;
         private readonly IConnectionSettingsRepository _settingsRepository;
         private readonly IProjectToMonitorViewModelFactory _projectToMonitorFactory;
+        private INotifyTask _connectionTask;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="AddConnectionViewModel{T}" /> class.
@@ -40,6 +39,28 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             _eventAggregator = eventAggregator;
             _settingsRepository = settingsRepository;
             _projectToMonitorFactory = projectToMonitorFactory;
+
+            _connectionTask = new NotifyTask();
+        }
+
+        /// <summary>
+        /// Gets the connection task.
+        /// </summary>
+        /// <value>
+        /// The connection task.
+        /// </value>
+        public INotifyTask ConnectionTask
+        {
+            get
+            {
+                return _connectionTask;
+            }
+
+            private set
+            {
+                _connectionTask = value;
+                NotifyOfPropertyChange(() => ConnectionTask);
+            }
         }
 
         /// <summary>
@@ -61,35 +82,14 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// <summary>
         /// Try the connection.
         /// </summary>
-        /// <returns>A task.</returns>
-        public async Task TryConnection()
+        public void TryConnection()
         {
             if (Settings.IsNotDirty || !Settings.Validator.Validate(Settings).IsValid)
             {
                 return;
             }
 
-            var candidateSettings = Settings.GetSettings();
-
-            using (var provider = BuildProviderFactory.GetProvider(candidateSettings))
-            {
-                try
-                {
-                    var projects = await provider.GetProjectsAsync(CancellationToken.None).ConfigureAwait(false);
-
-                    Settings.ProjectsToMonitor = projects.Select(project => _projectToMonitorFactory.Create(project, true)).ToArray();
-                    Settings.IsDirty = false;
-                }
-                catch (HttpRequestException)
-                {
-                    // TODO: Show error message; the connection failed. And log.
-                }
-                catch (Exception)
-                {
-                    // TODO: Show warning message; the connection failed. And log.
-                    Settings.IsDirty = false;
-                }
-            }
+            ConnectionTask = new NotifyTask(Connect());
         }
 
         /// <summary>
@@ -115,6 +115,19 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             var message = new NavigationMessage(typeof(ConnectionsViewModel));
 
             _eventAggregator.PublishOnUIThread(message);
+        }
+
+        private async Task Connect()
+        {
+            var candidateSettings = Settings.GetSettings();
+
+            using (var provider = BuildProviderFactory.GetProvider(candidateSettings))
+            {
+                var projects = await provider.GetProjectsAsync(CancellationToken.None).ConfigureAwait(false);
+
+                Settings.ProjectsToMonitor = projects.Select(project => _projectToMonitorFactory.Create(project, true)).ToArray();
+                Settings.IsDirty = false;
+            }
         }
     }
 }

@@ -22,6 +22,7 @@
                         Content="Try connection"
                         IsEnabled="{Binding Settings.IsDirty, Mode=OneWay}"
                         Style="{StaticResource ButtonDefaultStyle}" />
+                    <TextBlock Text="Error" Visibility="{Binding ConnectionTask.Status, Converter={StaticResource TaskStatusFaultedToBooleanConverter}}" />
                     <ScrollViewer Style="{StaticResource ScrollViewerDefaultStyle}">
                         <ItemsControl Focusable="False" ItemsSource="{Binding Settings.ProjectsToMonitor, Mode=OneWay}">
                             <ItemsControl.ItemContainerStyle>

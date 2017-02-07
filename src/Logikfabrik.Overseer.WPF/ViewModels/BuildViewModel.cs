@@ -89,6 +89,12 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// </value>
         public string RequestedBy { get; }
 
+        /// <summary>
+        /// Gets the branch.
+        /// </summary>
+        /// <value>
+        /// The branch.
+        /// </value>
         public string Branch { get; }
 
         /// <summary>

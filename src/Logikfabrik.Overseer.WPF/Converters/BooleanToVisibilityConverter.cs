@@ -49,7 +49,7 @@ namespace Logikfabrik.Overseer.WPF.Converters
         /// <returns>
         /// A converted value. If the method returns <c>null</c>, the valid <c>null</c> value is used.
         /// </returns>
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        public virtual object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             var v = value as bool?;
 
@@ -71,7 +71,7 @@ namespace Logikfabrik.Overseer.WPF.Converters
         /// <returns>
         /// A converted value. If the method returns <c>null</c>, the valid <c>null</c> value is used.
         /// </returns>
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        public virtual object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             var v = value as Visibility?;
 
