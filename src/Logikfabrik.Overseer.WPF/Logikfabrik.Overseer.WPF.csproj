@@ -110,9 +110,11 @@
     <Compile Include="ViewModels\Factories\IConnectionViewModelFactory.cs" />
     <Compile Include="ViewModels\Factories\IConnectionViewModelStrategy.cs" />
     <Compile Include="ViewModels\Factories\IEditConnectionViewModelFactory{T}.cs" />
+    <Compile Include="ViewModels\Factories\IProjectDigestViewModelFactory.cs" />
     <Compile Include="ViewModels\Factories\IProjectToMonitorViewModelFactory.cs" />
     <Compile Include="ViewModels\Factories\IProjectViewModelFactory.cs" />
     <Compile Include="ViewModels\Factories\IRemoveConnectionViewModelFactory.cs" />
+    <Compile Include="ViewModels\Factories\ProjectDigestViewModelFactory.cs" />
     <Compile Include="ViewModels\Factories\ProjectToMonitorViewModelFactory.cs" />
     <Compile Include="ViewModels\Factories\ProjectViewModelFactory.cs" />
     <Compile Include="ViewModels\Factories\RemoveConnectionViewModelFactory.cs" />

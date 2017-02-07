@@ -19,6 +19,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     public class ProjectViewModel : PropertyChangedBase
     {
         private readonly IBuildViewModelFactory _buildFactory;
+        private readonly IProjectDigestViewModelFactory _digestFactory;
         private readonly Guid _settingsId;
         private List<BuildViewModel> _builds;
         private string _name;
@@ -31,17 +32,20 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// </summary>
         /// <param name="buildMonitor">The build monitor.</param>
         /// <param name="buildFactory">The build factory.</param>
+        /// <param name="digestFactory">The digest factory.</param>
         /// <param name="settingsId">The settings identifier.</param>
         /// <param name="projectId">The project identifier.</param>
         /// <param name="projectName">The project name.</param>
-        public ProjectViewModel(IBuildMonitor buildMonitor, IBuildViewModelFactory buildFactory, Guid settingsId, string projectId, string projectName)
+        public ProjectViewModel(IBuildMonitor buildMonitor, IBuildViewModelFactory buildFactory, IProjectDigestViewModelFactory digestFactory, Guid settingsId, string projectId, string projectName)
         {
             Ensure.That(buildMonitor).IsNotNull();
             Ensure.That(buildFactory).IsNotNull();
+            Ensure.That(digestFactory).IsNotNull();
             Ensure.That(settingsId).IsNotEmpty();
             Ensure.That(projectId).IsNotNullOrWhiteSpace();
 
             _buildFactory = buildFactory;
+            _digestFactory = digestFactory;
             _settingsId = settingsId;
             Id = projectId;
             _name = projectName;
@@ -237,9 +241,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             if (isDirty || isUpdated)
             {
                 Builds = currentBuilds.OrderByDescending(build => build.StartTime ?? DateTime.MaxValue);
-
-                // TODO: Create factory.
-                Digest = new ProjectDigestViewModel(e.Builds);
+                Digest = _digestFactory.Create(e.Builds);
             }
 
             IsBusy = false;

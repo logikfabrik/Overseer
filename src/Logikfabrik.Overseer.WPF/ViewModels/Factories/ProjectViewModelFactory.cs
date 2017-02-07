@@ -14,19 +14,23 @@ namespace Logikfabrik.Overseer.WPF.ViewModels.Factories
     {
         private readonly IBuildMonitor _buildMonitor;
         private readonly IBuildViewModelFactory _buildFactory;
+        private readonly IProjectDigestViewModelFactory _digestFactory;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ProjectViewModelFactory" /> class.
         /// </summary>
         /// <param name="buildMonitor">The build monitor.</param>
         /// <param name="buildFactory">The build factory.</param>
-        public ProjectViewModelFactory(IBuildMonitor buildMonitor, IBuildViewModelFactory buildFactory)
+        /// <param name="digestFactory">The digest factory.</param>
+        public ProjectViewModelFactory(IBuildMonitor buildMonitor, IBuildViewModelFactory buildFactory, IProjectDigestViewModelFactory digestFactory)
         {
             Ensure.That(buildMonitor).IsNotNull();
             Ensure.That(buildFactory).IsNotNull();
+            Ensure.That(digestFactory).IsNotNull();
 
             _buildMonitor = buildMonitor;
             _buildFactory = buildFactory;
+            _digestFactory = digestFactory;
         }
 
         /// <summary>
@@ -41,7 +45,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels.Factories
         {
             Ensure.That(project).IsNotNull();
 
-            return new ProjectViewModel(_buildMonitor, _buildFactory, settingsId, project.Id, project.Name);
+            return new ProjectViewModel(_buildMonitor, _buildFactory, _digestFactory, settingsId, project.Id, project.Name);
         }
     }
 }
