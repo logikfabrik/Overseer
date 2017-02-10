@@ -16,3 +16,6 @@ build:
 artifacts:
   - path: src/Logikfabrik.Overseer.Setup/bin/$(configuration)/*.msi
     name: Setup
+test:
+  assemblies:
+    - '**\*.Test.dll'
