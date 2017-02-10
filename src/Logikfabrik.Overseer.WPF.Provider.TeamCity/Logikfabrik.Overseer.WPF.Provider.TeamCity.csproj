@@ -81,6 +81,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Api\ApiClient.cs" />
+    <Compile Include="AuthenticationType.cs" />
+    <Compile Include="BuildProvider.cs" />
+    <Compile Include="ConnectionSettings.cs" />
+    <Compile Include="Extensions\ConnectionSettingsExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -104,6 +109,9 @@
       <Project>{c5200750-c9e9-43f5-8ee5-da7fecc32135}</Project>
       <Name>Logikfabrik.Overseer</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Api\Models\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

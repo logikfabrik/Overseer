@@ -12,21 +12,21 @@ namespace Logikfabrik.Overseer
         /// <summary>
         /// The build failed.
         /// </summary>
-        Failed,
+        Failed = 0,
 
         /// <summary>
         /// The build succeeded.
         /// </summary>
-        Succeeded,
+        Succeeded = 1,
 
         /// <summary>
         /// The build is in progress.
         /// </summary>
-        InProgress,
+        InProgress = 2,
 
         /// <summary>
         /// The build was stopped.
         /// </summary>
-        Stopped
+        Stopped = 3
     }
 }

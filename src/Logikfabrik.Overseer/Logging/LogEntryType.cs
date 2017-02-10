@@ -12,21 +12,21 @@ namespace Logikfabrik.Overseer.Logging
         /// <summary>
         /// Type for debug entry.
         /// </summary>
-        Debug,
+        Debug = 0,
 
         /// <summary>
         /// Type for information entry.
         /// </summary>
-        Information,
+        Information = 1,
 
         /// <summary>
         /// Type for warning entry.
         /// </summary>
-        Warning,
+        Warning = 2,
 
         /// <summary>
         /// Type for error entry.
         /// </summary>
-        Error
+        Error = 3
     }
 }
