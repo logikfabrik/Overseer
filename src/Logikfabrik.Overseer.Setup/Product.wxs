@@ -83,6 +83,10 @@
         <File Source="$(var.Logikfabrik.Overseer.WPF.Provider.AppVeyor.TargetDir)System.Net.Http.Formatting.dll" />
         <File Source="$(var.Logikfabrik.Overseer.WPF.Provider.AppVeyor.TargetDir)Newtonsoft.Json.dll" />
 
+        <File Source="$(var.Logikfabrik.Overseer.WPF.Provider.Jenkins.TargetDir)Logikfabrik.Overseer.WPF.Provider.Jenkins.dll" />
+
+        <File Source="$(var.Logikfabrik.Overseer.WPF.Provider.TeamCity.TargetDir)Logikfabrik.Overseer.WPF.Provider.TeamCity.dll" />
+        
         <File Source="$(var.Logikfabrik.Overseer.WPF.Provider.VSTeamServices.TargetDir)Logikfabrik.Overseer.WPF.Provider.VSTeamServices.dll" />
       </Component>
     </ComponentGroup>

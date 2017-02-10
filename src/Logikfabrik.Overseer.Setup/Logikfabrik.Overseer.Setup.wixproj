@@ -45,6 +45,24 @@
       </RefProjectOutputGroups>
       <RefTargetDir>INSTALLFOLDER</RefTargetDir>
     </ProjectReference>
+    <ProjectReference Include="..\Logikfabrik.Overseer.WPF.Provider.Jenkins\Logikfabrik.Overseer.WPF.Provider.Jenkins.csproj">
+      <Name>Logikfabrik.Overseer.WPF.Provider.Jenkins</Name>
+      <Project>{f4f07a30-be00-4295-bd36-3fc0b5e79b94}</Project>
+      <Private>True</Private>
+      <DoNotHarvest>True</DoNotHarvest>
+      <RefProjectOutputGroups>
+      </RefProjectOutputGroups>
+      <RefTargetDir>INSTALLFOLDER</RefTargetDir>
+    </ProjectReference>
+    <ProjectReference Include="..\Logikfabrik.Overseer.WPF.Provider.TeamCity\Logikfabrik.Overseer.WPF.Provider.TeamCity.csproj">
+      <Name>Logikfabrik.Overseer.WPF.Provider.TeamCity</Name>
+      <Project>{89a4ea8b-685a-4a7f-91b3-6c16817fb5f6}</Project>
+      <Private>True</Private>
+      <DoNotHarvest>True</DoNotHarvest>
+      <RefProjectOutputGroups>
+      </RefProjectOutputGroups>
+      <RefTargetDir>INSTALLFOLDER</RefTargetDir>
+    </ProjectReference>
     <ProjectReference Include="..\Logikfabrik.Overseer.WPF.Provider.VSTeamServices\Logikfabrik.Overseer.WPF.Provider.VSTeamServices.csproj">
       <Name>Logikfabrik.Overseer.WPF.Provider.VSTeamServices</Name>
       <Project>{6080edc7-5bc4-4bda-9fc7-b745a38f0efb}</Project>
