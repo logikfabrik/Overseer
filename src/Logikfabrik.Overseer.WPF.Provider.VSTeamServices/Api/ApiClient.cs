@@ -20,6 +20,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices.Api
     public class ApiClient : IDisposable
     {
         private readonly Lazy<HttpClient> _httpClient;
+        private bool _isDisposed;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ApiClient" /> class.
@@ -48,6 +49,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices.Api
             Ensure.That(token).IsNotNullOrWhiteSpace();
             Ensure.That(proxyUrl).IsNotNullOrWhiteSpace();
 
+            // TODO: Support for proxy.
             _httpClient = new Lazy<HttpClient>(() => GetHttpClient(new Uri(url), token, new Uri(proxyUrl), proxyUsername, proxyPassword));
         }
 
@@ -60,6 +62,11 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices.Api
         /// <returns>A task.</returns>
         public async Task<Projects> GetProjectsAsync(int skip, int take, CancellationToken cancellationToken)
         {
+            if (_isDisposed)
+            {
+                throw new ObjectDisposedException(GetType().FullName);
+            }
+
             Ensure.That(skip).IsInRange(0, int.MaxValue);
             Ensure.That(take).IsInRange(1, int.MaxValue);
 
@@ -83,6 +90,11 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices.Api
         /// <returns>A task.</returns>
         public async Task<Builds> GetBuildsAsync(string projectId, int skip, int take, CancellationToken cancellationToken)
         {
+            if (_isDisposed)
+            {
+                throw new ObjectDisposedException(GetType().FullName);
+            }
+
             Ensure.That(projectId).IsNotNullOrWhiteSpace();
             Ensure.That(skip).IsInRange(0, int.MaxValue);
             Ensure.That(take).IsInRange(1, int.MaxValue);
@@ -106,6 +118,11 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices.Api
         /// <returns>A task.</returns>
         public async Task<Changes> GetChangesAsync(string projectId, string buildId, CancellationToken cancellationToken)
         {
+            if (_isDisposed)
+            {
+                throw new ObjectDisposedException(GetType().FullName);
+            }
+
             Ensure.That(projectId).IsNotNullOrWhiteSpace();
             Ensure.That(buildId).IsNotNullOrWhiteSpace();
 
@@ -132,6 +149,11 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices.Api
         /// <param name="disposing"><c>true</c> to release both managed and unmanaged resources; <c>false</c> to release only unmanaged resources.</param>
         protected virtual void Dispose(bool disposing)
         {
+            if (_isDisposed)
+            {
+                return;
+            }
+
             // ReSharper disable once InvertIf
             if (disposing)
             {
@@ -143,6 +165,8 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices.Api
                 _httpClient.Value.CancelPendingRequests();
                 _httpClient.Value.Dispose();
             }
+
+            _isDisposed = true;
         }
 
         private static HttpClient GetHttpClient(Uri baseUri, string token)

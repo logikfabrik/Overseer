@@ -20,6 +20,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor.Api
     public class ApiClient : IDisposable
     {
         private readonly Lazy<HttpClient> _httpClient;
+        private bool _isDisposed;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ApiClient" /> class.
@@ -46,6 +47,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor.Api
             Ensure.That(token).IsNotNullOrWhiteSpace();
             Ensure.That(proxyUrl).IsNotNullOrWhiteSpace();
 
+            // TODO: Support for proxy.
             _httpClient = new Lazy<HttpClient>(() => GetHttpClient(new Uri(url), token, new Uri(proxyUrl), proxyUsername, proxyPassword));
         }
 
@@ -56,6 +58,11 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor.Api
         /// <returns>A task.</returns>
         public async Task<IEnumerable<Project>> GetProjectsAsync(CancellationToken cancellationToken)
         {
+            if (_isDisposed)
+            {
+                throw new ObjectDisposedException(GetType().FullName);
+            }
+
             using (var response = await _httpClient.Value.GetAsync("api/projects", cancellationToken).ConfigureAwait(false))
             {
                 response.EnsureSuccessStatusCode();
@@ -74,6 +81,11 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor.Api
         /// <returns>A task.</returns>
         public async Task<ProjectHistory> GetProjectHistoryAsync(string accountName, string projectSlug, int recordsNumber, CancellationToken cancellationToken)
         {
+            if (_isDisposed)
+            {
+                throw new ObjectDisposedException(GetType().FullName);
+            }
+
             Ensure.That(accountName).IsNotNullOrWhiteSpace();
             Ensure.That(projectSlug).IsNotNullOrWhiteSpace();
             Ensure.That(recordsNumber).IsInRange(1, int.MaxValue);
@@ -101,6 +113,11 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor.Api
         /// <param name="disposing"><c>true</c> to release both managed and unmanaged resources; <c>false</c> to release only unmanaged resources.</param>
         protected virtual void Dispose(bool disposing)
         {
+            if (_isDisposed)
+            {
+                return;
+            }
+
             // ReSharper disable once InvertIf
             if (disposing)
             {
@@ -112,6 +129,8 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor.Api
                 _httpClient.Value.CancelPendingRequests();
                 _httpClient.Value.Dispose();
             }
+
+            _isDisposed = true;
         }
 
         private static HttpClient GetHttpClient(Uri baseUri, string token)

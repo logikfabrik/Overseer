@@ -27,6 +27,6 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity
 
         public AuthenticationType AuthenticationType { get; set; }
 
-        public int ApiVersion { get; } = 10;
+        public decimal ApiVersion { get; } = 10.0M;
     }
 }
