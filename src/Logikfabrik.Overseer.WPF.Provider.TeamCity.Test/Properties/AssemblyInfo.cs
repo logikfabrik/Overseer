@@ -5,7 +5,7 @@
 using System.Reflection;
 using System.Runtime.InteropServices;
 
-[assembly: AssemblyTitle("Logikfabrik.Overseer.Test")]
+[assembly: AssemblyTitle("Logikfabrik.Overseer.WPF.Provider.TeamCity.Test")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Anton Frennevi")]
@@ -14,6 +14,6 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 [assembly: ComVisible(false)]
-[assembly: Guid("49e16744-45a7-4432-81b5-d5c1ea2f4d32")]
+[assembly: Guid("a673bd86-ad99-4cf7-a83b-ae39196ba846")]
 [assembly: AssemblyVersion("0.0.1.0")]
 [assembly: AssemblyFileVersion("0.0.1.0")]

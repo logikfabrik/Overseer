@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi"
      xmlns:netfx="http://schemas.microsoft.com/wix/NetFxExtension">
-  <?define VERSION="1.0.0.0"?>
+  <?define VERSION="0.0.1.0"?>
   <Product Id="e644ea3a-a90b-4913-83ed-d6f55fdc0d49"
            Name="Overseer $(var.VERSION)"
            Language="1033"
