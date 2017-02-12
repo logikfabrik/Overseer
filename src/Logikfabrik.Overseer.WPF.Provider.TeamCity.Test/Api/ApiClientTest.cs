@@ -18,11 +18,11 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity.Test.Api
             var username = "";
             var password = "";
 
-            var client = new ApiClient("https://teamcity.jetbrains.com/httpAuth/app/rest/10.0/", username, password);
+            var client = new ApiClient(new Uri("https://teamcity.jetbrains.com/httpAuth/app/rest/10.0/"), username, password);
 
             try
             {
-                var tmp = await client.GetProjets(CancellationToken.None);
+                var tmp = await client.GetProjectsAsync(CancellationToken.None);
 
                 var k = 0;
             }

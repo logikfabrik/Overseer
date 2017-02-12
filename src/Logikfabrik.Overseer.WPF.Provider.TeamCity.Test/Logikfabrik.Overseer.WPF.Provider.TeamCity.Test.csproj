@@ -88,6 +88,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Api\ApiClientTest.cs" />
+    <Compile Include="Extensions\ConnectionSettingsExtensionsTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -106,6 +107,10 @@
     <ProjectReference Include="..\Logikfabrik.Overseer.WPF.Provider.TeamCity\Logikfabrik.Overseer.WPF.Provider.TeamCity.csproj">
       <Project>{89a4ea8b-685a-4a7f-91b3-6c16817fb5f6}</Project>
       <Name>Logikfabrik.Overseer.WPF.Provider.TeamCity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Logikfabrik.Overseer\Logikfabrik.Overseer.csproj">
+      <Project>{c5200750-c9e9-43f5-8ee5-da7fecc32135}</Project>
+      <Name>Logikfabrik.Overseer</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

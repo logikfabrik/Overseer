@@ -21,12 +21,44 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity
         /// </value>
         public override Type ProviderType { get; } = typeof(BuildProvider);
 
-        public string Server { get; set; }
+        /// <summary>
+        /// Gets or sets the URL.
+        /// </summary>
+        /// <value>
+        /// The URL.
+        /// </value>
+        public string Url { get; set; }
 
-        public int? Port { get; set; }
-
+        /// <summary>
+        /// Gets or sets the authentication type.
+        /// </summary>
+        /// <value>
+        /// The authentication type.
+        /// </value>
         public AuthenticationType AuthenticationType { get; set; }
 
-        public decimal ApiVersion { get; } = 10.0M;
+        /// <summary>
+        /// Gets the API version.
+        /// </summary>
+        /// <value>
+        /// The API version.
+        /// </value>
+        public string ApiVersion { get; } = "10.0";
+
+        /// <summary>
+        /// Gets or sets the username.
+        /// </summary>
+        /// <value>
+        /// The username.
+        /// </value>
+        public string Username { get; set; }
+
+        /// <summary>
+        /// Gets or sets the password.
+        /// </summary>
+        /// <value>
+        /// The password.
+        /// </value>
+        public string Password { get; set; }
     }
 }

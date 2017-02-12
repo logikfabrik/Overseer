@@ -21,42 +21,38 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity.Api
         private readonly Lazy<HttpClient> _httpClient;
         private bool _isDisposed;
 
-        public ApiClient(string url, string username, string password)
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ApiClient" /> class.
+        /// </summary>
+        /// <param name="baseUri">The base URI.</param>
+        /// <param name="username">The username.</param>
+        /// <param name="password">The password.</param>
+        public ApiClient(Uri baseUri, string username, string password)
         {
-            Ensure.That(url).IsNotNullOrWhiteSpace();
+            Ensure.That(baseUri).IsNotNull();
             Ensure.That(username).IsNotNullOrWhiteSpace();
             Ensure.That(password).IsNotNullOrWhiteSpace();
 
-            _httpClient = new Lazy<HttpClient>(() => GetHttpClient(new Uri(url), username, password));
+            _httpClient = new Lazy<HttpClient>(() => GetHttpClient(baseUri, username, password));
         }
 
-        public ApiClient(string url, string username, string password, string proxyUrl, string proxyUsername, string proxyPassword)
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ApiClient" /> class.
+        /// </summary>
+        /// <param name="baseUri">The base URI.</param>
+        public ApiClient(Uri baseUri)
         {
-            Ensure.That(url).IsNotNullOrWhiteSpace();
-            Ensure.That(username).IsNotNullOrWhiteSpace();
-            Ensure.That(password).IsNotNullOrWhiteSpace();
+            Ensure.That(baseUri).IsNotNull();
 
-            // TODO: Support for proxy.
-            throw new NotImplementedException();
+            _httpClient = new Lazy<HttpClient>(() => GetHttpClient(baseUri));
         }
 
-        public ApiClient(string url)
-        {
-            Ensure.That(url).IsNotNullOrWhiteSpace();
-
-            // TODO: Support for guest.
-            throw new NotImplementedException();
-        }
-
-        public ApiClient(string url, string proxyUrl, string proxyUsername, string proxyPassword)
-        {
-            Ensure.That(url).IsNotNullOrWhiteSpace();
-
-            // TODO: Support for guest with proxy.
-            throw new NotImplementedException();
-        }
-
-        public async Task<Projects> GetProjets(CancellationToken cancellationToken)
+        /// <summary>
+        /// Gets the projects.
+        /// </summary>
+        /// <param name="cancellationToken">A cancellation token.</param>
+        /// <returns>A task.</returns>
+        public async Task<Projects> GetProjectsAsync(CancellationToken cancellationToken)
         {
             if (_isDisposed)
             {
@@ -104,6 +100,13 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity.Api
             }
 
             _isDisposed = true;
+        }
+
+        private static HttpClient GetHttpClient(Uri baseUri)
+        {
+            var client = new HttpClient { BaseAddress = baseUri };
+
+            return client;
         }
 
         private static HttpClient GetHttpClient(Uri baseUri, string username, string password)

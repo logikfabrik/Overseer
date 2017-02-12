@@ -81,7 +81,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ApiVersion.cs" />
     <Compile Include="Api\ApiClient.cs" />
     <Compile Include="Api\Models\Project.cs" />
     <Compile Include="Api\Models\Projects.cs" />
@@ -89,7 +88,11 @@
     <Compile Include="BuildProvider.cs" />
     <Compile Include="ConnectionSettings.cs" />
     <Compile Include="Extensions\ConnectionSettingsExtensions.cs" />
+    <Compile Include="Module.cs" />
+    <Compile Include="Project.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Validators\ConnectionSettingsViewModelValidator.cs" />
+    <Compile Include="ViewModels\ConnectionSettingsViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <AdditionalFiles Include="stylecop.json" />
@@ -113,7 +116,9 @@
       <Name>Logikfabrik.Overseer</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Views\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
