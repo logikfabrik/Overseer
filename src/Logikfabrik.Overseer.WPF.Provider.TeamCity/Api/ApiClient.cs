@@ -5,6 +5,7 @@
 namespace Logikfabrik.Overseer.WPF.Provider.TeamCity.Api
 {
     using System;
+    using System.Collections.Generic;
     using System.Net.Http;
     using System.Net.Http.Headers;
     using System.Text;
@@ -59,11 +60,57 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity.Api
                 throw new ObjectDisposedException(GetType().FullName);
             }
 
-            using (var response = await _httpClient.Value.GetAsync("projects", cancellationToken).ConfigureAwait(false))
+            const string url = "projects";
+
+            using (var response = await _httpClient.Value.GetAsync(url, cancellationToken).ConfigureAwait(false))
             {
                 response.EnsureSuccessStatusCode();
 
                 return await response.Content.ReadAsAsync<Projects>(cancellationToken).ConfigureAwait(false);
+            }
+        }
+
+        /// <summary>
+        /// Gets the build types.
+        /// </summary>
+        /// <param name="projectId">The project identifier.</param>
+        /// <param name="cancellationToken">A cancellation token.</param>
+        /// <returns>A task.</returns>
+        public async Task<IEnumerable<BuildType>> GetBuildTypesAsync(string projectId, CancellationToken cancellationToken)
+        {
+            if (_isDisposed)
+            {
+                throw new ObjectDisposedException(GetType().FullName);
+            }
+
+            Ensure.That(projectId).IsNotNullOrWhiteSpace();
+
+            var url = $"buildTypes?locator=affectedProject:(id:{projectId})&fields=buildType(builds($locator(count:1),build(id)))";
+
+            using (var response = await _httpClient.Value.GetAsync(url, cancellationToken).ConfigureAwait(false))
+            {
+                response.EnsureSuccessStatusCode();
+
+                return await response.Content.ReadAsAsync<IEnumerable<BuildType>>(cancellationToken).ConfigureAwait(false);
+            }
+        }
+
+        public async Task<Build> GetBuild(string id, CancellationToken cancellationToken)
+        {
+            if (_isDisposed)
+            {
+                throw new ObjectDisposedException(GetType().FullName);
+            }
+
+            Ensure.That(id).IsNotNullOrWhiteSpace();
+
+            var url = $"builds/id:{id}";
+
+            using (var response = await _httpClient.Value.GetAsync(url, cancellationToken).ConfigureAwait(false))
+            {
+                response.EnsureSuccessStatusCode();
+
+                return await response.Content.ReadAsAsync<Build>(cancellationToken).ConfigureAwait(false);
             }
         }
 
@@ -106,6 +153,8 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity.Api
         {
             var client = new HttpClient { BaseAddress = baseUri };
 
+            SetDefaultRequestHeaders(client);
+
             return client;
         }
 
@@ -113,16 +162,21 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity.Api
         {
             var client = new HttpClient { BaseAddress = baseUri };
 
-            SetDefaultRequestHeaders(client, username, password);
+            SetDefaultRequestHeaders(client);
+            SetAuthRequestHeaders(client, username, password);
 
             return client;
         }
 
-        private static void SetDefaultRequestHeaders(HttpClient client, string username, string password)
+        private static void SetDefaultRequestHeaders(HttpClient client)
+        {
+            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+        }
+
+        private static void SetAuthRequestHeaders(HttpClient client, string username, string password)
         {
             var credentials = Convert.ToBase64String(Encoding.ASCII.GetBytes($"{username}:{password}"));
 
-            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", credentials);
         }
     }

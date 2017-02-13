@@ -14,7 +14,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity.Test
         {
             var baseUri = BaseUriHelper.GetBaseUri("http://teamcity.jetbrains.com", "10.0", AuthenticationType.HttpAuth);
 
-            Assert.Equal("http://teamcity.jetbrains.com/httpAuth/app/rest/10.0/", baseUri.ToString(), StringComparer.InvariantCultureIgnoreCase);
+            Assert.Equal("http://teamcity.jetbrains.com/httpAuth/app/rest/10.0/", baseUri.ToString());
         }
 
         [Fact]
@@ -22,7 +22,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity.Test
         {
             var baseUri = BaseUriHelper.GetBaseUri("http://teamcity.jetbrains.com", "10.0", AuthenticationType.GuestAuth);
 
-            Assert.Equal("http://teamcity.jetbrains.com/guestAuth/app/rest/10.0/", baseUri.ToString(), StringComparer.InvariantCultureIgnoreCase);
+            Assert.Equal("http://teamcity.jetbrains.com/guestAuth/app/rest/10.0/", baseUri.ToString());
         }
 
         [Fact]
@@ -30,7 +30,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity.Test
         {
             var baseUri = BaseUriHelper.GetBaseUri("https://teamcity.jetbrains.com:80", "10.0", AuthenticationType.HttpAuth);
 
-            Assert.Equal("https://teamcity.jetbrains.com:80/httpAuth/app/rest/10.0/", baseUri.ToString(), StringComparer.InvariantCultureIgnoreCase);
+            Assert.Equal("https://teamcity.jetbrains.com:80/httpAuth/app/rest/10.0/", baseUri.ToString());
         }
 
         [Fact]

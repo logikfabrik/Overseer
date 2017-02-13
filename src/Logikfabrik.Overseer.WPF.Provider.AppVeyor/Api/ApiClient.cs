@@ -63,7 +63,9 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor.Api
                 throw new ObjectDisposedException(GetType().FullName);
             }
 
-            using (var response = await _httpClient.Value.GetAsync("api/projects", cancellationToken).ConfigureAwait(false))
+            const string url = "api/projects";
+
+            using (var response = await _httpClient.Value.GetAsync(url, cancellationToken).ConfigureAwait(false))
             {
                 response.EnsureSuccessStatusCode();
 
@@ -90,7 +92,9 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor.Api
             Ensure.That(projectSlug).IsNotNullOrWhiteSpace();
             Ensure.That(recordsNumber).IsInRange(1, int.MaxValue);
 
-            using (var response = await _httpClient.Value.GetAsync($"api/projects/{accountName}/{projectSlug}/history?recordsNumber={recordsNumber}", cancellationToken).ConfigureAwait(false))
+            var url = $"api/projects/{accountName}/{projectSlug}/history?recordsNumber={recordsNumber}";
+
+            using (var response = await _httpClient.Value.GetAsync(url, cancellationToken).ConfigureAwait(false))
             {
                 response.EnsureSuccessStatusCode();
 

@@ -87,8 +87,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Api\ApiClient.cs" />
+    <Compile Include="Api\Models\Build.cs" />
+    <Compile Include="Api\Models\BuildState.cs" />
+    <Compile Include="Api\Models\BuildStatus.cs" />
+    <Compile Include="Api\Models\BuildType.cs" />
+    <Compile Include="Api\Models\Change.cs" />
     <Compile Include="Api\Models\Project.cs" />
     <Compile Include="Api\Models\Projects.cs" />
+    <Compile Include="Api\Models\TestOccurrences.cs" />
     <Compile Include="AuthenticationType.cs" />
     <Compile Include="BaseUriHelper.cs" />
     <Compile Include="BuildProvider.cs" />

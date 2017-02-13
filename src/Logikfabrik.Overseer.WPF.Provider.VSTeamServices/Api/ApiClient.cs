@@ -70,9 +70,9 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices.Api
             Ensure.That(skip).IsInRange(0, int.MaxValue);
             Ensure.That(take).IsInRange(1, int.MaxValue);
 
-            var builder = new StringBuilder($"_apis/projects?api-version=2.0&$skip={skip}&$top={take}");
+            var url = $"_apis/projects?api-version=2.0&$skip={skip}&$top={take}";
 
-            using (var response = await _httpClient.Value.GetAsync(builder.ToString(), cancellationToken).ConfigureAwait(false))
+            using (var response = await _httpClient.Value.GetAsync(url, cancellationToken).ConfigureAwait(false))
             {
                 response.EnsureSuccessStatusCode();
 
@@ -99,9 +99,9 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices.Api
             Ensure.That(skip).IsInRange(0, int.MaxValue);
             Ensure.That(take).IsInRange(1, int.MaxValue);
 
-            var builder = new StringBuilder($"{projectId}/_apis/build/builds?api-version=2.0&$skip={skip}&$top={take}");
+            var url = $"{projectId}/_apis/build/builds?api-version=2.0&$skip={skip}&$top={take}";
 
-            using (var response = await _httpClient.Value.GetAsync(builder.ToString(), cancellationToken).ConfigureAwait(false))
+            using (var response = await _httpClient.Value.GetAsync(url, cancellationToken).ConfigureAwait(false))
             {
                 response.EnsureSuccessStatusCode();
 
@@ -126,7 +126,9 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices.Api
             Ensure.That(projectId).IsNotNullOrWhiteSpace();
             Ensure.That(buildId).IsNotNullOrWhiteSpace();
 
-            using (var response = await _httpClient.Value.GetAsync($"{projectId}/_apis/build/builds/{buildId}/changes?api-version=2.0", cancellationToken).ConfigureAwait(false))
+            var url = $"{projectId}/_apis/build/builds/{buildId}/changes?api-version=2.0";
+
+            using (var response = await _httpClient.Value.GetAsync(url, cancellationToken).ConfigureAwait(false))
             {
                 response.EnsureSuccessStatusCode();
 

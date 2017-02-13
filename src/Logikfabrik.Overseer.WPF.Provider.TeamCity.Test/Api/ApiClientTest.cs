@@ -4,7 +4,6 @@
 
 namespace Logikfabrik.Overseer.WPF.Provider.TeamCity.Test.Api
 {
-    using System;
     using System.Threading;
     using System.Threading.Tasks;
     using TeamCity.Api;
@@ -15,23 +14,30 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity.Test.Api
         //[Fact]
         public async Task CanGetProjects()
         {
-            var username = "";
-            var password = "";
+            var baseUri = BaseUriHelper.GetBaseUri("http://teamcity.jetbrains.com", "10.0", AuthenticationType.GuestAuth);
 
-            var client = new ApiClient(new Uri("https://teamcity.jetbrains.com/httpAuth/app/rest/10.0/"), username, password);
+            var client = new ApiClient(baseUri);
 
-            try
+            var projects = await client.GetProjectsAsync(CancellationToken.None).ConfigureAwait(false);
+
+            Assert.NotNull(projects);
+        }
+
+        //[Fact]
+        public async Task CanGetBuildTypes()
+        {
+            var baseUri = BaseUriHelper.GetBaseUri("http://teamcity.jetbrains.com", "10.0", AuthenticationType.GuestAuth);
+
+            var client = new ApiClient(baseUri);
+
+            var projects = await client.GetProjectsAsync(CancellationToken.None).ConfigureAwait(false);
+
+            foreach (var project in projects.Project)
             {
-                var tmp = await client.GetProjectsAsync(CancellationToken.None);
+                var buildTypes = await client.GetBuildTypesAsync(project.Id, CancellationToken.None).ConfigureAwait(false);
 
-                var k = 0;
+                Assert.NotNull(buildTypes);
             }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                throw;
-            }
-            
         }
     }
 }

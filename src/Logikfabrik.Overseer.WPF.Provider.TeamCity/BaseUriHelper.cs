@@ -77,9 +77,22 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity
 
         private static UriBuilder GetBuilder(string url, string version, AuthenticationType authenticationType)
         {
+            var authType = string.Empty;
+
+            // ReSharper disable once SwitchStatementMissingSomeCases
+            switch (authenticationType)
+            {
+                case AuthenticationType.HttpAuth:
+                    authType = "httpAuth";
+                    break;
+                case AuthenticationType.GuestAuth:
+                    authType = "guestAuth";
+                    break;
+            }
+
             return new UriBuilder(url)
             {
-                Path = $"{authenticationType}/app/rest/{version}/"
+                Path = $"{authType}/app/rest/{version}/"
             };
         }
 
