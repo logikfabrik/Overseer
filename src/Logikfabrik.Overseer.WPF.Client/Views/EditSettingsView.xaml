@@ -17,15 +17,15 @@
             </StackPanel>
             <StackPanel Margin="0,0,0,20">
                 <TextBlock Style="{StaticResource TextBlockDefaultStyle}" Text="Proxy URL" />
-                <TextBox Style="{StaticResource TextBoxDefaultStyle}" Text="{Binding Path=ProxyUrl, Mode=TwoWay, ValidatesOnDataErrors=True}" />
+                <TextBox Style="{StaticResource TextBoxDefaultStyle}" Text="{Binding Path=ProxyUrl, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" />
             </StackPanel>
             <StackPanel Margin="0,0,0,20">
                 <TextBlock Style="{StaticResource TextBlockDefaultStyle}" Text="Proxy Username" />
-                <TextBox Style="{StaticResource TextBoxDefaultStyle}" Text="{Binding Path=ProxyUsername, Mode=TwoWay, ValidatesOnDataErrors=True}" />
+                <TextBox Style="{StaticResource TextBoxDefaultStyle}" Text="{Binding Path=ProxyUsername, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" />
             </StackPanel>
             <StackPanel Margin="0,0,0,20">
                 <TextBlock Style="{StaticResource TextBlockDefaultStyle}" Text="Proxy Password" />
-                <TextBox Style="{StaticResource TextBoxDefaultStyle}" Text="{Binding Path=ProxyPassword, Mode=TwoWay, ValidatesOnDataErrors=True}" />
+                <TextBox Style="{StaticResource TextBoxDefaultStyle}" Text="{Binding Path=ProxyPassword, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" />
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <Button

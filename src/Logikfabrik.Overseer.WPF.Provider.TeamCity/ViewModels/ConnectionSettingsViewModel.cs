@@ -4,6 +4,7 @@
 
 namespace Logikfabrik.Overseer.WPF.Provider.TeamCity.ViewModels
 {
+    using System;
     using System.Linq;
     using FluentValidation;
     using Validators;
@@ -17,6 +18,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity.ViewModels
         private AuthenticationType _authenticationType;
         private string _username;
         private string _password;
+        private string _version;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ConnectionSettingsViewModel" /> class.
@@ -24,6 +26,8 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity.ViewModels
         public ConnectionSettingsViewModel()
         {
             Validator = new ConnectionSettingsViewModelValidator();
+            Url = string.Concat(Uri.UriSchemeHttps, Uri.SchemeDelimiter);
+            Version = "10.0";
         }
 
         /// <summary>
@@ -43,8 +47,25 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity.ViewModels
             {
                 _url = value;
                 NotifyOfPropertyChange(() => Url);
+                NotifyOfPropertyChange(() => BaseUri);
 
                 IsDirty = true;
+            }
+        }
+
+        /// <summary>
+        /// Gets the base URI.
+        /// </summary>
+        /// <value>
+        /// The base URI.
+        /// </value>
+        public string BaseUri
+        {
+            get
+            {
+                Uri baseUri;
+
+                return BaseUriHelper.TryGetBaseUri(Url, Version, AuthenticationType, out baseUri) ? baseUri.ToString() : null;
             }
         }
 
@@ -65,6 +86,33 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity.ViewModels
             {
                 _authenticationType = value;
                 NotifyOfPropertyChange(() => AuthenticationType);
+
+                // Trigger revalidation of username and password.
+                NotifyOfPropertyChange(() => Username);
+                NotifyOfPropertyChange(() => Password);
+
+                IsDirty = true;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the version.
+        /// </summary>
+        /// <value>
+        /// The version.
+        /// </value>
+        public string Version
+        {
+            get
+            {
+                return _version;
+            }
+
+            set
+            {
+                _version = value;
+                NotifyOfPropertyChange(() => Version);
+                NotifyOfPropertyChange(() => BaseUri);
 
                 IsDirty = true;
             }
@@ -133,6 +181,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity.ViewModels
                 Name = Name,
                 Url = Url,
                 AuthenticationType = AuthenticationType,
+                Version = Version,
                 Username = Username,
                 Password = Password,
                 ProjectsToMonitor = ProjectsToMonitor.Where(project => project.Monitor).Select(project => project.Id).ToArray()
@@ -148,6 +197,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity.ViewModels
             current.Name = Name;
             current.Url = Url;
             current.AuthenticationType = AuthenticationType;
+            current.Version = Version;
             current.Username = Username;
             current.Password = Password;
             current.ProjectsToMonitor = ProjectsToMonitor.Where(project => project.Monitor).Select(project => project.Id).ToArray();

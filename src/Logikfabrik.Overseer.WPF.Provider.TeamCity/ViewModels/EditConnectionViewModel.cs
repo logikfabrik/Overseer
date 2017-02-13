@@ -33,6 +33,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity.ViewModels
             settings.Name = currentSettings.Name;
             settings.Url = currentSettings.Url;
             settings.AuthenticationType = currentSettings.AuthenticationType;
+            settings.Version = currentSettings.Version;
             settings.Username = currentSettings.Username;
             settings.Password = currentSettings.Password;
             settings.IsDirty = false;

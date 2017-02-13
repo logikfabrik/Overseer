@@ -38,12 +38,12 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity
         public AuthenticationType AuthenticationType { get; set; }
 
         /// <summary>
-        /// Gets the API version.
+        /// Gets or sets the version.
         /// </summary>
         /// <value>
-        /// The API version.
+        /// The version.
         /// </value>
-        public string ApiVersion { get; } = "10.0";
+        public string Version { get; set; }
 
         /// <summary>
         /// Gets or sets the username.

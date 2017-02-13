@@ -4,6 +4,7 @@
 
 namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices.ViewModels
 {
+    using System;
     using System.Linq;
     using FluentValidation;
     using Validators;
@@ -22,6 +23,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices.ViewModels
         public ConnectionSettingsViewModel()
         {
             Validator = new ConnectionSettingsViewModelValidator();
+            Url = string.Concat(Uri.UriSchemeHttps, Uri.SchemeDelimiter);
         }
 
         /// <summary>

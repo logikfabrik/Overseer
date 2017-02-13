@@ -96,7 +96,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity
 
         private static Api.ApiClient GetApiClient(ConnectionSettings settings)
         {
-            var baseUri = settings.GetBaseUri();
+            var baseUri = BaseUriHelper.GetBaseUri(settings.Url, settings.Version, settings.AuthenticationType);
 
             switch (settings.AuthenticationType)
             {

@@ -82,9 +82,6 @@
   <ItemGroup>
     <Compile Include="BuildMessageUtility.cs" />
     <Compile Include="BuildNotificationManager.cs" />
-    <Compile Include="Controls\Icon.xaml.cs">
-      <DependentUpon>Icon.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Converters\BooleanToVisibilityConverter.cs" />
     <Compile Include="Converters\BuildStatusToStyleConverter.cs" />
     <Compile Include="Converters\TaskStatusToBooleanConverter.cs" />
@@ -92,6 +89,7 @@
     <Compile Include="IBuildNotificationManager.cs" />
     <Compile Include="INotificationManager.cs" />
     <Compile Include="INotifyTask.cs" />
+    <Compile Include="MarkupExtensions\EnumToItemsSourceMarkupExtension.cs" />
     <Compile Include="NavigationMessage.cs" />
     <Compile Include="NavigationMessage2.cs" />
     <Compile Include="NotificationManager.cs" />
@@ -149,10 +147,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Page Include="Controls\Icon.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="Styles\Controls\Button.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
