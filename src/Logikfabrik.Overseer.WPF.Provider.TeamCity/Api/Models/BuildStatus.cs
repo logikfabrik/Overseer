@@ -13,6 +13,8 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity.Api.Models
 
         Unknown,
 
-        Failure
+        Failure,
+
+        Error
     }
 }

@@ -12,7 +12,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity.Test.Api
 
     public class ApiClientTest
     {
-        //[Fact]
+        [Fact(Skip = "This is an integration test")]
         public async Task CanGetProjects()
         {
             var baseUri = BaseUriHelper.GetBaseUri("http://teamcity.jetbrains.com", "10.0", AuthenticationType.GuestAuth);
@@ -24,7 +24,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity.Test.Api
             Assert.NotNull(projects);
         }
 
-        [Fact]
+        [Fact(Skip = "This is an integration test")]
         public async Task CanGetBuildTypes()
         {
             var baseUri = BaseUriHelper.GetBaseUri("http://teamcity.jetbrains.com", "10.0", AuthenticationType.GuestAuth);
@@ -41,7 +41,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity.Test.Api
             }
         }
 
-        [Fact]
+        [Fact(Skip = "This is an integration test")]
         public async Task CanGetBuilds()
         {
             var baseUri = BaseUriHelper.GetBaseUri("http://teamcity.jetbrains.com", "10.0", AuthenticationType.GuestAuth);

@@ -7,12 +7,15 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity.Api
     using System;
     using System.Collections.Generic;
     using System.Net.Http;
+    using System.Net.Http.Formatting;
     using System.Net.Http.Headers;
     using System.Text;
     using System.Threading;
     using System.Threading.Tasks;
     using EnsureThat;
     using Models;
+    using Newtonsoft.Json;
+    using Newtonsoft.Json.Converters;
 
     /// <summary>
     /// The <see cref="ApiClient" /> class.
@@ -20,6 +23,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity.Api
     public class ApiClient : IDisposable
     {
         private readonly Lazy<HttpClient> _httpClient;
+        private readonly JsonMediaTypeFormatter _mediaTypeFormatter;
         private bool _isDisposed;
 
         /// <summary>
@@ -29,6 +33,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity.Api
         /// <param name="username">The username.</param>
         /// <param name="password">The password.</param>
         public ApiClient(Uri baseUri, string username, string password)
+            : this()
         {
             Ensure.That(baseUri).IsNotNull();
             Ensure.That(username).IsNotNullOrWhiteSpace();
@@ -42,10 +47,28 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity.Api
         /// </summary>
         /// <param name="baseUri">The base URI.</param>
         public ApiClient(Uri baseUri)
+            : this()
         {
             Ensure.That(baseUri).IsNotNull();
 
             _httpClient = new Lazy<HttpClient>(() => GetHttpClient(baseUri));
+        }
+
+        private ApiClient()
+        {
+            _mediaTypeFormatter = new JsonMediaTypeFormatter
+            {
+                SerializerSettings = new JsonSerializerSettings
+                {
+                    Converters = new List<JsonConverter>
+                    {
+                        new IsoDateTimeConverter
+                        {
+                            DateTimeFormat = "yyyyMMdd'T'HHmmsszzz"
+                        }
+                    }
+                }
+            };
         }
 
         /// <summary>
@@ -110,7 +133,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity.Api
             {
                 response.EnsureSuccessStatusCode();
 
-                return await response.Content.ReadAsAsync<Build>(cancellationToken).ConfigureAwait(false);
+                return await response.Content.ReadAsAsync<Build>(new[] { _mediaTypeFormatter }, cancellationToken).ConfigureAwait(false);
             }
         }
 

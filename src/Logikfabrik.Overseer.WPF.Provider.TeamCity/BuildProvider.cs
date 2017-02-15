@@ -10,7 +10,6 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity
     using System.Threading;
     using System.Threading.Tasks;
     using EnsureThat;
-    using Extensions;
 
     /// <summary>
     /// The <see cref="BuildProvider" /> class.
@@ -57,7 +56,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity
         /// <returns>
         /// A task.
         /// </returns>
-        public override Task<IEnumerable<IBuild>> GetBuildsAsync(string projectId, CancellationToken cancellationToken)
+        public override async Task<IEnumerable<IBuild>> GetBuildsAsync(string projectId, CancellationToken cancellationToken)
         {
             if (_isDisposed)
             {
@@ -66,7 +65,18 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity
 
             Ensure.That(projectId).IsNotNullOrWhiteSpace();
 
-            throw new NotImplementedException();
+            var buildTypes = await _apiClient.Value.GetBuildTypesAsync(projectId, cancellationToken).ConfigureAwait(false);
+
+            var builds = new List<Build>();
+
+            foreach (var buildId in buildTypes.BuildType.SelectMany(buildType => buildType.Builds.Build).Select(build => build.Id))
+            {
+                var build = await _apiClient.Value.GetBuild(buildId, cancellationToken).ConfigureAwait(false);
+
+                builds.Add(new Build(build));
+            }
+
+            return builds;
         }
 
         /// <summary>

@@ -5,7 +5,6 @@
 namespace Logikfabrik.Overseer.WPF.Provider.TeamCity.Api.Models
 {
     using System;
-    using System.Collections.Generic;
 
     /// <summary>
     /// The <see cref="Build" /> class.
@@ -68,14 +67,44 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity.Api.Models
         /// </value>
         public string BranchName { get; set; }
 
+        /// <summary>
+        /// Gets or sets the queued date.
+        /// </summary>
+        /// <value>
+        /// The queued date.
+        /// </value>
         public DateTime? QueuedDate { get; set; }
 
+        /// <summary>
+        /// Gets or sets the start date.
+        /// </summary>
+        /// <value>
+        /// The start date.
+        /// </value>
         public DateTime? StartDate { get; set; }
 
+        /// <summary>
+        /// Gets or sets the finish date.
+        /// </summary>
+        /// <value>
+        /// The finish date.
+        /// </value>
         public DateTime? FinishDate { get; set; }
 
-        public IEnumerable<Change> LastChanges { get; set; }
+        /// <summary>
+        /// Gets or sets the last changes.
+        /// </summary>
+        /// <value>
+        /// The last changes.
+        /// </value>
+        public Changes LastChanges { get; set; }
 
+        /// <summary>
+        /// Gets or sets the test occurrences.
+        /// </summary>
+        /// <value>
+        /// The test occurrences.
+        /// </value>
         public TestOccurrences TestOccurrences { get; set; }
     }
 }
