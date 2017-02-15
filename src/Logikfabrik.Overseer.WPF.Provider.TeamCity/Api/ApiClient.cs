@@ -76,7 +76,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity.Api
         /// <param name="projectId">The project identifier.</param>
         /// <param name="cancellationToken">A cancellation token.</param>
         /// <returns>A task.</returns>
-        public async Task<IEnumerable<BuildType>> GetBuildTypesAsync(string projectId, CancellationToken cancellationToken)
+        public async Task<BuildTypes> GetBuildTypesAsync(string projectId, CancellationToken cancellationToken)
         {
             if (_isDisposed)
             {
@@ -91,7 +91,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity.Api
             {
                 response.EnsureSuccessStatusCode();
 
-                return await response.Content.ReadAsAsync<IEnumerable<BuildType>>(cancellationToken).ConfigureAwait(false);
+                return await response.Content.ReadAsAsync<BuildTypes>(cancellationToken).ConfigureAwait(false);
             }
         }
 
