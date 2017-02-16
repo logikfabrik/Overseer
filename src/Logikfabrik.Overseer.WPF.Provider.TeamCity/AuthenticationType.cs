@@ -10,12 +10,12 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity
     public enum AuthenticationType
     {
         /// <summary>
-        /// Use basic authentication.
+        /// Basic authentication.
         /// </summary>
         HttpAuth = 0,
 
         /// <summary>
-        /// The guest authentication.
+        /// Guest authentication.
         /// </summary>
         GuestAuth = 1
     }

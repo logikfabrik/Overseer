@@ -122,7 +122,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor.Api.Models
         /// <value>
         /// The status.
         /// </value>
-        public string Status { get; set; }
+        public BuildStatus? Status { get; set; }
 
         /// <summary>
         /// Gets or sets the started date.

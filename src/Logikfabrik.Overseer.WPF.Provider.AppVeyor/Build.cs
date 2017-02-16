@@ -120,15 +120,16 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor
                 return BuildStatus.InProgress;
             }
 
+            // ReSharper disable once SwitchStatementMissingSomeCases
             switch (build.Status)
             {
-                case "success":
+                case Api.Models.BuildStatus.Success:
                     return BuildStatus.Succeeded;
 
-                case "failure":
+                case Api.Models.BuildStatus.Failed:
                     return BuildStatus.Failed;
 
-                case "cancelled":
+                case Api.Models.BuildStatus.Cancelled:
                     return BuildStatus.Stopped;
 
                 default:

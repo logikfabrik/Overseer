@@ -56,7 +56,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity.Test.Api
 
                 foreach (var buildId in buildTypes.BuildType.SelectMany(buildType => buildType.Builds.Build).Select(build => build.Id))
                 {
-                    var build = await client.GetBuild(buildId, CancellationToken.None).ConfigureAwait(false);
+                    var build = await client.GetBuildAsync(buildId, CancellationToken.None).ConfigureAwait(false);
 
                     Assert.NotNull(build);
                 }

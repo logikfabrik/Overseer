@@ -118,7 +118,13 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity.Api
             }
         }
 
-        public async Task<Build> GetBuild(string id, CancellationToken cancellationToken)
+        /// <summary>
+        /// Gets the build.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <param name="cancellationToken">The cancellation token.</param>
+        /// <returns>A task.</returns>
+        public async Task<Build> GetBuildAsync(string id, CancellationToken cancellationToken)
         {
             if (_isDisposed)
             {

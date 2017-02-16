@@ -71,7 +71,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity
 
             foreach (var buildId in buildTypes.BuildType.SelectMany(buildType => buildType.Builds.Build).Select(build => build.Id))
             {
-                var build = await _apiClient.Value.GetBuild(buildId, cancellationToken).ConfigureAwait(false);
+                var build = await _apiClient.Value.GetBuildAsync(buildId, cancellationToken).ConfigureAwait(false);
 
                 builds.Add(new Build(build));
             }
