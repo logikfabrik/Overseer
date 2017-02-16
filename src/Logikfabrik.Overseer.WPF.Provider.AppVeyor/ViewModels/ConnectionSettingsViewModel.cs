@@ -7,11 +7,12 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor.ViewModels
     using System.Linq;
     using FluentValidation;
     using Validators;
+    using WPF.ViewModels;
 
     /// <summary>
     /// The <see cref="ConnectionSettingsViewModel" /> class.
     /// </summary>
-    public class ConnectionSettingsViewModel : WPF.ViewModels.ConnectionSettingsViewModel<ConnectionSettings>
+    public class ConnectionSettingsViewModel : ConnectionSettingsViewModel<ConnectionSettings>
     {
         private string _token;
 
@@ -59,11 +60,13 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor.ViewModels
         /// <returns>The settings.</returns>
         public override ConnectionSettings GetSettings()
         {
+            var projects = ProjectsToMonitor?.Projects?.Where(project => project.Monitor) ?? new ProjectToMonitorViewModel[] { };
+
             return new ConnectionSettings
             {
                 Name = Name,
                 Token = Token,
-                ProjectsToMonitor = ProjectsToMonitor.Where(project => project.Monitor).Select(project => project.Id).ToArray()
+                ProjectsToMonitor = projects.Select(project => project.Id).ToArray()
             };
         }
 
@@ -75,7 +78,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor.ViewModels
         {
             current.Name = Name;
             current.Token = Token;
-            current.ProjectsToMonitor = ProjectsToMonitor.Where(project => project.Monitor).Select(project => project.Id).ToArray();
+            current.ProjectsToMonitor = ProjectsToMonitor.Projects.Where(project => project.Monitor).Select(project => project.Id).ToArray();
         }
     }
 }

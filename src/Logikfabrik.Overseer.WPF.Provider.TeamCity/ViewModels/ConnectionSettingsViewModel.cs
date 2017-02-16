@@ -8,11 +8,12 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity.ViewModels
     using System.Linq;
     using FluentValidation;
     using Validators;
+    using WPF.ViewModels;
 
     /// <summary>
     /// The <see cref="ConnectionSettingsViewModel" /> class.
     /// </summary>
-    public class ConnectionSettingsViewModel : WPF.ViewModels.ConnectionSettingsViewModel<ConnectionSettings>
+    public class ConnectionSettingsViewModel : ConnectionSettingsViewModel<ConnectionSettings>
     {
         private string _url;
         private AuthenticationType _authenticationType;
@@ -176,6 +177,8 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity.ViewModels
         /// <returns>The settings.</returns>
         public override ConnectionSettings GetSettings()
         {
+            var projects = ProjectsToMonitor?.Projects?.Where(project => project.Monitor) ?? new ProjectToMonitorViewModel[] { };
+
             return new ConnectionSettings
             {
                 Name = Name,
@@ -184,7 +187,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity.ViewModels
                 Version = Version,
                 Username = Username,
                 Password = Password,
-                ProjectsToMonitor = ProjectsToMonitor.Where(project => project.Monitor).Select(project => project.Id).ToArray()
+                ProjectsToMonitor = projects.Select(project => project.Id).ToArray()
             };
         }
 
@@ -200,7 +203,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity.ViewModels
             current.Version = Version;
             current.Username = Username;
             current.Password = Password;
-            current.ProjectsToMonitor = ProjectsToMonitor.Where(project => project.Monitor).Select(project => project.Id).ToArray();
+            current.ProjectsToMonitor = ProjectsToMonitor.Projects.Where(project => project.Monitor).Select(project => project.Id).ToArray();
         }
     }
 }

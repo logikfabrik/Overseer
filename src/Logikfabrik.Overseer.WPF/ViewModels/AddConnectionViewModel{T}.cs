@@ -22,6 +22,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         private readonly IEventAggregator _eventAggregator;
         private readonly IConnectionSettingsRepository _settingsRepository;
         private readonly IProjectToMonitorViewModelFactory _projectToMonitorFactory;
+        private readonly IProjectsToMonitorViewModelFactory _projectsToMonitorFactory;
         private INotifyTask _connectionTask;
 
         /// <summary>
@@ -30,15 +31,17 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// <param name="eventAggregator">The event aggregator.</param>
         /// <param name="settingsRepository">The settings repository.</param>
         /// <param name="projectToMonitorFactory">The project to monitor factory.</param>
-        protected AddConnectionViewModel(IEventAggregator eventAggregator, IConnectionSettingsRepository settingsRepository, IProjectToMonitorViewModelFactory projectToMonitorFactory)
+        protected AddConnectionViewModel(IEventAggregator eventAggregator, IConnectionSettingsRepository settingsRepository, IProjectToMonitorViewModelFactory projectToMonitorFactory, IProjectsToMonitorViewModelFactory projectsToMonitorFactory)
         {
             Ensure.That(eventAggregator).IsNotNull();
             Ensure.That(settingsRepository).IsNotNull();
             Ensure.That(projectToMonitorFactory).IsNotNull();
+            Ensure.That(projectsToMonitorFactory).IsNotNull();
 
             _eventAggregator = eventAggregator;
             _settingsRepository = settingsRepository;
             _projectToMonitorFactory = projectToMonitorFactory;
+            _projectsToMonitorFactory = projectsToMonitorFactory;
 
             _connectionTask = new NotifyTask();
         }
@@ -125,7 +128,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             {
                 var projects = await provider.GetProjectsAsync(CancellationToken.None).ConfigureAwait(false);
 
-                Settings.ProjectsToMonitor = projects.OrderBy(project => project.Name).Select(project => _projectToMonitorFactory.Create(project, true)).ToArray();
+                Settings.ProjectsToMonitor = _projectsToMonitorFactory.Create(projects.OrderBy(project => project.Name).Select(project => _projectToMonitorFactory.Create(project, true)));
                 Settings.IsDirty = false;
             }
         }

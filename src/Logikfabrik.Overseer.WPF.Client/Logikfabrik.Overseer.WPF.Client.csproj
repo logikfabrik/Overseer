@@ -123,6 +123,9 @@
     <Compile Include="Views\ProjectDigestView.xaml.cs">
       <DependentUpon>ProjectDigestView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\ProjectsToMonitorView.xaml.cs">
+      <DependentUpon>ProjectsToMonitorView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\ProjectToMonitorView.xaml.cs">
       <DependentUpon>ProjectToMonitorView.xaml</DependentUpon>
     </Compile>
@@ -190,6 +193,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\ProjectDigestView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ProjectsToMonitorView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

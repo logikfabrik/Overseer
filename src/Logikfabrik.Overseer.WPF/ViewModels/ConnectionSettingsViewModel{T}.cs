@@ -4,7 +4,6 @@
 
 namespace Logikfabrik.Overseer.WPF.ViewModels
 {
-    using System.Collections.Generic;
     using System.ComponentModel;
     using System.Linq;
     using Caliburn.Micro;
@@ -20,7 +19,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     {
         private bool _isDirty;
         private string _name;
-        private IEnumerable<ProjectToMonitorViewModel> _projectsToMonitor;
+        private ProjectsToMonitorViewModel _projectsToMonitor;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ConnectionSettingsViewModel{T}" /> class.
@@ -28,7 +27,6 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         protected ConnectionSettingsViewModel()
         {
             _isDirty = true;
-            _projectsToMonitor = new ProjectToMonitorViewModel[] { };
         }
 
         /// <summary>
@@ -65,7 +63,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// <value>
         /// The projects to monitor.
         /// </value>
-        public IEnumerable<ProjectToMonitorViewModel> ProjectsToMonitor
+        public ProjectsToMonitorViewModel ProjectsToMonitor
         {
             get
             {
