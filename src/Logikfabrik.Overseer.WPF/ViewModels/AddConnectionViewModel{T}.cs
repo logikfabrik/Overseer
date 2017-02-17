@@ -31,7 +31,12 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// <param name="eventAggregator">The event aggregator.</param>
         /// <param name="settingsRepository">The settings repository.</param>
         /// <param name="projectToMonitorFactory">The project to monitor factory.</param>
-        protected AddConnectionViewModel(IEventAggregator eventAggregator, IConnectionSettingsRepository settingsRepository, IProjectToMonitorViewModelFactory projectToMonitorFactory, IProjectsToMonitorViewModelFactory projectsToMonitorFactory)
+        /// <param name="projectsToMonitorFactory">The projects to monitor factory.</param>
+        protected AddConnectionViewModel(
+            IEventAggregator eventAggregator,
+            IConnectionSettingsRepository settingsRepository,
+            IProjectToMonitorViewModelFactory projectToMonitorFactory,
+            IProjectsToMonitorViewModelFactory projectsToMonitorFactory)
         {
             Ensure.That(eventAggregator).IsNotNull();
             Ensure.That(settingsRepository).IsNotNull();

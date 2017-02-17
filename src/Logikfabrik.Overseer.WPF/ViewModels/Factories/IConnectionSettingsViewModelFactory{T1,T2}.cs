@@ -9,8 +9,8 @@ namespace Logikfabrik.Overseer.WPF.ViewModels.Factories
     /// <summary>
     /// The <see cref="IConnectionSettingsViewModelFactory{T1,T2}" /> interface.
     /// </summary>
-    /// <typeparam name="T1"></typeparam>
-    /// <typeparam name="T2"></typeparam>
+    /// <typeparam name="T1">The <see cref="ConnectionSettings" /> type.</typeparam>
+    /// <typeparam name="T2">The <see cref="ConnectionSettingsViewModel{T}" /> type.</typeparam>
     public interface IConnectionSettingsViewModelFactory<T1, out T2>
         where T1 : ConnectionSettings
         where T2 : ConnectionSettingsViewModel<T1>, new()

@@ -4,8 +4,6 @@
 
 namespace Logikfabrik.Overseer.Settings
 {
-    using System.Threading.Tasks;
-
     /// <summary>
     /// The <see cref="IConnectionSettingsStore" /> interface.
     /// </summary>

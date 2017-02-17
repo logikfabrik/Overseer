@@ -6,7 +6,6 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor.ViewModels
 {
     using Caliburn.Micro;
     using EnsureThat;
-    using Factories;
     using Settings;
     using WPF.ViewModels.Factories;
 
@@ -21,9 +20,19 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor.ViewModels
         /// <param name="eventAggregator">The event aggregator.</param>
         /// <param name="settingsRepository">The settings repository.</param>
         /// <param name="projectToMonitorFactory">The project to monitor factory.</param>
+        /// <param name="projectsToMonitorFactory">The projects to monitor factory.</param>
         /// <param name="connectionSettingsFactory">The connection settings factory.</param>
-        public AddConnectionViewModel(IEventAggregator eventAggregator, IConnectionSettingsRepository settingsRepository, IProjectToMonitorViewModelFactory projectToMonitorFactory, IProjectsToMonitorViewModelFactory projectsToMonitorFactory, IConnectionSettingsViewModelFactory<AppVeyor.ConnectionSettings, ConnectionSettingsViewModel> connectionSettingsFactory)
-            : base(eventAggregator, settingsRepository, projectToMonitorFactory, projectsToMonitorFactory)
+        public AddConnectionViewModel(
+            IEventAggregator eventAggregator,
+            IConnectionSettingsRepository settingsRepository,
+            IProjectToMonitorViewModelFactory projectToMonitorFactory,
+            IProjectsToMonitorViewModelFactory projectsToMonitorFactory,
+            IConnectionSettingsViewModelFactory<AppVeyor.ConnectionSettings, ConnectionSettingsViewModel> connectionSettingsFactory)
+            : base(
+                eventAggregator,
+                settingsRepository,
+                projectToMonitorFactory,
+                projectsToMonitorFactory)
         {
             Ensure.That(connectionSettingsFactory).IsNotNull();
 
