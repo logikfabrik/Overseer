@@ -18,7 +18,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor.ViewModels.Factories
     {
         private readonly IEventAggregator _eventAggregator;
         private readonly IConnectionSettingsRepository _settingsRepository;
-        private readonly IConnectionSettingsViewModelFactory _connectionSettingsFactory;
+        private readonly IConnectionSettingsViewModelFactory<AppVeyor.ConnectionSettings, ConnectionSettingsViewModel> _connectionSettingsFactory;
         private readonly IProjectToMonitorViewModelFactory _projectToMonitorFactory;
         private readonly IProjectsToMonitorViewModelFactory _projectsToMonitorFactory;
 
@@ -29,7 +29,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor.ViewModels.Factories
         /// <param name="settingsRepository">The settings repository.</param>
         /// <param name="connectionSettingsFactory">The connection settings factory.</param>
         /// <param name="projectToMonitorFactory">The project to monitor factory.</param>
-        public EditConnectionViewModelFactory(IEventAggregator eventAggregator, IConnectionSettingsRepository settingsRepository, IConnectionSettingsViewModelFactory connectionSettingsFactory, IProjectToMonitorViewModelFactory projectToMonitorFactory, IProjectsToMonitorViewModelFactory projectsToMonitorFactory)
+        public EditConnectionViewModelFactory(IEventAggregator eventAggregator, IConnectionSettingsRepository settingsRepository, IConnectionSettingsViewModelFactory<AppVeyor.ConnectionSettings, ConnectionSettingsViewModel> connectionSettingsFactory, IProjectToMonitorViewModelFactory projectToMonitorFactory, IProjectsToMonitorViewModelFactory projectsToMonitorFactory)
         {
             Ensure.That(eventAggregator).IsNotNull();
             Ensure.That(settingsRepository).IsNotNull();

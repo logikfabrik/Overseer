@@ -5,6 +5,7 @@
 namespace Logikfabrik.Overseer.Logging
 {
     using System;
+    using EnsureThat;
 
     /// <summary>
     /// The <see cref="LogEntry" /> class.
@@ -27,13 +28,9 @@ namespace Logikfabrik.Overseer.Logging
         /// <param name="type">The type.</param>
         /// <param name="message">The message.</param>
         /// <param name="exception">The exception.</param>
-        /// <exception cref="ArgumentException">Thrown if <paramref name="message" /> is <c>null</c> or white space.</exception>
         public LogEntry(LogEntryType type, string message, Exception exception)
         {
-            if (string.IsNullOrWhiteSpace(message))
-            {
-                throw new ArgumentException("Message cannot be null or white space.", nameof(message));
-            }
+            Ensure.That(message).IsNotNullOrWhiteSpace();
 
             Type = type;
             Message = message;

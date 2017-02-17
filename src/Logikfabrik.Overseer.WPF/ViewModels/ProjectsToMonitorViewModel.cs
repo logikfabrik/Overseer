@@ -25,6 +25,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             Projects = projects;
         }
 
+        // TODO: The Monitor property is not communicated upwards. Making it impossible to save made changes for projects to monitor.
         /// <summary>
         /// Gets the projects.
         /// </summary>

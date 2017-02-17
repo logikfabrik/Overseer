@@ -102,9 +102,11 @@
     <Compile Include="ViewModels\ConnectionSettingsViewModel{T}.cs" />
     <Compile Include="ViewModels\Factories\BuildViewModelFactory.cs" />
     <Compile Include="ViewModels\Factories\ChangeViewModelFactory.cs" />
+    <Compile Include="ViewModels\Factories\ConnectionSettingsViewModelFactory{T1,T2}.cs" />
     <Compile Include="ViewModels\Factories\ConnectionViewModelStrategy.cs" />
     <Compile Include="ViewModels\Factories\IBuildViewModelFactory.cs" />
     <Compile Include="ViewModels\Factories\IChangeViewModelFactory.cs" />
+    <Compile Include="ViewModels\Factories\IConnectionSettingsViewModelFactory{T1,T2}.cs" />
     <Compile Include="ViewModels\Factories\IConnectionViewModelFactory.cs" />
     <Compile Include="ViewModels\Factories\IConnectionViewModelStrategy.cs" />
     <Compile Include="ViewModels\Factories\IEditConnectionViewModelFactory{T}.cs" />

@@ -5,6 +5,7 @@
 namespace Logikfabrik.Overseer.Logging
 {
     using System;
+    using EnsureThat;
     using log4net;
 
     /// <summary>
@@ -17,13 +18,9 @@ namespace Logikfabrik.Overseer.Logging
         /// </summary>
         /// <typeparam name="T">The logging type.</typeparam>
         /// <param name="entry">The entry.</param>
-        /// <exception cref="ArgumentNullException">Thrown if <paramref name="entry" /> is <c>null</c>.</exception>
         public void Log<T>(LogEntry entry)
         {
-            if (entry == null)
-            {
-                throw new ArgumentNullException(nameof(entry));
-            }
+            Ensure.That(entry).IsNotNull();
 
             var logger = GetLogger(typeof(T));
 
