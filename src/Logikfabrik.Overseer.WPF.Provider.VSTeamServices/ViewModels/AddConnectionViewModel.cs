@@ -22,7 +22,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices.ViewModels
         /// <param name="settingsRepository">The settings repository.</param>
         /// <param name="projectToMonitorFactory">The project to monitor factory.</param>
         /// <param name="connectionSettingsFactory">The connection settings factory.</param>
-        public AddConnectionViewModel(IEventAggregator eventAggregator, IConnectionSettingsRepository settingsRepository, IProjectToMonitorViewModelFactory projectToMonitorFactory, IProjectsToMonitorViewModelFactory projectsToMonitorFactory, IConnectionSettingsViewModelFactory connectionSettingsFactory)
+        public AddConnectionViewModel(IEventAggregator eventAggregator, IConnectionSettingsRepository settingsRepository, IProjectToMonitorViewModelFactory projectToMonitorFactory, IProjectsToMonitorViewModelFactory projectsToMonitorFactory, IConnectionSettingsViewModelFactory<VSTeamServices.ConnectionSettings, ConnectionSettingsViewModel> connectionSettingsFactory)
             : base(eventAggregator, settingsRepository, projectToMonitorFactory, projectsToMonitorFactory)
         {
             Ensure.That(connectionSettingsFactory).IsNotNull();

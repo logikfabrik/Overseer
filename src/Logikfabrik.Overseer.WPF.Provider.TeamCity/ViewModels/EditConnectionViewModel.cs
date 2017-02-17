@@ -23,7 +23,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity.ViewModels
         /// <param name="connectionSettingsFactory">The connection settings factory.</param>
         /// <param name="projectToMonitorFactory">The project to monitor factory.</param>
         /// <param name="currentSettings">The current settings.</param>
-        public EditConnectionViewModel(IEventAggregator eventAggregator, IConnectionSettingsRepository settingsRepository, IConnectionSettingsViewModelFactory connectionSettingsFactory, IProjectToMonitorViewModelFactory projectToMonitorFactory, IProjectsToMonitorViewModelFactory projectsToMonitorFactory, TeamCity.ConnectionSettings currentSettings)
+        public EditConnectionViewModel(IEventAggregator eventAggregator, IConnectionSettingsRepository settingsRepository, IConnectionSettingsViewModelFactory<TeamCity.ConnectionSettings, ConnectionSettingsViewModel> connectionSettingsFactory, IProjectToMonitorViewModelFactory projectToMonitorFactory, IProjectsToMonitorViewModelFactory projectsToMonitorFactory, TeamCity.ConnectionSettings currentSettings)
             : base(eventAggregator, settingsRepository, projectToMonitorFactory, projectsToMonitorFactory, currentSettings)
         {
             Ensure.That(connectionSettingsFactory).IsNotNull();

@@ -21,8 +21,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices
             Bind<WPF.ViewModels.BuildProviderViewModel>().To<BuildProviderViewModel>();
             Bind<WPF.ViewModels.ConnectionViewModel>().To<ConnectionViewModel>();
             Bind<Settings.ConnectionSettings>().To<ConnectionSettings>();
-            // TODO: See AppVeyor project, use IConnectionSettingsViewModelFactory from WPF project.
-            Bind<IConnectionSettingsViewModelFactory>().To<ConnectionSettingsViewModelFactory>();
+            Bind<WPF.ViewModels.Factories.IConnectionSettingsViewModelFactory<ConnectionSettings, ConnectionSettingsViewModel>>().To<WPF.ViewModels.Factories.ConnectionSettingsViewModelFactory<ConnectionSettings, ConnectionSettingsViewModel>>();
             Bind<WPF.ViewModels.Factories.IConnectionViewModelFactory>().To<ConnectionViewModelFactory>();
             Bind<WPF.ViewModels.Factories.IEditConnectionViewModelFactory<ConnectionSettings>>().To<EditConnectionViewModelFactory>();
         }

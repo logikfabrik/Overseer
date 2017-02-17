@@ -22,17 +22,16 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         {
             Ensure.That(projects).IsNotNull();
 
-            Projects = projects;
+            Projects = new BindableCollection<ProjectToMonitorViewModel>(projects);
         }
 
-        // TODO: The Monitor property is not communicated upwards. Making it impossible to save made changes for projects to monitor.
         /// <summary>
         /// Gets the projects.
         /// </summary>
         /// <value>
         /// The projects.
         /// </value>
-        public IEnumerable<ProjectToMonitorViewModel> Projects { get; }
+        public BindableCollection<ProjectToMonitorViewModel> Projects { get; }
 
         /// <summary>
         /// Monitor all projects.

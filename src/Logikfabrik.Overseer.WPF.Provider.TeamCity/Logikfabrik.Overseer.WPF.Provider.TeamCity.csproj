@@ -112,10 +112,8 @@
     <Compile Include="ViewModels\ConnectionSettingsViewModel.cs" />
     <Compile Include="ViewModels\ConnectionViewModel.cs" />
     <Compile Include="ViewModels\EditConnectionViewModel.cs" />
-    <Compile Include="ViewModels\Factories\ConnectionSettingsViewModelFactory.cs" />
     <Compile Include="ViewModels\Factories\ConnectionViewModelFactory.cs" />
     <Compile Include="ViewModels\Factories\EditConnectionViewModelFactory.cs" />
-    <Compile Include="ViewModels\Factories\IConnectionSettingsViewModelFactory.cs" />
     <Compile Include="Views\BuildProviderView.xaml.cs">
       <DependentUpon>BuildProviderView.xaml</DependentUpon>
     </Compile>
