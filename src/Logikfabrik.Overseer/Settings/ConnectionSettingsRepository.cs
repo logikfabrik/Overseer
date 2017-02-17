@@ -206,8 +206,7 @@ namespace Logikfabrik.Overseer.Settings
 
         private void Save()
         {
-            // TODO: Will exceptions be handled correctly?
-            _settingsStore.SaveAsync(_settings.Values.ToArray());
+            _settingsStore.Save(_settings.Values.ToArray());
         }
     }
 }

@@ -12,7 +12,7 @@ namespace Logikfabrik.Overseer.Test.Settings
     public class ConnectionSettingsStoreTest
     {
         [Fact]
-        public async Task CanSaveAsync()
+        public void CanSave()
         {
             var settings = new ConnectionSettings[] { };
 
@@ -21,7 +21,7 @@ namespace Logikfabrik.Overseer.Test.Settings
 
             var store = new ConnectionSettingsStore(serializerMock.Object, fileStoreMock.Object);
 
-            await store.SaveAsync(settings);
+            store.Save(settings);
 
             fileStoreMock.Verify(m => m.Write(It.IsAny<string>()), Times.Once);
         }

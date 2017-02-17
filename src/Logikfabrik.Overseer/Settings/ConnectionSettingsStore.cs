@@ -4,7 +4,6 @@
 
 namespace Logikfabrik.Overseer.Settings
 {
-    using System.Threading.Tasks;
     using EnsureThat;
 
     /// <summary>
@@ -30,7 +29,7 @@ namespace Logikfabrik.Overseer.Settings
         }
 
         /// <summary>
-        /// Loads the settings instance.
+        /// Loads the settings.
         /// </summary>
         /// <returns>
         /// The settings.
@@ -48,15 +47,7 @@ namespace Logikfabrik.Overseer.Settings
         /// Saves the specified settings.
         /// </summary>
         /// <param name="settings">The settings.</param>
-        /// <returns>
-        /// A task.
-        /// </returns>
-        public async Task SaveAsync(ConnectionSettings[] settings)
-        {
-            await Task.Run(() => Save(settings)).ConfigureAwait(false);
-        }
-
-        private void Save(ConnectionSettings[] settings)
+        public void Save(ConnectionSettings[] settings)
         {
             Ensure.That(settings).IsNotNull();
 

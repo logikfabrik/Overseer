@@ -12,7 +12,7 @@ namespace Logikfabrik.Overseer.Settings
     public interface IConnectionSettingsStore
     {
         /// <summary>
-        /// Loads the settings instance.
+        /// Loads the settings.
         /// </summary>
         /// <returns>
         /// The settings.
@@ -23,9 +23,6 @@ namespace Logikfabrik.Overseer.Settings
         /// Saves the specified settings.
         /// </summary>
         /// <param name="settings">The settings.</param>
-        /// <returns>
-        /// A task.
-        /// </returns>
-        Task SaveAsync(ConnectionSettings[] settings);
+        void Save(ConnectionSettings[] settings);
     }
 }
