@@ -10,16 +10,14 @@ namespace Logikfabrik.Overseer
     /// <summary>
     /// The <see cref="BuildProviderFactory" /> class.
     /// </summary>
-    public static class BuildProviderFactory
+    public class BuildProviderFactory : IBuildProviderFactory
     {
         /// <summary>
-        /// Gets a provider using the specified settings.
+        /// Creates a <see cref="IBuildProvider" />.
         /// </summary>
         /// <param name="settings">The settings.</param>
-        /// <returns>
-        /// A provider.
-        /// </returns>
-        public static IBuildProvider GetProvider(ConnectionSettings settings)
+        /// <returns>A <see cref="IBuildProvider" />.</returns>
+        public IBuildProvider Create(ConnectionSettings settings)
         {
             Ensure.That(settings).IsNotNull();
 

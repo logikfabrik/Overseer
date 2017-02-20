@@ -15,6 +15,7 @@ namespace Logikfabrik.Overseer
     /// </summary>
     public class ConnectionPool : IConnectionPool
     {
+        private readonly IBuildProviderFactory _buildProviderFactory;
         private readonly IDisposable _subscription;
         private readonly HashSet<IObserver<IConnection[]>> _observers;
         private readonly IDictionary<Guid, IConnection> _connections;
@@ -24,10 +25,12 @@ namespace Logikfabrik.Overseer
         /// Initializes a new instance of the <see cref="ConnectionPool"/> class.
         /// </summary>
         /// <param name="settingsRepository">The settings repository.</param>
-        public ConnectionPool(IConnectionSettingsRepository settingsRepository)
+        public ConnectionPool(IConnectionSettingsRepository settingsRepository, IBuildProviderFactory buildProviderFactory)
         {
             Ensure.That(settingsRepository).IsNotNull();
+            Ensure.That(buildProviderFactory).IsNotNull();
 
+            _buildProviderFactory = buildProviderFactory;
             _connections = new Dictionary<Guid, IConnection>();
             _observers = new HashSet<IObserver<IConnection[]>>();
             _subscription = settingsRepository.Subscribe(this);
@@ -74,7 +77,7 @@ namespace Logikfabrik.Overseer
                     }
                     else
                     {
-                        var connectionToAdd = new Connection(settings);
+                        var connectionToAdd = new Connection(_buildProviderFactory, settings);
 
                         _connections.Add(settings.Id, connectionToAdd);
                     }

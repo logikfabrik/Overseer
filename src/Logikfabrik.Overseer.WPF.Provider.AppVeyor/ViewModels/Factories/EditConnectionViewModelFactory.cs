@@ -19,6 +19,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor.ViewModels.Factories
         private readonly IEventAggregator _eventAggregator;
         private readonly IConnectionSettingsRepository _settingsRepository;
         private readonly IConnectionSettingsViewModelFactory<AppVeyor.ConnectionSettings, ConnectionSettingsViewModel> _connectionSettingsFactory;
+        private readonly IBuildProviderFactory _buildProviderFactory;
         private readonly IProjectToMonitorViewModelFactory _projectToMonitorFactory;
         private readonly IProjectsToMonitorViewModelFactory _projectsToMonitorFactory;
 
@@ -34,18 +35,21 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor.ViewModels.Factories
             IEventAggregator eventAggregator,
             IConnectionSettingsRepository settingsRepository,
             IConnectionSettingsViewModelFactory<AppVeyor.ConnectionSettings, ConnectionSettingsViewModel> connectionSettingsFactory,
+            IBuildProviderFactory buildProviderFactory,
             IProjectToMonitorViewModelFactory projectToMonitorFactory,
             IProjectsToMonitorViewModelFactory projectsToMonitorFactory)
         {
             Ensure.That(eventAggregator).IsNotNull();
             Ensure.That(settingsRepository).IsNotNull();
             Ensure.That(connectionSettingsFactory).IsNotNull();
+            Ensure.That(buildProviderFactory).IsNotNull();
             Ensure.That(projectToMonitorFactory).IsNotNull();
             Ensure.That(projectsToMonitorFactory).IsNotNull();
 
             _eventAggregator = eventAggregator;
             _settingsRepository = settingsRepository;
             _connectionSettingsFactory = connectionSettingsFactory;
+            _buildProviderFactory = buildProviderFactory;
             _projectToMonitorFactory = projectToMonitorFactory;
             _projectsToMonitorFactory = projectsToMonitorFactory;
         }
@@ -63,7 +67,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor.ViewModels.Factories
 
             var settings = _settingsRepository.Get(settingsId) as AppVeyor.ConnectionSettings;
 
-            return new EditConnectionViewModel(_eventAggregator, _settingsRepository, _connectionSettingsFactory, _projectToMonitorFactory, _projectsToMonitorFactory, settings);
+            return new EditConnectionViewModel(_eventAggregator, _settingsRepository, _connectionSettingsFactory, _buildProviderFactory, _projectToMonitorFactory, _projectsToMonitorFactory, settings);
         }
     }
 }

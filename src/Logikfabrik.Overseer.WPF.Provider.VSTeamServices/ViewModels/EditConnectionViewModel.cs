@@ -27,12 +27,14 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices.ViewModels
             IEventAggregator eventAggregator,
             IConnectionSettingsRepository settingsRepository,
             IConnectionSettingsViewModelFactory<VSTeamServices.ConnectionSettings, ConnectionSettingsViewModel> connectionSettingsFactory,
+            IBuildProviderFactory buildProviderFactory,
             IProjectToMonitorViewModelFactory projectToMonitorFactory,
             IProjectsToMonitorViewModelFactory projectsToMonitorFactory,
             VSTeamServices.ConnectionSettings currentSettings)
             : base(
                   eventAggregator,
                   settingsRepository,
+                  buildProviderFactory,
                   projectToMonitorFactory,
                   projectsToMonitorFactory,
                   currentSettings)

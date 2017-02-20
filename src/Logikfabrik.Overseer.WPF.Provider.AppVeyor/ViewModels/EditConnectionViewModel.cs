@@ -27,12 +27,14 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor.ViewModels
             IEventAggregator eventAggregator,
             IConnectionSettingsRepository settingsRepository,
             IConnectionSettingsViewModelFactory<AppVeyor.ConnectionSettings, ConnectionSettingsViewModel> connectionSettingsFactory,
+            IBuildProviderFactory buildProviderFactory,
             IProjectToMonitorViewModelFactory projectToMonitorFactory,
             IProjectsToMonitorViewModelFactory projectsToMonitorFactory,
             AppVeyor.ConnectionSettings currentSettings)
             : base(
                   eventAggregator,
                   settingsRepository,
+                  buildProviderFactory,
                   projectToMonitorFactory,
                   projectsToMonitorFactory,
                   currentSettings)

@@ -71,6 +71,7 @@
     <Compile Include="Extensions\DisposableExtensions.cs" />
     <Compile Include="IBuildMonitor.cs" />
     <Compile Include="IBuildProvider.cs" />
+    <Compile Include="IBuildProviderFactory.cs" />
     <Compile Include="IChange.cs" />
     <Compile Include="Connection.cs" />
     <Compile Include="ConnectionPool.cs" />

@@ -5,6 +5,7 @@
 namespace Logikfabrik.Overseer.Test
 {
     using System;
+    using Moq;
     using Settings;
     using Xunit;
 
@@ -13,9 +14,12 @@ namespace Logikfabrik.Overseer.Test
         [Fact]
         public void CanNotChangeSettingsToSettingsWithNewId()
         {
+            var factoryMock = new Mock<IBuildProviderFactory>();
+
+
             var settings1 = new ConnectionSettingsA();
 
-            var connection = new Connection(settings1);
+            var connection = new Connection(factoryMock.Object, settings1);
 
             var settings2 = new ConnectionSettingsA();
 
@@ -25,9 +29,11 @@ namespace Logikfabrik.Overseer.Test
         [Fact]
         public void CanChangeSettingsToSettingsWithNewName()
         {
+            var factoryMock = new Mock<IBuildProviderFactory>();
+
             var settings1 = new ConnectionSettingsA { Name = "Old name" };
 
-            var connection = new Connection(settings1);
+            var connection = new Connection(factoryMock.Object, settings1);
 
             var settings2 = new ConnectionSettingsA { Id = settings1.Id, Name = "New name" };
 

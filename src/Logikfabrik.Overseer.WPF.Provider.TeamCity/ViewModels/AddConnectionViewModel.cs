@@ -25,12 +25,14 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity.ViewModels
         public AddConnectionViewModel(
             IEventAggregator eventAggregator,
             IConnectionSettingsRepository settingsRepository,
+            IBuildProviderFactory buildProviderFactory,
             IProjectToMonitorViewModelFactory projectToMonitorFactory,
             IProjectsToMonitorViewModelFactory projectsToMonitorFactory,
             IConnectionSettingsViewModelFactory<TeamCity.ConnectionSettings, ConnectionSettingsViewModel> connectionSettingsFactory)
             : base(
                   eventAggregator,
                   settingsRepository,
+                  buildProviderFactory,
                   projectToMonitorFactory,
                   projectsToMonitorFactory)
         {

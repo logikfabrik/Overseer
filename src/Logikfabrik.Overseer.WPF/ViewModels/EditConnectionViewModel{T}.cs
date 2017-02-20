@@ -21,6 +21,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     {
         private readonly IEventAggregator _eventAggregator;
         private readonly IConnectionSettingsRepository _settingsRepository;
+        private readonly IBuildProviderFactory _buildProviderFactory;
         private readonly IProjectToMonitorViewModelFactory _projectToMonitorFactory;
         private readonly IProjectsToMonitorViewModelFactory _projectsToMonitorFactory;
         private readonly T _currentSettings;
@@ -37,18 +38,21 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         protected EditConnectionViewModel(
             IEventAggregator eventAggregator,
             IConnectionSettingsRepository settingsRepository,
+            IBuildProviderFactory buildProviderFactory,
             IProjectToMonitorViewModelFactory projectToMonitorFactory,
             IProjectsToMonitorViewModelFactory projectsToMonitorFactory,
             T currentSettings)
         {
             Ensure.That(eventAggregator).IsNotNull();
             Ensure.That(settingsRepository).IsNotNull();
+            Ensure.That(buildProviderFactory).IsNotNull();
             Ensure.That(projectToMonitorFactory).IsNotNull();
             Ensure.That(projectsToMonitorFactory).IsNotNull();
             Ensure.That(currentSettings).IsNotNull();
 
             _eventAggregator = eventAggregator;
             _settingsRepository = settingsRepository;
+            _buildProviderFactory = buildProviderFactory;
             _projectToMonitorFactory = projectToMonitorFactory;
             _projectsToMonitorFactory = projectsToMonitorFactory;
             _currentSettings = currentSettings;
@@ -134,7 +138,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
 
         private async Task Connect(T settings)
         {
-            using (var provider = BuildProviderFactory.GetProvider(settings))
+            using (var provider = _buildProviderFactory.Create(settings))
             {
                 var projects = await provider.GetProjectsAsync(CancellationToken.None).ConfigureAwait(false);
 

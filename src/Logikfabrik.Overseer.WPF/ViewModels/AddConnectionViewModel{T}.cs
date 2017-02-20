@@ -21,6 +21,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     {
         private readonly IEventAggregator _eventAggregator;
         private readonly IConnectionSettingsRepository _settingsRepository;
+        private readonly IBuildProviderFactory _buildProviderFactory;
         private readonly IProjectToMonitorViewModelFactory _projectToMonitorFactory;
         private readonly IProjectsToMonitorViewModelFactory _projectsToMonitorFactory;
         private INotifyTask _connectionTask;
@@ -35,16 +36,19 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         protected AddConnectionViewModel(
             IEventAggregator eventAggregator,
             IConnectionSettingsRepository settingsRepository,
+            IBuildProviderFactory buildProviderFactory,
             IProjectToMonitorViewModelFactory projectToMonitorFactory,
             IProjectsToMonitorViewModelFactory projectsToMonitorFactory)
         {
             Ensure.That(eventAggregator).IsNotNull();
             Ensure.That(settingsRepository).IsNotNull();
+            Ensure.That(buildProviderFactory).IsNotNull();
             Ensure.That(projectToMonitorFactory).IsNotNull();
             Ensure.That(projectsToMonitorFactory).IsNotNull();
 
             _eventAggregator = eventAggregator;
             _settingsRepository = settingsRepository;
+            _buildProviderFactory = buildProviderFactory;
             _projectToMonitorFactory = projectToMonitorFactory;
             _projectsToMonitorFactory = projectsToMonitorFactory;
 
@@ -129,7 +133,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         {
             var candidateSettings = Settings.GetSettings();
 
-            using (var provider = BuildProviderFactory.GetProvider(candidateSettings))
+            using (var provider = _buildProviderFactory.Create(candidateSettings))
             {
                 var projects = await provider.GetProjectsAsync(CancellationToken.None).ConfigureAwait(false);
 

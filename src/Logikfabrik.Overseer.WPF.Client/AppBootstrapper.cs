@@ -94,6 +94,7 @@ namespace Logikfabrik.Overseer.WPF.Client
             _kernel.Bind<IFileStore>().ToProvider<FileStoreProvider>().InSingletonScope();
             _kernel.Bind<IConnectionSettingsStore>().To<ConnectionSettingsStore>();
             _kernel.Bind<IConnectionSettingsRepository>().To<ConnectionSettingsRepository>().InSingletonScope();
+            _kernel.Bind<IBuildProviderFactory>().To<BuildProviderFactory>().InSingletonScope();
             _kernel.Bind<IConnectionPool>().To<ConnectionPool>().InSingletonScope();
             _kernel.Bind<IBuildMonitor>().To<BuildMonitor>().InSingletonScope();
 
