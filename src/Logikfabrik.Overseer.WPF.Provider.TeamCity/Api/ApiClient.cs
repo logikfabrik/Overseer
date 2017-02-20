@@ -4,6 +4,8 @@
 
 namespace Logikfabrik.Overseer.WPF.Provider.TeamCity.Api
 {
+    // TODO: Rewrite using URL https://teamcity.jetbrains.com/guestAuth/app/rest/buildTypes?fields=buildType(projectId,projectName,builds($locator(count:1),build(id,triggered(user),startDate,finishDate,status,state,number,lastChanges:(change),webUrl)))
+
     using System;
     using System.Collections.Generic;
     using System.Net.Http;

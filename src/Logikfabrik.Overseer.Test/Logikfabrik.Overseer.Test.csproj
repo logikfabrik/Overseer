@@ -84,7 +84,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BuildExtensionsTest.cs" />
-    <Compile Include="BuildMonitorTest.cs" />
     <Compile Include="BuildProviderA.cs" />
     <Compile Include="BuildProviderB.cs" />
     <Compile Include="ConnectionPoolTest.cs" />

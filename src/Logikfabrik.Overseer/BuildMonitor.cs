@@ -9,6 +9,7 @@ namespace Logikfabrik.Overseer
     using System.Linq;
     using System.Threading;
     using System.Threading.Tasks;
+    using System.Threading.Tasks.Dataflow;
     using EnsureThat;
     using Logging;
 
@@ -21,7 +22,6 @@ namespace Logikfabrik.Overseer
         private readonly IDisposable _subscription;
         private CancellationTokenSource _cancellationTokenSource;
         private bool _isDisposed;
-        private Task _poll;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="BuildMonitor" /> class.
@@ -69,33 +69,39 @@ namespace Logikfabrik.Overseer
                 return;
             }
 
-            if (_poll != null)
+            if (!value.Any())
             {
-                _cancellationTokenSource.Cancel();
-
-                try
-                {
-                    _poll.Wait();
-                }
-                catch (TaskCanceledException ex)
-                {
-                    _logService.Log<BuildMonitor>(new LogEntry(LogEntryType.Information, "An expected error occurred while cancelling.", ex));
-                }
-                catch (Exception ex)
-                {
-                    _logService.Log<BuildMonitor>(new LogEntry(LogEntryType.Error, "An error occurred while disposing.", ex));
-                }
+                return;
             }
+
+            _cancellationTokenSource?.Cancel();
 
             _cancellationTokenSource = new CancellationTokenSource();
 
-            _poll = Task.Run(async () =>
-            {
-                while (!_cancellationTokenSource.IsCancellationRequested)
+            // ReSharper disable once FunctionNeverReturns
+            Task.Factory.StartNew(
+                async () =>
                 {
-                    await GetProjectsAndBuildsAsync(value, 15, _cancellationTokenSource.Token).ConfigureAwait(false);
-                }
-            });
+                    while (true)
+                    {
+                        try
+                        {
+                            await GetProjectsAndBuildsAsync(value, _cancellationTokenSource.Token).ConfigureAwait(false);
+
+                            await Task.Delay(TimeSpan.FromSeconds(15), _cancellationTokenSource.Token).ConfigureAwait(false);
+                        }
+                        catch (TaskCanceledException ex)
+                        {
+                            _logService.Log<BuildMonitor>(new LogEntry(LogEntryType.Information, "An expected error occurred while polling.", ex));
+                        }
+                        catch (Exception ex)
+                        {
+                            _logService.Log<BuildMonitor>(new LogEntry(LogEntryType.Error, "An error occurred while polling.", ex));
+                        }
+                    }
+                }, _cancellationTokenSource.Token,
+                TaskCreationOptions.LongRunning,
+                TaskScheduler.Current);
         }
 
         /// <summary>
@@ -125,22 +131,6 @@ namespace Logikfabrik.Overseer
         }
 
         /// <summary>
-        /// Gets the projects and builds for the specified connections.
-        /// </summary>
-        /// <param name="connections">The connections.</param>
-        /// <param name="intervalInSeconds">The interval in seconds.</param>
-        /// <param name="cancellationToken">A cancellation token.</param>
-        /// <returns>A task.</returns>
-        internal async Task GetProjectsAndBuildsAsync(IEnumerable<IConnection> connections, int intervalInSeconds, CancellationToken cancellationToken)
-        {
-            var tasks = connections.Select(connection => GetProjectsAsync(connection, cancellationToken));
-
-            await Task.WhenAll(tasks);
-
-            await Task.Delay(TimeSpan.FromSeconds(intervalInSeconds), cancellationToken);
-        }
-
-        /// <summary>
         /// Releases unmanaged and managed resources.
         /// </summary>
         /// <param name="disposing"><c>true</c> to release both managed and unmanaged resources; <c>false</c> to release only unmanaged resources.</param>
@@ -154,25 +144,8 @@ namespace Logikfabrik.Overseer
             // ReSharper disable once InvertIf
             if (disposing)
             {
-                if (_poll != null)
-                {
-                    _cancellationTokenSource.Cancel();
-
-                    try
-                    {
-                        _poll.Wait();
-                    }
-                    catch (TaskCanceledException ex)
-                    {
-                        _logService.Log<BuildMonitor>(new LogEntry(LogEntryType.Information, "An expected error occurred while disposing.", ex));
-                    }
-                    catch (Exception ex)
-                    {
-                        _logService.Log<BuildMonitor>(new LogEntry(LogEntryType.Error, "An error occurred while disposing.", ex));
-                    }
-
-                    _cancellationTokenSource.Dispose();
-                }
+                _cancellationTokenSource?.Cancel();
+                _cancellationTokenSource?.Dispose();
 
                 _subscription.Dispose();
             }
@@ -216,27 +189,53 @@ namespace Logikfabrik.Overseer
             ProjectProgressChanged?.Invoke(this, e);
         }
 
-        private async Task GetProjectsAsync(IConnection connection, CancellationToken cancellationToken)
+        private async Task GetProjectsAndBuildsAsync(IEnumerable<IConnection> connections, CancellationToken cancellationToken)
+        {
+            var options = new ExecutionDataflowBlockOptions
+            {
+                BoundedCapacity = 5,
+                CancellationToken = cancellationToken,
+                MaxDegreeOfParallelism = Environment.ProcessorCount
+            };
+
+            var projectBlock =
+                new TransformManyBlock<IConnection, Tuple<IConnection, IProject>>(
+                    async param =>
+                        (await GetProjectsAsync(param, cancellationToken).ConfigureAwait(false)).Select(
+                            project => new Tuple<IConnection, IProject>(param, project)), options);
+
+            var buildsBlock =
+                new ActionBlock<Tuple<IConnection, IProject>>(
+                    async param =>
+                        await GetBuildsAsync(param.Item1, param.Item2, cancellationToken), options);
+
+            projectBlock.LinkTo(buildsBlock, new DataflowLinkOptions { PropagateCompletion = true });
+
+            foreach (var connection in connections)
+            {
+                projectBlock.Post(connection);
+            }
+
+            projectBlock.Complete();
+
+            await buildsBlock.Completion;
+        }
+
+        private async Task<IEnumerable<IProject>> GetProjectsAsync(IConnection connection, CancellationToken cancellationToken)
         {
             try
             {
-                var projects = (await connection.GetProjectsAsync(cancellationToken)).Where(project => connection.Settings.ProjectsToMonitor.Contains(project.Id)).ToArray();
+                var projects = (await connection.GetProjectsAsync(cancellationToken).ConfigureAwait(false)).ToArray();
 
                 OnConnectionProgressChanged(new BuildMonitorConnectionProgressEventArgs(connection.Settings.Id, projects));
 
-                var tasks = projects.Select(project => GetBuildsAsync(connection, project, cancellationToken)).ToArray();
-
-                await Task.WhenAll(tasks);
+                return projects;
             }
-            catch (TaskCanceledException ex)
-            {
-                _logService.Log<BuildMonitor>(new LogEntry(LogEntryType.Information, "An expected error occurred while polling projects.", ex));
-            }
-            catch (Exception ex)
+            catch (Exception)
             {
                 OnConnectionError(new BuildMonitorConnectionErrorEventArgs(connection.Settings.Id));
 
-                _logService.Log<BuildMonitor>(new LogEntry(LogEntryType.Error, "An error occurred while polling projects.", ex));
+                throw;
             }
         }
 
@@ -248,15 +247,11 @@ namespace Logikfabrik.Overseer
 
                 OnProjectProgressChanged(new BuildMonitorProjectProgressEventArgs(connection.Settings.Id, project, builds));
             }
-            catch (TaskCanceledException ex)
-            {
-                _logService.Log<BuildMonitor>(new LogEntry(LogEntryType.Information, "An expected error occurred while polling builds.", ex));
-            }
-            catch (Exception ex)
+            catch (Exception)
             {
                 OnProjectError(new BuildMonitorProjectErrorEventArgs(connection.Settings.Id, project));
 
-                _logService.Log<BuildMonitor>(new LogEntry(LogEntryType.Error, "An error occurred while polling builds.", ex));
+                throw;
             }
         }
     }
