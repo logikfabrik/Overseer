@@ -75,7 +75,6 @@ namespace Logikfabrik.Overseer
             }
 
             _cancellationTokenSource?.Cancel();
-
             _cancellationTokenSource = new CancellationTokenSource();
 
             // ReSharper disable once FunctionNeverReturns
@@ -88,6 +87,7 @@ namespace Logikfabrik.Overseer
                         {
                             await GetProjectsAndBuildsAsync(value, _cancellationTokenSource.Token).ConfigureAwait(false);
 
+                            // TODO: Read delay from configuration.
                             await Task.Delay(TimeSpan.FromSeconds(15), _cancellationTokenSource.Token).ConfigureAwait(false);
                         }
                         catch (TaskCanceledException ex)

@@ -4,8 +4,6 @@
 
 namespace Logikfabrik.Overseer.WPF.Provider.TeamCity.Api
 {
-    // TODO: Rewrite using URL https://teamcity.jetbrains.com/guestAuth/app/rest/buildTypes?fields=buildType(projectId,projectName,builds($locator(count:1),build(id,triggered(user),startDate,finishDate,status,state,number,lastChanges:(change),webUrl)))
-
     using System;
     using System.Collections.Generic;
     using System.Net.Http;
@@ -98,50 +96,22 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity.Api
         /// <summary>
         /// Gets the build types.
         /// </summary>
-        /// <param name="projectId">The project identifier.</param>
         /// <param name="cancellationToken">A cancellation token.</param>
         /// <returns>A task.</returns>
-        public async Task<BuildTypes> GetBuildTypesAsync(string projectId, CancellationToken cancellationToken)
+        public async Task<BuildTypes> GetBuildTypesAsync(CancellationToken cancellationToken)
         {
             if (_isDisposed)
             {
                 throw new ObjectDisposedException(GetType().FullName);
             }
 
-            Ensure.That(projectId).IsNotNullOrWhiteSpace();
-
-            var url = $"buildTypes?locator=affectedProject:(id:{projectId})&fields=buildType(builds($locator(count:1),build(id)))";
+            const string url = "buildTypes?fields=buildType(projectId,projectName,builds($locator(count:1),build(id,triggered(user),startDate,finishDate,status,state,number,lastChanges:(change),branchName,testOccurrences,webUrl)))";
 
             using (var response = await _httpClient.Value.GetAsync(url, cancellationToken).ConfigureAwait(false))
             {
                 response.EnsureSuccessStatusCode();
 
-                return await response.Content.ReadAsAsync<BuildTypes>(cancellationToken).ConfigureAwait(false);
-            }
-        }
-
-        /// <summary>
-        /// Gets the build.
-        /// </summary>
-        /// <param name="id">The identifier.</param>
-        /// <param name="cancellationToken">The cancellation token.</param>
-        /// <returns>A task.</returns>
-        public async Task<Build> GetBuildAsync(string id, CancellationToken cancellationToken)
-        {
-            if (_isDisposed)
-            {
-                throw new ObjectDisposedException(GetType().FullName);
-            }
-
-            Ensure.That(id).IsNotNullOrWhiteSpace();
-
-            var url = $"builds/id:{id}";
-
-            using (var response = await _httpClient.Value.GetAsync(url, cancellationToken).ConfigureAwait(false))
-            {
-                response.EnsureSuccessStatusCode();
-
-                return await response.Content.ReadAsAsync<Build>(new[] { _mediaTypeFormatter }, cancellationToken).ConfigureAwait(false);
+                return await response.Content.ReadAsAsync<BuildTypes>(new[] { _mediaTypeFormatter }, cancellationToken).ConfigureAwait(false);
             }
         }
 

@@ -68,14 +68,6 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity.Api.Models
         public string BranchName { get; set; }
 
         /// <summary>
-        /// Gets or sets the queued date.
-        /// </summary>
-        /// <value>
-        /// The queued date.
-        /// </value>
-        public DateTime? QueuedDate { get; set; }
-
-        /// <summary>
         /// Gets or sets the start date.
         /// </summary>
         /// <value>
@@ -106,5 +98,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity.Api.Models
         /// The test occurrences.
         /// </value>
         public TestOccurrences TestOccurrences { get; set; }
+
+        public Trigger Triggered { get; set; }
     }
 }
