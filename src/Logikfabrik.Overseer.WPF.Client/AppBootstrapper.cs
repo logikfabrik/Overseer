@@ -106,11 +106,11 @@ namespace Logikfabrik.Overseer.WPF.Client
             // WPF client setup.
             _kernel.Bind<INotificationManager>().To<NotificationManager>();
             _kernel.Bind<IBuildNotificationManager>().To<BuildNotificationManager>().InSingletonScope();
-            _kernel.Bind<IProjectToMonitorViewModelFactory>().To<ProjectToMonitorViewModelFactory>();
+            _kernel.Bind<IProjectToMonitorViewModelFactory>().ToFactory();
             _kernel.Bind<IProjectsToMonitorViewModelFactory>().ToFactory();
-            _kernel.Bind<IChangeViewModelFactory>().To<ChangeViewModelFactory>();
+            _kernel.Bind<IChangeViewModelFactory>().ToFactory();
             _kernel.Bind<IBuildViewModelFactory>().To<BuildViewModelFactory>();
-            _kernel.Bind<IProjectDigestViewModelFactory>().To<ProjectDigestViewModelFactory>();
+            _kernel.Bind<IProjectDigestViewModelFactory>().ToFactory();
             _kernel.Bind<IProjectViewModelFactory>().To<ProjectViewModelFactory>();
             _kernel.Bind<IRemoveConnectionViewModelFactory>().To<RemoveConnectionViewModelFactory>();
             _kernel.Bind<IConnectionViewModelStrategy>().To<ConnectionViewModelStrategy>();

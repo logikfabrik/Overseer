@@ -16,6 +16,6 @@ namespace Logikfabrik.Overseer.WPF.ViewModels.Factories
         /// <returns>
         /// A view model.
         /// </returns>
-        ChangeViewModel Create(IChange change);
+        ChangeViewModel CreateChangeViewModel(IChange change);
     }
 }

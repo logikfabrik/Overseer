@@ -17,16 +17,16 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// <summary>
         /// Initializes a new instance of the <see cref="ProjectToMonitorViewModel" /> class.
         /// </summary>
-        /// <param name="name">The name.</param>
-        /// <param name="id">The identifier.</param>
+        /// <param name="projectId">The project identifier.</param>
+        /// <param name="projectName">The project name.</param>
         /// <param name="monitor">Whether this project should be monitored.</param>
-        public ProjectToMonitorViewModel(string name, string id, bool monitor)
+        public ProjectToMonitorViewModel(string projectId, string projectName, bool monitor)
         {
-            Ensure.That(name).IsNotNullOrWhiteSpace();
-            Ensure.That(id).IsNotNullOrWhiteSpace();
+            Ensure.That(projectId).IsNotNullOrWhiteSpace();
+            Ensure.That(projectName).IsNotNullOrWhiteSpace();
 
-            Name = name;
-            Id = id;
+            Id = projectId;
+            Name = projectName;
             _monitor = monitor;
         }
 

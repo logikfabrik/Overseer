@@ -241,7 +241,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             if (isDirty || isUpdated)
             {
                 Builds = currentBuilds.OrderByDescending(build => build.StartTime ?? DateTime.MaxValue);
-                Digest = _digestFactory.Create(e.Builds);
+                Digest = _digestFactory.CreateProjectDigestViewModel(e.Builds);
             }
 
             IsBusy = false;
