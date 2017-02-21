@@ -116,7 +116,6 @@
     <Compile Include="ViewModels\Factories\IProjectViewModelFactory.cs" />
     <Compile Include="ViewModels\Factories\IRemoveConnectionViewModelFactory.cs" />
     <Compile Include="ViewModels\Factories\ProjectDigestViewModelFactory.cs" />
-    <Compile Include="ViewModels\Factories\ProjectsToMonitorViewModelFactory.cs" />
     <Compile Include="ViewModels\Factories\ProjectToMonitorViewModelFactory.cs" />
     <Compile Include="ViewModels\Factories\ProjectViewModelFactory.cs" />
     <Compile Include="ViewModels\Factories\RemoveConnectionViewModelFactory.cs" />

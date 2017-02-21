@@ -14,6 +14,7 @@ namespace Logikfabrik.Overseer.WPF.Client
     using log4net.Config;
     using Logging;
     using Ninject;
+    using Ninject.Extensions.Factory;
     using Ninject.Modules;
     using Providers.Settings;
     using Settings;
@@ -106,7 +107,7 @@ namespace Logikfabrik.Overseer.WPF.Client
             _kernel.Bind<INotificationManager>().To<NotificationManager>();
             _kernel.Bind<IBuildNotificationManager>().To<BuildNotificationManager>().InSingletonScope();
             _kernel.Bind<IProjectToMonitorViewModelFactory>().To<ProjectToMonitorViewModelFactory>();
-            _kernel.Bind<IProjectsToMonitorViewModelFactory>().To<ProjectsToMonitorViewModelFactory>();
+            _kernel.Bind<IProjectsToMonitorViewModelFactory>().ToFactory();
             _kernel.Bind<IChangeViewModelFactory>().To<ChangeViewModelFactory>();
             _kernel.Bind<IBuildViewModelFactory>().To<BuildViewModelFactory>();
             _kernel.Bind<IProjectDigestViewModelFactory>().To<ProjectDigestViewModelFactory>();
@@ -203,18 +204,29 @@ namespace Logikfabrik.Overseer.WPF.Client
             }
         }
 
+        private static IEnumerable<string> GetModuleNames(Assembly assembly)
+        {
+            var names = assembly.GetExportedTypes()
+                .Where(type => !type.IsAbstract && typeof(INinjectModule).IsAssignableFrom(type))
+                .Select(type => type.GetConstructor(Type.EmptyTypes))
+                .Select(constructor => constructor?.Invoke(new object[] { }) as INinjectModule)
+                .Select(module => module?.Name);
+
+            return names;
+        }
+
         private IEnumerable<Assembly> GetAssemblies()
         {
             LoadAllAssemblies();
 
-            var assemblies = new List<Assembly>(base.SelectAssemblies());
+            var moduleAssemblies = new List<Assembly>(base.SelectAssemblies());
 
-            assemblies.AddRange(
-                AppDomain.CurrentDomain.GetAssemblies()
-                    .Where(assembly => !assembly.IsDynamic && assembly.GetExportedTypes()
-                        .Any(type => !type.IsAbstract && typeof(NinjectModule).IsAssignableFrom(type))));
+            moduleAssemblies.AddRange(AppDomain.CurrentDomain.GetAssemblies()
+                .Where(assembly => !assembly.IsDynamic && assembly.GetExportedTypes()
+                .Any(type => !type.IsAbstract && typeof(INinjectModule).IsAssignableFrom(type))));
 
-            return assemblies;
+            return moduleAssemblies
+                .Where(assembly => GetModuleNames(assembly).All(name => !_kernel.HasModule(name)));
         }
     }
 }

@@ -137,7 +137,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             {
                 var projects = await provider.GetProjectsAsync(CancellationToken.None).ConfigureAwait(false);
 
-                Settings.ProjectsToMonitor = _projectsToMonitorFactory.Create(projects.OrderBy(project => project.Name).Select(project => _projectToMonitorFactory.Create(project, true)));
+                Settings.ProjectsToMonitor = _projectsToMonitorFactory.CreateProjectsToMonitorViewModel(projects.OrderBy(project => project.Name).Select(project => _projectToMonitorFactory.Create(project, true)));
                 Settings.IsDirty = false;
             }
         }
