@@ -8,6 +8,7 @@ namespace Logikfabrik.Overseer.Settings
     using System.Collections.Generic;
     using System.Linq;
     using EnsureThat;
+    using Extensions;
 
     /// <summary>
     /// The <see cref="ConnectionSettingsRepository" /> class.
@@ -38,10 +39,7 @@ namespace Logikfabrik.Overseer.Settings
         /// <param name="settings">The settings.</param>
         public void Add(ConnectionSettings settings)
         {
-            if (_isDisposed)
-            {
-                throw new ObjectDisposedException(GetType().FullName);
-            }
+            this.ThrowIfDisposed(_isDisposed);
 
             Ensure.That(settings).IsNotNull();
 
@@ -60,10 +58,7 @@ namespace Logikfabrik.Overseer.Settings
         /// <param name="id">The identifier.</param>
         public void Remove(Guid id)
         {
-            if (_isDisposed)
-            {
-                throw new ObjectDisposedException(GetType().FullName);
-            }
+            this.ThrowIfDisposed(_isDisposed);
 
             Ensure.That(id).IsNotEmpty();
 
@@ -83,10 +78,7 @@ namespace Logikfabrik.Overseer.Settings
         /// <param name="settings">The settings.</param>
         public void Update(ConnectionSettings settings)
         {
-            if (_isDisposed)
-            {
-                throw new ObjectDisposedException(GetType().FullName);
-            }
+            this.ThrowIfDisposed(_isDisposed);
 
             Ensure.That(settings).IsNotNull();
 
@@ -122,10 +114,7 @@ namespace Logikfabrik.Overseer.Settings
         /// </returns>
         public ConnectionSettings Get(Guid id)
         {
-            if (_isDisposed)
-            {
-                throw new ObjectDisposedException(GetType().FullName);
-            }
+            this.ThrowIfDisposed(_isDisposed);
 
             Ensure.That(id).IsNotEmpty();
 
@@ -156,10 +145,7 @@ namespace Logikfabrik.Overseer.Settings
         /// </returns>
         public IDisposable Subscribe(IObserver<ConnectionSettings[]> observer)
         {
-            if (_isDisposed)
-            {
-                throw new ObjectDisposedException(GetType().FullName);
-            }
+            this.ThrowIfDisposed(_isDisposed);
 
             Ensure.That(observer).IsNotNull();
 

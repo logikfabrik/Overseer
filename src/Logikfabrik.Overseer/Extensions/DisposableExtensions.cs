@@ -11,9 +11,19 @@ namespace Logikfabrik.Overseer.Extensions
     /// </summary>
     public static class DisposableExtensions
     {
-        public static void ThrowIfDisposed(this IDisposable disposable)
+        /// <summary>
+        /// Throws if disposed.
+        /// </summary>
+        /// <param name="disposable">The disposable.</param>
+        /// <param name="isDisposed">Whether this <see cref="IDisposable" /> is disposed.</param>
+        public static void ThrowIfDisposed(this IDisposable disposable, bool isDisposed)
         {
-            // TODO: This!
+            if (!isDisposed)
+            {
+                return;
+            }
+
+            throw new ObjectDisposedException(disposable.GetType().FullName);
         }
     }
 }

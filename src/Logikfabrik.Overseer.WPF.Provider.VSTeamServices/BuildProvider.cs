@@ -10,6 +10,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices
     using System.Threading;
     using System.Threading.Tasks;
     using EnsureThat;
+    using Overseer.Extensions;
 
     /// <summary>
     /// The <see cref="BuildProvider" /> class.
@@ -38,10 +39,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices
         /// </returns>
         public override async Task<IEnumerable<IProject>> GetProjectsAsync(CancellationToken cancellationToken)
         {
-            if (_isDisposed)
-            {
-                throw new ObjectDisposedException(GetType().FullName);
-            }
+            this.ThrowIfDisposed(_isDisposed);
 
             var projects = await _apiClient.Value.GetProjectsAsync(0, int.MaxValue, cancellationToken).ConfigureAwait(false);
 
@@ -58,10 +56,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices
         /// </returns>
         public override async Task<IEnumerable<IBuild>> GetBuildsAsync(string projectId, CancellationToken cancellationToken)
         {
-            if (_isDisposed)
-            {
-                throw new ObjectDisposedException(GetType().FullName);
-            }
+            this.ThrowIfDisposed(_isDisposed);
 
             Ensure.That(projectId).IsNotNullOrWhiteSpace();
 

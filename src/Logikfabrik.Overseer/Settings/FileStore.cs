@@ -8,6 +8,7 @@ namespace Logikfabrik.Overseer.Settings
     using System.IO;
     using System.Threading;
     using EnsureThat;
+    using Extensions;
 
     /// <summary>
     /// The <see cref="FileStore" /> class.
@@ -38,10 +39,7 @@ namespace Logikfabrik.Overseer.Settings
         /// </returns>
         public string Read()
         {
-            if (_isDisposed)
-            {
-                throw new ObjectDisposedException(GetType().FullName);
-            }
+            this.ThrowIfDisposed(_isDisposed);
 
             _resetEvent.Wait();
 
@@ -61,10 +59,7 @@ namespace Logikfabrik.Overseer.Settings
         /// <param name="contents">The contents.</param>
         public void Write(string contents)
         {
-            if (_isDisposed)
-            {
-                throw new ObjectDisposedException(GetType().FullName);
-            }
+            this.ThrowIfDisposed(_isDisposed);
 
             _resetEvent.Wait();
 

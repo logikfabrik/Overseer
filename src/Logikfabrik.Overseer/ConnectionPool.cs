@@ -8,6 +8,7 @@ namespace Logikfabrik.Overseer
     using System.Collections.Generic;
     using System.Linq;
     using EnsureThat;
+    using Extensions;
     using Settings;
 
     /// <summary>
@@ -25,6 +26,7 @@ namespace Logikfabrik.Overseer
         /// Initializes a new instance of the <see cref="ConnectionPool"/> class.
         /// </summary>
         /// <param name="settingsRepository">The settings repository.</param>
+        /// <param name="buildProviderFactory">The build provider factory.</param>
         public ConnectionPool(IConnectionSettingsRepository settingsRepository, IBuildProviderFactory buildProviderFactory)
         {
             Ensure.That(settingsRepository).IsNotNull();
@@ -133,10 +135,7 @@ namespace Logikfabrik.Overseer
         /// </returns>
         public IDisposable Subscribe(IObserver<IConnection[]> observer)
         {
-            if (_isDisposed)
-            {
-                throw new ObjectDisposedException(GetType().FullName);
-            }
+            this.ThrowIfDisposed(_isDisposed);
 
             Ensure.That(observer).IsNotNull();
 

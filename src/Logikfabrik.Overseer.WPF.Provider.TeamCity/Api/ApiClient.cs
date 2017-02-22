@@ -16,6 +16,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity.Api
     using Models;
     using Newtonsoft.Json;
     using Newtonsoft.Json.Converters;
+    using Overseer.Extensions;
 
     /// <summary>
     /// The <see cref="ApiClient" /> class.
@@ -78,10 +79,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity.Api
         /// <returns>A task.</returns>
         public async Task<Projects> GetProjectsAsync(CancellationToken cancellationToken)
         {
-            if (_isDisposed)
-            {
-                throw new ObjectDisposedException(GetType().FullName);
-            }
+            this.ThrowIfDisposed(_isDisposed);
 
             const string url = "projects";
 
@@ -100,10 +98,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity.Api
         /// <returns>A task.</returns>
         public async Task<BuildTypes> GetBuildTypesAsync(CancellationToken cancellationToken)
         {
-            if (_isDisposed)
-            {
-                throw new ObjectDisposedException(GetType().FullName);
-            }
+            this.ThrowIfDisposed(_isDisposed);
 
             const string url = "buildTypes?fields=buildType(projectId,projectName,builds($locator(count:1),build(id,triggered(user),startDate,finishDate,status,state,number,lastChanges:(change),branchName,testOccurrences,webUrl)))";
 

@@ -16,7 +16,6 @@ namespace Logikfabrik.Overseer.Test
         {
             var factoryMock = new Mock<IBuildProviderFactory>();
 
-
             var settings1 = new ConnectionSettingsA();
 
             var connection = new Connection(factoryMock.Object, settings1);

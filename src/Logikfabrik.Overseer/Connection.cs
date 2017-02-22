@@ -9,6 +9,7 @@ namespace Logikfabrik.Overseer
     using System.Threading;
     using System.Threading.Tasks;
     using EnsureThat;
+    using Extensions;
     using Settings;
 
     /// <summary>
@@ -50,10 +51,7 @@ namespace Logikfabrik.Overseer
 
             set
             {
-                if (_isDisposed)
-                {
-                    throw new ObjectDisposedException(GetType().FullName);
-                }
+                this.ThrowIfDisposed(_isDisposed);
 
                 Ensure.That(value).IsNotNull();
                 Ensure.That(() => value.Id == _settings.Id, nameof(value)).IsTrue();
@@ -71,10 +69,7 @@ namespace Logikfabrik.Overseer
         /// </returns>
         public async Task<IEnumerable<IProject>> GetProjectsAsync(CancellationToken cancellationToken)
         {
-            if (_isDisposed)
-            {
-                throw new ObjectDisposedException(GetType().FullName);
-            }
+            this.ThrowIfDisposed(_isDisposed);
 
             return await GetProvider().GetProjectsAsync(cancellationToken).ConfigureAwait(false);
         }
@@ -89,10 +84,7 @@ namespace Logikfabrik.Overseer
         /// </returns>
         public async Task<IEnumerable<IBuild>> GetBuildsAsync(IProject project, CancellationToken cancellationToken)
         {
-            if (_isDisposed)
-            {
-                throw new ObjectDisposedException(GetType().FullName);
-            }
+            this.ThrowIfDisposed(_isDisposed);
 
             Ensure.That(project).IsNotNull();
 

@@ -29,6 +29,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices.ViewModels.Factories
         /// <param name="eventAggregator">The event aggregator.</param>
         /// <param name="settingsRepository">The settings repository.</param>
         /// <param name="connectionSettingsFactory">The connection settings factory.</param>
+        /// <param name="buildProviderFactory">The build provider factory.</param>
         /// <param name="projectToMonitorFactory">The project to monitor factory.</param>
         /// <param name="projectsToMonitorFactory">The projects to monitor factory.</param>
         public EditConnectionViewModelFactory(

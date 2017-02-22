@@ -13,6 +13,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor.Api
     using System.Threading.Tasks;
     using EnsureThat;
     using Models;
+    using Overseer.Extensions;
 
     /// <summary>
     /// The <see cref="ApiClient" /> class.
@@ -58,10 +59,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor.Api
         /// <returns>A task.</returns>
         public async Task<IEnumerable<Project>> GetProjectsAsync(CancellationToken cancellationToken)
         {
-            if (_isDisposed)
-            {
-                throw new ObjectDisposedException(GetType().FullName);
-            }
+            this.ThrowIfDisposed(_isDisposed);
 
             const string url = "api/projects";
 
@@ -83,10 +81,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor.Api
         /// <returns>A task.</returns>
         public async Task<ProjectHistory> GetProjectHistoryAsync(string accountName, string projectSlug, int recordsNumber, CancellationToken cancellationToken)
         {
-            if (_isDisposed)
-            {
-                throw new ObjectDisposedException(GetType().FullName);
-            }
+            this.ThrowIfDisposed(_isDisposed);
 
             Ensure.That(accountName).IsNotNullOrWhiteSpace();
             Ensure.That(projectSlug).IsNotNullOrWhiteSpace();

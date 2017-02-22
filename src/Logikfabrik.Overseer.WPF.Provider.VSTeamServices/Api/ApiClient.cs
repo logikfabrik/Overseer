@@ -13,6 +13,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices.Api
     using System.Threading.Tasks;
     using EnsureThat;
     using Models;
+    using Overseer.Extensions;
 
     /// <summary>
     /// The <see cref="ApiClient" /> class.
@@ -62,10 +63,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices.Api
         /// <returns>A task.</returns>
         public async Task<Projects> GetProjectsAsync(int skip, int take, CancellationToken cancellationToken)
         {
-            if (_isDisposed)
-            {
-                throw new ObjectDisposedException(GetType().FullName);
-            }
+            this.ThrowIfDisposed(_isDisposed);
 
             Ensure.That(skip).IsInRange(0, int.MaxValue);
             Ensure.That(take).IsInRange(1, int.MaxValue);
@@ -90,10 +88,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices.Api
         /// <returns>A task.</returns>
         public async Task<Builds> GetBuildsAsync(string projectId, int skip, int take, CancellationToken cancellationToken)
         {
-            if (_isDisposed)
-            {
-                throw new ObjectDisposedException(GetType().FullName);
-            }
+            this.ThrowIfDisposed(_isDisposed);
 
             Ensure.That(projectId).IsNotNullOrWhiteSpace();
             Ensure.That(skip).IsInRange(0, int.MaxValue);
@@ -118,10 +113,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices.Api
         /// <returns>A task.</returns>
         public async Task<Changes> GetChangesAsync(string projectId, string buildId, CancellationToken cancellationToken)
         {
-            if (_isDisposed)
-            {
-                throw new ObjectDisposedException(GetType().FullName);
-            }
+            this.ThrowIfDisposed(_isDisposed);
 
             Ensure.That(projectId).IsNotNullOrWhiteSpace();
             Ensure.That(buildId).IsNotNullOrWhiteSpace();
