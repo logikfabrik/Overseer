@@ -170,7 +170,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// </summary>
         public void Remove()
         {
-            var viewModel = _removeConnectionFactory.Create(SettingsId);
+            var viewModel = _removeConnectionFactory.CreateRemoveConnectionViewModel(SettingsId);
 
             var message = new NavigationMessage2(viewModel);
 
@@ -209,7 +209,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
                 }
                 else
                 {
-                    var projectToAdd = _projectFactory.Create(SettingsId, project);
+                    var projectToAdd = _projectFactory.CreateProjectViewModel(SettingsId, project.Id, project.Name);
 
                     currentProjects.Add(projectToAdd);
                     isDirty = true;

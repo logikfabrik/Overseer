@@ -111,8 +111,8 @@ namespace Logikfabrik.Overseer.WPF.Client
             _kernel.Bind<IChangeViewModelFactory>().ToFactory();
             _kernel.Bind<IBuildViewModelFactory>().To<BuildViewModelFactory>();
             _kernel.Bind<IProjectDigestViewModelFactory>().ToFactory();
-            _kernel.Bind<IProjectViewModelFactory>().To<ProjectViewModelFactory>();
-            _kernel.Bind<IRemoveConnectionViewModelFactory>().To<RemoveConnectionViewModelFactory>();
+            _kernel.Bind<IProjectViewModelFactory>().ToFactory();
+            _kernel.Bind<IRemoveConnectionViewModelFactory>().ToFactory();
             _kernel.Bind<IConnectionViewModelStrategy>().To<ConnectionViewModelStrategy>();
             _kernel.Bind<ConnectionsViewModel>().ToSelf().InSingletonScope();
 

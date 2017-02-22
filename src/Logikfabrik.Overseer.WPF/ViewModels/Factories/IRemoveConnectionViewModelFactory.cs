@@ -18,6 +18,6 @@ namespace Logikfabrik.Overseer.WPF.ViewModels.Factories
         /// <returns>
         /// A view model.
         /// </returns>
-        RemoveConnectionViewModel Create(Guid settingsId);
+        RemoveConnectionViewModel CreateRemoveConnectionViewModel(Guid settingsId);
     }
 }

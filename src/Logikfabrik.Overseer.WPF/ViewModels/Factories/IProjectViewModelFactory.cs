@@ -17,6 +17,6 @@ namespace Logikfabrik.Overseer.WPF.ViewModels.Factories
         /// <param name="settingsId">The settings identifier.</param>
         /// <param name="project">The project.</param>
         /// <returns>A view model.</returns>
-        ProjectViewModel Create(Guid settingsId, IProject project);
+        ProjectViewModel CreateProjectViewModel(Guid settingsId, string projectId, string projectName);
     }
 }
