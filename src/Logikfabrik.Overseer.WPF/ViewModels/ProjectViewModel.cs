@@ -225,7 +225,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
                 }
                 else
                 {
-                    var buildToAdd = _buildFactory.Create(e.Project.Name, build);
+                    var buildToAdd = _buildFactory.CreateBuildViewModel(e.Project.Name, build.Id, build.Branch, build.GetVersionNumber(), build.RequestedBy, build.Changes, build.Status, build.StartTime, build.EndTime, build.GetRunTime());
 
                     currentBuilds.Add(buildToAdd);
                     isDirty = true;

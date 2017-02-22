@@ -100,7 +100,6 @@
     <Compile Include="Validators\ConnectionSettingsViewModelValidator{T1,T2}.cs" />
     <Compile Include="Validators\EditSettingsViewModelValidator.cs" />
     <Compile Include="ViewModels\ConnectionSettingsViewModel{T}.cs" />
-    <Compile Include="ViewModels\Factories\BuildViewModelFactory.cs" />
     <Compile Include="ViewModels\Factories\ConnectionSettingsViewModelFactory{T1,T2}.cs" />
     <Compile Include="ViewModels\Factories\ConnectionViewModelStrategy.cs" />
     <Compile Include="ViewModels\Factories\IBuildViewModelFactory.cs" />

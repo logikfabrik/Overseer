@@ -4,6 +4,9 @@
 
 namespace Logikfabrik.Overseer.WPF.ViewModels.Factories
 {
+    using System;
+    using System.Collections.Generic;
+
     /// <summary>
     /// The <see cref="IBuildViewModelFactory" /> interface.
     /// </summary>
@@ -17,6 +20,6 @@ namespace Logikfabrik.Overseer.WPF.ViewModels.Factories
         /// <returns>
         /// A view model.
         /// </returns>
-        BuildViewModel Create(string projectName, IBuild build);
+        BuildViewModel CreateBuildViewModel(string projectName, string id, string branch, string versionNumber, string requestedBy, IEnumerable<IChange> changes, BuildStatus? status, DateTime? startTime, DateTime? endTime, TimeSpan? runTime);
     }
 }

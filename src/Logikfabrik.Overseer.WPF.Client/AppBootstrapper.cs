@@ -109,7 +109,7 @@ namespace Logikfabrik.Overseer.WPF.Client
             _kernel.Bind<IProjectToMonitorViewModelFactory>().ToFactory();
             _kernel.Bind<IProjectsToMonitorViewModelFactory>().ToFactory();
             _kernel.Bind<IChangeViewModelFactory>().ToFactory();
-            _kernel.Bind<IBuildViewModelFactory>().To<BuildViewModelFactory>();
+            _kernel.Bind<IBuildViewModelFactory>().ToFactory();
             _kernel.Bind<IProjectDigestViewModelFactory>().ToFactory();
             _kernel.Bind<IProjectViewModelFactory>().ToFactory();
             _kernel.Bind<IRemoveConnectionViewModelFactory>().ToFactory();
