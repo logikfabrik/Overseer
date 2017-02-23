@@ -62,7 +62,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity.ViewModels.Factories
         {
             Ensure.That(settings).IsNotNull();
 
-            return new ConnectionViewModel(_eventAggregator, _buildMonitor, _projectFactory, _removeConnectionFactory, _editConnectionFactory, settings.Id)
+            return new ConnectionViewModel(_eventAggregator, _buildMonitor, _projectFactory, _removeConnectionFactory, _editConnectionFactory, settings)
             {
                 SettingsName = settings.Name
             };

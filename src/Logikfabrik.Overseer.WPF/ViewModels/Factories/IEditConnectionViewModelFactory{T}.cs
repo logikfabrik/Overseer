@@ -4,7 +4,6 @@
 
 namespace Logikfabrik.Overseer.WPF.ViewModels.Factories
 {
-    using System;
     using Settings;
 
     /// <summary>
@@ -17,10 +16,10 @@ namespace Logikfabrik.Overseer.WPF.ViewModels.Factories
         /// <summary>
         /// Creates a view model.
         /// </summary>
-        /// <param name="settingsId">The settings identifier.</param>
+        /// <param name="currentSettings">The current settings.</param>
         /// <returns>
         /// A view model.
         /// </returns>
-        EditConnectionViewModel<T> Create(Guid settingsId);
+        EditConnectionViewModel<T> Create(ConnectionSettings currentSettings);
     }
 }
