@@ -60,6 +60,10 @@
       <HintPath>..\packages\Humanizer.Core.2.1.0\lib\netstandard1.0\Humanizer.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Ninject, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.3.2.2.0\lib\net45-full\Ninject.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -101,11 +105,13 @@
     <Compile Include="Validators\EditSettingsViewModelValidator.cs" />
     <Compile Include="ViewModels\ConnectionSettingsViewModel{T}.cs" />
     <Compile Include="ViewModels\Factories\ConnectionSettingsViewModelFactory{T1,T2}.cs" />
+    <Compile Include="ViewModels\Factories\ConnectionViewModelFactory{T1,T2}.cs" />
     <Compile Include="ViewModels\Factories\ConnectionViewModelStrategy.cs" />
     <Compile Include="ViewModels\Factories\IBuildViewModelFactory.cs" />
     <Compile Include="ViewModels\Factories\IChangeViewModelFactory.cs" />
     <Compile Include="ViewModels\Factories\IConnectionSettingsViewModelFactory{T1,T2}.cs" />
     <Compile Include="ViewModels\Factories\IConnectionViewModelFactory.cs" />
+    <Compile Include="ViewModels\Factories\IConnectionViewModelFactory{T}.cs" />
     <Compile Include="ViewModels\Factories\IConnectionViewModelStrategy.cs" />
     <Compile Include="ViewModels\Factories\IEditConnectionViewModelFactory{T}.cs" />
     <Compile Include="ViewModels\Factories\IProjectDigestViewModelFactory.cs" />

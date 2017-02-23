@@ -11,6 +11,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     using Caliburn.Micro;
     using EnsureThat;
     using Factories;
+    using Settings;
 
     /// <summary>
     /// The <see cref="ConnectionViewModel" /> class.
@@ -21,7 +22,6 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         private readonly IProjectViewModelFactory _projectFactory;
         private readonly IRemoveConnectionViewModelFactory _removeConnectionFactory;
         private List<ProjectViewModel> _projects;
-        private string _settingsName;
         private bool _isBusy;
         private bool _isErrored;
 
@@ -32,19 +32,19 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// <param name="buildMonitor">The build monitor.</param>
         /// <param name="projectFactory">The project factory.</param>
         /// <param name="removeConnectionFactory">The remove connection factory.</param>
-        /// <param name="settingsId">The settings identifier.</param>
-        protected ConnectionViewModel(IEventAggregator eventAggregator, IBuildMonitor buildMonitor, IProjectViewModelFactory projectFactory, IRemoveConnectionViewModelFactory removeConnectionFactory, Guid settingsId)
+        /// <param name="settings">The settings.</param>
+        protected ConnectionViewModel(IEventAggregator eventAggregator, IBuildMonitor buildMonitor, IProjectViewModelFactory projectFactory, IRemoveConnectionViewModelFactory removeConnectionFactory, ConnectionSettings settings)
         {
             Ensure.That(eventAggregator).IsNotNull();
             Ensure.That(buildMonitor).IsNotNull();
             Ensure.That(projectFactory).IsNotNull();
             Ensure.That(removeConnectionFactory).IsNotNull();
-            Ensure.That(settingsId).IsNotEmpty();
+            Ensure.That(settings).IsNotNull();
 
             _eventAggregator = eventAggregator;
             _projectFactory = projectFactory;
             _removeConnectionFactory = removeConnectionFactory;
-            SettingsId = settingsId;
+            Settings = settings;
             _isBusy = true;
             _isErrored = false;
             _projects = new List<ProjectViewModel>();
@@ -59,7 +59,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// <value>
         /// The settings identifier.
         /// </value>
-        public Guid SettingsId { get; }
+        public Guid SettingsId => Settings.Id;
 
         /// <summary>
         /// Gets or sets the settings name.
@@ -71,12 +71,12 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         {
             get
             {
-                return _settingsName;
+                return Settings.Name;
             }
 
             set
             {
-                _settingsName = value;
+                Settings.Name = value;
                 NotifyOfPropertyChange(() => SettingsName);
             }
         }
@@ -159,6 +159,14 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         ///   <c>true</c> if this instance has projects; otherwise, <c>false</c>.
         /// </value>
         public bool HasProjects => _projects.Any();
+
+        /// <summary>
+        /// Gets the settings.
+        /// </summary>
+        /// <value>
+        /// The settings.
+        /// </value>
+        protected ConnectionSettings Settings { get; }
 
         /// <summary>
         /// Edit the connection.

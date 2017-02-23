@@ -1,4 +1,4 @@
-﻿// <copyright file="IConnectionViewModelFactory.cs" company="Logikfabrik">
+﻿// <copyright file="IConnectionViewModelFactory{T}.cs" company="Logikfabrik">
 //   Copyright (c) 2016 anton(at)logikfabrik.se. Licensed under the MIT license.
 // </copyright>
 
@@ -8,9 +8,11 @@ namespace Logikfabrik.Overseer.WPF.ViewModels.Factories
     using Settings;
 
     /// <summary>
-    /// The <see cref="IConnectionViewModelFactory" /> interface.
+    /// The <see cref="IConnectionViewModelFactory{T}" /> interface.
     /// </summary>
-    public interface IConnectionViewModelFactory
+    /// <typeparam name="T">The <see cref="ConnectionViewModel" /> type.</typeparam>
+    public interface IConnectionViewModelFactory<out T> : IConnectionViewModelFactory
+        where T : ConnectionViewModel
     {
         /// <summary>
         /// Gets the type this factory applies to.
@@ -18,7 +20,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels.Factories
         /// <value>
         /// The type this factory applies to.
         /// </value>
-        Type AppliesTo { get; }
+        new Type AppliesTo { get; }
 
         /// <summary>
         /// Creates a view model.
@@ -27,6 +29,6 @@ namespace Logikfabrik.Overseer.WPF.ViewModels.Factories
         /// <returns>
         /// A view model.
         /// </returns>
-        ConnectionViewModel Create(ConnectionSettings settings);
+        new T Create(ConnectionSettings settings);
     }
 }
