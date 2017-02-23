@@ -1,29 +1,34 @@
-﻿// <copyright file="BuildProviderViewModel.cs" company="Logikfabrik">
+﻿// <copyright file="BuildProviderViewModel{T1,T2}.cs" company="Logikfabrik">
 //   Copyright (c) 2016 anton(at)logikfabrik.se. Licensed under the MIT license.
 // </copyright>
 
 namespace Logikfabrik.Overseer.WPF.ViewModels
 {
-    using System;
     using Caliburn.Micro;
     using EnsureThat;
+    using Settings;
 
     /// <summary>
-    /// The <see cref="BuildProviderViewModel" /> class.
+    /// The <see cref="BuildProviderViewModel{T1,T2}" /> class.
     /// </summary>
-    public abstract class BuildProviderViewModel : PropertyChangedBase
+    public class BuildProviderViewModel<T1, T2> : PropertyChangedBase, IBuildProviderViewModel
+        where T1 : ConnectionSettings
+        where T2 : AddConnectionViewModel<T1>
     {
         private readonly IEventAggregator _eventAggregator;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="BuildProviderViewModel" /> class.
+        /// Initializes a new instance of the <see cref="BuildProviderViewModel{T1,T2}" /> class.
         /// </summary>
         /// <param name="eventAggregator">The event aggregator.</param>
-        protected BuildProviderViewModel(IEventAggregator eventAggregator)
+        /// <param name="providerName">The provider name.</param>
+        public BuildProviderViewModel(IEventAggregator eventAggregator, string providerName)
         {
             Ensure.That(eventAggregator).IsNotNull();
+            Ensure.That(providerName).IsNotNullOrWhiteSpace();
 
             _eventAggregator = eventAggregator;
+            ProviderName = providerName;
         }
 
         /// <summary>
@@ -32,22 +37,14 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// <value>
         /// The provider name.
         /// </value>
-        public abstract string ProviderName { get; }
-
-        /// <summary>
-        /// Gets the type of the view model to add a connection.
-        /// </summary>
-        /// <value>
-        /// The type of the view model to add a connection.
-        /// </value>
-        protected abstract Type AddConnectionViewModelType { get; }
+        public string ProviderName { get; }
 
         /// <summary>
         /// Navigates to the view to add connection.
         /// </summary>
         public void AddConnection()
         {
-            var message = new NavigationMessage(AddConnectionViewModelType);
+            var message = new NavigationMessage(typeof(T2));
 
             _eventAggregator.PublishOnUIThread(message);
         }

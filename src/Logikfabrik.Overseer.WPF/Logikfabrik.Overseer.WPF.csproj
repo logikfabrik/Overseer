@@ -119,6 +119,7 @@
     <Compile Include="ViewModels\Factories\IProjectToMonitorViewModelFactory.cs" />
     <Compile Include="ViewModels\Factories\IProjectViewModelFactory.cs" />
     <Compile Include="ViewModels\Factories\IRemoveConnectionViewModelFactory.cs" />
+    <Compile Include="ViewModels\IBuildProviderViewModel.cs" />
     <Compile Include="ViewModels\ProjectDigestViewModel.cs" />
     <Compile Include="ViewModels\ProjectsToMonitorViewModel.cs" />
     <Compile Include="ViewModels\ProjectToMonitorViewModel.cs" />
@@ -126,7 +127,7 @@
     <Compile Include="ViewModels\ViewModel.cs" />
     <Compile Include="ViewModels\AddConnectionViewModel{T}.cs" />
     <Compile Include="ViewModels\BuildNotificationViewModel.cs" />
-    <Compile Include="ViewModels\BuildProviderViewModel.cs" />
+    <Compile Include="ViewModels\BuildProviderViewModel{T1,T2}.cs" />
     <Compile Include="ViewModels\BuildViewModel.cs" />
     <Compile Include="ViewModels\ChangeViewModel.cs" />
     <Compile Include="ViewModels\ConnectionsViewModel.cs" />

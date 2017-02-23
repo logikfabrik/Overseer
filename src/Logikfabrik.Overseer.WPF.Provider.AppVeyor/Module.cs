@@ -18,7 +18,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor
         /// </summary>
         public override void Load()
         {
-            Bind<WPF.ViewModels.BuildProviderViewModel>().To<BuildProviderViewModel>();
+            Bind<WPF.ViewModels.IBuildProviderViewModel>().To<BuildProviderViewModel>();
             Bind<Settings.ConnectionSettings>().To<ConnectionSettings>();
             Bind<WPF.ViewModels.EditConnectionViewModel<ConnectionSettings>>().To<EditConnectionViewModel>();
             Bind<WPF.ViewModels.Factories.IConnectionSettingsViewModelFactory<ConnectionSettings, ConnectionSettingsViewModel>>().To<WPF.ViewModels.Factories.ConnectionSettingsViewModelFactory<ConnectionSettings, ConnectionSettingsViewModel>>();

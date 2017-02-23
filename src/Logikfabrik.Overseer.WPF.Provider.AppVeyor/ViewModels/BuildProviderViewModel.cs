@@ -4,37 +4,20 @@
 
 namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor.ViewModels
 {
-    using System;
     using Caliburn.Micro;
 
     /// <summary>
     /// The <see cref="BuildProviderViewModel" /> class.
     /// </summary>
-    public class BuildProviderViewModel : WPF.ViewModels.BuildProviderViewModel
+    public class BuildProviderViewModel : WPF.ViewModels.BuildProviderViewModel<ConnectionSettings, AddConnectionViewModel>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="BuildProviderViewModel" /> class.
         /// </summary>
         /// <param name="eventAggregator">The event aggregator.</param>
         public BuildProviderViewModel(IEventAggregator eventAggregator)
-            : base(eventAggregator)
+            : base(eventAggregator, "AppVeyor")
         {
         }
-
-        /// <summary>
-        /// Gets the provider name.
-        /// </summary>
-        /// <value>
-        /// The provider name.
-        /// </value>
-        public override string ProviderName { get; } = "AppVeyor";
-
-        /// <summary>
-        /// Gets the type of the view model to add a connection.
-        /// </summary>
-        /// <value>
-        /// The type of the view model to add a connection.
-        /// </value>
-        protected override Type AddConnectionViewModelType => typeof(AddConnectionViewModel);
     }
 }

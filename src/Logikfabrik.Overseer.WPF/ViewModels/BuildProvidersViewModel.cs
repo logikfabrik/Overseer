@@ -20,7 +20,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// </summary>
         /// <param name="eventAggregator">The event aggregator.</param>
         /// <param name="providers">The providers.</param>
-        public BuildProvidersViewModel(IEventAggregator eventAggregator, IEnumerable<BuildProviderViewModel> providers)
+        public BuildProvidersViewModel(IEventAggregator eventAggregator, IEnumerable<IBuildProviderViewModel> providers)
         {
             Ensure.That(eventAggregator).IsNotNull();
             Ensure.That(providers).IsNotNull();
@@ -43,7 +43,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// <value>
         /// The providers.
         /// </value>
-        public IEnumerable<BuildProviderViewModel> Providers { get; }
+        public IEnumerable<IBuildProviderViewModel> Providers { get; }
 
         /// <summary>
         /// View the connections.
