@@ -21,7 +21,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     {
         private readonly IEventAggregator _eventAggregator;
         private readonly IConnectionSettingsRepository _settingsRepository;
-        private readonly IBuildProviderFactory _buildProviderFactory;
+        private readonly IBuildProviderStrategy _buildProviderStrategy;
         private readonly IProjectToMonitorViewModelFactory _projectToMonitorFactory;
         private readonly IProjectsToMonitorViewModelFactory _projectsToMonitorFactory;
         private INotifyTask _connectionTask;
@@ -31,25 +31,25 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// </summary>
         /// <param name="eventAggregator">The event aggregator.</param>
         /// <param name="settingsRepository">The settings repository.</param>
-        /// <param name="buildProviderFactory">The build provider factory.</param>
+        /// <param name="buildProviderStrategy">The build provider strategy.</param>
         /// <param name="projectToMonitorFactory">The project to monitor factory.</param>
         /// <param name="projectsToMonitorFactory">The projects to monitor factory.</param>
         protected AddConnectionViewModel(
             IEventAggregator eventAggregator,
             IConnectionSettingsRepository settingsRepository,
-            IBuildProviderFactory buildProviderFactory,
+            IBuildProviderStrategy buildProviderStrategy,
             IProjectToMonitorViewModelFactory projectToMonitorFactory,
             IProjectsToMonitorViewModelFactory projectsToMonitorFactory)
         {
             Ensure.That(eventAggregator).IsNotNull();
             Ensure.That(settingsRepository).IsNotNull();
-            Ensure.That(buildProviderFactory).IsNotNull();
+            Ensure.That(buildProviderStrategy).IsNotNull();
             Ensure.That(projectToMonitorFactory).IsNotNull();
             Ensure.That(projectsToMonitorFactory).IsNotNull();
 
             _eventAggregator = eventAggregator;
             _settingsRepository = settingsRepository;
-            _buildProviderFactory = buildProviderFactory;
+            _buildProviderStrategy = buildProviderStrategy;
             _projectToMonitorFactory = projectToMonitorFactory;
             _projectsToMonitorFactory = projectsToMonitorFactory;
 
@@ -134,7 +134,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         {
             var candidateSettings = Settings.GetSettings();
 
-            using (var provider = _buildProviderFactory.Create(candidateSettings))
+            using (var provider = _buildProviderStrategy.Create(candidateSettings))
             {
                 var projects = await provider.GetProjectsAsync(CancellationToken.None).ConfigureAwait(false);
 

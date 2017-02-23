@@ -11,6 +11,8 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     /// <summary>
     /// The <see cref="BuildProviderViewModel{T1,T2}" /> class.
     /// </summary>
+    /// <typeparam name="T1">The <see cref="ConnectionSettings" /> type.</typeparam>
+    /// <typeparam name="T2">The <see cref="AddConnectionViewModel{T1}" /> type.</typeparam>
     public class BuildProviderViewModel<T1, T2> : PropertyChangedBase, IBuildProviderViewModel
         where T1 : ConnectionSettings
         where T2 : AddConnectionViewModel<T1>

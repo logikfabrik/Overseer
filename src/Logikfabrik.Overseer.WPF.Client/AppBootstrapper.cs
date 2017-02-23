@@ -90,12 +90,12 @@ namespace Logikfabrik.Overseer.WPF.Client
             ViewLocator.AddNamespaceMapping("*", "Logikfabrik.Overseer.WPF.Client.Views");
 
             // Business logic setup.
-            _kernel.Bind<ILogService>().To<LogService>();
+            _kernel.Bind<ILogService>().To<LogService>().InSingletonScope();
             _kernel.Bind<IConnectionSettingsSerializer>().ToProvider<ConnectionSettingsSerializerProvider>().InSingletonScope();
             _kernel.Bind<IFileStore>().ToProvider<FileStoreProvider>().InSingletonScope();
             _kernel.Bind<IConnectionSettingsStore>().To<ConnectionSettingsStore>();
             _kernel.Bind<IConnectionSettingsRepository>().To<ConnectionSettingsRepository>().InSingletonScope();
-            _kernel.Bind<IBuildProviderFactory>().To<BuildProviderFactory>().InSingletonScope();
+
             _kernel.Bind<IConnectionPool>().To<ConnectionPool>().InSingletonScope();
             _kernel.Bind<IBuildMonitor>().To<BuildMonitor>().InSingletonScope();
 
@@ -113,10 +113,13 @@ namespace Logikfabrik.Overseer.WPF.Client
             _kernel.Bind<IProjectDigestViewModelFactory>().ToFactory();
             _kernel.Bind<IProjectViewModelFactory>().ToFactory();
             _kernel.Bind<IRemoveConnectionViewModelFactory>().ToFactory();
-            _kernel.Bind<IConnectionViewModelStrategy>().To<ConnectionViewModelStrategy>();
+            _kernel.Bind<IConnectionViewModelStrategy>().To<ConnectionViewModelStrategy>().InSingletonScope();
             _kernel.Bind<ConnectionsViewModel>().ToSelf().InSingletonScope();
 
             _kernel.Load(SelectAssemblies());
+
+            // TODO: Investigate init order.
+            _kernel.Bind<IBuildProviderStrategy>().To<BuildProviderStrategy>().InSingletonScope();
         }
 
         /// <summary>

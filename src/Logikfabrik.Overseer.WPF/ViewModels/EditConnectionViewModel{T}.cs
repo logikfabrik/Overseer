@@ -21,7 +21,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     {
         private readonly IEventAggregator _eventAggregator;
         private readonly IConnectionSettingsRepository _settingsRepository;
-        private readonly IBuildProviderFactory _buildProviderFactory;
+        private readonly IBuildProviderStrategy _buildProviderStrategy;
         private readonly IProjectToMonitorViewModelFactory _projectToMonitorFactory;
         private readonly IProjectsToMonitorViewModelFactory _projectsToMonitorFactory;
         private readonly T _currentSettings;
@@ -32,28 +32,28 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// </summary>
         /// <param name="eventAggregator">The event aggregator.</param>
         /// <param name="settingsRepository">The settings repository.</param>
-        /// <param name="buildProviderFactory">The build provider factory.</param>
+        /// <param name="buildProviderStrategy">The build provider strategy.</param>
         /// <param name="projectToMonitorFactory">The project to monitor factory.</param>
         /// <param name="projectsToMonitorFactory">The projects to monitor factory.</param>
         /// <param name="currentSettings">The current settings.</param>
         protected EditConnectionViewModel(
             IEventAggregator eventAggregator,
             IConnectionSettingsRepository settingsRepository,
-            IBuildProviderFactory buildProviderFactory,
+            IBuildProviderStrategy buildProviderStrategy,
             IProjectToMonitorViewModelFactory projectToMonitorFactory,
             IProjectsToMonitorViewModelFactory projectsToMonitorFactory,
             T currentSettings)
         {
             Ensure.That(eventAggregator).IsNotNull();
             Ensure.That(settingsRepository).IsNotNull();
-            Ensure.That(buildProviderFactory).IsNotNull();
+            Ensure.That(buildProviderStrategy).IsNotNull();
             Ensure.That(projectToMonitorFactory).IsNotNull();
             Ensure.That(projectsToMonitorFactory).IsNotNull();
             Ensure.That(currentSettings).IsNotNull();
 
             _eventAggregator = eventAggregator;
             _settingsRepository = settingsRepository;
-            _buildProviderFactory = buildProviderFactory;
+            _buildProviderStrategy = buildProviderStrategy;
             _projectToMonitorFactory = projectToMonitorFactory;
             _projectsToMonitorFactory = projectsToMonitorFactory;
             _currentSettings = currentSettings;
@@ -139,7 +139,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
 
         private async Task Connect(T settings)
         {
-            using (var provider = _buildProviderFactory.Create(settings))
+            using (var provider = _buildProviderStrategy.Create(settings))
             {
                 var projects = await provider.GetProjectsAsync(CancellationToken.None).ConfigureAwait(false);
 

@@ -12,7 +12,7 @@ namespace Logikfabrik.Overseer
     using Settings;
 
     /// <summary>
-    /// The <see cref="BuildProvider{T}" /> class.
+    /// The <see cref="BuildProvider{T}" /> class. The base class for build providers.
     /// </summary>
     /// <typeparam name="T">The <see cref="ConnectionSettings" /> type.</typeparam>
     public abstract class BuildProvider<T> : IBuildProvider

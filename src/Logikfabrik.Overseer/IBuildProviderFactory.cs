@@ -4,6 +4,7 @@
 
 namespace Logikfabrik.Overseer
 {
+    using System;
     using Settings;
 
     /// <summary>
@@ -11,6 +12,14 @@ namespace Logikfabrik.Overseer
     /// </summary>
     public interface IBuildProviderFactory
     {
+        /// <summary>
+        /// Gets the type this factory applies to.
+        /// </summary>
+        /// <value>
+        /// The type this factory applies to.
+        /// </value>
+        Type AppliesTo { get; }
+
         /// <summary>
         /// Creates a <see cref="IBuildProvider" />.
         /// </summary>

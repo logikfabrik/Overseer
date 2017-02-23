@@ -17,7 +17,7 @@ namespace Logikfabrik.Overseer
     /// </summary>
     public class Connection : IConnection
     {
-        private readonly IBuildProviderFactory _buildProviderFactory;
+        private readonly IBuildProviderStrategy _buildProviderStrategy;
         private IBuildProvider _provider;
         private ConnectionSettings _settings;
         private bool _isDisposed;
@@ -25,14 +25,14 @@ namespace Logikfabrik.Overseer
         /// <summary>
         /// Initializes a new instance of the <see cref="Connection" /> class.
         /// </summary>
-        /// <param name="buildProviderFactory">The build provider factory.</param>
+        /// <param name="buildProviderStrategy">The build provider strategy.</param>
         /// <param name="settings">The settings.</param>
-        public Connection(IBuildProviderFactory buildProviderFactory, ConnectionSettings settings)
+        public Connection(IBuildProviderStrategy buildProviderStrategy, ConnectionSettings settings)
         {
-            Ensure.That(buildProviderFactory).IsNotNull();
+            Ensure.That(buildProviderStrategy).IsNotNull();
             Ensure.That(settings).IsNotNull();
 
-            _buildProviderFactory = buildProviderFactory;
+            _buildProviderStrategy = buildProviderStrategy;
             _settings = settings;
         }
 
@@ -124,7 +124,7 @@ namespace Logikfabrik.Overseer
         {
             if (_provider == null)
             {
-                _provider = _buildProviderFactory.Create(_settings);
+                _provider = _buildProviderStrategy.Create(_settings);
             }
             else
             {
@@ -134,7 +134,7 @@ namespace Logikfabrik.Overseer
                 }
 
                 _provider.Dispose();
-                _provider = _buildProviderFactory.Create(_settings);
+                _provider = _buildProviderStrategy.Create(_settings);
             }
 
             return _provider;

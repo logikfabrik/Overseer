@@ -20,7 +20,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor.ViewModels
         /// <param name="eventAggregator">The event aggregator.</param>
         /// <param name="settingsRepository">The build provider settings repository.</param>
         /// <param name="connectionSettingsFactory">The connection settings factory.</param>
-        /// <param name="buildProviderFactory">The build provider factory.</param>
+        /// <param name="buildProviderStrategy">The build provider strategy.</param>
         /// <param name="projectToMonitorFactory">The project to monitor factory.</param>
         /// <param name="projectsToMonitorFactory">The projects to monitor factory.</param>
         /// <param name="currentSettings">The current settings.</param>
@@ -28,14 +28,14 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor.ViewModels
             IEventAggregator eventAggregator,
             IConnectionSettingsRepository settingsRepository,
             IConnectionSettingsViewModelFactory<AppVeyor.ConnectionSettings, ConnectionSettingsViewModel> connectionSettingsFactory,
-            IBuildProviderFactory buildProviderFactory,
+            IBuildProviderStrategy buildProviderStrategy,
             IProjectToMonitorViewModelFactory projectToMonitorFactory,
             IProjectsToMonitorViewModelFactory projectsToMonitorFactory,
             AppVeyor.ConnectionSettings currentSettings)
             : base(
                   eventAggregator,
                   settingsRepository,
-                  buildProviderFactory,
+                  buildProviderStrategy,
                   projectToMonitorFactory,
                   projectsToMonitorFactory,
                   currentSettings)

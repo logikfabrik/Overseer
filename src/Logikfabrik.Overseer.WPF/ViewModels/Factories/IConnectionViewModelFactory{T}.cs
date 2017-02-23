@@ -4,8 +4,9 @@
 
 namespace Logikfabrik.Overseer.WPF.ViewModels.Factories
 {
-    using System;
     using Settings;
+
+    // TODO: Remove this interface?
 
     /// <summary>
     /// The <see cref="IConnectionViewModelFactory{T}" /> interface.
@@ -14,14 +15,6 @@ namespace Logikfabrik.Overseer.WPF.ViewModels.Factories
     public interface IConnectionViewModelFactory<out T> : IConnectionViewModelFactory
         where T : ConnectionViewModel
     {
-        /// <summary>
-        /// Gets the type this factory applies to.
-        /// </summary>
-        /// <value>
-        /// The type this factory applies to.
-        /// </value>
-        new Type AppliesTo { get; }
-
         /// <summary>
         /// Creates a view model.
         /// </summary>

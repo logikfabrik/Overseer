@@ -14,7 +14,7 @@ namespace Logikfabrik.Overseer.Test
         [Fact]
         public void CanNotChangeSettingsToSettingsWithNewId()
         {
-            var factoryMock = new Mock<IBuildProviderFactory>();
+            var factoryMock = new Mock<IBuildProviderStrategy>();
 
             var settings1 = new ConnectionSettingsA();
 
@@ -28,7 +28,7 @@ namespace Logikfabrik.Overseer.Test
         [Fact]
         public void CanChangeSettingsToSettingsWithNewName()
         {
-            var factoryMock = new Mock<IBuildProviderFactory>();
+            var factoryMock = new Mock<IBuildProviderStrategy>();
 
             var settings1 = new ConnectionSettingsA { Name = "Old name" };
 

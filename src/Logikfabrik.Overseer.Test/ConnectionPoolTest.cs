@@ -26,7 +26,7 @@ namespace Logikfabrik.Overseer.Test
 
             var repository = new ConnectionSettingsRepository(settingsStoreMock.Object);
 
-            var factoryMock = new Mock<IBuildProviderFactory>();
+            var factoryMock = new Mock<IBuildProviderStrategy>();
 
             var connectionPool = new ConnectionPool(repository, factoryMock.Object);
 
@@ -46,7 +46,7 @@ namespace Logikfabrik.Overseer.Test
 
             var repository = new ConnectionSettingsRepository(settingsStoreMock.Object);
 
-            var factoryMock = new Mock<IBuildProviderFactory>();
+            var factoryMock = new Mock<IBuildProviderStrategy>();
 
             var connectionPool = new ConnectionPool(repository, factoryMock.Object);
 
@@ -68,7 +68,7 @@ namespace Logikfabrik.Overseer.Test
 
             var repository = new ConnectionSettingsRepository(settingsStoreMock.Object);
 
-            var factoryMock = new Mock<IBuildProviderFactory>();
+            var factoryMock = new Mock<IBuildProviderStrategy>();
 
             var connectionPool = new ConnectionPool(repository, factoryMock.Object);
 
@@ -86,7 +86,7 @@ namespace Logikfabrik.Overseer.Test
 
             var repository = new ConnectionSettingsRepository(settingsStoreMock.Object);
 
-            var factoryMock = new Mock<IBuildProviderFactory>();
+            var factoryMock = new Mock<IBuildProviderStrategy>();
 
             var connectionPool = new ConnectionPool(repository, factoryMock.Object);
 

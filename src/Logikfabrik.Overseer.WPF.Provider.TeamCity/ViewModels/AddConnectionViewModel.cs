@@ -19,21 +19,21 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity.ViewModels
         /// </summary>
         /// <param name="eventAggregator">The event aggregator.</param>
         /// <param name="settingsRepository">The settings repository.</param>
-        /// <param name="buildProviderFactory">The build provider factory.</param>
+        /// <param name="buildProviderStrategy">The build provider strategy.</param>
         /// <param name="projectToMonitorFactory">The project to monitor factory.</param>
         /// <param name="projectsToMonitorFactory">The projects to monitor factory.</param>
         /// <param name="connectionSettingsFactory">The connection settings factory.</param>
         public AddConnectionViewModel(
             IEventAggregator eventAggregator,
             IConnectionSettingsRepository settingsRepository,
-            IBuildProviderFactory buildProviderFactory,
+            IBuildProviderStrategy buildProviderStrategy,
             IProjectToMonitorViewModelFactory projectToMonitorFactory,
             IProjectsToMonitorViewModelFactory projectsToMonitorFactory,
             IConnectionSettingsViewModelFactory<TeamCity.ConnectionSettings, ConnectionSettingsViewModel> connectionSettingsFactory)
             : base(
                   eventAggregator,
                   settingsRepository,
-                  buildProviderFactory,
+                  buildProviderStrategy,
                   projectToMonitorFactory,
                   projectsToMonitorFactory)
         {

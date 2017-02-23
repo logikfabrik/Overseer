@@ -18,6 +18,8 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices
         /// </summary>
         public override void Load()
         {
+            Bind<IBuildProviderFactory>().To<BuildProviderFactory<ConnectionSettings, BuildProvider>>();
+
             Bind<WPF.ViewModels.IBuildProviderViewModel>().To<BuildProviderViewModel>();
             Bind<Settings.ConnectionSettings>().To<ConnectionSettings>();
             Bind<WPF.ViewModels.EditConnectionViewModel<ConnectionSettings>>().To<EditConnectionViewModel>();

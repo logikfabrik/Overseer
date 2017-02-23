@@ -1,8 +1,8 @@
-﻿// <copyright file="ConnectionViewModelFactory{T1,T2}.cs" company="Logikfabrik">
+﻿// <copyright file="BuildProviderFactory{T1,T2}.cs" company="Logikfabrik">
 //   Copyright (c) 2016 anton(at)logikfabrik.se. Licensed under the MIT license.
 // </copyright>
 
-namespace Logikfabrik.Overseer.WPF.ViewModels.Factories
+namespace Logikfabrik.Overseer
 {
     using System;
     using EnsureThat;
@@ -12,25 +12,25 @@ namespace Logikfabrik.Overseer.WPF.ViewModels.Factories
     using Settings;
 
     /// <summary>
-    /// The <see cref="IConnectionViewModelFactory{T}" /> class.
+    /// The <see cref="BuildProviderFactory{T1,T2}" /> class.
     /// </summary>
     /// <typeparam name="T1">The <see cref="ConnectionSettings" /> type.</typeparam>
-    /// <typeparam name="T2">The <see cref="ConnectionViewModel" /> type.</typeparam>
-    public class ConnectionViewModelFactory<T1, T2> : IConnectionViewModelFactory<T2>
-        where T1 : ConnectionSettings
-        where T2 : ConnectionViewModel
+    /// <typeparam name="T2">The <see cref="BuildProvider{T1}" /> type.</typeparam>
+    public class BuildProviderFactory<T1, T2> : IBuildProviderFactory 
+        where T1 : ConnectionSettings 
+        where T2 : BuildProvider<T1>
     {
         private readonly IResolutionRoot _resolutionRoot;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ConnectionViewModelFactory{T1,T2} "/> class.
+        /// Initializes a new instance of the <see cref="BuildProviderFactory{T1,T2}" /> class.
         /// </summary>
         /// <param name="resolutionRoot">The resolution root.</param>
-        public ConnectionViewModelFactory(IResolutionRoot resolutionRoot)
+        public BuildProviderFactory(IResolutionRoot resolutionRoot)
         {
             Ensure.That(resolutionRoot).IsNotNull();
 
-            AppliesTo = typeof(T1);
+            AppliesTo = typeof(T2);
             _resolutionRoot = resolutionRoot;
         }
 
@@ -43,29 +43,17 @@ namespace Logikfabrik.Overseer.WPF.ViewModels.Factories
         public Type AppliesTo { get; }
 
         /// <summary>
-        /// Creates a view model.
+        /// Creates a <see cref="IBuildProvider" />.
         /// </summary>
         /// <param name="settings">The settings.</param>
         /// <returns>
-        /// A view model.
+        /// A <see cref="IBuildProvider" />.
         /// </returns>
-        public T2 Create(ConnectionSettings settings)
+        public IBuildProvider Create(ConnectionSettings settings)
         {
             Ensure.That(settings).IsNotNull();
 
             return _resolutionRoot.Get<T2>(new ConstructorArgument(nameof(settings), settings));
-        }
-
-        /// <summary>
-        /// Creates a view model.
-        /// </summary>
-        /// <param name="settings">The settings.</param>
-        /// <returns>
-        /// A view model.
-        /// </returns>
-        ConnectionViewModel IConnectionViewModelFactory.Create(ConnectionSettings settings)
-        {
-            return Create(settings);
         }
     }
 }
