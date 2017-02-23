@@ -48,7 +48,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             _versionNumber = versionNumber;
             RequestedBy = requestedBy;
 
-            Changes = changes.Select(changeFactory.CreateChangeViewModel);
+            Changes = changes.Select(changeFactory.Create);
 
             TryUpdate(projectName, status, startTime, endTime, runTime);
         }

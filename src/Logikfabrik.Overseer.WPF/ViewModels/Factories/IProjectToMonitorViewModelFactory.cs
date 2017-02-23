@@ -16,6 +16,6 @@ namespace Logikfabrik.Overseer.WPF.ViewModels.Factories
         /// <param name="projectName">The project name.</param>
         /// <param name="monitor">Whether the specified project should be monitored.</param>
         /// <returns>A view model.</returns>
-        ProjectToMonitorViewModel CreateProjectToMonitorViewModel(string projectId, string projectName, bool monitor);
+        ProjectToMonitorViewModel Create(string projectId, string projectName, bool monitor);
     }
 }

@@ -16,6 +16,6 @@ namespace Logikfabrik.Overseer.WPF.ViewModels.Factories
         /// </summary>
         /// <param name="projects">The projects.</param>
         /// <returns>A view model.</returns>
-        ProjectsToMonitorViewModel CreateProjectsToMonitorViewModel(IEnumerable<ProjectToMonitorViewModel> projects);
+        ProjectsToMonitorViewModel Create(IEnumerable<ProjectToMonitorViewModel> projects);
     }
 }

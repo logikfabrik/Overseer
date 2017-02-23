@@ -18,6 +18,6 @@ namespace Logikfabrik.Overseer.WPF.ViewModels.Factories
         /// <returns>
         /// A view model.
         /// </returns>
-        ProjectDigestViewModel CreateProjectDigestViewModel(IEnumerable<IBuild> builds);
+        ProjectDigestViewModel Create(IEnumerable<IBuild> builds);
     }
 }

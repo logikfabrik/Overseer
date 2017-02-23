@@ -25,7 +25,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels.Factories
         /// <param name="startTime">The start time.</param>
         /// <param name="endTime">The end time.</param>
         /// <param name="runTime">The run time.</param>
-        /// <returns>A  view model.</returns>
-        BuildViewModel CreateBuildViewModel(string projectName, string id, string branch, string versionNumber, string requestedBy, IEnumerable<IChange> changes, BuildStatus? status, DateTime? startTime, DateTime? endTime, TimeSpan? runTime);
+        /// <returns>A view model.</returns>
+        BuildViewModel Create(string projectName, string id, string branch, string versionNumber, string requestedBy, IEnumerable<IChange> changes, BuildStatus? status, DateTime? startTime, DateTime? endTime, TimeSpan? runTime);
     }
 }

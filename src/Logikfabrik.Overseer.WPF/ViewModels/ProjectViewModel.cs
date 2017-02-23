@@ -225,7 +225,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
                 }
                 else
                 {
-                    var buildToAdd = _buildFactory.CreateBuildViewModel(e.Project.Name, build.Id, build.Branch, build.GetVersionNumber(), build.RequestedBy, build.Changes, build.Status, build.StartTime, build.EndTime, build.GetRunTime());
+                    var buildToAdd = _buildFactory.Create(e.Project.Name, build.Id, build.Branch, build.GetVersionNumber(), build.RequestedBy, build.Changes, build.Status, build.StartTime, build.EndTime, build.GetRunTime());
 
                     currentBuilds.Add(buildToAdd);
                     isDirty = true;
@@ -241,7 +241,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             if (isDirty || isUpdated)
             {
                 Builds = currentBuilds.OrderByDescending(build => build.StartTime ?? DateTime.MaxValue);
-                Digest = _digestFactory.CreateProjectDigestViewModel(e.Builds);
+                Digest = _digestFactory.Create(e.Builds);
             }
 
             IsBusy = false;
