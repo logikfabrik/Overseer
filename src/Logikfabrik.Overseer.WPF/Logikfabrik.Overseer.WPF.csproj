@@ -111,7 +111,6 @@
     <Compile Include="ViewModels\Factories\IChangeViewModelFactory.cs" />
     <Compile Include="ViewModels\Factories\IConnectionSettingsViewModelFactory{T1,T2}.cs" />
     <Compile Include="ViewModels\Factories\IConnectionViewModelFactory.cs" />
-    <Compile Include="ViewModels\Factories\IConnectionViewModelFactory{T}.cs" />
     <Compile Include="ViewModels\Factories\IConnectionViewModelStrategy.cs" />
     <Compile Include="ViewModels\Factories\IEditConnectionViewModelFactory{T}.cs" />
     <Compile Include="ViewModels\Factories\IProjectDigestViewModelFactory.cs" />

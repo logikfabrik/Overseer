@@ -5,7 +5,6 @@
 namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices.Api
 {
     using System;
-    using System.Net;
     using System.Net.Http;
     using System.Net.Http.Headers;
     using System.Text;
@@ -18,7 +17,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices.Api
     /// <summary>
     /// The <see cref="ApiClient" /> class.
     /// </summary>
-    public class ApiClient : IDisposable
+    public class ApiClient : IApiClient
     {
         private readonly Lazy<HttpClient> _httpClient;
         private bool _isDisposed;
@@ -26,32 +25,12 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices.Api
         /// <summary>
         /// Initializes a new instance of the <see cref="ApiClient" /> class.
         /// </summary>
-        /// <param name="url">The URL.</param>
-        /// <param name="token">The token.</param>
-        public ApiClient(string url, string token)
+        /// <param name="settings">The settings.</param>
+        public ApiClient(ConnectionSettings settings)
         {
-            Ensure.That(url).IsNotNullOrWhiteSpace();
-            Ensure.That(token).IsNotNullOrWhiteSpace();
+            Ensure.That(settings).IsNotNull();
 
-            _httpClient = new Lazy<HttpClient>(() => GetHttpClient(new Uri(url), token));
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="ApiClient" /> class.
-        /// </summary>
-        /// <param name="url">The URL.</param>
-        /// <param name="token">The token.</param>
-        /// <param name="proxyUrl">The proxy URL.</param>
-        /// <param name="proxyUsername">The proxy username.</param>
-        /// <param name="proxyPassword">The proxy password.</param>
-        public ApiClient(string url, string token, string proxyUrl, string proxyUsername, string proxyPassword)
-        {
-            Ensure.That(url).IsNotNullOrWhiteSpace();
-            Ensure.That(token).IsNotNullOrWhiteSpace();
-            Ensure.That(proxyUrl).IsNotNullOrWhiteSpace();
-
-            // TODO: Support for proxy.
-            _httpClient = new Lazy<HttpClient>(() => GetHttpClient(new Uri(url), token, new Uri(proxyUrl), proxyUsername, proxyPassword));
+            _httpClient = new Lazy<HttpClient>(() => GetHttpClient(new Uri(settings.Url), settings.Token));
         }
 
         /// <summary>
@@ -166,22 +145,6 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices.Api
         private static HttpClient GetHttpClient(Uri baseUri, string token)
         {
             var client = new HttpClient { BaseAddress = baseUri };
-
-            SetDefaultRequestHeaders(client, token);
-
-            return client;
-        }
-
-        private static HttpClient GetHttpClient(Uri baseUri, string token, Uri proxyUri, string proxyUsername, string proxyPassword)
-        {
-            var handler = new HttpClientHandler
-            {
-                Proxy = new WebProxy(proxyUri),
-                Credentials = new NetworkCredential { UserName = proxyUsername, Password = proxyPassword },
-                UseProxy = true
-            };
-
-            var client = new HttpClient(handler) { BaseAddress = baseUri };
 
             SetDefaultRequestHeaders(client, token);
 

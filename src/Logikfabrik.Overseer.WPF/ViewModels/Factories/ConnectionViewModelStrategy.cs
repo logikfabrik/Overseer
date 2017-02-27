@@ -4,6 +4,7 @@
 
 namespace Logikfabrik.Overseer.WPF.ViewModels.Factories
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using EnsureThat;
@@ -14,13 +15,13 @@ namespace Logikfabrik.Overseer.WPF.ViewModels.Factories
     /// </summary>
     public class ConnectionViewModelStrategy : IConnectionViewModelStrategy
     {
-        private readonly IEnumerable<IConnectionViewModelFactory> _factories;
+        private readonly Lazy<IEnumerable<IConnectionViewModelFactory>> _factories;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ConnectionViewModelStrategy" /> class.
         /// </summary>
         /// <param name="factories">The factories.</param>
-        public ConnectionViewModelStrategy(IEnumerable<IConnectionViewModelFactory> factories)
+        public ConnectionViewModelStrategy(Lazy<IEnumerable<IConnectionViewModelFactory>> factories)
         {
             Ensure.That(factories).IsNotNull();
 
@@ -40,7 +41,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels.Factories
 
             var type = settings.GetType();
 
-            var factory = _factories.Single(f => f.AppliesTo == type);
+            var factory = _factories.Value.Single(f => f.AppliesTo == type);
 
             return factory.Create(settings);
         }

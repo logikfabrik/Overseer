@@ -4,6 +4,8 @@
 
 namespace Logikfabrik.Overseer.WPF.ViewModels
 {
+    using System;
+    using System.ComponentModel;
     using System.Linq;
     using System.Threading;
     using System.Threading.Tasks;
@@ -25,6 +27,8 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         private readonly IProjectToMonitorViewModelFactory _projectToMonitorFactory;
         private readonly IProjectsToMonitorViewModelFactory _projectsToMonitorFactory;
         private INotifyTask _connectionTask;
+        private bool _hasConnected;
+        private ConnectionSettingsViewModel<T> _settings;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="AddConnectionViewModel{T}" /> class.
@@ -77,12 +81,32 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         }
 
         /// <summary>
-        /// Gets the settings.
+        /// Gets or sets the settings.
         /// </summary>
         /// <value>
         /// The settings.
         /// </value>
-        public abstract ConnectionSettingsViewModel<T> Settings { get; }
+        public ConnectionSettingsViewModel<T> Settings
+        {
+            get
+            {
+                return _settings;
+            }
+
+            protected set
+            {
+                Ensure.That(value).IsNotNull();
+
+                if (_settings != null)
+                {
+                    _settings.PropertyChanged -= SettingsPropertyChanged;
+                }
+
+                _settings = value;
+
+                _settings.PropertyChanged += SettingsPropertyChanged;
+            }
+        }
 
         /// <summary>
         /// Gets the view name.
@@ -92,12 +116,32 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// </value>
         public override string ViewName { get; } = "Add connection";
 
+        public bool HasConnected
+        {
+            get
+            {
+                return _hasConnected;
+            }
+
+            private set
+            {
+                _hasConnected = value;
+                NotifyOfPropertyChange(() => HasConnected);
+                NotifyOfPropertyChange(() => HasNotConnected);
+                NotifyOfPropertyChange(() => IsValidAndHasConnected);
+            }
+        }
+
+        public bool HasNotConnected => !HasConnected;
+
+        public bool IsValidAndHasConnected => Settings.IsValid && HasConnected;
+
         /// <summary>
         /// Try the connection.
         /// </summary>
         public void TryConnection()
         {
-            if (Settings.IsNotDirty || !Settings.Validator.Validate(Settings).IsValid)
+            if (!Settings.IsValid || HasConnected)
             {
                 return;
             }
@@ -110,7 +154,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// </summary>
         public void AddConnection()
         {
-            if (Settings.IsDirty || !Settings.Validator.Validate(Settings).IsValid)
+            if (!IsValidAndHasConnected)
             {
                 return;
             }
@@ -132,14 +176,40 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
 
         private async Task Connect()
         {
-            var candidateSettings = Settings.GetSettings();
-
-            using (var provider = _buildProviderStrategy.Create(candidateSettings))
+            try
             {
-                var projects = await provider.GetProjectsAsync(CancellationToken.None).ConfigureAwait(false);
+                var candidateSettings = Settings.GetSettings();
 
-                Settings.ProjectsToMonitor = _projectsToMonitorFactory.Create(projects.OrderBy(project => project.Name).Select(project => _projectToMonitorFactory.Create(project.Id, project.Name, true)));
-                Settings.IsDirty = false;
+                using (var provider = _buildProviderStrategy.Create(candidateSettings))
+                {
+                    var projects = await provider.GetProjectsAsync(CancellationToken.None).ConfigureAwait(false);
+
+                    Settings.IsDirty = false;
+                    Settings.ProjectsToMonitor = _projectsToMonitorFactory.Create(projects.OrderBy(project => project.Name).Select(project => _projectToMonitorFactory.Create(project.Id, project.Name, true)));
+
+                    HasConnected = true;
+                }
+            }
+            catch (Exception)
+            {
+                HasConnected = false;
+
+                throw;
+            }
+        }
+
+        private void SettingsPropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == nameof(Settings.IsDirty))
+            {
+                HasConnected = false;
+
+                Settings.ProjectsToMonitor = null;
+            }
+
+            if (e.PropertyName == nameof(Settings.IsValid))
+            {
+                NotifyOfPropertyChange(() => IsValidAndHasConnected);
             }
         }
     }

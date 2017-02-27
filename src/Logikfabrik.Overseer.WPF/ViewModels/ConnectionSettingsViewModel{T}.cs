@@ -29,13 +29,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             _isDirty = true;
         }
 
-        /// <summary>
-        /// Gets the validator.
-        /// </summary>
-        /// <value>
-        /// The validator.
-        /// </value>
-        public abstract IValidator Validator { get; }
+        protected IValidator Validator { private get; set; }
 
         /// <summary>
         /// Gets or sets the name.
@@ -54,6 +48,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             {
                 _name = value;
                 NotifyOfPropertyChange(() => Name);
+                NotifyOfPropertyChange(() => IsValid);
             }
         }
 
@@ -94,17 +89,10 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             {
                 _isDirty = value;
                 NotifyOfPropertyChange(() => IsDirty);
-                NotifyOfPropertyChange(() => IsNotDirty);
             }
         }
 
-        /// <summary>
-        /// Gets a value indicating whether this instance is not dirty. Dirty settings are settings yet to be tried.
-        /// </summary>
-        /// <value>
-        ///   <c>true</c> if this instance is not dirty; otherwise, <c>false</c>.
-        /// </value>
-        public bool IsNotDirty => !IsDirty;
+        public bool IsValid => Validator.Validate(this).IsValid;
 
         /// <summary>
         /// Gets an error message indicating what is wrong with this object.

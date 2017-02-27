@@ -4,7 +4,6 @@
 
 namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices.ViewModels
 {
-    using System;
     using Caliburn.Micro;
     using EnsureThat;
     using WPF.ViewModels.Factories;

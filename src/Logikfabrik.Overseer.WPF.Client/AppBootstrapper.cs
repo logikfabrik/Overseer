@@ -9,6 +9,7 @@ namespace Logikfabrik.Overseer.WPF.Client
     using System.IO;
     using System.Linq;
     using System.Reflection;
+    using System.Runtime.ExceptionServices;
     using System.Windows;
     using Caliburn.Micro;
     using log4net.Config;
@@ -35,6 +36,9 @@ namespace Logikfabrik.Overseer.WPF.Client
         /// </summary>
         public AppBootstrapper()
         {
+            AppDomain.CurrentDomain.FirstChanceException += CurrentDomainFirstChanceException;
+            AppDomain.CurrentDomain.UnhandledException += CurrentDomainUnhandledException;
+
             _kernel = new StandardKernel();
             _assemblies = new Lazy<IEnumerable<Assembly>>(GetAssemblies);
 
@@ -90,12 +94,12 @@ namespace Logikfabrik.Overseer.WPF.Client
             ViewLocator.AddNamespaceMapping("*", "Logikfabrik.Overseer.WPF.Client.Views");
 
             // Business logic setup.
-            _kernel.Bind<ILogService>().To<LogService>().InSingletonScope();
-            _kernel.Bind<IConnectionSettingsSerializer>().ToProvider<ConnectionSettingsSerializerProvider>().InSingletonScope();
-            _kernel.Bind<IFileStore>().ToProvider<FileStoreProvider>().InSingletonScope();
+            _kernel.Bind<ILogService>().To<LogService>();
+            _kernel.Bind<IConnectionSettingsSerializer>().ToProvider<ConnectionSettingsSerializerProvider>();
+            _kernel.Bind<IFileStore>().ToProvider<FileStoreProvider>();
             _kernel.Bind<IConnectionSettingsStore>().To<ConnectionSettingsStore>();
             _kernel.Bind<IConnectionSettingsRepository>().To<ConnectionSettingsRepository>().InSingletonScope();
-
+            _kernel.Bind<IBuildProviderStrategy>().To<BuildProviderStrategy>();
             _kernel.Bind<IConnectionPool>().To<ConnectionPool>().InSingletonScope();
             _kernel.Bind<IBuildMonitor>().To<BuildMonitor>().InSingletonScope();
 
@@ -113,13 +117,10 @@ namespace Logikfabrik.Overseer.WPF.Client
             _kernel.Bind<IProjectDigestViewModelFactory>().ToFactory();
             _kernel.Bind<IProjectViewModelFactory>().ToFactory();
             _kernel.Bind<IRemoveConnectionViewModelFactory>().ToFactory();
-            _kernel.Bind<IConnectionViewModelStrategy>().To<ConnectionViewModelStrategy>().InSingletonScope();
+            _kernel.Bind<IConnectionViewModelStrategy>().To<ConnectionViewModelStrategy>();
             _kernel.Bind<ConnectionsViewModel>().ToSelf().InSingletonScope();
 
             _kernel.Load(SelectAssemblies());
-
-            // TODO: Investigate init order.
-            _kernel.Bind<IBuildProviderStrategy>().To<BuildProviderStrategy>().InSingletonScope();
         }
 
         /// <summary>
@@ -230,6 +231,20 @@ namespace Logikfabrik.Overseer.WPF.Client
 
             return moduleAssemblies
                 .Where(assembly => GetModuleNames(assembly).All(name => !_kernel.HasModule(name)));
+        }
+
+        private void CurrentDomainUnhandledException(object sender, UnhandledExceptionEventArgs e)
+        {
+            var logService = _kernel.Get<ILogService>();
+
+            logService.Log<AppBootstrapper>(new LogEntry(LogEntryType.Error, "An unhandled error occurred."));
+        }
+
+        private void CurrentDomainFirstChanceException(object sender, FirstChanceExceptionEventArgs e)
+        {
+            var logService = _kernel.Get<ILogService>();
+
+            logService.Log<AppBootstrapper>(new LogEntry(LogEntryType.Error, "An first chance error occurred.", e.Exception));
         }
     }
 }

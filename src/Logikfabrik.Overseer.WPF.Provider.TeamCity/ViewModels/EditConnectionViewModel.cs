@@ -53,14 +53,8 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity.ViewModels
             settings.IsDirty = false;
 
             Settings = settings;
-        }
 
-        /// <summary>
-        /// Gets the settings.
-        /// </summary>
-        /// <value>
-        /// The settings.
-        /// </value>
-        public override WPF.ViewModels.ConnectionSettingsViewModel<TeamCity.ConnectionSettings> Settings { get; }
+            TryConnection();
+        }
     }
 }

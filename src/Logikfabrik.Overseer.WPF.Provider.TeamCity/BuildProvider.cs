@@ -4,7 +4,6 @@
 
 namespace Logikfabrik.Overseer.WPF.Provider.TeamCity
 {
-    using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading;
@@ -17,17 +16,20 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity
     /// </summary>
     public class BuildProvider : BuildProvider<ConnectionSettings>
     {
-        private readonly Lazy<Api.ApiClient> _apiClient;
+        private readonly Api.IApiClient _apiClient;
         private bool _isDisposed;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="BuildProvider" /> class.
         /// </summary>
         /// <param name="settings">The settings.</param>
-        public BuildProvider(ConnectionSettings settings)
+        /// <param name="apiClient">The API client.</param>
+        public BuildProvider(ConnectionSettings settings, Api.IApiClient apiClient)
             : base(settings)
         {
-            _apiClient = new Lazy<Api.ApiClient>(() => GetApiClient(settings));
+            Ensure.That(apiClient).IsNotNull();
+
+            _apiClient = apiClient;
         }
 
         /// <summary>
@@ -41,7 +43,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity
         {
             this.ThrowIfDisposed(_isDisposed);
 
-            var projects = await _apiClient.Value.GetProjectsAsync(cancellationToken).ConfigureAwait(false);
+            var projects = await _apiClient.GetProjectsAsync(cancellationToken).ConfigureAwait(false);
 
             return projects.Project.Select(project => new Project(project));
         }
@@ -60,7 +62,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity
 
             Ensure.That(projectId).IsNotNullOrWhiteSpace();
 
-            var buildTypes = await _apiClient.Value.GetBuildTypesAsync(cancellationToken).ConfigureAwait(false);
+            var buildTypes = await _apiClient.GetBuildTypesAsync(cancellationToken).ConfigureAwait(false);
 
             return buildTypes.BuildType
                 .Where(buildType => buildType.ProjectId == projectId)
@@ -82,32 +84,10 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity
             // ReSharper disable once InvertIf
             if (disposing)
             {
-                if (!_apiClient.IsValueCreated)
-                {
-                    return;
-                }
-
-                _apiClient.Value.Dispose();
+                _apiClient.Dispose();
             }
 
             _isDisposed = true;
-        }
-
-        private static Api.ApiClient GetApiClient(ConnectionSettings settings)
-        {
-            var baseUri = BaseUriHelper.GetBaseUri(settings.Url, settings.Version, settings.AuthenticationType);
-
-            switch (settings.AuthenticationType)
-            {
-                case AuthenticationType.GuestAuth:
-                    return new Api.ApiClient(baseUri);
-
-                case AuthenticationType.HttpAuth:
-                    return new Api.ApiClient(baseUri, settings.Username, settings.Password);
-
-                default:
-                    throw new NotSupportedException($"Authentication type '{settings.AuthenticationType}' is not supported.");
-            }
         }
     }
 }

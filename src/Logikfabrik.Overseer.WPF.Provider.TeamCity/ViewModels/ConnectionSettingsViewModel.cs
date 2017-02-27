@@ -6,7 +6,6 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity.ViewModels
 {
     using System;
     using System.Linq;
-    using FluentValidation;
     using Validators;
     using WPF.ViewModels;
 
@@ -48,6 +47,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity.ViewModels
             {
                 _url = value;
                 NotifyOfPropertyChange(() => Url);
+                NotifyOfPropertyChange(() => IsValid);
                 NotifyOfPropertyChange(() => BaseUri);
 
                 IsDirty = true;
@@ -87,6 +87,8 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity.ViewModels
             {
                 _authenticationType = value;
                 NotifyOfPropertyChange(() => AuthenticationType);
+                NotifyOfPropertyChange(() => IsValid);
+                NotifyOfPropertyChange(() => BaseUri);
 
                 // Trigger revalidation of username and password.
                 NotifyOfPropertyChange(() => Username);
@@ -113,6 +115,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity.ViewModels
             {
                 _version = value;
                 NotifyOfPropertyChange(() => Version);
+                NotifyOfPropertyChange(() => IsValid);
                 NotifyOfPropertyChange(() => BaseUri);
 
                 IsDirty = true;
@@ -136,6 +139,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity.ViewModels
             {
                 _username = value;
                 NotifyOfPropertyChange(() => Username);
+                NotifyOfPropertyChange(() => IsValid);
 
                 IsDirty = true;
             }
@@ -158,18 +162,11 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity.ViewModels
             {
                 _password = value;
                 NotifyOfPropertyChange(() => Password);
+                NotifyOfPropertyChange(() => IsValid);
 
                 IsDirty = true;
             }
         }
-
-        /// <summary>
-        /// Gets the validator.
-        /// </summary>
-        /// <value>
-        /// The validator.
-        /// </value>
-        public override IValidator Validator { get; }
 
         /// <summary>
         /// Gets the settings.

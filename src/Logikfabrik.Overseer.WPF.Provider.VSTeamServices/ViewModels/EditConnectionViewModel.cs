@@ -50,14 +50,8 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices.ViewModels
             settings.IsDirty = false;
 
             Settings = settings;
-        }
 
-        /// <summary>
-        /// Gets the settings.
-        /// </summary>
-        /// <value>
-        /// The settings.
-        /// </value>
-        public override WPF.ViewModels.ConnectionSettingsViewModel<VSTeamServices.ConnectionSettings> Settings { get; }
+            TryConnection();
+        }
     }
 }

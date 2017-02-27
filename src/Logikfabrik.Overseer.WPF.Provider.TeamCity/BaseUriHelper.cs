@@ -56,7 +56,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity
             {
                 var builder = GetBuilder(url, version, authenticationType);
 
-                if (!HasSupportedScheme(builder))
+                if (builder == null || !HasSupportedScheme(builder))
                 {
                     result = null;
 
@@ -90,7 +90,14 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity
                     break;
             }
 
-            return new UriBuilder(url)
+            Uri result;
+
+            if (!Uri.TryCreate(url, UriKind.Absolute, out result))
+            {
+                return null;
+            }
+
+            return new UriBuilder(result)
             {
                 Path = $"{authType}/app/rest/{version}/"
             };

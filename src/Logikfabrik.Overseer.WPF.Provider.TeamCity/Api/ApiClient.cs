@@ -21,7 +21,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity.Api
     /// <summary>
     /// The <see cref="ApiClient" /> class.
     /// </summary>
-    public class ApiClient : IDisposable
+    public class ApiClient : IApiClient
     {
         private readonly Lazy<HttpClient> _httpClient;
         private readonly JsonMediaTypeFormatter _mediaTypeFormatter;
@@ -30,29 +30,29 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity.Api
         /// <summary>
         /// Initializes a new instance of the <see cref="ApiClient" /> class.
         /// </summary>
-        /// <param name="baseUri">The base URI.</param>
-        /// <param name="username">The username.</param>
-        /// <param name="password">The password.</param>
-        public ApiClient(Uri baseUri, string username, string password)
+        /// <param name="settings">The settings.</param>
+        public ApiClient(ConnectionSettings settings)
             : this()
         {
-            Ensure.That(baseUri).IsNotNull();
-            Ensure.That(username).IsNotNullOrWhiteSpace();
-            Ensure.That(password).IsNotNullOrWhiteSpace();
+            Ensure.That(settings).IsNotNull();
 
-            _httpClient = new Lazy<HttpClient>(() => GetHttpClient(baseUri, username, password));
-        }
+            var baseUri = BaseUriHelper.GetBaseUri(settings.Url, settings.Version, settings.AuthenticationType);
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="ApiClient" /> class.
-        /// </summary>
-        /// <param name="baseUri">The base URI.</param>
-        public ApiClient(Uri baseUri)
-            : this()
-        {
-            Ensure.That(baseUri).IsNotNull();
+            switch (settings.AuthenticationType)
+            {
+                case AuthenticationType.GuestAuth:
+                    _httpClient = new Lazy<HttpClient>(() => GetHttpClient(baseUri));
 
-            _httpClient = new Lazy<HttpClient>(() => GetHttpClient(baseUri));
+                    break;
+
+                case AuthenticationType.HttpAuth:
+                    _httpClient = new Lazy<HttpClient>(() => GetHttpClient(baseUri, settings.Username, settings.Password));
+
+                    break;
+
+                default:
+                    throw new NotSupportedException($"Authentication type '{settings.AuthenticationType}' is not supported.");
+            }
         }
 
         private ApiClient()

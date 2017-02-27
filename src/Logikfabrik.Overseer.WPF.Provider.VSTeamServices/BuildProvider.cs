@@ -4,7 +4,6 @@
 
 namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices
 {
-    using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading;
@@ -17,17 +16,20 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices
     /// </summary>
     public class BuildProvider : BuildProvider<ConnectionSettings>
     {
-        private readonly Lazy<Api.ApiClient> _apiClient;
+        private readonly Api.IApiClient _apiClient;
         private bool _isDisposed;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="BuildProvider" /> class.
         /// </summary>
         /// <param name="settings">The settings.</param>
-        public BuildProvider(ConnectionSettings settings)
+        /// <param name="apiClient">The API client.</param>
+        public BuildProvider(ConnectionSettings settings, Api.IApiClient apiClient)
             : base(settings)
         {
-            _apiClient = new Lazy<Api.ApiClient>(() => GetApiClient(settings));
+            Ensure.That(apiClient).IsNotNull();
+
+            _apiClient = apiClient;
         }
 
         /// <summary>
@@ -41,7 +43,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices
         {
             this.ThrowIfDisposed(_isDisposed);
 
-            var projects = await _apiClient.Value.GetProjectsAsync(0, int.MaxValue, cancellationToken).ConfigureAwait(false);
+            var projects = await _apiClient.GetProjectsAsync(0, int.MaxValue, cancellationToken).ConfigureAwait(false);
 
             return projects.Value.Select(project => new Project(project));
         }
@@ -64,9 +66,9 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices
 
             const int numberOfBuilds = 3;
 
-            foreach (var build in (await _apiClient.Value.GetBuildsAsync(projectId, 0, numberOfBuilds, cancellationToken).ConfigureAwait(false)).Value)
+            foreach (var build in (await _apiClient.GetBuildsAsync(projectId, 0, numberOfBuilds, cancellationToken).ConfigureAwait(false)).Value)
             {
-                var changes = await _apiClient.Value.GetChangesAsync(projectId, build.Id, cancellationToken).ConfigureAwait(false);
+                var changes = await _apiClient.GetChangesAsync(projectId, build.Id, cancellationToken).ConfigureAwait(false);
 
                 builds.Add(new Build(build, changes.Value));
             }
@@ -88,20 +90,10 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices
             // ReSharper disable once InvertIf
             if (disposing)
             {
-                if (!_apiClient.IsValueCreated)
-                {
-                    return;
-                }
-
-                _apiClient.Value.Dispose();
+                _apiClient.Dispose();
             }
 
             _isDisposed = true;
-        }
-
-        private static Api.ApiClient GetApiClient(ConnectionSettings settings)
-        {
-            return new Api.ApiClient(settings.Url, settings.Token);
         }
     }
 }

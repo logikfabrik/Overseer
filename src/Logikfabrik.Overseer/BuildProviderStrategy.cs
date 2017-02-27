@@ -4,6 +4,7 @@
 
 namespace Logikfabrik.Overseer
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using EnsureThat;
@@ -14,13 +15,13 @@ namespace Logikfabrik.Overseer
     /// </summary>
     public class BuildProviderStrategy : IBuildProviderStrategy
     {
-        private readonly IEnumerable<IBuildProviderFactory> _factories;
+        private readonly Lazy<IEnumerable<IBuildProviderFactory>> _factories;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="BuildProviderStrategy" /> class.
         /// </summary>
         /// <param name="factories">The factories.</param>
-        public BuildProviderStrategy(IEnumerable<IBuildProviderFactory> factories)
+        public BuildProviderStrategy(Lazy<IEnumerable<IBuildProviderFactory>> factories)
         {
             Ensure.That(factories).IsNotNull();
 
@@ -40,7 +41,7 @@ namespace Logikfabrik.Overseer
 
             var type = settings.ProviderType;
 
-            var factory = _factories.Single(f => f.AppliesTo == type);
+            var factory = _factories.Value.Single(f => f.AppliesTo == type);
 
             return factory.Create(settings);
         }

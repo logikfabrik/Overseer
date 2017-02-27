@@ -31,23 +31,15 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity.ViewModels
             IProjectsToMonitorViewModelFactory projectsToMonitorFactory,
             IConnectionSettingsViewModelFactory<TeamCity.ConnectionSettings, ConnectionSettingsViewModel> connectionSettingsFactory)
             : base(
-                  eventAggregator,
-                  settingsRepository,
-                  buildProviderStrategy,
-                  projectToMonitorFactory,
-                  projectsToMonitorFactory)
+                eventAggregator,
+                settingsRepository,
+                buildProviderStrategy,
+                projectToMonitorFactory,
+                projectsToMonitorFactory)
         {
             Ensure.That(connectionSettingsFactory).IsNotNull();
 
             Settings = connectionSettingsFactory.Create();
         }
-
-        /// <summary>
-        /// Gets the settings.
-        /// </summary>
-        /// <value>
-        /// The settings.
-        /// </value>
-        public override WPF.ViewModels.ConnectionSettingsViewModel<TeamCity.ConnectionSettings> Settings { get; }
     }
 }

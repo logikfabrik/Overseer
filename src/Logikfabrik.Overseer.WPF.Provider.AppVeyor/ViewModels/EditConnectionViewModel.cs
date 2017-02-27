@@ -49,14 +49,8 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor.ViewModels
             settings.IsDirty = false;
 
             Settings = settings;
-        }
 
-        /// <summary>
-        /// Gets the settings.
-        /// </summary>
-        /// <value>
-        /// The settings.
-        /// </value>
-        public override WPF.ViewModels.ConnectionSettingsViewModel<AppVeyor.ConnectionSettings> Settings { get; }
+            TryConnection();
+        }
     }
 }

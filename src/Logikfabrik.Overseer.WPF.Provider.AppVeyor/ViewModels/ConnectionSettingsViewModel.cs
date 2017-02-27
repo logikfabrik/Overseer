@@ -5,7 +5,6 @@
 namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor.ViewModels
 {
     using System.Linq;
-    using FluentValidation;
     using Validators;
     using WPF.ViewModels;
 
@@ -41,18 +40,11 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor.ViewModels
             {
                 _token = value;
                 NotifyOfPropertyChange(() => Token);
+                NotifyOfPropertyChange(() => IsValid);
 
                 IsDirty = true;
             }
         }
-
-        /// <summary>
-        /// Gets the validator.
-        /// </summary>
-        /// <value>
-        /// The validator.
-        /// </value>
-        public override IValidator Validator { get; }
 
         /// <summary>
         /// Gets the settings.

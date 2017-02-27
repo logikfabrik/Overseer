@@ -6,13 +6,14 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
 {
     using System.Collections.Generic;
     using System.Linq;
+    using Caliburn.Micro;
     using EnsureThat;
     using Overseer.Extensions;
 
     /// <summary>
     /// The <see cref="ProjectDigestViewModel" /> class. View model for CI project digest.
     /// </summary>
-    public class ProjectDigestViewModel
+    public class ProjectDigestViewModel : PropertyChangedBase
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ProjectDigestViewModel" /> class.

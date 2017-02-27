@@ -47,7 +47,7 @@
             <ComboBox
                 DisplayMemberPath="DisplayName"
                 ItemsSource="{markupExtensions:EnumToItemsSourceMarkup {x:Type teamCity:AuthenticationType}}"
-                SelectedValue="{Binding Path=AuthenticationType, Mode=TwoWay}"
+                SelectedValue="{Binding Path=AuthenticationType, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                 SelectedValuePath="Value" />
         </StackPanel>
         <StackPanel Margin="0,0,0,20">

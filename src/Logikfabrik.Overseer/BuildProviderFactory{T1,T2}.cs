@@ -16,8 +16,8 @@ namespace Logikfabrik.Overseer
     /// </summary>
     /// <typeparam name="T1">The <see cref="ConnectionSettings" /> type.</typeparam>
     /// <typeparam name="T2">The <see cref="BuildProvider{T1}" /> type.</typeparam>
-    public class BuildProviderFactory<T1, T2> : IBuildProviderFactory 
-        where T1 : ConnectionSettings 
+    public class BuildProviderFactory<T1, T2> : IBuildProviderFactory
+        where T1 : ConnectionSettings
         where T2 : BuildProvider<T1>
     {
         private readonly IResolutionRoot _resolutionRoot;
@@ -53,7 +53,7 @@ namespace Logikfabrik.Overseer
         {
             Ensure.That(settings).IsNotNull();
 
-            return _resolutionRoot.Get<T2>(new ConstructorArgument(nameof(settings), settings));
+            return _resolutionRoot.Get<T2>(new ConstructorArgument(nameof(settings), settings, true));
         }
     }
 }

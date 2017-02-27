@@ -19,4 +19,5 @@ If you have a bug report, feature request, or suggestion, please open a new issu
 - xUnit
 - AutoFixture
 - WiX
+- LazyCache
 - Entypo pictograms by Daniel Bruce

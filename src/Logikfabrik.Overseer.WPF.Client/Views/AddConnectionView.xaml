@@ -20,7 +20,7 @@
                     <Button
                         x:Name="TryConnection"
                         Content="Try connection"
-                        IsEnabled="{Binding Settings.IsDirty, Mode=OneWay}"
+                        IsEnabled="{Binding HasNotConnected, Mode=OneWay}"
                         Style="{StaticResource ButtonDefaultStyle}" />
                     <TextBlock Text="Error" Visibility="{Binding ConnectionTask.Status, Converter={StaticResource TaskStatusFaultedToBooleanConverter}}" />
                     <ContentControl
@@ -36,7 +36,7 @@
                     Margin="0,0,2,0"
                     Content="OK"
                     IsDefault="True"
-                    IsEnabled="{Binding Settings.IsNotDirty, Mode=OneWay}"
+                    IsEnabled="{Binding IsValidAndHasConnected, Mode=OneWay}"
                     Style="{StaticResource ButtonDefaultStyle}" />
                 <Button
                     x:Name="ViewConnections"

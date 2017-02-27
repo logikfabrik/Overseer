@@ -41,13 +41,5 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor.ViewModels
 
             Settings = connectionSettingsFactory.Create();
         }
-
-        /// <summary>
-        /// Gets the settings.
-        /// </summary>
-        /// <value>
-        /// The settings.
-        /// </value>
-        public override WPF.ViewModels.ConnectionSettingsViewModel<AppVeyor.ConnectionSettings> Settings { get; }
     }
 }

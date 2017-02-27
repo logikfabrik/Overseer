@@ -14,9 +14,14 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity.Test.Api
         [Fact(Skip = "This is an integration test")]
         public async Task CanGetProjects()
         {
-            var baseUri = BaseUriHelper.GetBaseUri("http://teamcity.jetbrains.com", "10.0", AuthenticationType.GuestAuth);
+            var settings = new ConnectionSettings
+            {
+                AuthenticationType = AuthenticationType.GuestAuth,
+                Url = "http://teamcity.jetbrains.com",
+                Version = "10.0"
+            };
 
-            var client = new ApiClient(baseUri);
+            var client = new ApiClient(settings);
 
             var projects = await client.GetProjectsAsync(CancellationToken.None).ConfigureAwait(false);
 
@@ -26,9 +31,14 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity.Test.Api
         [Fact(Skip = "This is an integration test")]
         public async Task CanGetBuildTypes()
         {
-            var baseUri = BaseUriHelper.GetBaseUri("http://teamcity.jetbrains.com", "10.0", AuthenticationType.GuestAuth);
+            var settings = new ConnectionSettings
+            {
+                AuthenticationType = AuthenticationType.GuestAuth,
+                Url = "http://teamcity.jetbrains.com",
+                Version = "10.0"
+            };
 
-            var client = new ApiClient(baseUri);
+            var client = new ApiClient(settings);
 
             var buildTypes = await client.GetBuildTypesAsync(CancellationToken.None).ConfigureAwait(false);
 

@@ -4,7 +4,6 @@
 
 namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor
 {
-    using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading;
@@ -17,17 +16,20 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor
     /// </summary>
     public class BuildProvider : BuildProvider<ConnectionSettings>
     {
-        private readonly Lazy<Api.ApiClient> _apiClient;
+        private readonly Api.IApiClient _apiClient;
         private bool _isDisposed;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="BuildProvider" /> class.
         /// </summary>
         /// <param name="settings">The settings.</param>
-        public BuildProvider(ConnectionSettings settings)
+        /// <param name="apiClient">The API client.</param>
+        public BuildProvider(ConnectionSettings settings, Api.IApiClient apiClient)
             : base(settings)
         {
-            _apiClient = new Lazy<Api.ApiClient>(() => GetApiClient(settings));
+            Ensure.That(apiClient).IsNotNull();
+
+            _apiClient = apiClient;
         }
 
         /// <summary>
@@ -41,7 +43,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor
         {
             this.ThrowIfDisposed(_isDisposed);
 
-            var projects = await _apiClient.Value.GetProjectsAsync(cancellationToken).ConfigureAwait(false);
+            var projects = await _apiClient.GetProjectsAsync(cancellationToken).ConfigureAwait(false);
 
             return projects.Select(project => new Project(project));
         }
@@ -60,7 +62,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor
 
             Ensure.That(projectId).IsNotNullOrWhiteSpace();
 
-            var projects = await _apiClient.Value.GetProjectsAsync(cancellationToken).ConfigureAwait(false);
+            var projects = await _apiClient.GetProjectsAsync(cancellationToken).ConfigureAwait(false);
 
             var project = projects.SingleOrDefault(p => p.ProjectId == int.Parse(projectId));
 
@@ -71,7 +73,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor
 
             const int numberOfBuilds = 3;
 
-            var projectHistory = await _apiClient.Value.GetProjectHistoryAsync(project.AccountName, project.Slug, numberOfBuilds, cancellationToken).ConfigureAwait(false);
+            var projectHistory = await _apiClient.GetProjectHistoryAsync(project.AccountName, project.Slug, numberOfBuilds, cancellationToken).ConfigureAwait(false);
 
             return projectHistory.Builds.Select(build => new Build(build));
         }
@@ -90,20 +92,10 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor
             // ReSharper disable once InvertIf
             if (disposing)
             {
-                if (!_apiClient.IsValueCreated)
-                {
-                    return;
-                }
-
-                _apiClient.Value.Dispose();
+                _apiClient.Dispose();
             }
 
             _isDisposed = true;
-        }
-
-        private static Api.ApiClient GetApiClient(ConnectionSettings settings)
-        {
-            return new Api.ApiClient(settings.Token);
         }
     }
 }
