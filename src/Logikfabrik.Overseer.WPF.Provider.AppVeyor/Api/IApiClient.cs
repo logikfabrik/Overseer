@@ -8,7 +8,6 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor.Api
     using System.Collections.Generic;
     using System.Threading;
     using System.Threading.Tasks;
-    using Models;
 
     /// <summary>
     /// The <see cref="IApiClient" /> interface.
@@ -30,6 +29,6 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor.Api
         /// <param name="recordsNumber">Number of records.</param>
         /// <param name="cancellationToken">A cancellation token.</param>
         /// <returns>A task.</returns>
-        Task<ProjectHistory> GetProjectHistoryAsync(string accountName, string projectSlug, int recordsNumber, CancellationToken cancellationToken);
+        Task<Models.ProjectHistory> GetProjectHistoryAsync(string accountName, string projectSlug, int recordsNumber, CancellationToken cancellationToken);
     }
 }

@@ -29,8 +29,6 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             _isDirty = true;
         }
 
-        protected IValidator Validator { private get; set; }
-
         /// <summary>
         /// Gets or sets the name.
         /// </summary>
@@ -92,12 +90,23 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             }
         }
 
+        /// <summary>
+        /// Gets a value indicating whether this instance is valid.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if this instance is valid; otherwise, <c>false</c>.
+        /// </value>
         public bool IsValid => Validator.Validate(this).IsValid;
 
         /// <summary>
         /// Gets an error message indicating what is wrong with this object.
         /// </summary>
         public string Error => null;
+
+        /// <summary>
+        /// Sets the validator.
+        /// </summary>
+        protected IValidator Validator { private get; set; }
 
         /// <summary>
         /// Gets the error message for the property with the specified name.

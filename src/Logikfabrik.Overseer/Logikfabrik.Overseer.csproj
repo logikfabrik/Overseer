@@ -83,6 +83,7 @@
     <Compile Include="BuildProviderFactory{T1,T2}.cs" />
     <Compile Include="BuildProviderStrategy.cs" />
     <Compile Include="Caching\CacheInterceptor.cs" />
+    <Compile Include="Caching\ICacheable.cs" />
     <Compile Include="Change.cs" />
     <Compile Include="Extensions\BuildExtensions.cs" />
     <Compile Include="Extensions\BuildStatusExtensions.cs" />
@@ -101,7 +102,9 @@
     <Compile Include="Logging\LogEntryType.cs" />
     <Compile Include="Logging\LogService.cs" />
     <Compile Include="Settings\ConnectionSettings.cs" />
+    <Compile Include="Settings\ConnectionSettingsExtensions.cs" />
     <Compile Include="Settings\ConnectionSettingsRepository.cs" />
+    <Compile Include="Settings\ConnectionSettingsSignature.cs" />
     <Compile Include="Subscription{T}.cs" />
     <Compile Include="Settings\ConnectionSettingsSerializer.cs" />
     <Compile Include="Settings\ConnectionSettingsStore.cs" />

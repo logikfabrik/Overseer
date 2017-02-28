@@ -7,6 +7,7 @@ namespace Logikfabrik.Overseer.Caching
     using EnsureThat;
     using LazyCache;
     using Ninject.Extensions.Interception;
+    using Ninject.Extensions.Interception.Request;
 
     /// <summary>
     /// The <see cref="CacheInterceptor" /> class.
@@ -32,11 +33,10 @@ namespace Logikfabrik.Overseer.Caching
         /// <param name="invocation">The invocation.</param>
         public void Intercept(IInvocation invocation)
         {
-            // TODO: Fix cache key gen. API calls (using complex constructor params for settings) are not given unique keys.
             var request = invocation.Request;
             var method = request.Method;
 
-            var key = $"{method.DeclaringType?.FullName}.{method.Name}({string.Join(",", request.Arguments)})";
+            var key = $"{GetKey(request)}.{method.Name}({string.Join(",", request.Arguments)})";
 
             var proceeded = false;
 
@@ -53,6 +53,13 @@ namespace Logikfabrik.Overseer.Caching
             {
                 invocation.ReturnValue = returnValue;
             }
+        }
+
+        private static string GetKey(IProxyRequest request)
+        {
+            var cacheable = request.Target as ICacheable;
+
+            return cacheable == null ? request.Method.DeclaringType?.FullName : cacheable.GetCacheKey();
         }
     }
 }

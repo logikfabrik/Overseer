@@ -128,7 +128,7 @@ namespace Logikfabrik.Overseer
             }
             else
             {
-                if (_provider.Settings.Equals(_settings))
+                if (_provider.Settings.Signature() == _settings.Signature())
                 {
                     return _provider;
                 }

@@ -70,7 +70,7 @@ namespace Logikfabrik.Overseer
 
                     if (_connections.TryGetValue(settings.Id, out connectionToUpdate))
                     {
-                        if (connectionToUpdate.Settings.Equals(settings))
+                        if (connectionToUpdate.Settings.Signature() == settings.Signature())
                         {
                             continue;
                         }
