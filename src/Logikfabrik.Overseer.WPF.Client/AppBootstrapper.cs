@@ -30,6 +30,7 @@ namespace Logikfabrik.Overseer.WPF.Client
     {
         private readonly IKernel _kernel;
         private readonly Lazy<IEnumerable<Assembly>> _assemblies;
+        private ILogService _logService;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="AppBootstrapper" /> class.
@@ -121,6 +122,8 @@ namespace Logikfabrik.Overseer.WPF.Client
             _kernel.Bind<ConnectionsViewModel>().ToSelf().InSingletonScope();
 
             _kernel.Load(SelectAssemblies());
+
+            _logService = _kernel.Get<ILogService>();
         }
 
         /// <summary>
@@ -235,16 +238,17 @@ namespace Logikfabrik.Overseer.WPF.Client
 
         private void CurrentDomainUnhandledException(object sender, UnhandledExceptionEventArgs e)
         {
-            var logService = _kernel.Get<ILogService>();
-
-            logService.Log<AppBootstrapper>(new LogEntry(LogEntryType.Error, "An unhandled error occurred."));
+            _logService.Log<AppBootstrapper>(new LogEntry(LogEntryType.Error, "An unhandled error occurred."));
         }
 
         private void CurrentDomainFirstChanceException(object sender, FirstChanceExceptionEventArgs e)
         {
-            var logService = _kernel.Get<ILogService>();
+            if (e.Exception is OperationCanceledException)
+            {
+                return;
+            }
 
-            logService.Log<AppBootstrapper>(new LogEntry(LogEntryType.Error, "An first chance error occurred.", e.Exception));
+            _logService.Log<AppBootstrapper>(new LogEntry(LogEntryType.Error, "An first chance error occurred.", e.Exception));
         }
     }
 }
