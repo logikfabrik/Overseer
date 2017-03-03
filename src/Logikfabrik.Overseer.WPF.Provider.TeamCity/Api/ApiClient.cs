@@ -81,6 +81,8 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity.Api
         {
             this.ThrowIfDisposed(_isDisposed);
 
+            cancellationToken.ThrowIfCancellationRequested();
+
             const string url = "projects";
 
             using (var response = await _httpClient.Value.GetAsync(url, cancellationToken).ConfigureAwait(false))
@@ -99,6 +101,8 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity.Api
         public async Task<BuildTypes> GetBuildTypesAsync(CancellationToken cancellationToken)
         {
             this.ThrowIfDisposed(_isDisposed);
+
+            cancellationToken.ThrowIfCancellationRequested();
 
             const string url = "buildTypes?fields=buildType(projectId,projectName,builds($locator(count:1),build(id,triggered(user),startDate,finishDate,status,state,number,lastChanges:(change),branchName,testOccurrences,webUrl)))";
 

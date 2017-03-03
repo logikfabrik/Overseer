@@ -47,6 +47,8 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices.Api
             Ensure.That(skip).IsInRange(0, int.MaxValue);
             Ensure.That(take).IsInRange(1, int.MaxValue);
 
+            cancellationToken.ThrowIfCancellationRequested();
+
             var url = $"_apis/projects?api-version=2.0&$skip={skip}&$top={take}";
 
             using (var response = await _httpClient.Value.GetAsync(url, cancellationToken).ConfigureAwait(false))
@@ -73,6 +75,8 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices.Api
             Ensure.That(skip).IsInRange(0, int.MaxValue);
             Ensure.That(take).IsInRange(1, int.MaxValue);
 
+            cancellationToken.ThrowIfCancellationRequested();
+
             var url = $"{projectId}/_apis/build/builds?api-version=2.0&$skip={skip}&$top={take}";
 
             using (var response = await _httpClient.Value.GetAsync(url, cancellationToken).ConfigureAwait(false))
@@ -96,6 +100,8 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices.Api
 
             Ensure.That(projectId).IsNotNullOrWhiteSpace();
             Ensure.That(buildId).IsNotNullOrWhiteSpace();
+
+            cancellationToken.ThrowIfCancellationRequested();
 
             var url = $"{projectId}/_apis/build/builds/{buildId}/changes?api-version=2.0";
 

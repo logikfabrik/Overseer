@@ -16,7 +16,7 @@ namespace Logikfabrik.Overseer
     /// <summary>
     /// The <see cref="BuildMonitor" /> class.
     /// </summary>
-    public class BuildMonitor : IBuildMonitor, IDisposable, IObserver<IConnection[]>
+    public class BuildMonitor : IBuildMonitor
     {
         private readonly ILogService _logService;
         private readonly IDisposable _subscription;
@@ -195,7 +195,14 @@ namespace Logikfabrik.Overseer
 
         private async Task GetProjectsAndBuildsAsync(IEnumerable<IConnection> connections, CancellationToken cancellationToken)
         {
-            var bufferBlock = new BufferBlock<IConnection>(new DataflowBlockOptions
+            // TODO: Look into jobs not starting.
+            var projectBufferBlock = new BufferBlock<IConnection>(new DataflowBlockOptions
+            {
+                BoundedCapacity = 4,
+                CancellationToken = cancellationToken
+            });
+
+            var buildsBufferBlock = new BufferBlock<Tuple<IConnection, IProject>>(new DataflowBlockOptions
             {
                 BoundedCapacity = 4,
                 CancellationToken = cancellationToken
@@ -203,33 +210,34 @@ namespace Logikfabrik.Overseer
 
             var executionOptions = new ExecutionDataflowBlockOptions
             {
-                BoundedCapacity = 8,
+                BoundedCapacity = 4,
                 CancellationToken = cancellationToken
             };
 
             var projectBlock =
                 new TransformManyBlock<IConnection, Tuple<IConnection, IProject>>(
                     async param =>
-                        (await GetProjectsAsync(param, cancellationToken).ConfigureAwait(false)).Select(
-                            project => new Tuple<IConnection, IProject>(param, project)), executionOptions);
+                        (await GetProjectsAsync(param, cancellationToken).ConfigureAwait(false)).Select(project => new Tuple<IConnection, IProject>(param, project)), executionOptions);
 
             var buildsBlock =
                 new ActionBlock<Tuple<IConnection, IProject>>(
                     async param =>
-                        await GetBuildsAsync(param.Item1, param.Item2, cancellationToken), executionOptions);
+                        await GetBuildsAsync(param.Item1, param.Item2, cancellationToken).ConfigureAwait(false), executionOptions);
 
             var linkOptions = new DataflowLinkOptions { PropagateCompletion = true };
 
-            bufferBlock.LinkTo(projectBlock, linkOptions);
-            projectBlock.LinkTo(buildsBlock, linkOptions);
+            projectBufferBlock.LinkTo(projectBlock, linkOptions);
+            projectBlock.LinkTo(buildsBufferBlock, linkOptions);
+            buildsBufferBlock.LinkTo(buildsBlock, linkOptions);
 
             foreach (var connection in connections)
             {
-                bufferBlock.Post(connection);
+                projectBufferBlock.Post(connection);
             }
 
-            bufferBlock.Complete();
+            projectBufferBlock.Complete();
             projectBlock.Complete();
+            buildsBufferBlock.Complete();
 
             await buildsBlock.Completion;
         }

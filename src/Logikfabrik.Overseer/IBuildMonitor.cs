@@ -9,7 +9,7 @@ namespace Logikfabrik.Overseer
     /// <summary>
     /// The <see cref="IBuildMonitor" /> interface.
     /// </summary>
-    public interface IBuildMonitor
+    public interface IBuildMonitor : IDisposable, IObserver<IConnection[]>
     {
         /// <summary>
         /// Occurs if there is an connection error.

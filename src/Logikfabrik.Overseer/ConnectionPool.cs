@@ -58,6 +58,8 @@ namespace Logikfabrik.Overseer
                 return;
             }
 
+            var connectionsToDispose = new List<IConnection>();
+
             if (!value.Any())
             {
                 _connections.Clear();
@@ -89,15 +91,20 @@ namespace Logikfabrik.Overseer
 
                 foreach (var id in connectionsToRemove)
                 {
-                    var connectionToRemove = _connections[id];
+                    var connection = _connections[id];
+
+                    connectionsToDispose.Add(connection);
 
                     _connections.Remove(id);
-
-                    connectionToRemove.Dispose();
                 }
             }
 
             Next();
+
+            foreach (var connection in connectionsToDispose)
+            {
+                connection.Dispose();
+            }
         }
 
         /// <summary>

@@ -42,6 +42,8 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor.Api
         {
             this.ThrowIfDisposed(_isDisposed);
 
+            cancellationToken.ThrowIfCancellationRequested();
+
             const string url = "api/projects";
 
             using (var response = await _httpClient.Value.GetAsync(url, cancellationToken).ConfigureAwait(false))
@@ -67,6 +69,8 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor.Api
             Ensure.That(accountName).IsNotNullOrWhiteSpace();
             Ensure.That(projectSlug).IsNotNullOrWhiteSpace();
             Ensure.That(recordsNumber).IsInRange(1, int.MaxValue);
+
+            cancellationToken.ThrowIfCancellationRequested();
 
             var url = $"api/projects/{accountName}/{projectSlug}/history?recordsNumber={recordsNumber}";
 
