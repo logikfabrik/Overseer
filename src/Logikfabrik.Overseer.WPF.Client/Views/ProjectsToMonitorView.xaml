@@ -8,24 +8,51 @@
     d:DesignHeight="300"
     d:DesignWidth="300"
     mc:Ignorable="d">
-    <ScrollViewer Style="{StaticResource ScrollViewerDefaultStyle}">
-        <ItemsControl Focusable="False" ItemsSource="{Binding Projects, Mode=OneWay}">
-            <ItemsControl.ItemContainerStyle>
-                <Style>
-                    <!--  ReSharper disable once Xaml.RedundantPropertyTypeQualifier  -->
-                    <Setter Property="FrameworkElement.Margin" Value="0 0 0 5" />
-                </Style>
-            </ItemsControl.ItemContainerStyle>
-            <ItemsControl.ItemTemplate>
-                <DataTemplate>
-                    <ContentControl cal:View.Model="{Binding}" Focusable="False" />
-                </DataTemplate>
-            </ItemsControl.ItemTemplate>
-            <ItemsControl.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <StackPanel />
-                </ItemsPanelTemplate>
-            </ItemsControl.ItemsPanel>
-        </ItemsControl>
-    </ScrollViewer>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <ScrollViewer
+            Grid.Row="0"
+            Grid.ColumnSpan="2"
+            Style="{StaticResource ScrollViewerDefaultStyle}">
+            <ItemsControl Focusable="False" ItemsSource="{Binding Projects, Mode=OneWay}">
+                <ItemsControl.ItemContainerStyle>
+                    <Style>
+                        <!--  ReSharper disable once Xaml.RedundantPropertyTypeQualifier  -->
+                        <Setter Property="FrameworkElement.Margin" Value="0 0 0 5" />
+                    </Style>
+                </ItemsControl.ItemContainerStyle>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <ContentControl cal:View.Model="{Binding}" Focusable="False" />
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel />
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+            </ItemsControl>
+        </ScrollViewer>
+        <Button
+            x:Name="MonitorAll"
+            Grid.Row="1"
+            Grid.Column="0"
+            Content="Select all"
+            Style="{StaticResource ButtonDefaultStyle}" />
+        <Button
+            x:Name="MonitorNone"
+            Grid.Row="1"
+            Grid.Column="1"
+            Content="Deselect all"
+            Style="{StaticResource ButtonDefaultStyle}" />
+    </Grid>
 </UserControl>
