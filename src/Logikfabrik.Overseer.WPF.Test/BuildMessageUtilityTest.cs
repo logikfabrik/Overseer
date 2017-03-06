@@ -78,7 +78,8 @@ namespace Logikfabrik.Overseer.WPF.Test
             var parts = new Dictionary<string, string>
             {
                 { "requested by", "John Doe" },
-                { "modified by", "Jane Doe" }
+                { "modified by", "Jane Doe" },
+                { "cancelled by", string.Empty }
             };
 
             var buildStatusMessage1 = BuildMessageUtility.GetBuildStatusMessage(BuildStatus.Failed, parts);

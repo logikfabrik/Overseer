@@ -5,10 +5,8 @@
 namespace Logikfabrik.Overseer.WPF.ViewModels
 {
     using System.Collections.Generic;
-    using System.Linq;
     using Caliburn.Micro;
     using EnsureThat;
-    using Overseer.Extensions;
 
     /// <summary>
     /// The <see cref="ProjectDigestViewModel" /> class. View model for CI project digest.
@@ -23,20 +21,28 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         {
             Ensure.That(builds).IsNotNull();
 
-            var finishedBuilds = builds.Where(build => build.IsFinished()).ToArray();
+            Forecast = new ProjectForecast(builds);
 
-            SuccessRateMessage = BuildMessageUtility.GetSuccessRateMessage(finishedBuilds);
+            SuccessRateMessage = BuildMessageUtility.GetSuccessRateMessage(Forecast.SuccessRate);
 
-            var latestBuild = finishedBuilds.Where(build => build.IsFinished()).OrderByDescending(build => build.StartTime).FirstOrDefault();
+            var latestFinishedBuild = Forecast.LatestFinishedBuild;
 
-            if (latestBuild == null)
+            if (latestFinishedBuild == null)
             {
                 return;
             }
 
-            LatestBuildStatusMessage = BuildMessageUtility.GetBuildStatusMessage(latestBuild.Status);
-            LatestBuildRunTimeMessage = BuildMessageUtility.GetBuildRunTimeMessage(latestBuild);
+            LatestBuildStatusMessage = BuildMessageUtility.GetBuildStatusMessage(latestFinishedBuild.Status);
+            LatestBuildRunTimeMessage = BuildMessageUtility.GetBuildRunTimeMessage(latestFinishedBuild);
         }
+
+        /// <summary>
+        /// Gets the forecast.
+        /// </summary>
+        /// <value>
+        /// The forecast.
+        /// </value>
+        public ProjectForecast Forecast { get; }
 
         /// <summary>
         /// Gets the success rate message for the latest builds.

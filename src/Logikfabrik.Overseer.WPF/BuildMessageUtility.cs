@@ -2,11 +2,12 @@
 //   Copyright (c) 2016 anton(at)logikfabrik.se. Licensed under the MIT license.
 // </copyright>
 
+using System.Linq;
+
 namespace Logikfabrik.Overseer.WPF
 {
     using System;
     using System.Collections.Generic;
-    using System.Linq;
     using System.Text;
     using EnsureThat;
     using Humanizer;
@@ -89,7 +90,7 @@ namespace Logikfabrik.Overseer.WPF
 
             return string.IsNullOrWhiteSpace(messageParts)
                 ? $"Build {status.Value.Humanize().Transform(To.LowerCase)}"
-                : $"Build {GetMessageParts(parts)} {status.Value.Humanize().Transform(To.LowerCase)}";
+                : $"Build {messageParts} {status.Value.Humanize().Transform(To.LowerCase)}";
         }
 
         /// <summary>
@@ -139,34 +140,18 @@ namespace Logikfabrik.Overseer.WPF
         /// <summary>
         /// Gets the success rate message.
         /// </summary>
-        /// <param name="builds">The builds.</param>
+        /// <param name="successRate">The success rate.</param>
         /// <returns>The success rate message.</returns>
-        public static string GetSuccessRateMessage(IEnumerable<IBuild> builds)
+        public static string GetSuccessRateMessage(double successRate)
         {
-            Ensure.That(builds).IsNotNull();
-
-            return $"{GetSuccessRate(builds)}% of recent builds were successful";
-        }
-
-        private static double GetSuccessRate(IEnumerable<IBuild> builds)
-        {
-            var finishedBuilds = builds.Where(build => build.IsFinished()).ToArray();
-
-            var numberOfBuilds = finishedBuilds.Length;
-
-            if (numberOfBuilds < 1)
-            {
-                return 0;
-            }
-
-            var numberOfSuccessfulBuilds = finishedBuilds.Count(build => build.Status == BuildStatus.Succeeded);
-
-            return (double)numberOfSuccessfulBuilds / numberOfBuilds * 100;
+            return $"{successRate}% of recent builds were successful";
         }
 
         private static string GetMessageParts(IDictionary<string, string> parts)
         {
-            return parts.Humanize(part => $"{part.Key?.Transform(To.LowerCase)} {part.Value}");
+            var messageParts = parts.Where(part => !string.IsNullOrWhiteSpace(part.Value));
+
+            return messageParts.Humanize(part => $"{part.Key?.Transform(To.LowerCase)} {part.Value}");
         }
     }
 }
