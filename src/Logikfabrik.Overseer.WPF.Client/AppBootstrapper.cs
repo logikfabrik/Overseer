@@ -217,7 +217,8 @@ namespace Logikfabrik.Overseer.WPF.Client
                 .Where(type => !type.IsAbstract && typeof(INinjectModule).IsAssignableFrom(type))
                 .Select(type => type.GetConstructor(Type.EmptyTypes))
                 .Select(constructor => constructor?.Invoke(new object[] { }) as INinjectModule)
-                .Select(module => module?.Name);
+                .Select(module => module?.Name)
+                .ToArray();
 
             return names;
         }
@@ -230,10 +231,12 @@ namespace Logikfabrik.Overseer.WPF.Client
 
             moduleAssemblies.AddRange(AppDomain.CurrentDomain.GetAssemblies()
                 .Where(assembly => !assembly.IsDynamic && assembly.GetExportedTypes()
-                .Any(type => !type.IsAbstract && typeof(INinjectModule).IsAssignableFrom(type))));
+                .Any(type => !type.IsAbstract && typeof(INinjectModule).IsAssignableFrom(type)))
+                .ToArray());
 
             return moduleAssemblies
-                .Where(assembly => GetModuleNames(assembly).All(name => !_kernel.HasModule(name)));
+                .Where(assembly => GetModuleNames(assembly).All(name => !_kernel.HasModule(name)))
+                .ToArray();
         }
 
         private void CurrentDomainUnhandledException(object sender, UnhandledExceptionEventArgs e)

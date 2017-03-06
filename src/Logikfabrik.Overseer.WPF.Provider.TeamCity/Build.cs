@@ -38,7 +38,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity
                     Id = change.Id,
                     Changed = change.Date?.ToUniversalTime(),
                     ChangedBy = change.Username
-                });
+                }).ToArray();
             }
             else
             {

@@ -37,7 +37,7 @@ namespace Logikfabrik.Overseer.WPF.MarkupExtensions
         /// </returns>
         public override object ProvideValue(IServiceProvider serviceProvider)
         {
-            return Enum.GetValues(_enumType).Cast<object>().Select(value => new { Value = value, DisplayName = value.ToString() });
+            return Enum.GetValues(_enumType).Cast<object>().Select(value => new { Value = value, DisplayName = value.ToString() }).ToArray();
         }
     }
 }

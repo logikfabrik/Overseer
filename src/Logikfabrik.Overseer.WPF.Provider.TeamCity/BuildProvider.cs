@@ -45,7 +45,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity
 
             var projects = await _apiClient.GetProjectsAsync(cancellationToken).ConfigureAwait(false);
 
-            return projects.Project.Select(project => new Project(project));
+            return projects.Project.Select(project => new Project(project)).ToArray();
         }
 
         /// <summary>
@@ -67,7 +67,8 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity
             return buildTypes.BuildType
                 .Where(buildType => buildType.ProjectId == projectId)
                 .SelectMany(buildType => buildType.Builds.Build)
-                .Select(build => new Build(build));
+                .Select(build => new Build(build))
+                .ToArray();
         }
 
         /// <summary>

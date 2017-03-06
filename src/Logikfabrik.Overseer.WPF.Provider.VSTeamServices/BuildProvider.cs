@@ -45,7 +45,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices
 
             var projects = await _apiClient.GetProjectsAsync(0, int.MaxValue, cancellationToken).ConfigureAwait(false);
 
-            return projects.Value.Select(project => new Project(project));
+            return projects.Value.Select(project => new Project(project)).ToArray();
         }
 
         /// <summary>
@@ -73,7 +73,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices
                 builds.Add(new Build(build, changes.Value));
             }
 
-            return builds;
+            return builds.ToArray();
         }
 
         /// <summary>

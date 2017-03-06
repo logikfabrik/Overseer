@@ -45,7 +45,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor
 
             var projects = await _apiClient.GetProjectsAsync(cancellationToken).ConfigureAwait(false);
 
-            return projects.Select(project => new Project(project));
+            return projects.Select(project => new Project(project)).ToArray();
         }
 
         /// <summary>
@@ -75,7 +75,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor
 
             var projectHistory = await _apiClient.GetProjectHistoryAsync(project.AccountName, project.Slug, numberOfBuilds, cancellationToken).ConfigureAwait(false);
 
-            return projectHistory.Builds.Select(build => new Build(build));
+            return projectHistory.Builds.Select(build => new Build(build)).ToArray();
         }
 
         /// <summary>

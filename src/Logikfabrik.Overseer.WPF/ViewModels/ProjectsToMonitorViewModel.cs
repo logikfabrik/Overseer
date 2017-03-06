@@ -51,7 +51,9 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
 
         private void ToggleMonitoring(bool monitor)
         {
-            foreach (var project in Projects.Where(project => project.Monitor != monitor))
+            var projects = Projects.Where(project => project.Monitor != monitor).ToArray();
+
+            foreach (var project in projects)
             {
                 project.Monitor = monitor;
             }

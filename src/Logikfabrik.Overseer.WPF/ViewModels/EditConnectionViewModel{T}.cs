@@ -188,7 +188,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
                     var projects = await provider.GetProjectsAsync(CancellationToken.None).ConfigureAwait(false);
 
                     Settings.IsDirty = false;
-                    Settings.ProjectsToMonitor = _projectsToMonitorFactory.Create(projects.OrderBy(project => project.Name).Select(project => _projectToMonitorFactory.Create(project.Id, project.Name, _currentSettings.ProjectsToMonitor.Contains(project.Id))));
+                    Settings.ProjectsToMonitor = _projectsToMonitorFactory.Create(projects.OrderBy(project => project.Name).Select(project => _projectToMonitorFactory.Create(project.Id, project.Name, _currentSettings.ProjectsToMonitor.Contains(project.Id))).ToArray());
 
                     HasConnected = true;
                 }

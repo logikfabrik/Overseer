@@ -174,7 +174,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity.ViewModels
         /// <returns>The settings.</returns>
         public override ConnectionSettings GetSettings()
         {
-            var projects = ProjectsToMonitor?.Projects?.Where(project => project.Monitor) ?? new ProjectToMonitorViewModel[] { };
+            var projects = ProjectsToMonitor?.Projects?.Where(project => project.Monitor).ToArray() ?? new ProjectToMonitorViewModel[] { };
 
             return new ConnectionSettings
             {

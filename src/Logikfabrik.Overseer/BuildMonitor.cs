@@ -217,7 +217,7 @@ namespace Logikfabrik.Overseer
             var projectBlock =
                 new TransformManyBlock<IConnection, Tuple<IConnection, IProject>>(
                     async param =>
-                        (await GetProjectsAsync(param, cancellationToken).ConfigureAwait(false)).Select(project => new Tuple<IConnection, IProject>(param, project)), executionOptions);
+                        (await GetProjectsAsync(param, cancellationToken).ConfigureAwait(false)).Select(project => new Tuple<IConnection, IProject>(param, project)).ToArray(), executionOptions);
 
             var buildsBlock =
                 new ActionBlock<Tuple<IConnection, IProject>>(

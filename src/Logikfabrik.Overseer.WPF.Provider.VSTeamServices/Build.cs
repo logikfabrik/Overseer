@@ -38,7 +38,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices
                 Changed = lastChange.Timestamp?.ToUniversalTime(),
                 ChangedBy = lastChange.Author.DisplayName,
                 Comment = lastChange.Message
-            });
+            }).ToArray();
         }
 
         /// <summary>
