@@ -211,7 +211,8 @@ namespace Logikfabrik.Overseer
             var executionOptions = new ExecutionDataflowBlockOptions
             {
                 BoundedCapacity = 4,
-                CancellationToken = cancellationToken
+                CancellationToken = cancellationToken,
+                MaxDegreeOfParallelism = Environment.ProcessorCount
             };
 
             var projectBlock =

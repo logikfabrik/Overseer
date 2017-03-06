@@ -10,7 +10,7 @@ namespace Logikfabrik.Overseer.WPF
     using Overseer.Extensions;
 
     /// <summary>
-    /// The <see cref="ProjectForecast" /> class.
+    /// The <see cref="ProjectForecast" /> class. View model for CI project forecast.
     /// </summary>
     public class ProjectForecast
     {
