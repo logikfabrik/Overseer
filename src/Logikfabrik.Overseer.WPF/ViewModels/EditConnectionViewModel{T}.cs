@@ -119,6 +119,12 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             }
         }
 
+        /// <summary>
+        /// Gets a value indicating whether the settings for this instance have been used to successfully connect.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if the settings for this instance have been used to successfully connect; otherwise, <c>false</c>.
+        /// </value>
         public bool HasConnected
         {
             get
@@ -135,8 +141,20 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             }
         }
 
+        /// <summary>
+        /// Gets a value indicating whether the settings for this instance have not been used to successfully connect.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if the settings for this instance have not been used to successfully connect; otherwise, <c>false</c>.
+        /// </value>
         public bool HasNotConnected => !HasConnected;
 
+        /// <summary>
+        /// Gets a value indicating whether the settings for this instance are valid and have been used to successfully connect.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if the settings for this instance are valid and have been used to successfully connect; otherwise, <c>false</c>.
+        /// </value>
         public bool IsValidAndHasConnected => Settings.IsValid && HasConnected;
 
         /// <summary>
