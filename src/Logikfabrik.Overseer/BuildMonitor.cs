@@ -247,7 +247,9 @@ namespace Logikfabrik.Overseer
             {
                 cancellationToken.ThrowIfCancellationRequested();
 
-                var projects = (await connection.GetProjectsAsync(cancellationToken).ConfigureAwait(false)).ToArray();
+                var projects =
+                    (await connection.GetProjectsAsync(cancellationToken).ConfigureAwait(false)).Where(
+                        project => connection.Settings.ProjectsToMonitor.Contains(project.Id)).ToArray();
 
                 OnConnectionProgressChanged(new BuildMonitorConnectionProgressEventArgs(connection.Settings.Id, projects));
 

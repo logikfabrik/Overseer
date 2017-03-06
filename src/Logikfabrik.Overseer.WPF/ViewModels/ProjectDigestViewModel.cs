@@ -5,8 +5,10 @@
 namespace Logikfabrik.Overseer.WPF.ViewModels
 {
     using System.Collections.Generic;
+    using System.Linq;
     using Caliburn.Micro;
     using EnsureThat;
+    using Overseer.Extensions;
 
     /// <summary>
     /// The <see cref="ProjectDigestViewModel" /> class. View model for CI project digest.
@@ -21,44 +23,30 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         {
             Ensure.That(builds).IsNotNull();
 
-            Forecast = new ProjectForecast(builds);
+            var finishedBuilds = builds.Where(build => build.IsFinished()).ToArray();
 
-            SuccessRateMessage = BuildMessageUtility.GetSuccessRateMessage(Forecast.SuccessRate);
+            var successfulBuilds = finishedBuilds.Count(build => build.Status == BuildStatus.Succeeded);
 
-            var latestFinishedBuild = Forecast.LatestFinishedBuild;
+            SuccessRate = finishedBuilds.Length == 0 ? 100 : (double)successfulBuilds / finishedBuilds.Length;
+
+            var latestFinishedBuild = finishedBuilds.OrderByDescending(build => build.StartTime).FirstOrDefault();
 
             if (latestFinishedBuild == null)
             {
                 return;
             }
 
-            LatestBuildStatusMessage = BuildMessageUtility.GetBuildStatusMessage(latestFinishedBuild.Status);
             LatestBuildRunTimeMessage = BuildMessageUtility.GetBuildRunTimeMessage(latestFinishedBuild);
+            ShowLatestBuildRunTimeMessage = true;
         }
 
         /// <summary>
-        /// Gets the forecast.
+        /// Gets the success rate.
         /// </summary>
         /// <value>
-        /// The forecast.
+        /// The success rate.
         /// </value>
-        public ProjectForecast Forecast { get; }
-
-        /// <summary>
-        /// Gets the success rate message for the latest builds.
-        /// </summary>
-        /// <value>
-        /// The success rate message for the latest builds.
-        /// </value>
-        public string SuccessRateMessage { get; }
-
-        /// <summary>
-        /// Gets the status message for the latest build.
-        /// </summary>
-        /// <value>
-        /// The status message for the latest build.
-        /// </value>
-        public string LatestBuildStatusMessage { get; }
+        public double SuccessRate { get; }
 
         /// <summary>
         /// Gets the run time message for the latest build.
@@ -67,5 +55,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// The run time message for the latest build.
         /// </value>
         public string LatestBuildRunTimeMessage { get; }
+
+        public bool ShowLatestBuildRunTimeMessage { get; }
     }
 }

@@ -88,10 +88,8 @@
     <Compile Include="BuildNotificationManager.cs" />
     <Compile Include="Converters\BooleanToVisibilityConverter.cs" />
     <Compile Include="Converters\BuildStatusToStyleConverter.cs" />
-    <Compile Include="Converters\ForecastToStyleConverter.cs" />
     <Compile Include="Converters\TaskStatusToBooleanConverter.cs" />
     <Compile Include="Extensions\HyperlinkExtensions.cs" />
-    <Compile Include="Forecast.cs" />
     <Compile Include="IBuildNotificationManager.cs" />
     <Compile Include="INotificationManager.cs" />
     <Compile Include="INotifyTask.cs" />
@@ -100,7 +98,6 @@
     <Compile Include="NavigationMessage2.cs" />
     <Compile Include="NotificationManager.cs" />
     <Compile Include="NotifyTask.cs" />
-    <Compile Include="ProjectForecast.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>

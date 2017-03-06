@@ -136,16 +136,6 @@ namespace Logikfabrik.Overseer.WPF
             return null;
         }
 
-        /// <summary>
-        /// Gets the success rate message.
-        /// </summary>
-        /// <param name="successRate">The success rate.</param>
-        /// <returns>The success rate message.</returns>
-        public static string GetSuccessRateMessage(double successRate)
-        {
-            return $"{successRate}% of recent builds were successful";
-        }
-
         private static string GetMessageParts(IDictionary<string, string> parts)
         {
             var messageParts = parts.Where(part => !string.IsNullOrWhiteSpace(part.Value));
