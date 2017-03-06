@@ -10,7 +10,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity.Api.Models
     public enum BuildStatus
     {
         /// <summary>
-        /// The build has no known status.
+        /// The build has no status.
         /// </summary>
         Unknown,
 

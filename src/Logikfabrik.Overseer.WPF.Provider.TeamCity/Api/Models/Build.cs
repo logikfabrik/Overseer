@@ -99,6 +99,12 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity.Api.Models
         /// </value>
         public TestOccurrences TestOccurrences { get; set; }
 
+        /// <summary>
+        /// Gets or sets what or who triggered the build.
+        /// </summary>
+        /// <value>
+        /// What or who triggered the build.
+        /// </value>
         public Trigger Triggered { get; set; }
     }
 }

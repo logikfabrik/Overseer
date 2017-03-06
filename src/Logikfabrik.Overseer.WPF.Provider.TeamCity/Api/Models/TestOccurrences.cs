@@ -24,5 +24,21 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity.Api.Models
         /// The number of passed tests.
         /// </value>
         public int Passed { get; set; }
+
+        /// <summary>
+        /// Gets or sets the number of failed tests.
+        /// </summary>
+        /// <value>
+        /// The number of failed tests.
+        /// </value>
+        public int Failed { get; set; }
+
+        /// <summary>
+        /// Gets or sets the number of muted tests.
+        /// </summary>
+        /// <value>
+        /// The number of muted tests.
+        /// </value>
+        public int Muted { get; set; }
     }
 }

@@ -29,7 +29,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity
             StartTime = build.StartDate?.ToUniversalTime();
             EndTime = build.FinishDate?.ToUniversalTime();
             Status = GetStatus(build);
-            RequestedBy = null;
+            RequestedBy = GetRequestedBy(build);
 
             if (build.LastChanges != null)
             {
@@ -117,6 +117,22 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity
         /// The changes.
         /// </value>
         public IEnumerable<IChange> Changes { get; }
+
+        private static string GetRequestedBy(Api.Models.Build build)
+        {
+            // ReSharper disable once SwitchStatementMissingSomeCases
+            switch (build.Triggered.Type)
+            {
+                case Api.Models.TriggerType.Vcs:
+                    return build.Triggered.Details;
+
+                case Api.Models.TriggerType.User:
+                    return build.Triggered.User?.Username;
+
+                default:
+                    return null;
+            }
+        }
 
         private static BuildStatus? GetStatus(Api.Models.Build build)
         {

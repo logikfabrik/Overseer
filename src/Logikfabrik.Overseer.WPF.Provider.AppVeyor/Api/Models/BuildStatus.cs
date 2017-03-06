@@ -9,10 +9,19 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor.Api.Models
     /// </summary>
     public enum BuildStatus
     {
+        /// <summary>
+        /// The build succeeded.
+        /// </summary>
         Success,
 
+        /// <summary>
+        /// The build failed.
+        /// </summary>
         Failed,
 
+        /// <summary>
+        /// The build is cancelled.
+        /// </summary>
         Cancelled
     }
 }

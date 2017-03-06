@@ -112,6 +112,7 @@
     <Compile Include="Api\Models\Projects.cs" />
     <Compile Include="Api\Models\TestOccurrences.cs" />
     <Compile Include="Api\Models\Trigger.cs" />
+    <Compile Include="Api\Models\TriggerType.cs" />
     <Compile Include="Api\Models\User.cs" />
     <Compile Include="AuthenticationType.cs" />
     <Compile Include="BaseUriHelper.cs" />
