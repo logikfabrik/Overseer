@@ -22,6 +22,16 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor.Api.Models
         /// <summary>
         /// The build is cancelled.
         /// </summary>
-        Cancelled
+        Cancelled,
+
+        /// <summary>
+        /// The build is queued.
+        /// </summary>
+        Queued,
+
+        /// <summary>
+        /// The build is running.
+        /// </summary>
+        Running
     }
 }
