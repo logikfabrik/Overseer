@@ -70,6 +70,7 @@ namespace Logikfabrik.Overseer
             }
 
             _cancellationTokenSource?.Cancel();
+            _cancellationTokenSource?.Dispose();
             _cancellationTokenSource = new CancellationTokenSource();
 
             var cancellationToken = _cancellationTokenSource.Token;
@@ -195,7 +196,6 @@ namespace Logikfabrik.Overseer
 
         private async Task GetProjectsAndBuildsAsync(IEnumerable<IConnection> connections, CancellationToken cancellationToken)
         {
-            // TODO: Look into jobs not starting.
             var projectBufferBlock = new BufferBlock<IConnection>(new DataflowBlockOptions
             {
                 BoundedCapacity = 4,
@@ -236,8 +236,6 @@ namespace Logikfabrik.Overseer
             }
 
             projectBufferBlock.Complete();
-            projectBlock.Complete();
-            buildsBufferBlock.Complete();
 
             await buildsBlock.Completion;
         }
