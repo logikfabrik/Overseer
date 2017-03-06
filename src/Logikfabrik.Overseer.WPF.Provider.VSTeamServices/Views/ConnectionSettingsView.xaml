@@ -26,25 +26,25 @@
             </Viewbox>
             <TextBlock
                 FontSize="24"
-                Style="{DynamicResource TextBlockDefaultStyle}"
+                Style="{StaticResource TextBlockDefaultStyle}"
                 Text="Visual Studio Team Services" />
         </StackPanel>
         <StackPanel Margin="0,0,0,20">
-            <TextBlock Style="{DynamicResource TextBlockDefaultStyle}" Text="Connection Name" />
-            <TextBox Style="{DynamicResource TextBoxDefaultStyle}" Text="{Binding Path=Name, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" />
+            <TextBlock Style="{StaticResource TextBlockDefaultStyle}" Text="Connection Name" />
+            <TextBox Style="{StaticResource TextBoxDefaultStyle}" Text="{Binding Path=Name, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" />
         </StackPanel>
         <StackPanel Margin="0,0,0,20">
-            <TextBlock Style="{DynamicResource TextBlockDefaultStyle}" Text="URL" />
-            <TextBox Style="{DynamicResource TextBoxDefaultStyle}" Text="{Binding Path=Url, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" />
+            <TextBlock Style="{StaticResource TextBlockDefaultStyle}" Text="URL" />
+            <TextBox Style="{StaticResource TextBoxDefaultStyle}" Text="{Binding Path=Url, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" />
             <TextBlock
                 FontSize="10"
-                Style="{DynamicResource TextBlockDefaultStyle}"
+                Style="{StaticResource TextBlockDefaultStyle}"
                 Text="e.g. https://overseer-ci.visualstudio.com" />
         </StackPanel>
         <StackPanel Margin="0,0,0,20">
-            <TextBlock Style="{DynamicResource TextBlockDefaultStyle}" Text="Token" />
-            <TextBox Style="{DynamicResource TextBoxDefaultStyle}" Text="{Binding Path=Token, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" />
-            <TextBlock FontSize="10" Style="{DynamicResource TextBlockDefaultStyle}">
+            <TextBlock Style="{StaticResource TextBlockDefaultStyle}" Text="Token" />
+            <TextBox Style="{StaticResource TextBoxDefaultStyle}" Text="{Binding Path=Token, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" />
+            <TextBlock FontSize="10" Style="{StaticResource TextBlockDefaultStyle}">
                 You create your token at
                 <Hyperlink extensions:HyperlinkExtensions.IsExternal="True" NavigateUri="https://www.visualstudio.com">visualstudio.com</Hyperlink>
             </TextBlock>

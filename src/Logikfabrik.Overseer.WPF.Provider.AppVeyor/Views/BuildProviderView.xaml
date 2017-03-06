@@ -10,7 +10,7 @@
     <Button
         x:Name="AddConnection"
         VerticalContentAlignment="Stretch"
-        Style="{DynamicResource ButtonDefaultStyle}">
+        Style="{StaticResource ButtonDefaultStyle}">
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="70" />
@@ -32,7 +32,7 @@
             <TextBlock
                 Grid.Row="1"
                 VerticalAlignment="Center"
-                Style="{DynamicResource TextBlockDefaultStyle}"
+                Style="{StaticResource TextBlockDefaultStyle}"
                 Text="AppVeyor"
                 TextAlignment="Center" />
         </Grid>

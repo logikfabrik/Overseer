@@ -148,6 +148,10 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <ApplicationDefinition Condition="$(DesignTime)==true AND $(BuildingInsideVisualStudio)!=true AND $(BuildingInsideExpressionBlend)!=true" Include="App.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </ApplicationDefinition>
     <Page Include="Views\BuildProviderView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

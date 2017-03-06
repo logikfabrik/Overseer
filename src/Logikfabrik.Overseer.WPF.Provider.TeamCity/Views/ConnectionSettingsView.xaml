@@ -27,23 +27,23 @@
             </Viewbox>
             <TextBlock
                 FontSize="24"
-                Style="{DynamicResource TextBlockDefaultStyle}"
+                Style="{StaticResource TextBlockDefaultStyle}"
                 Text="TeamCity" />
         </StackPanel>
         <StackPanel Margin="0,0,0,20">
-            <TextBlock Style="{DynamicResource TextBlockDefaultStyle}" Text="Connection Name" />
-            <TextBox Style="{DynamicResource TextBoxDefaultStyle}" Text="{Binding Path=Name, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" />
+            <TextBlock Style="{StaticResource TextBlockDefaultStyle}" Text="Connection Name" />
+            <TextBox Style="{StaticResource TextBoxDefaultStyle}" Text="{Binding Path=Name, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" />
         </StackPanel>
         <StackPanel Margin="0,0,0,20">
-            <TextBlock Style="{DynamicResource TextBlockDefaultStyle}" Text="URL" />
-            <TextBox Style="{DynamicResource TextBoxDefaultStyle}" Text="{Binding Path=Url, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" />
+            <TextBlock Style="{StaticResource TextBlockDefaultStyle}" Text="URL" />
+            <TextBox Style="{StaticResource TextBoxDefaultStyle}" Text="{Binding Path=Url, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" />
             <TextBlock
                 FontSize="10"
-                Style="{DynamicResource TextBlockDefaultStyle}"
+                Style="{StaticResource TextBlockDefaultStyle}"
                 Text="{Binding Path=BaseUri, Mode=OneWay}" />
         </StackPanel>
         <StackPanel Margin="0,0,0,20">
-            <TextBlock Style="{DynamicResource TextBlockDefaultStyle}" Text="Authentication Type" />
+            <TextBlock Style="{StaticResource TextBlockDefaultStyle}" Text="Authentication Type" />
             <ComboBox
                 DisplayMemberPath="DisplayName"
                 ItemsSource="{markupExtensions:EnumToItemsSourceMarkup {x:Type teamCity:AuthenticationType}}"
@@ -52,12 +52,12 @@
         </StackPanel>
         <StackPanel Margin="0,0,0,20">
             <StackPanel>
-                <TextBlock Style="{DynamicResource TextBlockDefaultStyle}" Text="Username" />
-                <TextBox Style="{DynamicResource TextBoxDefaultStyle}" Text="{Binding Path=Username, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" />
+                <TextBlock Style="{StaticResource TextBlockDefaultStyle}" Text="Username" />
+                <TextBox Style="{StaticResource TextBoxDefaultStyle}" Text="{Binding Path=Username, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" />
             </StackPanel>
             <StackPanel>
-                <TextBlock Style="{DynamicResource TextBlockDefaultStyle}" Text="Password" />
-                <TextBox Style="{DynamicResource TextBoxDefaultStyle}" Text="{Binding Path=Password, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" />
+                <TextBlock Style="{StaticResource TextBlockDefaultStyle}" Text="Password" />
+                <TextBox Style="{StaticResource TextBoxDefaultStyle}" Text="{Binding Path=Password, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" />
             </StackPanel>
         </StackPanel>
     </StackPanel>
