@@ -64,7 +64,7 @@
                 FontWeight="SemiBold"
                 Style="{StaticResource TextBlockDefaultStyle}" />
             <WrapPanel>
-                <StackPanel Orientation="Horizontal">
+                <StackPanel x:Name="ShowRequestedBy" Orientation="Horizontal">
                     <Viewbox
                         Width="16"
                         Height="16"
@@ -78,7 +78,7 @@
                         Margin="5,5,15,5"
                         Style="{StaticResource TextBlockDefaultStyle}" />
                 </StackPanel>
-                <StackPanel Orientation="Horizontal">
+                <StackPanel x:Name="ShowBranch" Orientation="Horizontal">
                     <Viewbox
                         Width="16"
                         Height="16"

@@ -10,7 +10,7 @@
     <Border BorderBrush="#FF595959" BorderThickness="0,2,0,0">
         <StackPanel>
             <WrapPanel>
-                <StackPanel Orientation="Horizontal">
+                <StackPanel x:Name="ShowChangedBy" Orientation="Horizontal">
                     <Viewbox
                         Width="16"
                         Height="16"
@@ -24,7 +24,7 @@
                         Margin="5,5,15,5"
                         Style="{StaticResource TextBlockDefaultStyle}" />
                 </StackPanel>
-                <StackPanel Orientation="Horizontal">
+                <StackPanel x:Name="ShowChanged" Orientation="Horizontal">
                     <Viewbox
                         Width="16"
                         Height="16"
@@ -38,7 +38,7 @@
                         Margin="5,5,15,5"
                         Style="{StaticResource TextBlockDefaultStyle}" />
                 </StackPanel>
-                <StackPanel Orientation="Horizontal">
+                <StackPanel x:Name="ShowId" Orientation="Horizontal">
                     <Viewbox
                         Width="16"
                         Height="16"
@@ -53,7 +53,9 @@
                         Style="{StaticResource TextBlockDefaultStyle}" />
                 </StackPanel>
             </WrapPanel>
-            <TextBlock x:Name="Comment" Style="{StaticResource TextBlockDefaultStyle}" />
+            <StackPanel x:Name="ShowComment">
+                <TextBlock x:Name="Comment" Style="{StaticResource TextBlockDefaultStyle}" />
+            </StackPanel>
         </StackPanel>
     </Border>
 </UserControl>

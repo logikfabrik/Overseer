@@ -7,7 +7,6 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     using System;
     using Caliburn.Micro;
     using EnsureThat;
-    using Humanizer;
 
     /// <summary>
     /// The <see cref="BuildViewModel" /> class.
@@ -22,10 +21,14 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         {
             Ensure.That(change).IsNotNull();
 
-            Id = change.Id.Truncate(10, "...");
+            Id = change.Id;
+            ShowId = !string.IsNullOrWhiteSpace(change.Id);
             Changed = change.Changed;
+            ShowChanged = change.Changed.HasValue;
             ChangedBy = change.ChangedBy;
+            ShowChangedBy = !string.IsNullOrWhiteSpace(change.ChangedBy);
             Comment = change.Comment;
+            ShowComment = !string.IsNullOrWhiteSpace(change.Comment);
         }
 
         /// <summary>
@@ -37,12 +40,28 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         public string Id { get; }
 
         /// <summary>
+        /// Gets a value indicating whether to show the identifier.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if the identifier should be shown; otherwise, <c>false</c>.
+        /// </value>
+        public bool ShowId { get; }
+
+        /// <summary>
         /// Gets the changed date.
         /// </summary>
         /// <value>
         /// The changed date.
         /// </value>
         public DateTime? Changed { get; }
+
+        /// <summary>
+        /// Gets a value indicating whether to show the changed date.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if the changed date should be shown; otherwise, <c>false</c>.
+        /// </value>
+        public bool ShowChanged { get; }
 
         /// <summary>
         /// Gets the name of whoever made the change.
@@ -53,11 +72,27 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         public string ChangedBy { get; }
 
         /// <summary>
+        /// Gets a value indicating whether to show the name of whoever made the changed.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if the name of whoever made the change should be shown; otherwise, <c>false</c>.
+        /// </value>
+        public bool ShowChangedBy { get; }
+
+        /// <summary>
         /// Gets the comment.
         /// </summary>
         /// <value>
         /// The comment.
         /// </value>
         public string Comment { get; }
+
+        /// <summary>
+        /// Gets a value indicating whether to show the comment.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if the comment should be shown; otherwise, <c>false</c>.
+        /// </value>
+        public bool ShowComment { get; }
     }
 }
