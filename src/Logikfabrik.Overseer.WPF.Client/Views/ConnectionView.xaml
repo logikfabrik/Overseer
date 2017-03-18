@@ -61,26 +61,35 @@
                                         </Viewbox>
                                     </Button>
                                 </Grid>
-                                <Border x:Name="PART_Connections" Padding="10,10,10,0">
-                                    <ItemsControl Focusable="False" ItemsSource="{Binding Projects, Mode=OneWay}">
-                                        <ItemsControl.ItemContainerStyle>
-                                            <Style>
-                                                <!--  ReSharper disable once Xaml.RedundantPropertyTypeQualifier  -->
-                                                <Setter Property="FrameworkElement.Margin" Value="0 0 0 10" />
-                                            </Style>
-                                        </ItemsControl.ItemContainerStyle>
-                                        <ItemsControl.ItemTemplate>
-                                            <DataTemplate>
-                                                <ContentControl cal:View.Model="{Binding}" Focusable="False" />
-                                            </DataTemplate>
-                                        </ItemsControl.ItemTemplate>
-                                        <ItemsControl.ItemsPanel>
-                                            <ItemsPanelTemplate>
-                                                <StackPanel />
-                                            </ItemsPanelTemplate>
-                                        </ItemsControl.ItemsPanel>
-                                    </ItemsControl>
-                                </Border>
+                                <ItemsControl
+                                    x:Name="PART_Connections"
+                                    Focusable="False"
+                                    ItemsSource="{Binding Projects, Mode=OneWay}"
+                                    VirtualizingStackPanel.IsVirtualizing="True">
+                                    <ItemsControl.ItemContainerStyle>
+                                        <Style>
+                                            <!--  ReSharper disable once Xaml.RedundantPropertyTypeQualifier  -->
+                                            <Setter Property="FrameworkElement.Margin" Value="10,10,5,0" />
+                                        </Style>
+                                    </ItemsControl.ItemContainerStyle>
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                            <ContentControl cal:View.Model="{Binding}" Focusable="False" />
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                    <ItemsControl.Template>
+                                        <ControlTemplate>
+                                            <ScrollViewer Height="300" Style="{StaticResource ScrollViewerDefaultStyle}">
+                                                <ItemsPresenter />
+                                            </ScrollViewer>
+                                        </ControlTemplate>
+                                    </ItemsControl.Template>
+                                    <ItemsControl.ItemsPanel>
+                                        <ItemsPanelTemplate>
+                                            <VirtualizingStackPanel />
+                                        </ItemsPanelTemplate>
+                                    </ItemsControl.ItemsPanel>
+                                </ItemsControl>
                             </StackPanel>
                             <ControlTemplate.Triggers>
                                 <Trigger Property="IsExpanded" Value="False">

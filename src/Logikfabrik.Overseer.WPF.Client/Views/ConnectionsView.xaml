@@ -13,29 +13,31 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        <ScrollViewer Style="{StaticResource ScrollViewerDefaultStyle}">
-            <ItemsControl
-                Margin="10,10,5,10"
-                Focusable="False"
-                ItemsSource="{Binding Connections, Mode=OneWay}">
-                <ItemsControl.ItemContainerStyle>
-                    <Style>
-                        <!--  ReSharper disable once Xaml.RedundantPropertyTypeQualifier  -->
-                        <Setter Property="FrameworkElement.Margin" Value="0 0 0 5" />
-                    </Style>
-                </ItemsControl.ItemContainerStyle>
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <ContentControl cal:View.Model="{Binding}" Focusable="False" />
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-                <ItemsControl.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <StackPanel />
-                    </ItemsPanelTemplate>
-                </ItemsControl.ItemsPanel>
-            </ItemsControl>
-        </ScrollViewer>
+        <ItemsControl Focusable="False" ItemsSource="{Binding Connections, Mode=OneWay}">
+            <ItemsControl.ItemContainerStyle>
+                <Style>
+                    <!--  ReSharper disable once Xaml.RedundantPropertyTypeQualifier  -->
+                    <Setter Property="FrameworkElement.Margin" Value="10,10,5,0" />
+                </Style>
+            </ItemsControl.ItemContainerStyle>
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <ContentControl cal:View.Model="{Binding}" Focusable="False" />
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+            <ItemsControl.Template>
+                <ControlTemplate>
+                    <ScrollViewer Style="{StaticResource ScrollViewerDefaultStyle}">
+                        <ItemsPresenter />
+                    </ScrollViewer>
+                </ControlTemplate>
+            </ItemsControl.Template>
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <VirtualizingStackPanel />
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+        </ItemsControl>
         <Button
             x:Name="AddConnection"
             Grid.Row="1"

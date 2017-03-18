@@ -10,26 +10,26 @@
     mc:Ignorable="d">
     <ScrollViewer Style="{StaticResource ScrollViewerDefaultStyle}">
         <StackPanel Margin="25">
-            <StackPanel>
+
+            <ContentControl
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Stretch"
+                cal:View.Model="{Binding Settings, Mode=OneWay}"
+                Focusable="False" />
+            <StackPanel Margin="0,0,0,20">
+                <Button
+                    x:Name="TryConnection"
+                    Content="Try connection"
+                    IsEnabled="{Binding HasNotConnected, Mode=OneWay}"
+                    Style="{StaticResource ButtonDefaultStyle}" />
+                <TextBlock Text="Error" Visibility="{Binding ConnectionTask.Status, Converter={StaticResource TaskStatusFaultedToBooleanConverter}}" />
                 <ContentControl
+                    MaxHeight="200"
                     HorizontalAlignment="Stretch"
-                    VerticalAlignment="Stretch"
-                    cal:View.Model="{Binding Settings, Mode=OneWay}"
+                    cal:View.Model="{Binding Settings.ProjectsToMonitor, Mode=OneWay}"
                     Focusable="False" />
-                <StackPanel Margin="0,0,0,20">
-                    <Button
-                        x:Name="TryConnection"
-                        Content="Try connection"
-                        IsEnabled="{Binding HasNotConnected, Mode=OneWay}"
-                        Style="{StaticResource ButtonDefaultStyle}" />
-                    <TextBlock Text="Error" Visibility="{Binding ConnectionTask.Status, Converter={StaticResource TaskStatusFaultedToBooleanConverter}}" />
-                    <ContentControl
-                        MaxHeight="200"
-                        HorizontalAlignment="Stretch"
-                        cal:View.Model="{Binding Settings.ProjectsToMonitor, Mode=OneWay}"
-                        Focusable="False" />
-                </StackPanel>
             </StackPanel>
+
             <StackPanel Orientation="Horizontal">
                 <Button
                     x:Name="AddConnection"
