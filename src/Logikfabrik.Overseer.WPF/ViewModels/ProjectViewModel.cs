@@ -16,16 +16,16 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     /// <summary>
     /// The <see cref="ProjectViewModel" /> class. View model for CI projects.
     /// </summary>
-    public class ProjectViewModel : PropertyChangedBase
+    public class ProjectViewModel : PropertyChangedBase, IProjectViewModel
     {
         private readonly IBuildViewModelFactory _buildFactory;
         private readonly IProjectDigestViewModelFactory _digestFactory;
         private readonly Guid _settingsId;
-        private List<BuildViewModel> _builds;
+        private List<IBuildViewModel> _builds;
         private string _name;
         private bool _isBusy;
         private bool _isErrored;
-        private ProjectDigestViewModel _digest;
+        private IProjectDigestViewModel _digest;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ProjectViewModel" /> class.
@@ -51,7 +51,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             _name = projectName;
             _isBusy = true;
             _isErrored = false;
-            _builds = new List<BuildViewModel>();
+            _builds = new List<IBuildViewModel>();
 
             WeakEventManager<IBuildMonitor, BuildMonitorProjectErrorEventArgs>.AddHandler(buildMonitor, nameof(buildMonitor.ProjectError), BuildMonitorProjectError);
             WeakEventManager<IBuildMonitor, BuildMonitorProjectProgressEventArgs>.AddHandler(buildMonitor, nameof(buildMonitor.ProjectProgressChanged), BuildMonitorProjectProgressChanged);
@@ -86,12 +86,12 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         }
 
         /// <summary>
-        /// Gets the build view models.
+        /// Gets the builds
         /// </summary>
         /// <value>
-        /// The build view models.
+        /// The builds.
         /// </value>
-        public IEnumerable<BuildViewModel> Builds
+        public IEnumerable<IBuildViewModel> Builds
         {
             get
             {
@@ -160,7 +160,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// <value>
         /// The digest.
         /// </value>
-        public ProjectDigestViewModel Digest
+        public IProjectDigestViewModel Digest
         {
             get
             {
@@ -212,7 +212,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             var isDirty = false;
             var isUpdated = false;
 
-            var currentBuilds = new List<BuildViewModel>(Builds);
+            var currentBuilds = new List<IBuildViewModel>(Builds);
 
             foreach (var build in e.Builds)
             {

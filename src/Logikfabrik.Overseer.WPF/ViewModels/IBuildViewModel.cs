@@ -1,8 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace Logikfabrik.Overseer.WPF.ViewModels
+﻿namespace Logikfabrik.Overseer.WPF.ViewModels
 {
+    using System;
+    using System.Collections.Generic;
+
     public interface IBuildViewModel
     {
         /// <summary>
@@ -92,5 +92,8 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// The changes.
         /// </value>
         IEnumerable<IChangeViewModel> Changes { get; }
+
+        bool TryUpdate(string projectName, BuildStatus? status, DateTime? startTime, DateTime? endTime,
+            TimeSpan? runTime);
     }
 }

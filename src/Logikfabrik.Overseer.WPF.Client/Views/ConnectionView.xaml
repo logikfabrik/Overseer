@@ -65,6 +65,7 @@
                                     x:Name="PART_Connections"
                                     Focusable="False"
                                     ItemsSource="{Binding Projects, Mode=OneWay}"
+                                    VirtualizingPanel.ScrollUnit="Pixel"
                                     VirtualizingStackPanel.IsVirtualizing="True">
                                     <ItemsControl.ItemContainerStyle>
                                         <Style>
@@ -79,7 +80,7 @@
                                     </ItemsControl.ItemTemplate>
                                     <ItemsControl.Template>
                                         <ControlTemplate>
-                                            <ScrollViewer Height="300" Style="{StaticResource ScrollViewerDefaultStyle}">
+                                            <ScrollViewer Height="500" Style="{StaticResource ScrollViewerDefaultStyle}">
                                                 <ItemsPresenter />
                                             </ScrollViewer>
                                         </ControlTemplate>

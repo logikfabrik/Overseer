@@ -6,62 +6,53 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:vm="clr-namespace:Logikfabrik.Overseer.WPF.ViewModels.DesignTime;assembly=Logikfabrik.Overseer.WPF"
+    Height="116"
     cal:Bind.AtDesignTime="True"
     d:DataContext="{d:DesignInstance d:Type=vm:ChangeViewModel,
                                      d:IsDesignTimeCreatable=True}"
-    d:DesignHeight="300"
-    d:DesignWidth="300"
     mc:Ignorable="d">
-    <Border BorderBrush="#FF595959" BorderThickness="0,2,0,0">
-        <StackPanel>
-            <WrapPanel>
-                <StackPanel x:Name="ShowChangedBy" Orientation="Horizontal">
-                    <Viewbox
-                        Width="16"
-                        Height="16"
-                        Margin="5,5,0,5">
-                        <Canvas Width="20" Height="20">
-                            <Path Data="M7.725,2.146C6.709,2.902 6.436,4.099 6.486,4.736 6.55,5.515 6.708,6.529 6.708,6.529 6.708,6.529 6.395,6.699 6.395,7.383 6.504,9.1 7.078,8.359 7.196,9.112 7.48,10.926 8.129,10.603 8.129,11.593 8.129,13.242 7.449,14.013 5.326,14.927 3.196,15.845 1,17 1,19L1,20 19,20 19,19C19,17 16.803,15.845 14.672,14.928 12.549,14.014 11.871,13.244 11.871,11.594 11.871,10.604 12.518,10.927 12.803,9.113 12.922,8.36 13.495,9.101 13.606,7.384 13.606,6.7 13.292,6.53 13.292,6.53 13.292,6.53 13.45,5.516 13.513,4.737 13.578,3.92 13.115,2.176 11.213,1.641 10.88,1.301 10.655,0.760000000000001 11.679,0.217000000000001 9.439,0.112 8.918,1.284 7.725,2.146z" Fill="#FFFFFFFF" />
-                        </Canvas>
-                    </Viewbox>
-                    <TextBlock
-                        x:Name="ChangedBy"
-                        Margin="5,5,15,5"
-                        Style="{StaticResource TextBlockDefaultStyle}"
-                        Text="{Binding ChangedBy, Mode=OneWay}" />
-                </StackPanel>
-                <StackPanel x:Name="ShowChanged" Orientation="Horizontal">
-                    <Viewbox
-                        Width="16"
-                        Height="16"
-                        Margin="5,5,0,5">
-                        <Canvas Width="20" Height="20">
-                            <Path Data="M17,3L16,3 16,5 13,5 13,3 7,3 7,5 4,5 4,3 3,3C1.899,3,1,3.9,1,5L1,17C1,18.1,1.899,19,3,19L17,19C18.1,19,19,18.1,19,17L19,5C19,3.9,18.1,3,17,3z M17,17L3,17 3,9 17,9 17,17z M6.5,1L4.5,1 4.5,4.5 6.5,4.5 6.5,1z M15.5,1L13.5,1 13.5,4.5 15.5,4.5 15.5,1z" Fill="#FFFFFFFF" />
-                        </Canvas>
-                    </Viewbox>
-                    <TextBlock
-                        x:Name="Changed"
-                        Margin="5,5,15,5"
-                        Style="{StaticResource TextBlockDefaultStyle}" />
-                </StackPanel>
-                <StackPanel x:Name="ShowId" Orientation="Horizontal">
-                    <Viewbox
-                        Width="16"
-                        Height="16"
-                        Margin="5,5,0,5">
-                        <Canvas Width="20" Height="20">
-                            <Path Data="M11,13.824L11,6.176C11.825,5.796 12.4,4.968 12.4,4 12.4,2.674 11.326,1.6 10,1.6 8.674,1.6 7.6,2.674 7.6,4 7.6,4.967 8.176,5.796 9,6.176L9,13.825C8.175,14.204 7.6,15.033 7.6,16 7.6,17.326 8.674,18.4 10,18.4 11.326,18.4 12.4,17.325 12.4,16 12.4,15.033 11.825,14.204 11,13.824z M10,2.615C10.764,2.615 11.384,3.234 11.384,4 11.384,4.764 10.764,5.385 10,5.385 9.235,5.385 8.616,4.764 8.616,4 8.616,3.234 9.235,2.615 10,2.615z M10,17.385C9.234,17.385 8.615,16.764 8.615,16 8.615,15.234 9.234,14.615 10,14.615 10.764,14.615 11.384,15.234 11.384,16 11.384,16.764 10.764,17.385 10,17.385z" Fill="#FFFFFFFF" />
-                        </Canvas>
-                    </Viewbox>
-                    <TextBlock
-                        x:Name="Id"
-                        Margin="5,5,15,5"
-                        Style="{StaticResource TextBlockDefaultStyle}" />
-                </StackPanel>
-            </WrapPanel>
-            <StackPanel x:Name="ShowComment">
-                <TextBlock x:Name="Comment" Style="{StaticResource TextBlockDefaultStyle}" />
-            </StackPanel>
+    <UserControl.Resources>
+        <Style BasedOn="{StaticResource TextBlockDefaultStyle}" TargetType="{x:Type TextBlock}">
+            <Setter Property="TextTrimming" Value="CharacterEllipsis" />
+            <Setter Property="TextWrapping" Value="NoWrap" />
+        </Style>
+        <Style TargetType="{x:Type Viewbox}">
+            <Setter Property="Width" Value="16" />
+            <Setter Property="Height" Value="16" />
+            <Setter Property="Margin" Value="5,5,0,5" />
+        </Style>
+        <Style TargetType="{x:Type Canvas}">
+            <Setter Property="Width" Value="20" />
+            <Setter Property="Height" Value="20" />
+        </Style>
+    </UserControl.Resources>
+    <StackPanel>
+        <StackPanel Orientation="Horizontal" Visibility="{Binding ShowChangedBy, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <Viewbox>
+                <Canvas>
+                    <Path Data="M7.725,2.146C6.709,2.902 6.436,4.099 6.486,4.736 6.55,5.515 6.708,6.529 6.708,6.529 6.708,6.529 6.395,6.699 6.395,7.383 6.504,9.1 7.078,8.359 7.196,9.112 7.48,10.926 8.129,10.603 8.129,11.593 8.129,13.242 7.449,14.013 5.326,14.927 3.196,15.845 1,17 1,19L1,20 19,20 19,19C19,17 16.803,15.845 14.672,14.928 12.549,14.014 11.871,13.244 11.871,11.594 11.871,10.604 12.518,10.927 12.803,9.113 12.922,8.36 13.495,9.101 13.606,7.384 13.606,6.7 13.292,6.53 13.292,6.53 13.292,6.53 13.45,5.516 13.513,4.737 13.578,3.92 13.115,2.176 11.213,1.641 10.88,1.301 10.655,0.760000000000001 11.679,0.217000000000001 9.439,0.112 8.918,1.284 7.725,2.146z" Fill="#FFFFFFFF" />
+                </Canvas>
+            </Viewbox>
+            <TextBlock Text="{Binding ChangedBy, Mode=OneWay}" />
         </StackPanel>
-    </Border>
+        <StackPanel Orientation="Horizontal" Visibility="{Binding ShowChanged, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <Viewbox>
+                <Canvas>
+                    <Path Data="M17,3L16,3 16,5 13,5 13,3 7,3 7,5 4,5 4,3 3,3C1.899,3,1,3.9,1,5L1,17C1,18.1,1.899,19,3,19L17,19C18.1,19,19,18.1,19,17L19,5C19,3.9,18.1,3,17,3z M17,17L3,17 3,9 17,9 17,17z M6.5,1L4.5,1 4.5,4.5 6.5,4.5 6.5,1z M15.5,1L13.5,1 13.5,4.5 15.5,4.5 15.5,1z" Fill="#FFFFFFFF" />
+                </Canvas>
+            </Viewbox>
+            <TextBlock Text="{Binding Changed, Mode=OneWay}" />
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Visibility="{Binding ShowId, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <Viewbox>
+                <Canvas>
+                    <Path Data="M11,13.824L11,6.176C11.825,5.796 12.4,4.968 12.4,4 12.4,2.674 11.326,1.6 10,1.6 8.674,1.6 7.6,2.674 7.6,4 7.6,4.967 8.176,5.796 9,6.176L9,13.825C8.175,14.204 7.6,15.033 7.6,16 7.6,17.326 8.674,18.4 10,18.4 11.326,18.4 12.4,17.325 12.4,16 12.4,15.033 11.825,14.204 11,13.824z M10,2.615C10.764,2.615 11.384,3.234 11.384,4 11.384,4.764 10.764,5.385 10,5.385 9.235,5.385 8.616,4.764 8.616,4 8.616,3.234 9.235,2.615 10,2.615z M10,17.385C9.234,17.385 8.615,16.764 8.615,16 8.615,15.234 9.234,14.615 10,14.615 10.764,14.615 11.384,15.234 11.384,16 11.384,16.764 10.764,17.385 10,17.385z" Fill="#FFFFFFFF" />
+                </Canvas>
+            </Viewbox>
+            <TextBlock Text="{Binding Id, Mode=OneWay}" />
+        </StackPanel>
+        <StackPanel Visibility="{Binding ShowComment, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <TextBlock Text="{Binding Comment, Mode=OneWay}" />
+        </StackPanel>
+    </StackPanel>
 </UserControl>

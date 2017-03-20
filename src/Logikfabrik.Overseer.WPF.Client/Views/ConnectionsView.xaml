@@ -13,7 +13,11 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        <ItemsControl Focusable="False" ItemsSource="{Binding Connections, Mode=OneWay}">
+        <ItemsControl
+            Focusable="False"
+            ItemsSource="{Binding Connections, Mode=OneWay}"
+            VirtualizingPanel.ScrollUnit="Pixel"
+            VirtualizingStackPanel.IsVirtualizing="True">
             <ItemsControl.ItemContainerStyle>
                 <Style>
                     <!--  ReSharper disable once Xaml.RedundantPropertyTypeQualifier  -->

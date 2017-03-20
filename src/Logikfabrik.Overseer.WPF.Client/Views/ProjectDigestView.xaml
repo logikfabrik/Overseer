@@ -2,8 +2,13 @@
     x:Class="Logikfabrik.Overseer.WPF.Client.Views.ProjectDigestView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:cal="http://www.caliburnproject.org"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:vm="clr-namespace:Logikfabrik.Overseer.WPF.ViewModels.DesignTime;assembly=Logikfabrik.Overseer.WPF"
+    cal:Bind.AtDesignTime="True"
+    d:DataContext="{d:DesignInstance d:Type=vm:ProjectDigestViewModel,
+                                     d:IsDesignTimeCreatable=True}"
     d:DesignHeight="300"
     d:DesignWidth="300"
     mc:Ignorable="d">
@@ -22,9 +27,5 @@
                 Style="{StaticResource TextBlockDefaultStyle}"
                 Text="{Binding SuccessRate, Mode=OneTime, StringFormat={}{0:P}}" />
         </StackPanel>
-        <TextBlock
-            Margin="5,5,15,5"
-            Style="{StaticResource TextBlockDefaultStyle}"
-            Text="{Binding LatestBuildRunTimeMessage, Mode=OneTime}" />
     </StackPanel>
 </UserControl>

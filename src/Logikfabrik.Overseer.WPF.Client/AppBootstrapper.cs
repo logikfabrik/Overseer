@@ -80,6 +80,8 @@ namespace Logikfabrik.Overseer.WPF.Client
             {
                 ConfigureRuntime();
             }
+
+            ViewLocator.AddNamespaceMapping("*", "Logikfabrik.Overseer.WPF.Client.Views");
         }
 
         /// <summary>
@@ -193,8 +195,6 @@ namespace Logikfabrik.Overseer.WPF.Client
             _kernel.Bind<ConnectionsViewModel>().ToSelf().InSingletonScope();
 
             _kernel.Load(GetModules());
-
-            ViewLocator.AddNamespaceMapping("*", "Logikfabrik.Overseer.WPF.Client.Views");
         }
 
         private void LoadAllAssemblies()

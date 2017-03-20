@@ -1,11 +1,11 @@
-﻿// <copyright file="ChangeDesignTimeViewModel.cs" company="Logikfabrik">
+﻿// <copyright file="ChangeViewModel.cs" company="Logikfabrik">
 //   Copyright (c) 2016 anton(at)logikfabrik.se. Licensed under the MIT license.
 // </copyright>
 
-using System;
-
 namespace Logikfabrik.Overseer.WPF.ViewModels.DesignTime
 {
+    using System;
+
     /// <summary>
     /// The <see cref="ChangeViewModel" /> class.
     /// </summary>

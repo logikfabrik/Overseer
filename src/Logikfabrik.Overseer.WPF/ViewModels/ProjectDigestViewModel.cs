@@ -13,7 +13,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     /// <summary>
     /// The <see cref="ProjectDigestViewModel" /> class. View model for CI project digest.
     /// </summary>
-    public class ProjectDigestViewModel : PropertyChangedBase
+    public class ProjectDigestViewModel : PropertyChangedBase, IProjectDigestViewModel
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ProjectDigestViewModel" /> class.
@@ -28,16 +28,6 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             var successfulBuilds = finishedBuilds.Count(build => build.Status == BuildStatus.Succeeded);
 
             SuccessRate = finishedBuilds.Length == 0 ? 100 : (double)successfulBuilds / finishedBuilds.Length;
-
-            var latestFinishedBuild = finishedBuilds.OrderByDescending(build => build.StartTime).FirstOrDefault();
-
-            if (latestFinishedBuild == null)
-            {
-                return;
-            }
-
-            LatestBuildRunTimeMessage = BuildMessageUtility.GetBuildRunTimeMessage(latestFinishedBuild);
-            ShowLatestBuildRunTimeMessage = true;
         }
 
         /// <summary>
@@ -47,15 +37,5 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// The success rate.
         /// </value>
         public double SuccessRate { get; }
-
-        /// <summary>
-        /// Gets the run time message for the latest build.
-        /// </summary>
-        /// <value>
-        /// The run time message for the latest build.
-        /// </value>
-        public string LatestBuildRunTimeMessage { get; }
-
-        public bool ShowLatestBuildRunTimeMessage { get; }
     }
 }
