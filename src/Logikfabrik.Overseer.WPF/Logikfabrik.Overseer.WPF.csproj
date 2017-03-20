@@ -103,6 +103,8 @@
     </Compile>
     <Compile Include="Validators\ConnectionSettingsViewModelValidator{T1,T2}.cs" />
     <Compile Include="Validators\EditSettingsViewModelValidator.cs" />
+    <Compile Include="ViewModels\DesignTime\BuildViewModel.cs" />
+    <Compile Include="ViewModels\DesignTime\ChangeViewModel.cs" />
     <Compile Include="ViewModels\ConnectionSettingsViewModel{T}.cs" />
     <Compile Include="ViewModels\Factories\ConnectionSettingsViewModelFactory{T1,T2}.cs" />
     <Compile Include="ViewModels\Factories\ConnectionViewModelFactory{T1,T2}.cs" />
@@ -119,6 +121,8 @@
     <Compile Include="ViewModels\Factories\IProjectViewModelFactory.cs" />
     <Compile Include="ViewModels\Factories\IRemoveConnectionViewModelFactory.cs" />
     <Compile Include="ViewModels\IBuildProviderViewModel.cs" />
+    <Compile Include="ViewModels\IBuildViewModel.cs" />
+    <Compile Include="ViewModels\IChangeViewModel.cs" />
     <Compile Include="ViewModels\ProjectDigestViewModel.cs" />
     <Compile Include="ViewModels\ProjectsToMonitorViewModel.cs" />
     <Compile Include="ViewModels\ProjectToMonitorViewModel.cs" />

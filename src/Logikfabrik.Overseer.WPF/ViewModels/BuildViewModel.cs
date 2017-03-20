@@ -14,7 +14,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     /// <summary>
     /// The <see cref="BuildViewModel" /> class.
     /// </summary>
-    public class BuildViewModel : PropertyChangedBase
+    public class BuildViewModel : PropertyChangedBase, IBuildViewModel
     {
         private readonly string _versionNumber;
         private string _name;
@@ -201,7 +201,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// <value>
         /// The changes.
         /// </value>
-        public IEnumerable<ChangeViewModel> Changes { get; }
+        public IEnumerable<IChangeViewModel> Changes { get; }
 
         /// <summary>
         /// Tries to update this instance.

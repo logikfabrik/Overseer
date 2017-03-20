@@ -6,13 +6,10 @@ namespace Logikfabrik.Overseer.WPF.Client
 {
     using System;
     using System.Collections.Generic;
-    using System.IO;
     using System.Linq;
     using System.Reflection;
-    using System.Runtime.ExceptionServices;
     using System.Windows;
     using Caliburn.Micro;
-    using log4net.Config;
     using Logging;
     using Ninject;
     using Ninject.Extensions.Factory;
@@ -29,23 +26,22 @@ namespace Logikfabrik.Overseer.WPF.Client
     public class AppBootstrapper : BootstrapperBase, IDisposable
     {
         private readonly IKernel _kernel;
-        private readonly Lazy<IEnumerable<Assembly>> _assemblies;
-        private ILogService _logService;
+        private readonly Lazy<IEnumerable<Assembly>> _runtimeAssemblies;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="AppBootstrapper" /> class.
         /// </summary>
         public AppBootstrapper()
         {
-            AppDomain.CurrentDomain.FirstChanceException += CurrentDomainFirstChanceException;
-            AppDomain.CurrentDomain.UnhandledException += CurrentDomainUnhandledException;
-
             _kernel = new StandardKernel();
-            _assemblies = new Lazy<IEnumerable<Assembly>>(GetAssemblies);
+            _runtimeAssemblies = new Lazy<IEnumerable<Assembly>>(GetRuntimeAssemblies);
+
+            if (!Execute.InDesignMode)
+            {
+                log4net.Config.XmlConfigurator.Configure();
+            }
 
             Initialize();
-
-            XmlConfigurator.Configure();
         }
 
         /// <summary>
@@ -70,60 +66,20 @@ namespace Logikfabrik.Overseer.WPF.Client
         }
 
         /// <summary>
-        /// Called on app end.
-        /// </summary>
-        /// <param name="sender">The sender.</param>
-        /// <param name="e">The event arguments.</param>
-        protected override void OnExit(object sender, EventArgs e)
-        {
-            base.OnExit(sender, e);
-
-            if (!_kernel.IsDisposed)
-            {
-                _kernel.Dispose();
-            }
-        }
-
-        /// <summary>
         /// Configure the container.
         /// </summary>
         protected override void Configure()
         {
             base.Configure();
 
-            // TODO: Discover and add automatically.
-            ViewLocator.AddNamespaceMapping("*", "Logikfabrik.Overseer.WPF.Client.Views");
-
-            // Business logic setup.
-            _kernel.Bind<ILogService>().To<LogService>();
-            _kernel.Bind<IConnectionSettingsSerializer>().ToProvider<ConnectionSettingsSerializerProvider>();
-            _kernel.Bind<IFileStore>().ToProvider<FileStoreProvider>();
-            _kernel.Bind<IConnectionSettingsStore>().To<ConnectionSettingsStore>();
-            _kernel.Bind<IConnectionSettingsRepository>().To<ConnectionSettingsRepository>().InSingletonScope();
-            _kernel.Bind<IBuildProviderStrategy>().To<BuildProviderStrategy>();
-            _kernel.Bind<IConnectionPool>().To<ConnectionPool>().InSingletonScope();
-            _kernel.Bind<IBuildMonitor>().To<BuildMonitor>().InSingletonScope();
-
-            // Caliburn Micro setup.
-            _kernel.Bind<IWindowManager>().To<WindowManager>().InSingletonScope();
-            _kernel.Bind<IEventAggregator>().To<EventAggregator>().InSingletonScope();
-
-            // WPF client setup.
-            _kernel.Bind<INotificationManager>().To<NotificationManager>();
-            _kernel.Bind<IBuildNotificationManager>().To<BuildNotificationManager>().InSingletonScope();
-            _kernel.Bind<IProjectToMonitorViewModelFactory>().ToFactory();
-            _kernel.Bind<IProjectsToMonitorViewModelFactory>().ToFactory();
-            _kernel.Bind<IChangeViewModelFactory>().ToFactory();
-            _kernel.Bind<IBuildViewModelFactory>().ToFactory();
-            _kernel.Bind<IProjectDigestViewModelFactory>().ToFactory();
-            _kernel.Bind<IProjectViewModelFactory>().ToFactory();
-            _kernel.Bind<IRemoveConnectionViewModelFactory>().ToFactory();
-            _kernel.Bind<IConnectionViewModelStrategy>().To<ConnectionViewModelStrategy>();
-            _kernel.Bind<ConnectionsViewModel>().ToSelf().InSingletonScope();
-
-            _kernel.Load(SelectAssemblies());
-
-            _logService = _kernel.Get<ILogService>();
+            if (Execute.InDesignMode)
+            {
+                ConfigureDesignTime();
+            }
+            else
+            {
+                ConfigureRuntime();
+            }
         }
 
         /// <summary>
@@ -164,7 +120,7 @@ namespace Logikfabrik.Overseer.WPF.Client
         /// </returns>
         protected override IEnumerable<Assembly> SelectAssemblies()
         {
-            return _assemblies.Value;
+            return Execute.InDesignMode ? base.SelectAssemblies() : _runtimeAssemblies.Value;
         }
 
         /// <summary>
@@ -185,73 +141,77 @@ namespace Logikfabrik.Overseer.WPF.Client
             }
         }
 
-        private static void LoadAllAssemblies()
+        private IEnumerable<Assembly> GetRuntimeAssemblies()
         {
-            var directoryName = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+            LoadAllAssemblies();
+
+            var product = GetType().Assembly.GetCustomAttribute<AssemblyProductAttribute>()?.Product;
+
+            Func<Assembly, bool> isProductAssembly = assembly => assembly.GetCustomAttribute<AssemblyProductAttribute>()?.Product == product;
+
+            return AppDomain.CurrentDomain.GetAssemblies().Where(assembly => !assembly.IsDynamic && isProductAssembly(assembly)).ToArray();
+        }
+
+        private IEnumerable<Assembly> GetModules()
+        {
+            return _runtimeAssemblies.Value.Where(assembly => assembly.GetExportedTypes().Any(type => !type.IsAbstract && typeof(INinjectModule).IsAssignableFrom(type)));
+        }
+
+        // ReSharper disable once MemberCanBeMadeStatic.Local
+        private void ConfigureDesignTime()
+        {
+            // Do nothing.
+        }
+
+        private void ConfigureRuntime()
+        {
+            // Business logic setup.
+            _kernel.Bind<ILogService>().To<LogService>();
+            _kernel.Bind<IConnectionSettingsSerializer>().ToProvider<ConnectionSettingsSerializerProvider>();
+            _kernel.Bind<IFileStore>().ToProvider<FileStoreProvider>();
+            _kernel.Bind<IConnectionSettingsStore>().To<ConnectionSettingsStore>();
+            _kernel.Bind<IConnectionSettingsRepository>().To<ConnectionSettingsRepository>().InSingletonScope();
+            _kernel.Bind<IBuildProviderStrategy>().To<BuildProviderStrategy>();
+            _kernel.Bind<IConnectionPool>().To<ConnectionPool>().InSingletonScope();
+            _kernel.Bind<IBuildMonitor>().To<BuildMonitor>().InSingletonScope();
+
+            // Caliburn Micro setup.
+            _kernel.Bind<IWindowManager>().To<WindowManager>().InSingletonScope();
+            _kernel.Bind<IEventAggregator>().To<EventAggregator>().InSingletonScope();
+
+            // WPF client setup.
+            _kernel.Bind<INotificationManager>().To<NotificationManager>();
+            _kernel.Bind<IBuildNotificationManager>().To<BuildNotificationManager>().InSingletonScope();
+            _kernel.Bind<IProjectToMonitorViewModelFactory>().ToFactory();
+            _kernel.Bind<IProjectsToMonitorViewModelFactory>().ToFactory();
+            _kernel.Bind<IChangeViewModelFactory>().ToFactory();
+            _kernel.Bind<IBuildViewModelFactory>().ToFactory();
+            _kernel.Bind<IProjectDigestViewModelFactory>().ToFactory();
+            _kernel.Bind<IProjectViewModelFactory>().ToFactory();
+            _kernel.Bind<IRemoveConnectionViewModelFactory>().ToFactory();
+            _kernel.Bind<IConnectionViewModelStrategy>().To<ConnectionViewModelStrategy>();
+            _kernel.Bind<ConnectionsViewModel>().ToSelf().InSingletonScope();
+
+            _kernel.Load(GetModules());
+
+            ViewLocator.AddNamespaceMapping("*", "Logikfabrik.Overseer.WPF.Client.Views");
+        }
+
+        private void LoadAllAssemblies()
+        {
+            var directoryName = System.IO.Path.GetDirectoryName(GetType().Assembly.Location);
 
             if (string.IsNullOrWhiteSpace(directoryName))
             {
                 return;
             }
 
-            var assemblyPaths = Directory.EnumerateFiles(directoryName, "*.dll", SearchOption.TopDirectoryOnly);
-
-            var assembliesInAppDomain = AppDomain.CurrentDomain.GetAssemblies();
+            var assemblyPaths = System.IO.Directory.EnumerateFiles(directoryName, "*.dll", System.IO.SearchOption.TopDirectoryOnly);
 
             foreach (var path in assemblyPaths)
             {
-                var assemblyName = AssemblyName.GetAssemblyName(path);
-
-                if (assembliesInAppDomain.Any(assembly => AssemblyName.ReferenceMatchesDefinition(assemblyName, assembly.GetName())))
-                {
-                    continue;
-                }
-
-                Assembly.Load(assemblyName);
+                AppDomain.CurrentDomain.Load(AssemblyName.GetAssemblyName(path));
             }
-        }
-
-        private static IEnumerable<string> GetModuleNames(Assembly assembly)
-        {
-            var names = assembly.GetExportedTypes()
-                .Where(type => !type.IsAbstract && typeof(INinjectModule).IsAssignableFrom(type))
-                .Select(type => type.GetConstructor(Type.EmptyTypes))
-                .Select(constructor => constructor?.Invoke(new object[] { }) as INinjectModule)
-                .Select(module => module?.Name)
-                .ToArray();
-
-            return names;
-        }
-
-        private IEnumerable<Assembly> GetAssemblies()
-        {
-            LoadAllAssemblies();
-
-            var moduleAssemblies = new List<Assembly>(base.SelectAssemblies());
-
-            moduleAssemblies.AddRange(AppDomain.CurrentDomain.GetAssemblies()
-                .Where(assembly => !assembly.IsDynamic && assembly.GetExportedTypes()
-                .Any(type => !type.IsAbstract && typeof(INinjectModule).IsAssignableFrom(type)))
-                .ToArray());
-
-            return moduleAssemblies
-                .Where(assembly => GetModuleNames(assembly).All(name => !_kernel.HasModule(name)))
-                .ToArray();
-        }
-
-        private void CurrentDomainUnhandledException(object sender, UnhandledExceptionEventArgs e)
-        {
-            _logService.Log<AppBootstrapper>(new LogEntry(LogEntryType.Error, "An unhandled error occurred."));
-        }
-
-        private void CurrentDomainFirstChanceException(object sender, FirstChanceExceptionEventArgs e)
-        {
-            if (e.Exception is OperationCanceledException)
-            {
-                return;
-            }
-
-            _logService.Log<AppBootstrapper>(new LogEntry(LogEntryType.Error, "An first chance error occurred.", e.Exception));
         }
     }
 }

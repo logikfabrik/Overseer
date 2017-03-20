@@ -1,43 +1,23 @@
-﻿// <copyright file="ChangeViewModel.cs" company="Logikfabrik">
+﻿// <copyright file="ChangeDesignTimeViewModel.cs" company="Logikfabrik">
 //   Copyright (c) 2016 anton(at)logikfabrik.se. Licensed under the MIT license.
 // </copyright>
 
-namespace Logikfabrik.Overseer.WPF.ViewModels
+using System;
+
+namespace Logikfabrik.Overseer.WPF.ViewModels.DesignTime
 {
-    using System;
-    using Caliburn.Micro;
-    using EnsureThat;
-
     /// <summary>
-    /// The <see cref="BuildViewModel" /> class.
+    /// The <see cref="ChangeViewModel" /> class.
     /// </summary>
-    public class ChangeViewModel : PropertyChangedBase, IChangeViewModel
+    public class ChangeViewModel : IChangeViewModel
     {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="ChangeViewModel" /> class.
-        /// </summary>
-        /// <param name="change">The change.</param>
-        public ChangeViewModel(IChange change)
-        {
-            Ensure.That(change).IsNotNull();
-
-            Id = change.Id;
-            ShowId = !string.IsNullOrWhiteSpace(change.Id);
-            Changed = change.Changed;
-            ShowChanged = change.Changed.HasValue;
-            ChangedBy = change.ChangedBy;
-            ShowChangedBy = !string.IsNullOrWhiteSpace(change.ChangedBy);
-            Comment = change.Comment;
-            ShowComment = !string.IsNullOrWhiteSpace(change.Comment);
-        }
-
         /// <summary>
         /// Gets the identifier.
         /// </summary>
         /// <value>
         /// The identifier.
         /// </value>
-        public string Id { get; }
+        public string Id { get; } = "1234";
 
         /// <summary>
         /// Gets a value indicating whether to show the identifier.
@@ -45,7 +25,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// <value>
         ///   <c>true</c> if the identifier should be shown; otherwise, <c>false</c>.
         /// </value>
-        public bool ShowId { get; }
+        public bool ShowId { get; } = true;
 
         /// <summary>
         /// Gets the changed date.
@@ -53,7 +33,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// <value>
         /// The changed date.
         /// </value>
-        public DateTime? Changed { get; }
+        public DateTime? Changed { get; } = DateTime.UtcNow;
 
         /// <summary>
         /// Gets a value indicating whether to show the changed date.
@@ -61,7 +41,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// <value>
         ///   <c>true</c> if the changed date should be shown; otherwise, <c>false</c>.
         /// </value>
-        public bool ShowChanged { get; }
+        public bool ShowChanged { get; } = true;
 
         /// <summary>
         /// Gets the name of whoever made the change.
@@ -69,7 +49,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// <value>
         /// The name of whoever made the change.
         /// </value>
-        public string ChangedBy { get; }
+        public string ChangedBy { get; } = "John Doe";
 
         /// <summary>
         /// Gets a value indicating whether to show the name of whoever made the changed.
@@ -77,7 +57,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// <value>
         ///   <c>true</c> if the name of whoever made the change should be shown; otherwise, <c>false</c>.
         /// </value>
-        public bool ShowChangedBy { get; }
+        public bool ShowChangedBy { get; } = true;
 
         /// <summary>
         /// Gets the comment.
@@ -85,7 +65,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// <value>
         /// The comment.
         /// </value>
-        public string Comment { get; }
+        public string Comment { get; } = "Minor change to the build definition";
 
         /// <summary>
         /// Gets a value indicating whether to show the comment.
@@ -93,6 +73,6 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// <value>
         ///   <c>true</c> if the comment should be shown; otherwise, <c>false</c>.
         /// </value>
-        public bool ShowComment { get; }
+        public bool ShowComment { get; } = true;
     }
 }
