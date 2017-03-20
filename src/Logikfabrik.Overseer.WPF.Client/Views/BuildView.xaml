@@ -6,11 +6,10 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:vm="clr-namespace:Logikfabrik.Overseer.WPF.ViewModels.DesignTime;assembly=Logikfabrik.Overseer.WPF"
-    Height="207"
     cal:Bind.AtDesignTime="True"
     d:DataContext="{d:DesignInstance d:Type=vm:BuildViewModel,
                                      d:IsDesignTimeCreatable=True}"
-    d:DesignWidth="300"
+    d:DesignWidth="500"
     mc:Ignorable="d">
     <UserControl.Resources>
         <SolidColorBrush x:Key="BuildBorder.InProgress.Border" Color="#FF5500FF" />
@@ -86,6 +85,14 @@
                 FontWeight="SemiBold"
                 Text="{Binding Name, Mode=OneWay}" />
             <WrapPanel>
+                <StackPanel x:Name="ShowStartTime" Orientation="Horizontal">
+                    <Viewbox>
+                        <Canvas>
+                            <Path Data="M17,3L16,3 16,5 13,5 13,3 7,3 7,5 4,5 4,3 3,3C1.899,3,1,3.9,1,5L1,17C1,18.1,1.899,19,3,19L17,19C18.1,19,19,18.1,19,17L19,5C19,3.9,18.1,3,17,3z M17,17L3,17 3,9 17,9 17,17z M6.5,1L4.5,1 4.5,4.5 6.5,4.5 6.5,1z M15.5,1L13.5,1 13.5,4.5 15.5,4.5 15.5,1z" Fill="#FFFFFFFF" />
+                        </Canvas>
+                    </Viewbox>
+                    <TextBlock Text="{Binding StartTime, Mode=OneWay}" />
+                </StackPanel>
                 <StackPanel x:Name="ShowRequestedBy" Orientation="Horizontal">
                     <Viewbox>
                         <Canvas>
@@ -94,6 +101,7 @@
                     </Viewbox>
                     <TextBlock Text="{Binding RequestedBy, Mode=OneWay}" />
                 </StackPanel>
+
                 <StackPanel x:Name="ShowBranch" Orientation="Horizontal">
                     <Viewbox>
                         <Canvas>
@@ -105,16 +113,7 @@
             </WrapPanel>
             <TextBlock FontSize="16" Text="{Binding Message, Mode=OneWay}" />
 
-            <ItemsControl
-                Focusable="False"
-                ItemsSource="{Binding Changes, Mode=OneWay}"
-                VirtualizingPanel.ScrollUnit="Pixel"
-                VirtualizingStackPanel.IsVirtualizing="True">
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <ContentControl cal:View.Model="{Binding}" Focusable="False" />
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
+            <ItemsControl ItemsSource="{Binding Changes, Mode=OneWay}">
                 <ItemsControl.Template>
                     <ControlTemplate>
                         <ScrollViewer Height="116" Style="{StaticResource ScrollViewerDefaultStyle}">
@@ -122,11 +121,6 @@
                         </ScrollViewer>
                     </ControlTemplate>
                 </ItemsControl.Template>
-                <ItemsControl.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <VirtualizingStackPanel />
-                    </ItemsPanelTemplate>
-                </ItemsControl.ItemsPanel>
             </ItemsControl>
         </StackPanel>
     </Border>

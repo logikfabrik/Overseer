@@ -82,7 +82,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels.DesignTime
         /// <value>
         /// The start time.
         /// </value>
-        public DateTime? StartTime { get; }
+        public DateTime? StartTime { get; } = DateTime.Now;
 
         /// <summary>
         /// Gets the end time.
@@ -104,5 +104,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels.DesignTime
         {
             throw new NotImplementedException();
         }
+
+        public bool ShowStartTime { get; } = true;
     }
 }

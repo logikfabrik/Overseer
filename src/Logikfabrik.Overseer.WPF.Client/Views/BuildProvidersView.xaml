@@ -17,21 +17,13 @@
                     Text="Select provider type" />
                 <TextBlock Style="{StaticResource TextBlockDefaultStyle}" Text="Select your type of CI provider, and set up a connection" />
             </StackPanel>
-            <ItemsControl
-                Margin="0,0,0,20"
-                Focusable="False"
-                ItemsSource="{Binding Providers, Mode=OneWay}">
+            <ItemsControl Margin="0,0,0,20" ItemsSource="{Binding Providers, Mode=OneWay}">
                 <ItemsControl.ItemContainerStyle>
                     <Style>
                         <!--  ReSharper disable once Xaml.RedundantPropertyTypeQualifier  -->
                         <Setter Property="FrameworkElement.Margin" Value="0 0 10 10" />
                     </Style>
                 </ItemsControl.ItemContainerStyle>
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <ContentControl cal:View.Model="{Binding}" Focusable="False" />
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
                         <WrapPanel />

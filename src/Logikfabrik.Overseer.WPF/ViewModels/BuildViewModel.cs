@@ -243,5 +243,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
 
             return isUpdated;
         }
+
+        public bool ShowStartTime => StartTime.HasValue;
     }
 }

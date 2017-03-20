@@ -29,28 +29,14 @@
             cal:View.Model="{Binding Digest, Mode=OneWay}"
             Focusable="False" />
         <TextBlock Text="Latest build:" />
-        <ItemsControl
-            Focusable="False"
-            ItemsSource="{Binding Builds, Mode=OneWay}"
-            VirtualizingPanel.ScrollUnit="Pixel"
-            VirtualizingStackPanel.IsVirtualizing="True">
-            <ItemsControl.ItemTemplate>
-                <DataTemplate>
-                    <ContentControl cal:View.Model="{Binding}" Focusable="False" />
-                </DataTemplate>
-            </ItemsControl.ItemTemplate>
+        <ItemsControl ItemsSource="{Binding Builds, Mode=OneWay}">
             <ItemsControl.Template>
                 <ControlTemplate>
-                    <ScrollViewer Height="207" Style="{StaticResource ScrollViewerDefaultStyle}">
+                    <ScrollViewer Height="180" Style="{StaticResource ScrollViewerDefaultStyle}">
                         <ItemsPresenter />
                     </ScrollViewer>
                 </ControlTemplate>
             </ItemsControl.Template>
-            <ItemsControl.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <VirtualizingStackPanel />
-                </ItemsPanelTemplate>
-            </ItemsControl.ItemsPanel>
         </ItemsControl>
     </StackPanel>
 </UserControl>

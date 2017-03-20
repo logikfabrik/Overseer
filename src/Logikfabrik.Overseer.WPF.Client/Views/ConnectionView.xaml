@@ -61,23 +61,13 @@
                                         </Viewbox>
                                     </Button>
                                 </Grid>
-                                <ItemsControl
-                                    x:Name="PART_Connections"
-                                    Focusable="False"
-                                    ItemsSource="{Binding Projects, Mode=OneWay}"
-                                    VirtualizingPanel.ScrollUnit="Pixel"
-                                    VirtualizingStackPanel.IsVirtualizing="True">
+                                <ItemsControl x:Name="PART_Connections" ItemsSource="{Binding Projects, Mode=OneWay}">
                                     <ItemsControl.ItemContainerStyle>
                                         <Style>
                                             <!--  ReSharper disable once Xaml.RedundantPropertyTypeQualifier  -->
                                             <Setter Property="FrameworkElement.Margin" Value="10,10,5,0" />
                                         </Style>
                                     </ItemsControl.ItemContainerStyle>
-                                    <ItemsControl.ItemTemplate>
-                                        <DataTemplate>
-                                            <ContentControl cal:View.Model="{Binding}" Focusable="False" />
-                                        </DataTemplate>
-                                    </ItemsControl.ItemTemplate>
                                     <ItemsControl.Template>
                                         <ControlTemplate>
                                             <ScrollViewer Height="500" Style="{StaticResource ScrollViewerDefaultStyle}">
@@ -85,11 +75,6 @@
                                             </ScrollViewer>
                                         </ControlTemplate>
                                     </ItemsControl.Template>
-                                    <ItemsControl.ItemsPanel>
-                                        <ItemsPanelTemplate>
-                                            <VirtualizingStackPanel />
-                                        </ItemsPanelTemplate>
-                                    </ItemsControl.ItemsPanel>
                                 </ItemsControl>
                             </StackPanel>
                             <ControlTemplate.Triggers>

@@ -13,22 +13,13 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        <ItemsControl
-            Focusable="False"
-            ItemsSource="{Binding Connections, Mode=OneWay}"
-            VirtualizingPanel.ScrollUnit="Pixel"
-            VirtualizingStackPanel.IsVirtualizing="True">
+        <ItemsControl ItemsSource="{Binding Connections, Mode=OneWay}">
             <ItemsControl.ItemContainerStyle>
                 <Style>
                     <!--  ReSharper disable once Xaml.RedundantPropertyTypeQualifier  -->
                     <Setter Property="FrameworkElement.Margin" Value="10,10,5,0" />
                 </Style>
             </ItemsControl.ItemContainerStyle>
-            <ItemsControl.ItemTemplate>
-                <DataTemplate>
-                    <ContentControl cal:View.Model="{Binding}" Focusable="False" />
-                </DataTemplate>
-            </ItemsControl.ItemTemplate>
             <ItemsControl.Template>
                 <ControlTemplate>
                     <ScrollViewer Style="{StaticResource ScrollViewerDefaultStyle}">
@@ -36,11 +27,6 @@
                     </ScrollViewer>
                 </ControlTemplate>
             </ItemsControl.Template>
-            <ItemsControl.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <VirtualizingStackPanel />
-                </ItemsPanelTemplate>
-            </ItemsControl.ItemsPanel>
         </ItemsControl>
         <Button
             x:Name="AddConnection"
