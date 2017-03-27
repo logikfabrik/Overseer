@@ -12,87 +12,58 @@
     d:DesignHeight="300"
     d:DesignWidth="300"
     mc:Ignorable="d">
-    <Expander>
-        <Expander.Style>
-            <Style TargetType="{x:Type Expander}">
-                <Setter Property="Template">
-                    <Setter.Value>
-                        <ControlTemplate TargetType="{x:Type Expander}">
-                            <StackPanel Background="#FF525252">
-                                <Grid>
-                                    <ToggleButton
-                                        Content="{Binding SettingsName, Mode=OneWay}"
-                                        FontSize="18"
-                                        IsChecked="{Binding IsExpanded, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
-                                        IsEnabled="{Binding HasProjects, Mode=OneWay}"
-                                        Style="{StaticResource ToggleButtonDefaultStyle}" />
-                                    <Rectangle
-                                        x:Name="PART_Error"
-                                        Height="2"
-                                        VerticalAlignment="Bottom"
-                                        Fill="{DynamicResource Control.Error}" />
-                                </Grid>
-                                <Grid IsEnabled="{Binding IsEditable, Mode=OneWay}">
-                                    <Grid.Resources>
-                                        <Style BasedOn="{StaticResource ButtonDefaultStyle}" TargetType="{x:Type Button}">
-                                            <Setter Property="Background" Value="#FF595959" />
-                                            <Setter Property="BorderBrush" Value="#FF595959" />
-                                        </Style>
-                                    </Grid.Resources>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="*" />
-                                        <ColumnDefinition Width="*" />
-                                    </Grid.ColumnDefinitions>
-                                    <Button
-                                        Height="33"
-                                        Padding="0"
-                                        cal:Message.Attach="Edit">
-                                        <Viewbox Width="16" Height="16">
-                                            <Canvas Width="20" Height="20">
-                                                <Path Data="M17.561,2.439C16.119,0.996,15.036,1.212,15.036,1.212L8.984,7.264 2.21,14.037 1.2,18.799 5.963,17.789 12.737,11.018 18.789,4.966C18.788,4.966,19.005,3.883,17.561,2.439z M5.68,17.217L4.056,17.567C3.9,17.274 3.711,16.981 3.366,16.635 3.02,16.289 2.727,16.102 2.434,15.944L2.784,14.321 3.254,13.852C3.254,13.852 4.137,13.87 5.135,14.868 6.132,15.864 6.151,16.749 6.151,16.749L5.68,17.217z" Fill="{Binding Path=(TextElement.Foreground), RelativeSource={RelativeSource AncestorType=ContentPresenter}}" />
-                                            </Canvas>
-                                        </Viewbox>
-                                    </Button>
-                                    <Button
-                                        Grid.Column="1"
-                                        Height="33"
-                                        Padding="0"
-                                        cal:Message.Attach="Remove">
-                                        <Viewbox Width="16" Height="16">
-                                            <Canvas Width="20" Height="20">
-                                                <Path Data="M10,1C5.721,1,3.06,2.41,3.205,3.555L4.647,17.022C4.705,17.482 6.868,18.998 10,19 13.131,18.998 15.295,17.482 15.351,17.021L16.793,3.554C16.938,2.41,14.279,1,10,1z M10,5.291C6.868,5.289 4.647,4.174 4.647,3.756 4.646,3.342 6.869,2.225 10,2.227 13.131,2.225 15.354,3.342 15.351,3.756 15.351,4.174 13.131,5.289 10,5.291z" Fill="{Binding Path=(TextElement.Foreground), RelativeSource={RelativeSource AncestorType=ContentPresenter}}" />
-                                            </Canvas>
-                                        </Viewbox>
-                                    </Button>
-                                </Grid>
-                                <ItemsControl x:Name="PART_Connections" ItemsSource="{Binding Projects, Mode=OneWay}">
-                                    <ItemsControl.ItemContainerStyle>
-                                        <Style>
-                                            <!--  ReSharper disable once Xaml.RedundantPropertyTypeQualifier  -->
-                                            <Setter Property="FrameworkElement.Margin" Value="10,10,5,0" />
-                                        </Style>
-                                    </ItemsControl.ItemContainerStyle>
-                                    <ItemsControl.Template>
-                                        <ControlTemplate>
-                                            <ScrollViewer Height="500" Style="{StaticResource ScrollViewerDefaultStyle}">
-                                                <ItemsPresenter />
-                                            </ScrollViewer>
-                                        </ControlTemplate>
-                                    </ItemsControl.Template>
-                                </ItemsControl>
-                            </StackPanel>
-                            <ControlTemplate.Triggers>
-                                <Trigger Property="IsExpanded" Value="False">
-                                    <Setter TargetName="PART_Connections" Property="Visibility" Value="Collapsed" />
-                                </Trigger>
-                                <DataTrigger Binding="{Binding IsErrored, Mode=OneWay}" Value="False">
-                                    <Setter TargetName="PART_Error" Property="Visibility" Value="Collapsed" />
-                                </DataTrigger>
-                            </ControlTemplate.Triggers>
-                        </ControlTemplate>
-                    </Setter.Value>
-                </Setter>
-            </Style>
-        </Expander.Style>
-    </Expander>
+    <StackPanel>
+        <TextBlock Text="{Binding SettingsName, Mode=OneWay}" />
+        
+        <Grid IsEnabled="{Binding IsEditable, Mode=OneWay}">
+            <Grid.Resources>
+                <Style BasedOn="{StaticResource ButtonDefaultStyle}" TargetType="{x:Type Button}">
+                    <Setter Property="Background" Value="#FF595959" />
+                    <Setter Property="BorderBrush" Value="#FF595959" />
+                </Style>
+            </Grid.Resources>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Button
+                Height="33"
+                Padding="0"
+                cal:Message.Attach="Edit">
+                <Viewbox Width="16" Height="16">
+                    <Canvas Width="20" Height="20">
+                        <Path Data="M17.561,2.439C16.119,0.996,15.036,1.212,15.036,1.212L8.984,7.264 2.21,14.037 1.2,18.799 5.963,17.789 12.737,11.018 18.789,4.966C18.788,4.966,19.005,3.883,17.561,2.439z M5.68,17.217L4.056,17.567C3.9,17.274 3.711,16.981 3.366,16.635 3.02,16.289 2.727,16.102 2.434,15.944L2.784,14.321 3.254,13.852C3.254,13.852 4.137,13.87 5.135,14.868 6.132,15.864 6.151,16.749 6.151,16.749L5.68,17.217z" Fill="{Binding Path=(TextElement.Foreground), RelativeSource={RelativeSource AncestorType=ContentPresenter}}" />
+                    </Canvas>
+                </Viewbox>
+            </Button>
+            <Button
+                Grid.Column="1"
+                Height="33"
+                Padding="0"
+                cal:Message.Attach="Remove">
+                <Viewbox Width="16" Height="16">
+                    <Canvas Width="20" Height="20">
+                        <Path Data="M10,1C5.721,1,3.06,2.41,3.205,3.555L4.647,17.022C4.705,17.482 6.868,18.998 10,19 13.131,18.998 15.295,17.482 15.351,17.021L16.793,3.554C16.938,2.41,14.279,1,10,1z M10,5.291C6.868,5.289 4.647,4.174 4.647,3.756 4.646,3.342 6.869,2.225 10,2.227 13.131,2.225 15.354,3.342 15.351,3.756 15.351,4.174 13.131,5.289 10,5.291z" Fill="{Binding Path=(TextElement.Foreground), RelativeSource={RelativeSource AncestorType=ContentPresenter}}" />
+                    </Canvas>
+                </Viewbox>
+            </Button>
+        </Grid>
+        
+        <ItemsControl x:Name="PART_Connections" ItemsSource="{Binding Projects, Mode=OneWay}">
+            <ItemsControl.ItemContainerStyle>
+                <Style>
+                    <!--  ReSharper disable once Xaml.RedundantPropertyTypeQualifier  -->
+                    <Setter Property="FrameworkElement.Margin" Value="10,10,5,0" />
+                </Style>
+            </ItemsControl.ItemContainerStyle>
+            <ItemsControl.Template>
+                <ControlTemplate>
+                    <ScrollViewer Height="500" Style="{StaticResource ScrollViewerDefaultStyle}">
+                        <ItemsPresenter />
+                    </ScrollViewer>
+                </ControlTemplate>
+            </ItemsControl.Template>
+        </ItemsControl>
+
+    </StackPanel>
 </UserControl>

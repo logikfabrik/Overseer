@@ -58,7 +58,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels.DesignTime
         /// <value>
         /// The projects.
         /// </value>
-        public IEnumerable<IProjectViewModel> Projects { get; }
+        public IEnumerable<IProjectViewModel> Projects { get; } = new[] { new ProjectViewModel(), new ProjectViewModel(), new ProjectViewModel() };
 
         /// <summary>
         /// Gets a value indicating whether this instance has projects.
