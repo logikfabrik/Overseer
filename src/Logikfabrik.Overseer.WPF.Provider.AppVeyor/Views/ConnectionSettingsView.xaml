@@ -25,19 +25,16 @@
                     </Path.Data>
                 </Path>
             </Viewbox>
-            <TextBlock
-                FontSize="24"
-                Style="{StaticResource TextBlockDefaultStyle}"
-                Text="AppVeyor" />
+            <TextBlock FontSize="24" Text="AppVeyor" />
         </StackPanel>
         <StackPanel Margin="0,0,0,20">
-            <TextBlock Style="{StaticResource TextBlockDefaultStyle}" Text="Connection Name" />
+            <TextBlock Text="Connection Name" />
             <TextBox Style="{StaticResource TextBoxDefaultStyle}" Text="{Binding Path=Name, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" />
         </StackPanel>
         <StackPanel Margin="0,0,0,20">
-            <TextBlock Style="{StaticResource TextBlockDefaultStyle}" Text="Token" />
+            <TextBlock Text="Token" />
             <TextBox Style="{StaticResource TextBoxDefaultStyle}" Text="{Binding Path=Token, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" />
-            <TextBlock FontSize="10" Style="{StaticResource TextBlockDefaultStyle}">
+            <TextBlock FontSize="10">
                 You create your token at
                 <Hyperlink extensions:HyperlinkExtensions.IsExternal="True" NavigateUri="https://ci.appveyor.com">appveyor.com</Hyperlink>
             </TextBlock>

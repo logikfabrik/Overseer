@@ -31,7 +31,6 @@
             <TextBlock
                 Grid.Row="1"
                 VerticalAlignment="Center"
-                Style="{StaticResource TextBlockDefaultStyle}"
                 Text="TeamCity"
                 TextAlignment="Center" />
         </Grid>

@@ -12,7 +12,7 @@
     d:DesignWidth="300"
     mc:Ignorable="d">
     <UserControl.Resources>
-        <Style BasedOn="{StaticResource TextBlockDefaultStyle}" TargetType="{x:Type TextBlock}">
+        <Style TargetType="{x:Type TextBlock}">
             <Setter Property="TextTrimming" Value="CharacterEllipsis" />
             <Setter Property="TextWrapping" Value="NoWrap" />
         </Style>

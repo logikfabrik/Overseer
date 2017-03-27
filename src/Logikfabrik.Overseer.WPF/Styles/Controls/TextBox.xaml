@@ -37,7 +37,6 @@
                                     <TextBlock
                                         FontSize="10"
                                         Foreground="{DynamicResource Control.Error}"
-                                        Style="{StaticResource TextBlockDefaultStyle}"
                                         Text="{Binding ErrorContent, Mode=OneWay}" />
                                 </DataTemplate>
                             </ItemsControl.ItemTemplate>

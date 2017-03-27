@@ -25,25 +25,19 @@
                     </Path.Data>
                 </Path>
             </Viewbox>
-            <TextBlock
-                FontSize="24"
-                Style="{StaticResource TextBlockDefaultStyle}"
-                Text="TeamCity" />
+            <TextBlock FontSize="24" Text="TeamCity" />
         </StackPanel>
         <StackPanel Margin="0,0,0,20">
-            <TextBlock Style="{StaticResource TextBlockDefaultStyle}" Text="Connection Name" />
+            <TextBlock Text="Connection Name" />
             <TextBox Style="{StaticResource TextBoxDefaultStyle}" Text="{Binding Path=Name, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" />
         </StackPanel>
         <StackPanel Margin="0,0,0,20">
-            <TextBlock Style="{StaticResource TextBlockDefaultStyle}" Text="URL" />
+            <TextBlock Text="URL" />
             <TextBox Style="{StaticResource TextBoxDefaultStyle}" Text="{Binding Path=Url, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" />
-            <TextBlock
-                FontSize="10"
-                Style="{StaticResource TextBlockDefaultStyle}"
-                Text="{Binding Path=BaseUri, Mode=OneWay}" />
+            <TextBlock FontSize="10" Text="{Binding Path=BaseUri, Mode=OneWay}" />
         </StackPanel>
         <StackPanel Margin="0,0,0,20">
-            <TextBlock Style="{StaticResource TextBlockDefaultStyle}" Text="Authentication Type" />
+            <TextBlock Text="Authentication Type" />
             <ComboBox
                 DisplayMemberPath="DisplayName"
                 ItemsSource="{markupExtensions:EnumToItemsSourceMarkup {x:Type teamCity:AuthenticationType}}"
@@ -52,11 +46,11 @@
         </StackPanel>
         <StackPanel Margin="0,0,0,20">
             <StackPanel>
-                <TextBlock Style="{StaticResource TextBlockDefaultStyle}" Text="Username" />
+                <TextBlock Text="Username" />
                 <TextBox Style="{StaticResource TextBoxDefaultStyle}" Text="{Binding Path=Username, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" />
             </StackPanel>
             <StackPanel>
-                <TextBlock Style="{StaticResource TextBlockDefaultStyle}" Text="Password" />
+                <TextBlock Text="Password" />
                 <TextBox Style="{StaticResource TextBoxDefaultStyle}" Text="{Binding Path=Password, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" />
             </StackPanel>
         </StackPanel>

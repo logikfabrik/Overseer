@@ -87,6 +87,7 @@
     <Compile Include="BuildMessageUtility.cs" />
     <Compile Include="BuildNotificationManager.cs" />
     <Compile Include="Converters\BooleanToVisibilityConverter.cs" />
+    <Compile Include="Converters\BuildStatusToColorConverter.cs" />
     <Compile Include="Converters\BuildStatusToStyleConverter.cs" />
     <Compile Include="Converters\TaskStatusToBooleanConverter.cs" />
     <Compile Include="Extensions\HyperlinkExtensions.cs" />

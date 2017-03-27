@@ -11,11 +11,8 @@
     <ScrollViewer Style="{StaticResource ScrollViewerDefaultStyle}">
         <StackPanel Margin="25">
             <StackPanel Margin="0,0,0,20">
-                <TextBlock
-                    FontSize="24"
-                    Style="{StaticResource TextBlockDefaultStyle}"
-                    Text="Select provider type" />
-                <TextBlock Style="{StaticResource TextBlockDefaultStyle}" Text="Select your type of CI provider, and set up a connection" />
+                <TextBlock FontSize="24" Text="Select provider type" />
+                <TextBlock Text="Select your type of CI provider, and set up a connection" />
             </StackPanel>
             <ItemsControl Margin="0,0,0,20" ItemsSource="{Binding Providers, Mode=OneWay}">
                 <ItemsControl.ItemContainerStyle>

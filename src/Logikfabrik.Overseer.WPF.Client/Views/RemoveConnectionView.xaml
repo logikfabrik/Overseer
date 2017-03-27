@@ -10,11 +10,8 @@
     <ScrollViewer Style="{StaticResource ScrollViewerDefaultStyle}">
         <StackPanel Margin="25">
             <StackPanel Margin="0,0,0,20">
-                <TextBlock
-                    FontSize="24"
-                    Style="{StaticResource TextBlockDefaultStyle}"
-                    Text="Remove connection" />
-                <TextBlock Style="{StaticResource TextBlockDefaultStyle}" Text="Are you sure you want to remove the connection?" />
+                <TextBlock FontSize="24" Text="Remove connection" />
+                <TextBlock Text="Are you sure you want to remove the connection?" />
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <Button
