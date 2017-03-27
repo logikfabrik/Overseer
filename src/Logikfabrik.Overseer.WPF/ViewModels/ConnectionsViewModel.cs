@@ -20,7 +20,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         private readonly IDisposable _subscription;
         private readonly IEventAggregator _eventAggregator;
         private readonly IConnectionViewModelStrategy _connectionStrategy;
-        private readonly List<ConnectionViewModel> _connections;
+        private readonly List<IConnectionViewModel> _connections;
         private bool _isDisposed;
 
         /// <summary>
@@ -37,7 +37,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
 
             _eventAggregator = eventAggregator;
             _connectionStrategy = connectionStrategy;
-            _connections = new List<ConnectionViewModel>();
+            _connections = new List<IConnectionViewModel>();
             _subscription = settingsRepository.Subscribe(this);
         }
 
@@ -55,7 +55,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// <value>
         /// The connections.
         /// </value>
-        public IEnumerable<ConnectionViewModel> Connections => _connections;
+        public IEnumerable<IConnectionViewModel> Connections => _connections;
 
         /// <summary>
         /// Add a connection.

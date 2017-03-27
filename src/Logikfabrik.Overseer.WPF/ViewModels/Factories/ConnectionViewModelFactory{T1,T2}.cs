@@ -18,7 +18,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels.Factories
     /// <typeparam name="T2">The <see cref="ConnectionViewModel" /> type.</typeparam>
     public class ConnectionViewModelFactory<T1, T2> : IConnectionViewModelFactory
         where T1 : ConnectionSettings
-        where T2 : ConnectionViewModel
+        where T2 : ConnectionViewModel<T1>
     {
         private readonly IResolutionRoot _resolutionRoot;
 
@@ -63,7 +63,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels.Factories
         /// <returns>
         /// A view model.
         /// </returns>
-        ConnectionViewModel IConnectionViewModelFactory.Create(ConnectionSettings settings)
+        IConnectionViewModel IConnectionViewModelFactory.Create(ConnectionSettings settings)
         {
             return Create(settings);
         }

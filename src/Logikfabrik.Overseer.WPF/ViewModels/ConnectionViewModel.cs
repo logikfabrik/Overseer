@@ -16,11 +16,13 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     /// <summary>
     /// The <see cref="ConnectionViewModel" /> class.
     /// </summary>
-    public abstract class ConnectionViewModel : PropertyChangedBase, IConnectionViewModel
+    // TODO: Possible to make generic?
+    public class ConnectionViewModel<T> : PropertyChangedBase, IConnectionViewModel where T : ConnectionSettings
     {
         private readonly IEventAggregator _eventAggregator;
         private readonly IProjectViewModelFactory _projectFactory;
         private readonly IRemoveConnectionViewModelFactory _removeConnectionFactory;
+        private readonly IEditConnectionViewModelFactory<T> _editConnectionFactory;
         private List<IProjectViewModel> _projects;
         private bool _isBusy;
         private bool _isErrored;
@@ -33,17 +35,19 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// <param name="projectFactory">The project factory.</param>
         /// <param name="removeConnectionFactory">The remove connection factory.</param>
         /// <param name="settings">The settings.</param>
-        protected ConnectionViewModel(IEventAggregator eventAggregator, IBuildMonitor buildMonitor, IProjectViewModelFactory projectFactory, IRemoveConnectionViewModelFactory removeConnectionFactory, ConnectionSettings settings)
+        public ConnectionViewModel(IEventAggregator eventAggregator, IBuildMonitor buildMonitor, IProjectViewModelFactory projectFactory, IRemoveConnectionViewModelFactory removeConnectionFactory, IEditConnectionViewModelFactory<T> editConnectionFactory, T settings)
         {
             Ensure.That(eventAggregator).IsNotNull();
             Ensure.That(buildMonitor).IsNotNull();
             Ensure.That(projectFactory).IsNotNull();
             Ensure.That(removeConnectionFactory).IsNotNull();
+            Ensure.That(editConnectionFactory).IsNotNull();
             Ensure.That(settings).IsNotNull();
 
             _eventAggregator = eventAggregator;
             _projectFactory = projectFactory;
             _removeConnectionFactory = removeConnectionFactory;
+            _editConnectionFactory = editConnectionFactory;
             Settings = settings;
             _isBusy = true;
             _isErrored = false;
@@ -166,12 +170,19 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// <value>
         /// The settings.
         /// </value>
-        protected ConnectionSettings Settings { get; }
+        protected T Settings { get; }
 
         /// <summary>
         /// Edit the connection.
         /// </summary>
-        public abstract void Edit();
+        public void Edit()
+        {
+            var viewModel = _editConnectionFactory.Create(Settings);
+
+            var message = new NavigationMessage2(viewModel);
+
+            _eventAggregator.PublishOnUIThread(message);
+        }
 
         /// <summary>
         /// Remove the connection.

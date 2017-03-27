@@ -35,7 +35,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels.Factories
         /// <returns>
         /// A view model.
         /// </returns>
-        public ConnectionViewModel Create(ConnectionSettings settings)
+        public IConnectionViewModel Create(ConnectionSettings settings)
         {
             Ensure.That(settings).IsNotNull();
 
