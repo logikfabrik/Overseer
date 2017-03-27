@@ -4,6 +4,7 @@
 
 namespace Logikfabrik.Overseer.WPF.ViewModels.DesignTime
 {
+    using System;
     using System.Collections.Generic;
 
     /// <summary>
@@ -66,5 +67,10 @@ namespace Logikfabrik.Overseer.WPF.ViewModels.DesignTime
         /// The digest.
         /// </value>
         public IProjectDigestViewModel Digest { get; } = new ProjectDigestViewModel();
+
+        public bool TryUpdate(string name)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

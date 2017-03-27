@@ -66,5 +66,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// The digest.
         /// </value>
         IProjectDigestViewModel Digest { get; }
+
+        bool TryUpdate(string name);
     }
 }

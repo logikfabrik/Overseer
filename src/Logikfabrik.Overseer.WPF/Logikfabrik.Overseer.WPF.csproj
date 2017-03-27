@@ -107,6 +107,7 @@
     <Compile Include="ViewModels\DesignTime\BuildViewModel.cs" />
     <Compile Include="ViewModels\DesignTime\ChangeViewModel.cs" />
     <Compile Include="ViewModels\ConnectionSettingsViewModel{T}.cs" />
+    <Compile Include="ViewModels\DesignTime\ConnectionViewModel.cs" />
     <Compile Include="ViewModels\DesignTime\ProjectDigestViewModel.cs" />
     <Compile Include="ViewModels\DesignTime\ProjectViewModel.cs" />
     <Compile Include="ViewModels\Factories\ConnectionSettingsViewModelFactory{T1,T2}.cs" />
@@ -126,6 +127,7 @@
     <Compile Include="ViewModels\IBuildProviderViewModel.cs" />
     <Compile Include="ViewModels\IBuildViewModel.cs" />
     <Compile Include="ViewModels\IChangeViewModel.cs" />
+    <Compile Include="ViewModels\IConnectionViewModel.cs" />
     <Compile Include="ViewModels\IProjectDigestViewModel.cs" />
     <Compile Include="ViewModels\IProjectViewModel.cs" />
     <Compile Include="ViewModels\ProjectDigestViewModel.cs" />

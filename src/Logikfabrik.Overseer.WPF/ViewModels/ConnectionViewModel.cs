@@ -16,12 +16,12 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     /// <summary>
     /// The <see cref="ConnectionViewModel" /> class.
     /// </summary>
-    public abstract class ConnectionViewModel : PropertyChangedBase
+    public abstract class ConnectionViewModel : PropertyChangedBase, IConnectionViewModel
     {
         private readonly IEventAggregator _eventAggregator;
         private readonly IProjectViewModelFactory _projectFactory;
         private readonly IRemoveConnectionViewModelFactory _removeConnectionFactory;
-        private List<ProjectViewModel> _projects;
+        private List<IProjectViewModel> _projects;
         private bool _isBusy;
         private bool _isErrored;
 
@@ -47,7 +47,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             Settings = settings;
             _isBusy = true;
             _isErrored = false;
-            _projects = new List<ProjectViewModel>();
+            _projects = new List<IProjectViewModel>();
 
             WeakEventManager<IBuildMonitor, BuildMonitorConnectionErrorEventArgs>.AddHandler(buildMonitor, nameof(buildMonitor.ConnectionError), BuildMonitorConnectionError);
             WeakEventManager<IBuildMonitor, BuildMonitorConnectionProgressEventArgs>.AddHandler(buildMonitor, nameof(buildMonitor.ConnectionProgressChanged), BuildMonitorConnectionProgressChanged);
@@ -137,7 +137,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// <value>
         /// The projects.
         /// </value>
-        public IEnumerable<ProjectViewModel> Projects
+        public IEnumerable<IProjectViewModel> Projects
         {
             get
             {
@@ -205,7 +205,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
 
             var isDirty = false;
 
-            var currentProjects = new List<ProjectViewModel>(Projects);
+            var currentProjects = new List<IProjectViewModel>(Projects);
 
             foreach (var project in e.Projects)
             {
