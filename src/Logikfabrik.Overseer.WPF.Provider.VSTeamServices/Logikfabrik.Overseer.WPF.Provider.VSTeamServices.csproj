@@ -111,7 +111,6 @@
     <Compile Include="Module.cs" />
     <Compile Include="Project.cs" />
     <Compile Include="Validators\ConnectionSettingsViewModelValidator.cs" />
-    <Compile Include="ViewModels\AddConnectionViewModel.cs" />
     <Compile Include="ViewModels\BuildProviderViewModel.cs" />
     <Compile Include="ViewModels\ConnectionSettingsViewModel.cs" />
     <Compile Include="ViewModels\EditConnectionViewModel.cs" />

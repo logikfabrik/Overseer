@@ -17,9 +17,10 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     /// <summary>
     /// The <see cref="AddConnectionViewModel{T}" /> class.
     /// </summary>
-    /// <typeparam name="T">The <see cref="ConnectionSettings" /> type.</typeparam>
-    public abstract class AddConnectionViewModel<T> : ViewModel
-        where T : ConnectionSettings
+    /// <typeparam name="T1">The <see cref="ConnectionSettings" /> type.</typeparam>
+    public class AddConnectionViewModel<T1,T2> : ViewModel
+        where T1 : ConnectionSettings
+        where T2 : ConnectionSettingsViewModel<T1>, new()
     {
         private readonly IEventAggregator _eventAggregator;
         private readonly IConnectionSettingsRepository _settingsRepository;
@@ -28,7 +29,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         private readonly IProjectsToMonitorViewModelFactory _projectsToMonitorFactory;
         private INotifyTask _connectionTask;
         private bool _hasConnected;
-        private ConnectionSettingsViewModel<T> _settings;
+        private ConnectionSettingsViewModel<T1> _settings;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="AddConnectionViewModel{T}" /> class.
@@ -38,18 +39,20 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// <param name="buildProviderStrategy">The build provider strategy.</param>
         /// <param name="projectToMonitorFactory">The project to monitor factory.</param>
         /// <param name="projectsToMonitorFactory">The projects to monitor factory.</param>
-        protected AddConnectionViewModel(
+        public AddConnectionViewModel(
             IEventAggregator eventAggregator,
             IConnectionSettingsRepository settingsRepository,
             IBuildProviderStrategy buildProviderStrategy,
             IProjectToMonitorViewModelFactory projectToMonitorFactory,
-            IProjectsToMonitorViewModelFactory projectsToMonitorFactory)
+            IProjectsToMonitorViewModelFactory projectsToMonitorFactory,
+            IConnectionSettingsViewModelFactory<T1, T2> connectionSettingsFactory)
         {
             Ensure.That(eventAggregator).IsNotNull();
             Ensure.That(settingsRepository).IsNotNull();
             Ensure.That(buildProviderStrategy).IsNotNull();
             Ensure.That(projectToMonitorFactory).IsNotNull();
             Ensure.That(projectsToMonitorFactory).IsNotNull();
+            Ensure.That(connectionSettingsFactory).IsNotNull();
 
             _eventAggregator = eventAggregator;
             _settingsRepository = settingsRepository;
@@ -58,6 +61,8 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             _projectsToMonitorFactory = projectsToMonitorFactory;
 
             _connectionTask = new NotifyTask();
+
+            Settings = connectionSettingsFactory.Create();
         }
 
         /// <summary>
@@ -86,7 +91,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// <value>
         /// The settings.
         /// </value>
-        public ConnectionSettingsViewModel<T> Settings
+        public ConnectionSettingsViewModel<T1> Settings
         {
             get
             {

@@ -15,7 +15,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     /// <typeparam name="T2">The <see cref="AddConnectionViewModel{T1}" /> type.</typeparam>
     public class BuildProviderViewModel<T1, T2> : PropertyChangedBase, IBuildProviderViewModel
         where T1 : ConnectionSettings
-        where T2 : AddConnectionViewModel<T1>
+        where T2 : ConnectionSettingsViewModel<T1>, new()
     {
         private readonly IEventAggregator _eventAggregator;
 
@@ -46,7 +46,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// </summary>
         public void AddConnection()
         {
-            var message = new NavigationMessage(typeof(T2));
+            var message = new NavigationMessage(typeof(AddConnectionViewModel<T1, T2>));
 
             _eventAggregator.PublishOnUIThread(message);
         }

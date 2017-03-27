@@ -9,7 +9,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices.ViewModels
     /// <summary>
     /// The <see cref="BuildProviderViewModel" /> class.
     /// </summary>
-    public class BuildProviderViewModel : WPF.ViewModels.BuildProviderViewModel<ConnectionSettings, AddConnectionViewModel>
+    public class BuildProviderViewModel : WPF.ViewModels.BuildProviderViewModel<ConnectionSettings, ConnectionSettingsViewModel>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="BuildProviderViewModel" /> class.

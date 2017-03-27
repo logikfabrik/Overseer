@@ -211,7 +211,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
                     HasConnected = true;
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 HasConnected = false;
 
