@@ -1,4 +1,4 @@
-﻿// <copyright file="ConnectionViewModel.cs" company="Logikfabrik">
+﻿// <copyright file="ConnectionViewModel{T}.cs" company="Logikfabrik">
 //   Copyright (c) 2016 anton(at)logikfabrik.se. Licensed under the MIT license.
 // </copyright>
 
@@ -14,10 +14,11 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     using Settings;
 
     /// <summary>
-    /// The <see cref="ConnectionViewModel" /> class.
+    /// The <see cref="ConnectionViewModel{T}" /> class.
     /// </summary>
-    // TODO: Possible to make generic?
-    public class ConnectionViewModel<T> : PropertyChangedBase, IConnectionViewModel where T : ConnectionSettings
+    /// <typeparam name="T">The <see cref="ConnectionSettings" /> type.</typeparam>
+    public class ConnectionViewModel<T> : PropertyChangedBase, IConnectionViewModel
+        where T : ConnectionSettings
     {
         private readonly IEventAggregator _eventAggregator;
         private readonly IProjectViewModelFactory _projectFactory;
@@ -28,14 +29,21 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         private bool _isErrored;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ConnectionViewModel" /> class.
+        /// Initializes a new instance of the <see cref="ConnectionViewModel{T}" /> class.
         /// </summary>
         /// <param name="eventAggregator">The event aggregator.</param>
         /// <param name="buildMonitor">The build monitor.</param>
         /// <param name="projectFactory">The project factory.</param>
         /// <param name="removeConnectionFactory">The remove connection factory.</param>
+        /// <param name="editConnectionFactory">The edit connection factory.</param>
         /// <param name="settings">The settings.</param>
-        public ConnectionViewModel(IEventAggregator eventAggregator, IBuildMonitor buildMonitor, IProjectViewModelFactory projectFactory, IRemoveConnectionViewModelFactory removeConnectionFactory, IEditConnectionViewModelFactory<T> editConnectionFactory, T settings)
+        public ConnectionViewModel(
+            IEventAggregator eventAggregator,
+            IBuildMonitor buildMonitor,
+            IProjectViewModelFactory projectFactory,
+            IRemoveConnectionViewModelFactory removeConnectionFactory,
+            IEditConnectionViewModelFactory<T> editConnectionFactory,
+            T settings)
         {
             Ensure.That(eventAggregator).IsNotNull();
             Ensure.That(buildMonitor).IsNotNull();

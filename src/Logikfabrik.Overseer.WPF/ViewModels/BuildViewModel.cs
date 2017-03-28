@@ -195,6 +195,8 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             }
         }
 
+        public bool ShowStartTime => StartTime.HasValue;
+
         /// <summary>
         /// Gets the changes.
         /// </summary>
@@ -243,7 +245,5 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
 
             return isUpdated;
         }
-
-        public bool ShowStartTime => StartTime.HasValue;
     }
 }

@@ -1,8 +1,15 @@
-﻿namespace Logikfabrik.Overseer.WPF.ViewModels
+﻿// <copyright file="IBuildViewModel.cs" company="Logikfabrik">
+//   Copyright (c) 2016 anton(at)logikfabrik.se. Licensed under the MIT license.
+// </copyright>
+
+namespace Logikfabrik.Overseer.WPF.ViewModels
 {
     using System;
     using System.Collections.Generic;
 
+    /// <summary>
+    /// The <see cref="IBuildViewModel" /> interface.
+    /// </summary>
     public interface IBuildViewModel
     {
         /// <summary>
@@ -101,7 +108,6 @@
         /// </value>
         IEnumerable<IChangeViewModel> Changes { get; }
 
-        bool TryUpdate(string projectName, BuildStatus? status, DateTime? startTime, DateTime? endTime,
-            TimeSpan? runTime);
+        bool TryUpdate(string projectName, BuildStatus? status, DateTime? startTime, DateTime? endTime, TimeSpan? runTime);
     }
 }

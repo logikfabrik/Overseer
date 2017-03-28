@@ -1,4 +1,4 @@
-﻿// <copyright file="AddConnectionViewModel{T}.cs" company="Logikfabrik">
+﻿// <copyright file="AddConnectionViewModel{T1,T2}.cs" company="Logikfabrik">
 //   Copyright (c) 2016 anton(at)logikfabrik.se. Licensed under the MIT license.
 // </copyright>
 
@@ -15,10 +15,11 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     using Settings;
 
     /// <summary>
-    /// The <see cref="AddConnectionViewModel{T}" /> class.
+    /// The <see cref="AddConnectionViewModel{T1,T2}" /> class.
     /// </summary>
     /// <typeparam name="T1">The <see cref="ConnectionSettings" /> type.</typeparam>
-    public class AddConnectionViewModel<T1,T2> : ViewModel
+    /// <typeparam name="T2">The <see cref="ConnectionSettingsViewModel{T}" /> type.</typeparam>
+    public class AddConnectionViewModel<T1, T2> : ViewModel
         where T1 : ConnectionSettings
         where T2 : ConnectionSettingsViewModel<T1>, new()
     {
@@ -32,13 +33,14 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         private ConnectionSettingsViewModel<T1> _settings;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="AddConnectionViewModel{T}" /> class.
+        /// Initializes a new instance of the <see cref="AddConnectionViewModel{T1,T2}" /> class.
         /// </summary>
         /// <param name="eventAggregator">The event aggregator.</param>
         /// <param name="settingsRepository">The settings repository.</param>
         /// <param name="buildProviderStrategy">The build provider strategy.</param>
         /// <param name="projectToMonitorFactory">The project to monitor factory.</param>
         /// <param name="projectsToMonitorFactory">The projects to monitor factory.</param>
+        /// <param name="connectionSettingsFactory">The settings factory.</param>
         public AddConnectionViewModel(
             IEventAggregator eventAggregator,
             IConnectionSettingsRepository settingsRepository,

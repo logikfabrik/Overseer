@@ -87,7 +87,6 @@
     <Compile Include="BuildMessageUtility.cs" />
     <Compile Include="BuildNotificationManager.cs" />
     <Compile Include="Converters\BooleanToVisibilityConverter.cs" />
-    <Compile Include="Converters\BuildStatusToColorConverter.cs" />
     <Compile Include="Converters\BuildStatusToStyleConverter.cs" />
     <Compile Include="Converters\TaskStatusToBooleanConverter.cs" />
     <Compile Include="Extensions\HyperlinkExtensions.cs" />
@@ -135,13 +134,13 @@
     <Compile Include="ViewModels\ProjectToMonitorViewModel.cs" />
     <Compile Include="ViewModels\RemoveConnectionViewModel.cs" />
     <Compile Include="ViewModels\ViewModel.cs" />
-    <Compile Include="ViewModels\AddConnectionViewModel{T}.cs" />
+    <Compile Include="ViewModels\AddConnectionViewModel{T1,T2}.cs" />
     <Compile Include="ViewModels\BuildNotificationViewModel.cs" />
     <Compile Include="ViewModels\BuildProviderViewModel{T1,T2}.cs" />
     <Compile Include="ViewModels\BuildViewModel.cs" />
     <Compile Include="ViewModels\ChangeViewModel.cs" />
     <Compile Include="ViewModels\ConnectionsViewModel.cs" />
-    <Compile Include="ViewModels\ConnectionViewModel.cs" />
+    <Compile Include="ViewModels\ConnectionViewModel{T}.cs" />
     <Compile Include="ViewModels\EditConnectionViewModel{T}.cs" />
     <Compile Include="ViewModels\ProjectViewModel.cs" />
     <Compile Include="ViewModels\BuildProvidersViewModel.cs" />

@@ -1,8 +1,15 @@
+// <copyright file="IConnectionViewModel.cs" company="Logikfabrik">
+//   Copyright (c) 2016 anton(at)logikfabrik.se. Licensed under the MIT license.
+// </copyright>
+
 namespace Logikfabrik.Overseer.WPF.ViewModels
 {
     using System;
     using System.Collections.Generic;
 
+    /// <summary>
+    /// The <see cref="IConnectionViewModel" /> interface.
+    /// </summary>
     public interface IConnectionViewModel
     {
         /// <summary>

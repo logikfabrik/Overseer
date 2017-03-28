@@ -15,7 +15,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels.Factories
     /// The <see cref="ConnectionViewModelFactory{T1,T2}" /> class.
     /// </summary>
     /// <typeparam name="T1">The <see cref="ConnectionSettings" /> type.</typeparam>
-    /// <typeparam name="T2">The <see cref="ConnectionViewModel" /> type.</typeparam>
+    /// <typeparam name="T2">The <see cref="ConnectionViewModel{T}" /> type.</typeparam>
     public class ConnectionViewModelFactory<T1, T2> : IConnectionViewModelFactory
         where T1 : ConnectionSettings
         where T2 : ConnectionViewModel<T1>
