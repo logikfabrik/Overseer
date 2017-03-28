@@ -17,7 +17,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     /// The <see cref="ConnectionViewModel{T}" /> class.
     /// </summary>
     /// <typeparam name="T">The <see cref="ConnectionSettings" /> type.</typeparam>
-    public class ConnectionViewModel<T> : PropertyChangedBase, IConnectionViewModel
+    public class ConnectionViewModel<T> : ViewModel, IConnectionViewModel
         where T : ConnectionSettings
     {
         private readonly IEventAggregator _eventAggregator;
@@ -173,6 +173,14 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         public bool HasProjects => _projects.Any();
 
         /// <summary>
+        /// Gets the view name.
+        /// </summary>
+        /// <value>
+        /// The view name.
+        /// </value>
+        public override string ViewName { get; } = "TODO: Change me";
+
+        /// <summary>
         /// Gets the settings.
         /// </summary>
         /// <value>
@@ -200,6 +208,16 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             var viewModel = _removeConnectionFactory.Create(SettingsId);
 
             var message = new NavigationMessage2(viewModel);
+
+            _eventAggregator.PublishOnUIThread(message);
+        }
+
+        /// <summary>
+        /// View the connection.
+        /// </summary>
+        public void View()
+        {
+            var message = new NavigationMessage2(this);
 
             _eventAggregator.PublishOnUIThread(message);
         }

@@ -43,13 +43,11 @@
             x:Name="MonitorAll"
             Grid.Row="1"
             Grid.Column="0"
-            Content="Select all"
-            Style="{StaticResource ButtonDefaultStyle}" />
+            Content="Select all" />
         <Button
             x:Name="MonitorNone"
             Grid.Row="1"
             Grid.Column="1"
-            Content="Deselect all"
-            Style="{StaticResource ButtonDefaultStyle}" />
+            Content="Deselect all" />
     </Grid>
 </UserControl>

@@ -32,8 +32,7 @@
                     x:Name="ViewConnections"
                     Content="Cancel"
                     IsCancel="True"
-                    IsDefault="True"
-                    Style="{StaticResource ButtonDefaultStyle}" />
+                    IsDefault="True" />
             </StackPanel>
         </StackPanel>
     </ScrollViewer>

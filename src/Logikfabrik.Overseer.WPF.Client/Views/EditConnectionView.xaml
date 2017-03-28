@@ -20,8 +20,7 @@
                 <Button
                     x:Name="TryConnection"
                     Content="Try connection"
-                    IsEnabled="{Binding HasNotConnected, Mode=OneWay}"
-                    Style="{StaticResource ButtonDefaultStyle}" />
+                    IsEnabled="{Binding HasNotConnected, Mode=OneWay}" />
                 <TextBlock Text="Error" Visibility="{Binding ConnectionTask.Status, Converter={StaticResource TaskStatusFaultedToBooleanConverter}}" />
                 <ContentControl
                     MaxHeight="200"
@@ -36,13 +35,11 @@
                     Margin="0,0,2,0"
                     Content="OK"
                     IsDefault="True"
-                    IsEnabled="{Binding IsValidAndHasConnected, Mode=OneWay}"
-                    Style="{StaticResource ButtonDefaultStyle}" />
+                    IsEnabled="{Binding IsValidAndHasConnected, Mode=OneWay}" />
                 <Button
                     x:Name="ViewConnections"
                     Content="Cancel"
-                    IsCancel="True"
-                    Style="{StaticResource ButtonDefaultStyle}" />
+                    IsCancel="True" />
             </StackPanel>
         </StackPanel>
     </ScrollViewer>

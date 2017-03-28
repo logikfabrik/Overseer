@@ -77,5 +77,10 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// Remove the connection.
         /// </summary>
         void Remove();
+
+        /// <summary>
+        /// View the connection.
+        /// </summary>
+        void View();
     }
 }

@@ -83,5 +83,13 @@ namespace Logikfabrik.Overseer.WPF.ViewModels.DesignTime
         {
             throw new NotImplementedException();
         }
+
+        /// <summary>
+        /// View the connection.
+        /// </summary>
+        public void View()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

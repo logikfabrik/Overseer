@@ -29,13 +29,11 @@
                     x:Name="EditSettings"
                     Margin="0,0,2,0"
                     Content="OK"
-                    IsDefault="True"
-                    Style="{StaticResource ButtonDefaultStyle}" />
+                    IsDefault="True" />
                 <Button
                     x:Name="ViewConnections"
                     Content="Cancel"
-                    IsCancel="True"
-                    Style="{StaticResource ButtonDefaultStyle}" />
+                    IsCancel="True" />
             </StackPanel>
         </StackPanel>
     </ScrollViewer>

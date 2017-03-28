@@ -2,7 +2,7 @@
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="../Resources/FocusVisuals.xaml" />
     </ResourceDictionary.MergedDictionaries>
-    <Style x:Key="ButtonDefaultStyle" TargetType="{x:Type Button}">
+    <Style BasedOn="{StaticResource {x:Type Button}}" TargetType="{x:Type Button}">
         <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}" />
         <Setter Property="Background" Value="{DynamicResource Button.Static.Background}" />
         <Setter Property="Foreground" Value="{DynamicResource Button.Static.Foreground}" />

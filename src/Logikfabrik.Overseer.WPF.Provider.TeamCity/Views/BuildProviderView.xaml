@@ -7,10 +7,7 @@
     Width="135"
     Height="135"
     mc:Ignorable="d">
-    <Button
-        x:Name="AddConnection"
-        VerticalContentAlignment="Stretch"
-        Style="{StaticResource ButtonDefaultStyle}">
+    <Button x:Name="AddConnection" VerticalContentAlignment="Stretch">
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="70" />

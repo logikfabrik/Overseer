@@ -130,6 +130,9 @@
     <Compile Include="Views\ChangeView.xaml.cs">
       <DependentUpon>ChangeView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Connection\Tile.xaml.cs">
+      <DependentUpon>Tile.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\EditConnectionView.xaml.cs">
       <DependentUpon>EditConnectionView.xaml</DependentUpon>
     </Compile>
@@ -199,6 +202,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\ChangeView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Connection\Tile.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

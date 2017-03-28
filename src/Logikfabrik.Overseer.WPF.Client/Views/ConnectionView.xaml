@@ -14,10 +14,10 @@
     mc:Ignorable="d">
     <StackPanel>
         <TextBlock Text="{Binding SettingsName, Mode=OneWay}" />
-        
+
         <Grid IsEnabled="{Binding IsEditable, Mode=OneWay}">
             <Grid.Resources>
-                <Style BasedOn="{StaticResource ButtonDefaultStyle}" TargetType="{x:Type Button}">
+                <Style BasedOn="{StaticResource {x:Type Button}}" TargetType="{x:Type Button}">
                     <Setter Property="Background" Value="#FF595959" />
                     <Setter Property="BorderBrush" Value="#FF595959" />
                 </Style>
@@ -48,7 +48,7 @@
                 </Viewbox>
             </Button>
         </Grid>
-        
+
         <ItemsControl x:Name="PART_Connections" ItemsSource="{Binding Projects, Mode=OneWay}">
             <ItemsControl.ItemContainerStyle>
                 <Style>
