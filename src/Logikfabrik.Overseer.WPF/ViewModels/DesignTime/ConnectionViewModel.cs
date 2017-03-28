@@ -68,6 +68,8 @@ namespace Logikfabrik.Overseer.WPF.ViewModels.DesignTime
         /// </value>
         public bool HasProjects { get; } = true;
 
+        public int? ProjectsCount { get; } = 3;
+
         /// <summary>
         /// Edit the connection.
         /// </summary>

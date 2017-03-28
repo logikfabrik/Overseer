@@ -161,6 +161,9 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
                 _projects = value.ToList();
                 NotifyOfPropertyChange(() => Projects);
                 NotifyOfPropertyChange(() => HasProjects);
+
+                ProjectsCount = _projects.Count;
+                NotifyOfPropertyChange(() => ProjectsCount);
             }
         }
 
@@ -171,6 +174,8 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         ///   <c>true</c> if this instance has projects; otherwise, <c>false</c>.
         /// </value>
         public bool HasProjects => _projects.Any();
+
+        public int? ProjectsCount { get; private set; }
 
         /// <summary>
         /// Gets the view name.

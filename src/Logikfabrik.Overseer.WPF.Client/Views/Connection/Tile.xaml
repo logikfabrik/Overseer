@@ -6,13 +6,17 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:vm="clr-namespace:Logikfabrik.Overseer.WPF.ViewModels.DesignTime;assembly=Logikfabrik.Overseer.WPF"
+    Width="200"
+    Height="200"
     cal:Bind.AtDesignTime="True"
     d:DataContext="{d:DesignInstance d:Type=vm:ConnectionViewModel,
                                      d:IsDesignTimeCreatable=True}"
-    d:DesignHeight="300"
-    d:DesignWidth="300"
     mc:Ignorable="d">
-    <Button x:Name="View">
-        <TextBlock Text="{Binding SettingsName}" />
+    <Button x:Name="View" IsEnabled="{Binding IsEditable}">
+        <StackPanel>
+            <TextBlock Text="{Binding SettingsName}" />
+            <TextBlock Text="{Binding ProjectsCount}" />
+        </StackPanel>
+
     </Button>
 </UserControl>
