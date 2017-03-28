@@ -19,7 +19,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     {
         private readonly IDisposable _subscription;
         private readonly IEventAggregator _eventAggregator;
-        private readonly IConnectionViewModelStrategy _connectionStrategy;
+        private readonly IConnectionViewModelStrategy _connectionViewModelStrategy;
         private readonly List<IConnectionViewModel> _connections;
         private bool _isDisposed;
 
@@ -27,18 +27,21 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// Initializes a new instance of the <see cref="ConnectionsViewModel" /> class.
         /// </summary>
         /// <param name="eventAggregator">The event aggregator.</param>
-        /// <param name="settingsRepository">The settings repository.</param>
-        /// <param name="connectionStrategy">The connection strategy.</param>
-        public ConnectionsViewModel(IEventAggregator eventAggregator, IConnectionSettingsRepository settingsRepository, IConnectionViewModelStrategy connectionStrategy)
+        /// <param name="connectionSettingsRepository">The connection settings repository.</param>
+        /// <param name="connectionViewModelStrategy">The connection view model strategy.</param>
+        public ConnectionsViewModel(
+            IEventAggregator eventAggregator,
+            IConnectionSettingsRepository connectionSettingsRepository,
+            IConnectionViewModelStrategy connectionViewModelStrategy)
         {
             Ensure.That(eventAggregator).IsNotNull();
-            Ensure.That(settingsRepository).IsNotNull();
-            Ensure.That(connectionStrategy).IsNotNull();
+            Ensure.That(connectionSettingsRepository).IsNotNull();
+            Ensure.That(connectionViewModelStrategy).IsNotNull();
 
             _eventAggregator = eventAggregator;
-            _connectionStrategy = connectionStrategy;
+            _connectionViewModelStrategy = connectionViewModelStrategy;
             _connections = new List<IConnectionViewModel>();
-            _subscription = settingsRepository.Subscribe(this);
+            _subscription = connectionSettingsRepository.Subscribe(this);
         }
 
         /// <summary>
@@ -83,7 +86,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
 
             foreach (var settings in value)
             {
-                var connectionToUpdate = _connections.SingleOrDefault(c => c.SettingsId == settings.Id);
+                var connectionToUpdate = _connections.SingleOrDefault(connection => connection.SettingsId == settings.Id);
 
                 if (connectionToUpdate != null)
                 {
@@ -91,7 +94,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
                 }
                 else
                 {
-                    var connectionToAdd = _connectionStrategy.Create(settings);
+                    var connectionToAdd = _connectionViewModelStrategy.Create(settings);
 
                     _connections.Add(connectionToAdd);
 
