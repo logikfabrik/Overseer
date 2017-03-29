@@ -3,7 +3,6 @@
         <ResourceDictionary Source="ScrollBar.xaml" />
     </ResourceDictionary.MergedDictionaries>
     <Style
-        x:Key="ScrollViewerDefaultStyle"
         BasedOn="{StaticResource {x:Type ScrollViewer}}"
         TargetType="{x:Type ScrollViewer}">
         <Setter Property="Template">

@@ -8,66 +8,32 @@
     d:DesignHeight="300"
     d:DesignWidth="300"
     mc:Ignorable="d">
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*" />
-            <RowDefinition Height="Auto" />
-        </Grid.RowDefinitions>
-        <ItemsControl ItemsSource="{Binding Connections, Mode=OneWay}">
-            <ItemsControl.ItemContainerStyle>
-                <Style>
-                    <!--  ReSharper disable once Xaml.RedundantPropertyTypeQualifier  -->
-                    <Setter Property="FrameworkElement.Margin" Value="10,10,5,0" />
-                </Style>
-            </ItemsControl.ItemContainerStyle>
-            <ItemsControl.ItemTemplate>
-                <DataTemplate>
-                    <ContentControl
-                        cal:View.Context="Tile"
-                        cal:View.Model="{Binding}"
-                        Focusable="False" />
-                </DataTemplate>
-            </ItemsControl.ItemTemplate>
-            <ItemsControl.Template>
-                <ControlTemplate>
-                    <ScrollViewer Style="{StaticResource ScrollViewerDefaultStyle}">
-                        <ItemsPresenter />
-                    </ScrollViewer>
-                </ControlTemplate>
-            </ItemsControl.Template>
-        </ItemsControl>
-        <Button
-            x:Name="AddConnection"
-            Grid.Row="1"
-            Width="50"
-            Height="50"
-            Margin="10"
-            FocusVisualStyle="{StaticResource EllipticFocusVisual}">
-            <Button.Template>
-                <ControlTemplate TargetType="{x:Type Button}">
-                    <Grid>
-                        <Ellipse x:Name="PART_Ellipse" Fill="{DynamicResource Button.Static.Background}" />
-                        <Viewbox Width="30" Height="30">
-                            <Canvas Width="20" Height="20">
-                                <Path
-                                    x:Name="PART_Path"
-                                    Data="M10,1.6C5.361,1.6 1.6,5.361 1.6,10 1.6,14.639 5.361,18.4 10,18.4 14.639,18.4 18.4,14.639 18.4,10 18.4,5.361 14.639,1.6 10,1.6z M15,11L11,11 11,15 9,15 9,11 5,11 5,9 9,9 9,5 11,5 11,9 15,9 15,11z"
-                                    Fill="{DynamicResource Button.Static.Foreground}" />
-                            </Canvas>
-                        </Viewbox>
-                    </Grid>
-                    <ControlTemplate.Triggers>
-                        <Trigger Property="IsMouseOver" Value="True">
-                            <Setter TargetName="PART_Ellipse" Property="Fill" Value="{DynamicResource Button.MouseOver.Background}" />
-                            <Setter TargetName="PART_Path" Property="Fill" Value="{DynamicResource Button.MouseOver.Foreground}" />
-                        </Trigger>
-                        <Trigger Property="IsPressed" Value="True">
-                            <Setter TargetName="PART_Ellipse" Property="Fill" Value="{StaticResource Button.Pressed.Background}" />
-                            <Setter TargetName="PART_Path" Property="Fill" Value="{DynamicResource Button.Pressed.Foreground}" />
-                        </Trigger>
-                    </ControlTemplate.Triggers>
-                </ControlTemplate>
-            </Button.Template>
-        </Button>
-    </Grid>
+    <ItemsControl ItemsSource="{Binding Items, Mode=OneWay}">
+        <ItemsControl.ItemContainerStyle>
+            <Style>
+                <!--  ReSharper disable once Xaml.RedundantPropertyTypeQualifier  -->
+                <Setter Property="FrameworkElement.Margin" Value="10,10,0,0" />
+            </Style>
+        </ItemsControl.ItemContainerStyle>
+        <ItemsControl.ItemTemplate>
+            <DataTemplate>
+                <ContentControl
+                    cal:View.Context="Tile"
+                    cal:View.Model="{Binding}"
+                    Focusable="False" />
+            </DataTemplate>
+        </ItemsControl.ItemTemplate>
+        <ItemsControl.Template>
+            <ControlTemplate>
+                <ScrollViewer>
+                    <ItemsPresenter Margin="0,0,10,10" />
+                </ScrollViewer>
+            </ControlTemplate>
+        </ItemsControl.Template>
+        <ItemsControl.ItemsPanel>
+            <ItemsPanelTemplate>
+                <WrapPanel />
+            </ItemsPanelTemplate>
+        </ItemsControl.ItemsPanel>
+    </ItemsControl>
 </UserControl>

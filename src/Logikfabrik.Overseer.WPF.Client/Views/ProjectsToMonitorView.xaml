@@ -32,7 +32,7 @@
             </ItemsControl.ItemContainerStyle>
             <ItemsControl.Template>
                 <ControlTemplate>
-                    <ScrollViewer Style="{StaticResource ScrollViewerDefaultStyle}">
+                    <ScrollViewer>
                         <ItemsPresenter />
                     </ScrollViewer>
                 </ControlTemplate>

@@ -32,7 +32,7 @@
         <ItemsControl ItemsSource="{Binding Builds, Mode=OneWay}">
             <ItemsControl.Template>
                 <ControlTemplate>
-                    <ScrollViewer Height="180" Style="{StaticResource ScrollViewerDefaultStyle}">
+                    <ScrollViewer Height="180">
                         <ItemsPresenter />
                     </ScrollViewer>
                 </ControlTemplate>

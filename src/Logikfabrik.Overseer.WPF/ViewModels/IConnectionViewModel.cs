@@ -10,7 +10,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     /// <summary>
     /// The <see cref="IConnectionViewModel" /> interface.
     /// </summary>
-    public interface IConnectionViewModel
+    public interface IConnectionViewModel : IItemViewModel
     {
         /// <summary>
         /// Gets the settings identifier.

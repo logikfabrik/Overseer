@@ -103,6 +103,7 @@
     </Compile>
     <Compile Include="Validators\ConnectionSettingsViewModelValidator{T1,T2}.cs" />
     <Compile Include="Validators\EditSettingsViewModelValidator.cs" />
+    <Compile Include="ViewModels\AddConnectionItemViewModel.cs" />
     <Compile Include="ViewModels\DesignTime\BuildViewModel.cs" />
     <Compile Include="ViewModels\DesignTime\ChangeViewModel.cs" />
     <Compile Include="ViewModels\ConnectionSettingsViewModel{T}.cs" />
@@ -112,6 +113,7 @@
     <Compile Include="ViewModels\Factories\ConnectionSettingsViewModelFactory{T1,T2}.cs" />
     <Compile Include="ViewModels\Factories\ConnectionViewModelFactory{T1,T2}.cs" />
     <Compile Include="ViewModels\Factories\ConnectionViewModelStrategy.cs" />
+    <Compile Include="ViewModels\Factories\IAddConnectionItemViewModelFactory.cs" />
     <Compile Include="ViewModels\Factories\IBuildViewModelFactory.cs" />
     <Compile Include="ViewModels\Factories\IChangeViewModelFactory.cs" />
     <Compile Include="ViewModels\Factories\IConnectionSettingsViewModelFactory{T1,T2}.cs" />
@@ -127,6 +129,7 @@
     <Compile Include="ViewModels\IBuildViewModel.cs" />
     <Compile Include="ViewModels\IChangeViewModel.cs" />
     <Compile Include="ViewModels\IConnectionViewModel.cs" />
+    <Compile Include="ViewModels\IItemViewModel.cs" />
     <Compile Include="ViewModels\IProjectDigestViewModel.cs" />
     <Compile Include="ViewModels\IProjectViewModel.cs" />
     <Compile Include="ViewModels\ProjectDigestViewModel.cs" />

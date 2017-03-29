@@ -18,28 +18,27 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     public class ConnectionsViewModel : ViewModel, IObserver<ConnectionSettings[]>, IDisposable
     {
         private readonly IDisposable _subscription;
-        private readonly IEventAggregator _eventAggregator;
         private readonly IConnectionViewModelStrategy _connectionViewModelStrategy;
+        private readonly IAddConnectionItemViewModelFactory _addConnectionItemViewModelFactory;
         private readonly List<IConnectionViewModel> _connections;
         private bool _isDisposed;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ConnectionsViewModel" /> class.
         /// </summary>
-        /// <param name="eventAggregator">The event aggregator.</param>
         /// <param name="connectionSettingsRepository">The connection settings repository.</param>
         /// <param name="connectionViewModelStrategy">The connection view model strategy.</param>
         public ConnectionsViewModel(
-            IEventAggregator eventAggregator,
             IConnectionSettingsRepository connectionSettingsRepository,
-            IConnectionViewModelStrategy connectionViewModelStrategy)
+            IConnectionViewModelStrategy connectionViewModelStrategy,
+            IAddConnectionItemViewModelFactory addConnectionItemViewModelFactory)
         {
-            Ensure.That(eventAggregator).IsNotNull();
             Ensure.That(connectionSettingsRepository).IsNotNull();
             Ensure.That(connectionViewModelStrategy).IsNotNull();
+            Ensure.That(addConnectionItemViewModelFactory).IsNotNull();
 
-            _eventAggregator = eventAggregator;
             _connectionViewModelStrategy = connectionViewModelStrategy;
+            _addConnectionItemViewModelFactory = addConnectionItemViewModelFactory;
             _connections = new List<IConnectionViewModel>();
             _subscription = connectionSettingsRepository.Subscribe(this);
         }
@@ -53,22 +52,12 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         public override string ViewName { get; } = "Connections";
 
         /// <summary>
-        /// Gets the connections.
+        /// Gets the items.
         /// </summary>
         /// <value>
-        /// The connections.
+        /// The items.
         /// </value>
-        public IEnumerable<IConnectionViewModel> Connections => _connections;
-
-        /// <summary>
-        /// Add a connection.
-        /// </summary>
-        public void AddConnection()
-        {
-            var message = new NavigationMessage(typeof(BuildProvidersViewModel));
-
-            _eventAggregator.PublishOnUIThread(message);
-        }
+        public IEnumerable<IItemViewModel> Items => _connections.OfType<IItemViewModel>().Concat(new[] { _addConnectionItemViewModelFactory.Create() });
 
         /// <summary>
         /// Provides the observer with new data.
@@ -108,7 +97,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
 
             if (isDirty)
             {
-                NotifyOfPropertyChange(() => Connections);
+                NotifyOfPropertyChange(() => Items);
             }
         }
 

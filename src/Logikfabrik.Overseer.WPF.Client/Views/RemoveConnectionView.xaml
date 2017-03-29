@@ -7,7 +7,7 @@
     d:DesignHeight="300"
     d:DesignWidth="300"
     mc:Ignorable="d">
-    <ScrollViewer Style="{StaticResource ScrollViewerDefaultStyle}">
+    <ScrollViewer>
         <StackPanel Margin="25">
             <StackPanel Margin="0,0,0,20">
                 <TextBlock FontSize="24" Text="Remove connection" />

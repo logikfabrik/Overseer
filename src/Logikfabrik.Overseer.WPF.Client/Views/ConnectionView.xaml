@@ -58,7 +58,7 @@
             </ItemsControl.ItemContainerStyle>
             <ItemsControl.Template>
                 <ControlTemplate>
-                    <ScrollViewer Height="500" Style="{StaticResource ScrollViewerDefaultStyle}">
+                    <ScrollViewer Height="500">
                         <ItemsPresenter />
                     </ScrollViewer>
                 </ControlTemplate>
