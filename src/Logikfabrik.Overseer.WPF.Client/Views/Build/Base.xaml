@@ -52,6 +52,8 @@
         <Style BasedOn="{StaticResource {x:Type Viewbox}}" TargetType="{x:Type Viewbox}">
             <Setter Property="Margin" Value="5,5,0,5" />
         </Style>
+
+
     </UserControl.Resources>
     <Border>
         <Border.Style>
