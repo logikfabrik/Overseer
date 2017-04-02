@@ -93,6 +93,8 @@
     <Compile Include="IBuildNotificationManager.cs" />
     <Compile Include="INotificationManager.cs" />
     <Compile Include="INotifyTask.cs" />
+    <Compile Include="Logging\IUILogService.cs" />
+    <Compile Include="Logging\UILogService.cs" />
     <Compile Include="MarkupExtensions\EnumToItemsSourceMarkupExtension.cs" />
     <Compile Include="NavigationMessage.cs" />
     <Compile Include="NavigationMessage2.cs" />
@@ -108,7 +110,6 @@
     <Compile Include="ViewModels\DesignTime\ChangeViewModel.cs" />
     <Compile Include="ViewModels\ConnectionSettingsViewModel{T}.cs" />
     <Compile Include="ViewModels\DesignTime\ConnectionViewModel.cs" />
-    <Compile Include="ViewModels\DesignTime\ProjectDigestViewModel.cs" />
     <Compile Include="ViewModels\DesignTime\ProjectViewModel.cs" />
     <Compile Include="ViewModels\Factories\ConnectionSettingsViewModelFactory{T1,T2}.cs" />
     <Compile Include="ViewModels\Factories\ConnectionViewModelFactory{T1,T2}.cs" />
@@ -120,7 +121,6 @@
     <Compile Include="ViewModels\Factories\IConnectionViewModelFactory.cs" />
     <Compile Include="ViewModels\Factories\IConnectionViewModelStrategy.cs" />
     <Compile Include="ViewModels\Factories\IEditConnectionViewModelFactory{T}.cs" />
-    <Compile Include="ViewModels\Factories\IProjectDigestViewModelFactory.cs" />
     <Compile Include="ViewModels\Factories\IProjectsToMonitorViewModelFactory.cs" />
     <Compile Include="ViewModels\Factories\IProjectToMonitorViewModelFactory.cs" />
     <Compile Include="ViewModels\Factories\IProjectViewModelFactory.cs" />
@@ -130,9 +130,7 @@
     <Compile Include="ViewModels\IChangeViewModel.cs" />
     <Compile Include="ViewModels\IConnectionViewModel.cs" />
     <Compile Include="ViewModels\IItemViewModel.cs" />
-    <Compile Include="ViewModels\IProjectDigestViewModel.cs" />
     <Compile Include="ViewModels\IProjectViewModel.cs" />
-    <Compile Include="ViewModels\ProjectDigestViewModel.cs" />
     <Compile Include="ViewModels\ProjectsToMonitorViewModel.cs" />
     <Compile Include="ViewModels\ProjectToMonitorViewModel.cs" />
     <Compile Include="ViewModels\RemoveConnectionViewModel.cs" />
@@ -168,6 +166,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Styles\Controls\Canvas.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Styles\Controls\CheckBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -177,6 +179,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Styles\Controls\ToggleButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Styles\Controls\Viewbox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -22,7 +22,20 @@ namespace Logikfabrik.Overseer.Logging
         {
             Ensure.That(entry).IsNotNull();
 
-            var logger = GetLogger(typeof(T));
+            Log(typeof(T), entry);
+        }
+
+        /// <summary>
+        /// Logs the specified entry.
+        /// </summary>
+        /// <param name="type">The logging type.</param>
+        /// <param name="entry">The entry.</param>
+        public void Log(Type type, LogEntry entry)
+        {
+            Ensure.That(type).IsNotNull();
+            Ensure.That(entry).IsNotNull();
+
+            var logger = GetLogger(type);
 
             if (logger == null)
             {

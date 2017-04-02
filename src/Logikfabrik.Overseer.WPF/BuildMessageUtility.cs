@@ -95,16 +95,6 @@ namespace Logikfabrik.Overseer.WPF
         /// <summary>
         /// Gets the build run time message.
         /// </summary>
-        /// <param name="build">The build.</param>
-        /// <returns>The build run time message.</returns>
-        public static string GetBuildRunTimeMessage(IBuild build)
-        {
-            return GetBuildRunTimeMessage(build.Status, build.EndTime, build.GetRunTime());
-        }
-
-        /// <summary>
-        /// Gets the build run time message.
-        /// </summary>
         /// <param name="status">The status.</param>
         /// <param name="endTime">The end time.</param>
         /// <param name="runTime">The run time.</param>

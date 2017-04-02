@@ -12,16 +12,16 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity.Api
     using System.Text;
     using System.Threading;
     using System.Threading.Tasks;
-    using EnsureThat;
     using Models;
     using Newtonsoft.Json;
     using Newtonsoft.Json.Converters;
+    using Overseer.Api;
     using Overseer.Extensions;
 
     /// <summary>
     /// The <see cref="ApiClient" /> class.
     /// </summary>
-    public class ApiClient : IApiClient
+    public class ApiClient : CacheableApiClient<ConnectionSettings>, IApiClient
     {
         private readonly Lazy<HttpClient> _httpClient;
         private readonly JsonMediaTypeFormatter _mediaTypeFormatter;
@@ -32,9 +32,21 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity.Api
         /// </summary>
         /// <param name="settings">The settings.</param>
         public ApiClient(ConnectionSettings settings)
-            : this()
+            : base(settings)
         {
-            Ensure.That(settings).IsNotNull();
+            _mediaTypeFormatter = new JsonMediaTypeFormatter
+            {
+                SerializerSettings = new JsonSerializerSettings
+                {
+                    Converters = new List<JsonConverter>
+                    {
+                        new IsoDateTimeConverter
+                        {
+                            DateTimeFormat = "yyyyMMdd'T'HHmmsszzz"
+                        }
+                    }
+                }
+            };
 
             var baseUri = BaseUriHelper.GetBaseUri(settings.Url, settings.Version, settings.AuthenticationType);
 
@@ -53,23 +65,6 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity.Api
                 default:
                     throw new NotSupportedException($"Authentication type '{settings.AuthenticationType}' is not supported.");
             }
-        }
-
-        private ApiClient()
-        {
-            _mediaTypeFormatter = new JsonMediaTypeFormatter
-            {
-                SerializerSettings = new JsonSerializerSettings
-                {
-                    Converters = new List<JsonConverter>
-                    {
-                        new IsoDateTimeConverter
-                        {
-                            DateTimeFormat = "yyyyMMdd'T'HHmmsszzz"
-                        }
-                    }
-                }
-            };
         }
 
         /// <summary>

@@ -16,36 +16,41 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     /// <summary>
     /// The <see cref="ProjectViewModel" /> class. View model for CI projects.
     /// </summary>
-    public class ProjectViewModel : PropertyChangedBase, IProjectViewModel
+    public class ProjectViewModel : ViewModel, IProjectViewModel
     {
+        private readonly IEventAggregator _eventAggregator;
         private readonly IBuildViewModelFactory _buildFactory;
-        private readonly IProjectDigestViewModelFactory _digestFactory;
         private readonly Guid _settingsId;
         private List<IBuildViewModel> _builds;
         private string _name;
         private bool _isBusy;
         private bool _isErrored;
-        private IProjectDigestViewModel _digest;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ProjectViewModel" /> class.
         /// </summary>
+        /// <param name="eventAggregator">The event aggregator.</param>
         /// <param name="buildMonitor">The build monitor.</param>
         /// <param name="buildFactory">The build factory.</param>
-        /// <param name="digestFactory">The digest factory.</param>
         /// <param name="settingsId">The settings identifier.</param>
         /// <param name="projectId">The project identifier.</param>
         /// <param name="projectName">The project name.</param>
-        public ProjectViewModel(IBuildMonitor buildMonitor, IBuildViewModelFactory buildFactory, IProjectDigestViewModelFactory digestFactory, Guid settingsId, string projectId, string projectName)
+        public ProjectViewModel(
+            IEventAggregator eventAggregator,
+            IBuildMonitor buildMonitor,
+            IBuildViewModelFactory buildFactory,
+            Guid settingsId,
+            string projectId,
+            string projectName)
         {
+            Ensure.That(eventAggregator).IsNotNull();
             Ensure.That(buildMonitor).IsNotNull();
             Ensure.That(buildFactory).IsNotNull();
-            Ensure.That(digestFactory).IsNotNull();
             Ensure.That(settingsId).IsNotEmpty();
             Ensure.That(projectId).IsNotNullOrWhiteSpace();
 
+            _eventAggregator = eventAggregator;
             _buildFactory = buildFactory;
-            _digestFactory = digestFactory;
             _settingsId = settingsId;
             Id = projectId;
             _name = projectName;
@@ -86,7 +91,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         }
 
         /// <summary>
-        /// Gets the builds
+        /// Gets the builds.
         /// </summary>
         /// <value>
         /// The builds.
@@ -103,8 +108,17 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
                 _builds = value.ToList();
                 NotifyOfPropertyChange(() => Builds);
                 NotifyOfPropertyChange(() => HasBuilds);
+                NotifyOfPropertyChange(() => LatestBuild);
             }
         }
+
+        /// <summary>
+        /// Gets the latest build.
+        /// </summary>
+        /// <value>
+        /// The latest build.
+        /// </value>
+        public IBuildViewModel LatestBuild => _builds.FirstOrDefault();
 
         /// <summary>
         /// Gets a value indicating whether this instance has builds.
@@ -155,23 +169,21 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         }
 
         /// <summary>
-        /// Gets the digest.
+        /// Gets the view name.
         /// </summary>
         /// <value>
-        /// The digest.
+        /// The view name.
         /// </value>
-        public IProjectDigestViewModel Digest
-        {
-            get
-            {
-                return _digest;
-            }
+        public override string ViewName => "Project";
 
-            private set
-            {
-                _digest = value;
-                NotifyOfPropertyChange(() => Digest);
-            }
+        /// <summary>
+        /// View the connection.
+        /// </summary>
+        public void View()
+        {
+            var message = new NavigationMessage2(this);
+
+            _eventAggregator.PublishOnUIThread(message);
         }
 
         /// <summary>
@@ -241,7 +253,6 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             if (isDirty || isUpdated)
             {
                 Builds = currentBuilds.OrderByDescending(build => build.StartTime ?? DateTime.MaxValue);
-                Digest = _digestFactory.Create(e.Builds);
             }
 
             IsBusy = false;

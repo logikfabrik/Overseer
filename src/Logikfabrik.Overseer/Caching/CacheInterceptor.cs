@@ -36,7 +36,7 @@ namespace Logikfabrik.Overseer.Caching
             var request = invocation.Request;
             var method = request.Method;
 
-            var key = $"{GetKey(request)}.{method.Name}({string.Join(",", request.Arguments)})";
+            var key = $"{GetBaseKey(request)}.{method.Name}({string.Join(",", request.Arguments)})";
 
             var proceeded = false;
 
@@ -55,11 +55,15 @@ namespace Logikfabrik.Overseer.Caching
             }
         }
 
-        private static string GetKey(IProxyRequest request)
+        private static string GetBaseKey(IProxyRequest request)
         {
-            var cacheable = request.Target as ICacheable;
+            return request.Method.DeclaringType?.FullName;
 
-            return cacheable == null ? request.Method.DeclaringType?.FullName : cacheable.GetCacheKey();
+            // TODO: Cache logic.
+
+            //var cacheable = request.Target as ICacheable;
+
+            //return cacheable == null ? request.Method.DeclaringType?.FullName : cacheable.GetCacheBaseKey();
         }
     }
 }

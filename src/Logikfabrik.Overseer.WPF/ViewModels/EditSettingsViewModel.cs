@@ -43,7 +43,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// <value>
         /// The view name.
         /// </value>
-        public override string ViewName { get; } = "Settings";
+        public override string ViewName { get; } = "Edit settings";
 
         /// <summary>
         /// Gets or sets the proxy URL.

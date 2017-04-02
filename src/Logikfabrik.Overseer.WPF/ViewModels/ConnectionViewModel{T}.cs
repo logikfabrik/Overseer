@@ -183,7 +183,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// <value>
         /// The view name.
         /// </value>
-        public override string ViewName { get; } = "TODO: Change me";
+        public override string ViewName { get; } = "Connection";
 
         /// <summary>
         /// Gets the settings.

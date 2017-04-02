@@ -5,7 +5,6 @@
 namespace Logikfabrik.Overseer.Logging
 {
     using System;
-    using EnsureThat;
 
     /// <summary>
     /// The <see cref="LogEntry" /> class.
@@ -30,8 +29,6 @@ namespace Logikfabrik.Overseer.Logging
         /// <param name="exception">The exception.</param>
         public LogEntry(LogEntryType type, string message, Exception exception)
         {
-            Ensure.That(message).IsNotNullOrWhiteSpace();
-
             Type = type;
             Message = message;
             Exception = exception;

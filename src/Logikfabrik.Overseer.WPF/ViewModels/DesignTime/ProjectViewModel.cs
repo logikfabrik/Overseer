@@ -60,14 +60,6 @@ namespace Logikfabrik.Overseer.WPF.ViewModels.DesignTime
         /// </value>
         public bool IsErrored { get; } = false;
 
-        /// <summary>
-        /// Gets the digest.
-        /// </summary>
-        /// <value>
-        /// The digest.
-        /// </value>
-        public IProjectDigestViewModel Digest { get; } = new ProjectDigestViewModel();
-
         public bool TryUpdate(string name)
         {
             throw new NotImplementedException();

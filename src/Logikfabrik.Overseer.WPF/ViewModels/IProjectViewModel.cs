@@ -59,14 +59,6 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// </value>
         bool IsErrored { get; }
 
-        /// <summary>
-        /// Gets the digest.
-        /// </summary>
-        /// <value>
-        /// The digest.
-        /// </value>
-        IProjectDigestViewModel Digest { get; }
-
         bool TryUpdate(string name);
     }
 }

@@ -130,6 +130,12 @@
     <Compile Include="Views\BuildView.xaml.cs">
       <DependentUpon>BuildView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Build\Base.xaml.cs">
+      <DependentUpon>Base.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Build\Tile.xaml.cs">
+      <DependentUpon>Tile.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\ChangeView.xaml.cs">
       <DependentUpon>ChangeView.xaml</DependentUpon>
     </Compile>
@@ -141,9 +147,6 @@
     </Compile>
     <Compile Include="Views\EditSettingsView.xaml.cs">
       <DependentUpon>EditSettingsView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\ProjectDigestView.xaml.cs">
-      <DependentUpon>ProjectDigestView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ProjectsToMonitorView.xaml.cs">
       <DependentUpon>ProjectsToMonitorView.xaml</DependentUpon>
@@ -159,6 +162,12 @@
     </Compile>
     <Compile Include="Views\ConnectionView.xaml.cs">
       <DependentUpon>ConnectionView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Project\Base.xaml.cs">
+      <DependentUpon>Base.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Project\Tile.xaml.cs">
+      <DependentUpon>Tile.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\RemoveConnectionView.xaml.cs">
       <DependentUpon>RemoveConnectionView.xaml</DependentUpon>
@@ -208,6 +217,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\Build\Base.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Build\Tile.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\ChangeView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -221,10 +238,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\EditSettingsView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\ProjectDigestView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -245,6 +258,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\ConnectionView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Project\Base.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Project\Tile.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

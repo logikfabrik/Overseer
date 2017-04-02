@@ -6,14 +6,18 @@ namespace Logikfabrik.Overseer.WPF.Client
 {
     using System;
     using System.Collections.Generic;
+    using System.IO;
     using System.Linq;
     using System.Reflection;
     using System.Windows;
     using Caliburn.Micro;
+    using log4net.Config;
     using Logging;
     using Ninject;
     using Ninject.Extensions.Factory;
     using Ninject.Modules;
+    using Ninject.Parameters;
+    using Overseer.Logging;
     using Providers.Settings;
     using Settings;
     using ViewModels;
@@ -36,10 +40,7 @@ namespace Logikfabrik.Overseer.WPF.Client
             _kernel = new StandardKernel();
             _runtimeAssemblies = new Lazy<IEnumerable<Assembly>>(GetRuntimeAssemblies);
 
-            if (!Execute.InDesignMode)
-            {
-                log4net.Config.XmlConfigurator.Configure();
-            }
+            XmlConfigurator.Configure();
 
             Initialize();
         }
@@ -82,6 +83,8 @@ namespace Logikfabrik.Overseer.WPF.Client
             }
 
             ViewLocator.AddNamespaceMapping("*", "Logikfabrik.Overseer.WPF.Client.Views");
+
+            LogManager.GetLog = type => _kernel.Get<IUILogService>(new ConstructorArgument("type", type));
         }
 
         /// <summary>
@@ -182,13 +185,13 @@ namespace Logikfabrik.Overseer.WPF.Client
             _kernel.Bind<IEventAggregator>().To<EventAggregator>().InSingletonScope();
 
             // WPF client setup.
+            _kernel.Bind<IUILogService>().To<UILogService>();
             _kernel.Bind<INotificationManager>().To<NotificationManager>();
             _kernel.Bind<IBuildNotificationManager>().To<BuildNotificationManager>().InSingletonScope();
             _kernel.Bind<IProjectToMonitorViewModelFactory>().ToFactory();
             _kernel.Bind<IProjectsToMonitorViewModelFactory>().ToFactory();
             _kernel.Bind<IChangeViewModelFactory>().ToFactory();
             _kernel.Bind<IBuildViewModelFactory>().ToFactory();
-            _kernel.Bind<IProjectDigestViewModelFactory>().ToFactory();
             _kernel.Bind<IProjectViewModelFactory>().ToFactory();
             _kernel.Bind<IRemoveConnectionViewModelFactory>().ToFactory();
             _kernel.Bind<IAddConnectionItemViewModelFactory>().ToFactory();
@@ -200,14 +203,14 @@ namespace Logikfabrik.Overseer.WPF.Client
 
         private void LoadAllAssemblies()
         {
-            var directoryName = System.IO.Path.GetDirectoryName(GetType().Assembly.Location);
+            var directoryName = Path.GetDirectoryName(GetType().Assembly.Location);
 
             if (string.IsNullOrWhiteSpace(directoryName))
             {
                 return;
             }
 
-            var assemblyPaths = System.IO.Directory.EnumerateFiles(directoryName, "*.dll", System.IO.SearchOption.TopDirectoryOnly);
+            var assemblyPaths = Directory.EnumerateFiles(directoryName, "*.dll", SearchOption.TopDirectoryOnly);
 
             foreach (var path in assemblyPaths)
             {

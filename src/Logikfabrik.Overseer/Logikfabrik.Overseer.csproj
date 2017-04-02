@@ -72,6 +72,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Api\CacheableApiClient{T}.cs" />
+    <Compile Include="Api\ICacheableApiClient.cs" />
     <Compile Include="AppSettings.cs" />
     <Compile Include="BuildMonitor.cs" />
     <Compile Include="BuildMonitorConnectionErrorEventArgs.cs" />

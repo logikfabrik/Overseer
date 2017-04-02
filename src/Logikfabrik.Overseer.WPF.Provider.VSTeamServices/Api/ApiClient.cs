@@ -12,12 +12,13 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices.Api
     using System.Threading.Tasks;
     using EnsureThat;
     using Models;
+    using Overseer.Api;
     using Overseer.Extensions;
 
     /// <summary>
     /// The <see cref="ApiClient" /> class.
     /// </summary>
-    public class ApiClient : IApiClient
+    public class ApiClient : CacheableApiClient<ConnectionSettings>, IApiClient
     {
         private readonly Lazy<HttpClient> _httpClient;
         private bool _isDisposed;
@@ -27,9 +28,8 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices.Api
         /// </summary>
         /// <param name="settings">The settings.</param>
         public ApiClient(ConnectionSettings settings)
+            : base(settings)
         {
-            Ensure.That(settings).IsNotNull();
-
             _httpClient = new Lazy<HttpClient>(() => GetHttpClient(new Uri(settings.Url), settings.Token));
         }
 

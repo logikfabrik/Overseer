@@ -2,7 +2,7 @@
 //   Copyright (c) 2016 anton(at)logikfabrik.se. Licensed under the MIT license.
 // </copyright>
 
-namespace Logikfabrik.Overseer.WPF.Client.Views.AddConnectionItem
+namespace Logikfabrik.Overseer.WPF.Client.Views.Project
 {
     /// <summary>
     /// The <see cref="Tile" /> class.

@@ -7,7 +7,6 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using Caliburn.Micro;
     using EnsureThat;
     using Factories;
     using Settings;
@@ -28,6 +27,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// </summary>
         /// <param name="connectionSettingsRepository">The connection settings repository.</param>
         /// <param name="connectionViewModelStrategy">The connection view model strategy.</param>
+        /// <param name="addConnectionItemViewModelFactory"></param>
         public ConnectionsViewModel(
             IConnectionSettingsRepository connectionSettingsRepository,
             IConnectionViewModelStrategy connectionViewModelStrategy,

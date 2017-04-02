@@ -13,6 +13,6 @@ namespace Logikfabrik.Overseer.Caching
         /// Gets the cache key for this <see cref="ICacheable" /> instance.
         /// </summary>
         /// <returns>The cache key.</returns>
-        string GetCacheKey();
+        string GetCacheBaseKey();
     }
 }
