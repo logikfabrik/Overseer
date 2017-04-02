@@ -8,6 +8,8 @@
         <Setter Property="Height" Value="650" />
         <Setter Property="MinHeight" Value="400" />
         <Setter Property="Background" Value="{DynamicResource Window.Background}" />
+        <Setter Property="TextOptions.TextFormattingMode" Value="Display" />
         <Setter Property="UseLayoutRounding" Value="True" />
+        <Setter Property="SnapsToDevicePixels" Value="True" />
     </Style>
 </ResourceDictionary>

@@ -35,7 +35,7 @@
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate DataType="{x:Type ValidationError}">
                                     <TextBlock
-                                        FontSize="10"
+                                        FontSize="14"
                                         Foreground="{DynamicResource Control.Error}"
                                         Text="{Binding ErrorContent, Mode=OneWay}" />
                                 </DataTemplate>

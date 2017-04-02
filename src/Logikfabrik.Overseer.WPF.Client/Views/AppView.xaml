@@ -9,7 +9,7 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <StackPanel Background="#FF525252">
+        <StackPanel Background="{DynamicResource Panel.Background}" ZIndex="2">
             <StackPanel.Effect>
                 <DropShadowEffect
                     BlurRadius="3"

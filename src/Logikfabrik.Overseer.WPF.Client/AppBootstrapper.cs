@@ -83,8 +83,6 @@ namespace Logikfabrik.Overseer.WPF.Client
             }
 
             ViewLocator.AddNamespaceMapping("*", "Logikfabrik.Overseer.WPF.Client.Views");
-
-            LogManager.GetLog = type => _kernel.Get<IUILogService>(new ConstructorArgument("type", type));
         }
 
         /// <summary>
@@ -199,6 +197,8 @@ namespace Logikfabrik.Overseer.WPF.Client
             _kernel.Bind<ConnectionsViewModel>().ToSelf().InSingletonScope();
 
             _kernel.Load(GetModules());
+
+            LogManager.GetLog = type => _kernel.Get<IUILogService>(new ConstructorArgument("type", type));
         }
 
         private void LoadAllAssemblies()
