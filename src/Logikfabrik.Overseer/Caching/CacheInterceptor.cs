@@ -49,21 +49,19 @@ namespace Logikfabrik.Overseer.Caching
                 return invocation.ReturnValue;
             });
 
-            if (!proceeded)
+            if (proceeded)
             {
-                invocation.ReturnValue = returnValue;
+                return;
             }
+
+            invocation.ReturnValue = returnValue;
         }
 
         private static string GetBaseKey(IProxyRequest request)
         {
-            return request.Method.DeclaringType?.FullName;
+            var cacheable = request.Target as ICacheable;
 
-            // TODO: Cache logic.
-
-            //var cacheable = request.Target as ICacheable;
-
-            //return cacheable == null ? request.Method.DeclaringType?.FullName : cacheable.GetCacheBaseKey();
+            return cacheable == null ? request.Method.DeclaringType?.FullName : cacheable.GetCacheBaseKey();
         }
     }
 }

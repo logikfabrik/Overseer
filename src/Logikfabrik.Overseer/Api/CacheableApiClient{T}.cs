@@ -4,7 +4,6 @@
 
 namespace Logikfabrik.Overseer.Api
 {
-    using System;
     using EnsureThat;
     using Settings;
 
@@ -13,6 +12,10 @@ namespace Logikfabrik.Overseer.Api
     {
         private readonly T _settings;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CacheableApiClient{T}" /> class.
+        /// </summary>
+        /// <param name="settings">The settings.</param>
         protected CacheableApiClient(T settings)
         {
             Ensure.That(settings).IsNotNull();
@@ -20,9 +23,13 @@ namespace Logikfabrik.Overseer.Api
             _settings = settings;
         }
 
+        /// <summary>
+        /// Gets the cache base key.
+        /// </summary>
+        /// <returns>The cache base key.</returns>
         public string GetCacheBaseKey()
         {
-            throw new NotImplementedException();
+            return $"{GetType().FullName}({_settings.Signature()})";
         }
     }
 }
