@@ -18,6 +18,7 @@ namespace Logikfabrik.Overseer
     /// </summary>
     public class BuildMonitor : IBuildMonitor
     {
+        private readonly IAppSettingsFactory _appSettingsFactory;
         private readonly ILogService _logService;
         private readonly IDisposable _subscription;
         private CancellationTokenSource _cancellationTokenSource;
@@ -27,12 +28,15 @@ namespace Logikfabrik.Overseer
         /// Initializes a new instance of the <see cref="BuildMonitor" /> class.
         /// </summary>
         /// <param name="connectionPool">The connection pool.</param>
+        /// <param name="appSettingsFactory">The app settings factory.</param>
         /// <param name="logService">The log service.</param>
-        public BuildMonitor(IConnectionPool connectionPool, ILogService logService)
+        public BuildMonitor(IConnectionPool connectionPool, IAppSettingsFactory appSettingsFactory, ILogService logService)
         {
             Ensure.That(connectionPool).IsNotNull();
+            Ensure.That(appSettingsFactory).IsNotNull();
             Ensure.That(logService).IsNotNull();
 
+            _appSettingsFactory = appSettingsFactory;
             _logService = logService;
             _subscription = connectionPool.Subscribe(this);
         }
@@ -92,8 +96,7 @@ namespace Logikfabrik.Overseer
 
                             await GetProjectsAndBuildsAsync(value, cancellationToken).ConfigureAwait(false);
 
-                            // TODO: Read delay from configuration.
-                            await Task.Delay(TimeSpan.FromSeconds(30), cancellationToken).ConfigureAwait(false);
+                            await Task.Delay(TimeSpan.FromSeconds(_appSettingsFactory.Create().Interval), cancellationToken).ConfigureAwait(false);
                         }
                         catch (OperationCanceledException)
                         {

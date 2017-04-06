@@ -4,8 +4,9 @@
 
 namespace Logikfabrik.Overseer.Caching
 {
+    using System;
+    using CacheManager.Core;
     using EnsureThat;
-    using LazyCache;
     using Ninject.Extensions.Interception;
     using Ninject.Extensions.Interception.Request;
 
@@ -14,17 +15,17 @@ namespace Logikfabrik.Overseer.Caching
     /// </summary>
     public class CacheInterceptor : IInterceptor
     {
-        private readonly CachingService _cachingService;
+        private readonly ICacheManager<object> _cacheManager;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="CacheInterceptor" /> class.
         /// </summary>
-        /// <param name="cachingService">The caching service.</param>
-        public CacheInterceptor(CachingService cachingService)
+        /// <param name="cacheManager">The cache manager.</param>
+        public CacheInterceptor(ICacheManager<object> cacheManager)
         {
-            Ensure.That(cachingService).IsNotNull();
+            Ensure.That(cacheManager).IsNotNull();
 
-            _cachingService = cachingService;
+            _cacheManager = cacheManager;
         }
 
         /// <summary>
@@ -40,14 +41,16 @@ namespace Logikfabrik.Overseer.Caching
 
             var proceeded = false;
 
-            var returnValue = _cachingService.GetOrAdd(key, () =>
+            Func<string, object> factory = cacheKey =>
             {
                 invocation.Proceed();
 
                 proceeded = true;
 
                 return invocation.ReturnValue;
-            });
+            };
+
+            var returnValue = _cacheManager.GetOrAdd(key, factory);
 
             if (proceeded)
             {

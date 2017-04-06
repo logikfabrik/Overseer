@@ -12,12 +12,33 @@ namespace Logikfabrik.Overseer
     public class AppSettings : ApplicationSettingsBase
     {
         /// <summary>
+        /// Gets or sets the interval.
+        /// </summary>
+        /// <value>
+        /// The interval.
+        /// </value>
+        [UserScopedSetting]
+        public int Interval
+        {
+            get { return (int)this["Interval"]; }
+            set { this["Interval"] = value; }
+        }
+
+        /// <summary>
+        /// Gets the expiration.
+        /// </summary>
+        /// <value>
+        /// The expiration.
+        /// </value>
+        public int Expiration => Interval;
+
+        /// <summary>
         /// Gets or sets the proxy URL.
         /// </summary>
         /// <value>
         /// The proxy URL.
         /// </value>
-        [UserScopedSettingAttribute]
+        [UserScopedSetting]
         public string ProxyUrl
         {
             get { return (string)this["ProxyUrl"]; }
@@ -30,7 +51,7 @@ namespace Logikfabrik.Overseer
         /// <value>
         /// The proxy username.
         /// </value>
-        [UserScopedSettingAttribute]
+        [UserScopedSetting]
         public string ProxyUsername
         {
             get { return (string)this["ProxyUsername"]; }
@@ -43,7 +64,7 @@ namespace Logikfabrik.Overseer
         /// <value>
         /// The proxy password.
         /// </value>
-        [UserScopedSettingAttribute]
+        [UserScopedSetting]
         public string ProxyPassword
         {
             get { return (string)this["ProxyPassword"]; }

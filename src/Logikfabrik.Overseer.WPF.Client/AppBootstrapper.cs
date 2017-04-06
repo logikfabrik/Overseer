@@ -10,6 +10,7 @@ namespace Logikfabrik.Overseer.WPF.Client
     using System.Linq;
     using System.Reflection;
     using System.Windows;
+    using CacheManager.Core;
     using Caliburn.Micro;
     using log4net.Config;
     using Logging;
@@ -18,6 +19,7 @@ namespace Logikfabrik.Overseer.WPF.Client
     using Ninject.Modules;
     using Ninject.Parameters;
     using Overseer.Logging;
+    using Providers.Caching;
     using Providers.Settings;
     using Settings;
     using ViewModels;
@@ -169,6 +171,8 @@ namespace Logikfabrik.Overseer.WPF.Client
         private void ConfigureRuntime()
         {
             // Business logic setup.
+            _kernel.Bind<IAppSettingsFactory>().ToFactory();
+            _kernel.Bind<ICacheManager<object>>().ToProvider<CacheManagerProvider>();
             _kernel.Bind<ILogService>().To<LogService>();
             _kernel.Bind<IConnectionSettingsSerializer>().ToProvider<ConnectionSettingsSerializerProvider>();
             _kernel.Bind<IFileStore>().ToProvider<FileStoreProvider>();

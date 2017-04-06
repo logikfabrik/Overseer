@@ -16,6 +16,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         private readonly EditSettingsViewModelValidator _validator;
         private readonly IEventAggregator _eventAggregator;
         private readonly AppSettings _appSettings;
+        private int _interval;
         private string _proxyUrl;
         private string _proxyUsername;
         private string _proxyPassword;
@@ -32,6 +33,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             _validator = new EditSettingsViewModelValidator();
             _eventAggregator = eventAggregator;
             _appSettings = appSettings;
+            _interval = appSettings.Interval;
             _proxyUrl = appSettings.ProxyUrl;
             _proxyUsername = appSettings.ProxyUsername;
             _proxyPassword = appSettings.ProxyPassword;
@@ -44,6 +46,26 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// The view name.
         /// </value>
         public override string ViewName { get; } = "Edit settings";
+
+        /// <summary>
+        /// Gets or sets the interval.
+        /// </summary>
+        /// <value>
+        /// The interval.
+        /// </value>
+        public int Interval
+        {
+            get
+            {
+                return _interval;
+            }
+
+            set
+            {
+                _interval = value;
+                NotifyOfPropertyChange(() => Interval);
+            }
+        }
 
         /// <summary>
         /// Gets or sets the proxy URL.
@@ -115,6 +137,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
                 return;
             }
 
+            _appSettings.Interval = _interval;
             _appSettings.ProxyUrl = _proxyUrl;
             _appSettings.ProxyUsername = _proxyUsername;
             _appSettings.ProxyPassword = _proxyPassword;
