@@ -2,7 +2,7 @@
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="../Resources/FocusVisuals.xaml" />
     </ResourceDictionary.MergedDictionaries>
-    <Style x:Key="CheckBoxDefaultStyle" TargetType="{x:Type CheckBox}">
+    <Style BasedOn="{StaticResource {x:Type CheckBox}}" TargetType="{x:Type CheckBox}">
         <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}" />
         <Setter Property="Background" Value="{DynamicResource CheckBox.Static.Background}" />
         <Setter Property="Foreground" Value="{DynamicResource CheckBox.Static.Foreground}" />

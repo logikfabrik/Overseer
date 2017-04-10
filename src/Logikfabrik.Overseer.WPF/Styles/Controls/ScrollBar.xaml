@@ -2,7 +2,7 @@
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="../Resources/FocusVisuals.xaml" />
     </ResourceDictionary.MergedDictionaries>
-    <Style x:Key="ScrollBarRepeatButtonDefaultStyle" TargetType="{x:Type RepeatButton}">
+    <Style BasedOn="{StaticResource {x:Type RepeatButton}}" TargetType="{x:Type RepeatButton}">
         <Setter Property="OverridesDefaultStyle" Value="True" />
         <Setter Property="Background" Value="Transparent" />
         <Setter Property="Focusable" Value="False" />
@@ -18,7 +18,7 @@
             </Setter.Value>
         </Setter>
     </Style>
-    <Style x:Key="ScrollBarThumbDefaultStyle" TargetType="{x:Type Thumb}">
+    <Style BasedOn="{StaticResource {x:Type Thumb}}" TargetType="{x:Type Thumb}">
         <Setter Property="OverridesDefaultStyle" Value="True" />
         <Setter Property="IsTabStop" Value="False" />
         <Setter Property="Template">
@@ -58,13 +58,13 @@
                             IsDirectionReversed="True"
                             IsEnabled="{TemplateBinding IsMouseOver}">
                             <Track.DecreaseRepeatButton>
-                                <RepeatButton Command="{x:Static ScrollBar.PageUpCommand}" Style="{StaticResource ScrollBarRepeatButtonDefaultStyle}" />
+                                <RepeatButton Command="{x:Static ScrollBar.PageUpCommand}" />
                             </Track.DecreaseRepeatButton>
                             <Track.IncreaseRepeatButton>
-                                <RepeatButton Command="{x:Static ScrollBar.PageDownCommand}" Style="{StaticResource ScrollBarRepeatButtonDefaultStyle}" />
+                                <RepeatButton Command="{x:Static ScrollBar.PageDownCommand}" />
                             </Track.IncreaseRepeatButton>
                             <Track.Thumb>
-                                <Thumb Style="{StaticResource ScrollBarThumbDefaultStyle}" />
+                                <Thumb />
                             </Track.Thumb>
                         </Track>
                     </Grid>
@@ -86,13 +86,13 @@
                                 </Grid.ColumnDefinitions>
                                 <Track x:Name="PART_Track" IsEnabled="{TemplateBinding IsMouseOver}">
                                     <Track.DecreaseRepeatButton>
-                                        <RepeatButton Command="{x:Static ScrollBar.PageLeftCommand}" Style="{StaticResource ScrollBarRepeatButtonDefaultStyle}" />
+                                        <RepeatButton Command="{x:Static ScrollBar.PageLeftCommand}" />
                                     </Track.DecreaseRepeatButton>
                                     <Track.IncreaseRepeatButton>
-                                        <RepeatButton Command="{x:Static ScrollBar.PageRightCommand}" Style="{StaticResource ScrollBarRepeatButtonDefaultStyle}" />
+                                        <RepeatButton Command="{x:Static ScrollBar.PageRightCommand}" />
                                     </Track.IncreaseRepeatButton>
                                     <Track.Thumb>
-                                        <Thumb Style="{StaticResource ScrollBarThumbDefaultStyle}" />
+                                        <Thumb />
                                     </Track.Thumb>
                                 </Track>
                             </Grid>

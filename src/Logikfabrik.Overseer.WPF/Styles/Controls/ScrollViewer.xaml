@@ -2,9 +2,7 @@
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="ScrollBar.xaml" />
     </ResourceDictionary.MergedDictionaries>
-    <Style
-        BasedOn="{StaticResource {x:Type ScrollViewer}}"
-        TargetType="{x:Type ScrollViewer}">
+    <Style BasedOn="{StaticResource {x:Type ScrollViewer}}" TargetType="{x:Type ScrollViewer}">
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ScrollViewer}">

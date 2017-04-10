@@ -7,8 +7,5 @@
     d:DesignHeight="300"
     d:DesignWidth="300"
     mc:Ignorable="d">
-    <CheckBox
-        Content="{Binding Name, Mode=OneWay}"
-        IsChecked="{Binding Monitor, Mode=TwoWay}"
-        Style="{StaticResource CheckBoxDefaultStyle}" />
+    <CheckBox Content="{Binding Name, Mode=OneWay}" IsChecked="{Binding Monitor, Mode=TwoWay}" />
 </UserControl>

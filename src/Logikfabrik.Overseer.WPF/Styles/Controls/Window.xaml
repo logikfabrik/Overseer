@@ -11,5 +11,6 @@
         <Setter Property="TextOptions.TextFormattingMode" Value="Display" />
         <Setter Property="UseLayoutRounding" Value="True" />
         <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="TextElement.Foreground" Value="{DynamicResource Window.Foreground}" />
     </Style>
 </ResourceDictionary>
