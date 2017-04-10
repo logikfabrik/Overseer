@@ -37,6 +37,13 @@ namespace Logikfabrik.Overseer.Caching
             var request = invocation.Request;
             var method = request.Method;
 
+            if (method.ReturnType == typeof(void))
+            {
+                invocation.Proceed();
+
+                return;
+            }
+
             var key = $"{GetBaseKey(request)}.{method.Name}({string.Join(",", request.Arguments)})";
 
             var proceeded = false;
