@@ -28,16 +28,16 @@
         </StackPanel>
         <StackPanel Margin="0,0,0,20">
             <TextBlock Text="Connection Name" />
-            <TextBox Style="{StaticResource TextBoxDefaultStyle}" Text="{Binding Path=Name, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" />
+            <TextBox Text="{Binding Path=Name, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" />
         </StackPanel>
         <StackPanel Margin="0,0,0,20">
             <TextBlock Text="URL" />
-            <TextBox Style="{StaticResource TextBoxDefaultStyle}" Text="{Binding Path=Url, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" />
+            <TextBox Text="{Binding Path=Url, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" />
             <TextBlock FontSize="10" Text="e.g. https://overseer-ci.visualstudio.com" />
         </StackPanel>
         <StackPanel Margin="0,0,0,20">
             <TextBlock Text="Token" />
-            <TextBox Style="{StaticResource TextBoxDefaultStyle}" Text="{Binding Path=Token, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" />
+            <TextBox Text="{Binding Path=Token, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" />
             <TextBlock>
                 You create your token at
                 <Hyperlink extensions:HyperlinkExtensions.IsExternal="True" NavigateUri="https://www.visualstudio.com">visualstudio.com</Hyperlink>

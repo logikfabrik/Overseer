@@ -14,19 +14,19 @@
             </StackPanel>
             <StackPanel Margin="0,0,0,20">
                 <TextBlock Text="Interval (s)" />
-                <TextBox Style="{StaticResource TextBoxDefaultStyle}" Text="{Binding Path=Interval, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" />
+                <TextBox Text="{Binding Path=Interval, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" />
             </StackPanel>
             <StackPanel Margin="0,0,0,20">
                 <TextBlock Text="Proxy URL" />
-                <TextBox Style="{StaticResource TextBoxDefaultStyle}" Text="{Binding Path=ProxyUrl, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" />
+                <TextBox Text="{Binding Path=ProxyUrl, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" />
             </StackPanel>
             <StackPanel Margin="0,0,0,20">
                 <TextBlock Text="Proxy Username" />
-                <TextBox Style="{StaticResource TextBoxDefaultStyle}" Text="{Binding Path=ProxyUsername, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" />
+                <TextBox Text="{Binding Path=ProxyUsername, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" />
             </StackPanel>
             <StackPanel Margin="0,0,0,20">
                 <TextBlock Text="Proxy Password" />
-                <TextBox Style="{StaticResource TextBoxDefaultStyle}" Text="{Binding Path=ProxyPassword, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" />
+                <TextBox Text="{Binding Path=ProxyPassword, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" />
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <Button

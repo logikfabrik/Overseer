@@ -29,11 +29,11 @@
         </StackPanel>
         <StackPanel Margin="0,0,0,20">
             <TextBlock Text="Connection Name" />
-            <TextBox Style="{StaticResource TextBoxDefaultStyle}" Text="{Binding Path=Name, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" />
+            <TextBox Text="{Binding Path=Name, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" />
         </StackPanel>
         <StackPanel Margin="0,0,0,20">
             <TextBlock Text="URL" />
-            <TextBox Style="{StaticResource TextBoxDefaultStyle}" Text="{Binding Path=Url, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" />
+            <TextBox Text="{Binding Path=Url, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" />
             <TextBlock FontSize="10" Text="{Binding Path=BaseUri, Mode=OneWay}" />
         </StackPanel>
         <StackPanel Margin="0,0,0,20">
@@ -47,11 +47,11 @@
         <StackPanel Margin="0,0,0,20">
             <StackPanel>
                 <TextBlock Text="Username" />
-                <TextBox Style="{StaticResource TextBoxDefaultStyle}" Text="{Binding Path=Username, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" />
+                <TextBox Text="{Binding Path=Username, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" />
             </StackPanel>
             <StackPanel>
                 <TextBlock Text="Password" />
-                <TextBox Style="{StaticResource TextBoxDefaultStyle}" Text="{Binding Path=Password, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" />
+                <TextBox Text="{Binding Path=Password, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" />
             </StackPanel>
         </StackPanel>
     </StackPanel>

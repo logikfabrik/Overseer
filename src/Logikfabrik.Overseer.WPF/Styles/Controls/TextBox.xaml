@@ -3,7 +3,7 @@
         <ResourceDictionary Source="../Resources/Converters.xaml" />
         <ResourceDictionary Source="TextBlock.xaml" />
     </ResourceDictionary.MergedDictionaries>
-    <Style x:Key="TextBoxDefaultStyle" TargetType="{x:Type TextBox}">
+    <Style BasedOn="{StaticResource {x:Type TextBox}}" TargetType="{x:Type TextBox}">
         <Setter Property="FocusVisualStyle" Value="{x:Null}" />
         <Setter Property="Background" Value="{DynamicResource TextBox.Static.Background}" />
         <Setter Property="Foreground" Value="{DynamicResource TextBox.Static.Foreground}" />
