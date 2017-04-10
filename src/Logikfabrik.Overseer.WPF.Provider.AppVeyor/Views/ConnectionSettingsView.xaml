@@ -16,7 +16,7 @@
                 Margin="5"
                 HorizontalAlignment="Left"
                 Stretch="UniformToFill">
-                <Path Fill="#FFFFFFFF">
+                <Path Fill="#FFFFFF">
                     <Path.Data>
                         <GeometryGroup>
                             <Geometry>F 1 M 308.194,190.55 C 273.398,164.038 222.033,170.666 192.208,205.463 164.04,241.916 169.011,293.281 203.807,319.793 238.603,347.961 289.969,341.333 318.137,304.88 347.961,270.084 342.99,218.718 308.194,190.55 Z</Geometry>

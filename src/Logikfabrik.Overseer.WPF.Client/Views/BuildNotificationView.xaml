@@ -5,10 +5,10 @@
     Width="400"
     Height="150">
     <UserControl.Resources>
-        <SolidColorBrush x:Key="BuildBorder.InProgress.Border" Color="#FF5500FF" />
-        <SolidColorBrush x:Key="BuildBorder.Succeeded.Border" Color="#FFAAFF00" />
-        <SolidColorBrush x:Key="BuildBorder.Stopped.Border" Color="#FFFFFF00" />
-        <SolidColorBrush x:Key="BuildBorder.Failed.Border" Color="#FFFF3300" />
+        <SolidColorBrush x:Key="BuildBorder.InProgress.Border" Color="#5500FF" />
+        <SolidColorBrush x:Key="BuildBorder.Succeeded.Border" Color="#AAFF00" />
+        <SolidColorBrush x:Key="BuildBorder.Stopped.Border" Color="#FFFF00" />
+        <SolidColorBrush x:Key="BuildBorder.Failed.Border" Color="#FF3300" />
         <Style x:Key="BuildBorderStyle" TargetType="{x:Type Border}">
             <Setter Property="BorderThickness" Value="5,0,0,0" />
             <Setter Property="Margin" Value="10" />
@@ -19,7 +19,7 @@
                         BlurRadius="2"
                         Opacity="0.2"
                         ShadowDepth="2"
-                        Color="#FF000000" />
+                        Color="#000000" />
                 </Setter.Value>
             </Setter>
         </Style>
@@ -52,7 +52,7 @@
             <Setter Property="BorderBrush" Value="{StaticResource BuildBorder.Stopped.Border}" />
         </Style>
         <Style x:Key="TextBlockStyle" TargetType="{x:Type TextBlock}">
-            <Setter Property="Foreground" Value="#FFFFFFFF" />
+            <Setter Property="Foreground" Value="#FFFFFF" />
             <Setter Property="TextWrapping" Value="Wrap" />
         </Style>
         <Style

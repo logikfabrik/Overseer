@@ -11,71 +11,71 @@
         Dark #73cb00
     -->
 
-    <SolidColorBrush x:Key="Control.Focus" Color="#FFAAFF00" />
-    <SolidColorBrush x:Key="Control.Error" Color="#FFFF3300" />
+    <SolidColorBrush x:Key="Control.Focus" Color="#AAFF00" />
+    <SolidColorBrush x:Key="Control.Error" Color="#FF3300" />
 
-    <SolidColorBrush x:Key="Window.Background" Color="#FF2A2A2A" />
-    <SolidColorBrush x:Key="Window.Foreground" Color="#FFFFFFFF" />
+    <SolidColorBrush x:Key="Window.Background" Color="#2A2A2A" />
+    <SolidColorBrush x:Key="Window.Foreground" Color="#FFFFFF" />
 
-    <SolidColorBrush x:Key="Panel.Background" Color="#FF525252" />
+    <SolidColorBrush x:Key="Panel.Background" Color="#525252" />
 
-    <SolidColorBrush x:Key="TextBlock.Foreground" Color="#FFFFFFFF" />
+    <SolidColorBrush x:Key="TextBlock.Foreground" Color="#FFFFFF" />
 
     <SolidColorBrush x:Key="Button.Defaulted.Background" Color="Transparent" />
-    <SolidColorBrush x:Key="Button.Defaulted.Foreground" Color="#FFFFFFFF" />
-    <SolidColorBrush x:Key="Button.Defaulted.Border" Color="#FF525252" />
+    <SolidColorBrush x:Key="Button.Defaulted.Foreground" Color="#FFFFFF" />
+    <SolidColorBrush x:Key="Button.Defaulted.Border" Color="#525252" />
 
-    <SolidColorBrush x:Key="Button.Static.Background" Color="#FF525252" />
-    <SolidColorBrush x:Key="Button.Static.Foreground" Color="#FFFFFFFF" />
-    <SolidColorBrush x:Key="Button.Static.Border" Color="#FF525252" />
+    <SolidColorBrush x:Key="Button.Static.Background" Color="#525252" />
+    <SolidColorBrush x:Key="Button.Static.Foreground" Color="#FFFFFF" />
+    <SolidColorBrush x:Key="Button.Static.Border" Color="#525252" />
 
-    <SolidColorBrush x:Key="Button.MouseOver.Background" Color="#FF7E7E7E" />
-    <SolidColorBrush x:Key="Button.MouseOver.Foreground" Color="#FF000000" />
-    <SolidColorBrush x:Key="Button.MouseOver.Border" Color="#FF7E7E7E" />
+    <SolidColorBrush x:Key="Button.MouseOver.Background" Color="#7E7E7E" />
+    <SolidColorBrush x:Key="Button.MouseOver.Foreground" Color="#000000" />
+    <SolidColorBrush x:Key="Button.MouseOver.Border" Color="#7E7E7E" />
 
-    <SolidColorBrush x:Key="Button.Pressed.Background" Color="#FFAAFF00" />
-    <SolidColorBrush x:Key="Button.Pressed.Foreground" Color="#FF000000" />
-    <SolidColorBrush x:Key="Button.Pressed.Border" Color="#FFAAFF00" />
+    <SolidColorBrush x:Key="Button.Pressed.Background" Color="#AAFF00" />
+    <SolidColorBrush x:Key="Button.Pressed.Foreground" Color="#000000" />
+    <SolidColorBrush x:Key="Button.Pressed.Border" Color="#AAFF00" />
 
-    <SolidColorBrush x:Key="Button.Disabled.Background" Color="#FF525252" />
-    <SolidColorBrush x:Key="Button.Disabled.Foreground" Color="#FF7E7E7E" />
-    <SolidColorBrush x:Key="Button.Disabled.Border" Color="#FF525252" />
+    <SolidColorBrush x:Key="Button.Disabled.Background" Color="#525252" />
+    <SolidColorBrush x:Key="Button.Disabled.Foreground" Color="#7E7E7E" />
+    <SolidColorBrush x:Key="Button.Disabled.Border" Color="#525252" />
 
     <SolidColorBrush x:Key="CheckBox.Static.Background" Color="Transparent" />
-    <SolidColorBrush x:Key="CheckBox.Static.Foreground" Color="#FFFFFFFF" />
-    <SolidColorBrush x:Key="CheckBox.Static.Border" Color="#FF525252" />
+    <SolidColorBrush x:Key="CheckBox.Static.Foreground" Color="#FFFFFF" />
+    <SolidColorBrush x:Key="CheckBox.Static.Border" Color="#525252" />
 
     <SolidColorBrush x:Key="CheckBox.Checked.Background" Color="Transparent" />
-    <SolidColorBrush x:Key="CheckBox.Checked.Foreground" Color="#FFFFFFFF" />
+    <SolidColorBrush x:Key="CheckBox.Checked.Foreground" Color="#FFFFFF" />
     <SolidColorBrush x:Key="CheckBox.Checked.Border" Color="#FF525252" />
 
     <SolidColorBrush x:Key="CheckBox.Pressed.Background" Color="Transparent" />
-    <SolidColorBrush x:Key="CheckBox.Pressed.Foreground" Color="#FFFFFFFF" />
-    <SolidColorBrush x:Key="CheckBox.Pressed.Border" Color="#FFAAFF00" />
+    <SolidColorBrush x:Key="CheckBox.Pressed.Foreground" Color="#FFFFFF" />
+    <SolidColorBrush x:Key="CheckBox.Pressed.Border" Color="#AAFF00" />
 
     <SolidColorBrush x:Key="CheckBox.Disabled.Background" Color="Transparent" />
-    <SolidColorBrush x:Key="CheckBox.Disabled.Foreground" Color="#FF7E7E7E" />
-    <SolidColorBrush x:Key="CheckBox.Disabled.Border" Color="#FF525252" />
+    <SolidColorBrush x:Key="CheckBox.Disabled.Foreground" Color="#7E7E7E" />
+    <SolidColorBrush x:Key="CheckBox.Disabled.Border" Color="#525252" />
 
-    <SolidColorBrush x:Key="ScrollBar.Static.Thumb" Color="#FF595959" />
-    <SolidColorBrush x:Key="ScrollBar.MouseOver.Thumb" Color="#FF7E7E7E" />
-    <SolidColorBrush x:Key="ScrollBar.Pressed.Thumb" Color="#FFAAFF00" />
+    <SolidColorBrush x:Key="ScrollBar.Static.Thumb" Color="#595959" />
+    <SolidColorBrush x:Key="ScrollBar.MouseOver.Thumb" Color="#7E7E7E" />
+    <SolidColorBrush x:Key="ScrollBar.Pressed.Thumb" Color="#AAFF00" />
 
-    <SolidColorBrush x:Key="TextBox.Static.Background" Color="#FFFFFFFF" />
-    <SolidColorBrush x:Key="TextBox.Static.Foreground" Color="#FF000000" />
+    <SolidColorBrush x:Key="TextBox.Static.Background" Color="#FFFFFF" />
+    <SolidColorBrush x:Key="TextBox.Static.Foreground" Color="#000000" />
     <SolidColorBrush x:Key="TextBox.Static.Border" Color="Transparent" />
 
-    <SolidColorBrush x:Key="TextBox.Focus.Background" Color="#FFFFFFFF" />
-    <SolidColorBrush x:Key="TextBox.Focus.Foreground" Color="#FF000000" />
-    <SolidColorBrush x:Key="TextBox.Focus.Border" Color="#FFAAFF00" />
+    <SolidColorBrush x:Key="TextBox.Focus.Background" Color="#FFFFFF" />
+    <SolidColorBrush x:Key="TextBox.Focus.Foreground" Color="#000000" />
+    <SolidColorBrush x:Key="TextBox.Focus.Border" Color="#AAFF00" />
 
-    <SolidColorBrush x:Key="TextBox.Disabled.Background" Color="#FFFFFFFF" />
-    <SolidColorBrush x:Key="TextBox.Disabled.Foreground" Color="#FF000000" />
+    <SolidColorBrush x:Key="TextBox.Disabled.Background" Color="#FFFFFF" />
+    <SolidColorBrush x:Key="TextBox.Disabled.Foreground" Color="#000000" />
     <SolidColorBrush x:Key="TextBox.Disabled.Border" Color="Transparent" />
 
-    <SolidColorBrush x:Key="Status.InProgress" Color="#FF5500FF" />
-    <SolidColorBrush x:Key="Status.Succeeded" Color="#FFAAFF00" />
-    <SolidColorBrush x:Key="Status.Stopped" Color="#FFFFFF00" />
-    <SolidColorBrush x:Key="Status.Failed" Color="#FFFF3300" />
+    <SolidColorBrush x:Key="Status.InProgress" Color="#5500FF" />
+    <SolidColorBrush x:Key="Status.Succeeded" Color="#AAFF00" />
+    <SolidColorBrush x:Key="Status.Stopped" Color="#FFFF00" />
+    <SolidColorBrush x:Key="Status.Failed" Color="#FF3300" />
 
 </ResourceDictionary>
