@@ -125,6 +125,7 @@
     <Compile Include="ViewModels\Factories\IProjectToMonitorViewModelFactory.cs" />
     <Compile Include="ViewModels\Factories\IProjectViewModelFactory.cs" />
     <Compile Include="ViewModels\Factories\IRemoveConnectionViewModelFactory.cs" />
+    <Compile Include="ViewModels\GuardCloseViewModel.cs" />
     <Compile Include="ViewModels\IBuildProviderViewModel.cs" />
     <Compile Include="ViewModels\IBuildViewModel.cs" />
     <Compile Include="ViewModels\IChangeViewModel.cs" />

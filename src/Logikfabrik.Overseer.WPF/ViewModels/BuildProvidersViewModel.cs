@@ -27,15 +27,8 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
 
             _eventAggregator = eventAggregator;
             Providers = providers;
+            DisplayName = "Add connection";
         }
-
-        /// <summary>
-        /// Gets the view name.
-        /// </summary>
-        /// <value>
-        /// The view name.
-        /// </value>
-        public override string ViewName { get; } = "Add connection";
 
         /// <summary>
         /// Gets the providers.

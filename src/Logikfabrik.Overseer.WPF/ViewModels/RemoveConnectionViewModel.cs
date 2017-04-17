@@ -33,15 +33,8 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             _eventAggregator = eventAggregator;
             _settingsRepository = settingsRepository;
             _settingsId = settingsId;
+            DisplayName = "Remove connection";
         }
-
-        /// <summary>
-        /// Gets the view name.
-        /// </summary>
-        /// <value>
-        /// The view name.
-        /// </value>
-        public override string ViewName { get; } = "Remove connection";
 
         /// <summary>
         /// Remove the connection.

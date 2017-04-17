@@ -61,6 +61,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             _projectToMonitorFactory = projectToMonitorFactory;
             _projectsToMonitorFactory = projectsToMonitorFactory;
             _currentSettings = currentSettings;
+            DisplayName = "Edit connection";
         }
 
         /// <summary>
@@ -82,14 +83,6 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
                 NotifyOfPropertyChange(() => ConnectionTask);
             }
         }
-
-        /// <summary>
-        /// Gets the view name.
-        /// </summary>
-        /// <value>
-        /// The view name.
-        /// </value>
-        public override string ViewName { get; } = "Edit connection";
 
         /// <summary>
         /// Gets or sets the settings.

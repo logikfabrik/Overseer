@@ -9,14 +9,14 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     /// <summary>
     /// The <see cref="ViewModel" /> class. Base class for view models intended to be accessed using a <see cref="Conductor{ViewModel}" /> implementation.
     /// </summary>
-    public abstract class ViewModel : PropertyChangedBase
+    public abstract class ViewModel : PropertyChangedBase, IHaveDisplayName
     {
         /// <summary>
-        /// Gets the view name.
+        /// Gets or sets the display name.
         /// </summary>
         /// <value>
-        /// The view name.
+        /// The display name.
         /// </value>
-        public abstract string ViewName { get; }
+        public string DisplayName { get; set; }
     }
 }

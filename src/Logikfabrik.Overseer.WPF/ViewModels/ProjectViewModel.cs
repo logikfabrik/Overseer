@@ -57,6 +57,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             _isBusy = true;
             _isErrored = false;
             _builds = new List<IBuildViewModel>();
+            DisplayName = "Project";
 
             WeakEventManager<IBuildMonitor, BuildMonitorProjectErrorEventArgs>.AddHandler(buildMonitor, nameof(buildMonitor.ProjectError), BuildMonitorProjectError);
             WeakEventManager<IBuildMonitor, BuildMonitorProjectProgressEventArgs>.AddHandler(buildMonitor, nameof(buildMonitor.ProjectProgressChanged), BuildMonitorProjectProgressChanged);
@@ -167,14 +168,6 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
                 NotifyOfPropertyChange(() => IsErrored);
             }
         }
-
-        /// <summary>
-        /// Gets the view name.
-        /// </summary>
-        /// <value>
-        /// The view name.
-        /// </value>
-        public override string ViewName => "Project";
 
         /// <summary>
         /// View the connection.

@@ -45,12 +45,12 @@ namespace Logikfabrik.Overseer.WPF.Client.ViewModels
         }
 
         /// <summary>
-        /// Gets the view name.
+        /// Gets the view display name.
         /// </summary>
         /// <value>
-        /// The view name.
+        /// The view display name.
         /// </value>
-        public string ViewName => ActiveItem.ViewName;
+        public string ViewDisplayName => ActiveItem.DisplayName;
 
         /// <summary>
         /// Handles the specified message.
@@ -73,7 +73,7 @@ namespace Logikfabrik.Overseer.WPF.Client.ViewModels
 
             ActivateItem(viewModel);
 
-            NotifyOfPropertyChange(() => ViewName);
+            NotifyOfPropertyChange(() => ViewDisplayName);
         }
 
         /// <summary>

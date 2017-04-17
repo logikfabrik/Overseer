@@ -65,6 +65,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             _connectionTask = new NotifyTask();
 
             Settings = connectionSettingsFactory.Create();
+            DisplayName = "Add connection";
         }
 
         /// <summary>
@@ -114,14 +115,6 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
                 _settings.PropertyChanged += SettingsPropertyChanged;
             }
         }
-
-        /// <summary>
-        /// Gets the view name.
-        /// </summary>
-        /// <value>
-        /// The view name.
-        /// </value>
-        public override string ViewName { get; } = "Add connection";
 
         /// <summary>
         /// Gets a value indicating whether the settings for this instance have been used to successfully connect.

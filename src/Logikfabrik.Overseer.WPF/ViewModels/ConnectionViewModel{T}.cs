@@ -60,6 +60,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             _isBusy = true;
             _isErrored = false;
             _projects = new List<IProjectViewModel>();
+            DisplayName = "Connection";
 
             WeakEventManager<IBuildMonitor, BuildMonitorConnectionErrorEventArgs>.AddHandler(buildMonitor, nameof(buildMonitor.ConnectionError), BuildMonitorConnectionError);
             WeakEventManager<IBuildMonitor, BuildMonitorConnectionProgressEventArgs>.AddHandler(buildMonitor, nameof(buildMonitor.ConnectionProgressChanged), BuildMonitorConnectionProgressChanged);
@@ -176,14 +177,6 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         public bool HasProjects => _projects.Any();
 
         public int? ProjectsCount { get; private set; }
-
-        /// <summary>
-        /// Gets the view name.
-        /// </summary>
-        /// <value>
-        /// The view name.
-        /// </value>
-        public override string ViewName { get; } = "Connection";
 
         /// <summary>
         /// Gets the settings.

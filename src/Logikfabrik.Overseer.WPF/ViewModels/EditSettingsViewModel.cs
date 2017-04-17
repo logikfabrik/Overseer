@@ -37,15 +37,8 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             _proxyUrl = appSettings.ProxyUrl;
             _proxyUsername = appSettings.ProxyUsername;
             _proxyPassword = appSettings.ProxyPassword;
+            DisplayName = "Edit settings";
         }
-
-        /// <summary>
-        /// Gets the view name.
-        /// </summary>
-        /// <value>
-        /// The view name.
-        /// </value>
-        public override string ViewName { get; } = "Edit settings";
 
         /// <summary>
         /// Gets or sets the interval.

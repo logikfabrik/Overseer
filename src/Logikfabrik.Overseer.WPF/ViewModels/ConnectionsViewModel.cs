@@ -41,15 +41,8 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             _addConnectionItemViewModelFactory = addConnectionItemViewModelFactory;
             _connections = new List<IConnectionViewModel>();
             _subscription = connectionSettingsRepository.Subscribe(this);
+            DisplayName = "Connections";
         }
-
-        /// <summary>
-        /// Gets the view name.
-        /// </summary>
-        /// <value>
-        /// The view name.
-        /// </value>
-        public override string ViewName { get; } = "Connections";
 
         /// <summary>
         /// Gets the items.
