@@ -2,6 +2,8 @@
 //   Copyright (c) 2016 anton(at)logikfabrik.se. Licensed under the MIT license.
 // </copyright>
 
+using System.Diagnostics;
+
 namespace Logikfabrik.Overseer.WPF.Client.ViewModels
 {
     using System.Linq;
@@ -13,7 +15,7 @@ namespace Logikfabrik.Overseer.WPF.Client.ViewModels
     /// <summary>
     /// The <see cref="AppViewModel" /> class.
     /// </summary>
-    public sealed class AppViewModel : Conductor<ViewModel>, IHandle<NavigationMessage>
+    public sealed class AppViewModel : Conductor<IViewModel>.Collection.OneActive, IHandle<NavigationMessage>
     {
         private readonly IEventAggregator _eventAggregator;
         private readonly IBuildNotificationManager _buildNotificationManager;
@@ -58,7 +60,7 @@ namespace Logikfabrik.Overseer.WPF.Client.ViewModels
         /// <param name="message">The message to handle.</param>
         public void Handle(NavigationMessage message)
         {
-            ViewModel viewModel;
+            IViewModel viewModel;
 
             var message2 = message as NavigationMessage2;
 
@@ -68,10 +70,18 @@ namespace Logikfabrik.Overseer.WPF.Client.ViewModels
             }
             else
             {
-                viewModel = IoC.GetInstance(message.ViewModelType, null) as ViewModel;
+                viewModel = GetChildren().SingleOrDefault(vm => vm.GetType() == message.ViewModelType);
+
+                if (viewModel == null)
+                {
+                    viewModel = IoC.GetInstance(message.ViewModelType, null) as IViewModel;
+                }
+                
             }
 
             ActivateItem(viewModel);
+
+            Debug.WriteLine("View: " + GetChildren().Count());
 
             NotifyOfPropertyChange(() => ViewDisplayName);
         }

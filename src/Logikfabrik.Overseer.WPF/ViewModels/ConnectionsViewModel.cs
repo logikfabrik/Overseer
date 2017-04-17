@@ -19,7 +19,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         private readonly IDisposable _subscription;
         private readonly IConnectionViewModelStrategy _connectionViewModelStrategy;
         private readonly IAddConnectionItemViewModelFactory _addConnectionItemViewModelFactory;
-        private readonly List<IConnectionViewModel> _connections;
+        private List<IConnectionViewModel> _connections;
         private bool _isDisposed;
 
         /// <summary>
@@ -50,7 +50,13 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// <value>
         /// The items.
         /// </value>
-        public IEnumerable<IItemViewModel> Items => _connections.OfType<IItemViewModel>().Concat(new[] { _addConnectionItemViewModelFactory.Create() });
+        public IEnumerable<IItemViewModel> Items
+        {
+            get
+            {
+                return _connections.OfType<IItemViewModel>().Concat(new[] { _addConnectionItemViewModelFactory.Create() });
+            }
+        }
 
         /// <summary>
         /// Provides the observer with new data.
@@ -66,9 +72,11 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
 
             var isDirty = false;
 
+            var currentConnections = new List<IConnectionViewModel>(_connections);
+
             foreach (var settings in value)
             {
-                var connectionToUpdate = _connections.SingleOrDefault(connection => connection.SettingsId == settings.Id);
+                var connectionToUpdate = currentConnections.SingleOrDefault(connection => connection.SettingsId == settings.Id);
 
                 if (connectionToUpdate != null)
                 {
@@ -78,18 +86,20 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
                 {
                     var connectionToAdd = _connectionViewModelStrategy.Create(settings);
 
-                    _connections.Add(connectionToAdd);
-
+                    currentConnections.Add(connectionToAdd);
                     isDirty = true;
                 }
             }
 
             var connectionsToKeep = value.Select(settings => settings.Id).ToArray();
 
-            isDirty = isDirty || _connections.RemoveAll(viewModel => !connectionsToKeep.Contains(viewModel.SettingsId)) == 0;
+            var removedConnections = currentConnections.RemoveAll(viewModel => !connectionsToKeep.Contains(viewModel.SettingsId)) > 0;
+
+            isDirty = isDirty || removedConnections;
 
             if (isDirty)
             {
+                _connections = currentConnections;
                 NotifyOfPropertyChange(() => Items);
             }
         }

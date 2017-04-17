@@ -2,6 +2,8 @@
 //   Copyright (c) 2016 anton(at)logikfabrik.se. Licensed under the MIT license.
 // </copyright>
 
+using System.Linq;
+
 namespace Logikfabrik.Overseer.WPF.ViewModels
 {
     using System;
@@ -43,17 +45,26 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         {
             _settingsRepository.Remove(_settingsId);
 
-            ViewConnections();
-        }
+            var conductor = (Conductor<IViewModel>.Collection.OneActive)Parent;
 
-        /// <summary>
-        /// View the connections.
-        /// </summary>
-        public void ViewConnections()
-        {
+            var viewModel =
+                conductor.GetChildren()
+                    .OfType<IConnectionViewModel>()
+                    .Single(vm => vm.SettingsId == _settingsId);
+
+            conductor.DeactivateItem(viewModel, true);
+
+            
+
+            TryClose();
+
+
+
             var message = new NavigationMessage(typeof(ConnectionsViewModel));
 
             _eventAggregator.PublishOnUIThread(message);
+
+            // TODO: This code works! We need to use TryClose etc whenever possible, instead of nav event.
         }
     }
 }

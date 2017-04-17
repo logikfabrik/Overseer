@@ -16,7 +16,7 @@ namespace Logikfabrik.Overseer.WPF
         /// Initializes a new instance of the <see cref="NavigationMessage2" /> class.
         /// </summary>
         /// <param name="viewModel">The view model.</param>
-        public NavigationMessage2(ViewModel viewModel)
+        public NavigationMessage2(IViewModel viewModel)
             : base(viewModel.GetType())
         {
             Ensure.That(viewModel).IsNotNull();
@@ -30,6 +30,6 @@ namespace Logikfabrik.Overseer.WPF
         /// <value>
         /// The view model.
         /// </value>
-        public ViewModel ViewModel { get; }
+        public IViewModel ViewModel { get; }
     }
 }

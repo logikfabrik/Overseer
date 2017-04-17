@@ -28,7 +28,7 @@
             </ItemsControl>
             <StackPanel Orientation="Horizontal">
                 <Button
-                    x:Name="ViewConnections"
+                    x:Name="TryClose"
                     Content="Cancel"
                     IsCancel="True"
                     IsDefault="True" />

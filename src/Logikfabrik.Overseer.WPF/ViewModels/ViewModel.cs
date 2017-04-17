@@ -7,16 +7,9 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     using Caliburn.Micro;
 
     /// <summary>
-    /// The <see cref="ViewModel" /> class. Base class for view models intended to be accessed using a <see cref="Conductor{ViewModel}" /> implementation.
+    /// The <see cref="ViewModel" /> class. Base class for view models intended to be accessed using a <see cref="Conductor{IViewModel}" /> implementation.
     /// </summary>
-    public abstract class ViewModel : PropertyChangedBase, IHaveDisplayName
+    public abstract class ViewModel : Screen, IViewModel
     {
-        /// <summary>
-        /// Gets or sets the display name.
-        /// </summary>
-        /// <value>
-        /// The display name.
-        /// </value>
-        public string DisplayName { get; set; }
     }
 }

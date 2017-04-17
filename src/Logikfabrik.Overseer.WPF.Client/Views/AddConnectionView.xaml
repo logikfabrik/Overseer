@@ -37,7 +37,7 @@
                     IsDefault="True"
                     IsEnabled="{Binding IsValidAndHasConnected, Mode=OneWay}" />
                 <Button
-                    x:Name="ViewConnections"
+                    x:Name="TryClose"
                     Content="Cancel"
                     IsCancel="True" />
             </StackPanel>

@@ -177,14 +177,20 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
 
             _settingsRepository.Update(_currentSettings);
 
-            ViewConnections();
-        }
 
-        /// <summary>
-        /// View the connections.
-        /// </summary>
-        public void ViewConnections()
-        {
+            var conductor = (Conductor<IViewModel>.Collection.OneActive)Parent;
+
+            var viewModel =
+                conductor.GetChildren()
+                    .OfType<IConnectionViewModel>()
+                    .Single(vm => vm.SettingsId == _currentSettings.Id);
+
+            conductor.DeactivateItem(viewModel, true);
+
+            // TODO: Remove existing connection.
+
+            TryClose();
+
             var message = new NavigationMessage(typeof(ConnectionsViewModel));
 
             _eventAggregator.PublishOnUIThread(message);

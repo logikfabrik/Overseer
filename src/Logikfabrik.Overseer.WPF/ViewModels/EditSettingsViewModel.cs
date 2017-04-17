@@ -137,17 +137,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
 
             _appSettings.Save();
 
-            ViewConnections();
-        }
-
-        /// <summary>
-        /// View the connections.
-        /// </summary>
-        public void ViewConnections()
-        {
-            var message = new NavigationMessage(typeof(ConnectionsViewModel));
-
-            _eventAggregator.PublishOnUIThread(message);
+            TryClose();
         }
     }
 }

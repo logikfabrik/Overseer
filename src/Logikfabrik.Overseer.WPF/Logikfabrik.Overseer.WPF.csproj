@@ -132,6 +132,7 @@
     <Compile Include="ViewModels\IConnectionViewModel.cs" />
     <Compile Include="ViewModels\IItemViewModel.cs" />
     <Compile Include="ViewModels\IProjectViewModel.cs" />
+    <Compile Include="ViewModels\IViewModel.cs" />
     <Compile Include="ViewModels\ProjectsToMonitorViewModel.cs" />
     <Compile Include="ViewModels\ProjectToMonitorViewModel.cs" />
     <Compile Include="ViewModels\RemoveConnectionViewModel.cs" />

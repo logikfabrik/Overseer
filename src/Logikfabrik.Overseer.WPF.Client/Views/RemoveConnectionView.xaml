@@ -20,7 +20,7 @@
                     Content="Yes"
                     IsDefault="True" />
                 <Button
-                    x:Name="ViewConnections"
+                    x:Name="TryClose"
                     Content="Cancel"
                     IsCancel="True" />
             </StackPanel>

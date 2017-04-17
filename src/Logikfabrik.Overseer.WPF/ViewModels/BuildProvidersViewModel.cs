@@ -5,7 +5,6 @@
 namespace Logikfabrik.Overseer.WPF.ViewModels
 {
     using System.Collections.Generic;
-    using Caliburn.Micro;
     using EnsureThat;
 
     /// <summary>
@@ -13,19 +12,14 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     /// </summary>
     public class BuildProvidersViewModel : ViewModel
     {
-        private readonly IEventAggregator _eventAggregator;
-
         /// <summary>
         /// Initializes a new instance of the <see cref="BuildProvidersViewModel" /> class.
         /// </summary>
-        /// <param name="eventAggregator">The event aggregator.</param>
         /// <param name="providers">The providers.</param>
-        public BuildProvidersViewModel(IEventAggregator eventAggregator, IEnumerable<IBuildProviderViewModel> providers)
+        public BuildProvidersViewModel(IEnumerable<IBuildProviderViewModel> providers)
         {
-            Ensure.That(eventAggregator).IsNotNull();
             Ensure.That(providers).IsNotNull();
 
-            _eventAggregator = eventAggregator;
             Providers = providers;
             DisplayName = "Add connection";
         }
@@ -37,15 +31,5 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// The providers.
         /// </value>
         public IEnumerable<IBuildProviderViewModel> Providers { get; }
-
-        /// <summary>
-        /// View the connections.
-        /// </summary>
-        public void ViewConnections()
-        {
-            var message = new NavigationMessage(typeof(ConnectionsViewModel));
-
-            _eventAggregator.PublishOnUIThread(message);
-        }
     }
 }
