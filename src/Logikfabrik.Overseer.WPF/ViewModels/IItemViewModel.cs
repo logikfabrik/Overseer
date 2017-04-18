@@ -7,7 +7,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     /// <summary>
     /// The <see cref="IItemViewModel" /> interface.
     /// </summary>
-    public interface IItemViewModel : IViewModel
+    public interface IItemViewModel
     {
     }
 }

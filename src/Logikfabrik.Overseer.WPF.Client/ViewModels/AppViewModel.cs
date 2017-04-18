@@ -2,10 +2,9 @@
 //   Copyright (c) 2016 anton(at)logikfabrik.se. Licensed under the MIT license.
 // </copyright>
 
-using System.Diagnostics;
-
 namespace Logikfabrik.Overseer.WPF.Client.ViewModels
 {
+    using System.Diagnostics;
     using System.Linq;
     using System.Windows;
     using Caliburn.Micro;
@@ -60,28 +59,23 @@ namespace Logikfabrik.Overseer.WPF.Client.ViewModels
         /// <param name="message">The message to handle.</param>
         public void Handle(NavigationMessage message)
         {
-            IViewModel viewModel;
+            var viewModel = (message as NavigationMessage2)?.ViewModel;
 
-            var message2 = message as NavigationMessage2;
-
-            if (message2 != null)
+            // ReSharper disable once ConvertIfStatementToNullCoalescingExpression
+            if (viewModel == null)
             {
-                viewModel = message2.ViewModel;
-            }
-            else
-            {
-                viewModel = GetChildren().SingleOrDefault(vm => vm.GetType() == message.ViewModelType);
-
-                if (viewModel == null)
-                {
-                    viewModel = IoC.GetInstance(message.ViewModelType, null) as IViewModel;
-                }
-                
+                viewModel = GetChildren().SingleOrDefault(child => child.GetType() == message.ViewModelType) ?? IoC.GetInstance(message.ViewModelType, null) as IViewModel;
             }
 
             ActivateItem(viewModel);
 
-            Debug.WriteLine("View: " + GetChildren().Count());
+            Debug.WriteLine("View count: " + GetChildren().Count());
+
+            foreach (var child in GetChildren())
+            {
+                Debug.WriteLine(child.GetType().ToString());
+                
+            }
 
             NotifyOfPropertyChange(() => ViewDisplayName);
         }

@@ -23,7 +23,7 @@ namespace Logikfabrik.Overseer.WPF.Extensions
         /// Gets whether the <see cref="Hyperlink" /> is external.
         /// </summary>
         /// <param name="obj">The object.</param>
-        /// <returns><c>true</c> if external; otherwise <c>false</c>.</returns>
+        /// <returns><c>true</c> if external; otherwise, <c>false</c>.</returns>
         public static bool GetIsExternal(DependencyObject obj)
         {
             return (bool)obj.GetValue(IsExternalProperty);

@@ -17,7 +17,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     /// The <see cref="ConnectionViewModel{T}" /> class.
     /// </summary>
     /// <typeparam name="T">The <see cref="ConnectionSettings" /> type.</typeparam>
-    public class ConnectionViewModel<T> : ViewModel, IConnectionViewModel
+    public class ConnectionViewModel<T> : ViewModel, IConnectionViewModel, IItemViewModel
         where T : ConnectionSettings
     {
         private readonly IEventAggregator _eventAggregator;

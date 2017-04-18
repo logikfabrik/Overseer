@@ -15,7 +15,7 @@ namespace Logikfabrik.Overseer.Extensions
         /// Gets whether the specified <see cref="IBuild" /> is finished.
         /// </summary>
         /// <param name="build">The build.</param>
-        /// <returns><c>true</c> if finished; otherwise <c>false</c>.</returns>
+        /// <returns><c>true</c> if finished; otherwise, <c>false</c>.</returns>
         public static bool IsFinished(this IBuild build)
         {
             return build.Status.IsFinished();
@@ -25,7 +25,7 @@ namespace Logikfabrik.Overseer.Extensions
         /// Gets whether the specified <see cref="IBuild" /> is in progress.
         /// </summary>
         /// <param name="build">The build.</param>
-        /// <returns><c>true</c> if in progress; otherwise <c>false</c>.</returns>
+        /// <returns><c>true</c> if in progress; otherwise, <c>false</c>.</returns>
         public static bool IsInProgress(this IBuild build)
         {
             return build.Status.IsInProgress();

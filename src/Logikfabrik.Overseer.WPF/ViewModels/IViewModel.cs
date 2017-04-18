@@ -2,7 +2,7 @@
 {
     using Caliburn.Micro;
 
-    public interface IViewModel : IScreen
+    public interface IViewModel : IViewAware, IClose, IHaveDisplayName, IChild
     {
     }
 }

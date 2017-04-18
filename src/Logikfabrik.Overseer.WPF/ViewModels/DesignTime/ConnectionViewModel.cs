@@ -134,5 +134,17 @@ namespace Logikfabrik.Overseer.WPF.ViewModels.DesignTime
         }
 
         public bool IsNotifying { get; set; }
+        public void AttachView(object view, object context = null)
+        {
+            throw new NotImplementedException();
+        }
+
+        public object GetView(object context = null)
+        {
+            throw new NotImplementedException();
+        }
+
+        public event EventHandler<ViewAttachedEventArgs> ViewAttached;
+        public object Parent { get; set; }
     }
 }

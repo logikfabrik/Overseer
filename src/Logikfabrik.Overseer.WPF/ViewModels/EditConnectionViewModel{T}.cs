@@ -178,14 +178,9 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             _settingsRepository.Update(_currentSettings);
 
 
-            var conductor = (Conductor<IViewModel>.Collection.OneActive)Parent;
+            var viewModel = GetOpenChildren<IConnectionViewModel>().Single(vm => vm.SettingsId == _currentSettings.Id);
 
-            var viewModel =
-                conductor.GetChildren()
-                    .OfType<IConnectionViewModel>()
-                    .Single(vm => vm.SettingsId == _currentSettings.Id);
-
-            conductor.DeactivateItem(viewModel, true);
+            CloseChild(viewModel);
 
             // TODO: Remove existing connection.
 

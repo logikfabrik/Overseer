@@ -42,7 +42,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity
         /// <param name="version">The version.</param>
         /// <param name="authenticationType">The authentication type.</param>
         /// <param name="result">A base URI.</param>
-        /// <returns><c>true</c> if a base <see cref="Uri" /> could be created; otherwise <c>false</c>.</returns>
+        /// <returns><c>true</c> if a base <see cref="Uri" /> could be created; otherwise, <c>false</c>.</returns>
         public static bool TryGetBaseUri(string url, string version, AuthenticationType authenticationType, out Uri result)
         {
             if (string.IsNullOrWhiteSpace(url) || string.IsNullOrWhiteSpace(version))

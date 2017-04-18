@@ -13,7 +13,7 @@ namespace Logikfabrik.Overseer.Extensions
         /// Determines whether this status is finished.
         /// </summary>
         /// <param name="status">The status.</param>
-        /// <returns><c>true</c> if finished; otherwise <c>false</c>.</returns>
+        /// <returns><c>true</c> if finished; otherwise, <c>false</c>.</returns>
         public static bool IsFinished(this BuildStatus? status)
         {
             if (status == null)
@@ -28,7 +28,7 @@ namespace Logikfabrik.Overseer.Extensions
         /// Determines whether this status is in progress.
         /// </summary>
         /// <param name="status">The status.</param>
-        /// <returns><c>true</c> if in progress; otherwise <c>false</c>.</returns>
+        /// <returns><c>true</c> if in progress; otherwise, <c>false</c>.</returns>
         public static bool IsInProgress(this BuildStatus? status)
         {
             return status == BuildStatus.InProgress;
