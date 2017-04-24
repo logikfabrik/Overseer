@@ -152,8 +152,12 @@ namespace Logikfabrik.Overseer
             // ReSharper disable once InvertIf
             if (disposing)
             {
-                _cancellationTokenSource?.Cancel();
-                _cancellationTokenSource?.Dispose();
+                if (_cancellationTokenSource != null)
+                {
+                    _cancellationTokenSource.Cancel();
+                    _cancellationTokenSource.Dispose();
+                    _cancellationTokenSource = null;
+                }
 
                 _subscription.Dispose();
             }

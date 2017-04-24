@@ -2,19 +2,19 @@
 //   Copyright (c) 2016 anton(at)logikfabrik.se. Licensed under the MIT license.
 // </copyright>
 
-using System.ComponentModel;
-using Caliburn.Micro;
-
 namespace Logikfabrik.Overseer.WPF.ViewModels.DesignTime
 {
     using System;
     using System.Collections.Generic;
+    using Caliburn.Micro;
 
     /// <summary>
     /// The <see cref="ConnectionViewModel" /> class.
     /// </summary>
     public class ConnectionViewModel : IConnectionViewModel
     {
+        public event EventHandler<ViewAttachedEventArgs> ViewAttached;
+
         /// <summary>
         /// Gets the settings identifier.
         /// </summary>
@@ -74,6 +74,22 @@ namespace Logikfabrik.Overseer.WPF.ViewModels.DesignTime
         public int? ProjectsCount { get; } = 3;
 
         /// <summary>
+        /// Gets or sets the display name.
+        /// </summary>
+        /// <value>
+        /// The display name.
+        /// </value>
+        public string DisplayName { get; set; }
+
+        /// <summary>
+        /// Gets or sets the parent.
+        /// </summary>
+        /// <value>
+        /// The parent.
+        /// </value>
+        public object Parent { get; set; }
+
+        /// <summary>
         /// Edit the connection.
         /// </summary>
         public void Edit()
@@ -97,43 +113,6 @@ namespace Logikfabrik.Overseer.WPF.ViewModels.DesignTime
             throw new NotImplementedException();
         }
 
-        public string DisplayName { get; set; }
-        public void Activate()
-        {
-            throw new NotImplementedException();
-        }
-
-        public bool IsActive { get; }
-        public event EventHandler<ActivationEventArgs> Activated;
-        public void Deactivate(bool close)
-        {
-            throw new NotImplementedException();
-        }
-
-        public event EventHandler<DeactivationEventArgs> AttemptingDeactivation;
-        public event EventHandler<DeactivationEventArgs> Deactivated;
-        public void TryClose(bool? dialogResult = null)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void CanClose(Action<bool> callback)
-        {
-            throw new NotImplementedException();
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-        public void NotifyOfPropertyChange(string propertyName)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Refresh()
-        {
-            throw new NotImplementedException();
-        }
-
-        public bool IsNotifying { get; set; }
         public void AttachView(object view, object context = null)
         {
             throw new NotImplementedException();
@@ -144,7 +123,9 @@ namespace Logikfabrik.Overseer.WPF.ViewModels.DesignTime
             throw new NotImplementedException();
         }
 
-        public event EventHandler<ViewAttachedEventArgs> ViewAttached;
-        public object Parent { get; set; }
+        public void TryClose(bool? dialogResult = null)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

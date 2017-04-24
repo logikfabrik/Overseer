@@ -4,7 +4,6 @@
 
 namespace Logikfabrik.Overseer.WPF.Client.ViewModels
 {
-    using System.Diagnostics;
     using System.Linq;
     using System.Windows;
     using Caliburn.Micro;
@@ -69,15 +68,9 @@ namespace Logikfabrik.Overseer.WPF.Client.ViewModels
 
             ActivateItem(viewModel);
 
-            Debug.WriteLine("View count: " + GetChildren().Count());
-
-            foreach (var child in GetChildren())
-            {
-                Debug.WriteLine(child.GetType().ToString());
-                
-            }
-
             NotifyOfPropertyChange(() => ViewDisplayName);
+
+            // TODO: Keep track of children that can be closed (and disposed). Make sure navigation takes this into consideration.
         }
 
         /// <summary>

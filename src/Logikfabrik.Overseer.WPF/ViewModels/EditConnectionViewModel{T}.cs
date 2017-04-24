@@ -177,12 +177,9 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
 
             _settingsRepository.Update(_currentSettings);
 
-
             var viewModel = GetOpenChildren<IConnectionViewModel>().Single(vm => vm.SettingsId == _currentSettings.Id);
 
             CloseChild(viewModel);
-
-            // TODO: Remove existing connection.
 
             TryClose();
 

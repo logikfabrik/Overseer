@@ -11,43 +11,56 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     /// <summary>
     /// The <see cref="ViewModel" /> class. Base class for view models intended to be accessed using a <see cref="Conductor{IViewModel}.Collection.OneActive" /> implementation.
     /// </summary>
-    public abstract class ViewModel : ViewAware,  IViewModel
+    public abstract class ViewModel : ViewAware, IViewModel
     {
         private object _parent;
         private string _displayName;
 
+        /// <summary>
+        /// Gets or sets the parent.
+        /// </summary>
+        /// <value>
+        /// The parent.
+        /// </value>
         public virtual object Parent
         {
             get
             {
-                return this._parent;
+                return _parent;
             }
+
             set
             {
-                this._parent = value;
-                this.NotifyOfPropertyChange(() => Parent);
+                _parent = value;
+                NotifyOfPropertyChange(() => Parent);
             }
         }
 
-        /// <summary>Gets or Sets the Display Name</summary>
-        public virtual string DisplayName
+        /// <summary>
+        /// Gets or sets the display name.
+        /// </summary>
+        /// <value>
+        /// The display name.
+        /// </value>
+        public string DisplayName
         {
             get
             {
-                return this._displayName;
+                return _displayName;
             }
+
             set
             {
-                this._displayName = value;
-                this.NotifyOfPropertyChange(() => DisplayName);
+                _displayName = value;
+                NotifyOfPropertyChange(() => DisplayName);
             }
         }
 
-        private Conductor<IViewModel>.Collection.OneActive GetConductor()
+        public void TryClose(bool? dialogResult = null)
         {
-            return Parent as Conductor<IViewModel>.Collection.OneActive;
+            PlatformProvider.Current.GetViewCloseAction(this, Views.Values, dialogResult).OnUIThread();
         }
-        
+
         protected IEnumerable<T> GetOpenChildren<T>()
             where T : IViewModel
         {
@@ -63,9 +76,9 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             conductor?.CloseItem(child);
         }
 
-        public void TryClose(bool? dialogResult = null)
+        private Conductor<IViewModel>.Collection.OneActive GetConductor()
         {
-            PlatformProvider.Current.GetViewCloseAction((object) this, this.Views.Values, dialogResult).OnUIThread();
+            return Parent as Conductor<IViewModel>.Collection.OneActive;
         }
     }
 }
