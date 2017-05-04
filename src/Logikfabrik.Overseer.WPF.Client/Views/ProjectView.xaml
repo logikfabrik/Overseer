@@ -24,17 +24,18 @@
                     Opacity="0.1"
                     ShadowDepth="3" />
             </StackPanel.Effect>
-            <Button x:Name="TryClose" Content="Back" />
+            <Button x:Name="TryClose">
+                <Viewbox>
+                    <Canvas>
+                        <Path Data="M2.5,10L9,3.5 9,7 17,7 17,13 9,13 9,16.5 2.5,10z" />
+                    </Canvas>
+                </Viewbox>
+            </Button>
             <TextBlock
                 FontSize="18"
                 Text="{Binding Name, Mode=OneWay}"
                 TextAlignment="Center" />
         </StackPanel>
-        <ContentControl
-            Grid.Row="1"
-            cal:View.Context="Base"
-            cal:View.Model="{Binding}"
-            Focusable="False" />
         <ItemsControl Grid.Row="2" ItemsSource="{Binding Builds, Mode=OneWay}">
             <ItemsControl.ItemContainerStyle>
                 <Style>

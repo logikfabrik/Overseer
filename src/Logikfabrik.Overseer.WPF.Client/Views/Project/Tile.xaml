@@ -22,10 +22,10 @@
                 ShadowDepth="3" />
         </Button.Effect>
         <StackPanel>
-            <ContentControl
-                cal:View.Context="Base"
-                cal:View.Model="{Binding}"
-                Focusable="False" />
+            <TextBlock
+                VerticalAlignment="Center"
+                FontSize="20"
+                Text="{Binding Name, Mode=OneWay}" />
             <ContentControl
                 cal:View.Context="Tile"
                 cal:View.Model="{Binding LatestBuild, Mode=OneWay}"

@@ -24,7 +24,13 @@
                     Opacity="0.1"
                     ShadowDepth="3" />
             </StackPanel.Effect>
-            <Button x:Name="TryClose" Content="Back" />
+            <Button x:Name="TryClose">
+                <Viewbox>
+                    <Canvas>
+                        <Path Data="M2.5,10L9,3.5 9,7 17,7 17,13 9,13 9,16.5 2.5,10z" />
+                    </Canvas>
+                </Viewbox>
+            </Button>
             <TextBlock
                 FontSize="18"
                 Text="{Binding SettingsName, Mode=OneWay}"
