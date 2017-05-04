@@ -36,6 +36,14 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         IEnumerable<IBuildViewModel> Builds { get; }
 
         /// <summary>
+        /// Gets the latest build.
+        /// </summary>
+        /// <value>
+        /// The latest build.
+        /// </value>
+        IBuildViewModel LatestBuild { get; }
+
+        /// <summary>
         /// Gets a value indicating whether this instance has builds.
         /// </summary>
         /// <value>

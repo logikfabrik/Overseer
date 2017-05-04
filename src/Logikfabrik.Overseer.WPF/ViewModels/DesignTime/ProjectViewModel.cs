@@ -6,6 +6,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels.DesignTime
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
 
     /// <summary>
     /// The <see cref="ProjectViewModel" /> class.
@@ -35,6 +36,14 @@ namespace Logikfabrik.Overseer.WPF.ViewModels.DesignTime
         /// The build view models.
         /// </value>
         public IEnumerable<IBuildViewModel> Builds { get; } = new[] { new BuildViewModel(), new BuildViewModel(), new BuildViewModel() };
+
+        /// <summary>
+        /// Gets the latest build.
+        /// </summary>
+        /// <value>
+        /// The latest build.
+        /// </value>
+        public IBuildViewModel LatestBuild => Builds.FirstOrDefault();
 
         /// <summary>
         /// Gets a value indicating whether this instance has builds.
