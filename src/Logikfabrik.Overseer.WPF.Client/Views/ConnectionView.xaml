@@ -24,6 +24,7 @@
                     Opacity="0.1"
                     ShadowDepth="3" />
             </StackPanel.Effect>
+            <Button x:Name="TryClose" Content="Back" />
             <TextBlock
                 FontSize="18"
                 Text="{Binding SettingsName, Mode=OneWay}"
