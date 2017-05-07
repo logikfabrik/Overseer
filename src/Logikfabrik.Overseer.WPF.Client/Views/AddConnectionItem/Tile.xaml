@@ -10,6 +10,7 @@
     <Button x:Name="Add">
         <Button.Effect>
             <DropShadowEffect
+                Color="{StaticResource Effect.Shadow}"
                 BlurRadius="3"
                 Opacity="0.1"
                 ShadowDepth="3" />

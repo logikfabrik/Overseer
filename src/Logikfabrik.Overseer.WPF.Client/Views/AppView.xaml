@@ -12,6 +12,7 @@
         <StackPanel Background="{DynamicResource Panel.Background}" ZIndex="2">
             <StackPanel.Effect>
                 <DropShadowEffect
+                    Color="{StaticResource Effect.Shadow}"
                     BlurRadius="3"
                     Opacity="0.1"
                     ShadowDepth="3" />
