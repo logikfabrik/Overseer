@@ -176,6 +176,12 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// </value>
         public bool HasProjects => _projects.Any();
 
+        /// <summary>
+        /// Gets the projects count.
+        /// </summary>
+        /// <value>
+        /// The projects count.
+        /// </value>
         public int? ProjectsCount { get; private set; }
 
         /// <summary>

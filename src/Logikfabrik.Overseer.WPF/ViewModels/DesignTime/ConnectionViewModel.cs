@@ -71,6 +71,12 @@ namespace Logikfabrik.Overseer.WPF.ViewModels.DesignTime
         /// </value>
         public bool HasProjects { get; } = true;
 
+        /// <summary>
+        /// Gets the projects count.
+        /// </summary>
+        /// <value>
+        /// The projects count.
+        /// </value>
         public int? ProjectsCount { get; } = 3;
 
         /// <summary>
@@ -94,7 +100,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels.DesignTime
         /// </summary>
         public void Edit()
         {
-            throw new NotImplementedException();
+            // Method intentionally left empty.
         }
 
         /// <summary>
@@ -102,7 +108,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels.DesignTime
         /// </summary>
         public void Remove()
         {
-            throw new NotImplementedException();
+            // Method intentionally left empty.
         }
 
         /// <summary>
@@ -110,20 +116,20 @@ namespace Logikfabrik.Overseer.WPF.ViewModels.DesignTime
         /// </summary>
         public void View()
         {
-            throw new NotImplementedException();
+            // Method intentionally left empty.
         }
 
         public void AttachView(object view, object context = null)
         {
-            throw new NotImplementedException();
-        }
-
-        public object GetView(object context = null)
-        {
-            throw new NotImplementedException();
+            // Method intentionally left empty.
         }
 
         public void TryClose(bool? dialogResult = null)
+        {
+            // Method intentionally left empty.
+        }
+
+        public object GetView(object context = null)
         {
             throw new NotImplementedException();
         }

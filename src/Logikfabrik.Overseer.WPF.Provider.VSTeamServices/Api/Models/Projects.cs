@@ -12,10 +12,10 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices.Api.Models
     public class Projects
     {
         /// <summary>
-        /// Gets or sets the count.
+        /// Gets or sets the projects count.
         /// </summary>
         /// <value>
-        /// The count.
+        /// The projects count.
         /// </value>
         public int Count { get; set; }
 

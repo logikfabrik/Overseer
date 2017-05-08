@@ -12,10 +12,10 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity.Api.Models
     public class Projects
     {
         /// <summary>
-        /// Gets or sets the project count.
+        /// Gets or sets the projects count.
         /// </summary>
         /// <value>
-        /// The project count.
+        /// The projects count.
         /// </value>
         public int Count { get; set; }
 

@@ -12,10 +12,10 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices.Api.Models
     public class Builds
     {
         /// <summary>
-        /// Gets or sets the count.
+        /// Gets or sets the builds count.
         /// </summary>
         /// <value>
-        /// The count.
+        /// The builds count.
         /// </value>
         public int Count { get; set; }
 

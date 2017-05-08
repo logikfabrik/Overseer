@@ -12,10 +12,10 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices.Api.Models
     public class Changes
     {
         /// <summary>
-        /// Gets or sets the count.
+        /// Gets or sets the changes count.
         /// </summary>
         /// <value>
-        /// The count.
+        /// The changes count.
         /// </value>
         public int Count { get; set; }
 
