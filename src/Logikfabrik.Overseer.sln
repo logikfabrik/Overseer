@@ -25,6 +25,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Logikfabrik.Overseer.WPF.Pr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Logikfabrik.Overseer.WPF.Provider.TeamCity.Test", "Logikfabrik.Overseer.WPF.Provider.TeamCity.Test\Logikfabrik.Overseer.WPF.Provider.TeamCity.Test.csproj", "{A673BD86-AD99-4CF7-A83B-AE39196BA846}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Logikfabrik.Overseer.WPF.Provider.CircleCI", "Logikfabrik.Overseer.WPF.Provider.CircleCI\Logikfabrik.Overseer.WPF.Provider.CircleCI.csproj", "{261D8616-8433-4C31-BB88-FC62FA389029}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -120,6 +122,14 @@ Global
 		{A673BD86-AD99-4CF7-A83B-AE39196BA846}.Release|Any CPU.Build.0 = Release|Any CPU
 		{A673BD86-AD99-4CF7-A83B-AE39196BA846}.Release|x86.ActiveCfg = Release|Any CPU
 		{A673BD86-AD99-4CF7-A83B-AE39196BA846}.Release|x86.Build.0 = Release|Any CPU
+		{261D8616-8433-4C31-BB88-FC62FA389029}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{261D8616-8433-4C31-BB88-FC62FA389029}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{261D8616-8433-4C31-BB88-FC62FA389029}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{261D8616-8433-4C31-BB88-FC62FA389029}.Debug|x86.Build.0 = Debug|Any CPU
+		{261D8616-8433-4C31-BB88-FC62FA389029}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{261D8616-8433-4C31-BB88-FC62FA389029}.Release|Any CPU.Build.0 = Release|Any CPU
+		{261D8616-8433-4C31-BB88-FC62FA389029}.Release|x86.ActiveCfg = Release|Any CPU
+		{261D8616-8433-4C31-BB88-FC62FA389029}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
