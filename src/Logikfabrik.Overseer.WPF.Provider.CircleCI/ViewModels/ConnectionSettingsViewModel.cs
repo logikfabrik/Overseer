@@ -2,9 +2,8 @@
 //   Copyright (c) 2016 anton(at)logikfabrik.se. Licensed under the MIT license.
 // </copyright>
 
-namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices.ViewModels
+namespace Logikfabrik.Overseer.WPF.Provider.CircleCI.ViewModels
 {
-    using System;
     using System.Linq;
     using Validators;
     using WPF.ViewModels;
@@ -14,9 +13,8 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices.ViewModels
     /// </summary>
     public class ConnectionSettingsViewModel : ConnectionSettingsViewModel<ConnectionSettings>
     {
-        private const string Version = "2.0";
+        private const string Version = "v1.1";
 
-        private string _url;
         private string _token;
 
         /// <summary>
@@ -25,30 +23,6 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices.ViewModels
         public ConnectionSettingsViewModel()
         {
             Validator = new ConnectionSettingsViewModelValidator();
-            Url = string.Concat(Uri.UriSchemeHttps, Uri.SchemeDelimiter);
-        }
-
-        /// <summary>
-        /// Gets or sets the URL.
-        /// </summary>
-        /// <value>
-        /// The URL.
-        /// </value>
-        public string Url
-        {
-            get
-            {
-                return _url;
-            }
-
-            set
-            {
-                _url = value;
-                NotifyOfPropertyChange(() => Url);
-                NotifyOfPropertyChange(() => IsValid);
-
-                IsDirty = true;
-            }
         }
 
         /// <summary>
@@ -85,7 +59,6 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices.ViewModels
             return new ConnectionSettings
             {
                 Name = Name,
-                Url = Url,
                 Version = Version,
                 Token = Token,
                 ProjectsToMonitor = projects.Select(project => project.Id).ToArray()
@@ -99,7 +72,6 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices.ViewModels
         public override void UpdateSettings(ConnectionSettings current)
         {
             current.Name = Name;
-            current.Url = Url;
             current.Version = Version;
             current.Token = Token;
             current.ProjectsToMonitor = ProjectsToMonitor.Projects.Where(project => project.Monitor).Select(project => project.Id).ToArray();

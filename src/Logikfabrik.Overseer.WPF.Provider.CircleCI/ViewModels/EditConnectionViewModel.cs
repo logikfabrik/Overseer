@@ -2,7 +2,7 @@
 //   Copyright (c) 2016 anton(at)logikfabrik.se. Licensed under the MIT license.
 // </copyright>
 
-namespace Logikfabrik.Overseer.WPF.Provider.TeamCity.ViewModels
+namespace Logikfabrik.Overseer.WPF.Provider.CircleCI.ViewModels
 {
     using Caliburn.Micro;
     using EnsureThat;
@@ -12,7 +12,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity.ViewModels
     /// <summary>
     /// The <see cref="EditConnectionViewModel" /> class.
     /// </summary>
-    public class EditConnectionViewModel : WPF.ViewModels.EditConnectionViewModel<TeamCity.ConnectionSettings>
+    public class EditConnectionViewModel : WPF.ViewModels.EditConnectionViewModel<CircleCI.ConnectionSettings>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="EditConnectionViewModel" /> class.
@@ -27,11 +27,11 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity.ViewModels
         public EditConnectionViewModel(
             IEventAggregator eventAggregator,
             IConnectionSettingsRepository settingsRepository,
-            IConnectionSettingsViewModelFactory<TeamCity.ConnectionSettings, ConnectionSettingsViewModel> connectionSettingsFactory,
+            IConnectionSettingsViewModelFactory<CircleCI.ConnectionSettings, ConnectionSettingsViewModel> connectionSettingsFactory,
             IBuildProviderStrategy buildProviderStrategy,
             IProjectToMonitorViewModelFactory projectToMonitorFactory,
             IProjectsToMonitorViewModelFactory projectsToMonitorFactory,
-            TeamCity.ConnectionSettings currentSettings)
+            CircleCI.ConnectionSettings currentSettings)
             : base(
                   eventAggregator,
                   settingsRepository,
@@ -45,10 +45,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity.ViewModels
             var settings = connectionSettingsFactory.Create();
 
             settings.Name = currentSettings.Name;
-            settings.Url = currentSettings.Url;
-            settings.AuthenticationType = currentSettings.AuthenticationType;
-            settings.Username = currentSettings.Username;
-            settings.Password = currentSettings.Password;
+            settings.Token = currentSettings.Token;
             settings.IsDirty = false;
 
             Settings = settings;

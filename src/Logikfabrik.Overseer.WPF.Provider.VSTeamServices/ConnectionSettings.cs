@@ -14,6 +14,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices
     [XmlType("VSTeamServices")]
     public class ConnectionSettings : Settings.ConnectionSettings
     {
+        private string _version;
         private string _token;
         private string _url;
 
@@ -24,6 +25,27 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices
         /// The provider type.
         /// </value>
         public override Type ProviderType { get; } = typeof(BuildProvider);
+
+        /// <summary>
+        /// Gets or sets the version.
+        /// </summary>
+        /// <value>
+        /// The version.
+        /// </value>
+        public string Version
+        {
+            get
+            {
+                return _version;
+            }
+
+            set
+            {
+                Ensure.That(value).IsNotNullOrWhiteSpace();
+
+                _version = value;
+            }
+        }
 
         /// <summary>
         /// Gets or sets the token.

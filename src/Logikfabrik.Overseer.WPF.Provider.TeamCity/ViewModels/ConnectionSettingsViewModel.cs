@@ -14,11 +14,12 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity.ViewModels
     /// </summary>
     public class ConnectionSettingsViewModel : ConnectionSettingsViewModel<ConnectionSettings>
     {
+        private const string Version = "10.0";
+
         private string _url;
         private AuthenticationType _authenticationType;
         private string _username;
         private string _password;
-        private string _version;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ConnectionSettingsViewModel" /> class.
@@ -27,7 +28,6 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity.ViewModels
         {
             Validator = new ConnectionSettingsViewModelValidator();
             Url = string.Concat(Uri.UriSchemeHttps, Uri.SchemeDelimiter);
-            Version = "10.0";
         }
 
         /// <summary>
@@ -93,30 +93,6 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity.ViewModels
                 // Trigger revalidation of username and password.
                 NotifyOfPropertyChange(() => Username);
                 NotifyOfPropertyChange(() => Password);
-
-                IsDirty = true;
-            }
-        }
-
-        /// <summary>
-        /// Gets or sets the version.
-        /// </summary>
-        /// <value>
-        /// The version.
-        /// </value>
-        public string Version
-        {
-            get
-            {
-                return _version;
-            }
-
-            set
-            {
-                _version = value;
-                NotifyOfPropertyChange(() => Version);
-                NotifyOfPropertyChange(() => IsValid);
-                NotifyOfPropertyChange(() => BaseUri);
 
                 IsDirty = true;
             }
