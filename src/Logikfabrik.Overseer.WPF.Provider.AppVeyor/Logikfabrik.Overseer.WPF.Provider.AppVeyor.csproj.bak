@@ -144,6 +144,7 @@
       <Name>Logikfabrik.Overseer</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ApplicationDefinition Condition="$(DesignTime)==true AND $(BuildingInsideVisualStudio)!=true AND $(BuildingInsideExpressionBlend)!=true" Include="App.xaml">
       <SubType>Designer</SubType>

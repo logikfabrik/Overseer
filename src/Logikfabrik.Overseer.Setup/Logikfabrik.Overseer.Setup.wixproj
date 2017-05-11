@@ -45,6 +45,15 @@
       </RefProjectOutputGroups>
       <RefTargetDir>INSTALLFOLDER</RefTargetDir>
     </ProjectReference>
+	<ProjectReference Include="..\Logikfabrik.Overseer.WPF.Provider.CircleCI\Logikfabrik.Overseer.WPF.Provider.CircleCI.csproj">
+      <Name>Logikfabrik.Overseer.WPF.Provider.CircleCI</Name>
+      <Project>{261d8616-8433-4c31-bb88-fc62fa389029}</Project>
+      <Private>True</Private>
+      <DoNotHarvest>True</DoNotHarvest>
+      <RefProjectOutputGroups>
+      </RefProjectOutputGroups>
+      <RefTargetDir>INSTALLFOLDER</RefTargetDir>
+    </ProjectReference>
     <ProjectReference Include="..\Logikfabrik.Overseer.WPF.Provider.Jenkins\Logikfabrik.Overseer.WPF.Provider.Jenkins.csproj">
       <Name>Logikfabrik.Overseer.WPF.Provider.Jenkins</Name>
       <Project>{f4f07a30-be00-4295-bd36-3fc0b5e79b94}</Project>
