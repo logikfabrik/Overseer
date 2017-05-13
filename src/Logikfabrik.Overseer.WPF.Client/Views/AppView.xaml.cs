@@ -2,6 +2,8 @@
 //   Copyright (c) 2016 anton(at)logikfabrik.se. Licensed under the MIT license.
 // </copyright>
 
+using System.Windows.Controls;
+
 namespace Logikfabrik.Overseer.WPF.Client.Views
 {
     using System;
@@ -42,6 +44,18 @@ namespace Logikfabrik.Overseer.WPF.Client.Views
         private static void DisableMaximizeButton(IntPtr hWnd)
         {
             NativeMethods.SetWindowLong(hWnd, NativeMethods.GWL_STYLE, NativeMethods.GetWindowLong(hWnd, NativeMethods.GWL_STYLE) & ~NativeMethods.WS_MAXIMIZEBOX);
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            if (rect.Visibility == System.Windows.Visibility.Collapsed)
+            {
+                rect.Visibility = System.Windows.Visibility.Visible;
+            }
+            else
+            {
+                rect.Visibility = System.Windows.Visibility.Collapsed;
+            }
         }
     }
 }
