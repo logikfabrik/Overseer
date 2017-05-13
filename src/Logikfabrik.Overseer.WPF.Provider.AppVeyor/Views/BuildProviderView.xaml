@@ -4,20 +4,13 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    Width="135"
-    Height="135"
+    Width="200"
+    Height="200"
     mc:Ignorable="d">
     <Button x:Name="AddConnection" VerticalContentAlignment="Stretch">
         <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="70" />
-                <RowDefinition Height="*" />
-            </Grid.RowDefinitions>
-            <Viewbox
-                Width="30"
-                Height="30"
-                Stretch="UniformToFill">
-                <Path Fill="{Binding Path=(TextElement.Foreground), RelativeSource={RelativeSource AncestorType=ContentPresenter}}">
+            <Viewbox Width="50" Height="50">
+                <Path>
                     <Path.Data>
                         <GeometryGroup>
                             <Geometry>F 1 M 308.194,190.55 C 273.398,164.038 222.033,170.666 192.208,205.463 164.04,241.916 169.011,293.281 203.807,319.793 238.603,347.961 289.969,341.333 318.137,304.88 347.961,270.084 342.99,218.718 308.194,190.55 Z</Geometry>
@@ -26,11 +19,7 @@
                     </Path.Data>
                 </Path>
             </Viewbox>
-            <TextBlock
-                Grid.Row="1"
-                VerticalAlignment="Center"
-                Text="AppVeyor"
-                TextAlignment="Center" />
+            <TextBlock VerticalAlignment="Bottom" Text="AppVeyor" />
         </Grid>
     </Button>
 </UserControl>

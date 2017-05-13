@@ -12,10 +12,10 @@
         <StackPanel Background="{DynamicResource Panel.Background}" ZIndex="2">
             <StackPanel.Effect>
                 <DropShadowEffect
-                    Color="{StaticResource Effect.Shadow}"
                     BlurRadius="3"
                     Opacity="0.1"
-                    ShadowDepth="3" />
+                    ShadowDepth="3"
+                    Color="{StaticResource Effect.Shadow}" />
             </StackPanel.Effect>
             <TextBlock
                 x:Name="ViewDisplayName"
@@ -27,7 +27,13 @@
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
-                <Button x:Name="ViewConnections" Content="Connections" />
+                <Button x:Name="ViewConnections" Grid.Column="0">
+                    <Viewbox>
+                        <Canvas>
+                            <Path Data="M18.672,11L17,11 17,17C17,17.445,16.806,18,16,18L12,18 12,12 8,12 8,18 4,18C3.194,18,3,17.445,3,17L3,11 1.328,11C0.73,11,0.858,10.676,1.268,10.252L9.292,2.22C9.487,2.018 9.743,1.918 10,1.908 10.257,1.918 10.513,2.017 10.708,2.22L18.731,10.251C19.142,10.676,19.27,11,18.672,11z" />
+                        </Canvas>
+                    </Viewbox>
+                </Button>
                 <Button x:Name="EditSettings" Grid.Column="1">
                     <Viewbox>
                         <Canvas>
