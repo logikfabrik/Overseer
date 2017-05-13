@@ -4,22 +4,28 @@
 
 namespace Logikfabrik.Overseer.WPF.Provider.CircleCI.Api.Models
 {
+    using System.Runtime.Serialization;
+    using Newtonsoft.Json;
+    using Newtonsoft.Json.Converters;
+
     /// <summary>
     /// The <see cref="BuildOutcome" /> enumeration.
     /// </summary>
+    [JsonConverter(typeof(StringEnumConverter))]
     public enum BuildOutcome
     {
         Canceled,
 
-        // ReSharper disable once InconsistentNaming
-        Infrastructure_fail,
+        [EnumMember(Value = "infrastructure_fail")]
+        InfrastructureFail,
 
-        Timedout,
+        [EnumMember(Value = "timedout")]
+        TimedOut,
 
         Failed,
 
-        // ReSharper disable once InconsistentNaming
-        No_tests,
+        [EnumMember(Value = "no_tests")]
+        NoTests,
 
         Success
     }

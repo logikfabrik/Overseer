@@ -152,16 +152,21 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices.Api
         {
             var client = new HttpClient { BaseAddress = baseUri };
 
-            SetDefaultRequestHeaders(client, token);
+            SetDefaultRequestHeaders(client);
+            SetAuthRequestHeaders(client, token);
 
             return client;
         }
 
-        private static void SetDefaultRequestHeaders(HttpClient client, string token)
+        private static void SetDefaultRequestHeaders(HttpClient client)
+        {
+            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+        }
+
+        private static void SetAuthRequestHeaders(HttpClient client, string token)
         {
             var credentials = Convert.ToBase64String(Encoding.ASCII.GetBytes($"{string.Empty}:{token}"));
 
-            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", credentials);
         }
     }

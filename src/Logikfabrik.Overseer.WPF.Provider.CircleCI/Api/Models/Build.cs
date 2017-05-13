@@ -5,6 +5,7 @@
 namespace Logikfabrik.Overseer.WPF.Provider.CircleCI.Api.Models
 {
     using System;
+    using Newtonsoft.Json;
 
     /// <summary>
     /// The <see cref="Build" /> class.
@@ -17,8 +18,8 @@ namespace Logikfabrik.Overseer.WPF.Provider.CircleCI.Api.Models
         /// <value>
         /// The VCS URL.
         /// </value>
-        // ReSharper disable once InconsistentNaming
-        public Uri Vcs_url { get; set; }
+        [JsonProperty(PropertyName = "vcs_url")]
+        public Uri VcsUrl { get; set; }
 
         /// <summary>
         /// Gets or sets the VCS revision.
@@ -26,8 +27,8 @@ namespace Logikfabrik.Overseer.WPF.Provider.CircleCI.Api.Models
         /// <value>
         /// The VCS revision.
         /// </value>
-        // ReSharper disable once InconsistentNaming
-        public string Vcs_revision { get; set; }
+        [JsonProperty(PropertyName = "vcs_revision")]
+        public string VcsRevision { get; set; }
 
         /// <summary>
         /// Gets or sets the build URL.
@@ -35,8 +36,8 @@ namespace Logikfabrik.Overseer.WPF.Provider.CircleCI.Api.Models
         /// <value>
         /// The build URL.
         /// </value>
-        // ReSharper disable once InconsistentNaming
-        public Uri Build_url { get; set; }
+        [JsonProperty(PropertyName = "build_url")]
+        public Uri BuildUrl { get; set; }
 
         /// <summary>
         /// Gets or sets the build number.
@@ -44,8 +45,8 @@ namespace Logikfabrik.Overseer.WPF.Provider.CircleCI.Api.Models
         /// <value>
         /// The build number.
         /// </value>
-        // ReSharper disable once InconsistentNaming
-        public int Build_num { get; set; }
+        [JsonProperty(PropertyName = "build_num")]
+        public int BuildNumber { get; set; }
 
         /// <summary>
         /// Gets or sets the branch.
@@ -61,8 +62,8 @@ namespace Logikfabrik.Overseer.WPF.Provider.CircleCI.Api.Models
         /// <value>
         /// The committer name.
         /// </value>
-        // ReSharper disable once InconsistentNaming
-        public string Committer_name { get; set; }
+        [JsonProperty(PropertyName = "committer_name")]
+        public string CommitterName { get; set; }
 
         /// <summary>
         /// Gets or sets the committer e-mail.
@@ -70,8 +71,8 @@ namespace Logikfabrik.Overseer.WPF.Provider.CircleCI.Api.Models
         /// <value>
         /// The committer e-mail.
         /// </value>
-        // ReSharper disable once InconsistentNaming
-        public string Committer_email { get; set; }
+        [JsonProperty(PropertyName = "committer_email")]
+        public string CommitterEmail { get; set; }
 
         /// <summary>
         /// Gets or sets the commit message subject.
@@ -89,8 +90,8 @@ namespace Logikfabrik.Overseer.WPF.Provider.CircleCI.Api.Models
         /// </value>
         public string Body { get; set; }
 
-        // ReSharper disable once InconsistentNaming
-        public DateTime? Queued_at { get; set; }
+        [JsonProperty(PropertyName = "queued_at")]
+        public DateTime? QueuedAt { get; set; }
 
         /// <summary>
         /// Gets or sets the start time.
@@ -98,8 +99,8 @@ namespace Logikfabrik.Overseer.WPF.Provider.CircleCI.Api.Models
         /// <value>
         /// The start time.
         /// </value>
-        // ReSharper disable once InconsistentNaming
-        public DateTime? Start_time { get; set; }
+        [JsonProperty(PropertyName = "start_time")]
+        public DateTime? StartTime { get; set; }
 
         /// <summary>
         /// Gets or sets the stop time.
@@ -107,8 +108,8 @@ namespace Logikfabrik.Overseer.WPF.Provider.CircleCI.Api.Models
         /// <value>
         /// The stop time.
         /// </value>
-        // ReSharper disable once InconsistentNaming
-        public DateTime? Stop_time { get; set; }
+        [JsonProperty(PropertyName = "stop_time")]
+        public DateTime? StopTime { get; set; }
 
         /// <summary>
         /// Gets or sets the build time in milliseconds.
@@ -116,24 +117,26 @@ namespace Logikfabrik.Overseer.WPF.Provider.CircleCI.Api.Models
         /// <value>
         /// The build time in milliseconds.
         /// </value>
-        // ReSharper disable once InconsistentNaming
-        public long? Build_time_millis { get; set; }
+        [JsonProperty(PropertyName = "build_time_millis")]
+        public long? BuildTime { get; set; }
 
         /// <summary>
-        /// Gets or sets the username.
+        /// Gets or sets the project username.
         /// </summary>
         /// <value>
-        /// The username.
+        /// The project username.
         /// </value>
-        public string Username { get; set; }
+        [JsonProperty(PropertyName = "username")]
+        public string ProjectUsername { get; set; }
 
         /// <summary>
-        /// Gets or sets the repository name.
+        /// Gets or sets the project name.
         /// </summary>
         /// <value>
-        /// The repository name.
+        /// The project name.
         /// </value>
-        public string Reponame { get; set; }
+        [JsonProperty(PropertyName = "reponame")]
+        public string ProjectName { get; set; }
 
         /// <summary>
         /// Gets or sets the lifecycle.

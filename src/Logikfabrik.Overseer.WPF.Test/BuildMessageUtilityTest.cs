@@ -79,7 +79,7 @@ namespace Logikfabrik.Overseer.WPF.Test
             {
                 { "requested by", "John Doe" },
                 { "modified by", "Jane Doe" },
-                { "cancelled by", string.Empty }
+                { "canceled by", string.Empty }
             };
 
             var buildStatusMessage1 = BuildMessageUtility.GetBuildStatusMessage(BuildStatus.Failed, parts);

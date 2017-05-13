@@ -121,14 +121,19 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor.Api
         {
             var client = new HttpClient { BaseAddress = baseUri };
 
-            SetDefaultRequestHeaders(client, token);
+            SetDefaultRequestHeaders(client);
+            SetAuthRequestHeaders(client, token);
 
             return client;
         }
 
-        private static void SetDefaultRequestHeaders(HttpClient client, string token)
+        private static void SetDefaultRequestHeaders(HttpClient client)
         {
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+        }
+
+        private static void SetAuthRequestHeaders(HttpClient client, string token)
+        {
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
         }
     }

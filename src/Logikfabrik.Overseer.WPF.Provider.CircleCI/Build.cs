@@ -2,7 +2,7 @@
 //   Copyright (c) 2016 anton(at)logikfabrik.se. Licensed under the MIT license.
 // </copyright>
 
-namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor
+namespace Logikfabrik.Overseer.WPF.Provider.CircleCI
 {
     using System;
     using System.Collections.Generic;
@@ -21,22 +21,22 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor
         {
             Ensure.That(build).IsNotNull();
 
-            Id = build.BuildId.ToString();
-            Version = build.Version;
-            Number = null;
+            Id = string.Concat(build.ProjectName, build.BuildNumber);
+            Version = null;
+            Number = build.BuildNumber.ToString();
             Branch = build.Branch;
-            StartTime = build.Started?.ToUniversalTime();
-            EndTime = build.Finished?.ToUniversalTime();
+            StartTime = build.StartTime?.ToUniversalTime();
+            EndTime = build.StopTime?.ToUniversalTime();
             Status = GetStatus(build);
-            RequestedBy = build.AuthorUsername;
+            RequestedBy = null;
             Changes = new[]
             {
                 new Change
                 {
-                    Id = build.CommitId,
-                    Changed = build.Committed?.ToUniversalTime(),
+                    Id = build.VcsRevision,
+                    Changed = build.QueuedAt?.ToUniversalTime(),
                     ChangedBy = build.CommitterName,
-                    Comment = build.Message
+                    Comment = build.Subject
                 }
             };
         }
@@ -115,7 +115,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor
 
         private static BuildStatus? GetStatus(Api.Models.Build build)
         {
-            if (!build.Finished.HasValue)
+            if (!build.StopTime.HasValue || !build.Outcome.HasValue)
             {
                 return BuildStatus.InProgress;
             }
@@ -124,12 +124,15 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor
             switch (build.Status)
             {
                 case Api.Models.BuildStatus.Success:
+                case Api.Models.BuildStatus.NoTests:
                     return BuildStatus.Succeeded;
 
                 case Api.Models.BuildStatus.Failed:
                     return BuildStatus.Failed;
 
                 case Api.Models.BuildStatus.Canceled:
+                case Api.Models.BuildStatus.TimedOut:
+                case Api.Models.BuildStatus.InfrastructureFail:
                     return BuildStatus.Stopped;
 
                 default:

@@ -30,7 +30,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices.Api.Models
         Failed = 8,
 
         /// <summary>
-        /// The build was cancelled.
+        /// The build was canceled.
         /// </summary>
         Canceled = 32
     }

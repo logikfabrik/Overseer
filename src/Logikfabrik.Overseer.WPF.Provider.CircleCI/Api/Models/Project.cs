@@ -5,6 +5,7 @@
 namespace Logikfabrik.Overseer.WPF.Provider.CircleCI.Api.Models
 {
     using System;
+    using Newtonsoft.Json;
 
     /// <summary>
     /// The <see cref="Project" /> class.
@@ -17,8 +18,8 @@ namespace Logikfabrik.Overseer.WPF.Provider.CircleCI.Api.Models
         /// <value>
         /// The VCS URL.
         /// </value>
-        // ReSharper disable once InconsistentNaming
-        public Uri Vcs_url { get; set; }
+        [JsonProperty(PropertyName = "vcs_url")]
+        public Uri VcsUrl { get; set; }
 
         /// <summary>
         /// Gets or sets the VCS type.
@@ -26,8 +27,8 @@ namespace Logikfabrik.Overseer.WPF.Provider.CircleCI.Api.Models
         /// <value>
         /// The VCS type.
         /// </value>
-        // ReSharper disable once InconsistentNaming
-        public string Vcs_type { get; set; }
+        [JsonProperty(PropertyName = "vcs_type")]
+        public string VcsType { get; set; }
 
         /// <summary>
         /// Gets or sets the username.
@@ -38,11 +39,12 @@ namespace Logikfabrik.Overseer.WPF.Provider.CircleCI.Api.Models
         public string Username { get; set; }
 
         /// <summary>
-        /// Gets or sets the repository name.
+        /// Gets or sets the name.
         /// </summary>
         /// <value>
-        /// The repository name.
+        /// The name.
         /// </value>
-        public string Reponame { get; set; }
+        [JsonProperty(PropertyName = "reponame")]
+        public string Name { get; set; }
     }
 }

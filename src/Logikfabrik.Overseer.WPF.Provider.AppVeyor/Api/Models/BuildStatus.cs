@@ -4,9 +4,14 @@
 
 namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor.Api.Models
 {
+    using System.Runtime.Serialization;
+    using Newtonsoft.Json;
+    using Newtonsoft.Json.Converters;
+
     /// <summary>
     /// The <see cref="BuildStatus" /> enumeration.
     /// </summary>
+    [JsonConverter(typeof(StringEnumConverter))]
     public enum BuildStatus
     {
         /// <summary>
@@ -20,9 +25,10 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor.Api.Models
         Failed,
 
         /// <summary>
-        /// The build is cancelled.
+        /// The build is canceled.
         /// </summary>
-        Cancelled,
+        [EnumMember(Value = "cancelled")]
+        Canceled,
 
         /// <summary>
         /// The build is queued.

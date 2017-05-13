@@ -4,8 +4,8 @@
 
 namespace Logikfabrik.Overseer.WPF.Provider.CircleCI
 {
-    using System;
     using System.Collections.Generic;
+    using System.Linq;
     using System.Threading;
     using System.Threading.Tasks;
     using EnsureThat;
@@ -43,7 +43,9 @@ namespace Logikfabrik.Overseer.WPF.Provider.CircleCI
         {
             this.ThrowIfDisposed(_isDisposed);
 
-            throw new NotImplementedException();
+            var projects = await _apiClient.GetProjectsAsync(cancellationToken).ConfigureAwait(false);
+
+            return projects.Select(project => new Project(project)).ToArray();
         }
 
         /// <summary>
@@ -54,14 +56,26 @@ namespace Logikfabrik.Overseer.WPF.Provider.CircleCI
         /// <returns>
         /// A task.
         /// </returns>
-        public override async Task<IEnumerable<IBuild>> GetBuildsAsync(string projectId,
-            CancellationToken cancellationToken)
+        public override async Task<IEnumerable<IBuild>> GetBuildsAsync(string projectId, CancellationToken cancellationToken)
         {
             this.ThrowIfDisposed(_isDisposed);
 
             Ensure.That(projectId).IsNotNullOrWhiteSpace();
 
-            throw new NotImplementedException();
+            var projects = await _apiClient.GetProjectsAsync(cancellationToken).ConfigureAwait(false);
+
+            var project = projects.FirstOrDefault(p => p.Name == projectId);
+
+            if (project == null)
+            {
+                return new IBuild[] { };
+            }
+
+            const int numberOfBuilds = 3;
+
+            var builds = await _apiClient.GetBuildsAsync(project.VcsType, project.Username, project.Name, 0, numberOfBuilds, cancellationToken).ConfigureAwait(false);
+
+            return builds.Select(build => new Build(build)).ToArray();
         }
 
         /// <summary>
