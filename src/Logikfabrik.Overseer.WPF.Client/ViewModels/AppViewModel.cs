@@ -15,7 +15,6 @@ namespace Logikfabrik.Overseer.WPF.Client.ViewModels
     /// </summary>
     public sealed class AppViewModel : Conductor<IViewModel>.Collection.OneActive, IHandle<NavigationMessage>
     {
-        private readonly IEventAggregator _eventAggregator;
         private readonly IBuildNotificationManager _buildNotificationManager;
 
         /// <summary>
@@ -25,21 +24,22 @@ namespace Logikfabrik.Overseer.WPF.Client.ViewModels
         /// <param name="buildMonitor">The build monitor.</param>
         /// /// <param name="buildNotificationManager">The build notification manager.</param>
         /// <param name="connectionsViewModel">The connections view model.</param>
-        public AppViewModel(IEventAggregator eventAggregator, IBuildMonitor buildMonitor, IBuildNotificationManager buildNotificationManager, ConnectionsViewModel connectionsViewModel)
+        public AppViewModel(IEventAggregator eventAggregator, IBuildMonitor buildMonitor, IBuildNotificationManager buildNotificationManager, MenuViewModel menuViewModel, ConnectionsViewModel connectionsViewModel)
         {
-            Ensure.That(eventAggregator).IsNotNull();
             Ensure.That(buildMonitor).IsNotNull();
             Ensure.That(buildNotificationManager).IsNotNull();
+            Ensure.That(menuViewModel).IsNotNull();
             Ensure.That(connectionsViewModel).IsNotNull();
 
-            _eventAggregator = eventAggregator;
             _buildNotificationManager = buildNotificationManager;
 
-            _eventAggregator.Subscribe(this);
+            eventAggregator.Subscribe(this);
 
             WeakEventManager<IBuildMonitor, BuildMonitorProjectProgressEventArgs>.AddHandler(buildMonitor, nameof(buildMonitor.ProjectProgressChanged), BuildMonitorProgressChanged);
 
             DisplayName = "Overseer";
+
+            Menu = menuViewModel;
 
             ActivateItem(connectionsViewModel);
         }
@@ -51,6 +51,14 @@ namespace Logikfabrik.Overseer.WPF.Client.ViewModels
         /// The view display name.
         /// </value>
         public string ViewDisplayName => ActiveItem.DisplayName;
+
+        /// <summary>
+        /// Gets the menu.
+        /// </summary>
+        /// <value>
+        /// The menu.
+        /// </value>
+        public MenuViewModel Menu { get; }
 
         /// <summary>
         /// Handles the specified message.
@@ -71,26 +79,6 @@ namespace Logikfabrik.Overseer.WPF.Client.ViewModels
             NotifyOfPropertyChange(() => ViewDisplayName);
 
             // TODO: Keep track of children that can be closed (and disposed). Make sure navigation takes this into consideration.
-        }
-
-        /// <summary>
-        /// Edit the settings.
-        /// </summary>
-        public void EditSettings()
-        {
-            var message = new NavigationMessage(typeof(EditSettingsViewModel));
-
-            _eventAggregator.PublishOnUIThread(message);
-        }
-
-        /// <summary>
-        /// View the connections.
-        /// </summary>
-        public void ViewConnections()
-        {
-            var message = new NavigationMessage(typeof(ConnectionsViewModel));
-
-            _eventAggregator.PublishOnUIThread(message);
         }
 
         private void BuildMonitorProgressChanged(object sender, BuildMonitorProjectProgressEventArgs e)
