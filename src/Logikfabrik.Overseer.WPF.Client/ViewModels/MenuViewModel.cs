@@ -74,11 +74,13 @@ namespace Logikfabrik.Overseer.WPF.Client.ViewModels
         }
 
         /// <summary>
-        /// Goes to connection.
+        /// Goes to add connection.
         /// </summary>
-        public void GoToConnection()
+        public void GoToAddConnection()
         {
-            // TODO: Go to connection view.
+            var message = new NavigationMessage(typeof(BuildProvidersViewModel));
+
+            _eventAggregator.PublishOnUIThread(message);
         }
 
         /// <summary>

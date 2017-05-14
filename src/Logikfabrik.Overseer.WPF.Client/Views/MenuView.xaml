@@ -4,12 +4,12 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Width="200"
     d:DesignHeight="300"
-    d:DesignWidth="300"
     Visibility="{Binding IsExpanded, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}"
     mc:Ignorable="d">
     <StackPanel>
-        <Button x:Name="GoToConnections" HorizontalContentAlignment="Stretch">
+        <Button x:Name="GoToDashboard" HorizontalContentAlignment="Stretch">
             <StackPanel Orientation="Horizontal">
                 <Viewbox>
                     <Canvas>
@@ -19,6 +19,33 @@
                 <TextBlock Text="Dashboard" />
             </StackPanel>
         </Button>
+        <Separator />
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <Button
+                x:Name="GoToConnections"
+                Grid.Column="0"
+                HorizontalContentAlignment="Stretch">
+                <StackPanel Orientation="Horizontal">
+                    <Viewbox>
+                        <Canvas>
+                            <Path Data="M14.4,9L8.6,9C8.048,9 8,9.447 8,10 8,10.553 8.048,11 8.6,11L14.4,11C14.952,11 15,10.553 15,10 15,9.447 14.952,9 14.4,9z M16.4,14L8.6,14C8.048,14 8,14.447 8,15 8,15.553 8.048,16 8.6,16L16.4,16C16.952,16 17,15.553 17,15 17,14.447 16.952,14 16.4,14z M8.6,6L16.4,6C16.952,6 17,5.553 17,5 17,4.447 16.952,4 16.4,4L8.6,4C8.048,4 8,4.447 8,5 8,5.553 8.048,6 8.6,6z M5.4,9L3.6,9C3.048,9 3,9.447 3,10 3,10.553 3.048,11 3.6,11L5.4,11C5.952,11 6,10.553 6,10 6,9.447 5.952,9 5.4,9z M5.4,14L3.6,14C3.048,14 3,14.447 3,15 3,15.553 3.048,16 3.6,16L5.4,16C5.952,16 6,15.553 6,15 6,14.447 5.952,14 5.4,14z M5.4,4L3.6,4C3.048,4 3,4.447 3,5 3,5.553 3.048,6 3.6,6L5.4,6C5.952,6 6,5.553 6,5 6,4.447 5.952,4 5.4,4z" />
+                        </Canvas>
+                    </Viewbox>
+                    <TextBlock Text="Connections" />
+                </StackPanel>
+            </Button>
+            <Button x:Name="GoToAddConnection" Grid.Column="1">
+                <Viewbox>
+                    <Canvas>
+                        <Path Data="M19.4,9L16,9 16,5.6C16,5 15.6,5 15,5 14.4,5 14,5 14,5.6L14,9 10.6,9C10,9 10,9.4 10,10 10,10.6 10,11 10.6,11L14,11 14,14.4C14,15 14.4,15 15,15 15.6,15 16,15 16,14.4L16,11 19.4,11C20,11 20,10.6 20,10 20,9.4 20,9 19.4,9z M7.4,9L0.6,9C0,9 0,9.4 0,10 0,10.6 0,11 0.6,11L7.4,11C8,11 8,10.6 8,10 8,9.4 8,9 7.4,9z M7.4,14L0.6,14C0,14 0,14.4 0,15 0,15.6 0,16 0.6,16L7.4,16C8,16 8,15.6 8,15 8,14.4 8,14 7.4,14z M7.4,4L0.6,4C0,4 0,4.4 0,5 0,5.6 0,6 0.6,6L7.4,6C8,6 8,5.6 8,5 8,4.4 8,4 7.4,4z" />
+                    </Canvas>
+                </Viewbox>
+            </Button>
+        </Grid>
         <Separator />
         <Button x:Name="GoToSettings" HorizontalContentAlignment="Stretch">
             <StackPanel Orientation="Horizontal">
