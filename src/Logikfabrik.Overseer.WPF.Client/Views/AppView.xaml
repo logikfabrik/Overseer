@@ -9,9 +9,7 @@
             <ColumnDefinition Width="Auto" />
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
-
         <ContentControl cal:View.Model="{Binding Menu, Mode=OneTime}" Focusable="False" />
-
         <Grid Grid.Column="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />

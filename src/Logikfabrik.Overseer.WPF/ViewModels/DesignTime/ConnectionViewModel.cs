@@ -72,14 +72,6 @@ namespace Logikfabrik.Overseer.WPF.ViewModels.DesignTime
         public bool HasProjects { get; } = true;
 
         /// <summary>
-        /// Gets the projects count.
-        /// </summary>
-        /// <value>
-        /// The projects count.
-        /// </value>
-        public int? ProjectsCount { get; } = 3;
-
-        /// <summary>
         /// Gets or sets the display name.
         /// </summary>
         /// <value>

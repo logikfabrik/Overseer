@@ -122,9 +122,6 @@
     <Compile Include="Providers\Settings\FileStoreProvider.cs" />
     <Compile Include="ViewModels\MenuViewModel.cs" />
     <Compile Include="ViewModels\AppViewModel.cs" />
-    <Compile Include="Views\AddConnectionItem\Tile.xaml.cs">
-      <DependentUpon>Tile.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\AddConnectionView.xaml.cs">
       <DependentUpon>AddConnectionView.xaml</DependentUpon>
     </Compile>
@@ -203,10 +200,6 @@
     <Analyzer Include="..\packages\StyleCop.Analyzers.1.0.0\analyzers\dotnet\cs\StyleCop.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Page Include="Views\AddConnectionItem\Tile.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Views\AddConnectionView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

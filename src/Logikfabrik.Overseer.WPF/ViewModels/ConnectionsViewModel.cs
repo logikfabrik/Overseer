@@ -7,6 +7,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using Caliburn.Micro;
     using EnsureThat;
     using Factories;
     using Settings;
@@ -16,46 +17,59 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     /// </summary>
     public class ConnectionsViewModel : ViewModel, IObserver<ConnectionSettings[]>, IDisposable
     {
+        private readonly IEventAggregator _eventAggregator;
         private readonly IDisposable _subscription;
         private readonly IConnectionViewModelStrategy _connectionViewModelStrategy;
-        private readonly IAddConnectionItemViewModelFactory _addConnectionItemViewModelFactory;
         private List<IConnectionViewModel> _connections;
         private bool _isDisposed;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ConnectionsViewModel" /> class.
         /// </summary>
+        /// <param name="eventAggregator">The event aggregator.</param>
         /// <param name="connectionSettingsRepository">The connection settings repository.</param>
         /// <param name="connectionViewModelStrategy">The connection view model strategy.</param>
-        /// <param name="addConnectionItemViewModelFactory"></param>
         public ConnectionsViewModel(
+            IEventAggregator eventAggregator,
             IConnectionSettingsRepository connectionSettingsRepository,
-            IConnectionViewModelStrategy connectionViewModelStrategy,
-            IAddConnectionItemViewModelFactory addConnectionItemViewModelFactory)
+            IConnectionViewModelStrategy connectionViewModelStrategy)
         {
+            Ensure.That(eventAggregator).IsNotNull();
             Ensure.That(connectionSettingsRepository).IsNotNull();
             Ensure.That(connectionViewModelStrategy).IsNotNull();
-            Ensure.That(addConnectionItemViewModelFactory).IsNotNull();
 
+            _eventAggregator = eventAggregator;
             _connectionViewModelStrategy = connectionViewModelStrategy;
-            _addConnectionItemViewModelFactory = addConnectionItemViewModelFactory;
             _connections = new List<IConnectionViewModel>();
             _subscription = connectionSettingsRepository.Subscribe(this);
             DisplayName = "Connections";
         }
 
         /// <summary>
-        /// Gets the items.
+        /// Gets the connections.
         /// </summary>
         /// <value>
-        /// The items.
+        /// The connections.
         /// </value>
-        public IEnumerable<IItemViewModel> Items
+        public IEnumerable<IConnectionViewModel> Connections
         {
             get
             {
-                return _connections.OfType<IItemViewModel>().Concat(new[] { _addConnectionItemViewModelFactory.Create() });
+                return _connections;
             }
+
+            private set
+            {
+                _connections = value.ToList();
+                NotifyOfPropertyChange(() => Connections);
+            }
+        }
+
+        public void Add()
+        {
+            var message = new NavigationMessage(typeof(BuildProvidersViewModel));
+
+            _eventAggregator.PublishOnUIThread(message);
         }
 
         /// <summary>
@@ -72,7 +86,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
 
             var isDirty = false;
 
-            var currentConnections = new List<IConnectionViewModel>(_connections);
+            var currentConnections = new List<IConnectionViewModel>(Connections);
 
             foreach (var settings in value)
             {
@@ -99,8 +113,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
 
             if (isDirty)
             {
-                _connections = currentConnections;
-                NotifyOfPropertyChange(() => Items);
+                Connections = currentConnections.OrderBy(connection => connection.SettingsName);
             }
         }
 

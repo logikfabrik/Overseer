@@ -69,14 +69,6 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         bool HasProjects { get; }
 
         /// <summary>
-        /// Gets the projects count.
-        /// </summary>
-        /// <value>
-        /// The projects count.
-        /// </value>
-        int? ProjectsCount { get; }
-
-        /// <summary>
         /// Edit the connection.
         /// </summary>
         void Edit();

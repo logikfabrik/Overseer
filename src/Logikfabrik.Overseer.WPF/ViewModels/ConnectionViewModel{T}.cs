@@ -17,7 +17,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     /// The <see cref="ConnectionViewModel{T}" /> class.
     /// </summary>
     /// <typeparam name="T">The <see cref="ConnectionSettings" /> type.</typeparam>
-    public class ConnectionViewModel<T> : ViewModel, IConnectionViewModel, IItemViewModel
+    public class ConnectionViewModel<T> : ViewModel, IConnectionViewModel
         where T : ConnectionSettings
     {
         private readonly IEventAggregator _eventAggregator;
@@ -162,9 +162,6 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
                 _projects = value.ToList();
                 NotifyOfPropertyChange(() => Projects);
                 NotifyOfPropertyChange(() => HasProjects);
-
-                ProjectsCount = _projects.Count;
-                NotifyOfPropertyChange(() => ProjectsCount);
             }
         }
 
@@ -175,14 +172,6 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         ///   <c>true</c> if this instance has projects; otherwise, <c>false</c>.
         /// </value>
         public bool HasProjects => _projects.Any();
-
-        /// <summary>
-        /// Gets the projects count.
-        /// </summary>
-        /// <value>
-        /// The projects count.
-        /// </value>
-        public int? ProjectsCount { get; private set; }
 
         /// <summary>
         /// Gets the settings.

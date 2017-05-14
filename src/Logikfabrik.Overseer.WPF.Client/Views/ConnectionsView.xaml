@@ -8,7 +8,7 @@
     d:DesignHeight="300"
     d:DesignWidth="300"
     mc:Ignorable="d">
-    <ItemsControl ItemsSource="{Binding Items, Mode=OneWay}">
+    <ItemsControl ItemsSource="{Binding Connections, Mode=OneWay}">
         <ItemsControl.ItemContainerStyle>
             <Style>
                 <!--  ReSharper disable once Xaml.RedundantPropertyTypeQualifier  -->
