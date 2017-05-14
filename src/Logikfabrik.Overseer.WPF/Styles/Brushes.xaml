@@ -23,6 +23,9 @@
     <SolidColorBrush x:Key="Window.Background" Color="#2A2A2A" />
     <SolidColorBrush x:Key="Window.Foreground" Color="#FFFFFF" />
 
+    <SolidColorBrush x:Key="Separator.Background" Color="#7E7E7E" />
+    <SolidColorBrush x:Key="Separator.Border" Color="Transparent" />
+
     <SolidColorBrush x:Key="Panel.Background" Color="#525252" />
 
     <SolidColorBrush x:Key="TextBlock.Foreground" Color="#FFFFFF" />
