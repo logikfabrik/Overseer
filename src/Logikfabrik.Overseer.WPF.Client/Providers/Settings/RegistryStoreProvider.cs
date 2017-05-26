@@ -1,18 +1,16 @@
-﻿// <copyright file="FileStoreProvider.cs" company="Logikfabrik">
+﻿// <copyright file="RegistryStoreProvider.cs" company="Logikfabrik">
 //   Copyright (c) 2016 anton(at)logikfabrik.se. Licensed under the MIT license.
 // </copyright>
 
 namespace Logikfabrik.Overseer.WPF.Client.Providers.Settings
 {
-    using System;
-    using System.IO;
     using Ninject.Activation;
     using Overseer.Settings;
 
     /// <summary>
-    /// The <see cref="FileStoreProvider" /> class.
+    /// The <see cref="RegistryStoreProvider" /> class.
     /// </summary>
-    public class FileStoreProvider : Provider<IFileStore>
+    public class RegistryStoreProvider : Provider<RegistryStore>
     {
         /// <summary>
         /// Creates an instance within the specified context.
@@ -21,11 +19,9 @@ namespace Logikfabrik.Overseer.WPF.Client.Providers.Settings
         /// <returns>
         /// The created instance.
         /// </returns>
-        protected override IFileStore CreateInstance(IContext context)
+        protected override RegistryStore CreateInstance(IContext context)
         {
-            var path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Overseer", "Providers2.xml");
-
-            return new FileStore(path);
+            return new RegistryStore("SOFTWARE\\Overseer");
         }
     }
 }

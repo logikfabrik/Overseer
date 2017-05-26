@@ -64,6 +64,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Threading.Tasks.Dataflow, Version=4.5.24.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Tpl.Dataflow.4.5.24\lib\portable-net45+win8+wpa81\System.Threading.Tasks.Dataflow.dll</HintPath>
       <Private>True</Private>
@@ -109,9 +110,18 @@
     <Compile Include="Logging\LogEntryType.cs" />
     <Compile Include="Logging\LogService.cs" />
     <Compile Include="Settings\ConnectionSettings.cs" />
+    <Compile Include="Settings\ConnectionSettingsEncrypter.cs" />
     <Compile Include="Settings\ConnectionSettingsExtensions.cs" />
     <Compile Include="Settings\ConnectionSettingsRepository.cs" />
     <Compile Include="Settings\ConnectionSettingsSignature.cs" />
+    <Compile Include="Settings\DataProtector.cs" />
+    <Compile Include="Settings\HashHelper.cs" />
+    <Compile Include="Settings\IConnectionSettingsEncrypter.cs" />
+    <Compile Include="Settings\IDataProtector.cs" />
+    <Compile Include="Settings\IRegistryStore.cs" />
+    <Compile Include="Settings\XmlEncrypter.cs" />
+    <Compile Include="Settings\IXmlEncrypter.cs" />
+    <Compile Include="Settings\RegistryStore.cs" />
     <Compile Include="Subscription{T}.cs" />
     <Compile Include="Settings\ConnectionSettingsSerializer.cs" />
     <Compile Include="Settings\ConnectionSettingsStore.cs" />

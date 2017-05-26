@@ -36,10 +36,6 @@
                     Content="OK"
                     IsDefault="True"
                     IsEnabled="{Binding IsValidAndHasConnected, Mode=OneWay}" />
-                <Button
-                    x:Name="TryClose"
-                    Content="Cancel"
-                    IsCancel="True" />
             </StackPanel>
         </StackPanel>
     </ScrollViewer>

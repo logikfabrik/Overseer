@@ -12,19 +12,23 @@ namespace Logikfabrik.Overseer.Settings
     public class ConnectionSettingsStore : IConnectionSettingsStore
     {
         private readonly IConnectionSettingsSerializer _serializer;
+        private readonly IConnectionSettingsEncrypter _encrypter;
         private readonly IFileStore _fileStore;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ConnectionSettingsStore" /> class.
         /// </summary>
         /// <param name="serializer">The serializer.</param>
+        /// <param name="encrypter">The encrypter.</param>
         /// <param name="fileStore">The file store.</param>
-        public ConnectionSettingsStore(IConnectionSettingsSerializer serializer, IFileStore fileStore)
+        public ConnectionSettingsStore(IConnectionSettingsSerializer serializer, IConnectionSettingsEncrypter encrypter, IFileStore fileStore)
         {
             Ensure.That(serializer).IsNotNull();
+            Ensure.That(encrypter).IsNotNull();
             Ensure.That(fileStore).IsNotNull();
 
             _serializer = serializer;
+            _encrypter = encrypter;
             _fileStore = fileStore;
         }
 
@@ -36,11 +40,11 @@ namespace Logikfabrik.Overseer.Settings
         /// </returns>
         public ConnectionSettings[] Load()
         {
-            var contents = _fileStore.Read();
+            var xml = _fileStore.Read();
 
-            return string.IsNullOrWhiteSpace(contents)
+            return string.IsNullOrWhiteSpace(xml)
                 ? new ConnectionSettings[] { }
-                : _serializer.Deserialize(contents);
+                : _serializer.Deserialize(_encrypter.Decrypt(xml));
         }
 
         /// <summary>
@@ -51,9 +55,9 @@ namespace Logikfabrik.Overseer.Settings
         {
             Ensure.That(settings).IsNotNull();
 
-            var fileContents = _serializer.Serialize(settings);
+            var xml = _encrypter.Encrypt(_serializer.Serialize(settings));
 
-            _fileStore.Write(fileContents);
+            _fileStore.Write(xml);
         }
     }
 }

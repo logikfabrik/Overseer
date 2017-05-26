@@ -26,6 +26,7 @@ namespace Logikfabrik.Overseer.WPF.Client.ViewModels
         /// <param name="connectionsViewModel">The connections view model.</param>
         public AppViewModel(IEventAggregator eventAggregator, IBuildMonitor buildMonitor, IBuildNotificationManager buildNotificationManager, MenuViewModel menuViewModel, ConnectionsViewModel connectionsViewModel)
         {
+            Ensure.That(eventAggregator).IsNotNull();
             Ensure.That(buildMonitor).IsNotNull();
             Ensure.That(buildNotificationManager).IsNotNull();
             Ensure.That(menuViewModel).IsNotNull();

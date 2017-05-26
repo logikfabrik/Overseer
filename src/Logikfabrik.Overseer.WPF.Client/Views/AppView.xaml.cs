@@ -6,14 +6,11 @@ namespace Logikfabrik.Overseer.WPF.Client.Views
 {
     using System;
     using System.Windows;
-    using System.Windows.Interop;
 
     /// <summary>
     /// The <see cref="AppView" /> class.
     /// </summary>
-#pragma warning disable S110 // Inheritance tree of classes should not be too deep
     public partial class AppView
-#pragma warning restore S110 // Inheritance tree of classes should not be too deep
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="AppView" /> class.
@@ -21,29 +18,13 @@ namespace Logikfabrik.Overseer.WPF.Client.Views
         public AppView()
         {
             InitializeComponent();
-
-            WeakEventManager<AppView, EventArgs>.AddHandler(this, nameof(SourceInitialized), (sender, e) =>
-            {
-                var hWnd = new WindowInteropHelper(this).Handle;
-
-                if (hWnd == IntPtr.Zero)
-                {
-                    return;
-                }
-
-                HideIcon(hWnd);
-                DisableMaximizeButton(hWnd);
-            });
         }
 
-        private static void HideIcon(IntPtr hWnd)
+        protected override void OnClosed(EventArgs e)
         {
-            NativeMethods.SetWindowLong(hWnd, NativeMethods.GWL_EXSTYLE, NativeMethods.GetWindowLong(hWnd, NativeMethods.GWL_EXSTYLE) | NativeMethods.WS_EX_DLGMODALFRAME);
-        }
+            base.OnClosed(e);
 
-        private static void DisableMaximizeButton(IntPtr hWnd)
-        {
-            NativeMethods.SetWindowLong(hWnd, NativeMethods.GWL_STYLE, NativeMethods.GetWindowLong(hWnd, NativeMethods.GWL_STYLE) & ~NativeMethods.WS_MAXIMIZEBOX);
+            Application.Current.Shutdown();
         }
     }
 }

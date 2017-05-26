@@ -179,7 +179,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
 
             _settingsRepository.Add(Settings.GetSettings());
 
-            TryClose();
+            // TODO: Remove this view model from the conductor.
 
             var message = new NavigationMessage(typeof(ConnectionsViewModel));
 

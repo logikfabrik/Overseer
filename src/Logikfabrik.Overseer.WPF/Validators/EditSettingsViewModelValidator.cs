@@ -18,6 +18,9 @@ namespace Logikfabrik.Overseer.WPF.Validators
         /// </summary>
         public EditSettingsViewModelValidator()
         {
+            CascadeMode = CascadeMode.StopOnFirstFailure;
+
+            RuleFor(viewModel => viewModel.Interval).InclusiveBetween(1, int.MaxValue);
             RuleFor(viewModel => viewModel.ProxyUrl).Must(url =>
             {
                 if (string.IsNullOrWhiteSpace(url))

@@ -92,5 +92,15 @@ namespace Logikfabrik.Overseer.WPF.Client.ViewModels
 
             _eventAggregator.PublishOnUIThread(message);
         }
+
+        /// <summary>
+        /// Goes to about.
+        /// </summary>
+        public void GoToAbout()
+        {
+            var message = new NavigationMessage(typeof(AboutViewModel));
+
+            _eventAggregator.PublishOnUIThread(message);
+        }
     }
 }

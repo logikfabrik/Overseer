@@ -4,17 +4,17 @@
 
 namespace Logikfabrik.Overseer.WPF.ViewModels
 {
-    using Caliburn.Micro;
+    using System.ComponentModel;
+    using System.Linq;
     using EnsureThat;
     using Validators;
 
     /// <summary>
     /// The <see cref="EditSettingsViewModel" /> class. View model for editing application wide settings.
     /// </summary>
-    public class EditSettingsViewModel : ViewModel
+    public class EditSettingsViewModel : ViewModel, IDataErrorInfo
     {
         private readonly EditSettingsViewModelValidator _validator;
-        private readonly IEventAggregator _eventAggregator;
         private readonly AppSettings _appSettings;
         private int _interval;
         private string _proxyUrl;
@@ -24,14 +24,12 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// <summary>
         /// Initializes a new instance of the <see cref="EditSettingsViewModel" /> class.
         /// </summary>
-        /// <param name="eventAggregator">The event aggregator.</param>
         /// <param name="appSettings">The application settings.</param>
-        public EditSettingsViewModel(IEventAggregator eventAggregator, AppSettings appSettings)
+        public EditSettingsViewModel(AppSettings appSettings)
         {
             Ensure.That(appSettings).IsNotNull();
 
             _validator = new EditSettingsViewModelValidator();
-            _eventAggregator = eventAggregator;
             _appSettings = appSettings;
             _interval = appSettings.Interval;
             _proxyUrl = appSettings.ProxyUrl;
@@ -41,10 +39,10 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         }
 
         /// <summary>
-        /// Gets or sets the interval.
+        /// Gets or sets the interval in seconds.
         /// </summary>
         /// <value>
-        /// The interval.
+        /// The interval in seconds.
         /// </value>
         public int Interval
         {
@@ -121,9 +119,38 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         }
 
         /// <summary>
-        /// Edit the settings.
+        /// Gets an error message indicating what is wrong with this object.
         /// </summary>
-        public void EditSettings()
+        public string Error => null;
+
+        /// <summary>
+        /// Gets the error message for the property with the specified name.
+        /// </summary>
+        /// <param name="name">The property name.</param>
+        /// <returns>
+        /// The error message, if any.
+        /// </returns>
+        public string this[string name]
+        {
+            get
+            {
+                var result = _validator.Validate(this);
+
+                if (result.IsValid)
+                {
+                    return null;
+                }
+
+                var error = result.Errors.FirstOrDefault(e => e.PropertyName == name);
+
+                return error?.ErrorMessage;
+            }
+        }
+
+        /// <summary>
+        /// Save the settings.
+        /// </summary>
+        public void Save()
         {
             if (!_validator.Validate(this).IsValid)
             {
@@ -136,8 +163,6 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             _appSettings.ProxyPassword = _proxyPassword;
 
             _appSettings.Save();
-
-            TryClose();
         }
     }
 }

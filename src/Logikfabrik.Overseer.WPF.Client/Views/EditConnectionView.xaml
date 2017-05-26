@@ -10,7 +10,6 @@
     mc:Ignorable="d">
     <ScrollViewer>
         <StackPanel Margin="25">
-
             <ContentControl
                 HorizontalAlignment="Stretch"
                 VerticalAlignment="Stretch"
@@ -28,7 +27,6 @@
                     cal:View.Model="{Binding Settings.ProjectsToMonitor, Mode=OneWay}"
                     Focusable="False" />
             </StackPanel>
-
             <StackPanel Orientation="Horizontal">
                 <Button
                     x:Name="EditConnection"
@@ -36,10 +34,6 @@
                     Content="OK"
                     IsDefault="True"
                     IsEnabled="{Binding IsValidAndHasConnected, Mode=OneWay}" />
-                <Button
-                    x:Name="TryClose"
-                    Content="Cancel"
-                    IsCancel="True" />
             </StackPanel>
         </StackPanel>
     </ScrollViewer>

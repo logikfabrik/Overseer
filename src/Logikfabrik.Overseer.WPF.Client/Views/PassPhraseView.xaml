@@ -1,0 +1,29 @@
+﻿<views:AppWindow x:Class="Logikfabrik.Overseer.WPF.Client.Views.PassPhraseView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:views="clr-namespace:Logikfabrik.Overseer.WPF.Client.Views"
+             Style="{StaticResource WindowDefaultStyle}"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <ScrollViewer>
+        <StackPanel Margin="25">
+            <StackPanel Margin="0,0,0,20">
+                <TextBlock FontSize="24" Text="Pass phrase" />
+            </StackPanel>
+            <StackPanel Margin="0,0,0,20">
+                <TextBlock Text="Pass phrase" />
+                <TextBox Text="{Binding Path=PassPhrase, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Button
+                    x:Name="Save"
+                    Margin="0,0,2,0"
+                    Content="OK"
+                    IsDefault="True" />
+            </StackPanel>
+        </StackPanel>
+    </ScrollViewer>
+</views:AppWindow>
+

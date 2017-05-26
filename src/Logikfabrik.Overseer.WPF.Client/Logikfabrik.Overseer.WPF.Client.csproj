@@ -67,6 +67,9 @@
       <HintPath>..\packages\Ensure.That.5.0.0\lib\net45\Ensure.That.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="FluentValidation, Version=6.2.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\FluentValidation.6.2.1.0\lib\Net45\FluentValidation.dll</HintPath>
+    </Reference>
     <Reference Include="log4net, Version=2.0.7.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
       <HintPath>..\packages\log4net.2.0.7\lib\net45-full\log4net.dll</HintPath>
       <Private>True</Private>
@@ -120,8 +123,15 @@
     <Compile Include="Providers\Caching\CacheManagerProvider.cs" />
     <Compile Include="Providers\Settings\ConnectionSettingsSerializerProvider.cs" />
     <Compile Include="Providers\Settings\FileStoreProvider.cs" />
+    <Compile Include="Providers\Settings\RegistryStoreProvider.cs" />
+    <Compile Include="Validators\PassPhraseViewModelValidator.cs" />
+    <Compile Include="ViewModels\AboutViewModel.cs" />
     <Compile Include="ViewModels\MenuViewModel.cs" />
     <Compile Include="ViewModels\AppViewModel.cs" />
+    <Compile Include="ViewModels\PassPhraseViewModel.cs" />
+    <Compile Include="Views\AboutView.xaml.cs">
+      <DependentUpon>AboutView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\AddConnectionView.xaml.cs">
       <DependentUpon>AddConnectionView.xaml</DependentUpon>
     </Compile>
@@ -158,6 +168,9 @@
     <Compile Include="Views\EditSettingsView.xaml.cs">
       <DependentUpon>EditSettingsView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\PassPhraseView.xaml.cs">
+      <DependentUpon>PassPhraseView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\ProjectsToMonitorView.xaml.cs">
       <DependentUpon>ProjectsToMonitorView.xaml</DependentUpon>
     </Compile>
@@ -179,6 +192,7 @@
     <Compile Include="Views\RemoveConnectionView.xaml.cs">
       <DependentUpon>RemoveConnectionView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\AppWindow.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -200,6 +214,10 @@
     <Analyzer Include="..\packages\StyleCop.Analyzers.1.0.0\analyzers\dotnet\cs\StyleCop.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Views\AboutView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\AddConnectionView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -245,6 +263,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\EditSettingsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\PassPhraseView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -19,10 +19,6 @@
                     Margin="0,0,2,0"
                     Content="Yes"
                     IsDefault="True" />
-                <Button
-                    x:Name="TryClose"
-                    Content="Cancel"
-                    IsCancel="True" />
             </StackPanel>
         </StackPanel>
     </ScrollViewer>

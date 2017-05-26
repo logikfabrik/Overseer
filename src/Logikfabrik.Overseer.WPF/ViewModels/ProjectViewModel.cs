@@ -18,6 +18,8 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     /// </summary>
     public class ProjectViewModel : ViewModel, IProjectViewModel
     {
+        // TODO: Add possibility to go (back) to corresponding connection (maintain scroll position). Do not use TryClose in the view, as today.
+
         private readonly IEventAggregator _eventAggregator;
         private readonly IBuildViewModelFactory _buildFactory;
         private readonly Guid _settingsId;

@@ -12,7 +12,7 @@ namespace Logikfabrik.Overseer.WPF.Client.Providers.Settings
     /// <summary>
     /// The <see cref="ConnectionSettingsSerializerProvider" /> class.
     /// </summary>
-    public class ConnectionSettingsSerializerProvider : Provider<ConnectionSettingsSerializer>
+    public class ConnectionSettingsSerializerProvider : Provider<IConnectionSettingsSerializer>
     {
         /// <summary>
         /// Creates an instance within the specified context.
@@ -21,7 +21,7 @@ namespace Logikfabrik.Overseer.WPF.Client.Providers.Settings
         /// <returns>
         /// The created instance.
         /// </returns>
-        protected override ConnectionSettingsSerializer CreateInstance(IContext context)
+        protected override IConnectionSettingsSerializer CreateInstance(IContext context)
         {
             var supportedTypes =
                 AppDomain.CurrentDomain.GetAssemblies()

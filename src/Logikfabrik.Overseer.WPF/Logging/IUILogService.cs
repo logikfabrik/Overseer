@@ -10,6 +10,8 @@ namespace Logikfabrik.Overseer.WPF.Logging
     /// The <see cref="IUILogService" /> interface.
     /// </summary>
 #pragma warning disable S101 // Types should be named in camel case
+
+    // ReSharper disable once InconsistentNaming
     public interface IUILogService : ILog
 #pragma warning restore S101 // Types should be named in camel case
     {

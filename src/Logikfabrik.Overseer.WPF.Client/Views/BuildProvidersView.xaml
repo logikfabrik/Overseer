@@ -7,32 +7,24 @@
     d:DesignHeight="300"
     d:DesignWidth="300"
     mc:Ignorable="d">
-    <ScrollViewer>
-        <StackPanel Margin="25">
-            <StackPanel Margin="0,0,0,20">
-                <TextBlock FontSize="24" Text="Select provider type" />
-                <TextBlock Text="Select your type of CI provider, and set up a connection" />
-            </StackPanel>
-            <ItemsControl Margin="0,0,0,20" ItemsSource="{Binding Providers, Mode=OneWay}">
-                <ItemsControl.ItemContainerStyle>
-                    <Style>
-                        <!--  ReSharper disable once Xaml.RedundantPropertyTypeQualifier  -->
-                        <Setter Property="FrameworkElement.Margin" Value="0 0 10 10" />
-                    </Style>
-                </ItemsControl.ItemContainerStyle>
-                <ItemsControl.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <WrapPanel />
-                    </ItemsPanelTemplate>
-                </ItemsControl.ItemsPanel>
-            </ItemsControl>
-            <StackPanel Orientation="Horizontal">
-                <Button
-                    x:Name="TryClose"
-                    Content="Cancel"
-                    IsCancel="True"
-                    IsDefault="True" />
-            </StackPanel>
-        </StackPanel>
-    </ScrollViewer>
+    <ItemsControl ItemsSource="{Binding Providers, Mode=OneWay}">
+        <ItemsControl.ItemContainerStyle>
+            <Style>
+                <!--  ReSharper disable once Xaml.RedundantPropertyTypeQualifier  -->
+                <Setter Property="FrameworkElement.Margin" Value="10,10,0,0" />
+            </Style>
+        </ItemsControl.ItemContainerStyle>
+        <ItemsControl.Template>
+            <ControlTemplate>
+                <ScrollViewer>
+                    <ItemsPresenter Margin="0,0,10,10" />
+                </ScrollViewer>
+            </ControlTemplate>
+        </ItemsControl.Template>
+        <ItemsControl.ItemsPanel>
+            <ItemsPanelTemplate>
+                <WrapPanel />
+            </ItemsPanelTemplate>
+        </ItemsControl.ItemsPanel>
+    </ItemsControl>
 </UserControl>

@@ -1,0 +1,62 @@
+﻿// <copyright file="XmlEncrypterTest.cs" company="Logikfabrik">
+//   Copyright (c) 2016 anton(at)logikfabrik.se. Licensed under the MIT license.
+// </copyright>
+
+namespace Logikfabrik.Overseer.Test.Settings
+{
+    using System;
+    using Moq;
+    using Overseer.Settings;
+    using Xunit;
+
+    public class XmlEncrypterTest
+    {
+        [Fact(Skip = "TODO")]
+        public void CanEncrypt()
+        {
+            throw new NotImplementedException();
+        }
+
+        [Fact(Skip = "TODO")]
+        public void CanDecrypt()
+        {
+            throw new NotImplementedException();
+        }
+
+        [Fact]
+        public void CanWritePassPhraseHash()
+        {
+            var dataProtectorMock = new Mock<IDataProtector>();
+
+            dataProtectorMock.Setup(m => m.Protect(It.IsAny<byte[]>(), It.IsAny<byte[]>())).Returns((byte[] userData, byte[] entropy) => userData);
+
+            var registryStoreMock = new Mock<IRegistryStore>();
+
+            var xmlEncrypter = new XmlEncrypter(dataProtectorMock.Object, registryStoreMock.Object);
+
+            var passPhraseHash = HashHelper.GetHash("MyPassPhrase", HashHelper.GetSalt(16), 32);
+
+            xmlEncrypter.WritePassPhraseHash(passPhraseHash);
+
+            registryStoreMock.Verify(m => m.Write("PassPhrase", It.IsAny<string>()), Times.Once);
+        }
+
+        [Fact]
+        public void CanReadPassPhraseHash()
+        {
+            var dataProtectorMock = new Mock<IDataProtector>();
+
+            dataProtectorMock.Setup(m => m.Unprotect(It.IsAny<byte[]>(), It.IsAny<byte[]>())).Returns((byte[] encryptedData, byte[] entropy) => encryptedData);
+
+            var registryStoreMock = new Mock<IRegistryStore>();
+
+            registryStoreMock.Setup(m => m.Read("PassPhrase")).Returns("OOXdCEW9XVjm0AhwZGI7ZgEAAADQjJ3fARXREYx6AMBPwpfrAQAAAMDS/gO4PMNGkJjVFCAGp/EAAAAAAgAAAAAAEGYAAAABAAAgAAAA9xzZ6/gd+YVubAGDZo8LfKMOE8zfXTs4d8EbpFVBpjMAAAAADoAAAAACAAAgAAAAmIpps3dMzaUtsJUD6Ps2nRJukNoSAyTeoycwDJQ1LVMwAAAAAp0owlWiJRH8LkT9jzESm9Q3wfHSInSir+ocdva35A66pdMsTuW9TeuaRTzF7RZ0QAAAAMjgQPCjnlvuTavlrP9MqKgao99bA4Tdy9OnHdIS/Tmb55B8WMXh0hK3SMZX9s5wveUspH37dmFNLZ7fwAOuYrU=");
+
+            var xmlEncrypter = new XmlEncrypter(dataProtectorMock.Object, registryStoreMock.Object);
+
+            var passPhraseHash = xmlEncrypter.ReadPassPhraseHash();
+
+            Assert.NotNull(passPhraseHash);
+        }
+    }
+}

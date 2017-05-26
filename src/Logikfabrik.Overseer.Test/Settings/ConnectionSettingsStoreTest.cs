@@ -6,6 +6,7 @@ namespace Logikfabrik.Overseer.Test.Settings
 {
     using Moq;
     using Overseer.Settings;
+    using Ploeh.AutoFixture.Xunit2;
     using Xunit;
 
     public class ConnectionSettingsStoreTest
@@ -16,26 +17,33 @@ namespace Logikfabrik.Overseer.Test.Settings
             var settings = new ConnectionSettings[] { };
 
             var serializerMock = new Mock<IConnectionSettingsSerializer>();
+            var encrypterMock = new Mock<IConnectionSettingsEncrypter>();
             var fileStoreMock = new Mock<IFileStore>();
 
-            var store = new ConnectionSettingsStore(serializerMock.Object, fileStoreMock.Object);
+            var store = new ConnectionSettingsStore(serializerMock.Object, encrypterMock.Object, fileStoreMock.Object);
 
             store.Save(settings);
 
+            encrypterMock.Verify(m => m.Encrypt(It.IsAny<string>()), Times.Once);
             fileStoreMock.Verify(m => m.Write(It.IsAny<string>()), Times.Once);
         }
 
-        [Fact]
+        [Theory]
+        [AutoData]
         public void CanLoad()
         {
             var serializerMock = new Mock<IConnectionSettingsSerializer>();
+            var encrypterMock = new Mock<IConnectionSettingsEncrypter>();
             var fileStoreMock = new Mock<IFileStore>();
 
-            var store = new ConnectionSettingsStore(serializerMock.Object, fileStoreMock.Object);
+            fileStoreMock.Setup(m => m.Read()).Returns("XML");
+
+            var store = new ConnectionSettingsStore(serializerMock.Object, encrypterMock.Object, fileStoreMock.Object);
 
             store.Load();
 
             fileStoreMock.Verify(m => m.Read(), Times.Once);
+            encrypterMock.Verify(m => m.Decrypt(It.IsAny<string>()), Times.Once);
         }
     }
 }

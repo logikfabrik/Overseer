@@ -65,6 +65,25 @@ namespace Logikfabrik.Overseer.WPF.Client
         {
             base.OnStartup(sender, e);
 
+            bool? dialogResult = true;
+
+            var viewModel = _kernel.Get<PassPhraseViewModel>();
+
+            viewModel.CanClose(canClose =>
+            {
+                if (!canClose)
+                {
+                    dialogResult = _kernel.Get<IWindowManager>().ShowDialog(viewModel);
+                }
+            });
+
+            if (dialogResult == null || !dialogResult.Value)
+            {
+                Application.Current.Shutdown();
+
+                return;
+            }
+
             DisplayRootViewFor<AppViewModel>();
         }
 
@@ -176,6 +195,9 @@ namespace Logikfabrik.Overseer.WPF.Client
             _kernel.Bind<ILogService>().To<LogService>();
             _kernel.Bind<IConnectionSettingsSerializer>().ToProvider<ConnectionSettingsSerializerProvider>();
             _kernel.Bind<IFileStore>().ToProvider<FileStoreProvider>();
+            _kernel.Bind<IDataProtector>().To<DataProtector>();
+            _kernel.Bind<IRegistryStore>().ToProvider<RegistryStoreProvider>();
+            _kernel.Bind<IConnectionSettingsEncrypter>().To<ConnectionSettingsEncrypter>().InSingletonScope();
             _kernel.Bind<IConnectionSettingsStore>().To<ConnectionSettingsStore>();
             _kernel.Bind<IConnectionSettingsRepository>().To<ConnectionSettingsRepository>().InSingletonScope();
             _kernel.Bind<IBuildProviderStrategy>().To<BuildProviderStrategy>();

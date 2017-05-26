@@ -57,5 +57,11 @@
                 <TextBlock Text="Settings" />
             </StackPanel>
         </Button>
+        <Separator />
+        <Button x:Name="GoToAbout" HorizontalContentAlignment="Stretch">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="About" />
+            </StackPanel>
+        </Button>
     </StackPanel>
 </UserControl>

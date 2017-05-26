@@ -12,10 +12,10 @@ namespace Logikfabrik.Overseer
     public class AppSettings : ApplicationSettingsBase
     {
         /// <summary>
-        /// Gets or sets the interval.
+        /// Gets or sets the interval in seconds.
         /// </summary>
         /// <value>
-        /// The interval.
+        /// The interval in seconds.
         /// </value>
         [UserScopedSetting]
         public int Interval
