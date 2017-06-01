@@ -15,7 +15,7 @@ namespace Logikfabrik.Overseer
     /// <summary>
     /// The <see cref="Connection" /> class.
     /// </summary>
-    public class Connection : IConnection
+    public class Connection : IDisposable
     {
         private readonly IBuildProviderStrategy _buildProviderStrategy;
         private IBuildProvider _provider;
@@ -97,7 +97,6 @@ namespace Logikfabrik.Overseer
         public void Dispose()
         {
             Dispose(true);
-            GC.SuppressFinalize(this);
         }
 
         /// <summary>
@@ -111,10 +110,9 @@ namespace Logikfabrik.Overseer
                 return;
             }
 
-            // ReSharper disable once InvertIf
             if (disposing)
             {
-                _provider?.Dispose();
+                _provider = null;
             }
 
             _isDisposed = true;
@@ -133,7 +131,6 @@ namespace Logikfabrik.Overseer
                     return _provider;
                 }
 
-                _provider.Dispose();
                 _provider = _buildProviderStrategy.Create(_settings);
             }
 

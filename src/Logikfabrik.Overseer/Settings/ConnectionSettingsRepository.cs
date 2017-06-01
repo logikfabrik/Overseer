@@ -13,11 +13,11 @@ namespace Logikfabrik.Overseer.Settings
     /// <summary>
     /// The <see cref="ConnectionSettingsRepository" /> class.
     /// </summary>
-    public class ConnectionSettingsRepository : IConnectionSettingsRepository
+    public class ConnectionSettingsRepository : IConnectionSettingsRepository, IDisposable
     {
-        private readonly HashSet<IObserver<ConnectionSettings[]>> _observers;
         private readonly IConnectionSettingsStore _settingsStore;
-        private readonly IDictionary<Guid, ConnectionSettings> _settings;
+        private HashSet<IObserver<ConnectionSettings[]>> _observers;
+        private IDictionary<Guid, ConnectionSettings> _settings;
         private bool _isDisposed;
 
         /// <summary>
@@ -28,8 +28,8 @@ namespace Logikfabrik.Overseer.Settings
         {
             Ensure.That(settingsStore).IsNotNull();
 
-            _observers = new HashSet<IObserver<ConnectionSettings[]>>();
             _settingsStore = settingsStore;
+            _observers = new HashSet<IObserver<ConnectionSettings[]>>();
             _settings = _settingsStore.Load().ToDictionary(settings => settings.Id, settings => settings);
         }
 
@@ -102,7 +102,6 @@ namespace Logikfabrik.Overseer.Settings
         public void Dispose()
         {
             Dispose(true);
-            GC.SuppressFinalize(this);
         }
 
         /// <summary>
@@ -131,6 +130,8 @@ namespace Logikfabrik.Overseer.Settings
         /// </returns>
         public IEnumerable<ConnectionSettings> Get()
         {
+            this.ThrowIfDisposed(_isDisposed);
+
             var clones = _settings.Values.Select(settings => settings.Clone()).ToArray();
 
             return clones;
@@ -171,10 +172,16 @@ namespace Logikfabrik.Overseer.Settings
                 return;
             }
 
-            // ReSharper disable once InvertIf
             if (disposing)
             {
-                _observers.Clear();
+                if (_observers != null)
+                {
+                    _observers.Clear();
+                    _observers = null;
+
+                    _settings.Clear();
+                    _settings = null;
+                }
             }
 
             _isDisposed = true;

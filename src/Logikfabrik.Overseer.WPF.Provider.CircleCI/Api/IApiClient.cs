@@ -4,7 +4,6 @@
 
 namespace Logikfabrik.Overseer.WPF.Provider.CircleCI.Api
 {
-    using System;
     using System.Collections.Generic;
     using System.Threading;
     using System.Threading.Tasks;
@@ -13,7 +12,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.CircleCI.Api
     /// <summary>
     /// The <see cref="IApiClient" /> interface.
     /// </summary>
-    public interface IApiClient : IDisposable
+    public interface IApiClient
     {
         /// <summary>
         /// Gets the projects.

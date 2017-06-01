@@ -4,12 +4,10 @@
 
 namespace Logikfabrik.Overseer.Settings
 {
-    using System;
-
     /// <summary>
     /// The <see cref="IFileStore" /> interface.
     /// </summary>
-    public interface IFileStore : IDisposable
+    public interface IFileStore
     {
         /// <summary>
         /// Reads the file.

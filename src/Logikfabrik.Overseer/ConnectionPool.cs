@@ -14,12 +14,12 @@ namespace Logikfabrik.Overseer
     /// <summary>
     /// The <see cref="ConnectionPool" /> class.
     /// </summary>
-    public class ConnectionPool : IConnectionPool
+    public class ConnectionPool : IConnectionPool, IDisposable
     {
         private readonly IBuildProviderStrategy _buildProviderStrategy;
-        private readonly IDisposable _subscription;
-        private readonly HashSet<IObserver<IConnection[]>> _observers;
-        private readonly IDictionary<Guid, IConnection> _connections;
+        private HashSet<IObserver<Connection[]>> _observers;
+        private IDictionary<Guid, Connection> _connections;
+        private IDisposable _subscription;
         private bool _isDisposed;
 
         /// <summary>
@@ -33,8 +33,8 @@ namespace Logikfabrik.Overseer
             Ensure.That(buildProviderStrategy).IsNotNull();
 
             _buildProviderStrategy = buildProviderStrategy;
-            _connections = new Dictionary<Guid, IConnection>();
-            _observers = new HashSet<IObserver<IConnection[]>>();
+            _connections = new Dictionary<Guid, Connection>();
+            _observers = new HashSet<IObserver<Connection[]>>();
             _subscription = settingsRepository.Subscribe(this);
         }
 
@@ -44,7 +44,7 @@ namespace Logikfabrik.Overseer
         /// <value>
         /// The current connections.
         /// </value>
-        internal IEnumerable<IConnection> CurrentConnections => _connections.Values;
+        internal IEnumerable<Connection> CurrentConnections => _connections.Values;
 
         /// <summary>
         /// Provides the observer with new data.
@@ -58,7 +58,7 @@ namespace Logikfabrik.Overseer
                 return;
             }
 
-            var connectionsToDispose = new List<IConnection>();
+            var connectionsToDispose = new List<Connection>();
 
             if (!value.Any())
             {
@@ -68,7 +68,7 @@ namespace Logikfabrik.Overseer
             {
                 foreach (var settings in value)
                 {
-                    IConnection connectionToUpdate;
+                    Connection connectionToUpdate;
 
                     if (_connections.TryGetValue(settings.Id, out connectionToUpdate))
                     {
@@ -130,7 +130,6 @@ namespace Logikfabrik.Overseer
         public void Dispose()
         {
             Dispose(true);
-            GC.SuppressFinalize(this);
         }
 
         /// <summary>
@@ -140,7 +139,7 @@ namespace Logikfabrik.Overseer
         /// <returns>
         /// A reference to an interface that allows observers to stop receiving notifications before the provider has finished sending them.
         /// </returns>
-        public IDisposable Subscribe(IObserver<IConnection[]> observer)
+        public IDisposable Subscribe(IObserver<Connection[]> observer)
         {
             this.ThrowIfDisposed(_isDisposed);
 
@@ -152,7 +151,7 @@ namespace Logikfabrik.Overseer
                 observer.OnNext(_connections.Values.ToArray());
             }
 
-            return new Subscription<IConnection[]>(_observers, observer);
+            return new Subscription<Connection[]>(_observers, observer);
         }
 
         /// <summary>
@@ -166,19 +165,30 @@ namespace Logikfabrik.Overseer
                 return;
             }
 
-            // ReSharper disable once InvertIf
             if (disposing)
             {
-                _subscription.Dispose();
-
-                _observers.Clear();
-
-                foreach (var connection in _connections.Values)
+                if (_subscription != null)
                 {
-                    connection.Dispose();
+                    _subscription.Dispose();
+                    _subscription = null;
                 }
 
-                _connections.Clear();
+                if (_observers != null)
+                {
+                    _observers.Clear();
+                    _observers = null;
+                }
+
+                if (_connections != null)
+                {
+                    foreach (var connection in _connections.Values)
+                    {
+                        connection.Dispose();
+                    }
+
+                    _connections.Clear();
+                    _connections = null;
+                }
             }
 
             _isDisposed = true;

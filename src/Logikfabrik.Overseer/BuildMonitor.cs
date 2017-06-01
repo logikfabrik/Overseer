@@ -16,11 +16,11 @@ namespace Logikfabrik.Overseer
     /// <summary>
     /// The <see cref="BuildMonitor" /> class.
     /// </summary>
-    public class BuildMonitor : IBuildMonitor
+    public class BuildMonitor : IBuildMonitor, IDisposable
     {
         private readonly IAppSettingsFactory _appSettingsFactory;
         private readonly ILogService _logService;
-        private readonly IDisposable _subscription;
+        private IDisposable _subscription;
         private CancellationTokenSource _cancellationTokenSource;
         private bool _isDisposed;
 
@@ -65,7 +65,7 @@ namespace Logikfabrik.Overseer
         /// Provides the observer with new data.
         /// </summary>
         /// <param name="value">The current notification information.</param>
-        public void OnNext(IConnection[] value)
+        public void OnNext(Connection[] value)
         {
             if (_isDisposed)
             {
@@ -135,7 +135,6 @@ namespace Logikfabrik.Overseer
         public void Dispose()
         {
             Dispose(true);
-            GC.SuppressFinalize(this);
         }
 
         /// <summary>
@@ -149,7 +148,6 @@ namespace Logikfabrik.Overseer
                 return;
             }
 
-            // ReSharper disable once InvertIf
             if (disposing)
             {
                 if (_cancellationTokenSource != null)
@@ -159,7 +157,11 @@ namespace Logikfabrik.Overseer
                     _cancellationTokenSource = null;
                 }
 
-                _subscription.Dispose();
+                if (_subscription != null)
+                {
+                    _subscription.Dispose();
+                    _subscription = null;
+                }
             }
 
             _isDisposed = true;
@@ -201,15 +203,15 @@ namespace Logikfabrik.Overseer
             ProjectProgressChanged?.Invoke(this, e);
         }
 
-        private async Task GetProjectsAndBuildsAsync(IEnumerable<IConnection> connections, CancellationToken cancellationToken)
+        private async Task GetProjectsAndBuildsAsync(IEnumerable<Connection> connections, CancellationToken cancellationToken)
         {
-            var projectBufferBlock = new BufferBlock<IConnection>(new DataflowBlockOptions
+            var projectBufferBlock = new BufferBlock<Connection>(new DataflowBlockOptions
             {
                 BoundedCapacity = 4,
                 CancellationToken = cancellationToken
             });
 
-            var buildsBufferBlock = new BufferBlock<Tuple<IConnection, IProject>>(new DataflowBlockOptions
+            var buildsBufferBlock = new BufferBlock<Tuple<Connection, IProject>>(new DataflowBlockOptions
             {
                 BoundedCapacity = 4,
                 CancellationToken = cancellationToken
@@ -223,12 +225,12 @@ namespace Logikfabrik.Overseer
             };
 
             var projectBlock =
-                new TransformManyBlock<IConnection, Tuple<IConnection, IProject>>(
+                new TransformManyBlock<Connection, Tuple<Connection, IProject>>(
                     async param =>
-                        (await GetProjectsAsync(param, cancellationToken).ConfigureAwait(false)).Select(project => new Tuple<IConnection, IProject>(param, project)).ToArray(), executionOptions);
+                        (await GetProjectsAsync(param, cancellationToken).ConfigureAwait(false)).Select(project => new Tuple<Connection, IProject>(param, project)).ToArray(), executionOptions);
 
             var buildsBlock =
-                new ActionBlock<Tuple<IConnection, IProject>>(
+                new ActionBlock<Tuple<Connection, IProject>>(
                     async param =>
                         await GetBuildsAsync(param.Item1, param.Item2, cancellationToken).ConfigureAwait(false), executionOptions);
 
@@ -248,7 +250,7 @@ namespace Logikfabrik.Overseer
             await buildsBlock.Completion;
         }
 
-        private async Task<IEnumerable<IProject>> GetProjectsAsync(IConnection connection, CancellationToken cancellationToken)
+        private async Task<IEnumerable<IProject>> GetProjectsAsync(Connection connection, CancellationToken cancellationToken)
         {
             try
             {
@@ -276,7 +278,7 @@ namespace Logikfabrik.Overseer
             }
         }
 
-        private async Task GetBuildsAsync(IConnection connection, IProject project, CancellationToken cancellationToken)
+        private async Task GetBuildsAsync(Connection connection, IProject project, CancellationToken cancellationToken)
         {
             try
             {

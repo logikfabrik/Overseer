@@ -10,15 +10,14 @@ namespace Logikfabrik.Overseer.Settings
     using System.Security.Cryptography.Xml;
     using System.Xml;
     using EnsureThat;
-    using Extensions;
 
     /// <summary>
     /// The <see cref="XmlEncrypter" /> class.
     /// </summary>
     public class XmlEncrypter : IXmlEncrypter
     {
-        private IDataProtector _dataProtector;
-        private IRegistryStore _registryStore;
+        private readonly IDataProtector _dataProtector;
+        private readonly IRegistryStore _registryStore;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="XmlEncrypter" /> class.
@@ -36,9 +35,13 @@ namespace Logikfabrik.Overseer.Settings
             HasPassPhrase = ReadPassPhraseHash() != null;
         }
 
+        /// <summary>
+        /// Gets a value indicating whether this instance has a pass phrase.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if this instance has a pass phrase; otherwise, <c>false</c>.
+        /// </value>
         public bool HasPassPhrase { get; private set; }
-
-        protected bool IsDisposed { get; private set; }
 
         /// <summary>
         /// Sets the pass phrase.
@@ -47,8 +50,6 @@ namespace Logikfabrik.Overseer.Settings
         /// <param name="salt">The salt.</param>
         public void SetPassPhrase(string passPhrase, byte[] salt)
         {
-            this.ThrowIfDisposed(IsDisposed);
-
             Ensure.That(passPhrase).IsNotNullOrWhiteSpace();
             Ensure.That(salt).IsNotNull();
             Ensure.That(salt.Length % 16).Is(0);
@@ -70,8 +71,6 @@ namespace Logikfabrik.Overseer.Settings
         /// </returns>
         public XmlDocument Encrypt(XmlDocument xml, string[] tagNames)
         {
-            this.ThrowIfDisposed(IsDisposed);
-
             Ensure.That(xml).IsNotNull();
             Ensure.That(tagNames).IsNotNull();
 
@@ -91,8 +90,6 @@ namespace Logikfabrik.Overseer.Settings
         /// </returns>
         public XmlDocument Decrypt(XmlDocument xml, string[] tagNames)
         {
-            this.ThrowIfDisposed(IsDisposed);
-
             Ensure.That(xml).IsNotNull();
             Ensure.That(tagNames).IsNotNull();
 
@@ -100,15 +97,6 @@ namespace Logikfabrik.Overseer.Settings
             {
                 return Decrypt(xml, tagNames, algorithm);
             }
-        }
-
-        /// <summary>
-        /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
-        /// </summary>
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
         }
 
         /// <summary>
@@ -156,29 +144,6 @@ namespace Logikfabrik.Overseer.Settings
             var passPhraseHash = _dataProtector.Unprotect(cipherValue, entropy);
 
             return passPhraseHash;
-        }
-
-        /// <summary>
-        /// Releases unmanaged and managed resources.
-        /// </summary>
-        /// <param name="disposing"><c>true</c> to release both managed and unmanaged resources; <c>false</c> to release only unmanaged resources.</param>
-        protected virtual void Dispose(bool disposing)
-        {
-            if (IsDisposed)
-            {
-                return;
-            }
-
-            // ReSharper disable once InvertIf
-            if (disposing)
-            {
-                _registryStore?.Dispose();
-
-                _registryStore = null;
-                _dataProtector = null;
-            }
-
-            IsDisposed = true;
         }
 
         // ReSharper disable once SuggestBaseTypeForParameter

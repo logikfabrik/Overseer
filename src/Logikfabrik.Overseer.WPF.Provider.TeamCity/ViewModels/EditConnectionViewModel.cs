@@ -53,7 +53,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity.ViewModels
 
             Settings = settings;
 
-            TryConnection();
+            TryConnect();
         }
     }
 }

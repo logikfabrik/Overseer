@@ -21,6 +21,10 @@ namespace Logikfabrik.Overseer.WPF.Client.ViewModels
         private readonly PassPhraseViewModelValidator _validator;
         private string _passPhrase;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PassPhraseViewModel" /> class.
+        /// </summary>
+        /// <param name="encrypter">The encrypter.</param>
         public PassPhraseViewModel(IConnectionSettingsEncrypter encrypter)
         {
             Ensure.That(encrypter).IsNotNull();
@@ -87,7 +91,7 @@ namespace Logikfabrik.Overseer.WPF.Client.ViewModels
         }
 
         /// <summary>
-        /// Save the pass phrase.
+        /// Saves the pass phrase.
         /// </summary>
         public void Save()
         {

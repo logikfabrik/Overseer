@@ -151,9 +151,9 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         public bool IsValidAndHasConnected => Settings.IsValid && HasConnected;
 
         /// <summary>
-        /// Try the connection.
+        /// Tries to connect.
         /// </summary>
-        public void TryConnection()
+        public void TryConnect()
         {
             if (HasConnected)
             {
@@ -177,27 +177,21 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
 
             _settingsRepository.Update(_currentSettings);
 
-            // TODO: Remove this view model from the conductor.
-            // TODO: Remove the corresponding connection view model from the conductor.
-
-            var message = new NavigationMessage(typeof(ConnectionsViewModel));
-
-            _eventAggregator.PublishOnUIThread(message);
+            TryClose();
         }
 
         private async Task Connect(T settings)
         {
             try
             {
-                using (var provider = _buildProviderStrategy.Create(settings))
-                {
-                    var projects = await provider.GetProjectsAsync(CancellationToken.None).ConfigureAwait(false);
+                var provider = _buildProviderStrategy.Create(settings);
 
-                    Settings.IsDirty = false;
-                    Settings.ProjectsToMonitor = _projectsToMonitorFactory.Create(projects.OrderBy(project => project.Name).Select(project => _projectToMonitorFactory.Create(project.Id, project.Name, _currentSettings.ProjectsToMonitor.Contains(project.Id))).ToArray());
+                var projects = await provider.GetProjectsAsync(CancellationToken.None).ConfigureAwait(false);
 
-                    HasConnected = true;
-                }
+                Settings.IsDirty = false;
+                Settings.ProjectsToMonitor = _projectsToMonitorFactory.Create(projects.OrderBy(project => project.Name).Select(project => _projectToMonitorFactory.Create(project.Id, project.Name, _currentSettings.ProjectsToMonitor.Contains(project.Id))).ToArray());
+
+                HasConnected = true;
             }
             catch (Exception)
             {

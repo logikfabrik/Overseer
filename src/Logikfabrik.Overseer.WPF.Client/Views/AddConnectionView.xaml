@@ -18,7 +18,7 @@
                 Focusable="False" />
             <StackPanel Margin="0,0,0,20">
                 <Button
-                    x:Name="TryConnection"
+                    x:Name="TryConnect"
                     Content="Try connection"
                     IsEnabled="{Binding HasNotConnected, Mode=OneWay}" />
                 <TextBlock Text="Error" Visibility="{Binding ConnectionTask.Status, Converter={StaticResource TaskStatusFaultedToBooleanConverter}}" />

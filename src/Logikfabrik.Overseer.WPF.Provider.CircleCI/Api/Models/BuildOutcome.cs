@@ -14,19 +14,34 @@ namespace Logikfabrik.Overseer.WPF.Provider.CircleCI.Api.Models
     [JsonConverter(typeof(StringEnumConverter))]
     public enum BuildOutcome
     {
+        /// <summary>
+        /// The build was canceled.
+        /// </summary>
         Canceled,
 
         [EnumMember(Value = "infrastructure_fail")]
         InfrastructureFail,
 
+        /// <summary>
+        /// The build timed out.
+        /// </summary>
         [EnumMember(Value = "timedout")]
         TimedOut,
 
+        /// <summary>
+        /// The build failed.
+        /// </summary>
         Failed,
 
+        /// <summary>
+        /// The build had no tests.
+        /// </summary>
         [EnumMember(Value = "no_tests")]
         NoTests,
 
+        /// <summary>
+        /// The build was a success.
+        /// </summary>
         Success
     }
 }

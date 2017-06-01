@@ -6,6 +6,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
 {
     using Caliburn.Micro;
     using EnsureThat;
+    using Navigation;
     using Settings;
 
     /// <summary>

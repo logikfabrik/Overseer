@@ -7,6 +7,10 @@ namespace Logikfabrik.Overseer.Api
     using EnsureThat;
     using Settings;
 
+    /// <summary>
+    /// The <see cref="CacheableApiClient{T}" /> class.
+    /// </summary>
+    /// <typeparam name="T">The <see cref="ConnectionSettings" /> type.</typeparam>
     public abstract class CacheableApiClient<T> : ICacheableApiClient
         where T : ConnectionSettings
     {

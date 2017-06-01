@@ -50,7 +50,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor.ViewModels
 
             Settings = settings;
 
-            TryConnection();
+            TryConnect();
         }
     }
 }

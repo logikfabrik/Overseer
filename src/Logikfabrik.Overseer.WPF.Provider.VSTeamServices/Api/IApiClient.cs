@@ -4,7 +4,6 @@
 
 namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices.Api
 {
-    using System;
     using System.Threading;
     using System.Threading.Tasks;
     using Models;
@@ -12,7 +11,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices.Api
     /// <summary>
     /// The <see cref="ApiClient" /> class.
     /// </summary>
-    public interface IApiClient : IDisposable
+    public interface IApiClient
     {
         /// <summary>
         /// Gets the projects.

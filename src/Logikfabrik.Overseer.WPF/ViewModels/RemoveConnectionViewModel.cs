@@ -8,6 +8,8 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     using System.Linq;
     using Caliburn.Micro;
     using EnsureThat;
+    using Extensions;
+    using Navigation;
     using Settings;
 
     /// <summary>
@@ -44,14 +46,12 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         {
             _settingsRepository.Remove(_settingsId);
 
-            var viewModel = GetOpenChildren<IConnectionViewModel>().Single(vm => vm.SettingsId == _settingsId);
+            var viewModel = this.GetViewModels<IConnectionViewModel>().Single(vm => vm.SettingsId == _settingsId);
 
-            CloseChild(viewModel);
+            var from = new[] { new NavigationTarget(viewModel) };
+            var to = new NavigationTarget(typeof(ConnectionsViewModel));
 
-            // TODO: Remove this view model from the conductor.
-            // TODO: Remove the corresponding connection view model from the conductor.
-
-            var message = new NavigationMessage(typeof(ConnectionsViewModel));
+            var message = new NavigationMessage(to, from);
 
             _eventAggregator.PublishOnUIThread(message);
         }

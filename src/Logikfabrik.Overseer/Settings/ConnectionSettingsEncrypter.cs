@@ -6,7 +6,6 @@ namespace Logikfabrik.Overseer.Settings
 {
     using System.Xml;
     using EnsureThat;
-    using Extensions;
 
     /// <summary>
     /// The <see cref="ConnectionSettingsEncrypter" /> class.
@@ -32,8 +31,6 @@ namespace Logikfabrik.Overseer.Settings
         /// <returns>The encrypted XML.</returns>
         public string Encrypt(string xml)
         {
-            this.ThrowIfDisposed(IsDisposed);
-
             Ensure.That(xml).IsNotNullOrWhiteSpace();
 
             var xmlDocument = new XmlDocument();
@@ -50,8 +47,6 @@ namespace Logikfabrik.Overseer.Settings
         /// <returns>The decrypted XML.</returns>
         public string Decrypt(string xml)
         {
-            this.ThrowIfDisposed(IsDisposed);
-
             Ensure.That(xml).IsNotNullOrWhiteSpace();
 
             var xmlDocument = new XmlDocument();
@@ -67,8 +62,6 @@ namespace Logikfabrik.Overseer.Settings
         /// <param name="passPhrase">The pass phrase.</param>
         public void SetPassPhrase(string passPhrase)
         {
-            this.ThrowIfDisposed(IsDisposed);
-
             Ensure.That(passPhrase).IsNotNull();
 
             SetPassPhrase(passPhrase, Salt);

@@ -4,7 +4,6 @@
 
 namespace Logikfabrik.Overseer
 {
-    using System;
     using System.Collections.Generic;
     using System.Threading;
     using System.Threading.Tasks;
@@ -13,7 +12,7 @@ namespace Logikfabrik.Overseer
     /// <summary>
     /// The <see cref="IBuildProvider" /> interface.
     /// </summary>
-    public interface IBuildProvider : IDisposable
+    public interface IBuildProvider
     {
         /// <summary>
         /// Gets the settings.

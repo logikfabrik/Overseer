@@ -51,7 +51,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices.ViewModels
 
             Settings = settings;
 
-            TryConnection();
+            TryConnect();
         }
     }
 }

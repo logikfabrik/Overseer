@@ -31,8 +31,9 @@ namespace Logikfabrik.Overseer.WPF.Client
     /// </summary>
     public class AppBootstrapper : BootstrapperBase, IDisposable
     {
-        private readonly IKernel _kernel;
-        private readonly Lazy<IEnumerable<Assembly>> _runtimeAssemblies;
+        private IKernel _kernel;
+        private Lazy<IEnumerable<Assembly>> _runtimeAssemblies;
+        private bool _isDisposed;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="AppBootstrapper" /> class.
@@ -53,7 +54,6 @@ namespace Logikfabrik.Overseer.WPF.Client
         public void Dispose()
         {
             Dispose(true);
-            GC.SuppressFinalize(this);
         }
 
         /// <summary>
@@ -153,16 +153,23 @@ namespace Logikfabrik.Overseer.WPF.Client
         /// <param name="disposing"><c>true</c> to release both managed and unmanaged resources; <c>false</c> to release only unmanaged resources.</param>
         protected virtual void Dispose(bool disposing)
         {
-            // ReSharper disable once InvertIf
+            if (_isDisposed)
+            {
+                return;
+            }
+
             if (disposing)
             {
-                if (_kernel == null || _kernel.IsDisposed)
+                if (_kernel != null)
                 {
-                    return;
+                    _kernel.Dispose();
+                    _kernel = null;
                 }
 
-                _kernel.Dispose();
+                _runtimeAssemblies = null;
             }
+
+            _isDisposed = true;
         }
 
         private IEnumerable<Assembly> GetRuntimeAssemblies()

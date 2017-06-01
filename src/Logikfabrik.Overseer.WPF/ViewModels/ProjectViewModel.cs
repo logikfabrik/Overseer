@@ -11,6 +11,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     using Caliburn.Micro;
     using EnsureThat;
     using Factories;
+    using Navigation;
     using Overseer.Extensions;
 
     /// <summary>
@@ -18,8 +19,6 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     /// </summary>
     public class ProjectViewModel : ViewModel, IProjectViewModel
     {
-        // TODO: Add possibility to go (back) to corresponding connection (maintain scroll position). Do not use TryClose in the view, as today.
-
         private readonly IEventAggregator _eventAggregator;
         private readonly IBuildViewModelFactory _buildFactory;
         private readonly Guid _settingsId;
@@ -176,7 +175,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// </summary>
         public void View()
         {
-            var message = new NavigationMessage2(this);
+            var message = new NavigationMessage(this);
 
             _eventAggregator.PublishOnUIThread(message);
         }

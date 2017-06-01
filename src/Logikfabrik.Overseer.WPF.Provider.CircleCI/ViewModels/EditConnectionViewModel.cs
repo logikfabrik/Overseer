@@ -50,7 +50,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.CircleCI.ViewModels
 
             Settings = settings;
 
-            TryConnection();
+            TryConnect();
         }
     }
 }

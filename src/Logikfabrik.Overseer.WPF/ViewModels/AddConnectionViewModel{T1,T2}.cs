@@ -12,6 +12,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     using Caliburn.Micro;
     using EnsureThat;
     using Factories;
+    using Navigation;
     using Settings;
 
     /// <summary>
@@ -155,9 +156,9 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         public bool IsValidAndHasConnected => Settings.IsValid && HasConnected;
 
         /// <summary>
-        /// Try the connection.
+        /// Tries to connect.
         /// </summary>
-        public void TryConnection()
+        public void TryConnect()
         {
             if (!Settings.IsValid || HasConnected)
             {
@@ -179,8 +180,6 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
 
             _settingsRepository.Add(Settings.GetSettings());
 
-            // TODO: Remove this view model from the conductor.
-
             var message = new NavigationMessage(typeof(ConnectionsViewModel));
 
             _eventAggregator.PublishOnUIThread(message);
@@ -192,15 +191,14 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             {
                 var candidateSettings = Settings.GetSettings();
 
-                using (var provider = _buildProviderStrategy.Create(candidateSettings))
-                {
-                    var projects = await provider.GetProjectsAsync(CancellationToken.None).ConfigureAwait(false);
+                var provider = _buildProviderStrategy.Create(candidateSettings);
 
-                    Settings.IsDirty = false;
-                    Settings.ProjectsToMonitor = _projectsToMonitorFactory.Create(projects.OrderBy(project => project.Name).Select(project => _projectToMonitorFactory.Create(project.Id, project.Name, true)).ToArray());
+                var projects = await provider.GetProjectsAsync(CancellationToken.None).ConfigureAwait(false);
 
-                    HasConnected = true;
-                }
+                Settings.IsDirty = false;
+                Settings.ProjectsToMonitor = _projectsToMonitorFactory.Create(projects.OrderBy(project => project.Name).Select(project => _projectToMonitorFactory.Create(project.Id, project.Name, true)).ToArray());
+
+                HasConnected = true;
             }
             catch (Exception)
             {

@@ -87,8 +87,10 @@ namespace Logikfabrik.Overseer.WPF.ViewModels.DesignTime
         /// </value>
         public object Parent { get; set; }
 
+        public bool KeepAlive { get; set; }
+
         /// <summary>
-        /// Edit the connection.
+        /// Edits the connection.
         /// </summary>
         public void Edit()
         {
@@ -96,7 +98,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels.DesignTime
         }
 
         /// <summary>
-        /// Remove the connection.
+        /// Removes the connection.
         /// </summary>
         public void Remove()
         {
@@ -104,7 +106,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels.DesignTime
         }
 
         /// <summary>
-        /// View the connection.
+        /// Views the connection.
         /// </summary>
         public void View()
         {

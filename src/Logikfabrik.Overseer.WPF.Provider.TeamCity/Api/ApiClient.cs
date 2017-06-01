@@ -21,10 +21,10 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity.Api
     /// <summary>
     /// The <see cref="ApiClient" /> class.
     /// </summary>
-    public class ApiClient : CacheableApiClient<ConnectionSettings>, IApiClient
+    public class ApiClient : CacheableApiClient<ConnectionSettings>, IApiClient, IDisposable
     {
-        private readonly Lazy<HttpClient> _httpClient;
         private readonly JsonMediaTypeFormatter _mediaTypeFormatter;
+        private Lazy<HttpClient> _httpClient;
         private bool _isDisposed;
 
         /// <summary>
@@ -115,7 +115,6 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity.Api
         public void Dispose()
         {
             Dispose(true);
-            GC.SuppressFinalize(this);
         }
 
         /// <summary>
@@ -129,16 +128,17 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity.Api
                 return;
             }
 
-            // ReSharper disable once InvertIf
             if (disposing)
             {
-                if (!_httpClient.IsValueCreated)
+                if (_httpClient != null)
                 {
-                    return;
-                }
+                    if (_httpClient.IsValueCreated)
+                    {
+                        _httpClient.Value.Dispose();
+                    }
 
-                _httpClient.Value.CancelPendingRequests();
-                _httpClient.Value.Dispose();
+                    _httpClient = null;
+                }
             }
 
             _isDisposed = true;

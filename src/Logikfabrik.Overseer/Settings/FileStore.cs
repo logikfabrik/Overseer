@@ -13,10 +13,10 @@ namespace Logikfabrik.Overseer.Settings
     /// <summary>
     /// The <see cref="FileStore" /> class.
     /// </summary>
-    public class FileStore : IFileStore
+    public class FileStore : IFileStore, IDisposable
     {
         private readonly string _path;
-        private readonly ManualResetEventSlim _resetEvent;
+        private ManualResetEventSlim _resetEvent;
         private bool _isDisposed;
 
         /// <summary>
@@ -82,7 +82,6 @@ namespace Logikfabrik.Overseer.Settings
         public void Dispose()
         {
             Dispose(true);
-            GC.SuppressFinalize(this);
         }
 
         /// <summary>
@@ -98,7 +97,11 @@ namespace Logikfabrik.Overseer.Settings
 
             if (disposing)
             {
-                _resetEvent.Dispose();
+                if (_resetEvent != null)
+                {
+                    _resetEvent.Dispose();
+                    _resetEvent = null;
+                }
             }
 
             _isDisposed = true;

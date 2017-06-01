@@ -20,6 +20,12 @@ namespace Logikfabrik.Overseer.WPF.Client.ViewModels
             Version = GetType().Assembly.GetCustomAttribute<AssemblyInformationalVersionAttribute>()?.InformationalVersion;
         }
 
+        /// <summary>
+        /// Gets the version.
+        /// </summary>
+        /// <value>
+        /// The version.
+        /// </value>
         public string Version { get; }
     }
 }

@@ -11,6 +11,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     using Caliburn.Micro;
     using EnsureThat;
     using Factories;
+    using Navigation;
     using Settings;
 
     /// <summary>
@@ -61,6 +62,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             _isErrored = false;
             _projects = new List<IProjectViewModel>();
             DisplayName = "Connection";
+            KeepAlive = true;
 
             WeakEventManager<IBuildMonitor, BuildMonitorConnectionErrorEventArgs>.AddHandler(buildMonitor, nameof(buildMonitor.ConnectionError), BuildMonitorConnectionError);
             WeakEventManager<IBuildMonitor, BuildMonitorConnectionProgressEventArgs>.AddHandler(buildMonitor, nameof(buildMonitor.ConnectionProgressChanged), BuildMonitorConnectionProgressChanged);
@@ -186,9 +188,9 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// </summary>
         public void Edit()
         {
-            var viewModel = _editConnectionFactory.Create(Settings);
+            var item = _editConnectionFactory.Create(Settings);
 
-            var message = new NavigationMessage2(viewModel);
+            var message = new NavigationMessage(item);
 
             _eventAggregator.PublishOnUIThread(message);
         }
@@ -198,9 +200,9 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// </summary>
         public void Remove()
         {
-            var viewModel = _removeConnectionFactory.Create(SettingsId);
+            var item = _removeConnectionFactory.Create(SettingsId);
 
-            var message = new NavigationMessage2(viewModel);
+            var message = new NavigationMessage(item);
 
             _eventAggregator.PublishOnUIThread(message);
         }
@@ -210,7 +212,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// </summary>
         public void View()
         {
-            var message = new NavigationMessage2(this);
+            var message = new NavigationMessage(this);
 
             _eventAggregator.PublishOnUIThread(message);
         }

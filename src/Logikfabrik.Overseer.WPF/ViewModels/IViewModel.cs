@@ -9,7 +9,8 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     /// <summary>
     /// The <see cref="IViewModel" /> interface.
     /// </summary>
-    public interface IViewModel : IViewAware, IClose, IHaveDisplayName, IChild
+    public interface IViewModel : IClose, IHaveDisplayName, IChild
     {
+        bool KeepAlive { get; set; }
     }
 }

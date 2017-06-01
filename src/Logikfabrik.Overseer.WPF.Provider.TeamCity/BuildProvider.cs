@@ -9,7 +9,6 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity
     using System.Threading;
     using System.Threading.Tasks;
     using EnsureThat;
-    using Overseer.Extensions;
 
     /// <summary>
     /// The <see cref="BuildProvider" /> class.
@@ -17,7 +16,6 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity
     public class BuildProvider : BuildProvider<ConnectionSettings>
     {
         private readonly Api.IApiClient _apiClient;
-        private bool _isDisposed;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="BuildProvider" /> class.
@@ -41,8 +39,6 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity
         /// </returns>
         public override async Task<IEnumerable<IProject>> GetProjectsAsync(CancellationToken cancellationToken)
         {
-            this.ThrowIfDisposed(_isDisposed);
-
             var projects = await _apiClient.GetProjectsAsync(cancellationToken).ConfigureAwait(false);
 
             return projects.Project.Select(project => new Project(project)).ToArray();
@@ -58,8 +54,6 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity
         /// </returns>
         public override async Task<IEnumerable<IBuild>> GetBuildsAsync(string projectId, CancellationToken cancellationToken)
         {
-            this.ThrowIfDisposed(_isDisposed);
-
             Ensure.That(projectId).IsNotNullOrWhiteSpace();
 
             var buildTypes = await _apiClient.GetBuildTypesAsync(cancellationToken).ConfigureAwait(false);
@@ -69,26 +63,6 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity
                 .SelectMany(buildType => buildType.Builds.Build)
                 .Select(build => new Build(build))
                 .ToArray();
-        }
-
-        /// <summary>
-        /// Releases unmanaged and managed resources.
-        /// </summary>
-        /// <param name="disposing"><c>true</c> to release both managed and unmanaged resources; <c>false</c> to release only unmanaged resources.</param>
-        protected override void Dispose(bool disposing)
-        {
-            if (_isDisposed)
-            {
-                return;
-            }
-
-            // ReSharper disable once InvertIf
-            if (disposing)
-            {
-                _apiClient.Dispose();
-            }
-
-            _isDisposed = true;
         }
     }
 }

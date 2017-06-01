@@ -10,7 +10,7 @@ namespace Logikfabrik.Overseer.Settings
     /// <summary>
     /// The <see cref="IConnectionSettingsRepository" /> interface.
     /// </summary>
-    public interface IConnectionSettingsRepository : IObservable<ConnectionSettings[]>, IDisposable
+    public interface IConnectionSettingsRepository : IObservable<ConnectionSettings[]>
     {
         /// <summary>
         /// Adds the specified settings.
