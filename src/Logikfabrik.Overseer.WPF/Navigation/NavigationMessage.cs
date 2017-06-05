@@ -5,7 +5,6 @@
 namespace Logikfabrik.Overseer.WPF.Navigation
 {
     using System;
-    using System.Collections.Generic;
     using EnsureThat;
 
     /// <summary>
@@ -17,37 +16,11 @@ namespace Logikfabrik.Overseer.WPF.Navigation
         /// Initializes a new instance of the <see cref="NavigationMessage" /> class.
         /// </summary>
         /// <param name="to">The target to navigate to.</param>
-        /// <param name="from">The targets to navigate from.</param>
-        public NavigationMessage(NavigationTarget to, IEnumerable<NavigationTarget> from)
-        {
-            Ensure.That(to).IsNotNull();
-            Ensure.That(from).IsNotNull();
-
-            To = to;
-            From = from;
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="NavigationMessage" /> class.
-        /// </summary>
-        /// <param name="to">The target to navigate to.</param>
-        /// <param name="from">The target to navigate from.</param>
-        public NavigationMessage(NavigationTarget to, NavigationTarget from)
-        {
-            Ensure.That(to).IsNotNull();
-            Ensure.That(from).IsNotNull();
-
-            To = to;
-            From = new[] { from };
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="NavigationMessage" /> class.
-        /// </summary>
-        /// <param name="to">The target to navigate to.</param>
         public NavigationMessage(NavigationTarget to)
-            : this(to, new NavigationTarget[] { })
         {
+            Ensure.That(to).IsNotNull();
+
+            To = to;
         }
 
         /// <summary>
@@ -75,13 +48,5 @@ namespace Logikfabrik.Overseer.WPF.Navigation
         /// The target to navigate to.
         /// </value>
         public NavigationTarget To { get; }
-
-        /// <summary>
-        /// Gets the targets to navigate from.
-        /// </summary>
-        /// <value>
-        /// The targets to navigate from.
-        /// </value>
-        public IEnumerable<NavigationTarget> From { get; }
     }
 }

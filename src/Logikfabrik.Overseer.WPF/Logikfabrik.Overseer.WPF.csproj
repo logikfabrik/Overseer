@@ -96,10 +96,10 @@
     <Compile Include="Logging\IUILogService.cs" />
     <Compile Include="Logging\UILogService.cs" />
     <Compile Include="MarkupExtensions\EnumToItemsSourceMarkupExtension.cs" />
+    <Compile Include="Navigation\INavigable.cs" />
     <Compile Include="Navigation\NavigationMessage.cs" />
     <Compile Include="Navigation\NavigationTarget.cs" />
     <Compile Include="Navigation\Navigator{T}.cs" />
-    <Compile Include="Navigation\ViewModelNavigator.cs" />
     <Compile Include="NotificationManager.cs" />
     <Compile Include="NotifyTask.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">

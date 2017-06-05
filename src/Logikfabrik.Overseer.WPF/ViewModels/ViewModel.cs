@@ -54,6 +54,12 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             }
         }
 
+        /// <summary>
+        /// Gets or sets a value indicating whether this instance should be kept alive on navigation.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if this instance should be kept alive on navigation; otherwise, <c>false</c>.
+        /// </value>
         public bool KeepAlive { get; set; } = false;
 
         public void TryClose(bool? dialogResult = null)

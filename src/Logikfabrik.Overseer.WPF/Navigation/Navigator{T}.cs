@@ -4,9 +4,7 @@
 
 namespace Logikfabrik.Overseer.WPF.Navigation
 {
-    using System.Collections.Generic;
     using System.Diagnostics;
-    using System.Linq;
     using Caliburn.Micro;
     using EnsureThat;
 
@@ -38,7 +36,6 @@ namespace Logikfabrik.Overseer.WPF.Navigation
         {
             Ensure.That(message).IsNotNull();
 
-            NavigateFrom(message.From);
             NavigateTo(message.To);
 
             Debug.WriteLine("Items:");
@@ -56,11 +53,20 @@ namespace Logikfabrik.Overseer.WPF.Navigation
         /// <returns><c>true</c> if the specified item can be closed; otherwise, <c>false</c>.</returns>
         protected virtual bool CanCloseItem(T item)
         {
-            return true;
+            var navigable = item as INavigable;
+
+            return navigable == null || navigable.KeepAlive;
         }
 
         private void NavigateTo(NavigationTarget to)
         {
+            var activeItem = _conductor.ActiveItem;
+
+            if (CanCloseItem(activeItem))
+            {
+                CloseItem(activeItem);
+            }
+
             if (to.Item != null)
             {
                 ActivateItem(to.Item as T);
@@ -70,30 +76,6 @@ namespace Logikfabrik.Overseer.WPF.Navigation
                 var item = IoC.GetInstance(to.ItemType, null) as T;
 
                 ActivateItem(item);
-            }
-        }
-
-        private void NavigateFrom(IEnumerable<NavigationTarget> from)
-        {
-            if (_conductor.ActiveItem != null)
-            {
-                from = from.Concat(new[] { new NavigationTarget(_conductor.ActiveItem) });
-            }
-
-            foreach (var target in from)
-            {
-                // ReSharper disable once CanBeReplacedWithTryCastAndCheckForNull
-                if (target.Item is T)
-                {
-                    CloseItem((T)target.Item);
-                }
-                else
-                {
-                    foreach (var item in _conductor.Items.Where(item => item.GetType() == target.ItemType))
-                    {
-                        CloseItem(item);
-                    }
-                }
             }
         }
 

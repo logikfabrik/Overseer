@@ -22,7 +22,7 @@ namespace Logikfabrik.Overseer.WPF.Client.ViewModels
         private readonly IEventAggregator _eventAggregator;
         private readonly IBuildMonitor _buildMonitor;
         private readonly IBuildNotificationManager _buildNotificationManager;
-        private readonly ViewModelNavigator _navigator;
+        private readonly Navigator<IViewModel> _navigator;
         private bool _isDisposed;
 
         /// <summary>
@@ -44,7 +44,7 @@ namespace Logikfabrik.Overseer.WPF.Client.ViewModels
             _eventAggregator = eventAggregator;
             _buildMonitor = buildMonitor;
             _buildNotificationManager = buildNotificationManager;
-            _navigator = new ViewModelNavigator(this);
+            _navigator = new Navigator<IViewModel>(this);
 
             _eventAggregator.Subscribe(this);
             WeakEventManager<IBuildMonitor, BuildMonitorProjectProgressEventArgs>.AddHandler(_buildMonitor, nameof(_buildMonitor.ProjectProgressChanged), BuildMonitorProgressChanged);
