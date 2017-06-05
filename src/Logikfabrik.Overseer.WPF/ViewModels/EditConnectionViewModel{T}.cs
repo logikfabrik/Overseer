@@ -9,7 +9,6 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     using System.Linq;
     using System.Threading;
     using System.Threading.Tasks;
-    using Caliburn.Micro;
     using EnsureThat;
     using Factories;
     using Settings;
@@ -21,7 +20,6 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     public abstract class EditConnectionViewModel<T> : ViewModel
         where T : ConnectionSettings
     {
-        private readonly IEventAggregator _eventAggregator;
         private readonly IConnectionSettingsRepository _settingsRepository;
         private readonly IBuildProviderStrategy _buildProviderStrategy;
         private readonly IProjectToMonitorViewModelFactory _projectToMonitorFactory;
@@ -34,28 +32,24 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// <summary>
         /// Initializes a new instance of the <see cref="EditConnectionViewModel{T}" /> class.
         /// </summary>
-        /// <param name="eventAggregator">The event aggregator.</param>
         /// <param name="settingsRepository">The settings repository.</param>
         /// <param name="buildProviderStrategy">The build provider strategy.</param>
         /// <param name="projectToMonitorFactory">The project to monitor factory.</param>
         /// <param name="projectsToMonitorFactory">The projects to monitor factory.</param>
         /// <param name="currentSettings">The current settings.</param>
         protected EditConnectionViewModel(
-            IEventAggregator eventAggregator,
             IConnectionSettingsRepository settingsRepository,
             IBuildProviderStrategy buildProviderStrategy,
             IProjectToMonitorViewModelFactory projectToMonitorFactory,
             IProjectsToMonitorViewModelFactory projectsToMonitorFactory,
             T currentSettings)
         {
-            Ensure.That(eventAggregator).IsNotNull();
             Ensure.That(settingsRepository).IsNotNull();
             Ensure.That(buildProviderStrategy).IsNotNull();
             Ensure.That(projectToMonitorFactory).IsNotNull();
             Ensure.That(projectsToMonitorFactory).IsNotNull();
             Ensure.That(currentSettings).IsNotNull();
 
-            _eventAggregator = eventAggregator;
             _settingsRepository = settingsRepository;
             _buildProviderStrategy = buildProviderStrategy;
             _projectToMonitorFactory = projectToMonitorFactory;

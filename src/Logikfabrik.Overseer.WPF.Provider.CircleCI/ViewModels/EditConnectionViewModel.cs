@@ -4,7 +4,6 @@
 
 namespace Logikfabrik.Overseer.WPF.Provider.CircleCI.ViewModels
 {
-    using Caliburn.Micro;
     using EnsureThat;
     using Settings;
     using WPF.ViewModels.Factories;
@@ -17,7 +16,6 @@ namespace Logikfabrik.Overseer.WPF.Provider.CircleCI.ViewModels
         /// <summary>
         /// Initializes a new instance of the <see cref="EditConnectionViewModel" /> class.
         /// </summary>
-        /// <param name="eventAggregator">The event aggregator.</param>
         /// <param name="settingsRepository">The build provider settings repository.</param>
         /// <param name="connectionSettingsFactory">The connection settings factory.</param>
         /// <param name="buildProviderStrategy">The build provider strategy.</param>
@@ -25,7 +23,6 @@ namespace Logikfabrik.Overseer.WPF.Provider.CircleCI.ViewModels
         /// <param name="projectsToMonitorFactory">The projects to monitor factory.</param>
         /// <param name="currentSettings">The current settings.</param>
         public EditConnectionViewModel(
-            IEventAggregator eventAggregator,
             IConnectionSettingsRepository settingsRepository,
             IConnectionSettingsViewModelFactory<CircleCI.ConnectionSettings, ConnectionSettingsViewModel> connectionSettingsFactory,
             IBuildProviderStrategy buildProviderStrategy,
@@ -33,7 +30,6 @@ namespace Logikfabrik.Overseer.WPF.Provider.CircleCI.ViewModels
             IProjectsToMonitorViewModelFactory projectsToMonitorFactory,
             CircleCI.ConnectionSettings currentSettings)
             : base(
-                  eventAggregator,
                   settingsRepository,
                   buildProviderStrategy,
                   projectToMonitorFactory,
