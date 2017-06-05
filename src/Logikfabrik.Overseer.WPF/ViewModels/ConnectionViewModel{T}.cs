@@ -200,7 +200,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// </summary>
         public void Remove()
         {
-            var item = _removeConnectionFactory.Create(SettingsId);
+            var item = _removeConnectionFactory.Create(this);
 
             var message = new NavigationMessage(item);
 

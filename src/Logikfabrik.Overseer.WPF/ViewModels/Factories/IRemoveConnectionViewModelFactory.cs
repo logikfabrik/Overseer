@@ -4,8 +4,6 @@
 
 namespace Logikfabrik.Overseer.WPF.ViewModels.Factories
 {
-    using System;
-
     /// <summary>
     /// The <see cref="IRemoveConnectionViewModelFactory" /> interface.
     /// </summary>
@@ -14,10 +12,10 @@ namespace Logikfabrik.Overseer.WPF.ViewModels.Factories
         /// <summary>
         /// Creates a view model.
         /// </summary>
-        /// <param name="settingsId">The settings identifier.</param>
+        /// <param name="connectionViewModel">The connection view model.</param>
         /// <returns>
         /// A view model.
         /// </returns>
-        RemoveConnectionViewModel Create(Guid settingsId);
+        RemoveConnectionViewModel Create(IConnectionViewModel connectionViewModel);
     }
 }
