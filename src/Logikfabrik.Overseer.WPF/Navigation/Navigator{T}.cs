@@ -36,7 +36,7 @@ namespace Logikfabrik.Overseer.WPF.Navigation
         {
             Ensure.That(message).IsNotNull();
 
-            NavigateTo(message.To);
+            NavigateTo(message);
 
             Debug.WriteLine("Items:");
 
@@ -55,10 +55,10 @@ namespace Logikfabrik.Overseer.WPF.Navigation
         {
             var navigable = item as INavigable;
 
-            return navigable == null || navigable.KeepAlive;
+            return navigable == null || !navigable.KeepAlive;
         }
 
-        private void NavigateTo(NavigationTarget to)
+        private void NavigateTo(NavigationMessage message)
         {
             var activeItem = _conductor.ActiveItem;
 
@@ -67,13 +67,13 @@ namespace Logikfabrik.Overseer.WPF.Navigation
                 CloseItem(activeItem);
             }
 
-            if (to.Item != null)
+            if (message.Item != null)
             {
-                ActivateItem(to.Item as T);
+                ActivateItem(message.Item as T);
             }
             else
             {
-                var item = IoC.GetInstance(to.ItemType, null) as T;
+                var item = IoC.GetInstance(message.ItemType, null) as T;
 
                 ActivateItem(item);
             }

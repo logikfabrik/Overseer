@@ -25,6 +25,10 @@
                     ShadowDepth="3"
                     Color="{StaticResource Effect.Shadow}" />
             </StackPanel.Effect>
+            <TextBlock
+                FontSize="18"
+                Text="{Binding Name, Mode=OneWay}"
+                TextAlignment="Center" />
             <Button x:Name="TryClose">
                 <Viewbox>
                     <Canvas>
@@ -32,10 +36,6 @@
                     </Canvas>
                 </Viewbox>
             </Button>
-            <TextBlock
-                FontSize="18"
-                Text="{Binding Name, Mode=OneWay}"
-                TextAlignment="Center" />
         </StackPanel>
         <ItemsControl Grid.Row="2" ItemsSource="{Binding Builds, Mode=OneWay}">
             <ItemsControl.ItemContainerStyle>

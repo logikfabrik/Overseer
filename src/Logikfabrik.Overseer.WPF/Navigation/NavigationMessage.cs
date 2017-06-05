@@ -15,12 +15,12 @@ namespace Logikfabrik.Overseer.WPF.Navigation
         /// <summary>
         /// Initializes a new instance of the <see cref="NavigationMessage" /> class.
         /// </summary>
-        /// <param name="to">The target to navigate to.</param>
-        public NavigationMessage(NavigationTarget to)
+        /// <param name="itemType">The item type to navigate to.</param>
+        public NavigationMessage(Type itemType)
         {
-            Ensure.That(to).IsNotNull();
+            Ensure.That(itemType).IsNotNull();
 
-            To = to;
+            ItemType = itemType;
         }
 
         /// <summary>
@@ -28,25 +28,27 @@ namespace Logikfabrik.Overseer.WPF.Navigation
         /// </summary>
         /// <param name="item">The item to navigate to.</param>
         public NavigationMessage(object item)
-            : this(new NavigationTarget(item))
+            : this(item.GetType())
         {
+            Ensure.That(item).IsNotNull();
+
+            Item = item;
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="NavigationMessage"/> class.
-        /// </summary>
-        /// <param name="itemType">The item type to navigate to.</param>
-        public NavigationMessage(Type itemType)
-            : this(new NavigationTarget(itemType))
-        {
-        }
-
-        /// <summary>
-        /// Gets the target to navigate to.
+        /// Gets the item type to navigate to.
         /// </summary>
         /// <value>
-        /// The target to navigate to.
+        /// The item type to navigate to.
         /// </value>
-        public NavigationTarget To { get; }
+        public Type ItemType { get; }
+
+        /// <summary>
+        /// Gets the item to navigate to.
+        /// </summary>
+        /// <value>
+        /// The item to navigate to.
+        /// </value>
+        public object Item { get; }
     }
 }
