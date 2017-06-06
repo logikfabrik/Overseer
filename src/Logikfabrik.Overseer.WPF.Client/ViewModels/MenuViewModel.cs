@@ -61,7 +61,9 @@ namespace Logikfabrik.Overseer.WPF.Client.ViewModels
         /// </summary>
         public void GoToDashboard()
         {
-            // TODO: Go to dashboard view.
+            var message = new NavigationMessage(typeof(DashboardViewModel));
+
+            _eventAggregator.PublishOnUIThread(message);
         }
 
         /// <summary>

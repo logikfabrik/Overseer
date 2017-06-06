@@ -67,6 +67,11 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// </value>
         bool IsErrored { get; }
 
+        /// <summary>
+        /// Tries to update this instance.
+        /// </summary>
+        /// <param name="name">The name.</param>
+        /// <returns><c>true</c> if this instance was updated; otherwise, <c>false</c>.</returns>
         bool TryUpdate(string name);
     }
 }

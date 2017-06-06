@@ -37,6 +37,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             _connections = new List<IConnectionViewModel>();
             _subscription = connectionSettingsRepository.Subscribe(this);
             DisplayName = "Connections";
+            KeepAlive = true;
         }
 
         /// <summary>

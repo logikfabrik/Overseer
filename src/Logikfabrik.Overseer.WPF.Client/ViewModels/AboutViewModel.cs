@@ -18,6 +18,7 @@ namespace Logikfabrik.Overseer.WPF.Client.ViewModels
         public AboutViewModel()
         {
             Version = GetType().Assembly.GetCustomAttribute<AssemblyInformationalVersionAttribute>()?.InformationalVersion;
+            DisplayName = "About";
         }
 
         /// <summary>

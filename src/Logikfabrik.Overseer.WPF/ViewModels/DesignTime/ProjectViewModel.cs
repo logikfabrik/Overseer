@@ -69,6 +69,11 @@ namespace Logikfabrik.Overseer.WPF.ViewModels.DesignTime
         /// </value>
         public bool IsErrored { get; } = false;
 
+        /// <summary>
+        /// Tries to update this instance.
+        /// </summary>
+        /// <param name="name">The name.</param>
+        /// <returns><c>true</c> if this instance was updated; otherwise, <c>false</c>.</returns>
         public bool TryUpdate(string name)
         {
             throw new NotImplementedException();

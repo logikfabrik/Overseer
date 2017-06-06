@@ -35,7 +35,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             _proxyUrl = appSettings.ProxyUrl;
             _proxyUsername = appSettings.ProxyUsername;
             _proxyPassword = appSettings.ProxyPassword;
-            DisplayName = "Edit settings";
+            DisplayName = "Settings";
         }
 
         /// <summary>

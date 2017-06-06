@@ -92,6 +92,12 @@ namespace Logikfabrik.Overseer.WPF.ViewModels.DesignTime
         /// </value>
         public DateTime? EndTime { get; } = DateTime.Now;
 
+        /// <summary>
+        /// Gets a value indicating whether to show the start time.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if the start time should be shown; otherwise, <c>false</c>.
+        /// </value>
         public bool ShowStartTime { get; } = true;
 
         /// <summary>
@@ -102,6 +108,15 @@ namespace Logikfabrik.Overseer.WPF.ViewModels.DesignTime
         /// </value>
         public IEnumerable<IChangeViewModel> Changes { get; } = new[] { new ChangeViewModel(), new ChangeViewModel(), new ChangeViewModel() };
 
+        /// <summary>
+        /// Tries to update this instance.
+        /// </summary>
+        /// <param name="projectName">The project name.</param>
+        /// <param name="status">The status.</param>
+        /// <param name="startTime">The start time.</param>
+        /// <param name="endTime">The end time.</param>
+        /// <param name="runTime">The run time.</param>
+        /// <returns><c>true</c> if this instance was updated; otherwise, <c>false</c>.</returns>
         public bool TryUpdate(string projectName, BuildStatus? status, DateTime? startTime, DateTime? endTime, TimeSpan? runTime)
         {
             throw new NotImplementedException();
