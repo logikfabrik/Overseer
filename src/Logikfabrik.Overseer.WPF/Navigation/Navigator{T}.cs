@@ -4,7 +4,6 @@
 
 namespace Logikfabrik.Overseer.WPF.Navigation
 {
-    using System.Diagnostics;
     using Caliburn.Micro;
     using EnsureThat;
 
@@ -37,13 +36,6 @@ namespace Logikfabrik.Overseer.WPF.Navigation
             Ensure.That(message).IsNotNull();
 
             NavigateTo(message);
-
-            Debug.WriteLine("Items:");
-
-            foreach (var item in _conductor.Items)
-            {
-                Debug.WriteLine(item.GetType());
-            }
         }
 
         /// <summary>

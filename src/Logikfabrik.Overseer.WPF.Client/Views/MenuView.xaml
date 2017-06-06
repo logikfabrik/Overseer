@@ -8,7 +8,17 @@
     d:DesignHeight="300"
     Visibility="{Binding IsExpanded, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}"
     mc:Ignorable="d">
-    <StackPanel>
+    <StackPanel
+        VerticalAlignment="Stretch"
+        Background="{DynamicResource Panel.Background}"
+        ZIndex="1">
+        <StackPanel.Effect>
+            <DropShadowEffect
+                BlurRadius="3"
+                Opacity="0.1"
+                ShadowDepth="3"
+                Color="{StaticResource Effect.Shadow}" />
+        </StackPanel.Effect>
         <Button x:Name="GoToDashboard" HorizontalContentAlignment="Stretch">
             <StackPanel Orientation="Horizontal">
                 <Viewbox>
