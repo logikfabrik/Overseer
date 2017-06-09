@@ -77,7 +77,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Api\ApiSettings.cs" />
     <Compile Include="Api\CacheableApiClient{T}.cs" />
     <Compile Include="Api\ICacheableApiClient.cs" />
     <Compile Include="AppSettings.cs" />

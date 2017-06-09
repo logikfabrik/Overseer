@@ -4,7 +4,6 @@
 
 namespace Logikfabrik.Overseer.WPF.Validators
 {
-    using System;
     using FluentValidation;
     using ViewModels;
 
@@ -21,17 +20,6 @@ namespace Logikfabrik.Overseer.WPF.Validators
             CascadeMode = CascadeMode.StopOnFirstFailure;
 
             RuleFor(viewModel => viewModel.Interval).InclusiveBetween(1, int.MaxValue);
-            RuleFor(viewModel => viewModel.ProxyUrl).Must(url =>
-            {
-                if (string.IsNullOrWhiteSpace(url))
-                {
-                    return true;
-                }
-
-                Uri result;
-
-                return Uri.TryCreate(url, UriKind.Absolute, out result) && (result.Scheme == Uri.UriSchemeHttp || result.Scheme == Uri.UriSchemeHttps);
-            });
         }
     }
 }
