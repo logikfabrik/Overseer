@@ -36,7 +36,7 @@ namespace Logikfabrik.Overseer.Extensions
         /// </summary>
         /// <param name="build">The build.</param>
         /// <returns>The version number.</returns>
-        public static string GetVersionNumber(this IBuild build)
+        public static string VersionNumber(this IBuild build)
         {
             return !string.IsNullOrWhiteSpace(build.Version) ? build.Version : build.Number;
         }
@@ -46,7 +46,7 @@ namespace Logikfabrik.Overseer.Extensions
         /// </summary>
         /// <param name="build">The build.</param>
         /// <returns>The run time.</returns>
-        public static TimeSpan? GetRunTime(this IBuild build)
+        public static TimeSpan? RunTime(this IBuild build)
         {
             if (build.IsInProgress())
             {

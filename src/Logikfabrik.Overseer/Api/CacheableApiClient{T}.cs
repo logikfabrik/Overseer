@@ -6,6 +6,7 @@ namespace Logikfabrik.Overseer.Api
 {
     using EnsureThat;
     using Settings;
+    using Settings.Extensions;
 
     /// <summary>
     /// The <see cref="CacheableApiClient{T}" /> class.

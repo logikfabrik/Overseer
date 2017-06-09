@@ -8,7 +8,7 @@ namespace Logikfabrik.Overseer.Settings
     using System.Collections.Generic;
     using System.Linq;
     using EnsureThat;
-    using Extensions;
+    using Overseer.Extensions;
 
     /// <summary>
     /// The <see cref="ConnectionSettingsRepository" /> class.

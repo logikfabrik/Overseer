@@ -10,6 +10,7 @@ namespace Logikfabrik.Overseer
     using EnsureThat;
     using Extensions;
     using Settings;
+    using Settings.Extensions;
 
     /// <summary>
     /// The <see cref="ConnectionPool" /> class.

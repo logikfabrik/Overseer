@@ -6,8 +6,8 @@ namespace Logikfabrik.Overseer.Settings
 {
     using System;
     using EnsureThat;
-    using Extensions;
     using Microsoft.Win32;
+    using Overseer.Extensions;
 
     /// <summary>
     /// The <see cref="RegistryStore" /> class.

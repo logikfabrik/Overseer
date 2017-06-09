@@ -5,7 +5,7 @@
 namespace Logikfabrik.Overseer.Test.Settings
 {
     using System;
-    using Overseer.Settings;
+    using Overseer.Settings.Extensions;
     using Ploeh.AutoFixture.Xunit2;
     using Xunit;
 

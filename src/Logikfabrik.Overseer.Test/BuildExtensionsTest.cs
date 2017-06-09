@@ -17,7 +17,7 @@ namespace Logikfabrik.Overseer.Test
         {
             var buildMock = new Mock<IBuild>();
 
-            var versionNumber = buildMock.Object.GetVersionNumber();
+            var versionNumber = buildMock.Object.VersionNumber();
 
             Assert.Null(versionNumber);
         }
@@ -30,7 +30,7 @@ namespace Logikfabrik.Overseer.Test
 
             buildMock.Setup(m => m.Version).Returns(version);
 
-            var versionNumber = buildMock.Object.GetVersionNumber();
+            var versionNumber = buildMock.Object.VersionNumber();
 
             Assert.Equal(version, versionNumber);
         }
@@ -43,7 +43,7 @@ namespace Logikfabrik.Overseer.Test
 
             buildMock.Setup(m => m.Number).Returns(number);
 
-            var versionNumber = buildMock.Object.GetVersionNumber();
+            var versionNumber = buildMock.Object.VersionNumber();
 
             Assert.Equal(number, versionNumber);
         }
@@ -53,7 +53,7 @@ namespace Logikfabrik.Overseer.Test
         {
             var buildMock = new Mock<IBuild>();
 
-            var runTime = buildMock.Object.GetRunTime();
+            var runTime = buildMock.Object.RunTime();
 
             Assert.Null(runTime);
         }
@@ -66,7 +66,7 @@ namespace Logikfabrik.Overseer.Test
             buildMock.Setup(m => m.Status).Returns(BuildStatus.InProgress);
             buildMock.Setup(m => m.StartTime).Returns(DateTime.UtcNow.AddHours(-1));
 
-            var runTime = buildMock.Object.GetRunTime();
+            var runTime = buildMock.Object.RunTime();
 
             // ReSharper disable once PossibleInvalidOperationException
             Assert.Equal(1, runTime.Value.TotalHours);
@@ -79,7 +79,7 @@ namespace Logikfabrik.Overseer.Test
 
             buildMock.Setup(m => m.Status).Returns(BuildStatus.InProgress);
 
-            var runTime = buildMock.Object.GetRunTime();
+            var runTime = buildMock.Object.RunTime();
 
             Assert.Null(runTime);
         }
@@ -98,7 +98,7 @@ namespace Logikfabrik.Overseer.Test
             buildMock.Setup(m => m.StartTime).Returns(utcNow.AddHours(-1));
             buildMock.Setup(m => m.EndTime).Returns(utcNow);
 
-            var runTime = buildMock.Object.GetRunTime();
+            var runTime = buildMock.Object.RunTime();
 
             // ReSharper disable once PossibleInvalidOperationException
             Assert.Equal(1, runTime.Value.TotalHours);
@@ -117,7 +117,7 @@ namespace Logikfabrik.Overseer.Test
             buildMock.Setup(m => m.Status).Returns(status);
             buildMock.Setup(m => m.EndTime).Returns(utcNow);
 
-            var runTime = buildMock.Object.GetRunTime();
+            var runTime = buildMock.Object.RunTime();
 
             Assert.Null(runTime);
         }
@@ -135,7 +135,7 @@ namespace Logikfabrik.Overseer.Test
             buildMock.Setup(m => m.Status).Returns(status);
             buildMock.Setup(m => m.StartTime).Returns(utcNow.AddHours(-2));
 
-            var runTime = buildMock.Object.GetRunTime();
+            var runTime = buildMock.Object.RunTime();
 
             Assert.Null(runTime);
         }
@@ -150,7 +150,7 @@ namespace Logikfabrik.Overseer.Test
 
             buildMock.Setup(m => m.Status).Returns(status);
 
-            var runTime = buildMock.Object.GetRunTime();
+            var runTime = buildMock.Object.RunTime();
 
             Assert.Null(runTime);
         }

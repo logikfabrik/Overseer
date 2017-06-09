@@ -226,12 +226,12 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
 
                 if (buildToUpdate != null)
                 {
-                    buildToUpdate.TryUpdate(e.Project.Name, build.Status, build.StartTime, build.EndTime, build.GetRunTime());
+                    buildToUpdate.TryUpdate(e.Project.Name, build.Status, build.StartTime, build.EndTime, build.RunTime());
                     isUpdated = true;
                 }
                 else
                 {
-                    var buildToAdd = _buildFactory.Create(e.Project.Name, build.Id, build.Branch, build.GetVersionNumber(), build.RequestedBy, build.Changes, build.Status, build.StartTime, build.EndTime, build.GetRunTime());
+                    var buildToAdd = _buildFactory.Create(e.Project.Name, build.Id, build.Branch, build.VersionNumber(), build.RequestedBy, build.Changes, build.Status, build.StartTime, build.EndTime, build.RunTime());
 
                     currentBuilds.Add(buildToAdd);
                     isDirty = true;

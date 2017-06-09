@@ -28,7 +28,7 @@ namespace Logikfabrik.Overseer.WPF
             Ensure.That(project).IsNotNull();
             Ensure.That(build).IsNotNull();
 
-            return GetBuildName(project.Name, build.GetVersionNumber(), build.Branch);
+            return GetBuildName(project.Name, build.VersionNumber(), build.Branch);
         }
 
         /// <summary>
