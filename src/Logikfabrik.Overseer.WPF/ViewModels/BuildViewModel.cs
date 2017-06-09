@@ -195,6 +195,12 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             }
         }
 
+        /// <summary>
+        /// Gets a value indicating whether to show the start time.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if the start time should be shown; otherwise, <c>false</c>.
+        /// </value>
         public bool ShowStartTime => StartTime.HasValue;
 
         /// <summary>

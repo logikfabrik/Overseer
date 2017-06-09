@@ -30,6 +30,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity
             EndTime = build.FinishDate?.ToUniversalTime();
             Status = GetStatus(build);
             RequestedBy = GetRequestedBy(build);
+            WebUrl = build.WebUrl;
 
             if (build.LastChanges != null)
             {
@@ -109,6 +110,14 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity
         /// The name of whoever requested the build.
         /// </value>
         public string RequestedBy { get; }
+
+        /// <summary>
+        /// Gets the web URL.
+        /// </summary>
+        /// <value>
+        /// The web URL.
+        /// </value>
+        public Uri WebUrl { get; }
 
         /// <summary>
         /// Gets the changes.

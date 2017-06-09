@@ -29,6 +29,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.CircleCI
             EndTime = build.StopTime?.ToUniversalTime();
             Status = GetStatus(build);
             RequestedBy = null;
+            WebUrl = build.BuildUrl;
             Changes = new[]
             {
                 new Change
@@ -104,6 +105,14 @@ namespace Logikfabrik.Overseer.WPF.Provider.CircleCI
         /// The name of whoever requested the build.
         /// </value>
         public string RequestedBy { get; }
+
+        /// <summary>
+        /// Gets the web URL.
+        /// </summary>
+        /// <value>
+        /// The web URL.
+        /// </value>
+        public Uri WebUrl { get; }
 
         /// <summary>
         /// Gets the changes.

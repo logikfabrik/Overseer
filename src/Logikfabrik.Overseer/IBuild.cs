@@ -83,5 +83,13 @@ namespace Logikfabrik.Overseer
         /// The changes.
         /// </value>
         IEnumerable<IChange> Changes { get; }
+
+        /// <summary>
+        /// Gets the web URL.
+        /// </summary>
+        /// <value>
+        /// The web URL.
+        /// </value>
+        Uri WebUrl { get; }
     }
 }

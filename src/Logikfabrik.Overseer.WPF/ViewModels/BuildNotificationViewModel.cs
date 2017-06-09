@@ -6,6 +6,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
 {
     using System;
     using System.Collections.Generic;
+    using System.Diagnostics;
     using System.Windows;
     using System.Windows.Controls.Primitives;
     using System.Windows.Threading;
@@ -15,8 +16,10 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     /// <summary>
     /// The <see cref="BuildNotificationViewModel" /> class.
     /// </summary>
-    public class BuildNotificationViewModel : ViewAware
+    public class BuildNotificationViewModel : ViewAware, IBuildNotificationViewModel
     {
+        private readonly Uri _webUrl;
+
         /// <summary>
         /// Initializes a new instance of the <see cref="BuildNotificationViewModel" /> class.
         /// </summary>
@@ -33,26 +36,27 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
 
             dispatcher.Start();
 
-            BuildName = BuildMessageUtility.GetBuildName(project, build);
-            BuildStatusMessage = BuildMessageUtility.GetBuildStatusMessage(build.Status, new Dictionary<string, string> { { "requested by", build.RequestedBy } });
+            Name = BuildMessageUtility.GetBuildName(project, build);
+            Message = BuildMessageUtility.GetBuildStatusMessage(build.Status, new Dictionary<string, string> { { "requested by", build.RequestedBy } });
             Status = build.Status;
+            _webUrl = build.WebUrl;
         }
 
         /// <summary>
-        /// Gets the build name.
+        /// Gets the name.
         /// </summary>
         /// <value>
-        /// The build name.
+        /// The name.
         /// </value>
-        public string BuildName { get; }
+        public string Name { get; }
 
         /// <summary>
-        /// Gets the build status message.
+        /// Gets the message.
         /// </summary>
         /// <value>
-        /// The build status message.
+        /// The message.
         /// </value>
-        public string BuildStatusMessage { get; }
+        public string Message { get; }
 
         /// <summary>
         /// Gets the status.
@@ -61,6 +65,19 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// The status.
         /// </value>
         public BuildStatus? Status { get; }
+
+        /// <summary>
+        /// Views this instance.
+        /// </summary>
+        public void View()
+        {
+            if (_webUrl == null)
+            {
+                return;
+            }
+
+            Process.Start(new ProcessStartInfo(_webUrl.AbsoluteUri));
+        }
 
         private void Close()
         {

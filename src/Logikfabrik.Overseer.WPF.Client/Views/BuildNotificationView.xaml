@@ -2,8 +2,16 @@
     x:Class="Logikfabrik.Overseer.WPF.Client.Views.BuildNotificationView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:cal="http://www.caliburnproject.org"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:vm="clr-namespace:Logikfabrik.Overseer.WPF.ViewModels.DesignTime;assembly=Logikfabrik.Overseer.WPF"
     Width="400"
-    Height="150">
+    Height="150"
+    cal:Bind.AtDesignTime="True"
+    d:DataContext="{d:DesignInstance d:Type=vm:BuildNotificationViewModel,
+                                     d:IsDesignTimeCreatable=True}"
+    mc:Ignorable="d">
     <UserControl.Resources>
         <SolidColorBrush x:Key="BuildBorder.InProgress.Border" Color="#5500FF" />
         <SolidColorBrush x:Key="BuildBorder.Succeeded.Border" Color="#AAFF00" />
@@ -76,26 +84,32 @@
             <Setter Property="FontWeight" Value="SemiBold" />
         </Style>
     </UserControl.Resources>
-    <Border>
-        <Border.Style>
-            <MultiBinding Converter="{StaticResource BuildStatusToStyleConverter}" ConverterParameter="Build{0}BorderStyle">
-                <Binding RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType=UserControl}" />
-                <Binding Path="Status" />
-            </MultiBinding>
-        </Border.Style>
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="Auto" />
-            </Grid.RowDefinitions>
-            <StackPanel Grid.Row="0" Margin="20,10">
-                <TextBlock x:Name="BuildName" Style="{StaticResource BuildNameTextBlockStyle}" />
-                <TextBlock x:Name="BuildStatusMessage" Style="{StaticResource MessageTextBlockStyle}" />
-            </StackPanel>
-            <StackPanel Grid.Row="2" Margin="20,10">
-                <TextBlock Style="{StaticResource OverseerTextBlockStyle}" Text="Overseer" />
-            </StackPanel>
-        </Grid>
-    </Border>
+    <Button x:Name="View">
+        <Button.Template>
+            <ControlTemplate>
+                <Border>
+                    <Border.Style>
+                        <MultiBinding Converter="{StaticResource BuildStatusToStyleConverter}" ConverterParameter="Build{0}BorderStyle">
+                            <Binding RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType=UserControl}" />
+                            <Binding Path="Status" />
+                        </MultiBinding>
+                    </Border.Style>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <StackPanel Grid.Row="0" Margin="20,10">
+                            <TextBlock Text="{Binding Name, Mode=OneTime}" Style="{StaticResource BuildNameTextBlockStyle}" />
+                            <TextBlock Text="{Binding Message, Mode=OneTime}" Style="{StaticResource MessageTextBlockStyle}" />
+                        </StackPanel>
+                        <StackPanel Grid.Row="2" Margin="20,10">
+                            <TextBlock Style="{StaticResource OverseerTextBlockStyle}" Text="Overseer" />
+                        </StackPanel>
+                    </Grid>
+                </Border>
+            </ControlTemplate>
+        </Button.Template>
+    </Button>
 </UserControl>

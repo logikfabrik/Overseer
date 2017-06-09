@@ -32,6 +32,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices
             EndTime = build.FinishTime?.ToUniversalTime();
             Status = GetStatus(build);
             RequestedBy = build.RequestedFor.DisplayName;
+            WebUrl = build.Url;
             Changes = changes.Select(lastChange => new Change
             {
                 Id = lastChange.Id,
@@ -104,6 +105,14 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices
         /// The name of whoever requested the build.
         /// </value>
         public string RequestedBy { get; }
+
+        /// <summary>
+        /// Gets the web URL.
+        /// </summary>
+        /// <value>
+        /// The web URL.
+        /// </value>
+        public Uri WebUrl { get; }
 
         /// <summary>
         /// Gets the changes.

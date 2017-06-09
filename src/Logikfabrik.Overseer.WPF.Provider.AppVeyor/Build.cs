@@ -29,6 +29,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor
             EndTime = build.Finished?.ToUniversalTime();
             Status = GetStatus(build);
             RequestedBy = build.AuthorUsername;
+            WebUrl = null;
             Changes = new[]
             {
                 new Change
@@ -104,6 +105,14 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor
         /// The name of whoever requested the build.
         /// </value>
         public string RequestedBy { get; }
+
+        /// <summary>
+        /// Gets the web URL.
+        /// </summary>
+        /// <value>
+        /// The web URL.
+        /// </value>
+        public Uri WebUrl { get; }
 
         /// <summary>
         /// Gets the changes.
