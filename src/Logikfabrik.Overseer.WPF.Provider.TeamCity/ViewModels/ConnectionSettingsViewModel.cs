@@ -48,7 +48,10 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity.ViewModels
                 _url = value;
                 NotifyOfPropertyChange(() => Url);
                 NotifyOfPropertyChange(() => IsValid);
+
+                // Trigger revalidation of base URI.
                 NotifyOfPropertyChange(() => BaseUri);
+                NotifyOfPropertyChange(() => ShowBaseUri);
 
                 IsDirty = true;
             }
@@ -71,6 +74,14 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity.ViewModels
         }
 
         /// <summary>
+        /// Gets a value indicating whether to show the base URI.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if the base URI should be shown; otherwise, <c>false</c>.
+        /// </value>
+        public bool ShowBaseUri => BaseUri != null;
+
+        /// <summary>
         /// Gets or sets the authentication type.
         /// </summary>
         /// <value>
@@ -88,9 +99,13 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity.ViewModels
                 _authenticationType = value;
                 NotifyOfPropertyChange(() => AuthenticationType);
                 NotifyOfPropertyChange(() => IsValid);
+
+                // Trigger revalidation of base URI.
                 NotifyOfPropertyChange(() => BaseUri);
+                NotifyOfPropertyChange(() => ShowBaseUri);
 
                 // Trigger revalidation of username and password.
+                NotifyOfPropertyChange(() => ShowUsernameAndPassword);
                 NotifyOfPropertyChange(() => Username);
                 NotifyOfPropertyChange(() => Password);
 
@@ -143,6 +158,14 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity.ViewModels
                 IsDirty = true;
             }
         }
+
+        /// <summary>
+        /// Gets a value indicating whether to show the username and password.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if the username and password should be shown; otherwise, <c>false</c>.
+        /// </value>
+        public bool ShowUsernameAndPassword => AuthenticationType == AuthenticationType.HttpAuth;
 
         /// <summary>
         /// Gets the settings.

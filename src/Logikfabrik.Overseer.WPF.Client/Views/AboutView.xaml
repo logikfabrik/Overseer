@@ -3,7 +3,7 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:extensions="clr-namespace:Logikfabrik.Overseer.WPF.Extensions;assembly=Logikfabrik.Overseer.WPF"
+    xmlns:ex="clr-namespace:Logikfabrik.Overseer.WPF.Extensions;assembly=Logikfabrik.Overseer.WPF"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     d:DesignHeight="300"
     d:DesignWidth="300"
@@ -16,7 +16,7 @@
             <TextBlock TextWrapping="Wrap">
                 Overseer is Open Source (MIT), and you're welcome to contribute!
                 Help out on
-                <Hyperlink extensions:HyperlinkExtensions.IsExternal="True" NavigateUri="https://github.com/logikfabrik/overseer">GitHub</Hyperlink>
+                <Hyperlink ex:HyperlinkExtensions.IsExternal="True" NavigateUri="https://github.com/logikfabrik/overseer">GitHub</Hyperlink>
                 .
             </TextBlock>
         </StackPanel>

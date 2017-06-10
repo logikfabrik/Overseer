@@ -101,8 +101,8 @@
                             <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
                         <StackPanel Grid.Row="0" Margin="20,10">
-                            <TextBlock Text="{Binding Name, Mode=OneTime}" Style="{StaticResource BuildNameTextBlockStyle}" />
-                            <TextBlock Text="{Binding Message, Mode=OneTime}" Style="{StaticResource MessageTextBlockStyle}" />
+                            <TextBlock Style="{StaticResource BuildNameTextBlockStyle}" Text="{Binding Name, Mode=OneTime}" />
+                            <TextBlock Style="{StaticResource MessageTextBlockStyle}" Text="{Binding Message, Mode=OneTime}" />
                         </StackPanel>
                         <StackPanel Grid.Row="2" Margin="20,10">
                             <TextBlock Style="{StaticResource OverseerTextBlockStyle}" Text="Overseer" />

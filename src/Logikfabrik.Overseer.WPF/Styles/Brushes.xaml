@@ -76,7 +76,7 @@
 
     <SolidColorBrush x:Key="TextBox.Focus.Background" Color="#FFFFFF" />
     <SolidColorBrush x:Key="TextBox.Focus.Foreground" Color="#222222" />
-    <SolidColorBrush x:Key="TextBox.Focus.Border" Color="#AAFF00" />
+    <SolidColorBrush x:Key="TextBox.Focus.Border" Color="#E1FF57" />
 
     <SolidColorBrush x:Key="TextBox.Disabled.Background" Color="#FFFFFF" />
     <SolidColorBrush x:Key="TextBox.Disabled.Foreground" Color="#222222" />

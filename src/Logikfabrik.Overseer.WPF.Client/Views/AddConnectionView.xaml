@@ -9,14 +9,13 @@
     d:DesignWidth="300"
     mc:Ignorable="d">
     <ScrollViewer>
-        <StackPanel Margin="25">
-
+        <StackPanel>
             <ContentControl
                 HorizontalAlignment="Stretch"
                 VerticalAlignment="Stretch"
                 cal:View.Model="{Binding Settings, Mode=OneWay}"
                 Focusable="False" />
-            <StackPanel Margin="0,0,0,20">
+            <StackPanel Margin="10,0,10,10">
                 <Button
                     x:Name="TryConnect"
                     Content="Try connection"
@@ -28,11 +27,9 @@
                     cal:View.Model="{Binding Settings.ProjectsToMonitor, Mode=OneWay}"
                     Focusable="False" />
             </StackPanel>
-
-            <StackPanel Orientation="Horizontal">
+            <StackPanel Margin="10,0,10,10" Orientation="Horizontal">
                 <Button
-                    x:Name="AddConnection"
-                    Margin="0,0,2,0"
+                    x:Name="Add"
                     Content="OK"
                     IsDefault="True"
                     IsEnabled="{Binding IsValidAndHasConnected, Mode=OneWay}" />

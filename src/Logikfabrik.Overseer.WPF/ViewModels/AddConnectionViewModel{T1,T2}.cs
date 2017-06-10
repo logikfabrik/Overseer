@@ -169,9 +169,9 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         }
 
         /// <summary>
-        /// Add the connection.
+        /// Adds the connection.
         /// </summary>
-        public void AddConnection()
+        public void Add()
         {
             if (!IsValidAndHasConnected)
             {
