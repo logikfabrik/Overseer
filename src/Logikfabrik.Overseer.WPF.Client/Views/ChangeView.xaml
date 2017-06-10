@@ -15,13 +15,13 @@
             <Setter Property="Margin" Value="5,5,0,5" />
         </Style>
     </UserControl.Resources>
-    <StackPanel Background="{StaticResource Button.Static.Background}">
+    <StackPanel Background="{DynamicResource Button.Static.Background}">
         <StackPanel.Effect>
             <DropShadowEffect
                 BlurRadius="3"
                 Opacity="0.1"
                 ShadowDepth="3"
-                Color="{StaticResource Effect.Shadow}" />
+                Color="{DynamicResource Effect.Shadow}" />
         </StackPanel.Effect>
         <WrapPanel>
             <Grid Visibility="{Binding ShowChanged, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}">

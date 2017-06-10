@@ -30,6 +30,8 @@
 
     <SolidColorBrush x:Key="TextBlock.Foreground" Color="#FFFFFF" />
 
+    <SolidColorBrush x:Key="Hyperlink.Foreground" Color="#E1FF57" />
+
     <SolidColorBrush x:Key="Button.Defaulted.Background" Color="Transparent" />
     <SolidColorBrush x:Key="Button.Defaulted.Foreground" Color="#FFFFFF" />
     <SolidColorBrush x:Key="Button.Defaulted.Border" Color="#525252" />
