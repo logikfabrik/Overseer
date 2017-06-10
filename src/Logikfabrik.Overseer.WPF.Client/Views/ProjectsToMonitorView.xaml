@@ -12,32 +12,30 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
-
-
-        <ItemsControl
-            Grid.Row="0"
+        <Border
             Grid.ColumnSpan="2"
-            ItemsSource="{Binding Projects, Mode=OneWay}">
-            <ItemsControl.ItemContainerStyle>
-                <Style>
-                    <!--  ReSharper disable once Xaml.RedundantPropertyTypeQualifier  -->
-                    <Setter Property="FrameworkElement.Margin" Value="10,10,5,0" />
-                </Style>
-            </ItemsControl.ItemContainerStyle>
-            <ItemsControl.Template>
-                <ControlTemplate>
-                    <ScrollViewer>
-                        <ItemsPresenter />
-                    </ScrollViewer>
-                </ControlTemplate>
-            </ItemsControl.Template>
-        </ItemsControl>
-
+            BorderBrush="{DynamicResource Button.Static.Border}"
+            BorderThickness="2">
+            <ItemsControl ItemsSource="{Binding Path=Projects, Mode=OneWay}">
+                <ItemsControl.ItemContainerStyle>
+                    <Style>
+                        <!--  ReSharper disable once Xaml.RedundantPropertyTypeQualifier  -->
+                        <Setter Property="FrameworkElement.Margin" Value="10,10,5,0" />
+                    </Style>
+                </ItemsControl.ItemContainerStyle>
+                <ItemsControl.Template>
+                    <ControlTemplate>
+                        <ScrollViewer>
+                            <ItemsPresenter />
+                        </ScrollViewer>
+                    </ControlTemplate>
+                </ItemsControl.Template>
+            </ItemsControl>
+        </Border>
         <Button
             x:Name="MonitorAll"
             Grid.Row="1"

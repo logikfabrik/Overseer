@@ -8,9 +8,7 @@
     d:DesignHeight="300"
     Visibility="{Binding IsExpanded, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}"
     mc:Ignorable="d">
-    <StackPanel
-        VerticalAlignment="Stretch"
-        Background="{DynamicResource Panel.Background}">
+    <StackPanel VerticalAlignment="Stretch" Background="{DynamicResource Panel.Background}">
         <StackPanel.Effect>
             <DropShadowEffect
                 BlurRadius="3"
