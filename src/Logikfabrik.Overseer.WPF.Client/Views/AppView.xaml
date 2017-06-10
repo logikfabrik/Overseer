@@ -16,7 +16,7 @@
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
-            <Grid Background="{DynamicResource Panel.Background}" ZIndex="2">
+            <Grid Background="{DynamicResource Panel.Background}">
                 <Grid.Effect>
                     <DropShadowEffect
                         BlurRadius="3"

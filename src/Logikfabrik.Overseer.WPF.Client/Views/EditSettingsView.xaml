@@ -8,15 +8,12 @@
     d:DesignWidth="300"
     mc:Ignorable="d">
     <ScrollViewer>
-        <StackPanel Margin="25">
-            <StackPanel Margin="0,0,0,20">
-                <TextBlock FontSize="24" Text="Edit application settings" />
-            </StackPanel>
-            <StackPanel Margin="0,0,0,20">
+        <StackPanel>
+            <StackPanel Margin="10">
                 <TextBlock Text="Interval (s)" />
                 <TextBox Text="{Binding Path=Interval, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" />
             </StackPanel>
-            <StackPanel Orientation="Horizontal">
+            <StackPanel Margin="10,0,10,10" Orientation="Horizontal">
                 <Button
                     x:Name="Save"
                     Content="Save"

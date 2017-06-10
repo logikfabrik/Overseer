@@ -20,10 +20,10 @@
             <Setter Property="Effect">
                 <Setter.Value>
                     <DropShadowEffect
-                        BlurRadius="2"
-                        Opacity="0.2"
-                        ShadowDepth="2"
-                        Color="#000000" />
+                        BlurRadius="3"
+                        Opacity="0.1"
+                        ShadowDepth="3"
+                        Color="{DynamicResource Effect.Shadow}" />
                 </Setter.Value>
             </Setter>
         </Style>
