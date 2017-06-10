@@ -13,10 +13,6 @@
                                      d:IsDesignTimeCreatable=True}"
     mc:Ignorable="d">
     <UserControl.Resources>
-        <SolidColorBrush x:Key="BuildBorder.InProgress.Border" Color="#5500FF" />
-        <SolidColorBrush x:Key="BuildBorder.Succeeded.Border" Color="#AAFF00" />
-        <SolidColorBrush x:Key="BuildBorder.Stopped.Border" Color="#FFFF00" />
-        <SolidColorBrush x:Key="BuildBorder.Failed.Border" Color="#FF3300" />
         <Style x:Key="BuildBorderStyle" TargetType="{x:Type Border}">
             <Setter Property="BorderThickness" Value="5,0,0,0" />
             <Setter Property="Margin" Value="10" />
@@ -36,28 +32,28 @@
             x:Key="BuildSucceededBorderStyle"
             BasedOn="{StaticResource BuildBorderStyle}"
             TargetType="{x:Type Border}">
-            <Setter Property="BorderBrush" Value="{StaticResource BuildBorder.Succeeded.Border}" />
+            <Setter Property="BorderBrush" Value="{DynamicResource Status.Succeeded}" />
         </Style>
         <!--  ReSharper disable once Xaml.RedundantResource  -->
         <Style
             x:Key="BuildInProgressBorderStyle"
             BasedOn="{StaticResource BuildBorderStyle}"
             TargetType="{x:Type Border}">
-            <Setter Property="BorderBrush" Value="{StaticResource BuildBorder.InProgress.Border}" />
+            <Setter Property="BorderBrush" Value="{DynamicResource Status.InProgress}" />
         </Style>
         <!--  ReSharper disable once Xaml.RedundantResource  -->
         <Style
             x:Key="BuildFailedBorderStyle"
             BasedOn="{StaticResource BuildBorderStyle}"
             TargetType="{x:Type Border}">
-            <Setter Property="BorderBrush" Value="{StaticResource BuildBorder.Failed.Border}" />
+            <Setter Property="BorderBrush" Value="{DynamicResource Status.Failed}" />
         </Style>
         <!--  ReSharper disable once Xaml.RedundantResource  -->
         <Style
             x:Key="BuildStoppedBorderStyle"
             BasedOn="{StaticResource BuildBorderStyle}"
             TargetType="{x:Type Border}">
-            <Setter Property="BorderBrush" Value="{StaticResource BuildBorder.Stopped.Border}" />
+            <Setter Property="BorderBrush" Value="{DynamicResource Status.Stopped}" />
         </Style>
         <Style x:Key="TextBlockStyle" TargetType="{x:Type TextBlock}">
             <Setter Property="Foreground" Value="#FFFFFF" />
