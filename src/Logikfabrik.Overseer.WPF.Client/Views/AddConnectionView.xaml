@@ -21,6 +21,8 @@
                     Content="Try connection"
                     IsEnabled="{Binding HasNotConnected, Mode=OneWay}" />
                 <TextBlock Text="Error" Visibility="{Binding ConnectionTask.Status, Converter={StaticResource TaskStatusFaultedToBooleanConverter}}" />
+            </StackPanel>
+            <StackPanel Margin="10,0,10,10" Visibility="{Binding HasConnected, Converter={StaticResource BooleanToVisibilityConverter}}">
                 <ContentControl
                     MaxHeight="200"
                     HorizontalAlignment="Stretch"

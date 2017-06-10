@@ -68,7 +68,7 @@
     <SolidColorBrush x:Key="CheckBox.Disabled.Foreground" Color="#7E7E7E" />
     <SolidColorBrush x:Key="CheckBox.Disabled.Border" Color="#525252" />
 
-    <SolidColorBrush x:Key="ScrollBar.Static.Thumb" Color="#595959" />
+    <SolidColorBrush x:Key="ScrollBar.Static.Thumb" Color="#525252" />
     <SolidColorBrush x:Key="ScrollBar.MouseOver.Thumb" Color="#7E7E7E" />
     <SolidColorBrush x:Key="ScrollBar.Pressed.Thumb" Color="#E1FF57" />
 
