@@ -2,6 +2,9 @@
 //   Copyright (c) 2016 anton(at)logikfabrik.se. Licensed under the MIT license.
 // </copyright>
 
+using System.ComponentModel;
+using System.Reflection;
+
 namespace Logikfabrik.Overseer.WPF.MarkupExtensions
 {
     using System;
@@ -37,7 +40,15 @@ namespace Logikfabrik.Overseer.WPF.MarkupExtensions
         /// </returns>
         public override object ProvideValue(IServiceProvider serviceProvider)
         {
-            return Enum.GetValues(_enumType).Cast<object>().Select(value => new { Value = value, DisplayName = value.ToString() }).ToArray();
+            Func<object, string> getDescription = value =>
+            {
+                var field = _enumType.GetField(value.ToString());
+                var attribute = field.GetCustomAttribute<DescriptionAttribute>();
+
+                return string.IsNullOrWhiteSpace(attribute?.Description) ? value.ToString() : attribute.Description;
+            };
+
+            return Enum.GetValues(_enumType).Cast<object>().Select(value => new { Value = value, DisplayName = getDescription(value) }).ToArray();
         }
     }
 }
