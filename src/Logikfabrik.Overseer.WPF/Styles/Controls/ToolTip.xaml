@@ -2,5 +2,6 @@
     <Style BasedOn="{StaticResource {x:Type ToolTip}}" TargetType="{x:Type ToolTip}">
         <Setter Property="Background" Value="{DynamicResource Window.Background}" />
         <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="TextElement.Foreground" Value="{DynamicResource Window.Foreground}" />
     </Style>
 </ResourceDictionary>

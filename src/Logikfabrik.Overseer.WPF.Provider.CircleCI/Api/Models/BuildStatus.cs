@@ -33,6 +33,9 @@ namespace Logikfabrik.Overseer.WPF.Provider.CircleCI.Api.Models
         [EnumMember(Value = "timedout")]
         TimedOut,
 
+        /// <summary>
+        /// The build was not run.
+        /// </summary>
         [EnumMember(Value = "not_run")]
         NotRun,
 

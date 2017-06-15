@@ -11,7 +11,7 @@
     cal:Bind.AtDesignTime="True"
     d:DataContext="{d:DesignInstance d:Type=vm:BuildNotificationViewModel,
                                      d:IsDesignTimeCreatable=True}"
-    mc:Ignorable="d">
+    mc:Ignorable="d" cal:Message.Attach="[Event MouseEnter] = [Action KeepOpen]; [Event MouseLeave] = [Action Close]">
     <UserControl.Resources>
         <Style x:Key="BuildBorderStyle" TargetType="{x:Type Border}">
             <Setter Property="BorderThickness" Value="5,0,0,0" />
@@ -80,7 +80,7 @@
             <Setter Property="FontWeight" Value="SemiBold" />
         </Style>
     </UserControl.Resources>
-    <Button x:Name="View">
+    <Button cal:Message.Attach="View">
         <Button.Template>
             <ControlTemplate>
                 <Border>

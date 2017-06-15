@@ -19,6 +19,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     public class BuildNotificationViewModel : ViewAware, IBuildNotificationViewModel
     {
         private readonly Uri _webUrl;
+        private DispatcherTimer _dispatcher;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="BuildNotificationViewModel" /> class.
@@ -30,16 +31,12 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             Ensure.That(project).IsNotNull();
             Ensure.That(build).IsNotNull();
 
-            const int showForSeconds = 10;
-
-            var dispatcher = new DispatcherTimer(TimeSpan.FromSeconds(showForSeconds), DispatcherPriority.Normal, (sender, args) => { Close(); }, Application.Current.Dispatcher);
-
-            dispatcher.Start();
-
             Name = BuildMessageUtility.GetBuildName(project, build);
             Message = BuildMessageUtility.GetBuildStatusMessage(build.Status, new Dictionary<string, string> { { "requested by", build.RequestedBy } });
             Status = build.Status;
             _webUrl = build.WebUrl;
+
+            Close();
         }
 
         /// <summary>
@@ -67,7 +64,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         public BuildStatus? Status { get; }
 
         /// <summary>
-        /// Views this instance.
+        /// 
         /// </summary>
         public void View()
         {
@@ -79,7 +76,29 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             Process.Start(new ProcessStartInfo(_webUrl.AbsoluteUri));
         }
 
-        private void Close()
+        /// <summary>
+        /// Keeps the notification open.
+        /// </summary>
+        public void KeepOpen()
+        {
+            _dispatcher?.Stop();
+        }
+
+        /// <summary>
+        /// Closes the notification.
+        /// </summary>
+        public void Close()
+        {
+            const int showForSeconds = 10;
+
+            _dispatcher?.Stop();
+
+            _dispatcher = new DispatcherTimer(TimeSpan.FromSeconds(showForSeconds), DispatcherPriority.Normal, (sender, args) => { TryClose(); }, Application.Current.Dispatcher);
+
+            _dispatcher.Start();
+        }
+
+        private void TryClose()
         {
             var popup = GetView() as Popup;
 

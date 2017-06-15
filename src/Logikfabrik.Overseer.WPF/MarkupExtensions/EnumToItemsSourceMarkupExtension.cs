@@ -2,13 +2,12 @@
 //   Copyright (c) 2016 anton(at)logikfabrik.se. Licensed under the MIT license.
 // </copyright>
 
-using System.ComponentModel;
-using System.Reflection;
-
 namespace Logikfabrik.Overseer.WPF.MarkupExtensions
 {
     using System;
+    using System.ComponentModel;
     using System.Linq;
+    using System.Reflection;
     using System.Windows.Markup;
     using EnsureThat;
 
