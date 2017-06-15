@@ -23,22 +23,32 @@
                     <ControlTemplate.Resources>
                         <Style BasedOn="{StaticResource {x:Type ComboBoxItem}}" TargetType="{x:Type ComboBoxItem}">
                             <Setter Property="OverridesDefaultStyle" Value="True" />
-                            <Setter Property="TextElement.Foreground" Value="{DynamicResource ComboBox.Static.Foreground}" />
                             <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}" />
+                            <Setter Property="Background" Value="{DynamicResource ComboBoxItem.Static.Background}" />
+                            <Setter Property="Foreground" Value="{Binding Path=(TextElement.Foreground), RelativeSource={RelativeSource Self}}" />
+                            <Setter Property="TextElement.Foreground" Value="{DynamicResource ComboBoxItem.Static.Foreground}" />
+                            <Setter Property="BorderBrush" Value="{DynamicResource ComboBoxItem.Static.Border}" />
+                            <Setter Property="BorderThickness" Value="2" />
                             <Setter Property="Template">
                                 <Setter.Value>
                                     <ControlTemplate TargetType="{x:Type ComboBoxItem}">
-                                        <Border x:Name="PART_Border" Background="{DynamicResource ComboBox.Static.Background}">
+                                        <Border
+                                            x:Name="PART_Border"
+                                            Background="{DynamicResource ComboBox.Static.Background}"
+                                            BorderBrush="{TemplateBinding BorderBrush}"
+                                            BorderThickness="{TemplateBinding BorderThickness}">
                                             <ContentPresenter />
                                         </Border>
                                         <ControlTemplate.Triggers>
                                             <Trigger Property="IsMouseOver" Value="True">
-                                                <Setter TargetName="PART_Border" Property="Background" Value="{DynamicResource ComboBox.MouseOver.Background}" />
-                                                <Setter Property="TextElement.Foreground" Value="{DynamicResource ComboBox.MouseOver.Foreground}" />
+                                                <Setter TargetName="PART_Border" Property="Background" Value="{DynamicResource ComboBoxItem.MouseOver.Background}" />
+                                                <Setter TargetName="PART_Border" Property="BorderBrush" Value="{DynamicResource ComboBoxItem.MouseOver.Border}" />
+                                                <Setter Property="TextElement.Foreground" Value="{DynamicResource ComboBoxItem.MouseOver.Foreground}" />
                                             </Trigger>
                                             <Trigger Property="IsHighlighted" Value="True">
-                                                <Setter TargetName="PART_Border" Property="Background" Value="{DynamicResource ComboBox.Pressed.Background}" />
-                                                <Setter Property="TextElement.Foreground" Value="{DynamicResource ComboBox.Pressed.Foreground}" />
+                                                <Setter TargetName="PART_Border" Property="Background" Value="{DynamicResource ComboBoxItem.Pressed.Background}" />
+                                                <Setter TargetName="PART_Border" Property="BorderBrush" Value="{DynamicResource ComboBoxItem.Pressed.Border}" />
+                                                <Setter Property="TextElement.Foreground" Value="{DynamicResource ComboBoxItem.Pressed.Foreground}" />
                                             </Trigger>
                                         </ControlTemplate.Triggers>
                                     </ControlTemplate>

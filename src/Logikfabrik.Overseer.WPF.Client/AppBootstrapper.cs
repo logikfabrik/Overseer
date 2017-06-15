@@ -6,10 +6,13 @@ namespace Logikfabrik.Overseer.WPF.Client
 {
     using System;
     using System.Collections.Generic;
+    using System.Globalization;
     using System.IO;
     using System.Linq;
     using System.Reflection;
     using System.Windows;
+    using System.Windows.Documents;
+    using System.Windows.Markup;
     using CacheManager.Core;
     using Caliburn.Micro;
     using log4net.Config;
@@ -64,6 +67,8 @@ namespace Logikfabrik.Overseer.WPF.Client
         protected override void OnStartup(object sender, StartupEventArgs e)
         {
             base.OnStartup(sender, e);
+
+            SetXamlBindingLanguage();
 
             bool? dialogResult = true;
 
@@ -248,6 +253,14 @@ namespace Logikfabrik.Overseer.WPF.Client
             {
                 AppDomain.CurrentDomain.Load(AssemblyName.GetAssemblyName(path));
             }
+        }
+
+        private void SetXamlBindingLanguage()
+        {
+            var language = XmlLanguage.GetLanguage(CultureInfo.CurrentCulture.Name);
+
+            FrameworkContentElement.LanguageProperty.OverrideMetadata(typeof(TextElement), new FrameworkPropertyMetadata(language));
+            FrameworkElement.LanguageProperty.OverrideMetadata(typeof(FrameworkElement), new FrameworkPropertyMetadata(language));
         }
     }
 }
