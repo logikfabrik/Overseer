@@ -1,4 +1,4 @@
-﻿// <copyright file="HashHelper.cs" company="Logikfabrik">
+﻿// <copyright file="HashUtility.cs" company="Logikfabrik">
 //   Copyright (c) 2016 anton(at)logikfabrik.se. Licensed under the MIT license.
 // </copyright>
 
@@ -8,9 +8,9 @@ namespace Logikfabrik.Overseer.Settings
     using EnsureThat;
 
     /// <summary>
-    /// The <see cref="HashHelper" /> class.
+    /// The <see cref="HashUtility" /> class.
     /// </summary>
-    public static class HashHelper
+    public static class HashUtility
     {
         /// <summary>
         /// Gets a salt.

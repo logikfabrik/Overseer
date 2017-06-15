@@ -1,4 +1,4 @@
-﻿// <copyright file="BaseUriHelper.cs" company="Logikfabrik">
+﻿// <copyright file="BaseUriUtility.cs" company="Logikfabrik">
 //   Copyright (c) 2016 anton(at)logikfabrik.se. Licensed under the MIT license.
 // </copyright>
 
@@ -9,9 +9,9 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity
     using EnsureThat;
 
     /// <summary>
-    /// The <see cref="BaseUriHelper" /> class.
+    /// The <see cref="BaseUriUtility" /> class.
     /// </summary>
-    public static class BaseUriHelper
+    public static class BaseUriUtility
     {
         /// <summary>
         /// Creates a base <see cref="Uri" />.

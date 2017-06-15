@@ -48,7 +48,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity.Api
                 }
             };
 
-            var baseUri = BaseUriHelper.GetBaseUri(settings.Url, settings.Version, settings.AuthenticationType);
+            var baseUri = BaseUriUtility.GetBaseUri(settings.Url, settings.Version, settings.AuthenticationType);
 
             switch (settings.AuthenticationType)
             {

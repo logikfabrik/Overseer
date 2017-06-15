@@ -114,7 +114,7 @@
     <Compile Include="Settings\ConnectionSettingsRepository.cs" />
     <Compile Include="Settings\ConnectionSettingsSignature.cs" />
     <Compile Include="Settings\DataProtector.cs" />
-    <Compile Include="Settings\HashHelper.cs" />
+    <Compile Include="Settings\HashUtility.cs" />
     <Compile Include="Settings\IConnectionSettingsEncrypter.cs" />
     <Compile Include="Settings\IDataProtector.cs" />
     <Compile Include="Settings\IRegistryStore.cs" />

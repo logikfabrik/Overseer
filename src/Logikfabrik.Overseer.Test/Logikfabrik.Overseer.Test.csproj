@@ -91,7 +91,7 @@
     <Compile Include="Settings\ConnectionSettingsSerializerTest.cs" />
     <Compile Include="Settings\ConnectionSettingsStoreTest.cs" />
     <Compile Include="Settings\ConnectionSettingsSignatureTest.cs" />
-    <Compile Include="Settings\HashHelperTest.cs" />
+    <Compile Include="Settings\HashUtilityTest.cs" />
     <Compile Include="Settings\XmlEncrypterTest.cs" />
   </ItemGroup>
   <ItemGroup>

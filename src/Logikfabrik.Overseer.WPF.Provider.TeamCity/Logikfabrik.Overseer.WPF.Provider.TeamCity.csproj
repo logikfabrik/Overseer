@@ -115,7 +115,7 @@
     <Compile Include="Api\Models\TriggerType.cs" />
     <Compile Include="Api\Models\User.cs" />
     <Compile Include="AuthenticationType.cs" />
-    <Compile Include="BaseUriHelper.cs" />
+    <Compile Include="BaseUriUtility.cs" />
     <Compile Include="Build.cs" />
     <Compile Include="BuildProvider.cs" />
     <Compile Include="ConnectionSettings.cs" />

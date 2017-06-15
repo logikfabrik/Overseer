@@ -49,7 +49,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.CircleCI.Api
                 }
             };
 
-            var baseUri = BaseUriHelper.GetBaseUri(settings.Version);
+            var baseUri = BaseUriUtility.GetBaseUri(settings.Version);
 
             _httpClient = new Lazy<HttpClient>(() => GetHttpClient(baseUri, settings.Token));
         }

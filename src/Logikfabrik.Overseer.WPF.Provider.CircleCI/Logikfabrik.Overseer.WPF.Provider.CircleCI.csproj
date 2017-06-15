@@ -106,7 +106,7 @@
     <Compile Include="Api\Models\BuildOutcome.cs" />
     <Compile Include="Api\Models\BuildStatus.cs" />
     <Compile Include="Api\Models\Project.cs" />
-    <Compile Include="BaseUriHelper.cs" />
+    <Compile Include="BaseUriUtility.cs" />
     <Compile Include="Build.cs" />
     <Compile Include="BuildProvider.cs" />
     <Compile Include="ConnectionSettings.cs" />

@@ -54,7 +54,7 @@ namespace Logikfabrik.Overseer.Settings
             Ensure.That(salt).IsNotNull();
             Ensure.That(salt.Length % 16).Is(0);
 
-            var passPhraseHash = HashHelper.GetHash(passPhrase, salt, 32);
+            var passPhraseHash = HashUtility.GetHash(passPhrase, salt, 32);
 
             WritePassPhraseHash(passPhraseHash);
 
@@ -105,7 +105,7 @@ namespace Logikfabrik.Overseer.Settings
         /// <param name="passPhraseHash">The pass phrase hash.</param>
         internal void WritePassPhraseHash(byte[] passPhraseHash)
         {
-            var entropy = HashHelper.GetSalt(16);
+            var entropy = HashUtility.GetSalt(16);
 
             var cipherValue = _dataProtector.Protect(passPhraseHash, entropy);
 

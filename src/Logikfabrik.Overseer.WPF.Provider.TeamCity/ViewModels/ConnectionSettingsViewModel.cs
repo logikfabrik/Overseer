@@ -69,7 +69,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity.ViewModels
             {
                 Uri baseUri;
 
-                return BaseUriHelper.TryGetBaseUri(Url, Version, AuthenticationType, out baseUri) ? baseUri.ToString() : null;
+                return BaseUriUtility.TryGetBaseUri(Url, Version, AuthenticationType, out baseUri) ? baseUri.ToString() : null;
             }
         }
 

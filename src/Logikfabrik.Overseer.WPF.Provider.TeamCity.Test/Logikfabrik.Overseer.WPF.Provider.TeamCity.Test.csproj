@@ -84,7 +84,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Api\ApiClientTest.cs" />
-    <Compile Include="BaseUriHelperTest.cs" />
+    <Compile Include="BaseUriUtilityTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

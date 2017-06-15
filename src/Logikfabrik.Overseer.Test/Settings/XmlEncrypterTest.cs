@@ -34,7 +34,7 @@ namespace Logikfabrik.Overseer.Test.Settings
 
             var xmlEncrypter = new XmlEncrypter(dataProtectorMock.Object, registryStoreMock.Object);
 
-            var passPhraseHash = HashHelper.GetHash("MyPassPhrase", HashHelper.GetSalt(16), 32);
+            var passPhraseHash = HashUtility.GetHash("MyPassPhrase", HashUtility.GetSalt(16), 32);
 
             xmlEncrypter.WritePassPhraseHash(passPhraseHash);
 
