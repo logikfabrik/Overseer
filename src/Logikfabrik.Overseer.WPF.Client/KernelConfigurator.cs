@@ -1,12 +1,10 @@
-﻿// <copyright file="KernelHelper.cs" company="Logikfabrik">
+﻿// <copyright file="KernelConfigurator.cs" company="Logikfabrik">
 //   Copyright (c) 2016 anton(at)logikfabrik.se. Licensed under the MIT license.
 // </copyright>
 
 namespace Logikfabrik.Overseer.WPF.Client
 {
-    using System;
     using System.Collections.Generic;
-    using System.Linq;
     using System.Reflection;
     using CacheManager.Core;
     using Caliburn.Micro;
@@ -14,7 +12,6 @@ namespace Logikfabrik.Overseer.WPF.Client
     using Logging;
     using Ninject;
     using Ninject.Extensions.Factory;
-    using Ninject.Modules;
     using Overseer.Logging;
     using Providers.Caching;
     using Providers.Settings;
@@ -22,28 +19,20 @@ namespace Logikfabrik.Overseer.WPF.Client
     using WPF.ViewModels;
     using WPF.ViewModels.Factories;
 
-    public class KernelHelper
+    /// <summary>
+    /// The <see cref="KernelConfigurator" /> class.
+    /// </summary>
+    public static class KernelConfigurator
     {
-        private readonly Lazy<IEnumerable<Assembly>> _runtimeAssemblies;
-
         /// <summary>
-        /// Initializes a new instance of the <see cref="KernelHelper" /> class.
+        /// Configures the specified kernel.
         /// </summary>
-        public KernelHelper()
-        {
-            _runtimeAssemblies = new Lazy<IEnumerable<Assembly>>(GetProductAssemblies);
-        }
-
-        public IEnumerable<Assembly> Assemblies => _runtimeAssemblies.Value;
-
-        public void ConfigureDesignTime(IKernel kernel)
-        {
-            // Do nothing.
-        }
-
-        public void ConfigureRunTime(IKernel kernel)
+        /// <param name="kernel">The kernel.</param>
+        /// <param name="modules">The modules.</param>
+        public static void Configure(IKernel kernel, IEnumerable<Assembly> modules)
         {
             Ensure.That(kernel).IsNotNull();
+            Ensure.That(modules).IsNotNull();
 
             // Business logic setup.
             kernel.Bind<IAppSettingsFactory>().ToFactory();
@@ -77,21 +66,7 @@ namespace Logikfabrik.Overseer.WPF.Client
             kernel.Bind<IConnectionViewModelStrategy>().To<ConnectionViewModelStrategy>();
             kernel.Bind<ConnectionsViewModel>().ToSelf().InSingletonScope();
 
-            kernel.Load(GetModules());
-        }
-
-        private IEnumerable<Assembly> GetProductAssemblies()
-        {
-            var product = GetType().Assembly.GetCustomAttribute<AssemblyProductAttribute>()?.Product;
-
-            Func<Assembly, bool> isProductAssembly = assembly => assembly.GetCustomAttribute<AssemblyProductAttribute>()?.Product == product;
-
-            return AppDomain.CurrentDomain.GetAssemblies().Where(assembly => !assembly.IsDynamic && isProductAssembly(assembly)).ToArray();
-        }
-
-        private IEnumerable<Assembly> GetModules()
-        {
-            return _runtimeAssemblies.Value.Where(assembly => assembly.GetExportedTypes().Any(type => !type.IsAbstract && typeof(INinjectModule).IsAssignableFrom(type)));
+            kernel.Load(modules);
         }
     }
 }

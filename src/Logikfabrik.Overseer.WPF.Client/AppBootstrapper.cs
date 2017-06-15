@@ -6,11 +6,8 @@ namespace Logikfabrik.Overseer.WPF.Client
 {
     using System;
     using System.Collections.Generic;
-    using System.Globalization;
     using System.Reflection;
     using System.Windows;
-    using System.Windows.Documents;
-    using System.Windows.Markup;
     using Caliburn.Micro;
     using log4net.Config;
     using Logging;
@@ -24,7 +21,7 @@ namespace Logikfabrik.Overseer.WPF.Client
     public class AppBootstrapper : BootstrapperBase, IDisposable
     {
         private IKernel _kernel;
-        private KernelHelper _kernelHelper;
+        private AppCatalog _catalog;
         private bool _isDisposed;
 
         /// <summary>
@@ -32,12 +29,11 @@ namespace Logikfabrik.Overseer.WPF.Client
         /// </summary>
         public AppBootstrapper()
         {
-            new AssemblyLoader().Load();
-
             _kernel = new StandardKernel();
-            _kernelHelper = new KernelHelper();
+            _catalog = new AppCatalog(AppCatalog.GetProduct(GetType().Assembly));
 
             XmlConfigurator.Configure();
+            DataBindingLanguageConfigurator.Configure();
 
             Initialize();
         }
@@ -58,8 +54,6 @@ namespace Logikfabrik.Overseer.WPF.Client
         protected override void OnStartup(object sender, StartupEventArgs e)
         {
             base.OnStartup(sender, e);
-
-            SetXamlBindingLanguage();
 
             bool? dialogResult = true;
 
@@ -90,18 +84,16 @@ namespace Logikfabrik.Overseer.WPF.Client
         {
             base.Configure();
 
-            if (Execute.InDesignMode)
+            if (!Execute.InDesignMode)
             {
-                _kernelHelper.ConfigureDesignTime(_kernel);
-            }
-            else
-            {
-                _kernelHelper.ConfigureRunTime(_kernel);
+                KernelConfigurator.Configure(_kernel, _catalog.Modules);
 
                 LogManager.GetLog = type => _kernel.Get<IUILogService>(new ConstructorArgument("type", type));
             }
 
             ViewLocator.AddNamespaceMapping("*", "Logikfabrik.Overseer.WPF.Client.Views");
+
+            _catalog = null;
         }
 
         /// <summary>
@@ -142,7 +134,7 @@ namespace Logikfabrik.Overseer.WPF.Client
         /// </returns>
         protected override IEnumerable<Assembly> SelectAssemblies()
         {
-            return Execute.InDesignMode ? base.SelectAssemblies() : _kernelHelper.Assemblies;
+            return Execute.InDesignMode ? base.SelectAssemblies() : _catalog.Assemblies;
         }
 
         /// <summary>
@@ -164,18 +156,10 @@ namespace Logikfabrik.Overseer.WPF.Client
                     _kernel = null;
                 }
 
-                _kernelHelper = null;
+                _catalog = null;
             }
 
             _isDisposed = true;
-        }
-
-        private void SetXamlBindingLanguage()
-        {
-            var language = XmlLanguage.GetLanguage(CultureInfo.CurrentCulture.Name);
-
-            FrameworkContentElement.LanguageProperty.OverrideMetadata(typeof(TextElement), new FrameworkPropertyMetadata(language));
-            FrameworkElement.LanguageProperty.OverrideMetadata(typeof(FrameworkElement), new FrameworkPropertyMetadata(language));
         }
     }
 }

@@ -94,7 +94,8 @@ namespace Logikfabrik.Overseer.WPF.Client.ViewModels
             }
 
             _eventAggregator.Unsubscribe(this);
-            WeakEventManager<IBuildMonitor, BuildMonitorProjectProgressEventArgs>.AddHandler(_buildMonitor, nameof(_buildMonitor.ProjectProgressChanged), BuildMonitorProgressChanged);
+
+            WeakEventManager<IBuildMonitor, BuildMonitorProjectProgressEventArgs>.RemoveHandler(_buildMonitor, nameof(_buildMonitor.ProjectProgressChanged), BuildMonitorProgressChanged);
 
             _isDisposed = true;
         }

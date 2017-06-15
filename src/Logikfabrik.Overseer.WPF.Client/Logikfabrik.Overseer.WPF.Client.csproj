@@ -120,8 +120,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="AppBootstrapper.cs" />
+    <Compile Include="AppCatalog.cs" />
     <Compile Include="AssemblyLoader.cs" />
-    <Compile Include="KernelHelper.cs" />
+    <Compile Include="KernelConfigurator.cs" />
+    <Compile Include="DataBindingLanguageConfigurator.cs" />
     <Compile Include="NativeMethods.cs" />
     <Compile Include="Providers\Caching\CacheManagerProvider.cs" />
     <Compile Include="Providers\Settings\ConnectionSettingsSerializerProvider.cs" />
