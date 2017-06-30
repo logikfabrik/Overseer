@@ -12,6 +12,9 @@ namespace Logikfabrik.Overseer.WPF.Extensions
     /// <summary>
     /// The <see cref="HyperlinkExtensions" /> class.
     /// </summary>
+    /// <remarks>
+    /// Based on SO https://stackoverflow.com/a/11433814, answered by Arthur Nunes, https://stackoverflow.com/users/702828/arthur-nunes.
+    /// </remarks>
     public static class HyperlinkExtensions
     {
         /// <summary>

@@ -14,6 +14,9 @@ namespace Logikfabrik.Overseer.WPF.MarkupExtensions
     /// <summary>
     /// The <see cref="EnumToItemsSourceMarkupExtension" /> class.
     /// </summary>
+    /// <remarks>
+    /// Based on SO https://stackoverflow.com/a/20919656, answered by Rohit Vats, https://stackoverflow.com/users/632337/rohit-vats.
+    /// </remarks>
     public class EnumToItemsSourceMarkupExtension : MarkupExtension
     {
         private readonly Type _enumType;

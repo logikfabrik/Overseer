@@ -54,10 +54,10 @@ namespace Logikfabrik.Overseer.WPF
 
             if (!string.IsNullOrWhiteSpace(branch))
             {
-                builder.AppendFormat("({0})", branch);
+                builder.AppendFormat("({0}) ", branch);
             }
 
-            return builder.Length > 0 ? builder.ToString() : null;
+            return builder.Length > 0 ? builder.ToString().Trim() : null;
         }
 
         /// <summary>

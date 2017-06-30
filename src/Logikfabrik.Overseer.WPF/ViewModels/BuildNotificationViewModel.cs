@@ -39,6 +39,12 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             Close();
         }
 
+
+        /// <summary>
+        /// Occurs if closing.
+        /// </summary>
+        public event EventHandler<EventArgs> Closing;
+
         /// <summary>
         /// Gets the name.
         /// </summary>
@@ -98,14 +104,28 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             _dispatcher.Start();
         }
 
+        /// <summary>
+        /// Raises the <see cref="Closing" /> event.
+        /// </summary>
+        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
+        protected virtual void OnClosing(EventArgs e)
+        {
+            Closing?.Invoke(this, e);
+        }
+
         private void TryClose()
         {
+            _dispatcher?.Stop();
+            _dispatcher = null;
+
             var popup = GetView() as Popup;
 
             if (popup == null)
             {
                 return;
             }
+
+            OnClosing(EventArgs.Empty);
 
             popup.IsOpen = false;
         }

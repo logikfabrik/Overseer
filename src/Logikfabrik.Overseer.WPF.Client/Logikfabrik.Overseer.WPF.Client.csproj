@@ -122,6 +122,7 @@
     <Compile Include="AppBootstrapper.cs" />
     <Compile Include="AppCatalog.cs" />
     <Compile Include="AssemblyLoader.cs" />
+    <Compile Include="DataBindingActionConfigurator.cs" />
     <Compile Include="KernelConfigurator.cs" />
     <Compile Include="DataBindingLanguageConfigurator.cs" />
     <Compile Include="NativeMethods.cs" />

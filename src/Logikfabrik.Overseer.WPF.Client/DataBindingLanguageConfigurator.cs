@@ -12,10 +12,13 @@ namespace Logikfabrik.Overseer.WPF.Client
     /// <summary>
     /// The <see cref="DataBindingLanguageConfigurator" /> class.
     /// </summary>
+    /// <remarks>
+    /// Based on SO https://stackoverflow.com/a/520334, answered by loraderon, https://stackoverflow.com/users/22092/loraderon.
+    /// </remarks>
     public static class DataBindingLanguageConfigurator
     {
         /// <summary>
-        /// Configures the data binding language.
+        /// Configures data binding.
         /// </summary>
         public static void Configure()
         {

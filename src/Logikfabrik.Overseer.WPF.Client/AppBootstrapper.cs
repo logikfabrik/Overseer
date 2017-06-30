@@ -34,6 +34,7 @@ namespace Logikfabrik.Overseer.WPF.Client
 
             XmlConfigurator.Configure();
             DataBindingLanguageConfigurator.Configure();
+            DataBindingActionConfigurator.Configure();
 
             Initialize();
         }

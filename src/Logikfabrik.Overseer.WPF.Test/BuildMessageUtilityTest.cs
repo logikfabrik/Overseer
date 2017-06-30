@@ -29,23 +29,59 @@ namespace Logikfabrik.Overseer.WPF.Test
         }
 
         [Fact]
-        public void CanGetGetBuildNameForProjectNameVersionNumberAndBranch()
+        public void CanGetBuildNameForProjectName()
         {
-            var buildName1 = BuildMessageUtility.GetBuildName("My Project", "1.0.0", "My Branch");
+            var buildName = BuildMessageUtility.GetBuildName("My Project", null, null);
 
-            Assert.Equal("My Project 1.0.0 (My Branch)", buildName1);
+            Assert.Equal("My Project", buildName);
+        }
 
-            var buildName2 = BuildMessageUtility.GetBuildName(null, "1.0.0", "My Branch");
+        [Fact]
+        public void CanGetBuildNameForVersionNumber()
+        {
+            var buildName = BuildMessageUtility.GetBuildName(null, "1.0.0", null);
 
-            Assert.Equal("1.0.0 (My Branch)", buildName2);
+            Assert.Equal("1.0.0", buildName);
+        }
 
-            var buildName3 = BuildMessageUtility.GetBuildName(null, null, "My Branch");
+        [Fact]
+        public void CanGetBuildNameForBranch()
+        {
+            var buildName = BuildMessageUtility.GetBuildName(null, null, "My Branch");
 
-            Assert.Equal("(My Branch)", buildName3);
+            Assert.Equal("(My Branch)", buildName);
+        }
 
-            var buildName4 = BuildMessageUtility.GetBuildName(null, null, null);
+        [Fact]
+        public void CanGetBuildNameForProjectNameVersionNumberAndBranch()
+        {
+            var buildName = BuildMessageUtility.GetBuildName("My Project", "1.0.0", "My Branch");
 
-            Assert.Null(buildName4);
+            Assert.Equal("My Project 1.0.0 (My Branch)", buildName);
+        }
+
+        [Fact]
+        public void CanGetBuildNameForProjectNameAndVersionNumber()
+        {
+            var buildName = BuildMessageUtility.GetBuildName("My Project", "1.0.0", null);
+
+            Assert.Equal("My Project 1.0.0", buildName);
+        }
+
+        [Fact]
+        public void CanGetBuildNameForVersionNumberAndBranch()
+        {
+            var buildName = BuildMessageUtility.GetBuildName(null, "1.0.0", "My Branch");
+
+            Assert.Equal("1.0.0 (My Branch)", buildName);
+        }
+
+        [Fact]
+        public void CanGetBuildNameForProjectNameAndBranch()
+        {
+            var buildName = BuildMessageUtility.GetBuildName("My Project", null, "My Branch");
+
+            Assert.Equal("My Project (My Branch)", buildName);
         }
 
         [Fact]
@@ -133,12 +169,6 @@ namespace Logikfabrik.Overseer.WPF.Test
             var buildRunTimeMessage7 = BuildMessageUtility.GetBuildRunTimeMessage(null, null, null);
 
             Assert.Null(buildRunTimeMessage7);
-        }
-
-        [Fact(Skip = "TODO")]
-        public void CanGetSuccessRateMessage()
-        {
-            // TODO: This unit test.
         }
     }
 }
