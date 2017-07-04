@@ -30,7 +30,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor.Api
         public ApiClient(ConnectionSettings settings)
             : base(settings)
         {
-            _httpClient = new Lazy<HttpClient>(() => GetHttpClient(new Uri("https://ci.appveyor.com/"), settings.Token));
+            _httpClient = new Lazy<HttpClient>(() => GetHttpClient(UriUtility.BaseUri, settings.Token));
         }
 
         /// <summary>

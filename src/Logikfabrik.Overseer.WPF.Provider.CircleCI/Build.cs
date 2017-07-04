@@ -133,10 +133,10 @@ namespace Logikfabrik.Overseer.WPF.Provider.CircleCI
             switch (build.Status)
             {
                 case Api.Models.BuildStatus.Success:
-                case Api.Models.BuildStatus.NoTests:
-                    return BuildStatus.Succeeded;
+                return BuildStatus.Succeeded;
 
                 case Api.Models.BuildStatus.Failed:
+                case Api.Models.BuildStatus.NoTests:
                     return BuildStatus.Failed;
 
                 case Api.Models.BuildStatus.Canceled:

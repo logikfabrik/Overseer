@@ -171,14 +171,6 @@ namespace Logikfabrik.Overseer.Settings
                             encryptedData.EncryptionMethod = new EncryptionMethod(EncryptedXml.XmlEncAES128Url);
                             break;
 
-                        case 192:
-                            encryptedData.EncryptionMethod = new EncryptionMethod(EncryptedXml.XmlEncAES192Url);
-                            break;
-
-                        case 256:
-                            encryptedData.EncryptionMethod = new EncryptionMethod(EncryptedXml.XmlEncAES256Url);
-                            break;
-
                         default:
                             throw new NotSupportedException();
                     }
@@ -225,7 +217,7 @@ namespace Logikfabrik.Overseer.Settings
             var iv = new byte[16];
 
             Array.Copy(passPhraseHash, 0, key, 0, 16);
-            Array.Copy(passPhraseHash, 0, iv, 0, 16);
+            Array.Copy(passPhraseHash, 0, iv, 0, 16); // TODO: Generate/save/load IV seperate from pass phrase (key).
 
             var algorithm = Rijndael.Create();
 

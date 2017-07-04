@@ -36,9 +36,8 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             Status = build.Status;
             _webUrl = build.WebUrl;
 
-            Close();
+            StartClosing();
         }
-
 
         /// <summary>
         /// Occurs if closing.
@@ -72,7 +71,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// <summary>
         /// 
         /// </summary>
-        public void View()
+        public void ViewInBrowser()
         {
             if (_webUrl == null)
             {
@@ -91,17 +90,28 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         }
 
         /// <summary>
-        /// Closes the notification.
+        /// Starts closing the notification.
         /// </summary>
-        public void Close()
+        public void StartClosing()
         {
             const int showForSeconds = 10;
 
             _dispatcher?.Stop();
 
-            _dispatcher = new DispatcherTimer(TimeSpan.FromSeconds(showForSeconds), DispatcherPriority.Normal, (sender, args) => { TryClose(); }, Application.Current.Dispatcher);
+            _dispatcher = new DispatcherTimer(TimeSpan.FromSeconds(showForSeconds), DispatcherPriority.Normal, (sender, args) => { Close(); }, Application.Current.Dispatcher);
 
             _dispatcher.Start();
+        }
+
+        /// <summary>
+        /// Closes the notification.
+        /// </summary>
+        /// <param name="e">The <see cref="RoutedEventArgs" /> instance containing the event data.</param>
+        public void Close(RoutedEventArgs e)
+        {
+            Close();
+
+            e.Handled = true;
         }
 
         /// <summary>
@@ -113,7 +123,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             Closing?.Invoke(this, e);
         }
 
-        private void TryClose()
+        private void Close()
         {
             _dispatcher?.Stop();
             _dispatcher = null;

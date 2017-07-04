@@ -16,9 +16,11 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor
         /// <summary>
         /// Initializes a new instance of the <see cref="Build" /> class.
         /// </summary>
+        /// <param name="project">The project.</param>
         /// <param name="build">The build.</param>
-        public Build(Api.Models.Build build)
+        public Build(Api.Models.Project project, Api.Models.Build build)
         {
+            Ensure.That(project).IsNotNull();
             Ensure.That(build).IsNotNull();
 
             Id = build.BuildId.ToString();
@@ -29,7 +31,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor
             EndTime = build.Finished?.ToUniversalTime();
             Status = GetStatus(build);
             RequestedBy = build.AuthorUsername;
-            WebUrl = null;
+            WebUrl = GetWebUrl(project, build);
             Changes = new[]
             {
                 new Change
@@ -144,6 +146,16 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor
                 default:
                     return null;
             }
+        }
+
+        private static Uri GetWebUrl(Api.Models.Project project, Api.Models.Build build)
+        {
+            var builder = new UriBuilder(UriUtility.BaseUri)
+            {
+                Path = $"project/{project.AccountName}/{project.Slug}/build/{build.Version}"
+            };
+
+            return builder.Uri;
         }
     }
 }

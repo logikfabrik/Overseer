@@ -4,6 +4,8 @@
 
 namespace Logikfabrik.Overseer.WPF.ViewModels
 {
+    using System.Windows;
+
     /// <summary>
     /// The <see cref="IBuildNotificationViewModel" /> interface.
     /// </summary>
@@ -34,8 +36,24 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         BuildStatus? Status { get; }
 
         /// <summary>
-        /// Views this instance.
+        /// 
         /// </summary>
-        void View();
+        void ViewInBrowser();
+
+        /// <summary>
+        /// Keeps the notification open.
+        /// </summary>
+        void KeepOpen();
+
+        /// <summary>
+        /// Starts closing the notification.
+        /// </summary>
+        void StartClosing();
+
+        /// <summary>
+        /// Closes the notification.
+        /// </summary>
+        /// <param name="e">The <see cref="RoutedEventArgs" /> instance containing the event data.</param>
+        void Close(RoutedEventArgs e);
     }
 }

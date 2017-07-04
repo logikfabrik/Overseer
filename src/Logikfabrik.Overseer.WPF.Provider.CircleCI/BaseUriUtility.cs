@@ -21,7 +21,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.CircleCI
         {
             Ensure.That(version).IsNotNullOrWhiteSpace();
 
-            var builder = new UriBuilder("https://circleci.com/")
+            var builder = new UriBuilder(UriUtility.BaseUri)
             {
                 Path = $"api/{version}/"
             };

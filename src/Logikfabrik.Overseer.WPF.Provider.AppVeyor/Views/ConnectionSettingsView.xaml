@@ -5,6 +5,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:ex="clr-namespace:Logikfabrik.Overseer.WPF.Extensions;assembly=Logikfabrik.Overseer.WPF"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:appVeyor="clr-namespace:Logikfabrik.Overseer.WPF.Provider.AppVeyor"
     d:DesignHeight="300"
     d:DesignWidth="300"
     mc:Ignorable="d">
@@ -30,7 +31,7 @@
             <TextBlock Text="Token" />
             <TextBlock>
                 You create your token at
-                <Hyperlink ex:HyperlinkExtensions.IsExternal="True" NavigateUri="https://ci.appveyor.com">appveyor.com</Hyperlink>
+                <Hyperlink ex:HyperlinkExtensions.IsExternal="True" NavigateUri="{Binding Source={x:Static appVeyor:UriUtility.BaseUri}}">ci.appveyor.com</Hyperlink>
             </TextBlock>
             <TextBox Text="{Binding Path=Token, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" />
         </StackPanel>

@@ -13,6 +13,7 @@ namespace Logikfabrik.Overseer.WPF.Client
     using Logging;
     using Ninject;
     using Ninject.Parameters;
+    using Overseer.Logging;
     using ViewModels;
 
     /// <summary>
@@ -31,10 +32,6 @@ namespace Logikfabrik.Overseer.WPF.Client
         {
             _kernel = new StandardKernel();
             _catalog = new AppCatalog(AppCatalog.GetProduct(GetType().Assembly));
-
-            XmlConfigurator.Configure();
-            DataBindingLanguageConfigurator.Configure();
-            DataBindingActionConfigurator.Configure();
 
             Initialize();
         }
@@ -95,6 +92,11 @@ namespace Logikfabrik.Overseer.WPF.Client
             ViewLocator.AddNamespaceMapping("*", "Logikfabrik.Overseer.WPF.Client.Views");
 
             _catalog = null;
+
+            XmlConfigurator.Configure();
+            DataBindingLanguageConfigurator.Configure();
+            DataBindingActionConfigurator.Configure();
+            ErrorHandlerConfigurator.Configure(_kernel.Get<ILogService>());
         }
 
         /// <summary>

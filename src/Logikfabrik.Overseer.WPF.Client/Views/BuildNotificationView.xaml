@@ -11,7 +11,7 @@
     cal:Bind.AtDesignTime="True"
     d:DataContext="{d:DesignInstance d:Type=vm:BuildNotificationViewModel,
                                      d:IsDesignTimeCreatable=True}"
-    mc:Ignorable="d" cal:Message.Attach="[Event MouseEnter] = [Action KeepOpen]; [Event MouseLeave] = [Action Close]">
+    mc:Ignorable="d" cal:Message.Attach="[Event MouseEnter] = [Action KeepOpen]; [Event MouseLeave] = [Action StartClosing]">
     <UserControl.Resources>
         <Style x:Key="BuildBorderStyle" TargetType="{x:Type Border}">
             <Setter Property="BorderThickness" Value="5,0,0,0" />
@@ -80,7 +80,7 @@
             <Setter Property="FontWeight" Value="SemiBold" />
         </Style>
     </UserControl.Resources>
-    <Button cal:Message.Attach="View">
+    <Button cal:Message.Attach="ViewInBrowser">
         <Button.Template>
             <ControlTemplate>
                 <Border>
@@ -91,16 +91,17 @@
                         </MultiBinding>
                     </Border.Style>
                     <Grid>
-                        <Grid.RowDefinitions>
+                        <!--<Grid.RowDefinitions>
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="*" />
                             <RowDefinition Height="Auto" />
-                        </Grid.RowDefinitions>
-                        <StackPanel Grid.Row="0" Margin="20,10">
+                        </Grid.RowDefinitions>-->
+                        <StackPanel Margin="20,10">
                             <TextBlock Style="{StaticResource BuildNameTextBlockStyle}" Text="{Binding Name, Mode=OneTime}" />
                             <TextBlock Style="{StaticResource MessageTextBlockStyle}" Text="{Binding Message, Mode=OneTime}" />
                         </StackPanel>
-                        <StackPanel Grid.Row="2" Margin="20,10">
+                        <Button cal:Message.Attach="[Event Click] = [Action Close($eventArgs)]" Content="X" HorizontalAlignment="Right" VerticalAlignment="Top" />
+                        <StackPanel Margin="20,10" VerticalAlignment="Bottom">
                             <TextBlock Style="{StaticResource OverseerTextBlockStyle}" Text="Overseer" />
                         </StackPanel>
                     </Grid>

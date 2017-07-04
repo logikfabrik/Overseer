@@ -27,7 +27,7 @@ namespace Logikfabrik.Overseer.WPF
 
         public Point Hold()
         {
-            Point GetPoint(int x, int y) => new Point((x * _popupSize.Width) + _offset.X, (y * _popupSize.Height) + _offset.Y);
+            Func<int, int, Point> getPoint = (x, y) => new Point((x * _popupSize.Width) + _offset.X, (y * _popupSize.Height) + _offset.Y);
 
             var cells = new List<KeyValuePair<DateTime, Tuple<int, int>>>();
 
@@ -44,7 +44,7 @@ namespace Logikfabrik.Overseer.WPF
 
                     _grid[columnIndex, rowIndex] = DateTime.UtcNow;
 
-                    return GetPoint(columnIndex, rowIndex);
+                    return getPoint(columnIndex, rowIndex);
                 }
             }
 
@@ -52,7 +52,7 @@ namespace Logikfabrik.Overseer.WPF
 
             _grid[cell.Item1, cell.Item2] = DateTime.UtcNow;
 
-            return GetPoint(cell.Item1, cell.Item2);
+            return getPoint(cell.Item1, cell.Item2);
         }
 
         public void Release(Point point)
