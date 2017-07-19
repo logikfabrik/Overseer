@@ -9,9 +9,10 @@
     Width="400"
     Height="150"
     cal:Bind.AtDesignTime="True"
+    cal:Message.Attach="[Event MouseEnter] = [Action KeepOpen]; [Event MouseLeave] = [Action StartClosing]"
     d:DataContext="{d:DesignInstance d:Type=vm:BuildNotificationViewModel,
                                      d:IsDesignTimeCreatable=True}"
-    mc:Ignorable="d" cal:Message.Attach="[Event MouseEnter] = [Action KeepOpen]; [Event MouseLeave] = [Action StartClosing]">
+    mc:Ignorable="d">
     <UserControl.Resources>
         <Style x:Key="BuildBorderStyle" TargetType="{x:Type Border}">
             <Setter Property="BorderThickness" Value="5,0,0,0" />
@@ -100,7 +101,11 @@
                             <TextBlock Style="{StaticResource BuildNameTextBlockStyle}" Text="{Binding Name, Mode=OneTime}" />
                             <TextBlock Style="{StaticResource MessageTextBlockStyle}" Text="{Binding Message, Mode=OneTime}" />
                         </StackPanel>
-                        <Button cal:Message.Attach="[Event Click] = [Action Close($eventArgs)]" Content="X" HorizontalAlignment="Right" VerticalAlignment="Top" />
+                        <Button
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Top"
+                            cal:Message.Attach="[Event Click] = [Action Close($eventArgs)]"
+                            Content="X" />
                         <StackPanel Margin="20,10" VerticalAlignment="Bottom">
                             <TextBlock Style="{StaticResource OverseerTextBlockStyle}" Text="Overseer" />
                         </StackPanel>

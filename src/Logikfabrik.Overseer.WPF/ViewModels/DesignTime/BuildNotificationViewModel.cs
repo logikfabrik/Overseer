@@ -2,10 +2,10 @@
 //   Copyright (c) 2016 anton(at)logikfabrik.se. Licensed under the MIT license.
 // </copyright>
 
-using System.Windows;
-
 namespace Logikfabrik.Overseer.WPF.ViewModels.DesignTime
 {
+    using System.Windows;
+
     /// <summary>
     /// The <see cref="BuildNotificationViewModel" /> class.
     /// </summary>

@@ -4,6 +4,8 @@
 
 namespace Logikfabrik.Overseer.WPF.Client.ViewModels
 {
+    using System;
+    using System.Windows.Input;
     using Caliburn.Micro;
     using EnsureThat;
     using Navigation;
@@ -26,6 +28,24 @@ namespace Logikfabrik.Overseer.WPF.Client.ViewModels
             Ensure.That(eventAggregator).IsNotNull();
 
             _eventAggregator = eventAggregator;
+
+            // TODO: Move to better location.
+            InputManager.Current.PreProcessInput += (sender, e) =>
+            {
+                var args = e.StagingItem.Input as MouseButtonEventArgs;
+
+                if (args == null)
+                {
+                    return;
+                }
+
+                if (args.ChangedButton == MouseButton.Left && args.ButtonState == MouseButtonState.Released)
+                {
+                    // TODO: Toggle the menu hamburger in XAML.
+                    Close();
+                }
+            };
+
         }
 
         /// <summary>
@@ -57,13 +77,19 @@ namespace Logikfabrik.Overseer.WPF.Client.ViewModels
         }
 
         /// <summary>
+        /// Closes this instance.
+        /// </summary>
+        public void Close()
+        {
+            IsExpanded = false;
+        }
+
+        /// <summary>
         /// Goes to dashboard.
         /// </summary>
         public void GoToDashboard()
         {
-            var message = new NavigationMessage(typeof(DashboardViewModel));
-
-            _eventAggregator.PublishOnUIThread(message);
+            GoTo(typeof(DashboardViewModel));
         }
 
         /// <summary>
@@ -71,9 +97,7 @@ namespace Logikfabrik.Overseer.WPF.Client.ViewModels
         /// </summary>
         public void GoToConnections()
         {
-            var message = new NavigationMessage(typeof(ConnectionsViewModel));
-
-            _eventAggregator.PublishOnUIThread(message);
+            GoTo(typeof(ConnectionsViewModel));
         }
 
         /// <summary>
@@ -81,9 +105,7 @@ namespace Logikfabrik.Overseer.WPF.Client.ViewModels
         /// </summary>
         public void GoToAddConnection()
         {
-            var message = new NavigationMessage(typeof(BuildProvidersViewModel));
-
-            _eventAggregator.PublishOnUIThread(message);
+            GoTo(typeof(BuildProvidersViewModel));
         }
 
         /// <summary>
@@ -91,9 +113,7 @@ namespace Logikfabrik.Overseer.WPF.Client.ViewModels
         /// </summary>
         public void GoToSettings()
         {
-            var message = new NavigationMessage(typeof(EditSettingsViewModel));
-
-            _eventAggregator.PublishOnUIThread(message);
+            GoTo(typeof(EditSettingsViewModel));
         }
 
         /// <summary>
@@ -101,9 +121,16 @@ namespace Logikfabrik.Overseer.WPF.Client.ViewModels
         /// </summary>
         public void GoToAbout()
         {
-            var message = new NavigationMessage(typeof(AboutViewModel));
+            GoTo(typeof(AboutViewModel));
+        }
+
+        private void GoTo(Type itemType)
+        {
+            var message = new NavigationMessage(itemType);
 
             _eventAggregator.PublishOnUIThread(message);
+
+            Close();
         }
     }
 }
