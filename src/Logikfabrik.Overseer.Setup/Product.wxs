@@ -30,21 +30,17 @@
   </Product>
   <Fragment>
     <Directory Id="TARGETDIR" Name="SourceDir">
-
       <Directory Id="ProgramFilesFolder">
         <Directory Id="ManufacturerFolder" Name="Logikfabrik">
           <Directory Id="INSTALLFOLDER" Name="Overseer" />
         </Directory>
       </Directory>
-
       <Directory Id="ProgramMenuFolder">
         <Directory Id="ApplicationProgramsFolder" Name="Logikfabrik" />
       </Directory>
-
     </Directory>
   </Fragment>
   <Fragment>
-
     <ComponentGroup Id="ProductShortcuts" Directory="ApplicationProgramsFolder">
       <Component Id="ProductShortcut" Guid="b1302ead-22c3-4e97-b216-51dedcc92158">
         <Shortcut Id="ApplicationStartMenuShortcut"
@@ -60,38 +56,37 @@
                        KeyPath="yes" />
       </Component>
     </ComponentGroup>
-
     <ComponentGroup Id="ProductComponents" Directory="INSTALLFOLDER">
       <Component Id="ProductComponent" Guid="d2f851dd-77aa-42fe-8b4c-87bcd75f0dcc">
-        <File Source="$(var.Logikfabrik.Overseer.TargetDir)Logikfabrik.Overseer.dll" />
-        <File Source="$(var.Logikfabrik.Overseer.TargetDir)Ensure.That.dll" />
-        <File Source="$(var.Logikfabrik.Overseer.TargetDir)log4net.dll" />
-
-        <File Source="$(var.Logikfabrik.Overseer.WPF.TargetDir)Logikfabrik.Overseer.WPF.dll" />
-        <File Source="$(var.Logikfabrik.Overseer.WPF.TargetDir)Caliburn.Micro.dll" />
-        <File Source="$(var.Logikfabrik.Overseer.WPF.TargetDir)Caliburn.Micro.Platform.dll" />
-        <File Source="$(var.Logikfabrik.Overseer.WPF.TargetDir)Caliburn.Micro.Platform.Core.dll" />
-        <File Source="$(var.Logikfabrik.Overseer.WPF.TargetDir)FluentValidation.dll" />
-        <File Source="$(var.Logikfabrik.Overseer.WPF.TargetDir)Humanizer.dll" />
-        <File Source="$(var.Logikfabrik.Overseer.WPF.TargetDir)System.Windows.Interactivity.dll" />
-
-        <File Source="$(var.Logikfabrik.Overseer.WPF.Client.TargetDir)Logikfabrik.Overseer.WPF.Client.exe" />
+	    <File Source="$(var.Logikfabrik.Overseer.WPF.Client.TargetDir)CacheManager.Core.dll" />
+		<File Source="$(var.Logikfabrik.Overseer.WPF.Client.TargetDir)CacheManager.SystemRuntimeCaching.dll" />
+		<File Source="$(var.Logikfabrik.Overseer.WPF.Client.TargetDir)Caliburn.Micro.dll" />
+	    <File Source="$(var.Logikfabrik.Overseer.WPF.Client.TargetDir)Caliburn.Micro.Platform.Core.dll" />
+	    <File Source="$(var.Logikfabrik.Overseer.WPF.Client.TargetDir)Caliburn.Micro.Platform.dll" />
+		<File Source="$(var.Logikfabrik.Overseer.WPF.Client.TargetDir)Castle.Core.dll" />
+		<File Source="$(var.Logikfabrik.Overseer.WPF.Client.TargetDir)Ensure.That.dll" />
+		<File Source="$(var.Logikfabrik.Overseer.WPF.Client.TargetDir)FluentValidation.dll" />
+		<File Source="$(var.Logikfabrik.Overseer.WPF.Client.TargetDir)Humanizer.dll" />
+		<File Source="$(var.Logikfabrik.Overseer.WPF.Client.TargetDir)log4net.dll" />
+		<File Source="$(var.Logikfabrik.Overseer.WPF.Client.TargetDir)Logikfabrik.Overseer.dll" />
+		<File Source="$(var.Logikfabrik.Overseer.WPF.Client.TargetDir)Logikfabrik.Overseer.WPF.Client.exe" />
         <File Source="$(var.Logikfabrik.Overseer.WPF.Client.TargetDir)Logikfabrik.Overseer.WPF.Client.exe.config" />
-        <File Source="$(var.Logikfabrik.Overseer.WPF.Client.TargetDir)Ninject.dll" />
-
-        <File Source="$(var.Logikfabrik.Overseer.WPF.Provider.AppVeyor.TargetDir)Logikfabrik.Overseer.WPF.Provider.AppVeyor.dll" />
-        <File Source="$(var.Logikfabrik.Overseer.WPF.Provider.AppVeyor.TargetDir)System.Net.Http.Formatting.dll" />
-        <File Source="$(var.Logikfabrik.Overseer.WPF.Provider.AppVeyor.TargetDir)Newtonsoft.Json.dll" />
-
-		<File Source="$(var.Logikfabrik.Overseer.WPF.Provider.CircleCI.TargetDir)Logikfabrik.Overseer.WPF.Provider.CircleCI.dll" />
-		
-        <File Source="$(var.Logikfabrik.Overseer.WPF.Provider.Jenkins.TargetDir)Logikfabrik.Overseer.WPF.Provider.Jenkins.dll" />
-
-        <File Source="$(var.Logikfabrik.Overseer.WPF.Provider.TeamCity.TargetDir)Logikfabrik.Overseer.WPF.Provider.TeamCity.dll" />
-        
-        <File Source="$(var.Logikfabrik.Overseer.WPF.Provider.VSTeamServices.TargetDir)Logikfabrik.Overseer.WPF.Provider.VSTeamServices.dll" />
+        <File Source="$(var.Logikfabrik.Overseer.WPF.Client.TargetDir)Logikfabrik.Overseer.WPF.dll" />
+        <File Source="$(var.Logikfabrik.Overseer.WPF.Client.TargetDir)Logikfabrik.Overseer.WPF.Provider.AppVeyor.dll" />
+        <File Source="$(var.Logikfabrik.Overseer.WPF.Client.TargetDir)Logikfabrik.Overseer.WPF.Provider.CircleCI.dll" />
+		<File Source="$(var.Logikfabrik.Overseer.WPF.Client.TargetDir)Logikfabrik.Overseer.WPF.Provider.Codeship.dll" />
+        <File Source="$(var.Logikfabrik.Overseer.WPF.Client.TargetDir)Logikfabrik.Overseer.WPF.Provider.Jenkins.dll" />
+        <File Source="$(var.Logikfabrik.Overseer.WPF.Client.TargetDir)Logikfabrik.Overseer.WPF.Provider.TeamCity.dll" />
+        <File Source="$(var.Logikfabrik.Overseer.WPF.Client.TargetDir)Logikfabrik.Overseer.WPF.Provider.VSTeamServices.dll" />
+		<File Source="$(var.Logikfabrik.Overseer.WPF.Client.TargetDir)Newtonsoft.Json.dll" />
+		<File Source="$(var.Logikfabrik.Overseer.WPF.Client.TargetDir)Ninject.dll" />
+		<File Source="$(var.Logikfabrik.Overseer.WPF.Client.TargetDir)Ninject.Extensions.Factory.dll" />
+		<File Source="$(var.Logikfabrik.Overseer.WPF.Client.TargetDir)Ninject.Extensions.Interception.dll" />
+		<File Source="$(var.Logikfabrik.Overseer.WPF.Client.TargetDir)Ninject.Extensions.Interception.DynamicProxy.dll" />
+		<File Source="$(var.Logikfabrik.Overseer.WPF.Client.TargetDir)System.Net.Http.Formatting.dll" />
+		<File Source="$(var.Logikfabrik.Overseer.WPF.Client.TargetDir)System.Threading.Tasks.Dataflow.dll" />
+		<File Source="$(var.Logikfabrik.Overseer.WPF.Client.TargetDir)System.Windows.Interactivity.dll" />
       </Component>
     </ComponentGroup>
-
   </Fragment>
 </Wix>

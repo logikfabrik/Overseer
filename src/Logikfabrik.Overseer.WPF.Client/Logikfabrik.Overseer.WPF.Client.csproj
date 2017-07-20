@@ -319,6 +319,10 @@
       <Project>{261d8616-8433-4c31-bb88-fc62fa389029}</Project>
       <Name>Logikfabrik.Overseer.WPF.Provider.CircleCI</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Logikfabrik.Overseer.WPF.Provider.Codeship\Logikfabrik.Overseer.WPF.Provider.Codeship.csproj">
+      <Project>{8e789175-eb12-43d0-b432-9308ae97d989}</Project>
+      <Name>Logikfabrik.Overseer.WPF.Provider.Codeship</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Logikfabrik.Overseer.WPF.Provider.Jenkins\Logikfabrik.Overseer.WPF.Provider.Jenkins.csproj">
       <Project>{f4f07a30-be00-4295-bd36-3fc0b5e79b94}</Project>
       <Name>Logikfabrik.Overseer.WPF.Provider.Jenkins</Name>
