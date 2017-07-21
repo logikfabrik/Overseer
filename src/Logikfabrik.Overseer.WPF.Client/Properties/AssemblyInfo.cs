@@ -6,7 +6,7 @@ using System.Reflection;
 using System.Runtime.InteropServices;
 using log4net.Config;
 
-[assembly: AssemblyTitle("Logikfabrik.Overseer.WPF.Client")]
+[assembly: AssemblyTitle("Logikfabrik Overseer")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Anton Frennevi")]
