@@ -4,11 +4,22 @@
     </ResourceDictionary.MergedDictionaries>
     <Style BasedOn="{StaticResource {x:Type Button}}" TargetType="{x:Type Button}">
         <Style.Resources>
+            <!--  Change text block foreground on mouse over  -->
             <Style BasedOn="{StaticResource {x:Type TextBlock}}" TargetType="{x:Type TextBlock}">
                 <Setter Property="Foreground" Value="{Binding Path=(TextElement.Foreground), RelativeSource={RelativeSource AncestorType={x:Type Button}}}" />
             </Style>
+            <!--  Change path fill on mouse over  -->
             <Style TargetType="{x:Type Path}">
                 <Setter Property="Fill" Value="{Binding Path=(TextElement.Foreground), RelativeSource={RelativeSource AncestorType={x:Type Button}}}" />
+            </Style>
+            <!--  Do not change tool tip text block foreground on mouse over  -->
+            <Style BasedOn="{StaticResource {x:Type ToolTip}}" TargetType="{x:Type ToolTip}">
+                <Style.Resources>
+                    <Style BasedOn="{StaticResource {x:Type TextBlock}}" TargetType="{x:Type TextBlock}">
+                        <!--  NOTE: If foreground in ToolTip.xaml is changed, this setter needs to be changed accordingly  -->
+                        <Setter Property="Foreground" Value="{DynamicResource Window.Foreground}" />
+                    </Style>
+                </Style.Resources>
             </Style>
         </Style.Resources>
         <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}" />

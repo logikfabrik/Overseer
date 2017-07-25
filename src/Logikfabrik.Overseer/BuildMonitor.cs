@@ -207,19 +207,19 @@ namespace Logikfabrik.Overseer
         {
             var projectBufferBlock = new BufferBlock<Connection>(new DataflowBlockOptions
             {
-                BoundedCapacity = 4,
+                BoundedCapacity = 32,
                 CancellationToken = cancellationToken
             });
 
             var buildsBufferBlock = new BufferBlock<Tuple<Connection, IProject>>(new DataflowBlockOptions
             {
-                BoundedCapacity = 8,
+                BoundedCapacity = 32,
                 CancellationToken = cancellationToken
             });
 
             var executionOptions = new ExecutionDataflowBlockOptions
             {
-                BoundedCapacity = 16,
+                BoundedCapacity = 32,
                 CancellationToken = cancellationToken,
                 MaxDegreeOfParallelism = Environment.ProcessorCount
             };
