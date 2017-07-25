@@ -100,24 +100,24 @@ namespace Logikfabrik.Overseer.WPF.Client
         }
 
         /// <summary>
-        /// Gets the instance of the specified service type.
+        /// Gets the instance of the specified service.
         /// </summary>
-        /// <param name="serviceType">The service type.</param>
+        /// <param name="service">The service.</param>
         /// <param name="key">The key.</param>
-        /// <returns>The instance of the specified service type.</returns>
-        protected override object GetInstance(Type serviceType, string key)
+        /// <returns>The instance of the specified service.</returns>
+        protected override object GetInstance(Type service, string key)
         {
-            return string.IsNullOrEmpty(key) ? _kernel.Get(serviceType) : _kernel.Get(serviceType, key);
+            return string.IsNullOrEmpty(key) ? _kernel.Get(service) : _kernel.Get(service, key);
         }
 
         /// <summary>
-        /// Gets all instances of the specified service type.
+        /// Gets all instances of the specified service.
         /// </summary>
-        /// <param name="serviceType">The service type.</param>
+        /// <param name="service">The service.</param>
         /// <returns>All instances of the specified service type.</returns>
-        protected override IEnumerable<object> GetAllInstances(Type serviceType)
+        protected override IEnumerable<object> GetAllInstances(Type service)
         {
-            return _kernel.GetAll(serviceType);
+            return _kernel.GetAll(service);
         }
 
         /// <summary>

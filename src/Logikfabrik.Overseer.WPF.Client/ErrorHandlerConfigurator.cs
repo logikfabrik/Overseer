@@ -13,6 +13,10 @@ namespace Logikfabrik.Overseer.WPF.Client
     /// </summary>
     public static class ErrorHandlerConfigurator
     {
+        /// <summary>
+        /// Configures error handling.
+        /// </summary>
+        /// <param name="logService">The log service.</param>
         public static void Configure(ILogService logService)
         {
             Ensure.That(logService).IsNotNull();

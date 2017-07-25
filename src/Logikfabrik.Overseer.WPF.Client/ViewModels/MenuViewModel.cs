@@ -14,38 +14,27 @@ namespace Logikfabrik.Overseer.WPF.Client.ViewModels
     /// <summary>
     /// The <see cref="MenuViewModel" /> class.
     /// </summary>
-    public class MenuViewModel : PropertyChangedBase
+    public class MenuViewModel : PropertyChangedBase, IDisposable
     {
         private readonly IEventAggregator _eventAggregator;
+        private readonly InputManager _inputManager;
         private bool _isExpanded;
+        private bool _isDisposed;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MenuViewModel" /> class.
         /// </summary>
         /// <param name="eventAggregator">The event aggregator.</param>
-        public MenuViewModel(IEventAggregator eventAggregator)
+        /// <param name="inputManager">The input manager.</param>
+        public MenuViewModel(IEventAggregator eventAggregator, InputManager inputManager)
         {
             Ensure.That(eventAggregator).IsNotNull();
+            Ensure.That(inputManager).IsNotNull();
 
             _eventAggregator = eventAggregator;
+            _inputManager = inputManager;
 
-            // TODO: Move to better location.
-            InputManager.Current.PreProcessInput += (sender, e) =>
-            {
-                var args = e.StagingItem.Input as MouseButtonEventArgs;
-
-                if (args == null)
-                {
-                    return;
-                }
-
-                if (args.ChangedButton == MouseButton.Left && args.ButtonState == MouseButtonState.Released)
-                {
-                    // TODO: Toggle the menu hamburger in XAML.
-                    Close();
-                }
-            };
-
+            _inputManager.PreProcessInput += InputManager_PreProcessInput;
         }
 
         /// <summary>
@@ -65,8 +54,17 @@ namespace Logikfabrik.Overseer.WPF.Client.ViewModels
             {
                 _isExpanded = value;
                 NotifyOfPropertyChange(() => IsExpanded);
+                NotifyOfPropertyChange(() => IsCollapsed);
             }
         }
+
+        /// <summary>
+        /// Gets a value indicating whether this instance is collapsed.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if this instance is collapsed; otherwise, <c>false</c>.
+        /// </value>
+        public bool IsCollapsed => !_isExpanded;
 
         /// <summary>
         /// Toggles this instance.
@@ -124,6 +122,33 @@ namespace Logikfabrik.Overseer.WPF.Client.ViewModels
             GoTo(typeof(AboutViewModel));
         }
 
+        /// <summary>
+        /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+        /// </summary>
+        public void Dispose()
+        {
+            Dispose(true);
+        }
+
+        /// <summary>
+        /// Releases unmanaged and managed resources.
+        /// </summary>
+        /// <param name="disposing"><c>true</c> to release both managed and unmanaged resources; <c>false</c> to release only unmanaged resources.</param>
+        protected virtual void Dispose(bool disposing)
+        {
+            if (_isDisposed)
+            {
+                return;
+            }
+
+            if (disposing)
+            {
+                _inputManager.PreProcessInput -= InputManager_PreProcessInput;
+            }
+
+            _isDisposed = true;
+        }
+
         private void GoTo(Type itemType)
         {
             var message = new NavigationMessage(itemType);
@@ -131,6 +156,16 @@ namespace Logikfabrik.Overseer.WPF.Client.ViewModels
             _eventAggregator.PublishOnUIThread(message);
 
             Close();
+        }
+
+        private void InputManager_PreProcessInput(object sender, NotifyInputEventArgs e)
+        {
+            var args = e.StagingItem.Input as MouseButtonEventArgs;
+
+            if (args?.ChangedButton == MouseButton.Left && args.ButtonState == MouseButtonState.Released)
+            {
+                Close();
+            }
         }
     }
 }

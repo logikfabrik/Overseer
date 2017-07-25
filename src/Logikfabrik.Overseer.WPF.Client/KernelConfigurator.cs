@@ -6,6 +6,7 @@ namespace Logikfabrik.Overseer.WPF.Client
 {
     using System.Collections.Generic;
     using System.Reflection;
+    using System.Windows.Input;
     using CacheManager.Core;
     using Caliburn.Micro;
     using EnsureThat;
@@ -13,6 +14,7 @@ namespace Logikfabrik.Overseer.WPF.Client
     using Ninject;
     using Ninject.Extensions.Factory;
     using Overseer.Logging;
+    using Providers;
     using Providers.Caching;
     using Providers.Settings;
     using Settings;
@@ -33,6 +35,8 @@ namespace Logikfabrik.Overseer.WPF.Client
         {
             Ensure.That(kernel).IsNotNull();
             Ensure.That(modules).IsNotNull();
+
+            kernel.Bind<InputManager>().ToProvider<InputManagerProvider>();
 
             // Business logic setup.
             kernel.Bind<IAppSettingsFactory>().ToFactory();
