@@ -37,28 +37,12 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         string RequestedBy { get; }
 
         /// <summary>
-        /// Gets a value indicating whether to show the name of whoever requested the build.
-        /// </summary>
-        /// <value>
-        ///   <c>true</c> if the name of whoever requested the build should be shown; otherwise, <c>false</c>.
-        /// </value>
-        bool ShowRequestedBy { get; }
-
-        /// <summary>
         /// Gets the branch.
         /// </summary>
         /// <value>
         /// The branch.
         /// </value>
         string Branch { get; }
-
-        /// <summary>
-        /// Gets a value indicating whether to show the branch.
-        /// </summary>
-        /// <value>
-        ///   <c>true</c> if the branch should be shown; otherwise, <c>false</c>.
-        /// </value>
-        bool ShowBranch { get; }
 
         /// <summary>
         /// Gets the message.
@@ -83,14 +67,6 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// The start time.
         /// </value>
         DateTime? StartTime { get; }
-
-        /// <summary>
-        /// Gets a value indicating whether to show the start time.
-        /// </summary>
-        /// <value>
-        ///   <c>true</c> if the start time should be shown; otherwise, <c>false</c>.
-        /// </value>
-        bool ShowStartTime { get; }
 
         /// <summary>
         /// Gets the end time.

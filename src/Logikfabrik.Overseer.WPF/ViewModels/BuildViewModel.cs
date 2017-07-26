@@ -45,10 +45,8 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
 
             Id = id;
             Branch = branch;
-            ShowBranch = !string.IsNullOrWhiteSpace(branch);
             _versionNumber = versionNumber;
             RequestedBy = requestedBy;
-            ShowRequestedBy = !string.IsNullOrWhiteSpace(requestedBy);
 
             Changes = changes.Select(changeFactory.Create).ToArray();
 
@@ -92,28 +90,12 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         public string RequestedBy { get; }
 
         /// <summary>
-        /// Gets a value indicating whether to show the name of whoever requested the build.
-        /// </summary>
-        /// <value>
-        ///   <c>true</c> if the name of whoever requested the build should be shown; otherwise, <c>false</c>.
-        /// </value>
-        public bool ShowRequestedBy { get; }
-
-        /// <summary>
         /// Gets the branch.
         /// </summary>
         /// <value>
         /// The branch.
         /// </value>
         public string Branch { get; }
-
-        /// <summary>
-        /// Gets a value indicating whether to show the branch.
-        /// </summary>
-        /// <value>
-        ///   <c>true</c> if the branch should be shown; otherwise, <c>false</c>.
-        /// </value>
-        public bool ShowBranch { get; }
 
         /// <summary>
         /// Gets the message.
@@ -194,14 +176,6 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
                 NotifyOfPropertyChange(() => EndTime);
             }
         }
-
-        /// <summary>
-        /// Gets a value indicating whether to show the start time.
-        /// </summary>
-        /// <value>
-        ///   <c>true</c> if the start time should be shown; otherwise, <c>false</c>.
-        /// </value>
-        public bool ShowStartTime => StartTime.HasValue;
 
         /// <summary>
         /// Gets the changes.

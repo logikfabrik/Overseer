@@ -7,6 +7,11 @@
     d:DesignHeight="300"
     d:DesignWidth="300"
     mc:Ignorable="d">
+    <UserControl.Resources>
+        <Style BasedOn="{StaticResource {x:Type Viewbox}}" TargetType="{x:Type Viewbox}">
+            <Setter Property="Margin" Value="5,5,0,5" />
+        </Style>
+    </UserControl.Resources>
     <Grid Visibility="{Binding HasValue, Mode=OneWay, RelativeSource={RelativeSource AncestorType=UserControl}, Converter={StaticResource BooleanToVisibilityConverter}}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" />
