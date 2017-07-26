@@ -143,7 +143,7 @@
     <Compile Include="Views\AddConnectionView.xaml.cs">
       <DependentUpon>AddConnectionView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Build\UserControls\ValueControl.xaml.cs">
+    <Compile Include="Views\UserControls\ValueControl.xaml.cs">
       <DependentUpon>ValueControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\DashboardView.xaml.cs">
@@ -233,7 +233,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\Build\UserControls\ValueControl.xaml">
+    <Page Include="Views\UserControls\ValueControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

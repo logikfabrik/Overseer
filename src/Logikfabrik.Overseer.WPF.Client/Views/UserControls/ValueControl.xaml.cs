@@ -2,7 +2,7 @@
 //   Copyright (c) 2016 anton(at)logikfabrik.se. Licensed under the MIT license.
 // </copyright>
 
-namespace Logikfabrik.Overseer.WPF.Client.Views.Build.UserControls
+namespace Logikfabrik.Overseer.WPF.Client.Views.UserControls
 {
     using System.ComponentModel;
     using System.Windows;

@@ -5,7 +5,7 @@
     xmlns:cal="http://www.caliburnproject.org"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:uc="clr-namespace:Logikfabrik.Overseer.WPF.Client.Views.Build.UserControls"
+    xmlns:uc="clr-namespace:Logikfabrik.Overseer.WPF.Client.Views.UserControls"
     xmlns:vm="clr-namespace:Logikfabrik.Overseer.WPF.ViewModels.DesignTime;assembly=Logikfabrik.Overseer.WPF"
     cal:Bind.AtDesignTime="True"
     d:DataContext="{d:DesignInstance d:Type=vm:BuildViewModel,
