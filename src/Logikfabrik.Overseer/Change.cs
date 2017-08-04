@@ -5,6 +5,7 @@
 namespace Logikfabrik.Overseer
 {
     using System;
+    using System.Text.RegularExpressions;
 
     /// <summary>
     /// The <see cref="Change" /> class.
@@ -12,35 +13,71 @@ namespace Logikfabrik.Overseer
     public class Change : IChange
     {
         /// <summary>
-        /// Gets or sets the identifier.
+        /// Initializes a new instance of the <see cref="Change" /> class.
+        /// </summary>
+        /// <param name="id">The identifier</param>
+        /// <param name="changed">The changed date.</param>
+        /// <param name="changedBy">The name of whoever made the change.</param>
+        /// <param name="comment">The comment.</param>
+        public Change(string id, DateTime? changed, string changedBy, string comment)
+        {
+            var shortId = GetShortId(id);
+
+            Id = id;
+            ShortId = shortId;
+            Changed = changed;
+            ChangedBy = changedBy;
+            Comment = comment;
+        }
+
+        /// <summary>
+        /// Gets the identifier.
         /// </summary>
         /// <value>
         /// The identifier.
         /// </value>
-        public string Id { get; set; }
+        public string Id { get; }
 
         /// <summary>
-        /// Gets or sets the changed date.
+        /// Gets the short identifier.
+        /// </summary>
+        /// <value>
+        /// The short identifier.
+        /// </value>
+        public string ShortId { get; }
+
+        /// <summary>
+        /// Gets the changed date.
         /// </summary>
         /// <value>
         /// The changed date.
         /// </value>
-        public DateTime? Changed { get; set; }
+        public DateTime? Changed { get; }
 
         /// <summary>
-        /// Gets or sets the name of whoever made the change.
+        /// Gets the name of whoever made the change.
         /// </summary>
         /// <value>
         /// The name of whoever made the change.
         /// </value>
-        public string ChangedBy { get; set; }
+        public string ChangedBy { get; }
 
         /// <summary>
-        /// Gets or sets the comment.
+        /// Gets the comment.
         /// </summary>
         /// <value>
         /// The comment.
         /// </value>
-        public string Comment { get; set; }
+        public string Comment { get; }
+
+        private static string GetShortId(string id)
+        {
+            if (string.IsNullOrWhiteSpace(id))
+            {
+                return null;
+            }
+
+            return Regex.IsMatch(id, "^[a-fA-F0-9]{40}$") ? id.Substring(0, 8) : null;
+        }
     }
 }

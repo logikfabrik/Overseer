@@ -8,7 +8,7 @@
     d:DesignWidth="300"
     mc:Ignorable="d">
     <UserControl.Resources>
-        <Style BasedOn="{StaticResource {x:Type Viewbox}}" TargetType="{x:Type Viewbox}">
+        <Style TargetType="{x:Type Viewbox}">
             <Setter Property="Margin" Value="5,5,0,5" />
         </Style>
     </UserControl.Resources>
@@ -25,6 +25,6 @@
         <TextBlock
             Grid.Column="1"
             Text="{Binding Value, Mode=OneWay, RelativeSource={RelativeSource AncestorType=UserControl}}"
-            ToolTip="{Binding Value, Mode=OneWay, RelativeSource={RelativeSource AncestorType=UserControl}}" />
+            ToolTip="{Binding ToolTip, Mode=OneWay, RelativeSource={RelativeSource AncestorType=UserControl}}" />
     </Grid>
 </UserControl>

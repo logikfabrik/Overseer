@@ -79,9 +79,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BuildExtensionsTest.cs" />
+    <Compile Include="Extensions\BuildExtensionsTest.cs" />
     <Compile Include="BuildProviderA.cs" />
     <Compile Include="BuildProviderB.cs" />
+    <Compile Include="Extensions\BuildStatusExtensionsTest.cs" />
+    <Compile Include="ChangeTest.cs" />
     <Compile Include="ConnectionPoolTest.cs" />
     <Compile Include="ConnectionTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

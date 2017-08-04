@@ -11,6 +11,9 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor
     /// </summary>
     public static class UriUtility
     {
+        /// <summary>
+        /// Gets the base URI.
+        /// </summary>
         public static Uri BaseUri => new Uri("https://ci.appveyor.com/");
     }
 }

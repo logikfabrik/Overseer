@@ -25,5 +25,5 @@ If you have a bug report, feature request, or suggestion, please open a new issu
 - [xUnit](https://github.com/xunit/xunit)
 - [AutoFixture](https://github.com/AutoFixture/AutoFixture)
 - [WiX](https://github.com/wixtoolset/wix3)
-- CacheManager
-- [Entypo pictograms by Daniel Bruce](http://www.entypo.com/)
+- [CacheManager] (https://github.com/MichaCo/CacheManager)
+- [Entypo pictograms by Daniel Bruce](http://www.entypo.com)

@@ -22,6 +22,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             Ensure.That(change).IsNotNull();
 
             Id = change.Id;
+            IdOrShortId = string.IsNullOrWhiteSpace(change.ShortId) ? change.Id : change.ShortId;
             Changed = change.Changed;
             ChangedBy = change.ChangedBy;
             Comment = change.Comment;
@@ -35,6 +36,14 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// The identifier.
         /// </value>
         public string Id { get; }
+
+        /// <summary>
+        /// Gets the identifier or short identifier.
+        /// </summary>
+        /// <value>
+        /// The identifier or short identifier.
+        /// </value>
+        public string IdOrShortId { get; }
 
         /// <summary>
         /// Gets the changed date.

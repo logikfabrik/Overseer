@@ -36,7 +36,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels.DesignTime
         public BuildStatus? Status { get; } = BuildStatus.Succeeded;
 
         /// <summary>
-        /// Views this instance.
+        /// Opens the notification in the browser.
         /// </summary>
         public void ViewInBrowser()
         {
