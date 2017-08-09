@@ -34,13 +34,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor
             WebUrl = GetWebUrl(project, build);
             Changes = new[]
             {
-                new Change
-                {
-                    Id = build.CommitId,
-                    Changed = build.Committed?.ToUniversalTime(),
-                    ChangedBy = build.CommitterName,
-                    Comment = build.Message
-                }
+                new Change(build.CommitId, build.Committed?.ToUniversalTime(), build.CommitterName, build.Message)
             };
         }
 

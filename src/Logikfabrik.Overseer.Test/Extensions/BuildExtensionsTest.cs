@@ -2,11 +2,11 @@
 //   Copyright (c) 2016 anton(at)logikfabrik.se. Licensed under the MIT license.
 // </copyright>
 
-namespace Logikfabrik.Overseer.Test
+namespace Logikfabrik.Overseer.Test.Extensions
 {
     using System;
-    using Extensions;
     using Moq;
+    using Overseer.Extensions;
     using Ploeh.AutoFixture.Xunit2;
     using Xunit;
 
@@ -58,18 +58,23 @@ namespace Logikfabrik.Overseer.Test
             Assert.Null(runTime);
         }
 
-        [Fact]
-        public void CanGetRunTimeForInProgressBuild()
+        [Theory]
+        [InlineData(1)]
+        [InlineData(2)]
+        [InlineData(3)]
+        public void CanGetRunTimeForInProgressBuild(int hoursRunning)
         {
+            var utcNow = DateTime.UtcNow;
+
             var buildMock = new Mock<IBuild>();
 
             buildMock.Setup(m => m.Status).Returns(BuildStatus.InProgress);
-            buildMock.Setup(m => m.StartTime).Returns(DateTime.UtcNow.AddHours(-1));
+            buildMock.Setup(m => m.StartTime).Returns(utcNow.AddHours(-1 * hoursRunning));
 
-            var runTime = buildMock.Object.RunTime();
+            var runTime = buildMock.Object.RunTime(utcNow);
 
             // ReSharper disable once PossibleInvalidOperationException
-            Assert.Equal(1, runTime.Value.TotalHours);
+            Assert.Equal(hoursRunning, runTime.Value.TotalHours);
         }
 
         [Fact]
@@ -85,23 +90,23 @@ namespace Logikfabrik.Overseer.Test
         }
 
         [Theory]
-        [InlineData(BuildStatus.Failed)]
-        [InlineData(BuildStatus.Succeeded)]
-        [InlineData(BuildStatus.Stopped)]
-        public void CanGetRunTimeForFinishedBuild(BuildStatus status)
+        [InlineData(BuildStatus.Failed, 1)]
+        [InlineData(BuildStatus.Succeeded, 2)]
+        [InlineData(BuildStatus.Stopped, 3)]
+        public void CanGetRunTimeForFinishedBuild(BuildStatus status, int hoursRunning)
         {
             var utcNow = DateTime.UtcNow;
 
             var buildMock = new Mock<IBuild>();
 
             buildMock.Setup(m => m.Status).Returns(status);
-            buildMock.Setup(m => m.StartTime).Returns(utcNow.AddHours(-1));
+            buildMock.Setup(m => m.StartTime).Returns(utcNow.AddHours(-1 * hoursRunning));
             buildMock.Setup(m => m.EndTime).Returns(utcNow);
 
             var runTime = buildMock.Object.RunTime();
 
             // ReSharper disable once PossibleInvalidOperationException
-            Assert.Equal(1, runTime.Value.TotalHours);
+            Assert.Equal(hoursRunning, runTime.Value.TotalHours);
         }
 
         [Theory]
@@ -133,7 +138,7 @@ namespace Logikfabrik.Overseer.Test
             var buildMock = new Mock<IBuild>();
 
             buildMock.Setup(m => m.Status).Returns(status);
-            buildMock.Setup(m => m.StartTime).Returns(utcNow.AddHours(-2));
+            buildMock.Setup(m => m.StartTime).Returns(utcNow.AddHours(-1));
 
             var runTime = buildMock.Object.RunTime();
 

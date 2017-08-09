@@ -33,13 +33,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices
             Status = GetStatus(build);
             RequestedBy = build.RequestedFor.DisplayName;
             WebUrl = build.Url;
-            Changes = changes.Select(lastChange => new Change
-            {
-                Id = lastChange.Id,
-                Changed = lastChange.Timestamp?.ToUniversalTime(),
-                ChangedBy = lastChange.Author.DisplayName,
-                Comment = lastChange.Message
-            }).ToArray();
+            Changes = changes.Select(lastChange => new Change(lastChange.Id, lastChange.Timestamp?.ToUniversalTime(), lastChange.Author.DisplayName, lastChange.Message)).ToArray();
         }
 
         /// <summary>

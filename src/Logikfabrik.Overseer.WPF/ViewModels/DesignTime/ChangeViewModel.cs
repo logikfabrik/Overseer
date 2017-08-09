@@ -17,7 +17,15 @@ namespace Logikfabrik.Overseer.WPF.ViewModels.DesignTime
         /// <value>
         /// The identifier.
         /// </value>
-        public string Id { get; } = "1234";
+        public string Id { get; } = "2fd4e1c67a2d28fced849ee1bb76e7391b93eb12";
+
+        /// <summary>
+        /// Gets the identifier or short identifier.
+        /// </summary>
+        /// <value>
+        /// The identifier or short identifier.
+        /// </value>
+        public string IdOrShortId { get; } = "2fd4e1c6";
 
         /// <summary>
         /// Gets the changed date.

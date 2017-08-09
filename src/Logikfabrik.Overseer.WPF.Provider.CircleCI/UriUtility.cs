@@ -11,6 +11,9 @@ namespace Logikfabrik.Overseer.WPF.Provider.CircleCI
     /// </summary>
     public static class UriUtility
     {
+        /// <summary>
+        /// Gets the base URI.
+        /// </summary>
         public static Uri BaseUri => new Uri("https://circleci.com/");
     }
 }

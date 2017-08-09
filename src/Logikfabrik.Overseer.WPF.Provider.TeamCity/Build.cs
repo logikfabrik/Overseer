@@ -31,20 +31,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity
             Status = GetStatus(build);
             RequestedBy = GetRequestedBy(build);
             WebUrl = build.WebUrl;
-
-            if (build.LastChanges != null)
-            {
-                Changes = build.LastChanges.Change.Select(change => new Change
-                {
-                    Id = change.Id,
-                    Changed = change.Date?.ToUniversalTime(),
-                    ChangedBy = change.Username
-                }).ToArray();
-            }
-            else
-            {
-                Changes = new IChange[] { };
-            }
+            Changes = build.LastChanges?.Change.Select(change => new Change(change.Id, change.Date?.ToUniversalTime(), change.Username, null)).ToArray() ?? new IChange[] { };
         }
 
         /// <summary>

@@ -20,6 +20,14 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         string Id { get; }
 
         /// <summary>
+        /// Gets the identifier or short identifier.
+        /// </summary>
+        /// <value>
+        /// The identifier or short identifier.
+        /// </value>
+        string IdOrShortId { get; }
+
+        /// <summary>
         /// Gets the changed date.
         /// </summary>
         /// <value>

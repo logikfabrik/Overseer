@@ -20,6 +20,14 @@ namespace Logikfabrik.Overseer
         string Id { get; }
 
         /// <summary>
+        /// Gets the short identifier.
+        /// </summary>
+        /// <value>
+        /// The short identifier.
+        /// </value>
+        string ShortId { get; }
+
+        /// <summary>
         /// Gets the changed date.
         /// </summary>
         /// <value>

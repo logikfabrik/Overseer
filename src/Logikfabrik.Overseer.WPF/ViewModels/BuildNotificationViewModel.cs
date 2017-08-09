@@ -69,7 +69,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         public BuildStatus? Status { get; }
 
         /// <summary>
-        /// 
+        /// Opens the notification in the browser.
         /// </summary>
         public void ViewInBrowser()
         {

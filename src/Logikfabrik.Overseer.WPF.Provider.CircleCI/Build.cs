@@ -32,13 +32,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.CircleCI
             WebUrl = build.BuildUrl;
             Changes = new[]
             {
-                new Change
-                {
-                    Id = build.VcsRevision,
-                    Changed = build.QueuedAt?.ToUniversalTime(),
-                    ChangedBy = build.CommitterName,
-                    Comment = build.Subject
-                }
+                new Change(build.VcsRevision, build.QueuedAt?.ToUniversalTime(), build.CommitterName, build.Subject)
             };
         }
 
@@ -133,7 +127,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.CircleCI
             switch (build.Status)
             {
                 case Api.Models.BuildStatus.Success:
-                return BuildStatus.Succeeded;
+                    return BuildStatus.Succeeded;
 
                 case Api.Models.BuildStatus.Failed:
                 case Api.Models.BuildStatus.NoTests:

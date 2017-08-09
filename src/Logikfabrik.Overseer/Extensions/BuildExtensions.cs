@@ -48,9 +48,20 @@ namespace Logikfabrik.Overseer.Extensions
         /// <returns>The run time.</returns>
         public static TimeSpan? RunTime(this IBuild build)
         {
+            return RunTime(build, DateTime.UtcNow);
+        }
+
+        /// <summary>
+        /// Gets the run time of the specified <see cref="IBuild" />.
+        /// </summary>
+        /// <param name="build">The build.</param>
+        /// <param name="currentTime">The current time.</param>
+        /// <returns>The run time.</returns>
+        public static TimeSpan? RunTime(this IBuild build, DateTime currentTime)
+        {
             if (build.IsInProgress())
             {
-                return DateTime.UtcNow - build.StartTime;
+                return currentTime - build.StartTime;
             }
 
             if (build.IsFinished())
