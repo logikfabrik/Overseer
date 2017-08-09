@@ -1,10 +1,6 @@
 # Overseer [![Build status](https://ci.appveyor.com/api/projects/status/5qb10vsch42wx2y4?svg=true)](https://ci.appveyor.com/project/logikfabrik/overseer)
 
-Overseer is a Windows task bar app for build notifications, in its early stages. It features support for;
-- AppVeyor, 
-- CircleCI,
-- TeamCity,
-- and Visual Studio Team Services.
+Overseer is a Windows task bar app for build notifications, in its early stages. It features support for AppVeyor, CircleCI, TeamCity, and Visual Studio Team Services.
 
 Support for Codeship, and Jenkins, is in the pipeline.
 
@@ -25,5 +21,5 @@ If you have a bug report, feature request, or suggestion, please open a new issu
 - [xUnit](https://github.com/xunit/xunit)
 - [AutoFixture](https://github.com/AutoFixture/AutoFixture)
 - [WiX](https://github.com/wixtoolset/wix3)
-- [CacheManager] (https://github.com/MichaCo/CacheManager)
+- [CacheManager](https://github.com/MichaCo/CacheManager)
 - [Entypo pictograms by Daniel Bruce](http://www.entypo.com)
