@@ -112,9 +112,4 @@
     <SolidColorBrush x:Key="TextBox.Disabled.Foreground" Color="#222222" />
     <SolidColorBrush x:Key="TextBox.Disabled.Border" Color="Transparent" />
 
-    <SolidColorBrush x:Key="Status.InProgress" Color="#5500FF" />
-    <SolidColorBrush x:Key="Status.Succeeded" Color="#AAFF00" />
-    <SolidColorBrush x:Key="Status.Stopped" Color="#FFFF00" />
-    <SolidColorBrush x:Key="Status.Failed" Color="#FF3300" />
-
 </ResourceDictionary>

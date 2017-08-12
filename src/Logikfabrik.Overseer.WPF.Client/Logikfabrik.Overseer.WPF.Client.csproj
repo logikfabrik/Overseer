@@ -143,6 +143,9 @@
     <Compile Include="Views\AddConnectionView.xaml.cs">
       <DependentUpon>AddConnectionView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\UserControls\ProgressControl.xaml.cs">
+      <DependentUpon>ProgressControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\UserControls\ValueControl.xaml.cs">
       <DependentUpon>ValueControl.xaml</DependentUpon>
     </Compile>
@@ -225,6 +228,10 @@
     <AdditionalFiles Include="stylecop.json" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Styles\Brushes.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\AboutView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -232,6 +239,10 @@
     <Page Include="Views\AddConnectionView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\UserControls\ProgressControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\UserControls\ValueControl.xaml">
       <SubType>Designer</SubType>
@@ -356,6 +367,7 @@
     <Analyzer Include="..\packages\StyleCop.Analyzers.1.0.2\analyzers\dotnet\cs\StyleCop.Analyzers.CodeFixes.dll" />
     <Analyzer Include="..\packages\StyleCop.Analyzers.1.0.2\analyzers\dotnet\cs\StyleCop.Analyzers.dll" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -1,0 +1,8 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <SolidColorBrush x:Key="Status.InProgress" Color="#5500FF" />
+    <SolidColorBrush x:Key="Status.Succeeded" Color="#AAFF00" />
+    <SolidColorBrush x:Key="Status.Stopped" Color="#FFFF00" />
+    <SolidColorBrush x:Key="Status.Failed" Color="#FF3300" />
+
+</ResourceDictionary>
