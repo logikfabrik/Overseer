@@ -11,18 +11,6 @@ namespace Logikfabrik.Overseer.Test.Settings
 
     public class XmlEncrypterTest
     {
-        [Fact(Skip = "TODO")]
-        public void CanEncrypt()
-        {
-            throw new NotImplementedException();
-        }
-
-        [Fact(Skip = "TODO")]
-        public void CanDecrypt()
-        {
-            throw new NotImplementedException();
-        }
-
         [Fact]
         public void CanWritePassPhraseHash()
         {
