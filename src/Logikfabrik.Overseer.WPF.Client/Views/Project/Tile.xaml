@@ -5,33 +5,37 @@
     xmlns:cal="http://www.caliburnproject.org"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:uc="clr-namespace:Logikfabrik.Overseer.WPF.Client.Views.UserControls"
     xmlns:vm="clr-namespace:Logikfabrik.Overseer.WPF.ViewModels.DesignTime;assembly=Logikfabrik.Overseer.WPF"
     cal:Bind.AtDesignTime="True"
     d:DataContext="{d:DesignInstance d:Type=vm:ProjectViewModel,
                                      d:IsDesignTimeCreatable=True}"
     d:DesignWidth="300"
     mc:Ignorable="d">
-    <Button
-        x:Name="View"
-        HorizontalContentAlignment="Stretch"
-        VerticalContentAlignment="Stretch">
-        <Button.Effect>
-            <DropShadowEffect
-                BlurRadius="3"
-                Opacity="0.1"
-                ShadowDepth="3"
-                Color="{DynamicResource Effect.Shadow}" />
-        </Button.Effect>
-        <StackPanel>
-            <TextBlock
-                VerticalAlignment="Center"
-                FontSize="20"
-                Text="{Binding Name, Mode=OneWay}"
-                ToolTip="{Binding Name, Mode=OneWay}" />
-            <ContentControl
-                cal:View.Context="Tile"
-                cal:View.Model="{Binding LatestBuild, Mode=OneWay}"
-                Focusable="False" />
-        </StackPanel>
-    </Button>
+    <Grid>
+        <Button
+            x:Name="View"
+            HorizontalContentAlignment="Stretch"
+            VerticalContentAlignment="Stretch">
+            <Button.Effect>
+                <DropShadowEffect
+                    BlurRadius="3"
+                    Opacity="0.1"
+                    ShadowDepth="3"
+                    Color="{DynamicResource Effect.Shadow}" />
+            </Button.Effect>
+            <StackPanel>
+                <TextBlock
+                    VerticalAlignment="Center"
+                    FontSize="20"
+                    Text="{Binding Name, Mode=OneWay}"
+                    ToolTip="{Binding Name, Mode=OneWay}" />
+                <ContentControl
+                    cal:View.Context="Tile"
+                    cal:View.Model="{Binding LatestBuild, Mode=OneWay}"
+                    Focusable="False" />
+            </StackPanel>
+        </Button>
+        <uc:ProgressControl Height="2" VerticalAlignment="Top" />
+    </Grid>
 </UserControl>

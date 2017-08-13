@@ -5,6 +5,7 @@
     xmlns:cal="http://www.caliburnproject.org"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:uc="clr-namespace:Logikfabrik.Overseer.WPF.Client.Views.UserControls"
     xmlns:vm="clr-namespace:Logikfabrik.Overseer.WPF.ViewModels.DesignTime;assembly=Logikfabrik.Overseer.WPF"
     Width="200"
     Height="200"
@@ -28,6 +29,11 @@
             x:Name="View"
             Grid.ColumnSpan="2"
             Content="{Binding SettingsName}" />
+        <uc:ProgressControl
+            Grid.Column="0"
+            Grid.ColumnSpan="2"
+            Height="2"
+            VerticalAlignment="Top" />
         <Button
             x:Name="Edit"
             Grid.Column="0"
