@@ -18,7 +18,7 @@ namespace Logikfabrik.Overseer.WPF.Extensions
     public static class HyperlinkExtensions
     {
         /// <summary>
-        /// The is external property.
+        /// A dependency property.
         /// </summary>
         public static readonly DependencyProperty IsExternalProperty = DependencyProperty.RegisterAttached("IsExternal", typeof(bool), typeof(HyperlinkExtensions), new UIPropertyMetadata(false, OnIsExternalChanged));
 

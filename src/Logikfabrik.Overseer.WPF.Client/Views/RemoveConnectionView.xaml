@@ -8,18 +8,22 @@
     d:DesignWidth="300"
     mc:Ignorable="d">
     <ScrollViewer>
-        <StackPanel Margin="25">
-            <StackPanel Margin="0,0,0,20">
-                <TextBlock FontSize="24" Text="Remove connection" />
-                <TextBlock Text="Are you sure you want to remove the connection?" />
+        <StackPanel>
+            <StackPanel Margin="10">
+                <TextBlock Text="Remove connection" />
+                <TextBlock Text="Are you sure you want to remove the connection?" TextWrapping="Wrap" />
             </StackPanel>
-            <StackPanel Orientation="Horizontal">
+            <WrapPanel Margin="10,0,10,10" Orientation="Horizontal">
                 <Button
                     x:Name="RemoveConnection"
                     Margin="0,0,2,0"
-                    Content="Yes"
+                    Content="OK"
                     IsDefault="True" />
-            </StackPanel>
+                <Button
+                    x:Name="TryClose"
+                    Content="Cancel"
+                    IsCancel="True" />
+            </WrapPanel>
         </StackPanel>
     </ScrollViewer>
 </UserControl>

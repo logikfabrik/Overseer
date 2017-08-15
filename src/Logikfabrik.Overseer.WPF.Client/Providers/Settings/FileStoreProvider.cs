@@ -23,7 +23,7 @@ namespace Logikfabrik.Overseer.WPF.Client.Providers.Settings
         /// </returns>
         protected override IFileStore CreateInstance(IContext context)
         {
-            var path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Overseer", "Providers2.xml");
+            var path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Overseer", "Providers.xml");
 
             return new FileStore(path);
         }

@@ -11,7 +11,9 @@ namespace Logikfabrik.Overseer.WPF.Client.Views.UserControls
     /// <summary>
     /// The <see cref="ValueControl" /> class.
     /// </summary>
+#pragma warning disable S110 // Inheritance tree of classes should not be too deep
     public partial class ValueControl : INotifyPropertyChanged
+#pragma warning restore S110 // Inheritance tree of classes should not be too deep
     {
         /// <summary>
         /// The icon dependency property.
@@ -21,7 +23,7 @@ namespace Logikfabrik.Overseer.WPF.Client.Views.UserControls
         /// <summary>
         /// The value dependency property.
         /// </summary>
-        public static readonly DependencyProperty ValueProperty = DependencyProperty.Register(nameof(Value), typeof(object), typeof(ValueControl), new PropertyMetadata(null, PropertyChangedCallback));
+        public static readonly DependencyProperty ValueProperty = DependencyProperty.Register(nameof(Value), typeof(object), typeof(ValueControl), new UIPropertyMetadata(null, PropertyChangedCallback));
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ValueControl" /> class.

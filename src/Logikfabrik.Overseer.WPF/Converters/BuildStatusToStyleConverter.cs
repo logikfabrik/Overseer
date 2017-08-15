@@ -9,6 +9,8 @@ namespace Logikfabrik.Overseer.WPF.Converters
     using System.Windows;
     using System.Windows.Data;
 
+    // TODO: Move to Logikfabrik.Overseer.WPF.Client or remove/rework?
+
     /// <summary>
     /// The <see cref="BuildStatusToStyleConverter" /> class.
     /// </summary>

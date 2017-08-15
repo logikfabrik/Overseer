@@ -5,6 +5,7 @@
     xmlns:cal="http://www.caliburnproject.org"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:uc="clr-namespace:Logikfabrik.Overseer.WPF.Client.Views.UserControls"
     d:DesignHeight="300"
     d:DesignWidth="300"
     mc:Ignorable="d">
@@ -16,26 +17,37 @@
                 cal:View.Model="{Binding Settings, Mode=OneWay}"
                 Focusable="False" />
             <StackPanel Margin="10,0,10,10">
-                <Button
-                    x:Name="TryConnect"
-                    Content="Try connection"
-                    IsEnabled="{Binding HasNotConnected, Mode=OneWay}" />
-                <TextBlock Text="Error" Visibility="{Binding ConnectionTask.Status, Converter={StaticResource TaskStatusFaultedToBooleanConverter}}" />
+                <Grid>
+                    <Button
+                        x:Name="TryConnect"
+                        Content="Try connection"
+                        IsEnabled="{Binding HasNotConnected, Mode=OneWay}" />
+                    <uc:ProgressControl
+                        VerticalAlignment="Top"
+                        IsErrored="{Binding ConnectionTask.Status, Converter={StaticResource TaskStatusFaultedToBooleanConverter}}"
+                        IsInProgress="{Binding ConnectionTask.Status, Converter={StaticResource TaskStatusRunningToBooleanConverter}}" />
+                </Grid>
+                <TextBlock Text="Error" Visibility="{Binding ConnectionTask.Status, Converter={StaticResource TaskStatusFaultedToVisibilityConverter}}" />
             </StackPanel>
             <StackPanel Margin="10,0,10,10" Visibility="{Binding HasConnected, Converter={StaticResource BooleanToVisibilityConverter}}">
                 <ContentControl
-                    MaxHeight="200"
+                    MaxHeight="207"
                     HorizontalAlignment="Stretch"
                     cal:View.Model="{Binding Settings.ProjectsToMonitor, Mode=OneWay}"
                     Focusable="False" />
             </StackPanel>
-            <StackPanel Margin="10,0,10,10" Orientation="Horizontal">
+            <WrapPanel Margin="10,0,10,10" Orientation="Horizontal">
                 <Button
                     x:Name="EditConnection"
+                    Margin="0,0,2,0"
                     Content="OK"
                     IsDefault="True"
                     IsEnabled="{Binding IsValidAndHasConnected, Mode=OneWay}" />
-            </StackPanel>
+                <Button
+                    x:Name="TryClose"
+                    Content="Cancel"
+                    IsCancel="True" />
+            </WrapPanel>
         </StackPanel>
     </ScrollViewer>
 </UserControl>

@@ -9,6 +9,8 @@ namespace Logikfabrik.Overseer.WPF.Converters
     using System.Windows;
     using System.Windows.Data;
 
+    // TODO: Remove?
+
     /// <summary>
     /// The <see cref="BooleanToVisibilityConverter" /> class.
     /// </summary>

@@ -37,6 +37,14 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         bool IsBusy { get; }
 
         /// <summary>
+        /// Gets a value indicating whether this instance is viewable.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if this instance is viewable; otherwise, <c>false</c>.
+        /// </value>
+        bool IsViewable { get; }
+
+        /// <summary>
         /// Gets a value indicating whether this instance is editable.
         /// </summary>
         /// <value>

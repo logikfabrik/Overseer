@@ -16,7 +16,8 @@
         <Button
             x:Name="View"
             HorizontalContentAlignment="Stretch"
-            VerticalContentAlignment="Stretch">
+            VerticalContentAlignment="Stretch"
+            IsEnabled="{Binding IsViewable}">
             <Button.Effect>
                 <DropShadowEffect
                     BlurRadius="3"
@@ -36,6 +37,9 @@
                     Focusable="False" />
             </StackPanel>
         </Button>
-        <uc:ProgressControl Height="2" VerticalAlignment="Top" />
+        <uc:ProgressControl
+            VerticalAlignment="Top"
+            IsErrored="{Binding IsErrored}"
+            IsInProgress="{Binding IsBusy}" />
     </Grid>
 </UserControl>

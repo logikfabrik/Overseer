@@ -111,6 +111,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
                 NotifyOfPropertyChange(() => Builds);
                 NotifyOfPropertyChange(() => HasBuilds);
                 NotifyOfPropertyChange(() => LatestBuild);
+                NotifyOfPropertyChange(() => IsViewable);
             }
         }
 
@@ -147,8 +148,17 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             {
                 _isBusy = value;
                 NotifyOfPropertyChange(() => IsBusy);
+                NotifyOfPropertyChange(() => IsViewable);
             }
         }
+
+        /// <summary>
+        /// Gets a value indicating whether this instance is viewable.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if this instance is viewable; otherwise, <c>false</c>.
+        /// </value>
+        public bool IsViewable => !IsErrored && !IsBusy && HasBuilds;
 
         /// <summary>
         /// Gets a value indicating whether this instance is errored.
@@ -167,6 +177,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             {
                 _isErrored = value;
                 NotifyOfPropertyChange(() => IsErrored);
+                NotifyOfPropertyChange(() => IsViewable);
             }
         }
 

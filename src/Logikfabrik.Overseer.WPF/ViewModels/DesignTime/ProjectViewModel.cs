@@ -62,6 +62,14 @@ namespace Logikfabrik.Overseer.WPF.ViewModels.DesignTime
         public bool IsBusy { get; } = false;
 
         /// <summary>
+        /// Gets a value indicating whether this instance is viewable.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if this instance is viewable; otherwise, <c>false</c>.
+        /// </value>
+        public bool IsViewable { get; } = true;
+
+        /// <summary>
         /// Gets a value indicating whether this instance is errored.
         /// </summary>
         /// <value>

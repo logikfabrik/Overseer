@@ -24,13 +24,13 @@
                 <ItemsControl.ItemContainerStyle>
                     <Style>
                         <!--  ReSharper disable once Xaml.RedundantPropertyTypeQualifier  -->
-                        <Setter Property="FrameworkElement.Margin" Value="10,10,5,0" />
+                        <Setter Property="FrameworkElement.Margin" Value="0,10,0,0" />
                     </Style>
                 </ItemsControl.ItemContainerStyle>
                 <ItemsControl.Template>
                     <ControlTemplate>
                         <ScrollViewer>
-                            <ItemsPresenter />
+                            <ItemsPresenter Margin="10,0,10,10" />
                         </ScrollViewer>
                     </ControlTemplate>
                 </ItemsControl.Template>

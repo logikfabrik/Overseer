@@ -13,12 +13,17 @@
                 <TextBlock Text="Interval (s)" />
                 <TextBox Text="{Binding Path=Interval, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" />
             </StackPanel>
-            <StackPanel Margin="10,0,10,10" Orientation="Horizontal">
+            <WrapPanel Margin="10,0,10,10" Orientation="Horizontal">
                 <Button
                     x:Name="Save"
-                    Content="Save"
+                    Margin="0,0,2,0"
+                    Content="OK"
                     IsDefault="True" />
-            </StackPanel>
+                <Button
+                    x:Name="TryClose"
+                    Content="Cancel"
+                    IsCancel="True" />
+            </WrapPanel>
         </StackPanel>
     </ScrollViewer>
 </UserControl>

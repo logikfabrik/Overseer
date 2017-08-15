@@ -1,28 +1,23 @@
-﻿// <copyright file="TaskStatusToBooleanConverter.cs" company="Logikfabrik">
+﻿// <copyright file="ValueConverterGroup.cs" company="Logikfabrik">
 //   Copyright (c) 2016 anton(at)logikfabrik.se. Licensed under the MIT license.
 // </copyright>
 
 namespace Logikfabrik.Overseer.WPF.Converters
 {
     using System;
+    using System.Collections.Generic;
     using System.Globalization;
     using System.Linq;
-    using System.Threading.Tasks;
     using System.Windows.Data;
 
     /// <summary>
-    /// The <see cref="TaskStatusToBooleanConverter" /> class.
+    /// The <see cref="ValueConverterGroup" /> class.
     /// </summary>
-    public class TaskStatusToBooleanConverter : IValueConverter
+    /// <remarks>
+    /// Based on SO https://stackoverflow.com/a/8326207, answered by Town, https://stackoverflow.com/users/54975/town.
+    /// </remarks>
+    public class ValueConverterGroup : List<IValueConverter>, IValueConverter
     {
-        /// <summary>
-        /// Gets or sets the <see cref="TaskStatus" /> which evaluates to <c>true</c>.
-        /// </summary>
-        /// <value>
-        /// The <see cref="TaskStatus" /> which evaluates to <c>true</c>.
-        /// </value>
-        public TaskStatus[] TrueFor { get; set; }
-
         /// <summary>
         /// Converts a value.
         /// </summary>
@@ -35,14 +30,7 @@ namespace Logikfabrik.Overseer.WPF.Converters
         /// </returns>
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            var v = value as TaskStatus?;
-
-            if (TrueFor == null || !v.HasValue)
-            {
-                return false;
-            }
-
-            return TrueFor.Contains(v.Value);
+            return this.Aggregate(value, (current, converter) => converter.Convert(current, targetType, parameter, culture));
         }
 
         /// <summary>

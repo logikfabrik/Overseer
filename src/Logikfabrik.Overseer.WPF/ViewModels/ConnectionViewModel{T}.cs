@@ -15,7 +15,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     using Settings;
 
     /// <summary>
-    /// The <see cref="ConnectionViewModel{T}" /> class.
+    /// The <see cref="ConnectionViewModel{T}" /> class. Base view model for CI connections.
     /// </summary>
     /// <typeparam name="T">The <see cref="ConnectionSettings" /> type.</typeparam>
     public class ConnectionViewModel<T> : ViewModel, IConnectionViewModel
@@ -113,9 +113,18 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             {
                 _isBusy = value;
                 NotifyOfPropertyChange(() => IsBusy);
+                NotifyOfPropertyChange(() => IsViewable);
                 NotifyOfPropertyChange(() => IsEditable);
             }
         }
+
+        /// <summary>
+        /// Gets a value indicating whether this instance is viewable.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if this instance is viewable; otherwise, <c>false</c>.
+        /// </value>
+        public bool IsViewable => !IsErrored && !IsBusy && HasProjects;
 
         /// <summary>
         /// Gets a value indicating whether this instance is editable.
@@ -142,6 +151,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             {
                 _isErrored = value;
                 NotifyOfPropertyChange(() => IsErrored);
+                NotifyOfPropertyChange(() => IsViewable);
                 NotifyOfPropertyChange(() => IsEditable);
             }
         }
@@ -164,6 +174,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
                 _projects = value.ToList();
                 NotifyOfPropertyChange(() => Projects);
                 NotifyOfPropertyChange(() => HasProjects);
+                NotifyOfPropertyChange(() => IsViewable);
             }
         }
 
