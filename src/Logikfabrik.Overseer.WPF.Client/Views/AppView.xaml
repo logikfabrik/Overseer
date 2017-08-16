@@ -7,12 +7,7 @@
     cal:Message.Attach="[Event MouseUp] = [Action Menu.Close]"
     Style="{StaticResource WindowDefaultStyle}">
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto" />
-            <ColumnDefinition />
-        </Grid.ColumnDefinitions>
-        <ContentControl cal:View.Model="{Binding Menu, Mode=OneTime}" Focusable="False" />
-        <Grid Grid.Column="1">
+        <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
@@ -42,5 +37,9 @@
                 cal:View.Model="{Binding ActiveItem, Mode=OneWay}"
                 Focusable="False" />
         </Grid>
+        <ContentControl
+            HorizontalAlignment="Left"
+            cal:View.Model="{Binding Menu, Mode=OneTime}"
+            Focusable="False" />
     </Grid>
 </views:AppWindow>
