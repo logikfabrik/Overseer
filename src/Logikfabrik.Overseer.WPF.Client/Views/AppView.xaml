@@ -22,8 +22,7 @@
                 </Grid.Effect>
                 <Button
                     HorizontalAlignment="Left"
-                    cal:Message.Attach="Menu.Toggle"
-                    Visibility="{Binding Menu.IsCollapsed, Converter={StaticResource BooleanToVisibilityConverter}}">
+                    cal:Message.Attach="Menu.Toggle">
                     <Viewbox>
                         <Canvas>
                             <Path Data="M16.4,9L3.6,9C3.048,9 3,9.447 3,10 3,10.553 3.048,11 3.6,11L16.4,11C16.952,11 17,10.553 17,10 17,9.447 16.952,9 16.4,9z M16.4,13L3.6,13C3.048,13 3,13.447 3,14 3,14.553 3.048,15 3.6,15L16.4,15C16.952,15 17,14.553 17,14 17,13.447 16.952,13 16.4,13z M3.6,7L16.4,7C16.952,7 17,6.553 17,6 17,5.447 16.952,5 16.4,5L3.6,5C3.048,5 3,5.447 3,6 3,6.553 3.048,7 3.6,7z" />

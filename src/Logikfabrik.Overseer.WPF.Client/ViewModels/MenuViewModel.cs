@@ -54,17 +54,8 @@ namespace Logikfabrik.Overseer.WPF.Client.ViewModels
             {
                 _isExpanded = value;
                 NotifyOfPropertyChange(() => IsExpanded);
-                NotifyOfPropertyChange(() => IsCollapsed);
             }
         }
-
-        /// <summary>
-        /// Gets a value indicating whether this instance is collapsed.
-        /// </summary>
-        /// <value>
-        ///   <c>true</c> if this instance is collapsed; otherwise, <c>false</c>.
-        /// </value>
-        public bool IsCollapsed => !_isExpanded;
 
         /// <summary>
         /// Toggles this instance.
