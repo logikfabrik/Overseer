@@ -9,7 +9,7 @@
     <ProductVersion>3.10</ProductVersion>
     <ProjectGuid>93446262-5f80-4ed6-b53b-e543ac8245ef</ProjectGuid>
     <SchemaVersion>2.0</SchemaVersion>
-    <OutputName>Overseer.$(version)</OutputName>
+    <OutputName>Overseer.$(InstallerVersion)</OutputName>
     <OutputType>Package</OutputType>
     <WixTargetsPath Condition=" '$(WixTargetsPath)' == '' AND '$(MSBuildExtensionsPath32)' != '' ">$(MSBuildExtensionsPath32)\Microsoft\WiX\v3.x\Wix.targets</WixTargetsPath>
     <WixTargetsPath Condition=" '$(WixTargetsPath)' == '' ">$(MSBuildExtensionsPath)\Microsoft\WiX\v3.x\Wix.targets</WixTargetsPath>

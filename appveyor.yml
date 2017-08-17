@@ -10,9 +10,8 @@ assembly_info:
   assembly_file_version: '{version}'
 before_build:
 - nuget restore src/Logikfabrik.Overseer.sln
-build:
-  project: src/Logikfabrik.Overseer.sln
-  verbosity: minimal
+build_script:
+  - msbuild src/Logikfabrik.Overseer.sln /p:Configuration=%configuration% /p:InstallerVersion='{version}' /p:WarningLevel=1 -verbosity:minimal /logger:"C:\Program Files\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll"
 artifacts:
   - path: src/Logikfabrik.Overseer.Setup/bin/$(configuration)/*.msi
     name: Setup
