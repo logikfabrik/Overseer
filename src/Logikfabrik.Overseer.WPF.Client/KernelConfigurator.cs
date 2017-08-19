@@ -17,6 +17,7 @@ namespace Logikfabrik.Overseer.WPF.Client
     using Providers;
     using Providers.Caching;
     using Providers.Settings;
+    using Serilog;
     using Settings;
     using WPF.ViewModels;
     using WPF.ViewModels.Factories;
@@ -37,6 +38,9 @@ namespace Logikfabrik.Overseer.WPF.Client
             Ensure.That(modules).IsNotNull();
 
             kernel.Bind<InputManager>().ToProvider<InputManagerProvider>();
+
+            // Serilog setup
+            kernel.Bind<ILogger>().ToProvider<LoggerProvider>().InSingletonScope();
 
             // Business logic setup.
             kernel.Bind<IAppSettingsFactory>().ToFactory();
@@ -69,7 +73,7 @@ namespace Logikfabrik.Overseer.WPF.Client
             kernel.Bind<IProjectViewModelFactory>().ToFactory();
             kernel.Bind<IRemoveConnectionViewModelFactory>().ToFactory();
             kernel.Bind<IConnectionViewModelStrategy>().To<ConnectionViewModelStrategy>();
-            kernel.Bind<ConnectionsViewModel>().ToSelf().InSingletonScope();
+            kernel.Bind<ConnectionsListViewModel>().ToSelf().InSingletonScope();
 
             kernel.Load(modules);
         }

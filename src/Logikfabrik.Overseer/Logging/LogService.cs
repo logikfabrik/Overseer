@@ -6,13 +6,27 @@ namespace Logikfabrik.Overseer.Logging
 {
     using System;
     using EnsureThat;
-    using log4net;
+    using Serilog;
+    using Serilog.Events;
 
     /// <summary>
     /// The <see cref="LogService" /> class.
     /// </summary>
     public class LogService : ILogService
     {
+        private readonly ILogger _logger;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="LogService" /> class.
+        /// </summary>
+        /// <param name="logger">The logger.</param>
+        public LogService(ILogger logger)
+        {
+            Ensure.That(logger).IsNotNull();
+
+            _logger = logger;
+        }
+
         /// <summary>
         /// Logs the specified entry.
         /// </summary>
@@ -35,7 +49,7 @@ namespace Logikfabrik.Overseer.Logging
             Ensure.That(type).IsNotNull();
             Ensure.That(entry).IsNotNull();
 
-            var logger = GetLogger(type);
+            var logger = _logger.ForContext(type);
 
             if (logger == null)
             {
@@ -46,7 +60,7 @@ namespace Logikfabrik.Overseer.Logging
             switch (entry.Type)
             {
                 case LogEntryType.Debug:
-                    if (!logger.IsDebugEnabled)
+                    if (!logger.IsEnabled(LogEventLevel.Debug))
                     {
                         break;
                     }
@@ -63,41 +77,41 @@ namespace Logikfabrik.Overseer.Logging
                     break;
 
                 case LogEntryType.Information:
-                    if (!logger.IsInfoEnabled)
+                    if (!logger.IsEnabled(LogEventLevel.Information))
                     {
                         break;
                     }
 
                     if (entry.Exception == null)
                     {
-                        logger.Info(entry.Message);
+                        logger.Information(entry.Message);
                     }
                     else
                     {
-                        logger.Info(entry.Message, entry.Exception);
+                        logger.Information(entry.Message, entry.Exception);
                     }
 
                     break;
 
                 case LogEntryType.Warning:
-                    if (!logger.IsWarnEnabled)
+                    if (!logger.IsEnabled(LogEventLevel.Warning))
                     {
                         break;
                     }
 
                     if (entry.Exception == null)
                     {
-                        logger.Warn(entry.Message);
+                        logger.Warning(entry.Message);
                     }
                     else
                     {
-                        logger.Warn(entry.Message, entry.Exception);
+                        logger.Warning(entry.Message, entry.Exception);
                     }
 
                     break;
 
                 case LogEntryType.Error:
-                    if (!logger.IsErrorEnabled)
+                    if (!logger.IsEnabled(LogEventLevel.Error))
                     {
                         break;
                     }
@@ -113,11 +127,6 @@ namespace Logikfabrik.Overseer.Logging
 
                     break;
             }
-        }
-
-        private static ILog GetLogger(Type type)
-        {
-            return LogManager.GetLogger(type);
         }
     }
 }

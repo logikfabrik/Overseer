@@ -16,7 +16,7 @@ If you have a bug report, feature request, or suggestion, please open a new issu
 - [Ensure.That](https://github.com/danielwertheim/Ensure.That)
 - [FluentValidation](https://github.com/JeremySkinner/FluentValidation)
 - [Humanizer](https://github.com/Humanizr/Humanizer)
-- [log4net](https://logging.apache.org/log4net)
+- [Serilog](https://github.com/serilog/serilog)
 - [Moq](https://github.com/moq/moq)
 - [xUnit](https://github.com/xunit/xunit)
 - [AutoFixture](https://github.com/AutoFixture/AutoFixture)

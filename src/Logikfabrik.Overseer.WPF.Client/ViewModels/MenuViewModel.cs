@@ -26,16 +26,27 @@ namespace Logikfabrik.Overseer.WPF.Client.ViewModels
         /// </summary>
         /// <param name="eventAggregator">The event aggregator.</param>
         /// <param name="inputManager">The input manager.</param>
-        public MenuViewModel(IEventAggregator eventAggregator, InputManager inputManager)
+        public MenuViewModel(IEventAggregator eventAggregator, InputManager inputManager, ConnectionsListViewModel connectionsListViewModel)
         {
             Ensure.That(eventAggregator).IsNotNull();
             Ensure.That(inputManager).IsNotNull();
+            Ensure.That(connectionsListViewModel).IsNotNull();
 
             _eventAggregator = eventAggregator;
             _inputManager = inputManager;
 
             _inputManager.PreProcessInput += InputManager_PreProcessInput;
+
+            ConnectionsList = connectionsListViewModel;
         }
+
+        /// <summary>
+        /// Gets the connections list.
+        /// </summary>
+        /// <value>
+        /// The connections list.
+        /// </value>
+        public ConnectionsListViewModel ConnectionsList { get; }
 
         /// <summary>
         /// Gets or sets a value indicating whether this instance is expanded.

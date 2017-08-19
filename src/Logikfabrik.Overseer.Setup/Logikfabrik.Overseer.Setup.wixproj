@@ -123,4 +123,9 @@
     <Content Include="LICENSE.rtf" />
   </ItemGroup>
   <Import Project="$(WixTargetsPath)" />
+  <Target Name="BeforeBuild">
+    <CreateProperty Condition="$(InstallerVersion) != ''" Value="INSTALLERVERSION=$(InstallerVersion);$(DefineConstants)">
+      <Output TaskParameter="Value" PropertyName="DefineConstants" />
+    </CreateProperty>
+  </Target>
 </Project>

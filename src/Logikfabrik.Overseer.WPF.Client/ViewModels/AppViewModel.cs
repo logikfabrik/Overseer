@@ -62,7 +62,7 @@ namespace Logikfabrik.Overseer.WPF.Client.ViewModels
         /// <value>
         /// The view display name.
         /// </value>
-        public string ViewDisplayName => ActiveItem.DisplayName;
+        public string ViewDisplayName => ActiveItem?.DisplayName;
 
         /// <summary>
         /// Gets the menu.
@@ -79,8 +79,6 @@ namespace Logikfabrik.Overseer.WPF.Client.ViewModels
         public void Handle(NavigationMessage message)
         {
             _navigator.Navigate(message);
-
-            NotifyOfPropertyChange(() => ViewDisplayName);
         }
 
         /// <summary>
@@ -98,6 +96,18 @@ namespace Logikfabrik.Overseer.WPF.Client.ViewModels
             WeakEventManager<IBuildMonitor, BuildMonitorProjectProgressEventArgs>.RemoveHandler(_buildMonitor, nameof(_buildMonitor.ProjectProgressChanged), BuildMonitorProgressChanged);
 
             _isDisposed = true;
+        }
+
+        /// <summary>
+        /// Changes the active item.
+        /// </summary>
+        /// <param name="newItem">The new item to activate.</param>
+        /// <param name="closePrevious">Indicates whether or not to close the previous active item.</param>
+        protected override void ChangeActiveItem(IViewModel newItem, bool closePrevious)
+        {
+            base.ChangeActiveItem(newItem, closePrevious);
+
+            NotifyOfPropertyChange(() => ViewDisplayName);
         }
 
         private void BuildMonitorProgressChanged(object sender, BuildMonitorProjectProgressEventArgs e)

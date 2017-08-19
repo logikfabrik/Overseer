@@ -9,7 +9,6 @@ namespace Logikfabrik.Overseer.WPF.Client
     using System.Reflection;
     using System.Windows;
     using Caliburn.Micro;
-    using log4net.Config;
     using Logging;
     using Ninject;
     using Ninject.Parameters;
@@ -93,7 +92,6 @@ namespace Logikfabrik.Overseer.WPF.Client
 
             _catalog = null;
 
-            XmlConfigurator.Configure();
             DataBindingLanguageConfigurator.Configure();
             DataBindingActionConfigurator.Configure();
             ErrorHandlerConfigurator.Configure(_kernel.Get<ILogService>());

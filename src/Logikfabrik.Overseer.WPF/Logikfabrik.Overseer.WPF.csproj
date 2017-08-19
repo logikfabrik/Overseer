@@ -109,6 +109,7 @@
     </Compile>
     <Compile Include="Validators\ConnectionSettingsViewModelValidator{T1,T2}.cs" />
     <Compile Include="Validators\EditSettingsViewModelValidator.cs" />
+    <Compile Include="ViewModels\ConnectionsListViewModel.cs" />
     <Compile Include="ViewModels\DashboardViewModel.cs" />
     <Compile Include="ViewModels\DesignTime\BuildNotificationViewModel.cs" />
     <Compile Include="ViewModels\DesignTime\BuildViewModel.cs" />
