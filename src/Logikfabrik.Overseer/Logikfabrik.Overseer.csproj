@@ -77,8 +77,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Api\CacheableApiClient{T}.cs" />
-    <Compile Include="Api\ICacheableApiClient.cs" />
     <Compile Include="AppSettings.cs" />
     <Compile Include="BuildMonitor.cs" />
     <Compile Include="BuildMonitorConnectionErrorEventArgs.cs" />
@@ -92,6 +90,8 @@
     <Compile Include="Caching\CacheInterceptor.cs" />
     <Compile Include="Caching\ICacheable.cs" />
     <Compile Include="Change.cs" />
+    <Compile Include="Notification{T}.cs" />
+    <Compile Include="NotificationType.cs" />
     <Compile Include="Extensions\BuildExtensions.cs" />
     <Compile Include="Extensions\BuildStatusExtensions.cs" />
     <Compile Include="Extensions\DisposableExtensions.cs" />
@@ -110,9 +110,7 @@
     <Compile Include="Logging\LogService.cs" />
     <Compile Include="Settings\ConnectionSettings.cs" />
     <Compile Include="Settings\ConnectionSettingsEncrypter.cs" />
-    <Compile Include="Settings\Extensions\ConnectionSettingsExtensions.cs" />
     <Compile Include="Settings\ConnectionSettingsRepository.cs" />
-    <Compile Include="Settings\ConnectionSettingsSignature.cs" />
     <Compile Include="Settings\DataProtector.cs" />
     <Compile Include="Settings\HashUtility.cs" />
     <Compile Include="Settings\IConnectionSettingsEncrypter.cs" />

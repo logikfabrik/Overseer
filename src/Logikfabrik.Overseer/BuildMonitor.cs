@@ -20,6 +20,7 @@ namespace Logikfabrik.Overseer
     {
         private readonly IAppSettingsFactory _appSettingsFactory;
         private readonly ILogService _logService;
+        private IDictionary<Guid, Connection> _connections;
         private IDisposable _subscription;
         private CancellationTokenSource _cancellationTokenSource;
         private bool _isDisposed;
@@ -38,6 +39,7 @@ namespace Logikfabrik.Overseer
 
             _appSettingsFactory = appSettingsFactory;
             _logService = logService;
+            _connections = new Dictionary<Guid, Connection>();
             _subscription = connectionPool.Subscribe(this);
         }
 
@@ -65,7 +67,7 @@ namespace Logikfabrik.Overseer
         /// Provides the observer with new data.
         /// </summary>
         /// <param name="value">The current notification information.</param>
-        public void OnNext(Connection[] value)
+        public void OnNext(Notification<Connection>[] value)
         {
             if (_isDisposed)
             {
@@ -83,18 +85,23 @@ namespace Logikfabrik.Overseer
             Task.Factory.StartNew(
                 async () =>
                 {
-                    if (!value.Any())
-                    {
-                        return;
-                    }
-
                     while (true)
                     {
                         try
                         {
                             cancellationToken.ThrowIfCancellationRequested();
 
-                            await GetProjectsAndBuildsAsync(value, cancellationToken).ConfigureAwait(false);
+                            foreach (var connection in Notification<Connection>.GetByType(value, NotificationType.Removed, c => _connections.ContainsKey(c.Settings.Id)))
+                            {
+                                _connections.Remove(connection.Settings.Id);
+                            }
+
+                            foreach (var connection in Notification<Connection>.GetByType(value, NotificationType.Added, connection => !_connections.ContainsKey(connection.Settings.Id)))
+                            {
+                                _connections.Add(connection.Settings.Id, connection);
+                            }
+
+                            await GetProjectsAndBuildsAsync(_connections.Values, cancellationToken).ConfigureAwait(false);
 
                             await Task.Delay(TimeSpan.FromSeconds(_appSettingsFactory.Create().Interval), cancellationToken).ConfigureAwait(false);
                         }
@@ -155,6 +162,12 @@ namespace Logikfabrik.Overseer
                     _cancellationTokenSource.Cancel();
                     _cancellationTokenSource.Dispose();
                     _cancellationTokenSource = null;
+                }
+
+                if (_connections != null)
+                {
+                    _connections.Clear();
+                    _connections = null;
                 }
 
                 if (_subscription != null)

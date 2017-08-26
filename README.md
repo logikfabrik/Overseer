@@ -10,16 +10,19 @@ Overseer is Open Source (MIT), and you’re welcome to contribute!
 If you have a bug report, feature request, or suggestion, please open a new issue. To submit a patch, please send a pull request.
 
 ### Attribution
+- [CacheManager](https://github.com/MichaCo/CacheManager)
 - [Caliburn.Micro](https://github.com/Caliburn-Micro/Caliburn.Micro)
-- [StyleCop.Analyzers](https://github.com/DotNetAnalyzers/StyleCopAnalyzers)
-- [Ninject](https://github.com/ninject/Ninject)
+- [Castle.Core](https://github.com/castleproject/Core)
 - [Ensure.That](https://github.com/danielwertheim/Ensure.That)
+- [Entypo](http://www.entypo.com)
 - [FluentValidation](https://github.com/JeremySkinner/FluentValidation)
 - [Humanizer](https://github.com/Humanizr/Humanizer)
+- [Newtonsoft.Json](https://github.com/JamesNK/Newtonsoft.Json)
+- [Ninject](https://github.com/ninject/Ninject)
 - [Serilog](https://github.com/serilog/serilog)
-- [Moq](https://github.com/moq/moq)
-- [xUnit](https://github.com/xunit/xunit)
+
 - [AutoFixture](https://github.com/AutoFixture/AutoFixture)
+- [Moq](https://github.com/moq/moq)
+- [StyleCop.Analyzers](https://github.com/DotNetAnalyzers/StyleCopAnalyzers)
 - [WiX](https://github.com/wixtoolset/wix3)
-- [CacheManager](https://github.com/MichaCo/CacheManager)
-- [Entypo pictograms by Daniel Bruce](http://www.entypo.com)
+- [xUnit](https://github.com/xunit/xunit)

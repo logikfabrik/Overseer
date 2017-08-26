@@ -7,19 +7,19 @@ namespace Logikfabrik.Overseer.WPF.Provider.CircleCI.Api
     using System.Collections.Generic;
     using System.Threading;
     using System.Threading.Tasks;
-    using Models;
+    using Caching;
 
     /// <summary>
     /// The <see cref="IApiClient" /> interface.
     /// </summary>
-    public interface IApiClient
+    public interface IApiClient : ICacheable
     {
         /// <summary>
         /// Gets the projects.
         /// </summary>
         /// <param name="cancellationToken">A cancellation token.</param>
         /// <returns>A task.</returns>
-        Task<IEnumerable<Project>> GetProjectsAsync(CancellationToken cancellationToken);
+        Task<IEnumerable<Models.Project>> GetProjectsAsync(CancellationToken cancellationToken);
 
         /// <summary>
         /// Gets the build types.
@@ -31,6 +31,6 @@ namespace Logikfabrik.Overseer.WPF.Provider.CircleCI.Api
         /// <param name="limit">The limit count.</param>
         /// <param name="cancellationToken">A cancellation token.</param>
         /// <returns>A task.</returns>
-        Task<IEnumerable<Build>> GetBuildsAsync(string projectVcsType, string projectUsername, string projectName, int offset, int limit, CancellationToken cancellationToken);
+        Task<IEnumerable<Models.Build>> GetBuildsAsync(string projectVcsType, string projectUsername, string projectName, int offset, int limit, CancellationToken cancellationToken);
     }
 }

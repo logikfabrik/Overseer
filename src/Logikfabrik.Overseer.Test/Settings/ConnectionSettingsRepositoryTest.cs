@@ -7,6 +7,7 @@ namespace Logikfabrik.Overseer.Test.Settings
     using System;
     using Moq;
     using Overseer.Settings;
+    using Ploeh.AutoFixture.Xunit2;
     using Xunit;
 
     public class ConnectionSettingsRepositoryTest
@@ -14,57 +15,100 @@ namespace Logikfabrik.Overseer.Test.Settings
         [Fact]
         public void CanAdd()
         {
-            var settingsStoreMock = new Mock<IConnectionSettingsStore>();
+            var settingsMock = new Mock<ConnectionSettings>();
 
-            var repository = new ConnectionSettingsRepository(settingsStoreMock.Object);
+            settingsMock.Setup(m => m.Clone()).Returns(() => Clone(settingsMock));
 
-            var settingsBeforeAdd = new ConnectionSettingsA();
+            var repository = new ConnectionSettingsRepository(new Mock<IConnectionSettingsStore>().Object);
 
-            repository.Add(settingsBeforeAdd);
+            repository.Add(settingsMock.Object);
 
-            var settingsAfterAdd = repository.Get(settingsBeforeAdd.Id);
-
-            Assert.NotSame(settingsAfterAdd, settingsBeforeAdd);
-            Assert.Equal(settingsAfterAdd.Id, settingsBeforeAdd.Id);
+            Assert.NotNull(repository.Get(settingsMock.Object.Id));
         }
 
-        [Fact]
-        public void CanRemove()
+        [Theory]
+        [AutoData]
+        public void CanUpdate(Guid id, string nameBeforeUpdate, string nameAfterUpdate)
         {
-            var settingsStoreMock = new Mock<IConnectionSettingsStore>();
+            var settingsBeforeUpdateMock = new Mock<ConnectionSettings>();
 
-            var repository = new ConnectionSettingsRepository(settingsStoreMock.Object);
+            settingsBeforeUpdateMock.Object.Id = id;
+            settingsBeforeUpdateMock.Object.Name = nameBeforeUpdate;
+            settingsBeforeUpdateMock.Setup(m => m.Clone()).Returns(() => Clone(settingsBeforeUpdateMock));
 
-            var settingsToAddAndRemove = new ConnectionSettingsA();
+            var repository = new ConnectionSettingsRepository(new Mock<IConnectionSettingsStore>().Object);
 
-            repository.Add(settingsToAddAndRemove);
-            repository.Remove(settingsToAddAndRemove.Id);
-
-            Assert.Null(repository.Get(settingsToAddAndRemove.Id));
-        }
-
-        [Fact]
-        public void CanUpdate()
-        {
-            var settingsStoreMock = new Mock<IConnectionSettingsStore>();
-
-            var repository = new ConnectionSettingsRepository(settingsStoreMock.Object);
-
-            var id = Guid.NewGuid();
-
-            var settingToAdd = new ConnectionSettingsA { Id = id, Name = "Name before update" };
-
-            repository.Add(settingToAdd);
+            repository.Add(settingsBeforeUpdateMock.Object);
 
             var settingsToUpdate = repository.Get(id);
 
-            settingsToUpdate.Name = "Name after update";
+            settingsToUpdate.Name = nameAfterUpdate;
 
             repository.Update(settingsToUpdate);
 
             var settingsAfterUpdate = repository.Get(id);
 
-            Assert.Equal("Name after update", settingsAfterUpdate.Name);
+            Assert.Equal(nameAfterUpdate, settingsAfterUpdate.Name);
+        }
+
+        [Fact]
+        public void CanRemove()
+        {
+            var settingsMock = new Mock<ConnectionSettings>();
+
+            settingsMock.Setup(m => m.Clone()).Returns(() => Clone(settingsMock));
+
+            var repository = new ConnectionSettingsRepository(new Mock<IConnectionSettingsStore>().Object);
+
+            repository.Add(settingsMock.Object);
+            repository.Remove(settingsMock.Object.Id);
+
+            Assert.Null(repository.Get(settingsMock.Object.Id));
+        }
+
+        [Fact]
+        public void WillCloneOnAdd()
+        {
+            var settingsMock = new Mock<ConnectionSettings>();
+
+            settingsMock.Setup(m => m.Clone()).Returns(() => Clone(settingsMock));
+
+            var repository = new ConnectionSettingsRepository(new Mock<IConnectionSettingsStore>().Object);
+
+            repository.Add(settingsMock.Object);
+
+            settingsMock.Verify(m => m.Clone(), Times.Once);
+        }
+
+        [Fact]
+        public void WillCloneOnUpdate()
+        {
+            var settingsMock = new Mock<ConnectionSettings>();
+
+            settingsMock.Setup(m => m.Clone()).Returns(() => Clone(settingsMock));
+
+            var repository = new ConnectionSettingsRepository(new Mock<IConnectionSettingsStore>().Object);
+
+            repository.Add(settingsMock.Object);
+            repository.Update(settingsMock.Object);
+
+            settingsMock.Verify(m => m.Clone(), Times.Exactly(2));
+        }
+
+        private static ConnectionSettings Clone(IMock<ConnectionSettings> settingsMock)
+        {
+            var cloneMock = new Mock<ConnectionSettings>();
+
+            cloneMock.Object.Id = settingsMock.Object.Id;
+
+            if (!string.IsNullOrWhiteSpace(settingsMock.Object.Name))
+            {
+                cloneMock.Object.Name = settingsMock.Object.Name;
+            }
+
+            cloneMock.Setup(m => m.Clone()).Returns(() => Clone(cloneMock));
+
+            return cloneMock.Object;
         }
     }
 }

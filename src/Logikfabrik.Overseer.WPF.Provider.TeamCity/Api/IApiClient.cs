@@ -6,25 +6,25 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity.Api
 {
     using System.Threading;
     using System.Threading.Tasks;
-    using Models;
+    using Caching;
 
     /// <summary>
     /// The <see cref="IApiClient" /> interface.
     /// </summary>
-    public interface IApiClient
+    public interface IApiClient : ICacheable
     {
         /// <summary>
         /// Gets the projects.
         /// </summary>
         /// <param name="cancellationToken">A cancellation token.</param>
         /// <returns>A task.</returns>
-        Task<Projects> GetProjectsAsync(CancellationToken cancellationToken);
+        Task<Models.Projects> GetProjectsAsync(CancellationToken cancellationToken);
 
         /// <summary>
         /// Gets the build types.
         /// </summary>
         /// <param name="cancellationToken">A cancellation token.</param>
         /// <returns>A task.</returns>
-        Task<BuildTypes> GetBuildTypesAsync(CancellationToken cancellationToken);
+        Task<Models.BuildTypes> GetBuildTypesAsync(CancellationToken cancellationToken);
     }
 }

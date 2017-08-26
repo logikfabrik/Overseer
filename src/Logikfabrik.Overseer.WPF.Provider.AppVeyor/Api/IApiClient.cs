@@ -7,11 +7,12 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor.Api
     using System.Collections.Generic;
     using System.Threading;
     using System.Threading.Tasks;
+    using Caching;
 
     /// <summary>
     /// The <see cref="IApiClient" /> interface.
     /// </summary>
-    public interface IApiClient
+    public interface IApiClient : ICacheable
     {
         /// <summary>
         /// Gets the projects.

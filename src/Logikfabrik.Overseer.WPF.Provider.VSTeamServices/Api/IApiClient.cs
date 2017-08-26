@@ -6,12 +6,12 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices.Api
 {
     using System.Threading;
     using System.Threading.Tasks;
-    using Models;
+    using Caching;
 
     /// <summary>
     /// The <see cref="ApiClient" /> class.
     /// </summary>
-    public interface IApiClient
+    public interface IApiClient : ICacheable
     {
         /// <summary>
         /// Gets the projects.
@@ -20,7 +20,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices.Api
         /// <param name="take">The take count.</param>
         /// <param name="cancellationToken">A cancellation token.</param>
         /// <returns>A task.</returns>
-        Task<Projects> GetProjectsAsync(int skip, int take, CancellationToken cancellationToken);
+        Task<Models.Projects> GetProjectsAsync(int skip, int take, CancellationToken cancellationToken);
 
         /// <summary>
         /// Gets the builds.
@@ -30,7 +30,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices.Api
         /// <param name="take">The take count.</param>
         /// <param name="cancellationToken">A cancellation token.</param>
         /// <returns>A task.</returns>
-        Task<Builds> GetBuildsAsync(string projectId, int skip, int take, CancellationToken cancellationToken);
+        Task<Models.Builds> GetBuildsAsync(string projectId, int skip, int take, CancellationToken cancellationToken);
 
         /// <summary>
         /// Gets the changes.
@@ -39,6 +39,6 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices.Api
         /// <param name="buildId">The build identifier.</param>
         /// <param name="cancellationToken">A cancellation token.</param>
         /// <returns>A task.</returns>
-        Task<Changes> GetChangesAsync(string projectId, string buildId, CancellationToken cancellationToken);
+        Task<Models.Changes> GetChangesAsync(string projectId, string buildId, CancellationToken cancellationToken);
     }
 }

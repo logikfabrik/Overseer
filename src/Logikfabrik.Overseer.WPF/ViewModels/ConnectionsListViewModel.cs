@@ -15,7 +15,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     /// <summary>
     /// The <see cref="ConnectionsListViewModel" /> class.
     /// </summary>
-    public class ConnectionsListViewModel : PropertyChangedBase, IObserver<ConnectionSettings[]>, IDisposable
+    public class ConnectionsListViewModel : PropertyChangedBase, IObserver<Notification<ConnectionSettings>[]>, IDisposable
     {
         private readonly IConnectionViewModelStrategy _connectionViewModelStrategy;
         private List<IConnectionViewModel> _connections;
@@ -63,7 +63,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// Provides the observer with new data.
         /// </summary>
         /// <param name="value">The current notification information.</param>
-        public void OnNext(ConnectionSettings[] value)
+        public void OnNext(Notification<ConnectionSettings>[] value)
         {
             if (_isDisposed)
             {
@@ -73,34 +73,36 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
 
             var isDirty = false;
 
-            var currentConnections = new List<IConnectionViewModel>(Connections);
+            var currentConnections = Connections.ToDictionary(connection => connection.SettingsId, connection => connection);
 
-            foreach (var settings in value)
+            foreach (var settings in Notification<ConnectionSettings>.GetByType(value, NotificationType.Removed, s => currentConnections.ContainsKey(s.Id)))
             {
-                var connectionToUpdate = currentConnections.SingleOrDefault(connection => connection.SettingsId == settings.Id);
+                currentConnections.Remove(settings.Id);
 
-                if (connectionToUpdate != null)
-                {
-                    connectionToUpdate.SettingsName = settings.Name;
-                }
-                else
-                {
-                    var connectionToAdd = _connectionViewModelStrategy.Create(settings);
-
-                    currentConnections.Add(connectionToAdd);
-                    isDirty = true;
-                }
+                isDirty = true;
             }
 
-            var connectionsToKeep = value.Select(settings => settings.Id).ToArray();
+            foreach (var settings in Notification<ConnectionSettings>.GetByType(value, NotificationType.Updated, s => currentConnections.ContainsKey(s.Id)))
+            {
+                var connection = currentConnections[settings.Id];
 
-            var removedConnections = currentConnections.RemoveAll(viewModel => !connectionsToKeep.Contains(viewModel.SettingsId)) > 0;
+                connection.SettingsName = settings.Name;
 
-            isDirty = isDirty || removedConnections;
+                isDirty = true;
+            }
+
+            foreach (var settings in Notification<ConnectionSettings>.GetByType(value, NotificationType.Added, s => !currentConnections.ContainsKey(s.Id)))
+            {
+                var connection = _connectionViewModelStrategy.Create(settings);
+
+                currentConnections.Add(settings.Id, connection);
+
+                isDirty = true;
+            }
 
             if (isDirty)
             {
-                Connections = currentConnections.OrderBy(connection => connection.SettingsName);
+                Connections = currentConnections.Values.OrderBy(connection => connection.SettingsName);
             }
         }
 

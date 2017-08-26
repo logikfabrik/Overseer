@@ -26,6 +26,7 @@ namespace Logikfabrik.Overseer.WPF.Client.ViewModels
         /// </summary>
         /// <param name="eventAggregator">The event aggregator.</param>
         /// <param name="inputManager">The input manager.</param>
+        /// <param name="connectionsListViewModel">The connections list view model.</param>
         public MenuViewModel(IEventAggregator eventAggregator, InputManager inputManager, ConnectionsListViewModel connectionsListViewModel)
         {
             Ensure.That(eventAggregator).IsNotNull();

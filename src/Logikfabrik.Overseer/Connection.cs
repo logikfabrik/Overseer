@@ -11,7 +11,6 @@ namespace Logikfabrik.Overseer
     using EnsureThat;
     using Extensions;
     using Settings;
-    using Settings.Extensions;
 
     /// <summary>
     /// The <see cref="Connection" /> class.
@@ -20,7 +19,6 @@ namespace Logikfabrik.Overseer
     {
         private readonly IBuildProviderStrategy _buildProviderStrategy;
         private IBuildProvider _provider;
-        private ConnectionSettings _settings;
         private bool _isDisposed;
 
         /// <summary>
@@ -34,32 +32,16 @@ namespace Logikfabrik.Overseer
             Ensure.That(settings).IsNotNull();
 
             _buildProviderStrategy = buildProviderStrategy;
-            _settings = settings;
+            Settings = settings.Clone();
         }
 
         /// <summary>
-        /// Gets or sets the settings.
+        /// Gets the settings.
         /// </summary>
         /// <value>
         /// The settings.
         /// </value>
-        public ConnectionSettings Settings
-        {
-            get
-            {
-                return _settings.Clone();
-            }
-
-            set
-            {
-                this.ThrowIfDisposed(_isDisposed);
-
-                Ensure.That(value).IsNotNull();
-                Ensure.That(() => value.Id == _settings.Id, nameof(value)).IsTrue();
-
-                _settings = value.Clone();
-            }
-        }
+        public ConnectionSettings Settings { get; }
 
         /// <summary>
         /// Gets the projects.
@@ -121,21 +103,7 @@ namespace Logikfabrik.Overseer
 
         private IBuildProvider GetProvider()
         {
-            if (_provider == null)
-            {
-                _provider = _buildProviderStrategy.Create(_settings);
-            }
-            else
-            {
-                if (_provider.Settings.Signature() == _settings.Signature())
-                {
-                    return _provider;
-                }
-
-                _provider = _buildProviderStrategy.Create(_settings);
-            }
-
-            return _provider;
+            return _provider ?? (_provider = _buildProviderStrategy.Create(Settings));
         }
     }
 }
