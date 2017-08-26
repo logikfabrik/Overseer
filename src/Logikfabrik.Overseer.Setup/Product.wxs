@@ -35,7 +35,7 @@
              Level="1">
       <ComponentGroupRef Id="ProductComponents" />
       <ComponentGroupRef Id="AttributionComponents" />
-	  <ComponentGroupRef Id="ProductShortcuts" />
+      <ComponentGroupRef Id="ProductShortcuts" />
     </Feature>
 
     <UIRef Id="WixUI_InstallDir" />
@@ -49,19 +49,19 @@
       <Directory Id="ProgramFilesFolder">
         <Directory Id="ManufacturerFolder" Name="Logikfabrik">
           <Directory Id="INSTALLFOLDER" Name="Overseer">
-		    <Directory Id="AttributionFolder" Name="Attribution">
-			  <Directory Id="CacheManagerFolder" Name="CacheManager" />
-			  <Directory Id="Caliburn.MicroFolder" Name="Caliburn.Micro" />
-			  <Directory Id="Castle.CoreFolder" Name="Castle.Core" />
-			  <Directory Id="Ensure.ThatFolder" Name="Ensure.That" />
-			  <Directory Id="EntypoFolder" Name="Entypo" />
-			  <Directory Id="FluentValidationFolder" Name="FluentValidation" />
-			  <Directory Id="HumanizerFolder" Name="Humanizer" />
-			  <Directory Id="Newtonsoft.JsonFolder" Name="Newtonsoft.Json" />
-			  <Directory Id="NinjectFolder" Name="Ninject" />
-			  <Directory Id="SerilogFolder" Name="Serilog" />
-			</Directory>
-		  </Directory>
+            <Directory Id="AttributionFolder" Name="Attribution">
+              <Directory Id="CacheManagerFolder" Name="CacheManager" />
+              <Directory Id="Caliburn.MicroFolder" Name="Caliburn.Micro" />
+              <Directory Id="Castle.CoreFolder" Name="Castle.Core" />
+              <Directory Id="Ensure.ThatFolder" Name="Ensure.That" />
+              <Directory Id="EntypoFolder" Name="Entypo" />
+              <Directory Id="FluentValidationFolder" Name="FluentValidation" />
+              <Directory Id="HumanizerFolder" Name="Humanizer" />
+              <Directory Id="Newtonsoft.JsonFolder" Name="Newtonsoft.Json" />
+              <Directory Id="NinjectFolder" Name="Ninject" />
+              <Directory Id="SerilogFolder" Name="Serilog" />
+            </Directory>
+          </Directory>
         </Directory>
       </Directory>
 
@@ -137,38 +137,38 @@
       </Component>
     </ComponentGroup>
 
-	<ComponentGroup Id="AttributionComponents" Directory="AttributionFolder">
-	  <Component Id="CacheManagerLicense" Directory="CacheManagerFolder" Guid="ddc11997-12a0-44c9-beab-8093c9cee92d">
-	    <File Source="Attribution\CacheManager\LICENSE.txt" />
-	  </Component>
-	  <Component Id="Caliburn.MicroLicense" Directory="Caliburn.MicroFolder" Guid="a8e3f49a-dacf-4e34-ba61-e5ea6db7cb5e">
-	    <File Source="Attribution\Caliburn.Micro\LICENSE.txt" />
-	  </Component>
-	  <Component Id="Castle.CoreLicense" Directory="Castle.CoreFolder" Guid="7695da7e-c662-48c8-93f3-a9617fd14134">
-	    <File Source="Attribution\Castle.Core\LICENSE.txt" />
-	  </Component>
-	  <Component Id="Ensure.ThatLicense" Directory="Ensure.ThatFolder" Guid="11a092ed-0803-41fc-a165-785109384fd1">
-	    <File Source="Attribution\Ensure.That\LICENSE.txt" />
-	  </Component>
-	  <Component Id="EntypoLicense" Directory="EntypoFolder" Guid="cb651fd7-8093-4bec-b096-4bc419d16ffd">
-	    <File Source="Attribution\Entypo\LICENSE.txt" />
-	  </Component>
-	  <Component Id="FluentValidationLicense" Directory="FluentValidationFolder" Guid="d1af2b87-b51d-4e4c-8061-4cb00e2ab7c5">
-	    <File Source="Attribution\FluentValidation\LICENSE.txt" />
-	  </Component>
-	  <Component Id="HumanizerLicense" Directory="HumanizerFolder" Guid="eafd71d5-f786-4e7b-9614-fbfdd4cd15bc">
-	    <File Source="Attribution\Humanizer\LICENSE.txt" />
-	  </Component>
-	  <Component Id="Newtonsoft.JsonFolderLicense" Directory="Newtonsoft.JsonFolderFolder" Guid="8b217526-51ac-42fd-a79c-5620ffa173f3">
-	    <File Source="Attribution\Newtonsoft.JsonFolder\LICENSE.txt" />
-	  </Component>
-	  <Component Id="NinjectLicense" Directory="NinjectFolder" Guid="fa6cde03-9f44-44ea-948a-d834a5fee97b">
-	    <File Source="Attribution\Ninject\LICENSE.txt" />
-	  </Component>
-	  <Component Id="SerilogLicense" Directory="SerilogFolder" Guid="79a0a6e5-cb83-4417-9a4d-a14eb00d735f">
-	    <File Source="Attribution\Serilog\LICENSE.txt" />
-	  </Component>
-	</ComponentGroup>
+    <ComponentGroup Id="AttributionComponents">
+      <Component Id="CacheManagerLicense" Directory="CacheManagerFolder" Guid="ddc11997-12a0-44c9-beab-8093c9cee92d">
+        <File Source="Attribution\CacheManager\LICENSE.txt" Id="CacheManagerLicenseFile" />
+      </Component>
+      <Component Id="Caliburn.MicroLicense" Directory="Caliburn.MicroFolder" Guid="a8e3f49a-dacf-4e34-ba61-e5ea6db7cb5e">
+        <File Source="Attribution\Caliburn.Micro\LICENSE.txt" Id="Caliburn.MicroLicenseFile" />
+      </Component>
+      <Component Id="Castle.CoreLicense" Directory="Castle.CoreFolder" Guid="7695da7e-c662-48c8-93f3-a9617fd14134">
+        <File Source="Attribution\Castle.Core\LICENSE.txt" Id="Castle.CoreLicenseFile" />
+      </Component>
+      <Component Id="Ensure.ThatLicense" Directory="Ensure.ThatFolder" Guid="11a092ed-0803-41fc-a165-785109384fd1">
+        <File Source="Attribution\Ensure.That\LICENSE.txt" Id="Ensure.ThatLicenseFile" />
+      </Component>
+      <Component Id="EntypoLicense" Directory="EntypoFolder" Guid="cb651fd7-8093-4bec-b096-4bc419d16ffd">
+        <File Source="Attribution\Entypo\LICENSE.txt" Id="EntypoLicenseFile" />
+      </Component>
+      <Component Id="FluentValidationLicense" Directory="FluentValidationFolder" Guid="d1af2b87-b51d-4e4c-8061-4cb00e2ab7c5">
+        <File Source="Attribution\FluentValidation\LICENSE.txt" Id="FluentValidationLicenseFile" />
+      </Component>
+      <Component Id="HumanizerLicense" Directory="HumanizerFolder" Guid="eafd71d5-f786-4e7b-9614-fbfdd4cd15bc">
+        <File Source="Attribution\Humanizer\LICENSE.txt" Id="HumanizerLicenseFile" />
+      </Component>
+      <Component Id="Newtonsoft.JsonLicense" Directory="Newtonsoft.JsonFolder" Guid="8b217526-51ac-42fd-a79c-5620ffa173f3">
+        <File Source="Attribution\Newtonsoft.Json\LICENSE.txt" Id="Newtonsoft.JsonLicenseFile" />
+      </Component>
+      <Component Id="NinjectLicense" Directory="NinjectFolder" Guid="fa6cde03-9f44-44ea-948a-d834a5fee97b">
+        <File Source="Attribution\Ninject\LICENSE.txt" Id="NinjectLicenseFile" />
+      </Component>
+      <Component Id="SerilogLicense" Directory="SerilogFolder" Guid="79a0a6e5-cb83-4417-9a4d-a14eb00d735f">
+        <File Source="Attribution\Serilog\LICENSE.txt" Id="SerilogLicenseFile" />
+      </Component>
+    </ComponentGroup>
   </Product>
 
 </Wix>

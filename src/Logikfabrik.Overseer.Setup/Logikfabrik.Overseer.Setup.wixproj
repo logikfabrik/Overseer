@@ -120,7 +120,30 @@
     </WixExtension>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Attribution\CacheManager\LICENSE.txt" />
+    <Content Include="Attribution\Caliburn.Micro\LICENSE.txt" />
+    <Content Include="Attribution\Castle.Core\LICENSE.txt" />
+    <Content Include="Attribution\Ensure.That\LICENSE.txt" />
+    <Content Include="Attribution\Entypo\LICENSE.txt" />
+    <Content Include="Attribution\FluentValidation\LICENSE.txt" />
+    <Content Include="Attribution\Humanizer\LICENSE.txt" />
+    <Content Include="Attribution\Newtonsoft.Json\LICENSE.txt" />
+    <Content Include="Attribution\Ninject\LICENSE.txt" />
+    <Content Include="Attribution\Serilog\LICENSE.txt" />
     <Content Include="LICENSE.rtf" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Attribution\" />
+    <Folder Include="Attribution\CacheManager\" />
+    <Folder Include="Attribution\Caliburn.Micro\" />
+    <Folder Include="Attribution\Castle.Core\" />
+    <Folder Include="Attribution\Ensure.That\" />
+    <Folder Include="Attribution\Entypo\" />
+    <Folder Include="Attribution\FluentValidation\" />
+    <Folder Include="Attribution\Humanizer\" />
+    <Folder Include="Attribution\Newtonsoft.Json\" />
+    <Folder Include="Attribution\Ninject\" />
+    <Folder Include="Attribution\Serilog\" />
   </ItemGroup>
   <Import Project="$(WixTargetsPath)" />
   <Target Name="BeforeBuild">
