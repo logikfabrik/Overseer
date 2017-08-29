@@ -5,11 +5,10 @@
 namespace Logikfabrik.Overseer.WPF.Client.ViewModels
 {
     using System;
-    using System.Linq;
-    using System.Windows;
     using Caliburn.Micro;
     using EnsureThat;
     using Navigation;
+    using Overseer.Extensions;
     using WPF.ViewModels;
 
     /// <summary>
@@ -19,35 +18,28 @@ namespace Logikfabrik.Overseer.WPF.Client.ViewModels
     public sealed class AppViewModel : Conductor<IViewModel>.Collection.OneActive, IHandle<NavigationMessage>, IDisposable
 #pragma warning restore S110 // Inheritance tree of classes should not be too deep
     {
-        private readonly IEventAggregator _eventAggregator;
-        private readonly IBuildMonitor _buildMonitor;
-        private readonly IBuildNotificationManager _buildNotificationManager;
-        private readonly Navigator<IViewModel> _navigator;
+        private IEventAggregator _eventAggregator;
+        private Navigator<IViewModel> _navigator;
         private bool _isDisposed;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="AppViewModel" /> class.
         /// </summary>
         /// <param name="eventAggregator">The event aggregator.</param>
-        /// <param name="buildMonitor">The build monitor.</param>
-        /// /// <param name="buildNotificationManager">The build notification manager.</param>
+        /// <param name="appDomain">The application domain.</param>
         /// <param name="menuViewModel">The menu view model.</param>
         /// <param name="connectionsViewModel">The connections view model.</param>
-        public AppViewModel(IEventAggregator eventAggregator, IBuildMonitor buildMonitor, IBuildNotificationManager buildNotificationManager, MenuViewModel menuViewModel, ConnectionsViewModel connectionsViewModel)
+        public AppViewModel(IEventAggregator eventAggregator, AppDomain appDomain, MenuViewModel menuViewModel, ConnectionsViewModel connectionsViewModel)
         {
             Ensure.That(eventAggregator).IsNotNull();
-            Ensure.That(buildMonitor).IsNotNull();
-            Ensure.That(buildNotificationManager).IsNotNull();
+            Ensure.That(appDomain).IsNotNull();
             Ensure.That(menuViewModel).IsNotNull();
             Ensure.That(connectionsViewModel).IsNotNull();
 
             _eventAggregator = eventAggregator;
-            _buildMonitor = buildMonitor;
-            _buildNotificationManager = buildNotificationManager;
             _navigator = new Navigator<IViewModel>(this);
 
             _eventAggregator.Subscribe(this);
-            WeakEventManager<IBuildMonitor, BuildMonitorProjectProgressEventArgs>.AddHandler(_buildMonitor, nameof(_buildMonitor.ProjectProgressChanged), BuildMonitorProgressChanged);
 
             DisplayName = "Overseer";
 
@@ -78,6 +70,8 @@ namespace Logikfabrik.Overseer.WPF.Client.ViewModels
         /// <param name="message">The message to handle.</param>
         public void Handle(NavigationMessage message)
         {
+            this.ThrowIfDisposed(_isDisposed);
+
             _navigator.Navigate(message);
         }
 
@@ -91,9 +85,9 @@ namespace Logikfabrik.Overseer.WPF.Client.ViewModels
                 return;
             }
 
-            _eventAggregator.Unsubscribe(this);
-
-            WeakEventManager<IBuildMonitor, BuildMonitorProjectProgressEventArgs>.RemoveHandler(_buildMonitor, nameof(_buildMonitor.ProjectProgressChanged), BuildMonitorProgressChanged);
+            _eventAggregator?.Unsubscribe(this);
+            _eventAggregator = null;
+            _navigator = null;
 
             _isDisposed = true;
         }
@@ -108,19 +102,6 @@ namespace Logikfabrik.Overseer.WPF.Client.ViewModels
             base.ChangeActiveItem(newItem, closePrevious);
 
             NotifyOfPropertyChange(() => ViewDisplayName);
-        }
-
-        private void BuildMonitorProgressChanged(object sender, BuildMonitorProjectProgressEventArgs e)
-        {
-            if (!e.Builds.Any())
-            {
-                return;
-            }
-
-            foreach (var build in e.Builds)
-            {
-                _buildNotificationManager.ShowNotification(e.Project, build);
-            }
         }
     }
 }

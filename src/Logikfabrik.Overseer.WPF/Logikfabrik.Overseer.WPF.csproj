@@ -85,6 +85,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BuildMessageUtility.cs" />
+    <Compile Include="BuildNotificationConfigurator.cs" />
     <Compile Include="BuildNotificationManager.cs" />
     <Compile Include="Converters\BooleanToVisibilityConverter.cs" />
     <Compile Include="Converters\BuildStatusToStyleConverter.cs" />

@@ -4,6 +4,7 @@
 
 namespace Logikfabrik.Overseer.WPF.Client
 {
+    using System;
     using System.Collections.Generic;
     using System.Reflection;
     using System.Windows.Input;
@@ -37,6 +38,7 @@ namespace Logikfabrik.Overseer.WPF.Client
             Ensure.That(kernel).IsNotNull();
             Ensure.That(modules).IsNotNull();
 
+            kernel.Bind<AppDomain>().ToConstant(AppDomain.CurrentDomain);
             kernel.Bind<InputManager>().ToProvider<InputManagerProvider>();
 
             // Serilog setup
