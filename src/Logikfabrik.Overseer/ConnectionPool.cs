@@ -61,17 +61,17 @@ namespace Logikfabrik.Overseer
             var notifications = new List<Notification<Connection>>();
             var toDisposeOf = new List<Connection>();
 
-            foreach (var settings in Notification<ConnectionSettings>.GetByType(value, NotificationType.Removed, s => _connections.ContainsKey(s.Id)))
+            foreach (var settings in Notification<ConnectionSettings>.GetPayloads(value, NotificationType.Removed, s => _connections.ContainsKey(s.Id)))
             {
                 Remove(notifications, settings, toDisposeOf);
             }
 
-            foreach (var settings in Notification<ConnectionSettings>.GetByType(value, NotificationType.Updated, s => _connections.ContainsKey(s.Id)))
+            foreach (var settings in Notification<ConnectionSettings>.GetPayloads(value, NotificationType.Updated, s => _connections.ContainsKey(s.Id)))
             {
                 Update(notifications, settings, toDisposeOf);
             }
 
-            foreach (var settings in Notification<ConnectionSettings>.GetByType(value, NotificationType.Added, s => !_connections.ContainsKey(s.Id)))
+            foreach (var settings in Notification<ConnectionSettings>.GetPayloads(value, NotificationType.Added, s => !_connections.ContainsKey(s.Id)))
             {
                 Add(notifications, settings);
             }

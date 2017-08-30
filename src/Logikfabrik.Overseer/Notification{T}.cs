@@ -45,6 +45,12 @@ namespace Logikfabrik.Overseer
         /// </value>
         public T Payload { get; }
 
+        /// <summary>
+        /// Creates notifications using the specified type and payload.
+        /// </summary>
+        /// <param name="type">The type.</param>
+        /// <param name="payload">The payload.</param>
+        /// <returns>Notifications.</returns>
         public static Notification<T>[] Create(NotificationType type, IEnumerable<T> payload)
         {
             Ensure.That(payload).IsNotNull();
@@ -52,6 +58,12 @@ namespace Logikfabrik.Overseer
             return payload.Select(p => new Notification<T>(type, p)).ToArray();
         }
 
+        /// <summary>
+        /// Creates a notification using the specified type and payload.
+        /// </summary>
+        /// <param name="type">The type.</param>
+        /// <param name="payload">The payload.</param>
+        /// <returns>A notification.</returns>
         public static Notification<T> Create(NotificationType type, T payload)
         {
             Ensure.That(payload).IsNotNull();
@@ -59,7 +71,14 @@ namespace Logikfabrik.Overseer
             return new Notification<T>(type, payload);
         }
 
-        public static IEnumerable<T> GetByType(
+        /// <summary>
+        /// Gets payloads.
+        /// </summary>
+        /// <param name="notifications">The notifications.</param>
+        /// <param name="type">The type.</param>
+        /// <param name="predicate">The predicate.</param>
+        /// <returns>Payloads.</returns>
+        public static IEnumerable<T> GetPayloads(
             IEnumerable<Notification<T>> notifications,
             NotificationType type,
             Predicate<T> predicate)

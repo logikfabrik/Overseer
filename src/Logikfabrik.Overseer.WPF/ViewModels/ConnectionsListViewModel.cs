@@ -75,14 +75,14 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
 
             var currentConnections = Connections.ToDictionary(connection => connection.SettingsId, connection => connection);
 
-            foreach (var settings in Notification<ConnectionSettings>.GetByType(value, NotificationType.Removed, s => currentConnections.ContainsKey(s.Id)))
+            foreach (var settings in Notification<ConnectionSettings>.GetPayloads(value, NotificationType.Removed, s => currentConnections.ContainsKey(s.Id)))
             {
                 currentConnections.Remove(settings.Id);
 
                 isDirty = true;
             }
 
-            foreach (var settings in Notification<ConnectionSettings>.GetByType(value, NotificationType.Updated, s => currentConnections.ContainsKey(s.Id)))
+            foreach (var settings in Notification<ConnectionSettings>.GetPayloads(value, NotificationType.Updated, s => currentConnections.ContainsKey(s.Id)))
             {
                 var connection = currentConnections[settings.Id];
 
@@ -91,7 +91,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
                 isDirty = true;
             }
 
-            foreach (var settings in Notification<ConnectionSettings>.GetByType(value, NotificationType.Added, s => !currentConnections.ContainsKey(s.Id)))
+            foreach (var settings in Notification<ConnectionSettings>.GetPayloads(value, NotificationType.Added, s => !currentConnections.ContainsKey(s.Id)))
             {
                 var connection = _connectionViewModelStrategy.Create(settings);
 

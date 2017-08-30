@@ -91,12 +91,12 @@ namespace Logikfabrik.Overseer
                         {
                             cancellationToken.ThrowIfCancellationRequested();
 
-                            foreach (var connection in Notification<Connection>.GetByType(value, NotificationType.Removed, c => _connections.ContainsKey(c.Settings.Id)))
+                            foreach (var connection in Notification<Connection>.GetPayloads(value, NotificationType.Removed, c => _connections.ContainsKey(c.Settings.Id)))
                             {
                                 _connections.Remove(connection.Settings.Id);
                             }
 
-                            foreach (var connection in Notification<Connection>.GetByType(value, NotificationType.Added, connection => !_connections.ContainsKey(connection.Settings.Id)))
+                            foreach (var connection in Notification<Connection>.GetPayloads(value, NotificationType.Added, connection => !_connections.ContainsKey(connection.Settings.Id)))
                             {
                                 _connections.Add(connection.Settings.Id, connection);
                             }
