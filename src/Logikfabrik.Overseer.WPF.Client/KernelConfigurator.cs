@@ -7,6 +7,7 @@ namespace Logikfabrik.Overseer.WPF.Client
     using System;
     using System.Collections.Generic;
     using System.Reflection;
+    using System.Windows;
     using System.Windows.Input;
     using CacheManager.Core;
     using Caliburn.Micro;
@@ -39,9 +40,10 @@ namespace Logikfabrik.Overseer.WPF.Client
             Ensure.That(modules).IsNotNull();
 
             kernel.Bind<AppDomain>().ToConstant(AppDomain.CurrentDomain);
+            kernel.Bind<Application>().ToConstant(Application.Current);
             kernel.Bind<InputManager>().ToProvider<InputManagerProvider>();
 
-            // Serilog setup
+            // Serilog setup.
             kernel.Bind<ILogger>().ToProvider<LoggerProvider>().InSingletonScope();
 
             // Business logic setup.

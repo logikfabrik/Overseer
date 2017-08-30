@@ -94,7 +94,7 @@ namespace Logikfabrik.Overseer.WPF.Client
 
             DataBindingLanguageConfigurator.Configure();
             DataBindingActionConfigurator.Configure();
-            ErrorLogHandlerConfigurator.Configure(_kernel.Get<AppDomain>(), _kernel.Get<ILogService>());
+            ErrorLogHandlerConfigurator.Configure(_kernel.Get<AppDomain>(), _kernel.Get<Application>(), _kernel.Get<ILogService>());
             BuildNotificationConfigurator.Configure(_kernel.Get<IBuildMonitor>(), _kernel.Get<IBuildNotificationManager>());
         }
 

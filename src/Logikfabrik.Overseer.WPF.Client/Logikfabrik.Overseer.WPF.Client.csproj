@@ -152,6 +152,7 @@
     <Compile Include="Providers\Settings\RegistryStoreProvider.cs" />
     <Compile Include="Validators\PassPhraseViewModelValidator.cs" />
     <Compile Include="ViewModels\AboutViewModel.cs" />
+    <Compile Include="ViewModels\ErrorViewModel.cs" />
     <Compile Include="ViewModels\MenuViewModel.cs" />
     <Compile Include="ViewModels\AppViewModel.cs" />
     <Compile Include="ViewModels\PassPhraseViewModel.cs" />
@@ -169,6 +170,9 @@
     </Compile>
     <Compile Include="Views\Connection\Brick.xaml.cs">
       <DependentUpon>Brick.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ErrorView.xaml.cs">
+      <DependentUpon>ErrorView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\UserControls\ProgressControl.xaml.cs">
       <DependentUpon>ProgressControl.xaml</DependentUpon>
@@ -273,6 +277,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Connection\Brick.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ErrorView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

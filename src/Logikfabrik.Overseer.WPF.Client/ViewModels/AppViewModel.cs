@@ -26,24 +26,25 @@ namespace Logikfabrik.Overseer.WPF.Client.ViewModels
         /// Initializes a new instance of the <see cref="AppViewModel" /> class.
         /// </summary>
         /// <param name="eventAggregator">The event aggregator.</param>
-        /// <param name="appDomain">The application domain.</param>
         /// <param name="menuViewModel">The menu view model.</param>
+        /// <param name="errorViewModel">The error view model.</param>
         /// <param name="connectionsViewModel">The connections view model.</param>
-        public AppViewModel(IEventAggregator eventAggregator, AppDomain appDomain, MenuViewModel menuViewModel, ConnectionsViewModel connectionsViewModel)
+        public AppViewModel(IEventAggregator eventAggregator, MenuViewModel menuViewModel, ErrorViewModel errorViewModel, ConnectionsViewModel connectionsViewModel)
         {
             Ensure.That(eventAggregator).IsNotNull();
-            Ensure.That(appDomain).IsNotNull();
             Ensure.That(menuViewModel).IsNotNull();
+            Ensure.That(errorViewModel).IsNotNull();
             Ensure.That(connectionsViewModel).IsNotNull();
 
             _eventAggregator = eventAggregator;
-            _navigator = new Navigator<IViewModel>(this);
-
             _eventAggregator.Subscribe(this);
 
-            DisplayName = "Overseer";
+            _navigator = new Navigator<IViewModel>(this);
 
             Menu = menuViewModel;
+            Error = errorViewModel;
+
+            DisplayName = "Overseer";
 
             ActivateItem(connectionsViewModel);
         }
@@ -63,6 +64,14 @@ namespace Logikfabrik.Overseer.WPF.Client.ViewModels
         /// The menu.
         /// </value>
         public MenuViewModel Menu { get; }
+
+        /// <summary>
+        /// Gets the error.
+        /// </summary>
+        /// <value>
+        /// The error.
+        /// </value>
+        public ErrorViewModel Error { get; }
 
         /// <summary>
         /// Handles the specified message.
