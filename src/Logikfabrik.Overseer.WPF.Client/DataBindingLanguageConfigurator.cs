@@ -22,7 +22,7 @@ namespace Logikfabrik.Overseer.WPF.Client
         /// </summary>
         public static void Configure()
         {
-            var language = XmlLanguage.GetLanguage(CultureInfo.CurrentCulture.Name);
+            var language = XmlLanguage.GetLanguage(CultureInfo.CurrentUICulture.Name);
 
             FrameworkContentElement.LanguageProperty.OverrideMetadata(typeof(TextElement), new FrameworkPropertyMetadata(language));
             FrameworkElement.LanguageProperty.OverrideMetadata(typeof(FrameworkElement), new FrameworkPropertyMetadata(language));

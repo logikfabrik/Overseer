@@ -17,18 +17,23 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         private readonly EditSettingsViewModelValidator _validator;
         private readonly AppSettings _appSettings;
         private int _interval;
+        private string _cultureName;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="EditSettingsViewModel" /> class.
         /// </summary>
-        /// <param name="appSettings">The application settings.</param>
-        public EditSettingsViewModel(AppSettings appSettings)
+        /// <param name="appSettingsFactory">The app settings factory.</param>
+        public EditSettingsViewModel(IAppSettingsFactory appSettingsFactory)
         {
-            Ensure.That(appSettings).IsNotNull();
+            Ensure.That(appSettingsFactory).IsNotNull();
 
             _validator = new EditSettingsViewModelValidator();
+
+            var appSettings = appSettingsFactory.Create();
+
             _appSettings = appSettings;
             _interval = appSettings.Interval;
+            _cultureName = appSettings.CultureName;
             DisplayName = "Settings";
         }
 
@@ -49,6 +54,26 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             {
                 _interval = value;
                 NotifyOfPropertyChange(() => Interval);
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the culture name.
+        /// </summary>
+        /// <value>
+        /// The culture name.
+        /// </value>
+        public string CultureName
+        {
+            get
+            {
+                return _cultureName;
+            }
+
+            set
+            {
+                _cultureName = value;
+                NotifyOfPropertyChange(() => CultureName);
             }
         }
 
@@ -92,8 +117,11 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             }
 
             _appSettings.Interval = _interval;
+            _appSettings.CultureName = _cultureName;
 
             _appSettings.Save();
+
+            LanguageConfigurator.Configure(_appSettings);
         }
     }
 }

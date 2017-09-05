@@ -87,14 +87,19 @@
     <Compile Include="BuildMessageUtility.cs" />
     <Compile Include="BuildNotificationConfigurator.cs" />
     <Compile Include="BuildNotificationManager.cs" />
+    <Compile Include="Converters\AddConnectionViewExceptionToLocalizedStringConverter.cs" />
     <Compile Include="Converters\BooleanToVisibilityConverter.cs" />
     <Compile Include="Converters\BuildStatusToStyleConverter.cs" />
+    <Compile Include="Converters\EditConnectionViewExceptionToLocalizedStringConverter.cs" />
     <Compile Include="Converters\TaskStatusToBooleanConverter.cs" />
     <Compile Include="Converters\ValueConverterGroup.cs" />
     <Compile Include="Extensions\HyperlinkExtensions.cs" />
     <Compile Include="IBuildNotificationManager.cs" />
     <Compile Include="INotificationManager.cs" />
     <Compile Include="INotifyTask.cs" />
+    <Compile Include="LanguageConfigurator.cs" />
+    <Compile Include="Localization\AddConnectionViewErrorLocalizer.cs" />
+    <Compile Include="Localization\EditConnectionViewErrorLocalizer.cs" />
     <Compile Include="Logging\IUILogService.cs" />
     <Compile Include="Logging\UILogService.cs" />
     <Compile Include="MarkupExtensions\EnumToItemsSourceMarkupExtension.cs" />
@@ -107,6 +112,21 @@
     <Compile Include="NotifyTask.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.sv-SE.Designer.cs">
+      <DependentUpon>Resources.sv-SE.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Properties\Resources.en-US.Designer.cs">
+      <DependentUpon>Resources.en-US.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="Validators\ConnectionSettingsViewModelValidator{T1,T2}.cs" />
     <Compile Include="Validators\EditSettingsViewModelValidator.cs" />
@@ -239,6 +259,20 @@
   <ItemGroup>
     <Analyzer Include="..\packages\StyleCop.Analyzers.1.0.2\analyzers\dotnet\cs\StyleCop.Analyzers.CodeFixes.dll" />
     <Analyzer Include="..\packages\StyleCop.Analyzers.1.0.2\analyzers\dotnet\cs\StyleCop.Analyzers.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.sv-SE.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.sv-SE.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.en-US.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.en-US.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

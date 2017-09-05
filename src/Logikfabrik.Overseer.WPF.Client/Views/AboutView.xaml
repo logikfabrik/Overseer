@@ -11,7 +11,7 @@
     <ScrollViewer>
         <StackPanel Margin="10">
             <TextBlock Text="About Overseer" />
-            <TextBlock Text="{Binding Version, Mode=OneTime}" />
+            <TextBlock Text="{Binding Path=Version, Mode=OneTime}" />
             <TextBlock Text="Overseer is a Windows task bar app for build notifications." TextWrapping="Wrap" />
             <TextBlock TextWrapping="Wrap">
                 Overseer is Open Source (MIT), and you're welcome to contribute!

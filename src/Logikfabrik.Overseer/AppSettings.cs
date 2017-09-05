@@ -31,5 +31,18 @@ namespace Logikfabrik.Overseer
         /// The expiration.
         /// </value>
         public int Expiration => Interval;
+
+        /// <summary>
+        /// Gets or sets the culture name.
+        /// </summary>
+        /// <value>
+        /// The culture name.
+        /// </value>
+        [UserScopedSetting]
+        public string CultureName
+        {
+            get { return (string)this["CultureName"]; }
+            set { this["CultureName"] = value; }
+        }
     }
 }

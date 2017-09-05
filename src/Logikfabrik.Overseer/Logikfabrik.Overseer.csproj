@@ -90,6 +90,9 @@
     <Compile Include="Caching\CacheInterceptor.cs" />
     <Compile Include="Caching\ICacheable.cs" />
     <Compile Include="Change.cs" />
+    <Compile Include="Extensions\ExceptionExtensions.cs" />
+    <Compile Include="Extensions\HttpException.cs" />
+    <Compile Include="Extensions\HttpResponseMessageExtensions.cs" />
     <Compile Include="Notification{T}.cs" />
     <Compile Include="NotificationType.cs" />
     <Compile Include="Extensions\BuildExtensions.cs" />

@@ -3,7 +3,6 @@
 // </copyright>
 
 using System.Reflection;
-using System.Resources;
 using System.Runtime.InteropServices;
 
 [assembly: AssemblyTitle("Logikfabrik Overseer")]
@@ -19,4 +18,3 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyVersion("0.0.1.0")]
 [assembly: AssemblyFileVersion("0.0.1.0")]
 [assembly: AssemblyInformationalVersion("0.0.1.0")]
-[assembly: NeutralResourcesLanguage("en-US", UltimateResourceFallbackLocation.Satellite)]

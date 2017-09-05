@@ -6,13 +6,13 @@
   <?define INSTALLERVERSION="0.0.1.0" ?>
   <?endif ?>
 
-  <Product Id="e644ea3a-a90b-4913-83ed-d6f55fdc0d49"
+  <Product Id="E644EA3A-A90B-4913-83ED-D6F55FDC0D49"
            Name="Overseer $(var.INSTALLERVERSION)"
            Language="1033"
            Codepage="1252"
            Version="$(var.INSTALLERVERSION)"
            Manufacturer="Logikfabrik"
-           UpgradeCode="ed8983db-d29e-452d-aa49-773792d344da">
+           UpgradeCode="ED8983DB-D29E-452D-AA49-773792D344DA">
 
     <Package Id="*"
              InstallerVersion="200"
@@ -22,7 +22,8 @@
 
     <MajorUpgrade DowngradeErrorMessage="A newer version of Overseer is already installed." />
 
-    <MediaTemplate EmbedCab="yes" CompressionLevel="high" />
+    <MediaTemplate EmbedCab="yes"
+                   CompressionLevel="high" />
 
     <PropertyRef Id="WIX_IS_NETFRAMEWORK_46_OR_LATER_INSTALLED" />
 
@@ -33,142 +34,496 @@
     <Feature Id="ProductFeature"
              Title="Overseer"
              Level="1">
-      <ComponentGroupRef Id="ProductComponents" />
-      <ComponentGroupRef Id="AttributionComponents" />
-      <ComponentGroupRef Id="ProductShortcuts" />
+      <ComponentGroupRef Id="cmp5102C9E4A53841A88A083369EF612B69" />
+      <ComponentGroupRef Id="cmpD41213137AA242C69804E0E884566EFB" />
+      <ComponentGroupRef Id="cmp8B3C8DF1FB634830AF39151E7BE83F96" />
     </Feature>
 
     <UIRef Id="WixUI_InstallDir" />
 
-    <WixVariable Id="WixUILicenseRtf" Value="LICENSE.rtf" />
+    <WixVariable Id="WixUILicenseRtf"
+                 Value="LICENSE.rtf" />
 
-    <Property Id="WIXUI_INSTALLDIR" Value="INSTALLFOLDER" />
-
-    <Directory Id="TARGETDIR" Name="SourceDir">
-
+    <Property Id="WIXUI_INSTALLDIR"
+              Value="INSTALLFOLDER" />
+    <Directory Id="TARGETDIR"
+               Name="SourceDir">
       <Directory Id="ProgramFilesFolder">
-        <Directory Id="ManufacturerFolder" Name="Logikfabrik">
-          <Directory Id="INSTALLFOLDER" Name="Overseer">
-            <Directory Id="AttributionFolder" Name="Attribution">
-              <Directory Id="CacheManagerFolder" Name="CacheManager" />
-              <Directory Id="Caliburn.MicroFolder" Name="Caliburn.Micro" />
-              <Directory Id="Castle.CoreFolder" Name="Castle.Core" />
-              <Directory Id="Ensure.ThatFolder" Name="Ensure.That" />
-              <Directory Id="EntypoFolder" Name="Entypo" />
-              <Directory Id="FluentValidationFolder" Name="FluentValidation" />
-              <Directory Id="HumanizerFolder" Name="Humanizer" />
-              <Directory Id="Newtonsoft.JsonFolder" Name="Newtonsoft.Json" />
-              <Directory Id="NinjectFolder" Name="Ninject" />
-              <Directory Id="SerilogFolder" Name="Serilog" />
+        <Directory Id="ManufacturerFolder"
+                   Name="Logikfabrik">
+          <Directory Id="INSTALLFOLDER"
+                     Name="Overseer">
+            <Directory Id="dir3EF976885ADC44579DBE3C2EE8B49489"
+                       Name="en-US" />
+            <Directory Id="dirAB1506D5F38C44EB96FB28C4C896C3F1"
+                       Name="sv-SE" />
+            <Directory Id="dirABB20FC1974B4737A03212E90E9568BF"
+                       Name="sv" />
+            <Directory Id="dir237FB9D14131484085A97D15B31A46D8"
+                       Name="Attribution">
+              <Directory Id="dir752E6E6FA3C54DF484FDF454F00ED77F"
+                         Name="CacheManager" />
+              <Directory Id="dirAF762B9AA51A404BA7A14E3779ABD808"
+                         Name="Caliburn.Micro" />
+              <Directory Id="dir3A16153C31BA467D9C89BE640F4DD0F1"
+                         Name="Castle.Core" />
+              <Directory Id="dirB55A7199CE3048038EDB7BB835E99707"
+                         Name="Ensure.That" />
+              <Directory Id="dir7DBDA2329AE0424B8E30E5244A4AE1FA"
+                         Name="Entypo" />
+              <Directory Id="dirD7D0CA2209344EF28F1466D6E9067F98"
+                         Name="FluentValidation" />
+              <Directory Id="dir15F660460DDD476A843D8904959E11E8"
+                         Name="Humanizer" />
+              <Directory Id="dir695610CED0F243DC8912A2055E0D6804"
+                         Name="Newtonsoft.Json" />
+              <Directory Id="dir533F14E32DAE4BE5BB7969B2DAD30DDD"
+                         Name="Ninject" />
+              <Directory Id="dirF1BD1E58BC5A4E22A87CB2F9BC3CF5BD"
+                         Name="Serilog" />
             </Directory>
           </Directory>
         </Directory>
       </Directory>
 
       <Directory Id="ProgramMenuFolder">
-        <Directory Id="ApplicationProgramsFolder" Name="Logikfabrik" />
+        <Directory Id="dir3BE2B7698D754603B3561E3109DF8809"
+                   Name="Logikfabrik" />
       </Directory>
 
       <Directory Id="DesktopFolder" />
 
     </Directory>
 
-    <ComponentGroup Id="ProductShortcuts" Directory="ApplicationProgramsFolder">
-      <Component Id="ProductShortcut" Guid="b1302ead-22c3-4e97-b216-51dedcc92158">
+    <ComponentGroup Id="cmp8B3C8DF1FB634830AF39151E7BE83F96" >
 
-        <Shortcut Id="DesktopFolderShortcut"
-                  Directory="DesktopFolder"
-                  Name="Overseer"
-                  Target="[!Overseer.exe]"
-                  WorkingDirectory="INSTALLFOLDER" />
-
-        <Shortcut Id="ProgramMenuShortcut"
-                  Directory="ApplicationProgramsFolder"
-                  Name="Overseer"
-                  Target="[!Overseer.exe]"
-                  WorkingDirectory="INSTALLFOLDER" />
-
-        <RemoveFolder Id="ApplicationProgramsFolder" On="uninstall" />
+      <Component Id="cmpB0CC3638C76C4F28A1FE246ACEB13972"
+                 Guid="B0CC3638-C76C-4F28-A1FE-246ACEB13972"
+                 Directory="dir3BE2B7698D754603B3561E3109DF8809">
 
         <RegistryValue Root="HKCU"
                        Key="Software\Logikfabrik\Overseer"
-                       Name="installed"
+                       Name="ProgramMenuShortcut"
                        Type="integer"
                        Value="1"
                        KeyPath="yes" />
 
+        <Shortcut Id="shcEA1C83E31C8E4875864F326873F30190"
+                  Name="Overseer"
+                  Directory="dir3BE2B7698D754603B3561E3109DF8809"
+                  Target="[!filCA7CCBC737E04F139864ACB9FDC02E2E]"
+                  WorkingDirectory="INSTALLFOLDER" />
+
+        <RemoveFolder Id="remF8CA303B276F40929A820D1F2D1DE801"
+                      On="uninstall" />
+        
       </Component>
+
+      <Component Id="cmpEC155E3299D54F8BA2578F1C93F67472"
+                 Guid="EC155E32-99D5-4F8B-A257-8F1C93F67472"
+                 Directory="DesktopFolder">
+
+        <RegistryValue Root="HKCU"
+                       Key="Software\Logikfabrik\Overseer"
+                       Name="DesktopShortcut"
+                       Type="integer"
+                       Value="1"
+                       KeyPath="yes" />
+
+        <Shortcut Id="shcC16D486252F942D3B502811AF496D3F0"
+                  Name="Overseer"
+                  Directory="DesktopFolder"
+                  Target="[!filCA7CCBC737E04F139864ACB9FDC02E2E]"
+                  WorkingDirectory="INSTALLFOLDER" />
+
+      </Component>
+
     </ComponentGroup>
 
-    <ComponentGroup Id="ProductComponents" Directory="INSTALLFOLDER">
-      <Component Id="ProductComponent" Guid="d2f851dd-77aa-42fe-8b4c-87bcd75f0dcc">
-        <File Source="$(var.Logikfabrik.Overseer.WPF.Client.TargetDir)CacheManager.Core.dll" />
-        <File Source="$(var.Logikfabrik.Overseer.WPF.Client.TargetDir)CacheManager.SystemRuntimeCaching.dll" />
-        <File Source="$(var.Logikfabrik.Overseer.WPF.Client.TargetDir)Caliburn.Micro.dll" />
-        <File Source="$(var.Logikfabrik.Overseer.WPF.Client.TargetDir)Caliburn.Micro.Platform.Core.dll" />
-        <File Source="$(var.Logikfabrik.Overseer.WPF.Client.TargetDir)Caliburn.Micro.Platform.dll" />
-        <File Source="$(var.Logikfabrik.Overseer.WPF.Client.TargetDir)Castle.Core.dll" />
-        <File Source="$(var.Logikfabrik.Overseer.WPF.Client.TargetDir)Ensure.That.dll" />
-        <File Source="$(var.Logikfabrik.Overseer.WPF.Client.TargetDir)FluentValidation.dll" />
-        <File Source="$(var.Logikfabrik.Overseer.WPF.Client.TargetDir)Humanizer.dll" />
-        <File Source="$(var.Logikfabrik.Overseer.WPF.Client.TargetDir)Logikfabrik.Overseer.dll" />
-        <File Source="$(var.Logikfabrik.Overseer.WPF.Client.TargetDir)Logikfabrik.Overseer.WPF.dll" />
-        <File Source="$(var.Logikfabrik.Overseer.WPF.Client.TargetDir)Logikfabrik.Overseer.WPF.Provider.AppVeyor.dll" />
-        <File Source="$(var.Logikfabrik.Overseer.WPF.Client.TargetDir)Logikfabrik.Overseer.WPF.Provider.CircleCI.dll" />
-        <File Source="$(var.Logikfabrik.Overseer.WPF.Client.TargetDir)Logikfabrik.Overseer.WPF.Provider.Codeship.dll" />
-        <File Source="$(var.Logikfabrik.Overseer.WPF.Client.TargetDir)Logikfabrik.Overseer.WPF.Provider.Jenkins.dll" />
-        <File Source="$(var.Logikfabrik.Overseer.WPF.Client.TargetDir)Logikfabrik.Overseer.WPF.Provider.TeamCity.dll" />
-        <File Source="$(var.Logikfabrik.Overseer.WPF.Client.TargetDir)Logikfabrik.Overseer.WPF.Provider.VSTeamServices.dll" />
-        <File Source="$(var.Logikfabrik.Overseer.WPF.Client.TargetDir)Newtonsoft.Json.dll" />
-        <File Source="$(var.Logikfabrik.Overseer.WPF.Client.TargetDir)Ninject.dll" />
-        <File Source="$(var.Logikfabrik.Overseer.WPF.Client.TargetDir)Ninject.Extensions.Factory.dll" />
-        <File Source="$(var.Logikfabrik.Overseer.WPF.Client.TargetDir)Ninject.Extensions.Interception.dll" />
-        <File Source="$(var.Logikfabrik.Overseer.WPF.Client.TargetDir)Ninject.Extensions.Interception.DynamicProxy.dll" />
-        <File Source="$(var.Logikfabrik.Overseer.WPF.Client.TargetDir)Overseer.exe" />
-        <File Source="$(var.Logikfabrik.Overseer.WPF.Client.TargetDir)Overseer.exe.config" />
-        <File Source="$(var.Logikfabrik.Overseer.WPF.Client.TargetDir)Serilog.dll" />
-        <File Source="$(var.Logikfabrik.Overseer.WPF.Client.TargetDir)Serilog.Settings.AppSettings.dll" />
-        <File Source="$(var.Logikfabrik.Overseer.WPF.Client.TargetDir)Serilog.Sinks.Console.dll" />
-        <File Source="$(var.Logikfabrik.Overseer.WPF.Client.TargetDir)Serilog.Sinks.File.dll" />
-        <File Source="$(var.Logikfabrik.Overseer.WPF.Client.TargetDir)Serilog.Sinks.RollingFile.dll" />
-        <File Source="$(var.Logikfabrik.Overseer.WPF.Client.TargetDir)System.Net.Http.Formatting.dll" />
-        <File Source="$(var.Logikfabrik.Overseer.WPF.Client.TargetDir)System.Threading.Tasks.Dataflow.dll" />
-        <File Source="$(var.Logikfabrik.Overseer.WPF.Client.TargetDir)System.Windows.Interactivity.dll" />
+    <ComponentGroup Id="cmp5102C9E4A53841A88A083369EF612B69">
+
+      <Component Id="cmp4DCB220871DB4903886714C210DC298C"
+                 Guid="4DCB2208-71DB-4903-8867-14C210DC298C"
+                 Directory="INSTALLFOLDER">
+        <File Id="fil4D0DBAD6D2DC4537A9212CEFE1F3427A"
+              Source="$(var.Logikfabrik.Overseer.WPF.Client.TargetDir)CacheManager.Core.dll"
+              KeyPath="yes" />
       </Component>
+
+      <Component Id="cmp5D1B23EBB1E6458C92EF77D090032A88"
+                 Guid="5D1B23EB-B1E6-458C-92EF-77D090032A88"
+                 Directory="INSTALLFOLDER">
+        <File Id="filCC9164B849F147DFBB4BA770ED020ABF"
+              Source="$(var.Logikfabrik.Overseer.WPF.Client.TargetDir)CacheManager.SystemRuntimeCaching.dll"
+              KeyPath="yes" />
+      </Component>
+
+      <Component Id="cmpB119DEE3AF4C40DCBCDE23B443DBFAA9"
+                 Guid="B119DEE3-AF4C-40DC-BCDE-23B443DBFAA9"
+                 Directory="INSTALLFOLDER">
+        <File Id="fil6EE79B1ACDE443DDB41F8C1D484B098B"
+              Source="$(var.Logikfabrik.Overseer.WPF.Client.TargetDir)Caliburn.Micro.dll"
+              KeyPath="yes" />
+      </Component>
+
+      <Component Id="cmpAD6B997369324FAB8E045760F3909DFF"
+                 Guid="AD6B9973-6932-4FAB-8E04-5760F3909DFF"
+                 Directory="INSTALLFOLDER">
+        <File Id="fil3FD06F8CB4CE49AE93E57472D05B3AE8"
+              Source="$(var.Logikfabrik.Overseer.WPF.Client.TargetDir)Caliburn.Micro.Platform.Core.dll"
+              KeyPath="yes" />
+      </Component>
+
+      <Component Id="cmpA2AB727F7DAD42F6B0BA3EC83501248D"
+                 Guid="A2AB727F-7DAD-42F6-B0BA-3EC83501248D"
+                 Directory="INSTALLFOLDER">
+        <File Id="fil9BA4787C455542488C34E29F996FCFEF"
+              Source="$(var.Logikfabrik.Overseer.WPF.Client.TargetDir)Caliburn.Micro.Platform.dll"
+              KeyPath="yes" />
+      </Component>
+
+      <Component Id="cmp125B0DE4EE7F4050AC88669A9655C2D2"
+                 Guid="125B0DE4-EE7F-4050-AC88-669A9655C2D2"
+                 Directory="INSTALLFOLDER">
+        <File Id="filF25501B30A6B4ECC8081C1DA7C64EE57"
+              Source="$(var.Logikfabrik.Overseer.WPF.Client.TargetDir)Castle.Core.dll"
+              KeyPath="yes" />
+      </Component>
+
+      <Component Id="cmpC1FE65D987F84D1B8A08D8D720008408"
+                 Guid="C1FE65D9-87F8-4D1B-8A08-D8D720008408"
+                 Directory="INSTALLFOLDER">
+        <File Id="fil677C2D37B2B547418ABD3BF9C3B50DED"
+              Source="$(var.Logikfabrik.Overseer.WPF.Client.TargetDir)Ensure.That.dll"
+              KeyPath="yes" />
+      </Component>
+
+      <Component Id="cmpF17A2C313CE74480B68A5E5F0DDAF775"
+                 Guid="F17A2C31-3CE7-4480-B68A-5E5F0DDAF775"
+                 Directory="INSTALLFOLDER">
+        <File Id="fil6882E683248C4114A8323AE5632F2B99"
+              Source="$(var.Logikfabrik.Overseer.WPF.Client.TargetDir)FluentValidation.dll"
+              KeyPath="yes" />
+      </Component>
+
+      <Component Id="cmpDE274B6524FD4A268B6CA4BC0E087A99"
+                 Guid="DE274B65-24FD-4A26-8B6C-A4BC0E087A99"
+                 Directory="INSTALLFOLDER">
+        <File Id="fil0DFE0F87429E4D43AC58CB3D0DD1EFAC"
+              Source="$(var.Logikfabrik.Overseer.WPF.Client.TargetDir)Humanizer.dll"
+              KeyPath="yes" />
+      </Component>
+
+      <Component Id="cmp5C58B2894B16452CADCCAB1EACD1788D"
+                 Guid="5C58B289-4B16-452C-ADCC-AB1EACD1788D"
+                 Directory="dirABB20FC1974B4737A03212E90E9568BF">
+        <File Id="fil14D720D23B4D4DBDA00D98D688D8E235"
+              Source="$(var.Logikfabrik.Overseer.WPF.Client.TargetDir)sv\Humanizer.resources.dll"
+              KeyPath="yes" />
+      </Component>
+
+      <Component Id="cmp4AD05064DB9C40B38FF46E85511B4553"
+                 Guid="4AD05064-DB9C-40B3-8FF4-6E85511B4553"
+                 Directory="INSTALLFOLDER">
+        <File Id="filDDE2928E468C4B069EC7E1818C578C08"
+              Source="$(var.Logikfabrik.Overseer.WPF.Client.TargetDir)Logikfabrik.Overseer.dll"
+              KeyPath="yes" />
+      </Component>
+
+      <Component Id="cmp43D0164EE38F4E76B07CBD201EFB1286"
+                 Guid="43D0164E-E38F-4E76-B07C-BD201EFB1286"
+                 Directory="INSTALLFOLDER">
+        <File Id="fil7F1102B32D144133BAAFC91FBB685482"
+              Source="$(var.Logikfabrik.Overseer.WPF.Client.TargetDir)Logikfabrik.Overseer.WPF.dll"
+              KeyPath="yes" />
+      </Component>
+
+      <Component Id="cmpB936F0875267450AB9F90F12FF757F17"
+                 Guid="B936F087-5267-450A-B9F9-0F12FF757F17"
+                 Directory="dir3EF976885ADC44579DBE3C2EE8B49489">
+        <File Id="filEF1D34F9CA00436B954A8AE6F70FDACF"
+              Source="$(var.Logikfabrik.Overseer.WPF.Client.TargetDir)en-US\Logikfabrik.Overseer.WPF.resources.dll"
+              KeyPath="yes" />
+      </Component>
+
+      <Component Id="cmp8B5D1D448F6945298D7D4FBBFB205EF2"
+                 Guid="8B5D1D44-8F69-4529-8D7D-4FBBFB205EF2"
+                 Directory="dirAB1506D5F38C44EB96FB28C4C896C3F1">
+        <File Id="fil29F566A1F4FE4F0CBB2962C3EF55897F"
+              Source="$(var.Logikfabrik.Overseer.WPF.Client.TargetDir)sv-SE\Logikfabrik.Overseer.WPF.resources.dll"
+              KeyPath="yes" />
+      </Component>
+
+      <Component Id="cmpA578DC41871B4C4AB61BD8306ED2976E"
+                 Guid="A578DC41-871B-4C4A-B61B-D8306ED2976E"
+                 Directory="INSTALLFOLDER">
+        <File Id="filA6154D7A50F9485B822FF4BDB8E30F7E"
+              Source="$(var.Logikfabrik.Overseer.WPF.Client.TargetDir)Logikfabrik.Overseer.WPF.Provider.AppVeyor.dll"
+              KeyPath="yes" />
+      </Component>
+
+      <Component Id="cmpFFF3E2AD366E4CB5B2DA7E26D4F59B5F"
+                 Guid="FFF3E2AD-366E-4CB5-B2DA-7E26D4F59B5F"
+                 Directory="INSTALLFOLDER">
+        <File Id="fil10600A4661D84D1EAC82D7488A6C9BB0"
+              Source="$(var.Logikfabrik.Overseer.WPF.Client.TargetDir)Logikfabrik.Overseer.WPF.Provider.CircleCI.dll"
+              KeyPath="yes" />
+      </Component>
+
+      <Component Id="cmpE3617BA3DBF84B5D9FF0B36E29C4F766"
+                 Guid="E3617BA3-DBF8-4B5D-9FF0-B36E29C4F766"
+                 Directory="INSTALLFOLDER">
+        <File Id="fil1FA4C2202E4E4C73977F879A70B7C8B5"
+              Source="$(var.Logikfabrik.Overseer.WPF.Client.TargetDir)Logikfabrik.Overseer.WPF.Provider.Codeship.dll"
+              KeyPath="yes" />
+      </Component>
+
+      <Component Id="cmp480792B488E74B8D95360C15DE017376"
+                 Guid="480792B4-88E7-4B8D-9536-0C15DE017376"
+                 Directory="INSTALLFOLDER">
+        <File Id="filBE45DC6E3DD14C2ABCC5013BB6D6480E"
+              Source="$(var.Logikfabrik.Overseer.WPF.Client.TargetDir)Logikfabrik.Overseer.WPF.Provider.Jenkins.dll"
+              KeyPath="yes" />
+      </Component>
+
+      <Component Id="cmpC13D3C4D6259475BA617D147876D0786"
+                 Guid="C13D3C4D-6259-475B-A617-D147876D0786"
+                 Directory="INSTALLFOLDER">
+        <File Id="filF2DF3CDFFEF143FFA014395C1828DB6F"
+              Source="$(var.Logikfabrik.Overseer.WPF.Client.TargetDir)Logikfabrik.Overseer.WPF.Provider.TeamCity.dll"
+              KeyPath="yes" />
+      </Component>
+
+      <Component Id="cmp6A12B11DE3B64AD0A8F112E0C4560694"
+                 Guid="6A12B11D-E3B6-4AD0-A8F1-12E0C4560694"
+                 Directory="INSTALLFOLDER">
+        <File Id="fil1899D5500C4547D38A50D0A66BA55ACC"
+              Source="$(var.Logikfabrik.Overseer.WPF.Client.TargetDir)Logikfabrik.Overseer.WPF.Provider.VSTeamServices.dll"
+              KeyPath="yes" />
+      </Component>
+
+      <Component Id="cmpABD6E7263CF14DCFBC7D28407FAA3B43"
+                 Guid="ABD6E726-3CF1-4DCF-BC7D-28407FAA3B43"
+                 Directory="INSTALLFOLDER">
+        <File Id="fil2521D849EEF8460EA640AB55413333DF"
+              Source="$(var.Logikfabrik.Overseer.WPF.Client.TargetDir)Newtonsoft.Json.dll"
+              KeyPath="yes" />
+      </Component>
+
+      <Component Id="cmp07630FC97D2B49AF9771FB53012626AA"
+                 Guid="07630FC9-7D2B-49AF-9771-FB53012626AA"
+                 Directory="INSTALLFOLDER">
+        <File Id="filA9B01F8B650C4781B92527267083C276"
+              Source="$(var.Logikfabrik.Overseer.WPF.Client.TargetDir)Ninject.dll"
+              KeyPath="yes" />
+      </Component>
+
+      <Component Id="cmp0A570C8E636A43EA89D3D390230726F6"
+                 Guid="0A570C8E-636A-43EA-89D3-D390230726F6"
+                 Directory="INSTALLFOLDER">
+        <File Id="fil4DC05B87986746AFAC83E4C34F3C8CD9"
+              Source="$(var.Logikfabrik.Overseer.WPF.Client.TargetDir)Ninject.Extensions.Factory.dll"
+              KeyPath="yes" />
+      </Component>
+
+      <Component Id="cmp036846FAA81240EA9ACD309C2EB77FDA"
+                 Guid="036846FA-A812-40EA-9ACD-309C2EB77FDA"
+                 Directory="INSTALLFOLDER">
+        <File Id="fil074428F2935A496AB0FDD45098F16C17"
+              Source="$(var.Logikfabrik.Overseer.WPF.Client.TargetDir)Ninject.Extensions.Interception.dll"
+              KeyPath="yes" />
+      </Component>
+
+      <Component Id="cmp3E321A07EF83416FB5DCAEB5FBEF1812"
+                 Guid="3E321A07-EF83-416F-B5DC-AEB5FBEF1812"
+                 Directory="INSTALLFOLDER">
+        <File Id="fil8CE48B4CACC54CFFA968CDD5BCF7BD81"
+              Source="$(var.Logikfabrik.Overseer.WPF.Client.TargetDir)Ninject.Extensions.Interception.DynamicProxy.dll"
+              KeyPath="yes" />
+      </Component>
+
+      <Component Id="cmpE0C60976FFC54217A9A51D40B738AC67"
+                 Guid="E0C60976-FFC5-4217-A9A5-1D40B738AC67"
+                 Directory="INSTALLFOLDER">
+        <File Id="filCA7CCBC737E04F139864ACB9FDC02E2E"
+              Source="$(var.Logikfabrik.Overseer.WPF.Client.TargetDir)Overseer.exe"
+              KeyPath="yes" />
+      </Component>
+
+      <Component Id="cmp6F0EEDA9D9F745B48E620A6E23594165"
+                 Guid="6F0EEDA9-D9F7-45B4-8E62-0A6E23594165"
+                 Directory="INSTALLFOLDER">
+        <File Id="filCD9D3BF766574D3F959E9D7BC5C6613F"
+              Source="$(var.Logikfabrik.Overseer.WPF.Client.TargetDir)Overseer.exe.config"
+              KeyPath="yes" />
+      </Component>
+
+      <Component Id="cmp58D8E3D9A2F548AAA4B904D9F7A6C3C4"
+                 Guid="58D8E3D9-A2F5-48AA-A4B9-04D9F7A6C3C4"
+                 Directory="dir3EF976885ADC44579DBE3C2EE8B49489">
+        <File Id="filB7F6834D9E0340DEB6F0E287CB804583"
+              Source="$(var.Logikfabrik.Overseer.WPF.Client.TargetDir)en-US\Overseer.resources.dll"
+              KeyPath="yes" />
+      </Component>
+
+      <Component Id="cmp3838291D1134479F8DE87E2ACF53270B"
+                 Guid="3838291D-1134-479F-8DE8-7E2ACF53270B"
+                 Directory="dirAB1506D5F38C44EB96FB28C4C896C3F1">
+        <File Id="filCA02272EC3D34A3F8E98397D0BE462B0"
+              Source="$(var.Logikfabrik.Overseer.WPF.Client.TargetDir)sv-SE\Overseer.resources.dll"
+              KeyPath="yes" />
+      </Component>
+
+      <Component Id="cmpF869DD40B0994CDD8FF199E18D52C8D5"
+                 Guid="F869DD40-B099-4CDD-8FF1-99E18D52C8D5"
+                 Directory="INSTALLFOLDER">
+        <File Id="filAC9537778D184CFE95E2F17A59D5E067"
+              Source="$(var.Logikfabrik.Overseer.WPF.Client.TargetDir)Serilog.dll"
+              KeyPath="yes" />
+      </Component>
+
+      <Component Id="cmpFF548E4E6DF04171BA003198E7CEF3CC"
+                 Guid="FF548E4E-6DF0-4171-BA00-3198E7CEF3CC"
+                 Directory="INSTALLFOLDER">
+        <File Id="fil849B355ED41D4C4C9221C0DAFF3DB287"
+              Source="$(var.Logikfabrik.Overseer.WPF.Client.TargetDir)Serilog.Settings.AppSettings.dll"
+              KeyPath="yes" />
+      </Component>
+
+      <Component Id="cmp59A149FFC6C94DF7BC17B2A7CA54F2C1"
+                 Guid="59A149FF-C6C9-4DF7-BC17-B2A7CA54F2C1"
+                 Directory="INSTALLFOLDER">
+        <File Id="filCBD120E5B6ED48F3AB948928B75E16F7"
+              Source="$(var.Logikfabrik.Overseer.WPF.Client.TargetDir)Serilog.Sinks.Console.dll"
+              KeyPath="yes" />
+      </Component>
+
+      <Component Id="cmp0ACF63E41F7E47F9BAE73F826835987C"
+                 Guid="0ACF63E4-1F7E-47F9-BAE7-3F826835987C"
+                 Directory="INSTALLFOLDER">
+        <File Id="fil3DB6E68E0D6F4C219632C4D9BB025C3C"
+              Source="$(var.Logikfabrik.Overseer.WPF.Client.TargetDir)Serilog.Sinks.File.dll"
+              KeyPath="yes" />
+      </Component>
+
+      <Component Id="cmpD06E0E8A48F34484839DB2A63B526679"
+                 Guid="D06E0E8A-48F3-4484-839D-B2A63B526679"
+                 Directory="INSTALLFOLDER">
+        <File Id="filCDB9EB54C42944DEBE93182D924AB0E6"
+              Source="$(var.Logikfabrik.Overseer.WPF.Client.TargetDir)Serilog.Sinks.RollingFile.dll"
+              KeyPath="yes" />
+      </Component>
+
+      <Component Id="cmp11A1D9F9D8144C27970DED8DEA0A2DD4"
+                 Guid="11A1D9F9-D814-4C27-970D-ED8DEA0A2DD4"
+                 Directory="INSTALLFOLDER">
+        <File Id="filF33A899207DC4293B4CE6F803973777C"
+              Source="$(var.Logikfabrik.Overseer.WPF.Client.TargetDir)System.Net.Http.Formatting.dll"
+              KeyPath="yes" />
+      </Component>
+
+      <Component Id="cmpD8872DF7AB164AF49556E4A463D4B5CD"
+                 Guid="D8872DF7-AB16-4AF4-9556-E4A463D4B5CD"
+                 Directory="INSTALLFOLDER">
+        <File Id="fil3869CCFEC8014D98A36C118CC3CA212A"
+              Source="$(var.Logikfabrik.Overseer.WPF.Client.TargetDir)System.Threading.Tasks.Dataflow.dll"
+              KeyPath="yes" />
+      </Component>
+
+      <Component Id="cmpD2F851DD77AA42FE8B4C87BCD75F0DCC"
+                 Guid="D2F851DD-77AA-42FE-8B4C-87BCD75F0DCC"
+                 Directory="INSTALLFOLDER">
+        <File Id="fil987DE490CFF84A22B57350C42696C21D"
+              Source="$(var.Logikfabrik.Overseer.WPF.Client.TargetDir)System.Windows.Interactivity.dll"
+              KeyPath="yes" />
+      </Component>
+
     </ComponentGroup>
 
-    <ComponentGroup Id="AttributionComponents">
-      <Component Id="CacheManagerLicense" Directory="CacheManagerFolder" Guid="ddc11997-12a0-44c9-beab-8093c9cee92d">
-        <File Source="Attribution\CacheManager\LICENSE.txt" Id="CacheManagerLicenseFile" />
+    <ComponentGroup Id="cmpD41213137AA242C69804E0E884566EFB">
+
+      <Component Id="cmpDDC1199712A044C9BEAB8093C9CEE92D"
+                 Directory="dir752E6E6FA3C54DF484FDF454F00ED77F"
+                 Guid="DDC11997-12A0-44C9-BEAB-8093C9CEE92D">
+        <File Id="fil484261BC29D444C59EC597651C4DD7CC"
+              Source="Attribution\CacheManager\LICENSE.txt"
+              KeyPath="yes" />
       </Component>
-      <Component Id="Caliburn.MicroLicense" Directory="Caliburn.MicroFolder" Guid="a8e3f49a-dacf-4e34-ba61-e5ea6db7cb5e">
-        <File Source="Attribution\Caliburn.Micro\LICENSE.txt" Id="Caliburn.MicroLicenseFile" />
+
+      <Component Id="cmpA8E3F49ADACF4E34BA61E5EA6DB7CB5E"
+                 Directory="dirAF762B9AA51A404BA7A14E3779ABD808"
+                 Guid="A8E3F49A-DACF-4E34-BA61-E5EA6DB7CB5E">
+        <File Id="fil8F37B14E35AB430BB639922DDC3A50F8"
+              Source="Attribution\Caliburn.Micro\LICENSE.txt"
+              KeyPath="yes" />
       </Component>
-      <Component Id="Castle.CoreLicense" Directory="Castle.CoreFolder" Guid="7695da7e-c662-48c8-93f3-a9617fd14134">
-        <File Source="Attribution\Castle.Core\LICENSE.txt" Id="Castle.CoreLicenseFile" />
+
+      <Component Id="cmp7695DA7EC66248C893F3A9617FD14134"
+                 Directory="dir3A16153C31BA467D9C89BE640F4DD0F1"
+                 Guid="7695DA7E-C662-48C8-93F3-A9617FD14134">
+        <File Id="fil2A6F40938B624ABD9DF3C81517B63170"
+              Source="Attribution\Castle.Core\LICENSE.txt"
+              KeyPath="yes" />
       </Component>
-      <Component Id="Ensure.ThatLicense" Directory="Ensure.ThatFolder" Guid="11a092ed-0803-41fc-a165-785109384fd1">
-        <File Source="Attribution\Ensure.That\LICENSE.txt" Id="Ensure.ThatLicenseFile" />
+
+      <Component Id="cmp11A092ED080341FCA165785109384FD1"
+                 Directory="dirB55A7199CE3048038EDB7BB835E99707"
+                 Guid="11A092ED-0803-41FC-A165-785109384FD1">
+        <File Id="filD66ED6CF7E23480DAB48481312699833"
+              Source="Attribution\Ensure.That\LICENSE.txt"
+              KeyPath="yes" />
       </Component>
-      <Component Id="EntypoLicense" Directory="EntypoFolder" Guid="cb651fd7-8093-4bec-b096-4bc419d16ffd">
-        <File Source="Attribution\Entypo\LICENSE.txt" Id="EntypoLicenseFile" />
+
+      <Component Id="cmpCB651FD780934BECB0964BC419D16FFD"
+                 Directory="dir7DBDA2329AE0424B8E30E5244A4AE1FA"
+                 Guid="CB651FD7-8093-4BEC-B096-4BC419D16FFD">
+        <File Id="fil5CBB17408C2C4EBFBF2CC30E6ABF6490"
+              Source="Attribution\Entypo\LICENSE.txt"
+              KeyPath="yes" />
       </Component>
-      <Component Id="FluentValidationLicense" Directory="FluentValidationFolder" Guid="d1af2b87-b51d-4e4c-8061-4cb00e2ab7c5">
-        <File Source="Attribution\FluentValidation\LICENSE.txt" Id="FluentValidationLicenseFile" />
+
+      <Component Id="cmpD1AF2B87B51D4E4C80614CB00E2AB7C5"
+                 Directory="dirD7D0CA2209344EF28F1466D6E9067F98"
+                 Guid="D1AF2B87-B51D-4E4C-8061-4CB00E2AB7C5">
+        <File Id="filD1E424D919114F99947CFFF7855413DB"
+              Source="Attribution\FluentValidation\LICENSE.txt"
+              KeyPath="yes" />
       </Component>
-      <Component Id="HumanizerLicense" Directory="HumanizerFolder" Guid="eafd71d5-f786-4e7b-9614-fbfdd4cd15bc">
-        <File Source="Attribution\Humanizer\LICENSE.txt" Id="HumanizerLicenseFile" />
+
+      <Component Id="cmpEAFD71D5F7864E7B9614FBFDD4CD15BC"
+                 Directory="dir15F660460DDD476A843D8904959E11E8"
+                 Guid="EAFD71D5-F786-4E7B-9614-FBFDD4CD15BC">
+        <File Id="fil46FE24563CA247F79201B8B057002B55"
+              Source="Attribution\Humanizer\LICENSE.txt"
+              KeyPath="yes" />
       </Component>
-      <Component Id="Newtonsoft.JsonLicense" Directory="Newtonsoft.JsonFolder" Guid="8b217526-51ac-42fd-a79c-5620ffa173f3">
-        <File Source="Attribution\Newtonsoft.Json\LICENSE.txt" Id="Newtonsoft.JsonLicenseFile" />
+
+      <Component Id="cmp8B21752651AC42FDA79C5620FFA173F3"
+                 Directory="dir695610CED0F243DC8912A2055E0D6804"
+                 Guid="8B217526-51AC-42FD-A79C-5620FFA173F3">
+        <File Id="filAAC7E092B95F445690A0D0C7EF9A1D9A"
+              Source="Attribution\Newtonsoft.Json\LICENSE.txt"
+              KeyPath="yes" />
       </Component>
-      <Component Id="NinjectLicense" Directory="NinjectFolder" Guid="fa6cde03-9f44-44ea-948a-d834a5fee97b">
-        <File Source="Attribution\Ninject\LICENSE.txt" Id="NinjectLicenseFile" />
+
+      <Component Id="cmpFA6CDE039F4444EA948AD834A5FEE97B"
+                 Directory="dir533F14E32DAE4BE5BB7969B2DAD30DDD"
+                 Guid="FA6CDE03-9F44-44EA-948A-D834A5FEE97B">
+        <File Id="filEE7FF785424F48C0B6C0380D0CE92088"
+              Source="Attribution\Ninject\LICENSE.txt"
+              KeyPath="yes" />
       </Component>
-      <Component Id="SerilogLicense" Directory="SerilogFolder" Guid="79a0a6e5-cb83-4417-9a4d-a14eb00d735f">
-        <File Source="Attribution\Serilog\LICENSE.txt" Id="SerilogLicenseFile" />
+
+      <Component Id="cmp79A0A6E5CB8344179A4DA14EB00D735F"
+                 Directory="dirF1BD1E58BC5A4E22A87CB2F9BC3CF5BD"
+                 Guid="79A0A6E5-CB83-4417-9A4D-A14EB00D735F">
+        <File Id="fil4897D52B35484CEAB9D80BCC77A98F52"
+              Source="Attribution\Serilog\LICENSE.txt"
+              KeyPath="yes" />
       </Component>
+
     </ComponentGroup>
+
   </Product>
 
 </Wix>

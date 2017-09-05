@@ -4,6 +4,11 @@
     xmlns:c="clr-namespace:Logikfabrik.Overseer.WPF.Converters"
     xmlns:s="clr-namespace:System.Threading.Tasks;assembly=mscorlib">
 
+    <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+
+    <!-- TODO: Move to Logikfabrik.Overseer.WPF.Client or remove/rework?  -->
+    <c:BuildStatusToStyleConverter x:Key="BuildStatusToStyleConverter" />
+
     <x:Array x:Key="StatusFaulted" Type="{x:Type s:TaskStatus}">
         <s:TaskStatus>Faulted</s:TaskStatus>
     </x:Array>
@@ -14,17 +19,15 @@
         <s:TaskStatus>Running</s:TaskStatus>
     </x:Array>
 
-    <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
-    <c:BuildStatusToStyleConverter x:Key="BuildStatusToStyleConverter" />
-
-
     <c:TaskStatusToBooleanConverter x:Key="TaskStatusFaultedToBooleanConverter" TrueFor="{StaticResource StatusFaulted}" />
     <c:TaskStatusToBooleanConverter x:Key="TaskStatusRunningToBooleanConverter" TrueFor="{StaticResource StatusRunning}" />
-
 
     <c:ValueConverterGroup x:Key="TaskStatusFaultedToVisibilityConverter">
         <c:TaskStatusToBooleanConverter TrueFor="{StaticResource StatusFaulted}" />
         <BooleanToVisibilityConverter />
     </c:ValueConverterGroup>
-    
+
+    <c:AddConnectionViewExceptionToLocalizedStringConverter x:Key="AddConnectionViewExceptionToLocalizedStringConverter" />
+    <c:EditConnectionViewExceptionToLocalizedStringConverter x:Key="EditConnectionViewExceptionToLocalizedStringConverter" />
+
 </ResourceDictionary>

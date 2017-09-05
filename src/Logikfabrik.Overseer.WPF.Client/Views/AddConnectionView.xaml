@@ -14,20 +14,20 @@
             <ContentControl
                 HorizontalAlignment="Stretch"
                 VerticalAlignment="Stretch"
-                cal:View.Model="{Binding Settings, Mode=OneWay}"
+                cal:View.Model="{Binding Path=Settings, Mode=OneWay}"
                 Focusable="False" />
             <StackPanel Margin="10,0,10,10">
                 <Grid>
                     <Button
                         x:Name="TryConnect"
                         Content="Try connection"
-                        IsEnabled="{Binding HasNotConnected, Mode=OneWay}" />
+                        IsEnabled="{Binding Path=HasNotConnected, Mode=OneWay}" />
                     <uc:ProgressControl
                         VerticalAlignment="Top"
-                        IsErrored="{Binding ConnectionTask.Status, Converter={StaticResource TaskStatusFaultedToBooleanConverter}}"
-                        IsInProgress="{Binding ConnectionTask.Status, Converter={StaticResource TaskStatusRunningToBooleanConverter}}" />
+                        IsErrored="{Binding Path=ConnectionTask.Status, Converter={StaticResource TaskStatusFaultedToBooleanConverter}}"
+                        IsInProgress="{Binding Path=ConnectionTask.Status, Converter={StaticResource TaskStatusRunningToBooleanConverter}}" />
                 </Grid>
-                <TextBlock Text="Error" Visibility="{Binding ConnectionTask.Status, Converter={StaticResource TaskStatusFaultedToVisibilityConverter}}" />
+                <TextBlock Text="{Binding Path=ConnectionTask.Exception, Converter={StaticResource AddConnectionViewExceptionToLocalizedStringConverter}}" Visibility="{Binding ConnectionTask.Status, Converter={StaticResource TaskStatusFaultedToVisibilityConverter}}" />
             </StackPanel>
             <StackPanel Margin="10,0,10,10" Visibility="{Binding HasConnected, Converter={StaticResource BooleanToVisibilityConverter}}">
                 <ContentControl

@@ -27,7 +27,7 @@
                         IsErrored="{Binding ConnectionTask.Status, Converter={StaticResource TaskStatusFaultedToBooleanConverter}}"
                         IsInProgress="{Binding ConnectionTask.Status, Converter={StaticResource TaskStatusRunningToBooleanConverter}}" />
                 </Grid>
-                <TextBlock Text="Error" Visibility="{Binding ConnectionTask.Status, Converter={StaticResource TaskStatusFaultedToVisibilityConverter}}" />
+                <TextBlock Text="{Binding Path=ConnectionTask.Exception, Converter={StaticResource EditConnectionViewExceptionToLocalizedStringConverter}}" Visibility="{Binding ConnectionTask.Status, Converter={StaticResource TaskStatusFaultedToVisibilityConverter}}" />
             </StackPanel>
             <StackPanel Margin="10,0,10,10" Visibility="{Binding HasConnected, Converter={StaticResource BooleanToVisibilityConverter}}">
                 <ContentControl

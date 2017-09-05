@@ -4,6 +4,7 @@
 
 namespace Logikfabrik.Overseer.WPF
 {
+    using System;
     using System.Threading.Tasks;
     using Caliburn.Micro;
     using EnsureThat;
@@ -35,6 +36,7 @@ namespace Logikfabrik.Overseer.WPF
             if (_task.IsCompleted)
             {
                 NotifyOfPropertyChange(() => Status);
+                NotifyOfPropertyChange(() => Exception);
 
                 return;
             }
@@ -42,6 +44,7 @@ namespace Logikfabrik.Overseer.WPF
             _task.ContinueWith(t =>
             {
                 NotifyOfPropertyChange(() => Status);
+                NotifyOfPropertyChange(() => Exception);
             });
         }
 
@@ -52,5 +55,13 @@ namespace Logikfabrik.Overseer.WPF
         /// The status.
         /// </value>
         public TaskStatus? Status => _task?.Status;
+
+        /// <summary>
+        /// Gets the exception.
+        /// </summary>
+        /// <value>
+        /// The exception.
+        /// </value>
+        public Exception Exception => _task?.Exception;
     }
 }

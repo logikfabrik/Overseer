@@ -7,6 +7,7 @@ namespace Logikfabrik.Overseer.WPF.Client.ViewModels
     using System.Windows;
     using Caliburn.Micro;
     using EnsureThat;
+    using Localization;
 
     /// <summary>
     /// The <see cref="MenuViewModel" /> class.
@@ -14,6 +15,7 @@ namespace Logikfabrik.Overseer.WPF.Client.ViewModels
     public class ErrorViewModel : PropertyChangedBase
     {
         private string _message;
+        private bool _isExpanded;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ErrorViewModel" /> class.
@@ -25,7 +27,8 @@ namespace Logikfabrik.Overseer.WPF.Client.ViewModels
 
             application.DispatcherUnhandledException += (sender, e) =>
             {
-                Message = e.Exception?.Message;
+                Message = AppViewErrorLocalizer.Localize(e.Exception);
+                IsExpanded = true;
 
                 e.Handled = true;
             };
@@ -49,6 +52,34 @@ namespace Logikfabrik.Overseer.WPF.Client.ViewModels
                 _message = value;
                 NotifyOfPropertyChange(() => Message);
             }
+        }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether this instance is expanded.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if this instance is expanded; otherwise, <c>false</c>.
+        /// </value>
+        public bool IsExpanded
+        {
+            get
+            {
+                return _isExpanded;
+            }
+
+            set
+            {
+                _isExpanded = value;
+                NotifyOfPropertyChange(() => IsExpanded);
+            }
+        }
+
+        /// <summary>
+        /// Closes this instance.
+        /// </summary>
+        public void Close()
+        {
+            IsExpanded = false;
         }
     }
 }

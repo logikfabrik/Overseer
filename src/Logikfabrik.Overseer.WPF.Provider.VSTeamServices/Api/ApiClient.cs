@@ -58,7 +58,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices.Api
 
             using (var response = await _httpClient.Value.GetAsync(url, cancellationToken).ConfigureAwait(false))
             {
-                response.EnsureSuccessStatusCode();
+                response.ThrowIfUnsuccessful();
 
                 return await response.Content.ReadAsAsync<Projects>(cancellationToken).ConfigureAwait(false);
             }
@@ -86,7 +86,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices.Api
 
             using (var response = await _httpClient.Value.GetAsync(url, cancellationToken).ConfigureAwait(false))
             {
-                response.EnsureSuccessStatusCode();
+                response.ThrowIfUnsuccessful();
 
                 return await response.Content.ReadAsAsync<Builds>(cancellationToken).ConfigureAwait(false);
             }
@@ -112,7 +112,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices.Api
 
             using (var response = await _httpClient.Value.GetAsync(url, cancellationToken).ConfigureAwait(false))
             {
-                response.EnsureSuccessStatusCode();
+                response.ThrowIfUnsuccessful();
 
                 return await response.Content.ReadAsAsync<Changes>(cancellationToken).ConfigureAwait(false);
             }

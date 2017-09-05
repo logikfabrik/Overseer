@@ -70,11 +70,11 @@ namespace Logikfabrik.Overseer.WPF.Client.ViewModels
         }
 
         /// <summary>
-        /// Toggles this instance.
+        /// Opens this instance.
         /// </summary>
-        public void Toggle()
+        public void Open()
         {
-            IsExpanded = !IsExpanded;
+            IsExpanded = true;
         }
 
         /// <summary>

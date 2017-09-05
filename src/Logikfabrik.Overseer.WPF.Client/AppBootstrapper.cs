@@ -92,6 +92,7 @@ namespace Logikfabrik.Overseer.WPF.Client
 
             _catalog = null;
 
+            LanguageConfigurator.Configure(_kernel.Get<IAppSettingsFactory>());
             DataBindingLanguageConfigurator.Configure();
             DataBindingActionConfigurator.Configure();
             ErrorLogHandlerConfigurator.Configure(_kernel.Get<AppDomain>(), _kernel.Get<Application>(), _kernel.Get<ILogService>());

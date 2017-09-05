@@ -87,7 +87,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity.Api
 
             using (var response = await _httpClient.Value.GetAsync(url, cancellationToken).ConfigureAwait(false))
             {
-                response.EnsureSuccessStatusCode();
+                response.ThrowIfUnsuccessful();
 
                 return await response.Content.ReadAsAsync<Projects>(cancellationToken).ConfigureAwait(false);
             }
@@ -108,7 +108,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity.Api
 
             using (var response = await _httpClient.Value.GetAsync(url, cancellationToken).ConfigureAwait(false))
             {
-                response.EnsureSuccessStatusCode();
+                response.ThrowIfUnsuccessful();
 
                 return await response.Content.ReadAsAsync<BuildTypes>(new[] { _mediaTypeFormatter }, cancellationToken).ConfigureAwait(false);
             }

@@ -51,7 +51,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor.Api
 
             using (var response = await _httpClient.Value.GetAsync(url, cancellationToken).ConfigureAwait(false))
             {
-                response.EnsureSuccessStatusCode();
+                response.ThrowIfUnsuccessful();
 
                 return await response.Content.ReadAsAsync<IEnumerable<Project>>(cancellationToken).ConfigureAwait(false);
             }
@@ -79,7 +79,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor.Api
 
             using (var response = await _httpClient.Value.GetAsync(url, cancellationToken).ConfigureAwait(false))
             {
-                response.EnsureSuccessStatusCode();
+                response.ThrowIfUnsuccessful();
 
                 return await response.Content.ReadAsAsync<ProjectHistory>(cancellationToken).ConfigureAwait(false);
             }
