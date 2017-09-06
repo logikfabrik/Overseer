@@ -9,6 +9,7 @@
     mc:Ignorable="d">
     <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
@@ -16,11 +17,14 @@
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
+        <TextBox Grid.ColumnSpan="2" Text="{Binding Path=Filter, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
         <Border
+            Grid.Row="1"
+            Grid.Column="0"
             Grid.ColumnSpan="2"
             BorderBrush="{DynamicResource Button.Static.Border}"
             BorderThickness="2">
-            <ItemsControl ItemsSource="{Binding Path=Projects, Mode=OneWay}">
+            <ItemsControl ItemsSource="{Binding Path=FilteredProjects}">
                 <ItemsControl.ItemContainerStyle>
                     <Style>
                         <!--  ReSharper disable once Xaml.RedundantPropertyTypeQualifier  -->
@@ -38,12 +42,12 @@
         </Border>
         <Button
             x:Name="MonitorAll"
-            Grid.Row="1"
+            Grid.Row="2"
             Grid.Column="0"
             Content="Select all" />
         <Button
             x:Name="MonitorNone"
-            Grid.Row="1"
+            Grid.Row="2"
             Grid.Column="1"
             Content="Deselect all" />
     </Grid>

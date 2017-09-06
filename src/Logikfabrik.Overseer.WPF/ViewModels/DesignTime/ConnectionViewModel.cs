@@ -13,7 +13,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels.DesignTime
     /// </summary>
     public class ConnectionViewModel : IConnectionViewModel
     {
-        public event EventHandler<ViewAttachedEventArgs> ViewAttached = (sender, args) => { };
+        public event EventHandler<ViewAttachedEventArgs> ViewAttached = (sender, e) => { };
 
         /// <summary>
         /// Gets the settings identifier.

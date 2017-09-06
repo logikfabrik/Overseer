@@ -5,15 +5,22 @@
 namespace Logikfabrik.Overseer.WPF.ViewModels
 {
     using System.Collections.Generic;
+    using System.Collections.ObjectModel;
+    using System.ComponentModel;
     using System.Linq;
+    using System.Windows.Data;
     using Caliburn.Micro;
     using EnsureThat;
+    using Text;
 
     /// <summary>
     /// The <see cref="ProjectsToMonitorViewModel" /> class.
     /// </summary>
     public class ProjectsToMonitorViewModel : PropertyChangedBase
     {
+        private readonly CollectionViewSource _filteredProjects;
+        private string _filter;
+
         /// <summary>
         /// Initializes a new instance of the <see cref="ProjectsToMonitorViewModel" /> class.
         /// </summary>
@@ -22,7 +29,19 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         {
             Ensure.That(projects).IsNotNull();
 
-            Projects = new BindableCollection<ProjectToMonitorViewModel>(projects);
+            Projects = new ObservableCollection<ProjectToMonitorViewModel>(projects);
+
+            _filteredProjects = new CollectionViewSource
+            {
+                Source = Projects
+            };
+
+            _filteredProjects.Filter += (sender, e) =>
+            {
+                var project = (ProjectToMonitorViewModel)e.Item;
+
+                e.Accepted = string.IsNullOrWhiteSpace(_filter) || DamerauLevenshtein.GetDistance(project.Name?.ToLowerInvariant(), _filter.ToLowerInvariant()) < 5;
+            };
         }
 
         /// <summary>
@@ -31,7 +50,37 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// <value>
         /// The projects.
         /// </value>
-        public BindableCollection<ProjectToMonitorViewModel> Projects { get; }
+        public IEnumerable<ProjectToMonitorViewModel> Projects { get; }
+
+        /// <summary>
+        /// Gets the filtered projects.
+        /// </summary>
+        /// <value>
+        /// The filtered projects.
+        /// </value>
+        public ICollectionView FilteredProjects => _filteredProjects.View;
+
+        /// <summary>
+        /// Gets or sets the filter.
+        /// </summary>
+        /// <value>
+        /// The filter.
+        /// </value>
+        public string Filter
+        {
+            get
+            {
+                return _filter;
+            }
+
+            set
+            {
+                _filter = value;
+                NotifyOfPropertyChange(() => Filter);
+
+                _filteredProjects.View.Refresh();
+            }
+        }
 
         /// <summary>
         /// Monitor all projects.

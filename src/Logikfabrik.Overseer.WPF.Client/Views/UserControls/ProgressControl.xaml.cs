@@ -40,9 +40,9 @@ namespace Logikfabrik.Overseer.WPF.Client.Views.UserControls
         {
             InitializeComponent();
 
-            IsVisibleChanged += (sender, args) => { UpdateAnimation(); };
-            IsErroredChanged += (sender, args) => { UpdateAnimation(); };
-            IsInProgressChanged += (sender, args) => { UpdateAnimation(); };
+            IsVisibleChanged += (sender, e) => { UpdateAnimation(); };
+            IsErroredChanged += (sender, e) => { UpdateAnimation(); };
+            IsInProgressChanged += (sender, e) => { UpdateAnimation(); };
         }
 
         /// <summary>

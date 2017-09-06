@@ -4,6 +4,7 @@
 
 namespace Logikfabrik.Overseer.WPF.Navigation
 {
+    using System.Collections.ObjectModel;
     using Caliburn.Micro;
     using EnsureThat;
 
@@ -95,7 +96,7 @@ namespace Logikfabrik.Overseer.WPF.Navigation
 
             _conductor.ActivateItem(item);
 
-            (_conductor.Items as BindableCollection<T>)?.Move(_conductor.Items.IndexOf(item), _conductor.Items.Count - 1);
+            (_conductor.Items as ObservableCollection<T>)?.Move(_conductor.Items.IndexOf(item), _conductor.Items.Count - 1);
         }
     }
 }
