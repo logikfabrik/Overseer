@@ -179,7 +179,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices.Api
 
         private static void SetAuthRequestHeaders(HttpClient client, string token)
         {
-            var credentials = Convert.ToBase64String(Encoding.ASCII.GetBytes($"{string.Empty}:{token}"));
+            var credentials = Convert.ToBase64String(Encoding.UTF8.GetBytes($"{string.Empty}:{token}"));
 
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", credentials);
         }

@@ -184,7 +184,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity.Api
 
         private static void SetAuthRequestHeaders(HttpClient client, string username, string password)
         {
-            var credentials = Convert.ToBase64String(Encoding.ASCII.GetBytes($"{username}:{password}"));
+            var credentials = Convert.ToBase64String(Encoding.UTF8.GetBytes($"{username}:{password}"));
 
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", credentials);
         }

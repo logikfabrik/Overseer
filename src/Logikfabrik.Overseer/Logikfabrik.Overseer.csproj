@@ -135,6 +135,7 @@
     <Compile Include="IProject.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Settings\IFileStore.cs" />
+    <Compile Include="Text\DamerauLevenshtein.cs" />
   </ItemGroup>
   <ItemGroup>
     <AdditionalFiles Include="stylecop.json" />

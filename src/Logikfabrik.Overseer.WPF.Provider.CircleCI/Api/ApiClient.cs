@@ -171,7 +171,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.CircleCI.Api
 
         private static void SetAuthRequestHeaders(HttpClient client, string token)
         {
-            var credentials = Convert.ToBase64String(Encoding.ASCII.GetBytes($"{token}:"));
+            var credentials = Convert.ToBase64String(Encoding.UTF8.GetBytes($"{token}:"));
 
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", credentials);
         }
