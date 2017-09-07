@@ -25,13 +25,13 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity
             Id = build.Id;
             Number = build.Number;
             Version = null;
-            Branch = build.BranchName;
+            Branch = build.Revisions?.Revision?.FirstOrDefault()?.VcsBranchName;
             StartTime = build.StartDate?.ToUniversalTime();
             EndTime = build.FinishDate?.ToUniversalTime();
             Status = GetStatus(build);
             RequestedBy = GetRequestedBy(build);
             WebUrl = build.WebUrl;
-            Changes = build.LastChanges?.Change.Select(change => new Change(change.Id, change.Date?.ToUniversalTime(), change.Username, null)).ToArray() ?? new IChange[] { };
+            Changes = build.LastChanges?.Change.Select(change => new Change(change.Version, change.Date?.ToUniversalTime(), change.Username, change.Comment)).ToArray() ?? new IChange[] { };
         }
 
         /// <summary>

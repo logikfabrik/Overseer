@@ -32,6 +32,15 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity.Api.Models
         /// <summary>
         /// Build was triggered by a restart.
         /// </summary>
-        Restarted
+        Restarted,
+
+        /// <summary>
+        /// Build was triggered by schedule.
+        /// </summary>
+        Schedule,
+
+        SnapshotDependency,
+
+        Retry
     }
 }

@@ -18,6 +18,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     /// </summary>
     public class ProjectsToMonitorViewModel : PropertyChangedBase
     {
+        // ReSharper disable once PrivateFieldCanBeConvertedToLocalVariable
         private readonly CollectionViewSource _filteredProjects;
         private readonly SuffixTrie<ProjectToMonitorViewModel> _trie;
         private string _filter;
@@ -91,7 +92,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
 
                 _matches = _trie.Retrieve(value?.ToLowerInvariant());
 
-                _filteredProjects.View.Refresh();
+                FilteredProjects.Refresh();
             }
         }
 
@@ -113,7 +114,8 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
 
         private void ToggleMonitoring(bool monitor)
         {
-            var projects = _filteredProjects.View.OfType<ProjectToMonitorViewModel>()
+            var projects = FilteredProjects
+                .OfType<ProjectToMonitorViewModel>()
                 .Where(project => project.Monitor != monitor);
 
             foreach (var project in projects)

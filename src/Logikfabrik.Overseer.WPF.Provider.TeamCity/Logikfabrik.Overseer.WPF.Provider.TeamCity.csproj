@@ -102,14 +102,13 @@
     <Compile Include="Api\IApiClient.cs" />
     <Compile Include="Api\Models\Build.cs" />
     <Compile Include="Api\Models\Builds.cs" />
-    <Compile Include="Api\Models\BuildState.cs" />
     <Compile Include="Api\Models\BuildStatus.cs" />
-    <Compile Include="Api\Models\BuildType.cs" />
-    <Compile Include="Api\Models\BuildTypes.cs" />
     <Compile Include="Api\Models\Change.cs" />
     <Compile Include="Api\Models\Changes.cs" />
     <Compile Include="Api\Models\Project.cs" />
     <Compile Include="Api\Models\Projects.cs" />
+    <Compile Include="Api\Models\Revision.cs" />
+    <Compile Include="Api\Models\Revisions.cs" />
     <Compile Include="Api\Models\TestOccurrences.cs" />
     <Compile Include="Api\Models\Trigger.cs" />
     <Compile Include="Api\Models\TriggerType.cs" />

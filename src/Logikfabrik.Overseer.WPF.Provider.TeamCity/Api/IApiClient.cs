@@ -21,10 +21,12 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity.Api
         Task<Models.Projects> GetProjectsAsync(CancellationToken cancellationToken);
 
         /// <summary>
-        /// Gets the build types.
+        /// Gets the builds.
         /// </summary>
-        /// <param name="cancellationToken">A cancellation token.</param>
+        /// <param name="projectId">The project identifier.</param>
+        /// <param name="count">The count.</param>
+        /// <param name="cancellationToken">The cancellation token.</param>
         /// <returns>A task.</returns>
-        Task<Models.BuildTypes> GetBuildTypesAsync(CancellationToken cancellationToken);
+        Task<Models.Builds> GetBuildsAsync(string projectId, int count, CancellationToken cancellationToken);
     }
 }

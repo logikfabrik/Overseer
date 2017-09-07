@@ -94,23 +94,28 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity.Api
         }
 
         /// <summary>
-        /// Gets the build types.
+        /// Gets the builds.
         /// </summary>
-        /// <param name="cancellationToken">A cancellation token.</param>
+        /// <param name="projectId">The project identifier.</param>
+        /// <param name="count">The count.</param>
+        /// <param name="cancellationToken">The cancellation token.</param>
         /// <returns>A task.</returns>
-        public async Task<BuildTypes> GetBuildTypesAsync(CancellationToken cancellationToken)
+        public async Task<Builds> GetBuildsAsync(string projectId, int count, CancellationToken cancellationToken)
         {
             this.ThrowIfDisposed(_isDisposed);
 
+            Ensure.That(projectId).IsNotNullOrWhiteSpace();
+            Ensure.That(count).IsInRange(1, int.MaxValue);
+
             cancellationToken.ThrowIfCancellationRequested();
 
-            const string url = "buildTypes?fields=buildType(projectId,projectName,builds($locator(count:1),build(id,triggered(user),startDate,finishDate,status,state,number,lastChanges:(change),branchName,testOccurrences,webUrl)))";
+            var url = $"builds?locator=project:{projectId},count:{count}&fields=build(id,triggered(type,details,user),revisions,startDate,finishDate,status,number,lastChanges(change(id,version,username,date,comment)),testOccurrences,webUrl)";
 
             using (var response = await _httpClient.Value.GetAsync(url, cancellationToken).ConfigureAwait(false))
             {
                 response.ThrowIfUnsuccessful();
 
-                return await response.Content.ReadAsAsync<BuildTypes>(new[] { _mediaTypeFormatter }, cancellationToken).ConfigureAwait(false);
+                return await response.Content.ReadAsAsync<Builds>(new[] { _mediaTypeFormatter }, cancellationToken).ConfigureAwait(false);
             }
         }
 

@@ -42,5 +42,13 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity.Api.Models
         /// The date.
         /// </value>
         public DateTime? Date { get; set; }
+
+        /// <summary>
+        /// Gets or sets the comment.
+        /// </summary>
+        /// <value>
+        /// The comment.
+        /// </value>
+        public string Comment { get; set; }
     }
 }
