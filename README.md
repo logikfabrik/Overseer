@@ -20,7 +20,9 @@ If you have a bug report, feature request, or suggestion, please open a new issu
 - [Newtonsoft.Json](https://github.com/JamesNK/Newtonsoft.Json)
 - [Ninject](https://github.com/ninject/Ninject)
 - [Serilog](https://github.com/serilog/serilog)
+- [TrieNet](https://github.com/gmamaladze/trienet)
 
+#### Development
 - [AutoFixture](https://github.com/AutoFixture/AutoFixture)
 - [Moq](https://github.com/moq/moq)
 - [StyleCop.Analyzers](https://github.com/DotNetAnalyzers/StyleCopAnalyzers)
