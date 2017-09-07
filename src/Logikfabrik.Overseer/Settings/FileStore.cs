@@ -8,7 +8,7 @@ namespace Logikfabrik.Overseer.Settings
     using System.IO;
     using System.Threading;
     using EnsureThat;
-    using Overseer.Extensions;
+    using Extensions;
 
     /// <summary>
     /// The <see cref="FileStore" /> class.

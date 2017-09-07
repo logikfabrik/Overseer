@@ -5,7 +5,6 @@
 namespace Logikfabrik.Overseer.WPF
 {
     using System.Globalization;
-    using System.Threading;
     using EnsureThat;
 
     /// <summary>

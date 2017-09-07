@@ -4,7 +4,6 @@
 
 namespace Logikfabrik.Overseer.Test.Settings
 {
-    using System;
     using Moq;
     using Overseer.Settings;
     using Xunit;
