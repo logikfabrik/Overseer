@@ -11,7 +11,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     using System.Windows.Data;
     using Caliburn.Micro;
     using EnsureThat;
-    using Text;
+    using Gma.DataStructures.StringSearch;
 
     /// <summary>
     /// The <see cref="ProjectsToMonitorViewModel" /> class.
@@ -19,7 +19,9 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     public class ProjectsToMonitorViewModel : PropertyChangedBase
     {
         private readonly CollectionViewSource _filteredProjects;
+        private readonly SuffixTrie<ProjectToMonitorViewModel> _trie;
         private string _filter;
+        private IEnumerable<ProjectToMonitorViewModel> _matches;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ProjectsToMonitorViewModel" /> class.
@@ -40,8 +42,15 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             {
                 var project = (ProjectToMonitorViewModel)e.Item;
 
-                e.Accepted = string.IsNullOrWhiteSpace(_filter) || DamerauLevenshtein.GetDistance(project.Name?.ToLowerInvariant(), _filter.ToLowerInvariant()) < 5;
+                e.Accepted = _matches?.Contains(project) ?? true;
             };
+
+            _trie = new SuffixTrie<ProjectToMonitorViewModel>(3);
+
+            foreach (var project in Projects)
+            {
+                _trie.Add(project.Name.ToLowerInvariant(), project);
+            }
         }
 
         /// <summary>
@@ -77,6 +86,8 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             {
                 _filter = value;
                 NotifyOfPropertyChange(() => Filter);
+
+                _matches = _trie.Retrieve(value?.ToLowerInvariant());
 
                 _filteredProjects.View.Refresh();
             }

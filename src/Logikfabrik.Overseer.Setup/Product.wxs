@@ -81,6 +81,8 @@
                          Name="Ninject" />
               <Directory Id="dirF1BD1E58BC5A4E22A87CB2F9BC3CF5BD"
                          Name="Serilog" />
+              <Directory Id="dir9B1EFDE3FF6A4D1788EA7973461B8EB8"
+                         Name="TrieNet" />
             </Directory>
           </Directory>
         </Directory>
@@ -116,7 +118,7 @@
 
         <RemoveFolder Id="remF8CA303B276F40929A820D1F2D1DE801"
                       On="uninstall" />
-        
+
       </Component>
 
       <Component Id="cmpEC155E3299D54F8BA2578F1C93F67472"
@@ -438,6 +440,14 @@
               KeyPath="yes" />
       </Component>
 
+      <Component Id="cmp72E254BE1889446A82D0B50156069D4D"
+                 Guid="72E254BE-1889-446A-82D0-B50156069D4D"
+                 Directory="INSTALLFOLDER">
+        <File Id="fil6D46303283C9456C8919B7346BBFE91A"
+              Source="$(var.Logikfabrik.Overseer.WPF.Client.TargetDir)TrieNet.dll"
+              KeyPath="yes" />
+      </Component>
+
     </ComponentGroup>
 
     <ComponentGroup Id="cmpD41213137AA242C69804E0E884566EFB">
@@ -519,6 +529,14 @@
                  Guid="79A0A6E5-CB83-4417-9A4D-A14EB00D735F">
         <File Id="fil4897D52B35484CEAB9D80BCC77A98F52"
               Source="Attribution\Serilog\LICENSE.txt"
+              KeyPath="yes" />
+      </Component>
+
+      <Component Id="cmp4C2B345AB0C04A0181AF2623689934AA"
+                 Directory="dir9B1EFDE3FF6A4D1788EA7973461B8EB8"
+                 Guid="4C2B345A-B0C0-4A01-81AF-2623689934AA">
+        <File Id="fil1C879874D495410887E0CB8977943C7C"
+              Source="Attribution\TrieNet\LICENSE.txt"
               KeyPath="yes" />
       </Component>
 
