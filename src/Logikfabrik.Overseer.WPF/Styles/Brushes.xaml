@@ -27,9 +27,10 @@
     <SolidColorBrush x:Key="Separator.Border" Color="Transparent" />
 
     <SolidColorBrush x:Key="Panel.Background" Color="#525252" />
+    <SolidColorBrush x:Key="Panel.Border" Color="#525252" />
 
     <SolidColorBrush x:Key="ToolTip.Background" Color="#7E7E7E" />
-    
+
     <SolidColorBrush x:Key="Hyperlink.Foreground" Color="#E1FF57" />
 
     <SolidColorBrush x:Key="ComboBox.Static.Background" Color="#525252" />

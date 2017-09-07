@@ -45,6 +45,8 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
                 e.Accepted = _matches?.Contains(project) ?? true;
             };
 
+            FilteredProjects = _filteredProjects.View;
+
             _trie = new SuffixTrie<ProjectToMonitorViewModel>(3);
 
             foreach (var project in Projects)
@@ -67,7 +69,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// <value>
         /// The filtered projects.
         /// </value>
-        public ICollectionView FilteredProjects => _filteredProjects.View;
+        public ICollectionView FilteredProjects { get; }
 
         /// <summary>
         /// Gets or sets the filter.
@@ -111,7 +113,8 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
 
         private void ToggleMonitoring(bool monitor)
         {
-            var projects = Projects.Where(project => project.Monitor != monitor).ToArray();
+            var projects = _filteredProjects.View.OfType<ProjectToMonitorViewModel>()
+                .Where(project => project.Monitor != monitor);
 
             foreach (var project in projects)
             {

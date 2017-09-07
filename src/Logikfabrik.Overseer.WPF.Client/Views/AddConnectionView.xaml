@@ -31,7 +31,7 @@
             </StackPanel>
             <StackPanel Margin="10,0,10,10" Visibility="{Binding HasConnected, Converter={StaticResource BooleanToVisibilityConverter}}">
                 <ContentControl
-                    MaxHeight="207"
+                    MaxHeight="304"
                     HorizontalAlignment="Stretch"
                     cal:View.Model="{Binding Settings.ProjectsToMonitor, Mode=OneWay}"
                     Focusable="False" />
