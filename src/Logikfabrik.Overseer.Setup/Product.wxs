@@ -61,8 +61,6 @@
                        Name="sv" />
             <Directory Id="dir237FB9D14131484085A97D15B31A46D8"
                        Name="Attribution">
-              <Directory Id="dir752E6E6FA3C54DF484FDF454F00ED77F"
-                         Name="CacheManager" />
               <Directory Id="dirAF762B9AA51A404BA7A14E3779ABD808"
                          Name="Caliburn.Micro" />
               <Directory Id="dir3A16153C31BA467D9C89BE640F4DD0F1"
@@ -143,22 +141,6 @@
     </ComponentGroup>
 
     <ComponentGroup Id="cmp5102C9E4A53841A88A083369EF612B69">
-
-      <Component Id="cmp4DCB220871DB4903886714C210DC298C"
-                 Guid="4DCB2208-71DB-4903-8867-14C210DC298C"
-                 Directory="INSTALLFOLDER">
-        <File Id="fil4D0DBAD6D2DC4537A9212CEFE1F3427A"
-              Source="$(var.Logikfabrik.Overseer.WPF.Client.TargetDir)CacheManager.Core.dll"
-              KeyPath="yes" />
-      </Component>
-
-      <Component Id="cmp5D1B23EBB1E6458C92EF77D090032A88"
-                 Guid="5D1B23EB-B1E6-458C-92EF-77D090032A88"
-                 Directory="INSTALLFOLDER">
-        <File Id="filCC9164B849F147DFBB4BA770ED020ABF"
-              Source="$(var.Logikfabrik.Overseer.WPF.Client.TargetDir)CacheManager.SystemRuntimeCaching.dll"
-              KeyPath="yes" />
-      </Component>
 
       <Component Id="cmpB119DEE3AF4C40DCBCDE23B443DBFAA9"
                  Guid="B119DEE3-AF4C-40DC-BCDE-23B443DBFAA9"
@@ -328,22 +310,6 @@
               KeyPath="yes" />
       </Component>
 
-      <Component Id="cmp036846FAA81240EA9ACD309C2EB77FDA"
-                 Guid="036846FA-A812-40EA-9ACD-309C2EB77FDA"
-                 Directory="INSTALLFOLDER">
-        <File Id="fil074428F2935A496AB0FDD45098F16C17"
-              Source="$(var.Logikfabrik.Overseer.WPF.Client.TargetDir)Ninject.Extensions.Interception.dll"
-              KeyPath="yes" />
-      </Component>
-
-      <Component Id="cmp3E321A07EF83416FB5DCAEB5FBEF1812"
-                 Guid="3E321A07-EF83-416F-B5DC-AEB5FBEF1812"
-                 Directory="INSTALLFOLDER">
-        <File Id="fil8CE48B4CACC54CFFA968CDD5BCF7BD81"
-              Source="$(var.Logikfabrik.Overseer.WPF.Client.TargetDir)Ninject.Extensions.Interception.DynamicProxy.dll"
-              KeyPath="yes" />
-      </Component>
-
       <Component Id="cmpE0C60976FFC54217A9A51D40B738AC67"
                  Guid="E0C60976-FFC5-4217-A9A5-1D40B738AC67"
                  Directory="INSTALLFOLDER">
@@ -451,14 +417,6 @@
     </ComponentGroup>
 
     <ComponentGroup Id="cmpD41213137AA242C69804E0E884566EFB">
-
-      <Component Id="cmpDDC1199712A044C9BEAB8093C9CEE92D"
-                 Directory="dir752E6E6FA3C54DF484FDF454F00ED77F"
-                 Guid="DDC11997-12A0-44C9-BEAB-8093C9CEE92D">
-        <File Id="fil484261BC29D444C59EC597651C4DD7CC"
-              Source="Attribution\CacheManager\LICENSE.txt"
-              KeyPath="yes" />
-      </Component>
 
       <Component Id="cmpA8E3F49ADACF4E34BA61E5EA6DB7CB5E"
                  Directory="dirAF762B9AA51A404BA7A14E3779ABD808"

@@ -5,7 +5,6 @@
 namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices
 {
     using Ninject.Extensions.Factory;
-    using Ninject.Extensions.Interception.Infrastructure.Language;
     using Ninject.Modules;
     using ViewModels;
 
@@ -19,7 +18,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices
         /// </summary>
         public override void Load()
         {
-            Bind<Api.IApiClient>().To<Api.ApiClient>().Intercept().With<Caching.CacheInterceptor>();
+            Bind<Api.IApiClient>().To<Api.ApiClient>();
 
             Bind<IBuildProviderFactory>().To<BuildProviderFactory<ConnectionSettings, BuildProvider>>();
 

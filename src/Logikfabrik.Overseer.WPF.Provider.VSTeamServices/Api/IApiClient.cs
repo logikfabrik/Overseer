@@ -6,12 +6,11 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices.Api
 {
     using System.Threading;
     using System.Threading.Tasks;
-    using Caching;
 
     /// <summary>
     /// The <see cref="ApiClient" /> class.
     /// </summary>
-    public interface IApiClient : ICacheable
+    public interface IApiClient
     {
         /// <summary>
         /// Gets the projects.

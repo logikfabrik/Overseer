@@ -5,7 +5,6 @@
 namespace Logikfabrik.Overseer.WPF.Localization
 {
     using System;
-    using System.Net;
     using System.Net.Sockets;
     using Overseer.Extensions;
 
@@ -26,20 +25,18 @@ namespace Logikfabrik.Overseer.WPF.Localization
                 return null;
             }
 
-            // TODO: This!
+            var innerException = exception.InnerException();
 
-            var innerException = exception.GetBaseException();
+            var httpException = innerException as HttpException;
 
-            if (innerException is HttpException)
+            if (httpException != null)
             {
-                var ex = (HttpException)innerException;
-
-                if ((int)ex.StatusCode >= 400 && (int)ex.StatusCode <= 499)
+                if ((int)httpException.StatusCode >= 400 && (int)httpException.StatusCode <= 499)
                 {
                     return Properties.Resources.EditConnection_Error_HTTP4xx;
                 }
 
-                if ((int)ex.StatusCode >= 500 && (int)ex.StatusCode <= 599)
+                if ((int)httpException.StatusCode >= 500 && (int)httpException.StatusCode <= 599)
                 {
                     return Properties.Resources.EditConnection_Error_HTTP5xx;
                 }
@@ -47,12 +44,7 @@ namespace Logikfabrik.Overseer.WPF.Localization
 
             if (innerException is SocketException)
             {
-                var ex = (SocketException)innerException;
-            }
-
-            if (innerException is WebException)
-            {
-                var ex = (WebException)innerException;
+                return Properties.Resources.EditConnection_Error_Network;
             }
 
             return Properties.Resources.EditConnection_Error_Standard;

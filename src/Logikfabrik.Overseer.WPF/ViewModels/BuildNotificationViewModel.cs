@@ -98,7 +98,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
 
             _dispatcher?.Stop();
 
-            _dispatcher = new DispatcherTimer(TimeSpan.FromSeconds(showForSeconds), DispatcherPriority.Normal, (sender,args) => { Close(); }, Application.Current.Dispatcher);
+            _dispatcher = new DispatcherTimer(TimeSpan.FromSeconds(showForSeconds), DispatcherPriority.Normal, (sender, args) => { Close(); }, Application.Current.Dispatcher);
 
             _dispatcher.Start();
         }

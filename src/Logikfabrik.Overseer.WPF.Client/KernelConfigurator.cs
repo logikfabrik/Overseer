@@ -9,7 +9,6 @@ namespace Logikfabrik.Overseer.WPF.Client
     using System.Reflection;
     using System.Windows;
     using System.Windows.Input;
-    using CacheManager.Core;
     using Caliburn.Micro;
     using EnsureThat;
     using Logging;
@@ -17,7 +16,6 @@ namespace Logikfabrik.Overseer.WPF.Client
     using Ninject.Extensions.Factory;
     using Overseer.Logging;
     using Providers;
-    using Providers.Caching;
     using Providers.Settings;
     using Serilog;
     using Settings;
@@ -48,7 +46,6 @@ namespace Logikfabrik.Overseer.WPF.Client
 
             // Business logic setup.
             kernel.Bind<IAppSettingsFactory>().ToFactory();
-            kernel.Bind<ICacheManager<object>>().ToProvider<CacheManagerProvider>();
             kernel.Bind<ILogService>().To<LogService>();
             kernel.Bind<IConnectionSettingsSerializer>().ToProvider<ConnectionSettingsSerializerProvider>();
             kernel.Bind<IFileStore>().ToProvider<FileStoreProvider>();

@@ -10,7 +10,6 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor.Api
     using System.Net.Http.Headers;
     using System.Threading;
     using System.Threading.Tasks;
-    using Caching;
     using EnsureThat;
     using Models;
     using Overseer.Extensions;
@@ -20,7 +19,6 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor.Api
     /// </summary>
     public class ApiClient : IApiClient, IDisposable
     {
-        private readonly string _cacheBaseKey;
         private Lazy<HttpClient> _httpClient;
         private bool _isDisposed;
 
@@ -33,7 +31,6 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor.Api
             Ensure.That(settings).IsNotNull();
 
             _httpClient = new Lazy<HttpClient>(() => GetHttpClient(UriUtility.BaseUri, settings.Token));
-            _cacheBaseKey = string.Concat(UriUtility.BaseUri, settings.Token);
         }
 
         /// <summary>
@@ -91,15 +88,6 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor.Api
         public void Dispose()
         {
             Dispose(true);
-        }
-
-        /// <summary>
-        /// Gets the cache key for this <see cref="ICacheable" /> instance.
-        /// </summary>
-        /// <returns>The cache key.</returns>
-        public string GetCacheBaseKey()
-        {
-            return _cacheBaseKey;
         }
 
         /// <summary>

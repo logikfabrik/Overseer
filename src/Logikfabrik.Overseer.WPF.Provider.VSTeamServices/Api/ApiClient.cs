@@ -10,7 +10,6 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices.Api
     using System.Text;
     using System.Threading;
     using System.Threading.Tasks;
-    using Caching;
     using EnsureThat;
     using Models;
     using Overseer.Extensions;
@@ -20,7 +19,6 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices.Api
     /// </summary>
     public class ApiClient : IApiClient, IDisposable
     {
-        private readonly string _cacheBaseKey;
         private Lazy<HttpClient> _httpClient;
         private bool _isDisposed;
 
@@ -35,7 +33,6 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices.Api
             var baseUri = new Uri(settings.Url);
 
             _httpClient = new Lazy<HttpClient>(() => GetHttpClient(baseUri, settings.Token));
-            _cacheBaseKey = string.Concat(baseUri, settings.Token);
         }
 
         /// <summary>
@@ -124,15 +121,6 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices.Api
         public void Dispose()
         {
             Dispose(true);
-        }
-
-        /// <summary>
-        /// Gets the cache key for this <see cref="ICacheable" /> instance.
-        /// </summary>
-        /// <returns>The cache key.</returns>
-        public string GetCacheBaseKey()
-        {
-            return _cacheBaseKey;
         }
 
         /// <summary>

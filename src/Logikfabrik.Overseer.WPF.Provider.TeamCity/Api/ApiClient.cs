@@ -12,7 +12,6 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity.Api
     using System.Text;
     using System.Threading;
     using System.Threading.Tasks;
-    using Caching;
     using EnsureThat;
     using Models;
     using Newtonsoft.Json;
@@ -25,7 +24,6 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity.Api
     public class ApiClient : IApiClient, IDisposable
     {
         private readonly JsonMediaTypeFormatter _mediaTypeFormatter;
-        private readonly string _cacheBaseKey;
         private Lazy<HttpClient> _httpClient;
         private bool _isDisposed;
 
@@ -57,13 +55,11 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity.Api
             {
                 case AuthenticationType.GuestAuth:
                     _httpClient = new Lazy<HttpClient>(() => GetHttpClient(baseUri));
-                    _cacheBaseKey = baseUri.ToString();
 
                     break;
 
                 case AuthenticationType.HttpAuth:
                     _httpClient = new Lazy<HttpClient>(() => GetHttpClient(baseUri, settings.Username, settings.Password));
-                    _cacheBaseKey = string.Concat(baseUri, settings.Username, settings.Password);
 
                     break;
 
@@ -125,15 +121,6 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity.Api
         public void Dispose()
         {
             Dispose(true);
-        }
-
-        /// <summary>
-        /// Gets the cache key for this <see cref="ICacheable" /> instance.
-        /// </summary>
-        /// <returns>The cache key.</returns>
-        public string GetCacheBaseKey()
-        {
-            return _cacheBaseKey;
         }
 
         /// <summary>

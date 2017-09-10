@@ -65,6 +65,7 @@ namespace Logikfabrik.Overseer.WPF.Client.Views.UserControls
         {
             get
             {
+                // ReSharper disable once PossibleNullReferenceException
                 return (bool)GetValue(IsErroredProperty);
             }
 
@@ -84,6 +85,7 @@ namespace Logikfabrik.Overseer.WPF.Client.Views.UserControls
         {
             get
             {
+                // ReSharper disable once PossibleNullReferenceException
                 return (bool)GetValue(IsInProgressProperty);
             }
 

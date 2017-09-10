@@ -25,6 +25,7 @@
     <WarningLevel>4</WarningLevel>
     <CodeAnalysisRuleSet>..\Logikfabrik.Test.ruleset</CodeAnalysisRuleSet>
     <DocumentationFile>bin\Debug\Logikfabrik.Overseer.WPF.Test.XML</DocumentationFile>
+    <LangVersion>6</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>

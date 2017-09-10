@@ -120,7 +120,6 @@
     </WixExtension>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Attribution\CacheManager\LICENSE.txt" />
     <Content Include="Attribution\Caliburn.Micro\LICENSE.txt" />
     <Content Include="Attribution\Castle.Core\LICENSE.txt" />
     <Content Include="Attribution\Ensure.That\LICENSE.txt" />
@@ -135,7 +134,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Attribution\" />
-    <Folder Include="Attribution\CacheManager\" />
     <Folder Include="Attribution\Caliburn.Micro\" />
     <Folder Include="Attribution\Castle.Core\" />
     <Folder Include="Attribution\Ensure.That\" />

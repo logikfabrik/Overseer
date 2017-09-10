@@ -29,6 +29,7 @@ namespace Logikfabrik.Overseer.WPF.Extensions
         /// <returns><c>true</c> if external; otherwise, <c>false</c>.</returns>
         public static bool GetIsExternal(DependencyObject obj)
         {
+            // ReSharper disable once PossibleNullReferenceException
             return (bool)obj.GetValue(IsExternalProperty);
         }
 
