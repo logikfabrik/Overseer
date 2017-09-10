@@ -7,5 +7,10 @@
     d:DesignHeight="300"
     d:DesignWidth="300"
     mc:Ignorable="d">
-    <CheckBox Content="{Binding Name, Mode=OneWay}" IsChecked="{Binding Monitor, Mode=TwoWay}" />
+    <CheckBox IsChecked="{Binding Monitor, Mode=TwoWay}">
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Text="{Binding Name, Mode=OneWay}" />
+            <TextBlock Text="{Binding Id, Mode=OneWay}" />
+        </StackPanel>
+    </CheckBox>
 </UserControl>
