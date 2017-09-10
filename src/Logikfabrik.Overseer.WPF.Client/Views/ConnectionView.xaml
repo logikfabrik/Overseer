@@ -29,6 +29,14 @@
                 FontSize="18"
                 Text="{Binding SettingsName, Mode=OneWay}"
                 TextAlignment="Center" />
+            <Border
+                Grid.Row="0"
+                Grid.Column="0"
+                Grid.ColumnSpan="2"
+                Padding="2"
+                Background="{DynamicResource Panel.Background}">
+                <TextBox Text="{Binding Path=Filter, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+            </Border>
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
@@ -53,7 +61,7 @@
                 </Button>
             </Grid>
         </StackPanel>
-        <ItemsControl Grid.Row="1" ItemsSource="{Binding Projects, Mode=OneWay}">
+        <ItemsControl Grid.Row="1" ItemsSource="{Binding FilteredProjects, Mode=OneWay}">
             <ItemsControl.ItemContainerStyle>
                 <Style>
                     <!--  ReSharper disable once Xaml.RedundantPropertyTypeQualifier  -->

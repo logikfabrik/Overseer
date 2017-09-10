@@ -32,7 +32,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         {
             Ensure.That(projects).IsNotNull();
 
-            Projects = new ObservableCollection<ProjectToMonitorViewModel>(projects);
+            Projects = projects.ToArray();
 
             _filteredProjects = new CollectionViewSource
             {

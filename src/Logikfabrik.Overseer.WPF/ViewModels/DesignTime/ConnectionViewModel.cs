@@ -5,7 +5,8 @@
 namespace Logikfabrik.Overseer.WPF.ViewModels.DesignTime
 {
     using System;
-    using System.Collections.Generic;
+    using System.ComponentModel;
+    using System.Windows.Data;
     using Caliburn.Micro;
 
     /// <summary>
@@ -64,12 +65,20 @@ namespace Logikfabrik.Overseer.WPF.ViewModels.DesignTime
         public bool IsErrored { get; } = false;
 
         /// <summary>
-        /// Gets the projects.
+        /// Gets the filtered projects.
         /// </summary>
         /// <value>
-        /// The projects.
+        /// The filtered projects.
         /// </value>
-        public IEnumerable<IProjectViewModel> Projects { get; } = new[] { new ProjectViewModel(), new ProjectViewModel(), new ProjectViewModel() };
+        public ICollectionView FilteredProjects { get; } = new CollectionView(new[] { new ProjectViewModel(), new ProjectViewModel(), new ProjectViewModel() });
+
+        /// <summary>
+        /// Gets or sets the filter.
+        /// </summary>
+        /// <value>
+        /// The filter.
+        /// </value>
+        public string Filter { get; set; }
 
         /// <summary>
         /// Gets a value indicating whether this instance has projects.

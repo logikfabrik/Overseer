@@ -5,7 +5,7 @@
 namespace Logikfabrik.Overseer.WPF.ViewModels
 {
     using System;
-    using System.Collections.Generic;
+    using System.ComponentModel;
 
     /// <summary>
     /// The <see cref="IConnectionViewModel" /> interface.
@@ -61,12 +61,20 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         bool IsErrored { get; }
 
         /// <summary>
-        /// Gets the projects.
+        /// Gets the filtered projects.
         /// </summary>
         /// <value>
-        /// The projects.
+        /// The filtered projects.
         /// </value>
-        IEnumerable<IProjectViewModel> Projects { get; }
+        ICollectionView FilteredProjects { get; }
+
+        /// <summary>
+        /// Gets or sets the filter.
+        /// </summary>
+        /// <value>
+        /// The filter.
+        /// </value>
+        string Filter { get; set; }
 
         /// <summary>
         /// Gets a value indicating whether this instance has projects.

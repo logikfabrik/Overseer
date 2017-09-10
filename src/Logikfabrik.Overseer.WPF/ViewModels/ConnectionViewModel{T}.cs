@@ -6,11 +6,14 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel;
     using System.Linq;
     using System.Windows;
+    using System.Windows.Data;
     using Caliburn.Micro;
     using EnsureThat;
     using Factories;
+    using Gma.DataStructures.StringSearch;
     using Navigation;
     using Settings;
 
@@ -25,7 +28,13 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         private readonly IProjectViewModelFactory _projectFactory;
         private readonly IRemoveConnectionViewModelFactory _removeConnectionFactory;
         private readonly IEditConnectionViewModelFactory<T> _editConnectionFactory;
-        private List<IProjectViewModel> _projects;
+
+        // ReSharper disable once PrivateFieldCanBeConvertedToLocalVariable
+        private readonly CollectionViewSource _filteredProjects;
+        private readonly IList<IProjectViewModel> _projects;
+        private SuffixTrie<IProjectViewModel> _trie;
+        private string _filter;
+        private IEnumerable<IProjectViewModel> _matches;
         private bool _isBusy;
         private bool _isErrored;
 
@@ -60,12 +69,27 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             Settings = settings;
             _isBusy = true;
             _isErrored = false;
-            _projects = new List<IProjectViewModel>();
             DisplayName = "Connection";
             KeepAlive = true;
 
             WeakEventManager<IBuildMonitor, BuildMonitorConnectionErrorEventArgs>.AddHandler(buildMonitor, nameof(buildMonitor.ConnectionError), BuildMonitorConnectionError);
             WeakEventManager<IBuildMonitor, BuildMonitorConnectionProgressEventArgs>.AddHandler(buildMonitor, nameof(buildMonitor.ConnectionProgressChanged), BuildMonitorConnectionProgressChanged);
+
+            _projects = new List<IProjectViewModel>();
+
+            _filteredProjects = new CollectionViewSource
+            {
+                Source = _projects
+            };
+
+            _filteredProjects.Filter += (sender, e) =>
+            {
+                var project = (IProjectViewModel)e.Item;
+
+                e.Accepted = _matches?.Contains(project) ?? true;
+            };
+
+            FilteredProjects = _filteredProjects.View;
         }
 
         /// <summary>
@@ -157,24 +181,34 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         }
 
         /// <summary>
-        /// Gets the projects.
+        /// Gets the filtered projects.
         /// </summary>
         /// <value>
-        /// The projects.
+        /// The filtered projects.
         /// </value>
-        public IEnumerable<IProjectViewModel> Projects
+        public ICollectionView FilteredProjects { get; }
+
+        /// <summary>
+        /// Gets or sets the filter.
+        /// </summary>
+        /// <value>
+        /// The filter.
+        /// </value>
+        public string Filter
         {
             get
             {
-                return _projects;
+                return _filter;
             }
 
-            private set
+            set
             {
-                _projects = value.ToList();
-                NotifyOfPropertyChange(() => Projects);
-                NotifyOfPropertyChange(() => HasProjects);
-                NotifyOfPropertyChange(() => IsViewable);
+                _filter = value;
+                NotifyOfPropertyChange(() => Filter);
+
+                _matches = _trie.Retrieve(value?.ToLowerInvariant());
+
+                FilteredProjects.Refresh();
             }
         }
 
@@ -246,39 +280,50 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
                 return;
             }
 
-            var isDirty = false;
-
-            var currentProjects = new List<IProjectViewModel>(Projects);
-
-            foreach (var project in e.Projects)
+            Application.Current.Dispatcher.Invoke(() =>
             {
-                var projectToUpdate = currentProjects.SingleOrDefault(p => p.Id == project.Id);
-
-                if (projectToUpdate != null)
+                foreach (var project in e.Projects)
                 {
-                    projectToUpdate.TryUpdate(project.Name);
+                    var projectToUpdate = _projects.SingleOrDefault(p => p.Id == project.Id);
+
+                    if (projectToUpdate != null)
+                    {
+                        projectToUpdate.TryUpdate(project.Name);
+                    }
+                    else
+                    {
+                        var projectToAdd = _projectFactory.Create(SettingsId, project.Id, project.Name);
+
+                        _projects.Add(projectToAdd);
+                    }
                 }
-                else
+
+                var projectsToKeep = e.Projects.Select(p => p.Id).ToArray();
+
+                foreach (var project in _projects)
                 {
-                    var projectToAdd = _projectFactory.Create(SettingsId, project.Id, project.Name);
+                    if (projectsToKeep.Contains(project.Id))
+                    {
+                        continue;
+                    }
 
-                    currentProjects.Add(projectToAdd);
-                    isDirty = true;
+                    _projects.Remove(project);
                 }
-            }
 
-            var projectsToKeep = e.Projects.Select(project => project.Id).ToArray();
+                _trie = new SuffixTrie<IProjectViewModel>(3);
 
-            var removedProjects = currentProjects.RemoveAll(project => !projectsToKeep.Contains(project.Id)) > 0;
+                foreach (var project in _projects)
+                {
+                    _trie.Add(project.Name.ToLowerInvariant(), project);
+                }
 
-            isDirty = isDirty || removedProjects;
+                IsBusy = false;
 
-            if (isDirty)
-            {
-                Projects = currentProjects.OrderBy(project => project.Name);
-            }
+                NotifyOfPropertyChange(() => HasProjects);
+                NotifyOfPropertyChange(() => IsViewable);
 
-            IsBusy = false;
+                FilteredProjects.Refresh();
+            });
         }
 
         private bool ShouldExitHandler(BuildMonitorConnectionEventArgs e)
