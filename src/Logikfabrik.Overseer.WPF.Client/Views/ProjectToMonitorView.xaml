@@ -8,9 +8,11 @@
     d:DesignWidth="300"
     mc:Ignorable="d">
     <CheckBox IsChecked="{Binding Monitor, Mode=TwoWay}">
-        <StackPanel Orientation="Horizontal">
-            <TextBlock Text="{Binding Name, Mode=OneWay}" />
-            <TextBlock Text="{Binding Id, Mode=OneWay}" />
-        </StackPanel>
+        <TextBlock>
+            <TextBlock.Inlines>
+                <Run Text="{Binding Name, Mode=OneWay}" />
+                <Run Text="{Binding Id, Mode=OneWay, StringFormat=({0})}" />
+            </TextBlock.Inlines>
+        </TextBlock>
     </CheckBox>
 </UserControl>

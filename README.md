@@ -4,6 +4,8 @@ Overseer is a Windows task bar app for build notifications, in its early stages.
 
 Support for Codeship, and Jenkins, is in the pipeline.
 
+[Download Overseer 0.0.1 for Windows](https://ci.appveyor.com/project/logikfabrik/overseer/build/artifacts)
+
 ## Contributions
 Overseer is Open Source (MIT), and you’re welcome to contribute!
 

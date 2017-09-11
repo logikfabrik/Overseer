@@ -13,49 +13,52 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="*" />
-        </Grid.ColumnDefinitions>
         <Border
             Grid.Row="0"
-            Grid.Column="0"
-            Grid.ColumnSpan="2"
             Padding="2"
             Background="{DynamicResource Panel.Background}">
-            <TextBox Text="{Binding Path=Filter, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+            <Grid>
+                <TextBox Text="{Binding Path=Filter, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                <TextBlock IsHitTestVisible="False" 
+                           Foreground="{DynamicResource Filter.Foreground}" 
+                           Text="Filter" VerticalAlignment="Center" HorizontalAlignment="Center"
+                           Visibility="{Binding Path=Filter.IsEmpty,
+                           Converter={StaticResource BooleanToVisibilityConverter}}" />
+            </Grid>
         </Border>
         <Border
             Grid.Row="1"
-            Grid.Column="0"
-            Grid.ColumnSpan="2"
             BorderBrush="{DynamicResource Panel.Border}"
             BorderThickness="2,0,2,2">
             <ItemsControl ItemsSource="{Binding Path=FilteredProjects}">
                 <ItemsControl.ItemContainerStyle>
                     <Style>
                         <!--  ReSharper disable once Xaml.RedundantPropertyTypeQualifier  -->
-                        <Setter Property="FrameworkElement.Margin" Value="0,10,0,0" />
+                        <Setter Property="FrameworkElement.Margin" Value="0,5,0,0" />
                     </Style>
                 </ItemsControl.ItemContainerStyle>
                 <ItemsControl.Template>
                     <ControlTemplate>
                         <ScrollViewer>
-                            <ItemsPresenter Margin="10,0,10,10" />
+                            <ItemsPresenter Margin="10,5,10,10" />
                         </ScrollViewer>
                     </ControlTemplate>
                 </ItemsControl.Template>
             </ItemsControl>
         </Border>
-        <Button
-            x:Name="MonitorAll"
-            Grid.Row="2"
-            Grid.Column="0"
-            Content="Select all" />
-        <Button
-            x:Name="MonitorNone"
-            Grid.Row="2"
-            Grid.Column="1"
-            Content="Deselect all" />
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Button
+                x:Name="MonitorAll"
+                Grid.Column="0"
+                Content="Select all" />
+            <Button
+                x:Name="MonitorNone"
+                Grid.Column="1"
+                Content="Deselect all" />
+        </Grid>
     </Grid>
 </UserControl>
