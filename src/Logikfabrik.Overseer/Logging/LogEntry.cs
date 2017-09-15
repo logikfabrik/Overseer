@@ -15,9 +15,10 @@ namespace Logikfabrik.Overseer.Logging
         /// Initializes a new instance of the <see cref="LogEntry"/> class.
         /// </summary>
         /// <param name="type">The type.</param>
-        /// <param name="message">The message.</param>
-        public LogEntry(LogEntryType type, string message)
-            : this(type, message, null)
+        /// <param name="messageTemplate">The message template.</param>
+        /// <param name="args">The arguments.</param>
+        public LogEntry(LogEntryType type, string messageTemplate, params object[] args)
+            : this(type, messageTemplate, null, args)
         {
         }
 
@@ -25,13 +26,15 @@ namespace Logikfabrik.Overseer.Logging
         /// Initializes a new instance of the <see cref="LogEntry"/> class.
         /// </summary>
         /// <param name="type">The type.</param>
-        /// <param name="message">The message.</param>
+        /// <param name="messageTemplate">The message template.</param>
         /// <param name="exception">The exception.</param>
-        public LogEntry(LogEntryType type, string message, Exception exception)
+        /// <param name="args">The arguments.</param>
+        public LogEntry(LogEntryType type, string messageTemplate, Exception exception, params object[] args)
         {
             Type = type;
-            Message = message;
+            MessageTemplate = messageTemplate;
             Exception = exception;
+            Arguments = args;
         }
 
         /// <summary>
@@ -43,12 +46,20 @@ namespace Logikfabrik.Overseer.Logging
         public LogEntryType Type { get; }
 
         /// <summary>
-        /// Gets the message.
+        /// Gets the message template.
         /// </summary>
         /// <value>
-        /// The message.
+        /// The message template.
         /// </value>
-        public string Message { get; }
+        public string MessageTemplate { get; }
+
+        /// <summary>
+        /// Gets the arguments.
+        /// </summary>
+        /// <value>
+        /// The arguments.
+        /// </value>
+        public object[] Arguments { get; }
 
         /// <summary>
         /// Gets the exception.

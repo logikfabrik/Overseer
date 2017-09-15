@@ -14,6 +14,7 @@ namespace Logikfabrik.Overseer.Test.Extensions
         [InlineData(BuildStatus.Succeeded, true)]
         [InlineData(BuildStatus.InProgress, false)]
         [InlineData(BuildStatus.Stopped, true)]
+        [InlineData(BuildStatus.Queued, false)]
         [InlineData(null, false)]
         public void CanGetIsFinished(BuildStatus? status, bool expected)
         {
@@ -25,6 +26,7 @@ namespace Logikfabrik.Overseer.Test.Extensions
         [InlineData(BuildStatus.Succeeded, false)]
         [InlineData(BuildStatus.InProgress, true)]
         [InlineData(BuildStatus.Stopped, false)]
+        [InlineData(BuildStatus.Queued, false)]
         [InlineData(null, false)]
         public void CanGetIsInProgress(BuildStatus? status, bool expected)
         {

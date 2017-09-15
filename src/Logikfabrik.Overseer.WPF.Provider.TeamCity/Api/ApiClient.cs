@@ -105,7 +105,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity.Api
 
             cancellationToken.ThrowIfCancellationRequested();
 
-            var url = $"builds?locator=project:{projectId},count:{count}&fields=build(id,triggered(type,details,user),revisions,startDate,finishDate,status,number,lastChanges(change(id,version,username,date,comment)),testOccurrences,webUrl)";
+            var url = $"builds?locator=defaultFilter:false,project:{projectId},count:{count}&fields=build(id,triggered(type,details,user),revisions,startDate,finishDate,status,state,number,lastChanges(change(id,version,username,date,comment)),testOccurrences,webUrl)";
 
             using (var response = await _httpClient.Value.GetAsync(url, cancellationToken).ConfigureAwait(false))
             {

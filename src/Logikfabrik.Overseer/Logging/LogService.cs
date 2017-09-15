@@ -67,11 +67,11 @@ namespace Logikfabrik.Overseer.Logging
 
                     if (entry.Exception == null)
                     {
-                        logger.Debug(entry.Message);
+                        logger.Debug(entry.MessageTemplate, entry.Arguments);
                     }
                     else
                     {
-                        logger.Debug(entry.Message, entry.Exception);
+                        logger.Debug(entry.Exception, entry.MessageTemplate, entry.Arguments);
                     }
 
                     break;
@@ -84,11 +84,11 @@ namespace Logikfabrik.Overseer.Logging
 
                     if (entry.Exception == null)
                     {
-                        logger.Information(entry.Message);
+                        logger.Information(entry.MessageTemplate, entry.Arguments);
                     }
                     else
                     {
-                        logger.Information(entry.Message, entry.Exception);
+                        logger.Information(entry.Exception, entry.MessageTemplate, entry.Arguments);
                     }
 
                     break;
@@ -101,11 +101,11 @@ namespace Logikfabrik.Overseer.Logging
 
                     if (entry.Exception == null)
                     {
-                        logger.Warning(entry.Message);
+                        logger.Warning(entry.MessageTemplate, entry.Arguments);
                     }
                     else
                     {
-                        logger.Warning(entry.Message, entry.Exception);
+                        logger.Warning(entry.Exception, entry.MessageTemplate, entry.Arguments);
                     }
 
                     break;
@@ -118,11 +118,11 @@ namespace Logikfabrik.Overseer.Logging
 
                     if (entry.Exception == null)
                     {
-                        logger.Error(entry.Message);
+                        logger.Error(entry.MessageTemplate, entry.Arguments);
                     }
                     else
                     {
-                        logger.Error(entry.Message, entry.Exception);
+                        logger.Error(entry.Exception, entry.MessageTemplate, entry.Arguments);
                     }
 
                     break;

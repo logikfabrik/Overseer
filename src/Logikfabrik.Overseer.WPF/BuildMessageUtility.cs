@@ -101,6 +101,11 @@ namespace Logikfabrik.Overseer.WPF
         /// <returns>The build run time message.</returns>
         public static string GetBuildRunTimeMessage(BuildStatus? status, DateTime? endTime, TimeSpan? runTime)
         {
+            if (status.IsQueued())
+            {
+                return status.Humanize();
+            }
+
             if (status.IsInProgress())
             {
                 return !runTime.HasValue

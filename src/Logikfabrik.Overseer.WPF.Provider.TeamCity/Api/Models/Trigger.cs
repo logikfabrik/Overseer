@@ -15,7 +15,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity.Api.Models
         /// <value>
         /// The type.
         /// </value>
-        public TriggerType Type { get; set; }
+        public TriggerType? Type { get; set; }
 
         /// <summary>
         /// Gets or sets the details.

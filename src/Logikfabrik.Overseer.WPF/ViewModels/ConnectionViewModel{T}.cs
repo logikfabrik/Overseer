@@ -31,7 +31,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
 
         // ReSharper disable once PrivateFieldCanBeConvertedToLocalVariable
         private readonly CollectionViewSource _filteredProjects;
-        private readonly IList<IProjectViewModel> _projects;
+        private readonly BindableCollection<IProjectViewModel> _projects;
         private SuffixTrie<IProjectViewModel> _trie;
         private string _filter;
         private IEnumerable<IProjectViewModel> _matches;
@@ -75,7 +75,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             WeakEventManager<IBuildMonitor, BuildMonitorConnectionErrorEventArgs>.AddHandler(buildMonitor, nameof(buildMonitor.ConnectionError), BuildMonitorConnectionError);
             WeakEventManager<IBuildMonitor, BuildMonitorConnectionProgressEventArgs>.AddHandler(buildMonitor, nameof(buildMonitor.ConnectionProgressChanged), BuildMonitorConnectionProgressChanged);
 
-            _projects = new List<IProjectViewModel>();
+            _projects = new BindableCollection<IProjectViewModel>();
 
             _filteredProjects = new CollectionViewSource
             {
@@ -280,50 +280,38 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
                 return;
             }
 
-            Application.Current.Dispatcher.Invoke(() =>
+            foreach (var project in e.Projects)
             {
-                foreach (var project in e.Projects)
+                var projectToUpdate = _projects.SingleOrDefault(p => p.Id == project.Id);
+
+                if (projectToUpdate != null)
                 {
-                    var projectToUpdate = _projects.SingleOrDefault(p => p.Id == project.Id);
-
-                    if (projectToUpdate != null)
-                    {
-                        projectToUpdate.TryUpdate(project.Name);
-                    }
-                    else
-                    {
-                        var projectToAdd = _projectFactory.Create(SettingsId, project.Id, project.Name);
-
-                        _projects.Add(projectToAdd);
-                    }
+                    projectToUpdate.TryUpdate(project.Name);
                 }
-
-                var projectsToKeep = e.Projects.Select(p => p.Id).ToArray();
-
-                foreach (var project in _projects)
+                else
                 {
-                    if (projectsToKeep.Contains(project.Id))
-                    {
-                        continue;
-                    }
+                    var projectToAdd = _projectFactory.Create(SettingsId, project.Id, project.Name);
 
-                    _projects.Remove(project);
+                    _projects.Insert(0, projectToAdd);
                 }
+            }
 
-                _trie = new SuffixTrie<IProjectViewModel>(3);
+            var projectsToKeep = e.Projects.Select(project => project.Id).ToArray();
+            var projectsToRemove = _projects.Where(project => !projectsToKeep.Contains(project.Id)).ToArray();
 
-                foreach (var project in _projects)
-                {
-                    _trie.Add(project.Name.ToLowerInvariant(), project);
-                }
+            _projects.RemoveRange(projectsToRemove);
 
-                IsBusy = false;
+            _trie = new SuffixTrie<IProjectViewModel>(3);
 
-                NotifyOfPropertyChange(() => HasProjects);
-                NotifyOfPropertyChange(() => IsViewable);
+            foreach (var project in _projects)
+            {
+                _trie.Add(project.Name.ToLowerInvariant(), project);
+            }
 
-                FilteredProjects.Refresh();
-            });
+            IsBusy = false;
+
+            NotifyOfPropertyChange(() => HasProjects);
+            NotifyOfPropertyChange(() => IsViewable);
         }
 
         private bool ShouldExitHandler(BuildMonitorConnectionEventArgs e)

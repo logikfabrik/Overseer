@@ -26,6 +26,13 @@
         </Style>
         <!--  ReSharper disable once Xaml.RedundantResource  -->
         <Style
+            x:Key="BuildQueuedBorderStyle"
+            BasedOn="{StaticResource BuildBorderStyle}"
+            TargetType="{x:Type Border}">
+            <Setter Property="BorderBrush" Value="{DynamicResource Status.Queued}" />
+        </Style>
+        <!--  ReSharper disable once Xaml.RedundantResource  -->
+        <Style
             x:Key="BuildInProgressBorderStyle"
             BasedOn="{StaticResource BuildBorderStyle}"
             TargetType="{x:Type Border}">

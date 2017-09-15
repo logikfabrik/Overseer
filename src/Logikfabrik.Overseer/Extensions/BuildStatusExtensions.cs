@@ -21,7 +21,7 @@ namespace Logikfabrik.Overseer.Extensions
                 return false;
             }
 
-            return status != BuildStatus.InProgress;
+            return status != BuildStatus.InProgress && status != BuildStatus.Queued;
         }
 
         /// <summary>
@@ -32,6 +32,16 @@ namespace Logikfabrik.Overseer.Extensions
         public static bool IsInProgress(this BuildStatus? status)
         {
             return status == BuildStatus.InProgress;
+        }
+
+        /// <summary>
+        /// Determines whether this status is queued.
+        /// </summary>
+        /// <param name="status">The status.</param>
+        /// <returns><c>true</c> if queued; otherwise, <c>false</c>.</returns>
+        public static bool IsQueued(this BuildStatus? status)
+        {
+            return status == BuildStatus.Queued;
         }
     }
 }

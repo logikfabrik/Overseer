@@ -36,6 +36,22 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity.Api.Models
         public BuildStatus? Status { get; set; }
 
         /// <summary>
+        /// Gets or sets the state.
+        /// </summary>
+        /// <value>
+        /// The state.
+        /// </value>
+        public BuildState? State { get; set; }
+
+        /// <summary>
+        /// Gets or sets the branch name.
+        /// </summary>
+        /// <value>
+        /// The branch name.
+        /// </value>
+        public string BranchName { get; set; }
+
+        /// <summary>
         /// Gets or sets the web URL.
         /// </summary>
         /// <value>

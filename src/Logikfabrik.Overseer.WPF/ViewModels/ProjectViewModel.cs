@@ -22,7 +22,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         private readonly IEventAggregator _eventAggregator;
         private readonly IBuildViewModelFactory _buildFactory;
         private readonly Guid _settingsId;
-        private List<IBuildViewModel> _builds;
+        private readonly BindableCollection<IBuildViewModel> _builds;
         private string _name;
         private bool _isBusy;
         private bool _isErrored;
@@ -57,7 +57,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             _name = projectName;
             _isBusy = true;
             _isErrored = false;
-            _builds = new List<IBuildViewModel>();
+            _builds = new BindableCollection<IBuildViewModel>();
             DisplayName = "Project";
 
             WeakEventManager<IBuildMonitor, BuildMonitorProjectErrorEventArgs>.AddHandler(buildMonitor, nameof(buildMonitor.ProjectError), BuildMonitorProjectError);
@@ -98,22 +98,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// <value>
         /// The builds.
         /// </value>
-        public IEnumerable<IBuildViewModel> Builds
-        {
-            get
-            {
-                return _builds;
-            }
-
-            private set
-            {
-                _builds = value.ToList();
-                NotifyOfPropertyChange(() => Builds);
-                NotifyOfPropertyChange(() => HasBuilds);
-                NotifyOfPropertyChange(() => LatestBuild);
-                NotifyOfPropertyChange(() => IsViewable);
-            }
-        }
+        public IEnumerable<IBuildViewModel> Builds => _builds;
 
         /// <summary>
         /// Gets the latest build.
@@ -121,7 +106,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// <value>
         /// The latest build.
         /// </value>
-        public IBuildViewModel LatestBuild => _builds.FirstOrDefault();
+        public IBuildViewModel LatestBuild => Builds.FirstOrDefault();
 
         /// <summary>
         /// Gets a value indicating whether this instance has builds.
@@ -226,41 +211,32 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
                 return;
             }
 
-            var isDirty = false;
-            var isUpdated = false;
-
-            var currentBuilds = new List<IBuildViewModel>(Builds);
-
             foreach (var build in e.Builds)
             {
-                var buildToUpdate = currentBuilds.SingleOrDefault(b => b.Id == build.Id);
+                var buildToUpdate = _builds.SingleOrDefault(b => b.Id == build.Id);
 
                 if (buildToUpdate != null)
                 {
                     buildToUpdate.TryUpdate(e.Project.Name, build.Status, build.StartTime, build.EndTime, build.RunTime());
-                    isUpdated = true;
                 }
                 else
                 {
                     var buildToAdd = _buildFactory.Create(e.Project.Name, build.Id, build.Branch, build.VersionNumber(), build.RequestedBy, build.Changes, build.Status, build.StartTime, build.EndTime, build.RunTime());
 
-                    currentBuilds.Add(buildToAdd);
-                    isDirty = true;
+                    _builds.Insert(0, buildToAdd);
                 }
             }
 
             var buildsToKeep = e.Builds.Select(build => build.Id).ToArray();
+            var buildsToRemove = _builds.Where(build => !buildsToKeep.Contains(build.Id)).ToArray();
 
-            var removedBuilds = currentBuilds.RemoveAll(build => !buildsToKeep.Contains(build.Id)) > 0;
-
-            isDirty = isDirty || removedBuilds;
-
-            if (isDirty || isUpdated)
-            {
-                Builds = currentBuilds.OrderByDescending(build => build.StartTime ?? DateTime.MaxValue);
-            }
+            _builds.RemoveRange(buildsToRemove);
 
             IsBusy = false;
+
+            NotifyOfPropertyChange(() => HasBuilds);
+            NotifyOfPropertyChange(() => LatestBuild);
+            NotifyOfPropertyChange(() => IsViewable);
         }
 
         private bool ShouldExitHandler(BuildMonitorProjectEventArgs e)

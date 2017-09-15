@@ -166,9 +166,13 @@ namespace Logikfabrik.Overseer.WPF.Test
 
             Assert.Equal("Succeeded an hour ago", buildRunTimeMessage6);
 
-            var buildRunTimeMessage7 = BuildMessageUtility.GetBuildRunTimeMessage(null, null, null);
+            var buildRunTimeMessage7 = BuildMessageUtility.GetBuildRunTimeMessage(BuildStatus.Queued, null, null);
 
-            Assert.Null(buildRunTimeMessage7);
+            Assert.Equal("Queued", buildRunTimeMessage7);
+
+            var buildRunTimeMessage8 = BuildMessageUtility.GetBuildRunTimeMessage(null, null, null);
+
+            Assert.Null(buildRunTimeMessage8);
         }
     }
 }

@@ -32,7 +32,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.CircleCI
             WebUrl = build.BuildUrl;
             Changes = new[]
             {
-                new Change(build.VcsRevision, build.QueuedAt?.ToUniversalTime(), build.CommitterName, build.Subject)
+                new Change(build.VcsRevision, build.QueuedAt?.ToUniversalTime(), build.CommitterName, build.Subject?.Trim())
             };
         }
 
@@ -118,14 +118,12 @@ namespace Logikfabrik.Overseer.WPF.Provider.CircleCI
 
         private static BuildStatus? GetStatus(Api.Models.Build build)
         {
-            if (!build.StopTime.HasValue || !build.Outcome.HasValue)
-            {
-                return BuildStatus.InProgress;
-            }
-
             // ReSharper disable once SwitchStatementMissingSomeCases
             switch (build.Status)
             {
+                case Api.Models.BuildStatus.Queued:
+                    return BuildStatus.Queued;
+
                 case Api.Models.BuildStatus.Success:
                     return BuildStatus.Succeeded;
 
@@ -139,6 +137,11 @@ namespace Logikfabrik.Overseer.WPF.Provider.CircleCI
                     return BuildStatus.Stopped;
 
                 default:
+                    if (!build.StopTime.HasValue || !build.Outcome.HasValue)
+                    {
+                        return BuildStatus.InProgress;
+                    }
+
                     return null;
             }
         }

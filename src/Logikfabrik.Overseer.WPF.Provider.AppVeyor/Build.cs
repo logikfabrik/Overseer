@@ -34,7 +34,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor
             WebUrl = GetWebUrl(project, build);
             Changes = new[]
             {
-                new Change(build.CommitId, build.Committed?.ToUniversalTime(), build.CommitterName, build.Message)
+                new Change(build.CommitId, build.Committed?.ToUniversalTime(), build.CommitterName, build.Message?.Trim())
             };
         }
 
@@ -120,14 +120,15 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor
 
         private static BuildStatus? GetStatus(Api.Models.Build build)
         {
-            if (!build.Finished.HasValue)
-            {
-                return BuildStatus.InProgress;
-            }
-
             // ReSharper disable once SwitchStatementMissingSomeCases
             switch (build.Status)
             {
+                case Api.Models.BuildStatus.Running:
+                    return BuildStatus.InProgress;
+
+                case Api.Models.BuildStatus.Queued:
+                    return BuildStatus.Queued;
+
                 case Api.Models.BuildStatus.Success:
                     return BuildStatus.Succeeded;
 

@@ -112,8 +112,10 @@ namespace Logikfabrik.Overseer.Test.Extensions
         [Theory]
         [InlineData(BuildStatus.Failed)]
         [InlineData(BuildStatus.Succeeded)]
+        [InlineData(BuildStatus.InProgress)]
         [InlineData(BuildStatus.Stopped)]
-        public void CanNotGetRunTimeForFinishedBuildWithoutStartTime(BuildStatus status)
+        [InlineData(BuildStatus.Queued)]
+        public void CanNotGetRunTimeForBuildWithoutStartTime(BuildStatus status)
         {
             var utcNow = DateTime.UtcNow;
 
@@ -131,7 +133,8 @@ namespace Logikfabrik.Overseer.Test.Extensions
         [InlineData(BuildStatus.Failed)]
         [InlineData(BuildStatus.Succeeded)]
         [InlineData(BuildStatus.Stopped)]
-        public void CanNotGetRunTimeForFinishedBuildWithoutEndTime(BuildStatus status)
+        [InlineData(BuildStatus.Queued)]
+        public void CanNotGetRunTimeForBuildWithoutEndTime(BuildStatus status)
         {
             var utcNow = DateTime.UtcNow;
 
@@ -148,8 +151,10 @@ namespace Logikfabrik.Overseer.Test.Extensions
         [Theory]
         [InlineData(BuildStatus.Failed)]
         [InlineData(BuildStatus.Succeeded)]
+        [InlineData(BuildStatus.InProgress)]
         [InlineData(BuildStatus.Stopped)]
-        public void CanNotGetRunTimeForFinishedBuildWithoutStartAndEndTime(BuildStatus status)
+        [InlineData(BuildStatus.Queued)]
+        public void CanNotGetRunTimeForBuildWithoutStartAndEndTime(BuildStatus status)
         {
             var buildMock = new Mock<IBuild>();
 
