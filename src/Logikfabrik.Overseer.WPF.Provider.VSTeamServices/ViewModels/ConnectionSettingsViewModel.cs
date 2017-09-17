@@ -88,7 +88,8 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices.ViewModels
                 Url = Url,
                 Version = Version,
                 Token = Token,
-                ProjectsToMonitor = projects.Select(project => project.Id).ToArray()
+                ProjectsToMonitor = projects.Select(project => project.Id).ToArray(),
+                BuildsPerProject = BuildsPerProject
             };
         }
 
@@ -103,6 +104,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices.ViewModels
             current.Version = Version;
             current.Token = Token;
             current.ProjectsToMonitor = ProjectsToMonitor.Projects.Where(project => project.Monitor).Select(project => project.Id).ToArray();
+            current.BuildsPerProject = BuildsPerProject;
         }
     }
 }

@@ -232,6 +232,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
 
             _builds.RemoveRange(buildsToRemove);
 
+            IsErrored = false;
             IsBusy = false;
 
             NotifyOfPropertyChange(() => HasBuilds);

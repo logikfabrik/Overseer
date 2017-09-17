@@ -26,6 +26,7 @@ namespace Logikfabrik.Overseer.WPF.Validators
             CascadeMode = CascadeMode.StopOnFirstFailure;
 
             RuleFor(viewModel => viewModel.Name).NotEmpty();
+            RuleFor(viewModel => viewModel.BuildsPerProject).GreaterThan(0);
         }
     }
 }

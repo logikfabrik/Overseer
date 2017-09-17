@@ -19,6 +19,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     {
         private bool _isDirty;
         private string _name;
+        private int _buildsPerProject;
         private ProjectsToMonitorViewModel _projectsToMonitor;
 
         /// <summary>
@@ -67,6 +68,27 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             {
                 _projectsToMonitor = value;
                 NotifyOfPropertyChange(() => ProjectsToMonitor);
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the number of builds per project.
+        /// </summary>
+        /// <value>
+        /// The number of builds per project.
+        /// </value>
+        public int BuildsPerProject
+        {
+            get
+            {
+                return _buildsPerProject;
+            }
+
+            set
+            {
+                _buildsPerProject = value;
+                NotifyOfPropertyChange(() => BuildsPerProject);
+                NotifyOfPropertyChange(() => IsValid);
             }
         }
 

@@ -11,6 +11,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     using System.Threading.Tasks;
     using EnsureThat;
     using Factories;
+    using Overseer.Logging;
     using Settings;
 
     /// <summary>
@@ -20,6 +21,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     public abstract class EditConnectionViewModel<T> : ViewModel
         where T : ConnectionSettings
     {
+        private readonly ILogService _logService;
         private readonly IConnectionSettingsRepository _settingsRepository;
         private readonly IBuildProviderStrategy _buildProviderStrategy;
         private readonly IProjectToMonitorViewModelFactory _projectToMonitorFactory;
@@ -32,24 +34,28 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// <summary>
         /// Initializes a new instance of the <see cref="EditConnectionViewModel{T}" /> class.
         /// </summary>
+        /// <param name="logService">The log service.</param>
         /// <param name="settingsRepository">The settings repository.</param>
         /// <param name="buildProviderStrategy">The build provider strategy.</param>
         /// <param name="projectToMonitorFactory">The project to monitor factory.</param>
         /// <param name="projectsToMonitorFactory">The projects to monitor factory.</param>
         /// <param name="currentSettings">The current settings.</param>
         protected EditConnectionViewModel(
+            ILogService logService,
             IConnectionSettingsRepository settingsRepository,
             IBuildProviderStrategy buildProviderStrategy,
             IProjectToMonitorViewModelFactory projectToMonitorFactory,
             IProjectsToMonitorViewModelFactory projectsToMonitorFactory,
             T currentSettings)
         {
+            Ensure.That(logService).IsNotNull();
             Ensure.That(settingsRepository).IsNotNull();
             Ensure.That(buildProviderStrategy).IsNotNull();
             Ensure.That(projectToMonitorFactory).IsNotNull();
             Ensure.That(projectsToMonitorFactory).IsNotNull();
             Ensure.That(currentSettings).IsNotNull();
 
+            _logService = logService;
             _settingsRepository = settingsRepository;
             _buildProviderStrategy = buildProviderStrategy;
             _projectToMonitorFactory = projectToMonitorFactory;
@@ -187,8 +193,10 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
 
                 HasConnected = true;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                _logService.Log<BuildMonitor>(new LogEntry(LogEntryType.Error, "An error occurred while editing connection.", ex));
+
                 HasConnected = false;
 
                 throw;

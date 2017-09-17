@@ -56,9 +56,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity
         {
             Ensure.That(projectId).IsNotNullOrWhiteSpace();
 
-            const int numberOfBuilds = 3;
-
-            var builds = await _apiClient.GetBuildsAsync(projectId, numberOfBuilds, cancellationToken).ConfigureAwait(false);
+            var builds = await _apiClient.GetBuildsAsync(projectId, Settings.BuildsPerProject, cancellationToken).ConfigureAwait(false);
 
             return builds.Build.Select(build => new Build(build)).ToArray();
         }

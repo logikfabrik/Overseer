@@ -183,7 +183,8 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity.ViewModels
                 Version = Version,
                 Username = Username,
                 Password = Password,
-                ProjectsToMonitor = projects.Select(project => project.Id).ToArray()
+                ProjectsToMonitor = projects.Select(project => project.Id).ToArray(),
+                BuildsPerProject = BuildsPerProject
             };
         }
 
@@ -200,6 +201,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity.ViewModels
             current.Username = Username;
             current.Password = Password;
             current.ProjectsToMonitor = ProjectsToMonitor.Projects.Where(project => project.Monitor).Select(project => project.Id).ToArray();
+            current.BuildsPerProject = BuildsPerProject;
         }
     }
 }

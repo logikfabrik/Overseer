@@ -58,9 +58,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices
 
             var builds = new List<IBuild>();
 
-            const int numberOfBuilds = 3;
-
-            foreach (var build in (await _apiClient.GetBuildsAsync(projectId, 0, numberOfBuilds, cancellationToken).ConfigureAwait(false)).Value)
+            foreach (var build in (await _apiClient.GetBuildsAsync(projectId, 0, Settings.BuildsPerProject, cancellationToken).ConfigureAwait(false)).Value)
             {
                 var changes = await _apiClient.GetChangesAsync(projectId, build.Id, cancellationToken).ConfigureAwait(false);
 

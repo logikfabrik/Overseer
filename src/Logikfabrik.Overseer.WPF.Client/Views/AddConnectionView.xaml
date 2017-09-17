@@ -36,6 +36,10 @@
                     cal:View.Model="{Binding Settings.ProjectsToMonitor, Mode=OneWay}"
                     Focusable="False" />
             </StackPanel>
+            <StackPanel Margin="10,0,10,10">
+                <TextBlock Text="Builds per project" />
+                <TextBox Text="{Binding Path=Settings.BuildsPerProject, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" />
+            </StackPanel>
             <WrapPanel Margin="10,0,10,10" Orientation="Horizontal">
                 <Button
                     x:Name="Add"

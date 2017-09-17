@@ -13,6 +13,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     using EnsureThat;
     using Factories;
     using Navigation;
+    using Overseer.Logging;
     using Settings;
 
     /// <summary>
@@ -25,6 +26,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         where T2 : ConnectionSettingsViewModel<T1>, new()
     {
         private readonly IEventAggregator _eventAggregator;
+        private readonly ILogService _logService;
         private readonly IConnectionSettingsRepository _settingsRepository;
         private readonly IBuildProviderStrategy _buildProviderStrategy;
         private readonly IProjectToMonitorViewModelFactory _projectToMonitorFactory;
@@ -37,6 +39,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// Initializes a new instance of the <see cref="AddConnectionViewModel{T1,T2}" /> class.
         /// </summary>
         /// <param name="eventAggregator">The event aggregator.</param>
+        /// <param name="logService">The log service.</param>
         /// <param name="settingsRepository">The settings repository.</param>
         /// <param name="buildProviderStrategy">The build provider strategy.</param>
         /// <param name="projectToMonitorFactory">The project to monitor factory.</param>
@@ -44,6 +47,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// <param name="connectionSettingsFactory">The settings factory.</param>
         public AddConnectionViewModel(
             IEventAggregator eventAggregator,
+            ILogService logService,
             IConnectionSettingsRepository settingsRepository,
             IBuildProviderStrategy buildProviderStrategy,
             IProjectToMonitorViewModelFactory projectToMonitorFactory,
@@ -51,6 +55,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             IConnectionSettingsViewModelFactory<T1, T2> connectionSettingsFactory)
         {
             Ensure.That(eventAggregator).IsNotNull();
+            Ensure.That(logService).IsNotNull();
             Ensure.That(settingsRepository).IsNotNull();
             Ensure.That(buildProviderStrategy).IsNotNull();
             Ensure.That(projectToMonitorFactory).IsNotNull();
@@ -58,6 +63,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             Ensure.That(connectionSettingsFactory).IsNotNull();
 
             _eventAggregator = eventAggregator;
+            _logService = logService;
             _settingsRepository = settingsRepository;
             _buildProviderStrategy = buildProviderStrategy;
             _projectToMonitorFactory = projectToMonitorFactory;
@@ -200,8 +206,10 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
 
                 HasConnected = true;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                _logService.Log<BuildMonitor>(new LogEntry(LogEntryType.Error, "An error occurred while adding connection.", ex));
+
                 HasConnected = false;
 
                 throw;

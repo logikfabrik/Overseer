@@ -29,8 +29,12 @@
                 <TextBlock
                     VerticalAlignment="Center"
                     FontSize="20"
-                    Text="{Binding Name, Mode=OneWay}"
-                    ToolTip="{Binding Name, Mode=OneWay}" />
+                    ToolTip="{Binding Name, Mode=OneWay}">
+                    <TextBlock.Inlines>
+                        <Run Text="{Binding Name, Mode=OneWay}" />
+                        <Run Text="{Binding Id, Mode=OneWay, StringFormat=({0})}" />
+                    </TextBlock.Inlines>
+                </TextBlock>
                 <ContentControl
                     cal:View.Context="Tile"
                     cal:View.Model="{Binding LatestBuild, Mode=OneWay}"

@@ -65,9 +65,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.CircleCI
                 return new IBuild[] { };
             }
 
-            const int numberOfBuilds = 3;
-
-            var builds = await _apiClient.GetBuildsAsync(project.VcsType, project.Username, project.Name, 0, numberOfBuilds, cancellationToken).ConfigureAwait(false);
+            var builds = await _apiClient.GetBuildsAsync(project.VcsType, project.Username, project.Name, 0, Settings.BuildsPerProject, cancellationToken).ConfigureAwait(false);
 
             return builds.Select(build => new Build(build)).ToArray();
         }

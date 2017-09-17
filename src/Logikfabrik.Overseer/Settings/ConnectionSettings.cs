@@ -15,6 +15,7 @@ namespace Logikfabrik.Overseer.Settings
         private Guid _id;
         private string _name;
         private string[] _projectsToMonitor;
+        private int _buildsPerProject;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ConnectionSettings" /> class.
@@ -84,6 +85,27 @@ namespace Logikfabrik.Overseer.Settings
                 Ensure.That(value).IsNotNull();
 
                 _projectsToMonitor = value;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the number of builds per project.
+        /// </summary>
+        /// <value>
+        /// The number of builds per project.
+        /// </value>
+        public int BuildsPerProject
+        {
+            get
+            {
+                return _buildsPerProject;
+            }
+
+            set
+            {
+                Ensure.That(value).IsGt(0);
+
+                _buildsPerProject = value;
             }
         }
 

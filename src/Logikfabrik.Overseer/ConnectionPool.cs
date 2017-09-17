@@ -23,7 +23,7 @@ namespace Logikfabrik.Overseer
         private bool _isDisposed;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ConnectionPool"/> class.
+        /// Initializes a new instance of the <see cref="ConnectionPool" /> class.
         /// </summary>
         /// <param name="settingsRepository">The settings repository.</param>
         /// <param name="buildProviderStrategy">The build provider strategy.</param>

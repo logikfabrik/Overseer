@@ -308,6 +308,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
                 _trie.Add(project.Name.ToLowerInvariant(), project);
             }
 
+            IsErrored = false;
             IsBusy = false;
 
             NotifyOfPropertyChange(() => HasProjects);
