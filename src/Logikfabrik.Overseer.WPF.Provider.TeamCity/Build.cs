@@ -116,18 +116,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity
 
         private static string GetRequestedBy(Api.Models.Build build)
         {
-            // ReSharper disable once SwitchStatementMissingSomeCases
-            switch (build.Triggered?.Type)
-            {
-                case Api.Models.TriggerType.Vcs:
-                    return build.Triggered.Details;
-
-                case Api.Models.TriggerType.User:
-                    return build.Triggered.User?.Username;
-
-                default:
-                    return null;
-            }
+            return build.Triggered?.User?.Username;
         }
 
         private static BuildStatus? GetStatus(Api.Models.Build build)
