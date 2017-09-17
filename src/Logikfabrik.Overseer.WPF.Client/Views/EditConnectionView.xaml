@@ -21,7 +21,7 @@
                     <Button
                         x:Name="TryConnect"
                         Content="Try connection"
-                        IsEnabled="{Binding HasNotConnected, Mode=OneWay}" />
+                        IsEnabled="{Binding IsValidAndHasNotConnected, Mode=OneWay}" />
                     <uc:ProgressControl
                         VerticalAlignment="Top"
                         IsErrored="{Binding ConnectionTask.Status, Converter={StaticResource TaskStatusFaultedToBooleanConverter}}"
