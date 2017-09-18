@@ -63,21 +63,27 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
 
             foreach (var settings in Notification<ConnectionSettings>.GetPayloads(value, NotificationType.Removed, s => currentConnections.ContainsKey(s.Id)))
             {
-                _connections.Remove(currentConnections[settings.Id]);
+                var connectionToRemove = currentConnections[settings.Id];
+
+                _connections.Remove(connectionToRemove);
             }
 
             foreach (var settings in Notification<ConnectionSettings>.GetPayloads(value, NotificationType.Updated, s => currentConnections.ContainsKey(s.Id)))
             {
-                var connection = currentConnections[settings.Id];
+                var connectionToUpdate = currentConnections[settings.Id];
 
-                connection.SettingsName = settings.Name;
+                connectionToUpdate.SettingsName = settings.Name;
             }
 
             foreach (var settings in Notification<ConnectionSettings>.GetPayloads(value, NotificationType.Added, s => !currentConnections.ContainsKey(s.Id)))
             {
-                var connection = _connectionViewModelStrategy.Create(settings);
+                var connectionToAdd = _connectionViewModelStrategy.Create(settings);
 
-                _connections.Add(connection);
+                var names = _connections.Select(c => c.SettingsName).Concat(new[] { connectionToAdd.SettingsName }).OrderBy(name => name).ToArray();
+
+                var index = Array.IndexOf(names, connectionToAdd.SettingsName);
+
+                _connections.Insert(index, connectionToAdd);
             }
         }
 

@@ -292,7 +292,11 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
                 {
                     var projectToAdd = _projectFactory.Create(SettingsId, project.Id, project.Name);
 
-                    _projects.Insert(0, projectToAdd);
+                    var names = _projects.Select(p => p.Name).Concat(new[] { projectToAdd.Name }).OrderBy(name => name).ToArray();
+
+                    var index = Array.IndexOf(names, projectToAdd.Name);
+
+                    _projects.Insert(index, projectToAdd);
                 }
             }
 

@@ -223,6 +223,8 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
                 {
                     var buildToAdd = _buildFactory.Create(e.Project.Name, build.Id, build.Branch, build.VersionNumber(), build.RequestedBy, build.Changes, build.Status, build.StartTime, build.EndTime, build.RunTime());
 
+                    // TODO: Get index by build start time / end time.
+
                     _builds.Insert(0, buildToAdd);
                 }
             }
