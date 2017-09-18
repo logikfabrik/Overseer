@@ -141,19 +141,10 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             {
                 _hasConnected = value;
                 NotifyOfPropertyChange(() => HasConnected);
-                NotifyOfPropertyChange(() => HasNotConnected);
                 NotifyOfPropertyChange(() => IsValidAndHasConnected);
                 NotifyOfPropertyChange(() => IsValidAndHasNotConnected);
             }
         }
-
-        /// <summary>
-        /// Gets a value indicating whether the settings for this instance have not been used to successfully connect.
-        /// </summary>
-        /// <value>
-        ///   <c>true</c> if the settings for this instance have not been used to successfully connect; otherwise, <c>false</c>.
-        /// </value>
-        public bool HasNotConnected => !HasConnected;
 
         /// <summary>
         /// Gets a value indicating whether the settings for this instance are valid and have been used to successfully connect.
@@ -163,7 +154,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// </value>
         public bool IsValidAndHasConnected => Settings.IsValid && HasConnected;
 
-        public bool IsValidAndHasNotConnected => Settings.IsValid && HasNotConnected;
+        public bool IsValidAndHasNotConnected => Settings.IsValid && !HasConnected;
 
         /// <summary>
         /// Tries to connect.

@@ -18,7 +18,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     public class ConnectionsListViewModel : PropertyChangedBase, IObserver<Notification<ConnectionSettings>[]>, IDisposable
     {
         private readonly IConnectionViewModelStrategy _connectionViewModelStrategy;
-        private List<IConnectionViewModel> _connections;
+        private BindableCollection<IConnectionViewModel> _connections;
         private IDisposable _subscription;
         private bool _isDisposed;
 
@@ -35,7 +35,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             Ensure.That(connectionSettingsRepository).IsNotNull();
 
             _connectionViewModelStrategy = connectionViewModelStrategy;
-            _connections = new List<IConnectionViewModel>();
+            _connections = new BindableCollection<IConnectionViewModel>();
             _subscription = connectionSettingsRepository.Subscribe(this);
         }
 
@@ -45,19 +45,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// <value>
         /// The connections.
         /// </value>
-        public IEnumerable<IConnectionViewModel> Connections
-        {
-            get
-            {
-                return _connections;
-            }
-
-            private set
-            {
-                _connections = value.ToList();
-                NotifyOfPropertyChange(() => Connections);
-            }
-        }
+        public IEnumerable<IConnectionViewModel> Connections => _connections;
 
         /// <summary>
         /// Provides the observer with new data.
@@ -71,15 +59,11 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
                 return;
             }
 
-            var isDirty = false;
-
             var currentConnections = Connections.ToDictionary(connection => connection.SettingsId, connection => connection);
 
             foreach (var settings in Notification<ConnectionSettings>.GetPayloads(value, NotificationType.Removed, s => currentConnections.ContainsKey(s.Id)))
             {
-                currentConnections.Remove(settings.Id);
-
-                isDirty = true;
+                _connections.Remove(currentConnections[settings.Id]);
             }
 
             foreach (var settings in Notification<ConnectionSettings>.GetPayloads(value, NotificationType.Updated, s => currentConnections.ContainsKey(s.Id)))
@@ -87,22 +71,13 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
                 var connection = currentConnections[settings.Id];
 
                 connection.SettingsName = settings.Name;
-
-                isDirty = true;
             }
 
             foreach (var settings in Notification<ConnectionSettings>.GetPayloads(value, NotificationType.Added, s => !currentConnections.ContainsKey(s.Id)))
             {
                 var connection = _connectionViewModelStrategy.Create(settings);
 
-                currentConnections.Add(settings.Id, connection);
-
-                isDirty = true;
-            }
-
-            if (isDirty)
-            {
-                Connections = currentConnections.Values.OrderBy(connection => connection.SettingsName);
+                _connections.Add(connection);
             }
         }
 
