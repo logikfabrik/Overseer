@@ -5,17 +5,18 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:sys="clr-namespace:System;assembly=mscorlib"
+    xmlns:p="clr-namespace:Logikfabrik.Overseer.WPF.Client.Properties"
     d:DesignHeight="300"
     d:DesignWidth="300"
     mc:Ignorable="d">
     <ScrollViewer>
         <StackPanel>
             <StackPanel Margin="10">
-                <TextBlock Text="Interval (s)" />
+                <TextBlock Text="{x:Static p:Resources.EditSettings_Setting_Label_Interval}" />
                 <TextBox Text="{Binding Path=Interval, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" />
             </StackPanel>
             <StackPanel Margin="10,0,10,10">
-                <TextBlock Text="Culture name" />
+                <TextBlock Text="{x:Static p:Resources.EditSettings_Setting_Label_CultureName}" />
                 <ComboBox SelectedValue="{Binding Path=CultureName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                     <sys:String>en-US</sys:String>
                     <sys:String>sv-SE</sys:String>

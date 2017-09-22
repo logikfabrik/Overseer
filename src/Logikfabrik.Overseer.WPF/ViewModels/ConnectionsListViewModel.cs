@@ -7,6 +7,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Windows;
     using Caliburn.Micro;
     using EnsureThat;
     using Factories;
@@ -65,7 +66,10 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             {
                 var connectionToRemove = currentConnections[settings.Id];
 
-                _connections.Remove(connectionToRemove);
+                Application.Current.Dispatcher.Invoke(() =>
+                {
+                    _connections.Remove(connectionToRemove);
+                });
             }
 
             foreach (var settings in Notification<ConnectionSettings>.GetPayloads(value, NotificationType.Updated, s => currentConnections.ContainsKey(s.Id)))
@@ -77,13 +81,16 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
 
             foreach (var settings in Notification<ConnectionSettings>.GetPayloads(value, NotificationType.Added, s => !currentConnections.ContainsKey(s.Id)))
             {
-                var connectionToAdd = _connectionViewModelStrategy.Create(settings);
+                Application.Current.Dispatcher.Invoke(() =>
+                {
+                    var connectionToAdd = _connectionViewModelStrategy.Create(settings);
 
-                var names = _connections.Select(c => c.SettingsName).Concat(new[] { connectionToAdd.SettingsName }).OrderBy(name => name).ToArray();
+                    var names = _connections.Select(c => c.SettingsName).Concat(new[] { connectionToAdd.SettingsName }).OrderBy(name => name).ToArray();
 
-                var index = Array.IndexOf(names, connectionToAdd.SettingsName);
+                    var index = Array.IndexOf(names, connectionToAdd.SettingsName);
 
-                _connections.Insert(index, connectionToAdd);
+                    _connections.Insert(index, connectionToAdd);
+                });
             }
         }
 

@@ -12,28 +12,12 @@ namespace Logikfabrik.Overseer.WPF.ViewModels.DesignTime
     public class BuildNotificationViewModel : IBuildNotificationViewModel
     {
         /// <summary>
-        /// Gets name.
+        /// Gets the build.
         /// </summary>
         /// <value>
-        /// The build name.
+        /// The build.
         /// </value>
-        public string Name { get; } = "My build 1.0.0.0 (master)";
-
-        /// <summary>
-        /// Gets the message.
-        /// </summary>
-        /// <value>
-        /// The message.
-        /// </value>
-        public string Message { get; } = "My message";
-
-        /// <summary>
-        /// Gets the status.
-        /// </summary>
-        /// <value>
-        /// The status.
-        /// </value>
-        public BuildStatus? Status { get; } = BuildStatus.Succeeded;
+        public IBuildViewModel Build { get; set; }
 
         /// <summary>
         /// Opens the notification in the browser.

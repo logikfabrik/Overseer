@@ -28,7 +28,7 @@ namespace Logikfabrik.Overseer.WPF
             Ensure.That(project).IsNotNull();
             Ensure.That(build).IsNotNull();
 
-            return GetBuildName(project.Name, build.VersionNumber(), build.Branch);
+            return GetBuildName(project.Name, build.VersionNumber());
         }
 
         /// <summary>
@@ -36,9 +36,8 @@ namespace Logikfabrik.Overseer.WPF
         /// </summary>
         /// <param name="projectName">The project name.</param>
         /// <param name="versionNumber">The version number.</param>
-        /// <param name="branch">The branch.</param>
         /// <returns>The build name.</returns>
-        public static string GetBuildName(string projectName, string versionNumber, string branch)
+        public static string GetBuildName(string projectName, string versionNumber)
         {
             var builder = new StringBuilder();
 
@@ -50,11 +49,6 @@ namespace Logikfabrik.Overseer.WPF
             if (!string.IsNullOrWhiteSpace(versionNumber))
             {
                 builder.AppendFormat("{0} ", versionNumber);
-            }
-
-            if (!string.IsNullOrWhiteSpace(branch))
-            {
-                builder.AppendFormat("({0}) ", branch);
             }
 
             return builder.Length > 0 ? builder.ToString().Trim() : null;

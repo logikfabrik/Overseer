@@ -5,13 +5,14 @@
 namespace Logikfabrik.Overseer.WPF.ViewModels
 {
     using System;
-    using System.Collections.Generic;
     using System.Diagnostics;
     using System.Windows;
     using System.Windows.Controls.Primitives;
     using System.Windows.Threading;
     using Caliburn.Micro;
     using EnsureThat;
+    using Factories;
+    using Overseer.Extensions;
 
     /// <summary>
     /// The <see cref="BuildNotificationViewModel" /> class.
@@ -24,16 +25,16 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// <summary>
         /// Initializes a new instance of the <see cref="BuildNotificationViewModel" /> class.
         /// </summary>
+        /// <param name="buildViewModelFactory">The build view model factory.</param>
         /// <param name="project">The project.</param>
         /// <param name="build">The build.</param>
-        public BuildNotificationViewModel(IProject project, IBuild build)
+        public BuildNotificationViewModel(IBuildViewModelFactory buildViewModelFactory, IProject project, IBuild build)
         {
+            Ensure.That(buildViewModelFactory).IsNotNull();
             Ensure.That(project).IsNotNull();
             Ensure.That(build).IsNotNull();
 
-            Name = BuildMessageUtility.GetBuildName(project, build);
-            Message = BuildMessageUtility.GetBuildStatusMessage(build.Status, new Dictionary<string, string> { { "requested by", build.RequestedBy } });
-            Status = build.Status;
+            Build = buildViewModelFactory.Create(project.Name, build.Id, build.Branch, build.VersionNumber(), build.RequestedBy, build.Changes, build.Status, build.StartTime, build.EndTime, build.RunTime());
             _webUrl = build.WebUrl;
 
             StartClosing();
@@ -45,28 +46,12 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         public event EventHandler<EventArgs> Closing;
 
         /// <summary>
-        /// Gets the name.
+        /// Gets the build.
         /// </summary>
         /// <value>
-        /// The name.
+        /// The build.
         /// </value>
-        public string Name { get; }
-
-        /// <summary>
-        /// Gets the message.
-        /// </summary>
-        /// <value>
-        /// The message.
-        /// </value>
-        public string Message { get; }
-
-        /// <summary>
-        /// Gets the status.
-        /// </summary>
-        /// <value>
-        /// The status.
-        /// </value>
-        public BuildStatus? Status { get; }
+        public IBuildViewModel Build { get; }
 
         /// <summary>
         /// Opens the notification in the browser.

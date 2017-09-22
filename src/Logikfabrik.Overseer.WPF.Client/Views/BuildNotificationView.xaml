@@ -13,99 +13,40 @@
     d:DataContext="{d:DesignInstance d:Type=vm:BuildNotificationViewModel,
                                      d:IsDesignTimeCreatable=True}"
     mc:Ignorable="d">
-    <UserControl.Resources>
-        <Style x:Key="BuildBorderStyle" TargetType="{x:Type Border}">
-            <Setter Property="BorderThickness" Value="5,0,0,0" />
-            <Setter Property="Margin" Value="10" />
-            <Setter Property="Background" Value="{DynamicResource Window.Background}" />
-            <Setter Property="Effect">
-                <Setter.Value>
-                    <DropShadowEffect
-                        BlurRadius="3"
-                        Opacity="0.1"
-                        ShadowDepth="3"
-                        Color="{DynamicResource Effect.Shadow}" />
-                </Setter.Value>
-            </Setter>
-        </Style>
-        <!--  ReSharper disable once Xaml.RedundantResource  -->
-        <Style
-            x:Key="BuildSucceededBorderStyle"
-            BasedOn="{StaticResource BuildBorderStyle}"
-            TargetType="{x:Type Border}">
-            <Setter Property="BorderBrush" Value="{DynamicResource Status.Succeeded}" />
-        </Style>
-        <!--  ReSharper disable once Xaml.RedundantResource  -->
-        <Style
-            x:Key="BuildInProgressBorderStyle"
-            BasedOn="{StaticResource BuildBorderStyle}"
-            TargetType="{x:Type Border}">
-            <Setter Property="BorderBrush" Value="{DynamicResource Status.InProgress}" />
-        </Style>
-        <!--  ReSharper disable once Xaml.RedundantResource  -->
-        <Style
-            x:Key="BuildFailedBorderStyle"
-            BasedOn="{StaticResource BuildBorderStyle}"
-            TargetType="{x:Type Border}">
-            <Setter Property="BorderBrush" Value="{DynamicResource Status.Failed}" />
-        </Style>
-        <!--  ReSharper disable once Xaml.RedundantResource  -->
-        <Style
-            x:Key="BuildStoppedBorderStyle"
-            BasedOn="{StaticResource BuildBorderStyle}"
-            TargetType="{x:Type Border}">
-            <Setter Property="BorderBrush" Value="{DynamicResource Status.Stopped}" />
-        </Style>
-        <Style x:Key="TextBlockStyle" TargetType="{x:Type TextBlock}">
-            <Setter Property="Foreground" Value="#FFFFFF" />
-            <Setter Property="TextWrapping" Value="Wrap" />
-        </Style>
-        <Style
-            x:Key="BuildNameTextBlockStyle"
-            BasedOn="{StaticResource TextBlockStyle}"
-            TargetType="{x:Type TextBlock}">
-            <Setter Property="FontSize" Value="16" />
-            <Setter Property="FontWeight" Value="SemiBold" />
-        </Style>
-        <Style
-            x:Key="MessageTextBlockStyle"
-            BasedOn="{StaticResource TextBlockStyle}"
-            TargetType="{x:Type TextBlock}">
-            <Setter Property="FontSize" Value="16" />
-        </Style>
-    </UserControl.Resources>
+
     <Button cal:Message.Attach="ViewInBrowser">
         <Button.Template>
             <ControlTemplate>
-                <Border>
-                    <Border.Style>
-                        <MultiBinding Converter="{StaticResource BuildStatusToStyleConverter}" ConverterParameter="Build{0}BorderStyle">
-                            <Binding RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType=UserControl}" />
-                            <Binding Path="Status" />
-                        </MultiBinding>
-                    </Border.Style>
+                <Border Background="{DynamicResource Button.Static.Background}" Margin="10">
+                    <Border.Effect>
+                        <DropShadowEffect
+                            BlurRadius="3"
+                            Opacity="0.1"
+                            ShadowDepth="3"
+                            Color="{DynamicResource Effect.Shadow}" />
+                    </Border.Effect>
                     <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="Auto" />
-                        </Grid.ColumnDefinitions>
-                        <StackPanel Margin="20,10">
-                            <TextBlock Style="{StaticResource BuildNameTextBlockStyle}" Text="{Binding Path=Name}" />
-                            <TextBlock Style="{StaticResource MessageTextBlockStyle}" Text="{Binding Path=Message}" />
-                        </StackPanel>
-                        <Button
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <ContentControl
+                            cal:View.Context="Base"
+                            cal:View.Model="{Binding Build, Mode=OneWay}"
+                            Focusable="False" />
+                    <Button
                             Grid.Column="1"
                             HorizontalAlignment="Right"
                             VerticalAlignment="Top"
                             cal:Message.Attach="[Event Click] = [Action Close($eventArgs)]">
-                            <Viewbox>
-                                <Canvas>
-                                    <Path Data="M14.348,14.849c-0.469,0.469-1.229,0.469-1.697,0L10,11.819l-2.651,3.029c-0.469,0.469-1.229,0.469-1.697,0  c-0.469-0.469-0.469-1.229,0-1.697l2.758-3.15L5.651,6.849c-0.469-0.469-0.469-1.228,0-1.697c0.469-0.469,1.228-0.469,1.697,0  L10,8.183l2.651-3.031c0.469-0.469,1.228-0.469,1.697,0c0.469,0.469,0.469,1.229,0,1.697l-2.758,3.152l2.758,3.15  C14.817,13.62,14.817,14.38,14.348,14.849z" />
-                                </Canvas>
-                            </Viewbox>
-                        </Button>
-                    </Grid>
-                </Border>
+                        <Viewbox>
+                            <Canvas>
+                                <Path Data="M14.348,14.849c-0.469,0.469-1.229,0.469-1.697,0L10,11.819l-2.651,3.029c-0.469,0.469-1.229,0.469-1.697,0  c-0.469-0.469-0.469-1.229,0-1.697l2.758-3.15L5.651,6.849c-0.469-0.469-0.469-1.228,0-1.697c0.469-0.469,1.228-0.469,1.697,0  L10,8.183l2.651-3.031c0.469-0.469,1.228-0.469,1.697,0c0.469,0.469,0.469,1.229,0,1.697l-2.758,3.152l2.758,3.15  C14.817,13.62,14.817,14.38,14.348,14.849z" />
+                            </Canvas>
+                        </Viewbox>
+                    </Button>
+                </Grid>
+                    </Border>
             </ControlTemplate>
         </Button.Template>
     </Button>

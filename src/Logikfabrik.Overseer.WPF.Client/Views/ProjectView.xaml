@@ -37,7 +37,7 @@
                 </Viewbox>
             </Button>
         </StackPanel>
-        <ItemsControl Grid.Row="2" ItemsSource="{Binding Builds, Mode=OneWay}">
+        <ItemsControl Grid.Row="2" ItemsSource="{Binding OrderedBuilds, Mode=OneWay}">
             <ItemsControl.ItemContainerStyle>
                 <Style>
                     <!--  ReSharper disable once Xaml.RedundantPropertyTypeQualifier  -->

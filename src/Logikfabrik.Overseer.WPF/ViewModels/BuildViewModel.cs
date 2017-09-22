@@ -196,7 +196,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// <returns><c>true</c> if this instance was updated; otherwise, <c>false</c>.</returns>
         public bool TryUpdate(string projectName, BuildStatus? status, DateTime? startTime, DateTime? endTime, TimeSpan? runTime)
         {
-            var name = BuildMessageUtility.GetBuildName(projectName, _versionNumber, Branch);
+            var name = BuildMessageUtility.GetBuildName(projectName, _versionNumber);
 
             var isUpdated = false;
 
@@ -216,10 +216,16 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
                 isUpdated = true;
             }
 
-            // ReSharper disable once InvertIf
             if (StartTime != startTime)
             {
                 StartTime = startTime;
+                isUpdated = true;
+            }
+
+            // ReSharper disable once InvertIf
+            if (EndTime != endTime)
+            {
+                EndTime = endTime;
                 isUpdated = true;
             }
 

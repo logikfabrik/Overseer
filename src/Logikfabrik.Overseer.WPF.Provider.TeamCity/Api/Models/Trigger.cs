@@ -10,22 +10,6 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity.Api.Models
     public class Trigger
     {
         /// <summary>
-        /// Gets or sets the type.
-        /// </summary>
-        /// <value>
-        /// The type.
-        /// </value>
-        public string Type { get; set; }
-
-        /// <summary>
-        /// Gets or sets the details.
-        /// </summary>
-        /// <value>
-        /// The details.
-        /// </value>
-        public string Details { get; set; }
-
-        /// <summary>
         /// Gets or sets the user.
         /// </summary>
         /// <value>

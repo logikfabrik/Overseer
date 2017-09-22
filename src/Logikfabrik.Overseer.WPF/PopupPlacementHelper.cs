@@ -8,21 +8,27 @@ namespace Logikfabrik.Overseer.WPF
     using System.Collections.Generic;
     using System.Linq;
     using System.Windows;
+    using EnsureThat;
 
     /// <summary>
     /// The <see cref="PopupPlacementHelper" /> class.
     /// </summary>
     internal class PopupPlacementHelper
     {
-        private readonly DateTime?[,] _grid;
+        private readonly Func<Rect> _getWorkArea;
         private readonly Size _popupSize;
-        private readonly Point _offset;
 
-        public PopupPlacementHelper(Rect workArea, Size popupSize)
+        private DateTime?[,] _grid;
+        private Point _offset;
+
+        public PopupPlacementHelper(Func<Rect> getWorkArea, Size popupSize)
         {
-            _grid = new DateTime?[(int)Math.Floor(workArea.Width / popupSize.Width), (int)Math.Floor(workArea.Height / popupSize.Height)];
+            Ensure.That(() => getWorkArea).IsNotNull();
+
+            _getWorkArea = getWorkArea;
             _popupSize = popupSize;
-            _offset = new Point(workArea.Width % popupSize.Width, workArea.Height % popupSize.Height);
+
+            Setup();
         }
 
         public Point Hold()
@@ -58,6 +64,28 @@ namespace Logikfabrik.Overseer.WPF
         public void Release(Point point)
         {
             _grid[(int)((point.X - _offset.X) / _popupSize.Width), (int)((point.Y - _offset.Y) / _popupSize.Height)] = null;
+
+            // The client might have changed screen resolution. If all cells are empty, reset the grid (by calling Setup()).
+            for (var columnIndex = 0; columnIndex < _grid.GetLength(0); columnIndex++)
+            {
+                for (var rowIndex = 0; rowIndex < _grid.GetLength(1); rowIndex++)
+                {
+                    if (_grid[columnIndex, rowIndex].HasValue)
+                    {
+                        return;
+                    }
+                }
+            }
+
+            Setup();
+        }
+
+        private void Setup()
+        {
+            var area = _getWorkArea();
+
+            _grid = new DateTime?[(int)Math.Floor(area.Width / _popupSize.Width), (int)Math.Floor(area.Height / _popupSize.Height)];
+            _offset = new Point(area.Width % _popupSize.Width, area.Height % _popupSize.Height);
         }
     }
 }

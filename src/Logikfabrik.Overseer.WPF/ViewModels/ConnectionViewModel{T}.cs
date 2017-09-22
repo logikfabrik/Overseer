@@ -290,20 +290,29 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
                 }
                 else
                 {
-                    var projectToAdd = _projectFactory.Create(SettingsId, project.Id, project.Name);
+                    Application.Current.Dispatcher.Invoke(() =>
+                    {
+                        var projectToAdd = _projectFactory.Create(SettingsId, project.Id, project.Name);
 
-                    var names = _projects.Select(p => p.Name).Concat(new[] { projectToAdd.Name }).OrderBy(name => name).ToArray();
+                        var names = _projects.Select(p => p.Name).Concat(new[] { projectToAdd.Name }).OrderBy(name => name).ToArray();
 
-                    var index = Array.IndexOf(names, projectToAdd.Name);
+                        var index = Array.IndexOf(names, projectToAdd.Name);
 
-                    _projects.Insert(index, projectToAdd);
+                        _projects.Insert(index, projectToAdd);
+                    });
                 }
             }
 
             var projectsToKeep = e.Projects.Select(project => project.Id).ToArray();
             var projectsToRemove = _projects.Where(project => !projectsToKeep.Contains(project.Id)).ToArray();
 
-            _projects.RemoveRange(projectsToRemove);
+            if (_projects.Any())
+            {
+                Application.Current.Dispatcher.Invoke(() =>
+                {
+                    _projects.RemoveRange(projectsToRemove);
+                });
+            }
 
             _trie = new SuffixTrie<IProjectViewModel>(3);
 

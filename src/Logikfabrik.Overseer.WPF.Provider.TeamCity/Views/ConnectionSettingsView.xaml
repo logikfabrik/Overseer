@@ -6,6 +6,7 @@
     xmlns:markupExtensions="clr-namespace:Logikfabrik.Overseer.WPF.MarkupExtensions;assembly=Logikfabrik.Overseer.WPF"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:teamCity="clr-namespace:Logikfabrik.Overseer.WPF.Provider.TeamCity"
+    xmlns:p="clr-namespace:Logikfabrik.Overseer.WPF.Provider.TeamCity.Properties"
     d:DesignHeight="300"
     d:DesignWidth="300"
     mc:Ignorable="d">
@@ -23,16 +24,16 @@
             <TextBlock Text="TeamCity" />
         </StackPanel>
         <StackPanel Margin="10,0,10,10">
-            <TextBlock Text="Name" />
+            <TextBlock Text="{x:Static p:Resources.ConnectionSettings_Setting_Label_Name}" />
             <TextBox Text="{Binding Path=Name, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" />
         </StackPanel>
         <StackPanel Margin="10,0,10,10">
-            <TextBlock Text="URL" />
+            <TextBlock Text="{x:Static p:Resources.ConnectionSettings_Setting_Label_Url}" />
             <TextBlock Text="{Binding Path=BaseUri, Mode=OneWay}" Visibility="{Binding Path=ShowBaseUri, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}" />
             <TextBox Text="{Binding Path=Url, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" />
         </StackPanel>
         <StackPanel Margin="10,0,10,10">
-            <TextBlock Text="Authentication type" />
+            <TextBlock Text="{x:Static p:Resources.ConnectionSettings_Setting_Label_AuthenticationType}" />
             <ComboBox
                 DisplayMemberPath="DisplayName"
                 ItemsSource="{markupExtensions:EnumToItemsSourceMarkup {x:Type teamCity:AuthenticationType}}"
@@ -41,11 +42,11 @@
         </StackPanel>
         <StackPanel Margin="10,0,10,10" Visibility="{Binding Path=ShowUsernameAndPassword, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}">
             <StackPanel>
-                <TextBlock Text="Username" />
+                <TextBlock Text="{x:Static p:Resources.ConnectionSettings_Setting_Label_Username}" />
                 <TextBox Text="{Binding Path=Username, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" />
             </StackPanel>
             <StackPanel>
-                <TextBlock Text="Password" />
+                <TextBlock Text="{x:Static p:Resources.ConnectionSettings_Setting_Label_Password}" />
                 <TextBox Text="{Binding Path=Password, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" />
             </StackPanel>
         </StackPanel>

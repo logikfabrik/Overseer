@@ -4,7 +4,7 @@
 
 namespace Logikfabrik.Overseer.WPF.ViewModels
 {
-    using System.Collections.Generic;
+    using System.ComponentModel;
 
     /// <summary>
     /// The <see cref="IProjectViewModel" /> interface.
@@ -28,12 +28,12 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         string Name { get; }
 
         /// <summary>
-        /// Gets the builds.
+        /// Gets the ordered builds.
         /// </summary>
         /// <value>
-        /// The builds.
+        /// The ordered builds.
         /// </value>
-        IEnumerable<IBuildViewModel> Builds { get; }
+        ICollectionView OrderedBuilds { get; }
 
         /// <summary>
         /// Gets the latest build.

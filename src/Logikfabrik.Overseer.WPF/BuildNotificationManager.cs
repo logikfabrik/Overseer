@@ -83,7 +83,7 @@ namespace Logikfabrik.Overseer.WPF
         {
             if (_popupPlacementHelper == null)
             {
-                _popupPlacementHelper = new PopupPlacementHelper(SystemParameters.WorkArea, popupSize);
+                _popupPlacementHelper = new PopupPlacementHelper(() => SystemParameters.WorkArea, popupSize);
             }
 
             var point = _popupPlacementHelper.Hold();

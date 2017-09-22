@@ -12,7 +12,7 @@ namespace Logikfabrik.Overseer.WPF.Test
     public class BuildMessageUtilityTest
     {
         [Fact]
-        public void CanGetGetBuildNameForProjectAndBuild()
+        public void CanGetGetBuildNameForProjectAndBuildWithVersion()
         {
             var projectMock = new Mock<IProject>();
 
@@ -21,17 +21,46 @@ namespace Logikfabrik.Overseer.WPF.Test
             var buildMock = new Mock<IBuild>();
 
             buildMock.Setup(m => m.Version).Returns("1.0.0");
-            buildMock.Setup(m => m.Branch).Returns("My Branch");
 
             var buildName = BuildMessageUtility.GetBuildName(projectMock.Object, buildMock.Object);
 
-            Assert.Equal("My Project 1.0.0 (My Branch)", buildName);
+            Assert.Equal("My Project 1.0.0", buildName);
+        }
+
+        [Fact]
+        public void CanGetGetBuildNameForProjectAndBuildWithNumber()
+        {
+            var projectMock = new Mock<IProject>();
+
+            projectMock.Setup(m => m.Name).Returns("My Project");
+
+            var buildMock = new Mock<IBuild>();
+
+            buildMock.Setup(m => m.Number).Returns("100");
+
+            var buildName = BuildMessageUtility.GetBuildName(projectMock.Object, buildMock.Object);
+
+            Assert.Equal("My Project 100", buildName);
+        }
+
+        [Fact]
+        public void CanGetGetBuildNameForProjectAndBuildWithoutVersionOrNumber()
+        {
+            var projectMock = new Mock<IProject>();
+
+            projectMock.Setup(m => m.Name).Returns("My Project");
+
+            var buildMock = new Mock<IBuild>();
+
+            var buildName = BuildMessageUtility.GetBuildName(projectMock.Object, buildMock.Object);
+
+            Assert.Equal("My Project", buildName);
         }
 
         [Fact]
         public void CanGetBuildNameForProjectName()
         {
-            var buildName = BuildMessageUtility.GetBuildName("My Project", null, null);
+            var buildName = BuildMessageUtility.GetBuildName("My Project", null);
 
             Assert.Equal("My Project", buildName);
         }
@@ -39,49 +68,17 @@ namespace Logikfabrik.Overseer.WPF.Test
         [Fact]
         public void CanGetBuildNameForVersionNumber()
         {
-            var buildName = BuildMessageUtility.GetBuildName(null, "1.0.0", null);
+            var buildName = BuildMessageUtility.GetBuildName(null, "1.0.0");
 
             Assert.Equal("1.0.0", buildName);
         }
 
         [Fact]
-        public void CanGetBuildNameForBranch()
-        {
-            var buildName = BuildMessageUtility.GetBuildName(null, null, "My Branch");
-
-            Assert.Equal("(My Branch)", buildName);
-        }
-
-        [Fact]
-        public void CanGetBuildNameForProjectNameVersionNumberAndBranch()
-        {
-            var buildName = BuildMessageUtility.GetBuildName("My Project", "1.0.0", "My Branch");
-
-            Assert.Equal("My Project 1.0.0 (My Branch)", buildName);
-        }
-
-        [Fact]
         public void CanGetBuildNameForProjectNameAndVersionNumber()
         {
-            var buildName = BuildMessageUtility.GetBuildName("My Project", "1.0.0", null);
+            var buildName = BuildMessageUtility.GetBuildName("My Project", "1.0.0");
 
             Assert.Equal("My Project 1.0.0", buildName);
-        }
-
-        [Fact]
-        public void CanGetBuildNameForVersionNumberAndBranch()
-        {
-            var buildName = BuildMessageUtility.GetBuildName(null, "1.0.0", "My Branch");
-
-            Assert.Equal("1.0.0 (My Branch)", buildName);
-        }
-
-        [Fact]
-        public void CanGetBuildNameForProjectNameAndBranch()
-        {
-            var buildName = BuildMessageUtility.GetBuildName("My Project", null, "My Branch");
-
-            Assert.Equal("My Project (My Branch)", buildName);
         }
 
         [Fact]
@@ -103,9 +100,13 @@ namespace Logikfabrik.Overseer.WPF.Test
 
             Assert.Equal("Build stopped", buildStatusMessage4);
 
-            var buildStatusMessage5 = BuildMessageUtility.GetBuildStatusMessage(null);
+            var buildStatusMessage5 = BuildMessageUtility.GetBuildStatusMessage(BuildStatus.Queued);
 
-            Assert.Null(buildStatusMessage5);
+            Assert.Equal("Build queued", buildStatusMessage5);
+
+            var buildStatusMessage6 = BuildMessageUtility.GetBuildStatusMessage(null);
+
+            Assert.Null(buildStatusMessage6);
         }
 
         [Fact]
@@ -134,9 +135,13 @@ namespace Logikfabrik.Overseer.WPF.Test
 
             Assert.Equal("Build requested by John Doe and modified by Jane Doe stopped", buildStatusMessage4);
 
-            var buildStatusMessage5 = BuildMessageUtility.GetBuildStatusMessage(null, parts);
+            var buildStatusMessage5 = BuildMessageUtility.GetBuildStatusMessage(BuildStatus.Queued, parts);
 
-            Assert.Null(buildStatusMessage5);
+            Assert.Equal("Build requested by John Doe and modified by Jane Doe queued", buildStatusMessage5);
+
+            var buildStatusMessage6 = BuildMessageUtility.GetBuildStatusMessage(null, parts);
+
+            Assert.Null(buildStatusMessage6);
         }
 
         [Fact]

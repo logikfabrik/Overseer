@@ -60,14 +60,6 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity.Api.Models
         public Uri WebUrl { get; set; }
 
         /// <summary>
-        /// Gets or sets the revisions.
-        /// </summary>
-        /// <value>
-        /// The revisions.
-        /// </value>
-        public Revisions Revisions { get; set; }
-
-        /// <summary>
         /// Gets or sets the start date.
         /// </summary>
         /// <value>

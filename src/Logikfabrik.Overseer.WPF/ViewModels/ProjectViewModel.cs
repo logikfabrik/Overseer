@@ -5,9 +5,10 @@
 namespace Logikfabrik.Overseer.WPF.ViewModels
 {
     using System;
-    using System.Collections.Generic;
+    using System.ComponentModel;
     using System.Linq;
     using System.Windows;
+    using System.Windows.Data;
     using Caliburn.Micro;
     using EnsureThat;
     using Factories;
@@ -22,6 +23,9 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         private readonly IEventAggregator _eventAggregator;
         private readonly IBuildViewModelFactory _buildFactory;
         private readonly Guid _settingsId;
+
+        // ReSharper disable once PrivateFieldCanBeConvertedToLocalVariable
+        private readonly CollectionViewSource _orderedBuilds;
         private readonly BindableCollection<IBuildViewModel> _builds;
         private string _name;
         private bool _isBusy;
@@ -57,11 +61,19 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             _name = projectName;
             _isBusy = true;
             _isErrored = false;
-            _builds = new BindableCollection<IBuildViewModel>();
             DisplayName = "Project";
 
             WeakEventManager<IBuildMonitor, BuildMonitorProjectErrorEventArgs>.AddHandler(buildMonitor, nameof(buildMonitor.ProjectError), BuildMonitorProjectError);
             WeakEventManager<IBuildMonitor, BuildMonitorProjectProgressEventArgs>.AddHandler(buildMonitor, nameof(buildMonitor.ProjectProgressChanged), BuildMonitorProjectProgressChanged);
+
+            _builds = new BindableCollection<IBuildViewModel>();
+
+            _orderedBuilds = new CollectionViewSource
+            {
+                Source = _builds
+            };
+
+            OrderedBuilds = _orderedBuilds.View;
         }
 
         /// <summary>
@@ -93,12 +105,12 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         }
 
         /// <summary>
-        /// Gets the builds.
+        /// Gets the ordered builds.
         /// </summary>
         /// <value>
-        /// The builds.
+        /// The ordered builds.
         /// </value>
-        public IEnumerable<IBuildViewModel> Builds => _builds;
+        public ICollectionView OrderedBuilds { get; }
 
         /// <summary>
         /// Gets the latest build.
@@ -106,7 +118,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// <value>
         /// The latest build.
         /// </value>
-        public IBuildViewModel LatestBuild => Builds.FirstOrDefault();
+        public IBuildViewModel LatestBuild => _builds.FirstOrDefault();
 
         /// <summary>
         /// Gets a value indicating whether this instance has builds.
@@ -114,7 +126,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// <value>
         ///   <c>true</c> if this instance has builds; otherwise, <c>false</c>.
         /// </value>
-        public bool HasBuilds => Builds.Any();
+        public bool HasBuilds => _builds.Any();
 
         /// <summary>
         /// Gets a value indicating whether this instance is busy.
@@ -211,35 +223,51 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
                 return;
             }
 
-            foreach (var build in e.Builds)
+            Application.Current.Dispatcher.Invoke(() =>
             {
-                var buildToUpdate = _builds.SingleOrDefault(b => b.Id == build.Id);
-
-                if (buildToUpdate != null)
+                foreach (var build in e.Builds)
                 {
-                    buildToUpdate.TryUpdate(e.Project.Name, build.Status, build.StartTime, build.EndTime, build.RunTime());
+                    var buildToUpdate = _builds.SingleOrDefault(b => b.Id == build.Id);
+
+                    if (buildToUpdate != null)
+                    {
+                        buildToUpdate.TryUpdate(e.Project.Name, build.Status, build.StartTime, build.EndTime, build.RunTime());
+                    }
+                    else
+                    {
+                        Application.Current.Dispatcher.Invoke(() =>
+                        {
+                            var buildToAdd = _buildFactory.Create(e.Project.Name, build.Id, build.Branch, build.VersionNumber(), build.RequestedBy, build.Changes, build.Status, build.StartTime, build.EndTime, build.RunTime());
+
+                            var time = new Tuple<DateTime, DateTime>(buildToAdd.EndTime ?? DateTime.MaxValue, buildToAdd.StartTime ?? DateTime.MaxValue);
+
+                            var times = _builds.Select(b => new Tuple<DateTime, DateTime>(b.EndTime ?? DateTime.MaxValue, b.StartTime ?? DateTime.MaxValue)).Concat(new[] { time }).OrderByDescending(t => t.Item1).ThenByDescending(t => t.Item2).ToArray();
+
+                            var index = Array.IndexOf(times, time);
+
+                            _builds.Insert(index, buildToAdd);
+                        });
+                    }
                 }
-                else
+
+                var buildsToKeep = e.Builds.Select(build => build.Id).ToArray();
+                var buildsToRemove = _builds.Where(build => !buildsToKeep.Contains(build.Id)).ToArray();
+
+                if (buildsToRemove.Any())
                 {
-                    var buildToAdd = _buildFactory.Create(e.Project.Name, build.Id, build.Branch, build.VersionNumber(), build.RequestedBy, build.Changes, build.Status, build.StartTime, build.EndTime, build.RunTime());
-
-                    // TODO: Get index by build start time / end time.
-
-                    _builds.Insert(0, buildToAdd);
+                    Application.Current.Dispatcher.Invoke(() =>
+                    {
+                        _builds.RemoveRange(buildsToRemove);
+                    });
                 }
-            }
 
-            var buildsToKeep = e.Builds.Select(build => build.Id).ToArray();
-            var buildsToRemove = _builds.Where(build => !buildsToKeep.Contains(build.Id)).ToArray();
+                IsErrored = false;
+                IsBusy = false;
 
-            _builds.RemoveRange(buildsToRemove);
-
-            IsErrored = false;
-            IsBusy = false;
-
-            NotifyOfPropertyChange(() => HasBuilds);
-            NotifyOfPropertyChange(() => LatestBuild);
-            NotifyOfPropertyChange(() => IsViewable);
+                NotifyOfPropertyChange(() => HasBuilds);
+                NotifyOfPropertyChange(() => LatestBuild);
+                NotifyOfPropertyChange(() => IsViewable);
+            });
         }
 
         private bool ShouldExitHandler(BuildMonitorProjectEventArgs e)

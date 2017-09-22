@@ -19,7 +19,7 @@ namespace Logikfabrik.Overseer.WPF.Client.Properties {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class Resources {
@@ -61,6 +61,33 @@ namespace Logikfabrik.Overseer.WPF.Client.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to OK.
+        /// </summary>
+        public static string AddConnection_Button_Add {
+            get {
+                return ResourceManager.GetString("AddConnection_Button_Add", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        public static string AddConnection_Button_Cancel {
+            get {
+                return ResourceManager.GetString("AddConnection_Button_Cancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Try to connect.
+        /// </summary>
+        public static string AddConnection_Button_TryConnect {
+            get {
+                return ResourceManager.GetString("AddConnection_Button_TryConnect", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Sorry, there seems to be a problem!
         ///Please try again..
         /// </summary>
@@ -71,47 +98,83 @@ namespace Logikfabrik.Overseer.WPF.Client.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Number of builds to get from the CI/DI service per project.
+        /// </summary>
+        public static string ConnectionSettings_Setting_Description_BuildsPerProject {
+            get {
+                return ResourceManager.GetString("ConnectionSettings_Setting_Description_BuildsPerProject", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Builds per project.
+        /// </summary>
+        public static string ConnectionSettings_Setting_Label_BuildsPerProject {
+            get {
+                return ResourceManager.GetString("ConnectionSettings_Setting_Label_BuildsPerProject", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Language.
+        /// </summary>
+        public static string EditSettings_Setting_Label_CultureName {
+            get {
+                return ResourceManager.GetString("EditSettings_Setting_Label_CultureName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Interval (s).
+        /// </summary>
+        public static string EditSettings_Setting_Label_Interval {
+            get {
+                return ResourceManager.GetString("EditSettings_Setting_Label_Interval", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to About.
         /// </summary>
-        public static string Menu_MenuItem_GoToAbout {
+        public static string Menu_MenuItem_Label_GoToAbout {
             get {
-                return ResourceManager.GetString("Menu_MenuItem_GoToAbout", resourceCulture);
+                return ResourceManager.GetString("Menu_MenuItem_Label_GoToAbout", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Add.
         /// </summary>
-        public static string Menu_MenuItem_GoToAddConnection {
+        public static string Menu_MenuItem_Label_GoToAddConnection {
             get {
-                return ResourceManager.GetString("Menu_MenuItem_GoToAddConnection", resourceCulture);
+                return ResourceManager.GetString("Menu_MenuItem_Label_GoToAddConnection", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Connections.
         /// </summary>
-        public static string Menu_MenuItem_GoToConnections {
+        public static string Menu_MenuItem_Label_GoToConnections {
             get {
-                return ResourceManager.GetString("Menu_MenuItem_GoToConnections", resourceCulture);
+                return ResourceManager.GetString("Menu_MenuItem_Label_GoToConnections", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Dashboard.
         /// </summary>
-        public static string Menu_MenuItem_GoToDashboard {
+        public static string Menu_MenuItem_Label_GoToDashboard {
             get {
-                return ResourceManager.GetString("Menu_MenuItem_GoToDashboard", resourceCulture);
+                return ResourceManager.GetString("Menu_MenuItem_Label_GoToDashboard", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Settings.
         /// </summary>
-        public static string Menu_MenuItem_GoToSettings {
+        public static string Menu_MenuItem_Label_GoToSettings {
             get {
-                return ResourceManager.GetString("Menu_MenuItem_GoToSettings", resourceCulture);
+                return ResourceManager.GetString("Menu_MenuItem_Label_GoToSettings", resourceCulture);
             }
         }
     }

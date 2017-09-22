@@ -12,28 +12,12 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     public interface IBuildNotificationViewModel
     {
         /// <summary>
-        /// Gets name.
+        /// Gets the build.
         /// </summary>
         /// <value>
-        /// The build name.
+        /// The build.
         /// </value>
-        string Name { get; }
-
-        /// <summary>
-        /// Gets the message.
-        /// </summary>
-        /// <value>
-        /// The message.
-        /// </value>
-        string Message { get; }
-
-        /// <summary>
-        /// Gets the status.
-        /// </summary>
-        /// <value>
-        /// The status.
-        /// </value>
-        BuildStatus? Status { get; }
+        IBuildViewModel Build { get; }
 
         /// <summary>
         /// Opens the notification in the browser.
