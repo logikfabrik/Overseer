@@ -6,6 +6,7 @@ namespace Logikfabrik.Overseer.Settings
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using System.Security.Cryptography;
     using System.Security.Cryptography.Xml;
     using System.Xml;
@@ -32,7 +33,7 @@ namespace Logikfabrik.Overseer.Settings
             _dataProtector = dataProtector;
             _registryStore = registryStore;
 
-            HasPassPhrase = ReadPassPhraseHash() != null;
+            HasPassPhrase = ReadPassPhraseHash().Any();
         }
 
         /// <summary>
@@ -129,7 +130,7 @@ namespace Logikfabrik.Overseer.Settings
 
             if (registryValue == null)
             {
-                return null;
+                return new byte[] { };
             }
 
             var registryValueBytes = Convert.FromBase64String(registryValue);

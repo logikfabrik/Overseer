@@ -43,7 +43,7 @@ namespace Logikfabrik.Overseer.Test.Settings
 
             var passPhraseHash = xmlEncrypter.ReadPassPhraseHash();
 
-            Assert.NotNull(passPhraseHash);
+            Assert.NotEmpty(passPhraseHash);
         }
     }
 }
