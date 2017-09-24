@@ -278,6 +278,22 @@
               KeyPath="yes" />
       </Component>
 
+      <Component Id="cmp936CDE515E89437FBDD9205BE7EC7C1E"
+                 Guid="936CDE51-5E89-437F-BDD9-205BE7EC7C1E"
+                 Directory="dir3EF976885ADC44579DBE3C2EE8B49489">
+        <File Id="filE64ACBB1F07A4DD4B27ADB8B79EBC152"
+              Source="$(var.Logikfabrik.Overseer.WPF.Client.TargetDir)en-US\Logikfabrik.Overseer.WPF.Provider.TeamCity.resources.dll"
+              KeyPath="yes" />
+      </Component>
+
+      <Component Id="cmpE71B7C8BE3CA4EC9A5E1C4DCD026E9AB"
+                 Guid="E71B7C8B-E3CA-4EC9-A5E1-C4DCD026E9AB"
+                 Directory="dirAB1506D5F38C44EB96FB28C4C896C3F1">
+        <File Id="fil482E7929355B4C33A3E7636DE9A544C2"
+              Source="$(var.Logikfabrik.Overseer.WPF.Client.TargetDir)sv-SE\Logikfabrik.Overseer.WPF.Provider.TeamCity.resources.dll"
+              KeyPath="yes" />
+      </Component>
+
       <Component Id="cmp6A12B11DE3B64AD0A8F112E0C4560694"
                  Guid="6A12B11D-E3B6-4AD0-A8F1-12E0C4560694"
                  Directory="INSTALLFOLDER">
