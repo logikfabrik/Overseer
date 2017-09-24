@@ -113,6 +113,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.CircleCI.Api
         public void Dispose()
         {
             Dispose(true);
+            GC.SuppressFinalize(this);
         }
 
         /// <summary>

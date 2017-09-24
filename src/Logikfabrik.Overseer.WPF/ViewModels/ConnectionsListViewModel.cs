@@ -117,6 +117,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         public void Dispose()
         {
             Dispose(true);
+            GC.SuppressFinalize(this);
         }
 
         /// <summary>

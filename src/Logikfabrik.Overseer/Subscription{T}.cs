@@ -38,6 +38,7 @@ namespace Logikfabrik.Overseer
         public void Dispose()
         {
             Dispose(true);
+            GC.SuppressFinalize(this);
         }
 
         /// <summary>

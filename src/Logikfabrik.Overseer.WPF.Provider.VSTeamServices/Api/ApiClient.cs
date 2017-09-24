@@ -121,6 +121,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices.Api
         public void Dispose()
         {
             Dispose(true);
+            GC.SuppressFinalize(this);
         }
 
         /// <summary>

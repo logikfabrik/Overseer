@@ -88,6 +88,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor.Api
         public void Dispose()
         {
             Dispose(true);
+            GC.SuppressFinalize(this);
         }
 
         /// <summary>
