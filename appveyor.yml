@@ -1,3 +1,6 @@
+environment:
+  sonar_login:
+    secure: wA8dX4gVDmyoUNjC+y37ygfPAekg/EyWs7Z7SkRp8vDr1Vv7oBB9R6nif4yzRza4
 version: 0.0.1.{build}
 skip_tags: true
 skip_commits:
@@ -18,9 +21,9 @@ before_build:
 - nuget restore src/Logikfabrik.Overseer.sln
 build_script:
   - choco install "msbuild-sonarqube-runner" -y
-  - MSBuild.SonarQube.Runner.exe begin /k:"Overseer:master" /d:"sonar.host.url=https://sonarcloud.io" /d:"sonar.login=wA8dX4gVDmyoUNjC+y37ygfPAekg/EyWs7Z7SkRp8vDr1Vv7oBB9R6nif4yzRza4"
+  - MSBuild.SonarQube.Runner.exe begin /k:"Overseer:master" /d:"sonar.host.url=https://sonarcloud.io" /d:"sonar.login=$(sonar_login)"
   - msbuild src/Logikfabrik.Overseer.sln /p:Configuration=%configuration% /p:InstallerVersion=%appveyor_build_version% /p:WarningLevel=1 -verbosity:minimal /logger:"C:\Program Files\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll"
-  - MSBuild.SonarQube.Runner.exe end /d:"sonar.login=wA8dX4gVDmyoUNjC+y37ygfPAekg/EyWs7Z7SkRp8vDr1Vv7oBB9R6nif4yzRza4"
+  - MSBuild.SonarQube.Runner.exe end /d:"sonar.login=$(sonar_login)"
 artifacts:
   - path: src/Logikfabrik.Overseer.Setup/bin/$(configuration)/*.msi
     name: Setup
