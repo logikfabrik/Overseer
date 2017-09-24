@@ -4,13 +4,15 @@
 
 namespace Logikfabrik.Overseer.Extensions
 {
+    using System;
     using System.Net;
     using System.Net.Http;
 
     /// <summary>
     /// The <see cref="HttpException" /> class.
     /// </summary>
-    public class HttpException : HttpRequestException
+    [Serializable]
+    public sealed class HttpException : HttpRequestException
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="HttpException" /> class.

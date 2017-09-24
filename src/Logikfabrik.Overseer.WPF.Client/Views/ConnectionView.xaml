@@ -34,6 +34,7 @@
                 Background="{DynamicResource Panel.Background}">
                 <Grid>
                     <TextBox Text="{Binding Path=Filter, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                    <!-- ReSharper disable once Xaml.BindingWithContextNotResolved -->
                     <TextBlock IsHitTestVisible="False" 
                                Foreground="{DynamicResource Filter.Foreground}" 
                                Text="Filter" VerticalAlignment="Center" HorizontalAlignment="Center"

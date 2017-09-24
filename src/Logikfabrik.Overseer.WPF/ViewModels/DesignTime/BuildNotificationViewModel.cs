@@ -12,7 +12,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels.DesignTime
     public class BuildNotificationViewModel : IBuildNotificationViewModel
     {
         /// <summary>
-        /// Gets the build.
+        /// Gets or sets the build.
         /// </summary>
         /// <value>
         /// The build.
