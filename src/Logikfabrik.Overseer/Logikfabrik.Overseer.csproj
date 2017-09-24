@@ -74,7 +74,9 @@
     <Compile Include="BuildMonitorProjectErrorEventArgs.cs" />
     <Compile Include="BuildMonitorProjectEventArgs.cs" />
     <Compile Include="BuildMonitorProjectProgressEventArgs.cs" />
-    <Compile Include="BuildProviderFactory{T1,T2}.cs" />
+    <Compile Include="BuildProviderFactory{T1,T2}.cs">
+	  <SonarQubeExclude>true</SonarQubeExclude>
+	</Compile>
     <Compile Include="BuildProviderStrategy.cs" />
     <Compile Include="Change.cs" />
     <Compile Include="Extensions\ExceptionExtensions.cs" />
