@@ -21,7 +21,7 @@ before_build:
 - nuget restore src/Logikfabrik.Overseer.sln
 build_script:
   - choco install "msbuild-sonarqube-runner" -y
-  - SonarQube.Scanner.MSBuild.exe begin /k:"overseer" /o:"logikfabrik-github" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.login="%sonar_login%" /d:sonar.projectBaseDir="src" /d:sonar.projectVersion="%appveyor_build_version%"
+  - SonarQube.Scanner.MSBuild.exe begin /k:"overseer" /o:"logikfabrik-github" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.login="%sonar_login%" /d:sonar.projectBaseDir="src" /v:%appveyor_build_version%
   - msbuild src/Logikfabrik.Overseer.sln /p:Configuration=%configuration% /p:InstallerVersion=%appveyor_build_version% /p:WarningLevel=1 -verbosity:minimal /logger:"C:\Program Files\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll"
   - SonarQube.Scanner.MSBuild.exe end /d:sonar.login="%sonar_login%"
 artifacts:
