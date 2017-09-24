@@ -29,12 +29,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Logikfabrik.Overseer.WPF.Pr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Logikfabrik.Overseer.WPF.Provider.Codeship", "Logikfabrik.Overseer.WPF.Provider.Codeship\Logikfabrik.Overseer.WPF.Provider.Codeship.csproj", "{8E789175-EB12-43D0-B432-9308AE97D989}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SonarQube", "SonarQube", "{0B40B4D1-F8B7-4624-A7D0-45F27AE18207}"
-	ProjectSection(SolutionItems) = preProject
-		SonarQube\Overseer_masterCSharp.ruleset = SonarQube\Overseer_masterCSharp.ruleset
-		SonarQube\SolutionBinding.sqconfig = SonarQube\SolutionBinding.sqconfig
-	EndProjectSection
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
