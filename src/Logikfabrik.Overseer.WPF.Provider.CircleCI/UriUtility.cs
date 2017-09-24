@@ -14,6 +14,8 @@ namespace Logikfabrik.Overseer.WPF.Provider.CircleCI
         /// <summary>
         /// Gets the base URI.
         /// </summary>
+#pragma warning disable S1075 // URIs should not be hardcoded
         public static Uri BaseUri => new Uri("https://circleci.com/");
+#pragma warning restore S1075 // URIs should not be hardcoded
     }
 }

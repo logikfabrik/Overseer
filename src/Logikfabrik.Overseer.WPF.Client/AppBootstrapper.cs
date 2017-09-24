@@ -41,6 +41,7 @@ namespace Logikfabrik.Overseer.WPF.Client
         public void Dispose()
         {
             Dispose(true);
+            GC.SuppressFinalize(this);
         }
 
         /// <summary>
@@ -85,7 +86,9 @@ namespace Logikfabrik.Overseer.WPF.Client
             {
                 KernelConfigurator.Configure(_kernel, _catalog.Modules);
 
+#pragma warning disable S2696
                 LogManager.GetLog = type => _kernel.Get<IUILogService>(new ConstructorArgument("type", type));
+#pragma warning restore S2696
             }
 
             ViewLocator.AddNamespaceMapping("*", "Logikfabrik.Overseer.WPF.Client.Views");

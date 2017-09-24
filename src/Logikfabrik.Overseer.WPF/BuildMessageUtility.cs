@@ -125,7 +125,7 @@ namespace Logikfabrik.Overseer.WPF
             return null;
         }
 
-        private static string GetMessageParts(IDictionary<string, string> parts)
+        private static string GetMessageParts(IEnumerable<KeyValuePair<string, string>> parts)
         {
             var messageParts = parts.Where(part => !string.IsNullOrWhiteSpace(part.Value));
 
