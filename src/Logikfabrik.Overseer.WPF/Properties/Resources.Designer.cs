@@ -19,10 +19,10 @@ namespace Logikfabrik.Overseer.WPF.Properties {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Resources {
+    public class Resources {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,7 +36,7 @@ namespace Logikfabrik.Overseer.WPF.Properties {
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Logikfabrik.Overseer.WPF.Properties.Resources", typeof(Resources).Assembly);
@@ -51,7 +51,7 @@ namespace Logikfabrik.Overseer.WPF.Properties {
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -64,7 +64,7 @@ namespace Logikfabrik.Overseer.WPF.Properties {
         ///   Looks up a localized string similar to Sorry, there seems to be a problem!
         ///We couldn&apos;t connect to the CI/CD service. Please check your settings and try again..
         /// </summary>
-        internal static string AddConnection_Error_HTTP4xx {
+        public static string AddConnection_Error_HTTP4xx {
             get {
                 return ResourceManager.GetString("AddConnection_Error_HTTP4xx", resourceCulture);
             }
@@ -74,7 +74,7 @@ namespace Logikfabrik.Overseer.WPF.Properties {
         ///   Looks up a localized string similar to Sorry, there seems to be a problem!
         ///We couldn&apos;t connect to the CI/CD service. Please check your settings, and CI/CD service, and try again..
         /// </summary>
-        internal static string AddConnection_Error_HTTP5xx {
+        public static string AddConnection_Error_HTTP5xx {
             get {
                 return ResourceManager.GetString("AddConnection_Error_HTTP5xx", resourceCulture);
             }
@@ -84,7 +84,7 @@ namespace Logikfabrik.Overseer.WPF.Properties {
         ///   Looks up a localized string similar to Sorry, there seems to be a problem!
         ///We couldn&apos;t connect to the CI/CD service. Please check your network connection and try again..
         /// </summary>
-        internal static string AddConnection_Error_Network {
+        public static string AddConnection_Error_Network {
             get {
                 return ResourceManager.GetString("AddConnection_Error_Network", resourceCulture);
             }
@@ -94,7 +94,7 @@ namespace Logikfabrik.Overseer.WPF.Properties {
         ///   Looks up a localized string similar to Sorry, there seems to be a problem!
         ///We couldn&apos;t connect to the CI/CD service. Please try again..
         /// </summary>
-        internal static string AddConnection_Error_Standard {
+        public static string AddConnection_Error_Standard {
             get {
                 return ResourceManager.GetString("AddConnection_Error_Standard", resourceCulture);
             }
@@ -104,7 +104,7 @@ namespace Logikfabrik.Overseer.WPF.Properties {
         ///   Looks up a localized string similar to Sorry, there seems to be a problem!
         ///We couldn&apos;t connect to the CI/CD service. Please check your settings and try again..
         /// </summary>
-        internal static string EditConnection_Error_HTTP4xx {
+        public static string EditConnection_Error_HTTP4xx {
             get {
                 return ResourceManager.GetString("EditConnection_Error_HTTP4xx", resourceCulture);
             }
@@ -114,7 +114,7 @@ namespace Logikfabrik.Overseer.WPF.Properties {
         ///   Looks up a localized string similar to Sorry, there seems to be a problem!
         ///We couldn&apos;t connect to the CI/CD service. Please check your settings, and CI/CD service, and try again..
         /// </summary>
-        internal static string EditConnection_Error_HTTP5xx {
+        public static string EditConnection_Error_HTTP5xx {
             get {
                 return ResourceManager.GetString("EditConnection_Error_HTTP5xx", resourceCulture);
             }
@@ -124,7 +124,7 @@ namespace Logikfabrik.Overseer.WPF.Properties {
         ///   Looks up a localized string similar to Sorry, there seems to be a problem!
         ///We couldn&apos;t connect to the CI/CD service. Please check your network connection and try again..
         /// </summary>
-        internal static string EditConnection_Error_Network {
+        public static string EditConnection_Error_Network {
             get {
                 return ResourceManager.GetString("EditConnection_Error_Network", resourceCulture);
             }
@@ -134,7 +134,7 @@ namespace Logikfabrik.Overseer.WPF.Properties {
         ///   Looks up a localized string similar to Sorry, there seems to be a problem!
         ///We couldn&apos;t connect to the CI/CD service. Please try again..
         /// </summary>
-        internal static string EditConnection_Error_Standard {
+        public static string EditConnection_Error_Standard {
             get {
                 return ResourceManager.GetString("EditConnection_Error_Standard", resourceCulture);
             }

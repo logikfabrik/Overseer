@@ -206,7 +206,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
                 isUpdated = true;
             }
 
-            var message = BuildMessageUtility.GetBuildRunTimeMessage(status, endTime, runTime);
+            var message = BuildMessageUtility.GetBuildRunTimeMessage(DateTime.UtcNow, status, endTime, runTime);
 
             if (Message != message)
             {

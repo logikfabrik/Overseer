@@ -5,8 +5,10 @@
 namespace Logikfabrik.Overseer.WPF.Test
 {
     using System;
+    using System.Collections;
     using System.Collections.Generic;
     using Moq;
+    using Shouldly;
     using Xunit;
 
     public class BuildMessageUtilityTest
@@ -24,7 +26,7 @@ namespace Logikfabrik.Overseer.WPF.Test
 
             var buildName = BuildMessageUtility.GetBuildName(projectMock.Object, buildMock.Object);
 
-            Assert.Equal("My Project 1.0.0", buildName);
+            buildName.ShouldBe("My Project 1.0.0");
         }
 
         [Fact]
@@ -40,7 +42,7 @@ namespace Logikfabrik.Overseer.WPF.Test
 
             var buildName = BuildMessageUtility.GetBuildName(projectMock.Object, buildMock.Object);
 
-            Assert.Equal("My Project 100", buildName);
+            buildName.ShouldBe("My Project 100");
         }
 
         [Fact]
@@ -54,130 +56,108 @@ namespace Logikfabrik.Overseer.WPF.Test
 
             var buildName = BuildMessageUtility.GetBuildName(projectMock.Object, buildMock.Object);
 
-            Assert.Equal("My Project", buildName);
+            buildName.ShouldBe("My Project");
         }
 
-        [Fact]
-        public void CanGetBuildNameForProjectName()
+        [Theory]
+        [InlineData(null, null, null)]
+        [InlineData("My Project", null, "My Project")]
+        [InlineData("My Project", "1.0.0", "My Project 1.0.0")]
+        [InlineData(null, "1.0.0", "1.0.0")]
+        public void CanGetBuildName(string projectName, string versionNumber, string expected)
         {
-            var buildName = BuildMessageUtility.GetBuildName("My Project", null);
+            var buildName = BuildMessageUtility.GetBuildName(projectName, versionNumber);
 
-            Assert.Equal("My Project", buildName);
+            buildName.ShouldBe(expected);
         }
 
-        [Fact]
-        public void CanGetBuildNameForVersionNumber()
+        [Theory]
+        [InlineData(null, null)]
+        [InlineData(BuildStatus.Failed, "Build failed")]
+        [InlineData(BuildStatus.Succeeded, "Build succeeded")]
+        [InlineData(BuildStatus.InProgress, "Build in progress")]
+        [InlineData(BuildStatus.Stopped, "Build stopped")]
+        [InlineData(BuildStatus.Queued, "Build queued")]
+        public void CanGetBuildStatusMessage(BuildStatus? status, string expected)
         {
-            var buildName = BuildMessageUtility.GetBuildName(null, "1.0.0");
+            var buildStatusMessage = BuildMessageUtility.GetBuildStatusMessage(status);
 
-            Assert.Equal("1.0.0", buildName);
+            buildStatusMessage.ShouldBe(expected);
         }
 
-        [Fact]
-        public void CanGetBuildNameForProjectNameAndVersionNumber()
+        [Theory]
+        [InlineData(null, null)]
+        [InlineData(BuildStatus.Failed, "Build requested by John Doe and modified by Jane Doe failed")]
+        [InlineData(BuildStatus.Succeeded, "Build requested by John Doe and modified by Jane Doe succeeded")]
+        [InlineData(BuildStatus.InProgress, "Build requested by John Doe and modified by Jane Doe in progress")]
+        [InlineData(BuildStatus.Stopped, "Build requested by John Doe and modified by Jane Doe stopped")]
+        [InlineData(BuildStatus.Queued, "Build requested by John Doe and modified by Jane Doe queued")]
+        public void CanGetBuildStatusMessageWithParts(BuildStatus? status, string expected)
         {
-            var buildName = BuildMessageUtility.GetBuildName("My Project", "1.0.0");
+            var parts = GetPartsForBuildStatusMessage();
 
-            Assert.Equal("My Project 1.0.0", buildName);
+            var buildStatusMessage = BuildMessageUtility.GetBuildStatusMessage(status, parts);
+
+            buildStatusMessage.ShouldBe(expected);
         }
 
-        [Fact]
-        public void CanGetBuildStatusMessage()
+        [Theory]
+        [ClassData(typeof(CanGetBuildRunTimeMessageClassData))]
+        public void CanGetBuildRunTimeMessage(DateTime currentTime, BuildStatus? status, DateTime? endTime, TimeSpan? runTime, string expected)
         {
-            var buildStatusMessage1 = BuildMessageUtility.GetBuildStatusMessage(BuildStatus.Failed);
+            var buildRunTimeMessage = BuildMessageUtility.GetBuildRunTimeMessage(currentTime, status, endTime, runTime);
 
-            Assert.Equal("Build failed", buildStatusMessage1);
-
-            var buildStatusMessage2 = BuildMessageUtility.GetBuildStatusMessage(BuildStatus.Succeeded);
-
-            Assert.Equal("Build succeeded", buildStatusMessage2);
-
-            var buildStatusMessage3 = BuildMessageUtility.GetBuildStatusMessage(BuildStatus.InProgress);
-
-            Assert.Equal("Build in progress", buildStatusMessage3);
-
-            var buildStatusMessage4 = BuildMessageUtility.GetBuildStatusMessage(BuildStatus.Stopped);
-
-            Assert.Equal("Build stopped", buildStatusMessage4);
-
-            var buildStatusMessage5 = BuildMessageUtility.GetBuildStatusMessage(BuildStatus.Queued);
-
-            Assert.Equal("Build queued", buildStatusMessage5);
-
-            var buildStatusMessage6 = BuildMessageUtility.GetBuildStatusMessage(null);
-
-            Assert.Null(buildStatusMessage6);
+            buildRunTimeMessage.ShouldBe(expected);
         }
 
-        [Fact]
-        public void CanGetBuildStatusMessageWithParts()
+        private static IDictionary<string, string> GetPartsForBuildStatusMessage()
         {
-            var parts = new Dictionary<string, string>
+            return new Dictionary<string, string>
             {
                 { "requested by", "John Doe" },
                 { "modified by", "Jane Doe" },
                 { "canceled by", string.Empty }
             };
-
-            var buildStatusMessage1 = BuildMessageUtility.GetBuildStatusMessage(BuildStatus.Failed, parts);
-
-            Assert.Equal("Build requested by John Doe and modified by Jane Doe failed", buildStatusMessage1);
-
-            var buildStatusMessage2 = BuildMessageUtility.GetBuildStatusMessage(BuildStatus.Succeeded, parts);
-
-            Assert.Equal("Build requested by John Doe and modified by Jane Doe succeeded", buildStatusMessage2);
-
-            var buildStatusMessage3 = BuildMessageUtility.GetBuildStatusMessage(BuildStatus.InProgress, parts);
-
-            Assert.Equal("Build requested by John Doe and modified by Jane Doe in progress", buildStatusMessage3);
-
-            var buildStatusMessage4 = BuildMessageUtility.GetBuildStatusMessage(BuildStatus.Stopped, parts);
-
-            Assert.Equal("Build requested by John Doe and modified by Jane Doe stopped", buildStatusMessage4);
-
-            var buildStatusMessage5 = BuildMessageUtility.GetBuildStatusMessage(BuildStatus.Queued, parts);
-
-            Assert.Equal("Build requested by John Doe and modified by Jane Doe queued", buildStatusMessage5);
-
-            var buildStatusMessage6 = BuildMessageUtility.GetBuildStatusMessage(null, parts);
-
-            Assert.Null(buildStatusMessage6);
         }
 
-        [Fact]
-        public void CanGetBuildRunTimeMessage()
+        private class CanGetBuildRunTimeMessageClassData : IEnumerable<object[]>
         {
-            var buildRunTimeMessage1 = BuildMessageUtility.GetBuildRunTimeMessage(BuildStatus.InProgress, null, null);
+            private readonly IEnumerable<object[]> _data = new[]
+            {
+                new object[] { DateTime.UtcNow, null, null, null, null },
+                new object[] { DateTime.UtcNow, null, DateTime.UtcNow, null, null },
+                new object[] { DateTime.UtcNow, null, DateTime.UtcNow, TimeSpan.FromHours(1), null },
+                new object[] { DateTime.UtcNow, null, null, TimeSpan.FromHours(1), null },
 
-            Assert.Equal("In progress", buildRunTimeMessage1);
+                new object[] { DateTime.UtcNow, BuildStatus.Failed, null, null, "Failed" },
+                new object[] { DateTime.UtcNow, BuildStatus.Failed, DateTime.UtcNow, null, "Failed now" },
+                new object[] { DateTime.UtcNow, BuildStatus.Failed, DateTime.UtcNow, TimeSpan.FromHours(1), "Failed in 1 hour, now" },
+                new object[] { DateTime.UtcNow, BuildStatus.Failed, null, TimeSpan.FromHours(1), "Failed in 1 hour" },
 
-            var buildRunTimeMessage2 = BuildMessageUtility.GetBuildRunTimeMessage(BuildStatus.InProgress, null, TimeSpan.FromHours(1));
+                new object[] { DateTime.UtcNow, BuildStatus.Succeeded, null, null, "Succeeded" },
+                new object[] { DateTime.UtcNow, BuildStatus.Succeeded, DateTime.UtcNow, null, "Succeeded now" },
+                new object[] { DateTime.UtcNow, BuildStatus.Succeeded, DateTime.UtcNow, TimeSpan.FromHours(1), "Succeeded in 1 hour, now" },
+                new object[] { DateTime.UtcNow, BuildStatus.Succeeded, null, TimeSpan.FromHours(1), "Succeeded in 1 hour" },
 
-            Assert.Equal("In progress for 1 hour", buildRunTimeMessage2);
+                new object[] { DateTime.UtcNow, BuildStatus.InProgress, null, null, "In progress" },
+                new object[] { DateTime.UtcNow, BuildStatus.InProgress, DateTime.UtcNow, null, "In progress" },
+                new object[] { DateTime.UtcNow, BuildStatus.InProgress, DateTime.UtcNow, TimeSpan.FromHours(1), "In progress for 1 hour" },
+                new object[] { DateTime.UtcNow, BuildStatus.InProgress, null, TimeSpan.FromHours(1), "In progress for 1 hour" },
 
-            var buildRunTimeMessage3 = BuildMessageUtility.GetBuildRunTimeMessage(BuildStatus.Succeeded, null, null);
+                new object[] { DateTime.UtcNow, BuildStatus.Stopped, null, null, "Stopped" },
+                new object[] { DateTime.UtcNow, BuildStatus.Stopped, DateTime.UtcNow, null, "Stopped now" },
+                new object[] { DateTime.UtcNow, BuildStatus.Stopped, DateTime.UtcNow, TimeSpan.FromHours(1), "Stopped in 1 hour, now" },
+                new object[] { DateTime.UtcNow, BuildStatus.Stopped, null, TimeSpan.FromHours(1), "Stopped in 1 hour" },
 
-            Assert.Equal("Succeeded", buildRunTimeMessage3);
+                new object[] { DateTime.UtcNow, BuildStatus.Queued, null, null, "Queued" },
+                new object[] { DateTime.UtcNow, BuildStatus.Queued, DateTime.UtcNow, null, "Queued" },
+                new object[] { DateTime.UtcNow, BuildStatus.Queued, DateTime.UtcNow, TimeSpan.FromHours(1), "Queued" },
+                new object[] { DateTime.UtcNow, BuildStatus.Queued, null, TimeSpan.FromHours(1), "Queued" }
+            };
 
-            var buildRunTimeMessage4 = BuildMessageUtility.GetBuildRunTimeMessage(BuildStatus.Succeeded, null, TimeSpan.FromHours(1));
+            public IEnumerator<object[]> GetEnumerator() => _data.GetEnumerator();
 
-            Assert.Equal("Succeeded in 1 hour", buildRunTimeMessage4);
-
-            var buildRunTimeMessage5 = BuildMessageUtility.GetBuildRunTimeMessage(BuildStatus.Succeeded, DateTime.UtcNow.AddHours(-1), TimeSpan.FromHours(1));
-
-            Assert.Equal("Succeeded in 1 hour, an hour ago", buildRunTimeMessage5);
-
-            var buildRunTimeMessage6 = BuildMessageUtility.GetBuildRunTimeMessage(BuildStatus.Succeeded, DateTime.UtcNow.AddHours(-1), null);
-
-            Assert.Equal("Succeeded an hour ago", buildRunTimeMessage6);
-
-            var buildRunTimeMessage7 = BuildMessageUtility.GetBuildRunTimeMessage(BuildStatus.Queued, null, null);
-
-            Assert.Equal("Queued", buildRunTimeMessage7);
-
-            var buildRunTimeMessage8 = BuildMessageUtility.GetBuildRunTimeMessage(null, null, null);
-
-            Assert.Null(buildRunTimeMessage8);
+            IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
         }
     }
 }
