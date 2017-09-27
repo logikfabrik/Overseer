@@ -60,72 +60,92 @@ namespace Logikfabrik.Overseer.Logging
             switch (entry.Type)
             {
                 case LogEntryType.Debug:
-                    if (!logger.IsEnabled(LogEventLevel.Debug))
-                    {
-                        break;
-                    }
-
-                    if (entry.Exception == null)
-                    {
-                        logger.Debug(entry.MessageTemplate, entry.Arguments);
-                    }
-                    else
-                    {
-                        logger.Debug(entry.Exception, entry.MessageTemplate, entry.Arguments);
-                    }
+                    LogDebug(logger, entry);
 
                     break;
 
                 case LogEntryType.Information:
-                    if (!logger.IsEnabled(LogEventLevel.Information))
-                    {
-                        break;
-                    }
-
-                    if (entry.Exception == null)
-                    {
-                        logger.Information(entry.MessageTemplate, entry.Arguments);
-                    }
-                    else
-                    {
-                        logger.Information(entry.Exception, entry.MessageTemplate, entry.Arguments);
-                    }
+                    LogInformation(logger, entry);
 
                     break;
 
                 case LogEntryType.Warning:
-                    if (!logger.IsEnabled(LogEventLevel.Warning))
-                    {
-                        break;
-                    }
-
-                    if (entry.Exception == null)
-                    {
-                        logger.Warning(entry.MessageTemplate, entry.Arguments);
-                    }
-                    else
-                    {
-                        logger.Warning(entry.Exception, entry.MessageTemplate, entry.Arguments);
-                    }
+                    LogWarning(logger, entry);
 
                     break;
 
                 case LogEntryType.Error:
-                    if (!logger.IsEnabled(LogEventLevel.Error))
-                    {
-                        break;
-                    }
-
-                    if (entry.Exception == null)
-                    {
-                        logger.Error(entry.MessageTemplate, entry.Arguments);
-                    }
-                    else
-                    {
-                        logger.Error(entry.Exception, entry.MessageTemplate, entry.Arguments);
-                    }
+                    LogError(logger, entry);
 
                     break;
+            }
+        }
+
+        private static void LogDebug(ILogger logger, LogEntry entry)
+        {
+            if (!logger.IsEnabled(LogEventLevel.Debug))
+            {
+                return;
+            }
+
+            if (entry.Exception == null)
+            {
+                logger.Debug(entry.MessageTemplate, entry.Arguments);
+            }
+            else
+            {
+                logger.Debug(entry.Exception, entry.MessageTemplate, entry.Arguments);
+            }
+        }
+
+        private static void LogInformation(ILogger logger, LogEntry entry)
+        {
+            if (!logger.IsEnabled(LogEventLevel.Information))
+            {
+                return;
+            }
+
+            if (entry.Exception == null)
+            {
+                logger.Information(entry.MessageTemplate, entry.Arguments);
+            }
+            else
+            {
+                logger.Information(entry.Exception, entry.MessageTemplate, entry.Arguments);
+            }
+        }
+
+        private static void LogWarning(ILogger logger, LogEntry entry)
+        {
+            if (!logger.IsEnabled(LogEventLevel.Warning))
+            {
+                return;
+            }
+
+            if (entry.Exception == null)
+            {
+                logger.Warning(entry.MessageTemplate, entry.Arguments);
+            }
+            else
+            {
+                logger.Warning(entry.Exception, entry.MessageTemplate, entry.Arguments);
+            }
+        }
+
+        private static void LogError(ILogger logger, LogEntry entry)
+        {
+            if (!logger.IsEnabled(LogEventLevel.Error))
+            {
+                return;
+            }
+
+            if (entry.Exception == null)
+            {
+                logger.Error(entry.MessageTemplate, entry.Arguments);
+            }
+            else
+            {
+                logger.Error(entry.Exception, entry.MessageTemplate, entry.Arguments);
             }
         }
     }
