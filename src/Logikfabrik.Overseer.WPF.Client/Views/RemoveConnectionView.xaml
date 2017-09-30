@@ -4,6 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:p="clr-namespace:Logikfabrik.Overseer.WPF.Client.Properties"
     d:DesignHeight="300"
     d:DesignWidth="300"
     mc:Ignorable="d">
@@ -15,13 +16,13 @@
             </StackPanel>
             <WrapPanel Margin="10,0,10,10" Orientation="Horizontal">
                 <Button
-                    x:Name="RemoveConnection"
+                    x:Name="Remove"
                     Margin="0,0,2,0"
-                    Content="OK"
+                    Content="{x:Static p:Resources.RemoveConnection_Button_Remove}"
                     IsDefault="True" />
                 <Button
                     x:Name="TryClose"
-                    Content="Cancel"
+                    Content="{x:Static p:Resources.RemoveConnection_Button_Cancel}"
                     IsCancel="True" />
             </WrapPanel>
         </StackPanel>

@@ -160,7 +160,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// <summary>
         /// Edit the connection.
         /// </summary>
-        public void EditConnection()
+        public void Edit()
         {
             if (!IsValidAndHasConnected)
             {
@@ -189,7 +189,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             }
             catch (Exception ex)
             {
-                _logService.Log<BuildMonitor>(new LogEntry(LogEntryType.Error, "An error occurred while editing connection.", ex));
+                _logService.Log(GetType(), new LogEntry(LogEntryType.Error, "An error occurred while editing connection.", ex));
 
                 HasConnected = false;
 

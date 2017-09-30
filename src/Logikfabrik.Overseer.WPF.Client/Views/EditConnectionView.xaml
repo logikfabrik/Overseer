@@ -6,6 +6,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:uc="clr-namespace:Logikfabrik.Overseer.WPF.Client.Views.UserControls"
+    xmlns:p="clr-namespace:Logikfabrik.Overseer.WPF.Client.Properties"
     d:DesignHeight="300"
     d:DesignWidth="300"
     mc:Ignorable="d">
@@ -20,14 +21,14 @@
                 <Grid>
                     <Button
                         x:Name="TryConnect"
-                        Content="Try connection"
+                        Content="{x:Static p:Resources.EditConnection_Button_TryConnect}"
                         IsEnabled="{Binding IsValidAndHasNotConnected, Mode=OneWay}" />
                     <uc:ProgressControl
                         VerticalAlignment="Top"
                         IsErrored="{Binding ConnectionTask.Status, Converter={StaticResource TaskStatusFaultedToBooleanConverter}}"
                         IsInProgress="{Binding ConnectionTask.Status, Converter={StaticResource TaskStatusRunningToBooleanConverter}}" />
                 </Grid>
-                <TextBlock Text="{Binding Path=ConnectionTask.Exception, Converter={StaticResource EditConnectionViewExceptionToLocalizedStringConverter}}" Visibility="{Binding ConnectionTask.Status, Converter={StaticResource TaskStatusFaultedToVisibilityConverter}}" />
+                <TextBlock Text="{Binding ConnectionTask.Exception, Converter={StaticResource EditConnectionViewExceptionToLocalizedStringConverter}}" Visibility="{Binding ConnectionTask.Status, Converter={StaticResource TaskStatusFaultedToVisibilityConverter}}" />
             </StackPanel>
             <StackPanel Margin="10,0,10,10" Visibility="{Binding HasConnected, Converter={StaticResource BooleanToVisibilityConverter}}">
                 <ContentControl
@@ -37,19 +38,20 @@
                     Focusable="False" />
             </StackPanel>
             <StackPanel Margin="10,0,10,10">
-                <TextBlock Text="Builds per project" />
-                <TextBox Text="{Binding Path=Settings.BuildsPerProject, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" />
+                <TextBlock Text="{x:Static p:Resources.ConnectionSettings_Setting_Label_BuildsPerProject}" />
+                <TextBlock Text="{x:Static p:Resources.ConnectionSettings_Setting_Description_BuildsPerProject}" />
+                <TextBox Text="{Binding Settings.BuildsPerProject, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" />
             </StackPanel>
             <WrapPanel Margin="10,0,10,10" Orientation="Horizontal">
                 <Button
-                    x:Name="EditConnection"
+                    x:Name="Edit"
                     Margin="0,0,2,0"
-                    Content="OK"
+                    Content="{x:Static p:Resources.EditConnection_Button_Edit}"
                     IsDefault="True"
                     IsEnabled="{Binding IsValidAndHasConnected, Mode=OneWay}" />
                 <Button
                     x:Name="TryClose"
-                    Content="Cancel"
+                    Content="{x:Static p:Resources.EditConnection_Button_Cancel}"
                     IsCancel="True" />
             </WrapPanel>
         </StackPanel>

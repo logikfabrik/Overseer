@@ -116,6 +116,51 @@ namespace Logikfabrik.Overseer.WPF.Client.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        public static string EditConnection_Button_Cancel {
+            get {
+                return ResourceManager.GetString("EditConnection_Button_Cancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to OK.
+        /// </summary>
+        public static string EditConnection_Button_Edit {
+            get {
+                return ResourceManager.GetString("EditConnection_Button_Edit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Try to connect.
+        /// </summary>
+        public static string EditConnection_Button_TryConnect {
+            get {
+                return ResourceManager.GetString("EditConnection_Button_TryConnect", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        public static string EditSettings_Button_Cancel {
+            get {
+                return ResourceManager.GetString("EditSettings_Button_Cancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to OK.
+        /// </summary>
+        public static string EditSettings_Button_Save {
+            get {
+                return ResourceManager.GetString("EditSettings_Button_Save", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Language.
         /// </summary>
         public static string EditSettings_Setting_Label_CultureName {
@@ -175,6 +220,33 @@ namespace Logikfabrik.Overseer.WPF.Client.Properties {
         public static string Menu_MenuItem_Label_GoToSettings {
             get {
                 return ResourceManager.GetString("Menu_MenuItem_Label_GoToSettings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to OK.
+        /// </summary>
+        public static string PassPhrase_Button_Save {
+            get {
+                return ResourceManager.GetString("PassPhrase_Button_Save", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        public static string RemoveConnection_Button_Cancel {
+            get {
+                return ResourceManager.GetString("RemoveConnection_Button_Cancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to OK.
+        /// </summary>
+        public static string RemoveConnection_Button_Remove {
+            get {
+                return ResourceManager.GetString("RemoveConnection_Button_Remove", resourceCulture);
             }
         }
     }

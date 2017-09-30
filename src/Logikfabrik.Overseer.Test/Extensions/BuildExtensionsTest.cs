@@ -8,6 +8,7 @@ namespace Logikfabrik.Overseer.Test.Extensions
     using Moq;
     using Overseer.Extensions;
     using Ploeh.AutoFixture.Xunit2;
+    using Shouldly;
     using Xunit;
 
     public class BuildExtensionsTest
@@ -19,12 +20,12 @@ namespace Logikfabrik.Overseer.Test.Extensions
 
             var versionNumber = buildMock.Object.VersionNumber();
 
-            Assert.Null(versionNumber);
+            versionNumber.ShouldBeNull();
         }
 
         [Theory]
         [AutoData]
-        public void CanGetVersionNumberForBuildVersion(string version)
+        public void CanGetVersionNumberForVersion(string version)
         {
             var buildMock = new Mock<IBuild>();
 
@@ -32,12 +33,12 @@ namespace Logikfabrik.Overseer.Test.Extensions
 
             var versionNumber = buildMock.Object.VersionNumber();
 
-            Assert.Equal(version, versionNumber);
+            versionNumber.ShouldBe(version);
         }
 
         [Theory]
         [AutoData]
-        public void CanGetVersionNumberForBuildNumber(string number)
+        public void CanGetVersionNumberForNumber(string number)
         {
             var buildMock = new Mock<IBuild>();
 
@@ -45,24 +46,122 @@ namespace Logikfabrik.Overseer.Test.Extensions
 
             var versionNumber = buildMock.Object.VersionNumber();
 
-            Assert.Equal(number, versionNumber);
+            versionNumber.ShouldBe(number);
         }
 
-        [Fact]
-        public void CanNotGetRunTimeForBuild()
+        [Theory]
+        [InlineData(null)]
+        [InlineData(BuildStatus.Failed)]
+        [InlineData(BuildStatus.Succeeded)]
+        [InlineData(BuildStatus.Stopped)]
+        [InlineData(BuildStatus.Queued)]
+        public void CanNotGetRunTimeWithoutStartTime(BuildStatus? status)
         {
+            var utcNow = DateTime.UtcNow;
+
             var buildMock = new Mock<IBuild>();
+
+            buildMock.Setup(m => m.Status).Returns(status);
+            buildMock.Setup(m => m.EndTime).Returns(utcNow);
 
             var runTime = buildMock.Object.RunTime();
 
-            Assert.Null(runTime);
+            runTime.ShouldBeNull();
+        }
+
+        [Theory]
+        [InlineData(null)]
+        [InlineData(BuildStatus.Failed)]
+        [InlineData(BuildStatus.Succeeded)]
+        [InlineData(BuildStatus.Stopped)]
+        [InlineData(BuildStatus.Queued)]
+        public void CanNotGetRunTimeWithoutEndTime(BuildStatus? status)
+        {
+            var utcNow = DateTime.UtcNow;
+
+            var buildMock = new Mock<IBuild>();
+
+            buildMock.Setup(m => m.Status).Returns(status);
+            buildMock.Setup(m => m.StartTime).Returns(utcNow);
+
+            var runTime = buildMock.Object.RunTime();
+
+            runTime.ShouldBeNull();
+        }
+
+        [Theory]
+        [InlineData(null)]
+        [InlineData(BuildStatus.Failed)]
+        [InlineData(BuildStatus.Succeeded)]
+        [InlineData(BuildStatus.InProgress)]
+        [InlineData(BuildStatus.Stopped)]
+        [InlineData(BuildStatus.Queued)]
+        public void CanNotGetRunTimedWithoutStartAndEndTime(BuildStatus? status)
+        {
+            var buildMock = new Mock<IBuild>();
+
+            buildMock.Setup(m => m.Status).Returns(status);
+
+            var runTime = buildMock.Object.RunTime();
+
+            runTime.ShouldBeNull();
+        }
+
+        [Fact]
+        public void CanNotGetRunTimeWhenInProgressWithoutStartTime()
+        {
+            var utcNow = DateTime.UtcNow;
+
+            var buildMock = new Mock<IBuild>();
+
+            buildMock.Setup(m => m.Status).Returns(BuildStatus.InProgress);
+            buildMock.Setup(m => m.EndTime).Returns(utcNow);
+
+            var runTime = buildMock.Object.RunTime();
+
+            runTime.ShouldBeNull();
+        }
+
+        [Fact]
+        public void CanGetRunTimeWhenInProgressWithoutEndTime()
+        {
+            var utcNow = DateTime.UtcNow;
+
+            var buildMock = new Mock<IBuild>();
+
+            buildMock.Setup(m => m.Status).Returns(BuildStatus.InProgress);
+            buildMock.Setup(m => m.StartTime).Returns(utcNow);
+
+            var runTime = buildMock.Object.RunTime();
+
+            runTime.ShouldNotBeNull();
+        }
+
+        [Theory]
+        [InlineData(BuildStatus.Failed, 1)]
+        [InlineData(BuildStatus.Succeeded, 2)]
+        [InlineData(BuildStatus.Stopped, 3)]
+        public void CanGetRunTime(BuildStatus status, int hoursRunning)
+        {
+            var utcNow = DateTime.UtcNow;
+
+            var buildMock = new Mock<IBuild>();
+
+            buildMock.Setup(m => m.Status).Returns(status);
+            buildMock.Setup(m => m.StartTime).Returns(utcNow.AddHours(-1 * hoursRunning));
+            buildMock.Setup(m => m.EndTime).Returns(utcNow);
+
+            var runTime = buildMock.Object.RunTime();
+
+            // ReSharper disable once PossibleInvalidOperationException
+            runTime.Value.TotalHours.ShouldBe(hoursRunning);
         }
 
         [Theory]
         [InlineData(1)]
         [InlineData(2)]
         [InlineData(3)]
-        public void CanGetRunTimeForInProgressBuild(int hoursRunning)
+        public void CanGetRunTimeWhenInProgress(int hoursRunning)
         {
             var utcNow = DateTime.UtcNow;
 
@@ -74,95 +173,7 @@ namespace Logikfabrik.Overseer.Test.Extensions
             var runTime = buildMock.Object.RunTime(utcNow);
 
             // ReSharper disable once PossibleInvalidOperationException
-            Assert.Equal(hoursRunning, runTime.Value.TotalHours);
-        }
-
-        [Fact]
-        public void CanNotGetRunTimeForInProgressBuildWithoutStartTime()
-        {
-            var buildMock = new Mock<IBuild>();
-
-            buildMock.Setup(m => m.Status).Returns(BuildStatus.InProgress);
-
-            var runTime = buildMock.Object.RunTime();
-
-            Assert.Null(runTime);
-        }
-
-        [Theory]
-        [InlineData(BuildStatus.Failed, 1)]
-        [InlineData(BuildStatus.Succeeded, 2)]
-        [InlineData(BuildStatus.Stopped, 3)]
-        public void CanGetRunTimeForFinishedBuild(BuildStatus status, int hoursRunning)
-        {
-            var utcNow = DateTime.UtcNow;
-
-            var buildMock = new Mock<IBuild>();
-
-            buildMock.Setup(m => m.Status).Returns(status);
-            buildMock.Setup(m => m.StartTime).Returns(utcNow.AddHours(-1 * hoursRunning));
-            buildMock.Setup(m => m.EndTime).Returns(utcNow);
-
-            var runTime = buildMock.Object.RunTime();
-
-            // ReSharper disable once PossibleInvalidOperationException
-            Assert.Equal(hoursRunning, runTime.Value.TotalHours);
-        }
-
-        [Theory]
-        [InlineData(BuildStatus.Failed)]
-        [InlineData(BuildStatus.Succeeded)]
-        [InlineData(BuildStatus.InProgress)]
-        [InlineData(BuildStatus.Stopped)]
-        [InlineData(BuildStatus.Queued)]
-        public void CanNotGetRunTimeForBuildWithoutStartTime(BuildStatus status)
-        {
-            var utcNow = DateTime.UtcNow;
-
-            var buildMock = new Mock<IBuild>();
-
-            buildMock.Setup(m => m.Status).Returns(status);
-            buildMock.Setup(m => m.EndTime).Returns(utcNow);
-
-            var runTime = buildMock.Object.RunTime();
-
-            Assert.Null(runTime);
-        }
-
-        [Theory]
-        [InlineData(BuildStatus.Failed)]
-        [InlineData(BuildStatus.Succeeded)]
-        [InlineData(BuildStatus.Stopped)]
-        [InlineData(BuildStatus.Queued)]
-        public void CanNotGetRunTimeForBuildWithoutEndTime(BuildStatus status)
-        {
-            var utcNow = DateTime.UtcNow;
-
-            var buildMock = new Mock<IBuild>();
-
-            buildMock.Setup(m => m.Status).Returns(status);
-            buildMock.Setup(m => m.StartTime).Returns(utcNow.AddHours(-1));
-
-            var runTime = buildMock.Object.RunTime();
-
-            Assert.Null(runTime);
-        }
-
-        [Theory]
-        [InlineData(BuildStatus.Failed)]
-        [InlineData(BuildStatus.Succeeded)]
-        [InlineData(BuildStatus.InProgress)]
-        [InlineData(BuildStatus.Stopped)]
-        [InlineData(BuildStatus.Queued)]
-        public void CanNotGetRunTimeForBuildWithoutStartAndEndTime(BuildStatus status)
-        {
-            var buildMock = new Mock<IBuild>();
-
-            buildMock.Setup(m => m.Status).Returns(status);
-
-            var runTime = buildMock.Object.RunTime();
-
-            Assert.Null(runTime);
+            runTime.Value.TotalHours.ShouldBe(hoursRunning);
         }
     }
 }

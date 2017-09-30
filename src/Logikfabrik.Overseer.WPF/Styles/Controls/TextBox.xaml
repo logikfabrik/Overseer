@@ -31,10 +31,10 @@
                                 HorizontalScrollBarVisibility="Hidden"
                                 VerticalScrollBarVisibility="Hidden" />
                         </Border>
-                        <ItemsControl ItemsSource="{Binding Path=(Validation.Errors), Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}">
+                        <ItemsControl ItemsSource="{Binding (Validation.Errors), Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}">
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate DataType="{x:Type ValidationError}">
-                                    <TextBlock Foreground="{DynamicResource Control.Error}" Text="{Binding Path=ErrorContent, Mode=OneWay}" />
+                                    <TextBlock Foreground="{DynamicResource Control.Error}" Text="{Binding ErrorContent, Mode=OneWay}" />
                                 </DataTemplate>
                             </ItemsControl.ItemTemplate>
                         </ItemsControl>

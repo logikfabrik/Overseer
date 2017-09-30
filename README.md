@@ -1,6 +1,5 @@
 # Overseer [![Build status](https://ci.appveyor.com/api/projects/status/5qb10vsch42wx2y4?svg=true)](https://ci.appveyor.com/project/logikfabrik/overseer) [![Quality Gate](https://sonarcloud.io/api/badges/gate?key=overseer)](https://sonarcloud.io/dashboard?id=overseer)
 
-
 Overseer is a Windows task bar app for build notifications, in its early stages. It features support for AppVeyor, CircleCI, TeamCity, and Visual Studio Team Services.
 
 Support for Codeship, and Jenkins, is in the pipeline.
@@ -30,3 +29,4 @@ If you have a bug report, feature request, or suggestion, please open a new issu
 - [StyleCop.Analyzers](https://github.com/DotNetAnalyzers/StyleCopAnalyzers)
 - [WiX](https://github.com/wixtoolset/wix3)
 - [xUnit](https://github.com/xunit/xunit)
+- [Shouldly](https://github.com/shouldly/shouldly)

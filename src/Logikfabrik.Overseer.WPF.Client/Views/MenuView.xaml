@@ -108,7 +108,7 @@
                             </StackPanel>
                         </Grid>
                         <ControlTemplate.Triggers>
-                            <DataTrigger Binding="{Binding Path=IsExpanded}" Value="True">
+                            <DataTrigger Binding="{Binding IsExpanded}" Value="True">
                                 <DataTrigger.EnterActions>
                                     <BeginStoryboard>
                                         <Storyboard>

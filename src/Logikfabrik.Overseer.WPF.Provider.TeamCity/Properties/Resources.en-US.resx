@@ -132,4 +132,13 @@
   <data name="ConnectionSettings_Setting_Label_Username" xml:space="preserve">
     <value>Username</value>
   </data>
+  <data name="ConnectionSettings_Validation_Password" xml:space="preserve">
+    <value>Password is missing</value>
+  </data>
+  <data name="ConnectionSettings_Validation_Url" xml:space="preserve">
+    <value>URL is missing</value>
+  </data>
+  <data name="ConnectionSettings_Validation_Username" xml:space="preserve">
+    <value>Username is missing</value>
+  </data>
 </root>

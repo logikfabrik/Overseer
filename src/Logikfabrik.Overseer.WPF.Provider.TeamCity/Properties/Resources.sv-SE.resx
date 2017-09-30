@@ -132,4 +132,13 @@
   <data name="ConnectionSettings_Setting_Label_Username" xml:space="preserve">
     <value>Användarnamn</value>
   </data>
+  <data name="ConnectionSettings_Validation_Password" xml:space="preserve">
+    <value>Lösenord saknas</value>
+  </data>
+  <data name="ConnectionSettings_Validation_Url" xml:space="preserve">
+    <value>URL saknas</value>
+  </data>
+  <data name="ConnectionSettings_Validation_Username" xml:space="preserve">
+    <value>Användarnamn saknas</value>
+  </data>
 </root>

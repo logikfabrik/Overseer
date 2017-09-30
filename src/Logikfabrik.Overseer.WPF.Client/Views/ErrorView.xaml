@@ -23,7 +23,7 @@
                                 <ColumnDefinition Width="Auto" />
                             </Grid.ColumnDefinitions>
                             <Border Padding="12">
-                                <TextBlock Text="{Binding Path=Message}" />
+                                <TextBlock Text="{Binding Message}" />
                             </Border>
                             <Button
                                 Grid.Column="1"
@@ -38,7 +38,7 @@
                             </Button>
                         </Grid>
                         <ControlTemplate.Triggers>
-                            <DataTrigger Binding="{Binding Path=IsExpanded}" Value="True">
+                            <DataTrigger Binding="{Binding IsExpanded}" Value="True">
                                 <DataTrigger.EnterActions>
                                     <BeginStoryboard>
                                         <Storyboard>
@@ -69,7 +69,7 @@
                                 </DataTrigger.ExitActions>
                                 <Setter Property="Visibility" Value="Visible" />
                             </DataTrigger>
-                            <DataTrigger Binding="{Binding Path=IsExpanded}" Value="False">
+                            <DataTrigger Binding="{Binding IsExpanded}" Value="False">
                                 <Setter Property="Visibility" Value="Collapsed" />
                             </DataTrigger>
                         </ControlTemplate.Triggers>

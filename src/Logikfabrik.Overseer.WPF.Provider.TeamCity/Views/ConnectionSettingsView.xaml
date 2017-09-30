@@ -25,29 +25,29 @@
         </StackPanel>
         <StackPanel Margin="10,0,10,10">
             <TextBlock Text="{x:Static p:Resources.ConnectionSettings_Setting_Label_Name}" />
-            <TextBox Text="{Binding Path=Name, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" />
+            <TextBox Text="{Binding Name, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" />
         </StackPanel>
         <StackPanel Margin="10,0,10,10">
             <TextBlock Text="{x:Static p:Resources.ConnectionSettings_Setting_Label_Url}" />
-            <TextBlock Text="{Binding Path=BaseUri, Mode=OneWay}" Visibility="{Binding Path=ShowBaseUri, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}" />
-            <TextBox Text="{Binding Path=Url, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" />
+            <TextBlock Text="{Binding BaseUri, Mode=OneWay}" Visibility="{Binding ShowBaseUri, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}" />
+            <TextBox Text="{Binding Url, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" />
         </StackPanel>
         <StackPanel Margin="10,0,10,10">
             <TextBlock Text="{x:Static p:Resources.ConnectionSettings_Setting_Label_AuthenticationType}" />
             <ComboBox
                 DisplayMemberPath="DisplayName"
                 ItemsSource="{markupExtensions:EnumToItemsSourceMarkup {x:Type teamCity:AuthenticationType}}"
-                SelectedValue="{Binding Path=AuthenticationType, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                SelectedValue="{Binding AuthenticationType, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                 SelectedValuePath="Value" />
         </StackPanel>
-        <StackPanel Margin="10,0,10,10" Visibility="{Binding Path=ShowUsernameAndPassword, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}">
+        <StackPanel Margin="10,0,10,10" Visibility="{Binding ShowUsernameAndPassword, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}">
             <StackPanel>
                 <TextBlock Text="{x:Static p:Resources.ConnectionSettings_Setting_Label_Username}" />
-                <TextBox Text="{Binding Path=Username, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" />
+                <TextBox Text="{Binding Username, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" />
             </StackPanel>
             <StackPanel>
                 <TextBlock Text="{x:Static p:Resources.ConnectionSettings_Setting_Label_Password}" />
-                <TextBox Text="{Binding Path=Password, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" />
+                <TextBox Text="{Binding Password, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" />
             </StackPanel>
         </StackPanel>
     </StackPanel>

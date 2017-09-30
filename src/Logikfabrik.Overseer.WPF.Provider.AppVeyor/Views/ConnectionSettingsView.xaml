@@ -25,7 +25,7 @@
         </StackPanel>
         <StackPanel Margin="10,0,10,10">
             <TextBlock Text="Name" />
-            <TextBox Text="{Binding Path=Name, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" />
+            <TextBox Text="{Binding Name, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" />
         </StackPanel>
         <StackPanel Margin="10,0,10,10">
             <TextBlock Text="Token" />
@@ -33,7 +33,7 @@
                 You create your token at
                 <Hyperlink ex:HyperlinkExtensions.IsExternal="True" NavigateUri="{Binding Source={x:Static appVeyor:UriUtility.BaseUri}}">ci.appveyor.com</Hyperlink>
             </TextBlock>
-            <TextBox Text="{Binding Path=Token, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" />
+            <TextBox Text="{Binding Token, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" />
         </StackPanel>
     </StackPanel>
 </UserControl>

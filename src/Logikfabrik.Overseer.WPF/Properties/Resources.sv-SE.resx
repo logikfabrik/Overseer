@@ -133,6 +133,12 @@ Vi kunde inte ansluta till CI/CD-tjänsten. Vänligen kontrollera din nätverksa
     <value>Tyvärr, det verkar vara ett problem!
 Vi kunde inte ansluta till CI/CD-tjänsten. Vänligen försök igen.</value>
   </data>
+  <data name="ConnectionSettings_Validation_BuildsPerProject" xml:space="preserve">
+    <value>Vi måste hämta minst 1 bygge per projekt</value>
+  </data>
+  <data name="ConnectionSettings_Validation_Name" xml:space="preserve">
+    <value>Namn saknas</value>
+  </data>
   <data name="EditConnection_Error_HTTP4xx" xml:space="preserve">
     <value>Tyvärr, det verkar vara ett problem!
 Vi kunde inte ansluta till CI/CD-tjänsten. Vänligen kontrollera dina inställningar och försök igen.</value>
@@ -148,5 +154,11 @@ Vi kunde inte ansluta till CI/CD-tjänsten. Vänligen kontrollera din nätverksa
   <data name="EditConnection_Error_Standard" xml:space="preserve">
     <value>Tyvärr, det verkar vara ett problem!
 Vi kunde inte ansluta till CI/CD-tjänsten. Vänligen försök igen.</value>
+  </data>
+  <data name="EditSettings_Validation_CultureName" xml:space="preserve">
+    <value>Språk saknas</value>
+  </data>
+  <data name="EditSettings_Validation_Interval" xml:space="preserve">
+    <value>Intervall kan vara mellan 10 och 86400 (24 timmar)</value>
   </data>
 </root>

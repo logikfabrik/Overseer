@@ -23,12 +23,12 @@
         </StackPanel>
         <StackPanel Margin="10,0,10,10">
             <TextBlock Text="Name" />
-            <TextBox Text="{Binding Path=Name, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" />
+            <TextBox Text="{Binding Name, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" />
         </StackPanel>
         <StackPanel Margin="10,0,10,10">
             <TextBlock Text="URL" />
             <TextBlock Text="e.g. https://overseer-ci.visualstudio.com" />
-            <TextBox Text="{Binding Path=Url, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" />
+            <TextBox Text="{Binding Url, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" />
         </StackPanel>
         <StackPanel Margin="10,0,10,10">
             <TextBlock Text="Token" />
@@ -36,7 +36,7 @@
                 You create your token at
                 <Hyperlink ex:HyperlinkExtensions.IsExternal="True" NavigateUri="https://www.visualstudio.com">visualstudio.com</Hyperlink>
             </TextBlock>
-            <TextBox Text="{Binding Path=Token, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" />
+            <TextBox Text="{Binding Token, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" />
         </StackPanel>
     </StackPanel>
 </UserControl>

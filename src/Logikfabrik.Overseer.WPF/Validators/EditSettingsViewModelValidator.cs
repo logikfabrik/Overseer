@@ -21,13 +21,19 @@ namespace Logikfabrik.Overseer.WPF.Validators
         {
             CascadeMode = CascadeMode.StopOnFirstFailure;
 
-            RuleFor(viewModel => viewModel.Interval).InclusiveBetween(1, int.MaxValue);
-            RuleFor(viewModel => viewModel.CultureName).NotEmpty().Must(cultureName =>
-            {
-                return CultureInfo
-                    .GetCultures(CultureTypes.SpecificCultures)
-                    .Any(c => c.Name == cultureName);
-            });
+            RuleFor(viewModel => viewModel.Interval)
+                .InclusiveBetween(10, 86400)
+                .WithMessage(viewModel => Properties.Resources.EditSettings_Validation_Interval);
+
+            RuleFor(viewModel => viewModel.CultureName)
+                .NotEmpty()
+                .Must(cultureName =>
+                {
+                    return CultureInfo
+                        .GetCultures(CultureTypes.SpecificCultures)
+                        .Any(c => c.Name == cultureName);
+                })
+                .WithMessage(viewModel => Properties.Resources.EditSettings_Validation_CultureName);
         }
     }
 }

@@ -36,7 +36,7 @@
                             Style="{StaticResource ScrollBarDefaultStyle}"
                             ViewportSize="{TemplateBinding ViewportHeight}"
                             Visibility="{TemplateBinding ComputedVerticalScrollBarVisibility}"
-                            Value="{Binding Path=VerticalOffset, Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}" />
+                            Value="{Binding VerticalOffset, Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}" />
                         <ScrollBar
                             x:Name="PART_HorizontalScrollBar"
                             Grid.Row="1"
@@ -49,7 +49,7 @@
                             Style="{StaticResource ScrollBarDefaultStyle}"
                             ViewportSize="{TemplateBinding ViewportWidth}"
                             Visibility="{TemplateBinding ComputedHorizontalScrollBarVisibility}"
-                            Value="{Binding Path=HorizontalOffset, Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}" />
+                            Value="{Binding HorizontalOffset, Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}" />
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>

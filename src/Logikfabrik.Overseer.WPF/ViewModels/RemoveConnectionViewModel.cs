@@ -39,7 +39,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// <summary>
         /// Remove the connection.
         /// </summary>
-        public void RemoveConnection()
+        public void Remove()
         {
             var settingsId = _connectionViewModel.SettingsId;
 

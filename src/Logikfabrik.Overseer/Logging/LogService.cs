@@ -30,18 +30,6 @@ namespace Logikfabrik.Overseer.Logging
         /// <summary>
         /// Logs the specified entry.
         /// </summary>
-        /// <typeparam name="T">The logging type.</typeparam>
-        /// <param name="entry">The entry.</param>
-        public void Log<T>(LogEntry entry)
-        {
-            Ensure.That(entry).IsNotNull();
-
-            Log(typeof(T), entry);
-        }
-
-        /// <summary>
-        /// Logs the specified entry.
-        /// </summary>
         /// <param name="type">The logging type.</param>
         /// <param name="entry">The entry.</param>
         public void Log(Type type, LogEntry entry)

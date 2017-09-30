@@ -203,7 +203,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             }
             catch (Exception ex)
             {
-                _logService.Log<BuildMonitor>(new LogEntry(LogEntryType.Error, "An error occurred while adding connection.", ex));
+                _logService.Log(GetType(), new LogEntry(LogEntryType.Error, "An error occurred while adding connection.", ex));
 
                 HasConnected = false;
 

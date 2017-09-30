@@ -13,11 +13,11 @@
         <StackPanel>
             <StackPanel Margin="10">
                 <TextBlock Text="{x:Static p:Resources.EditSettings_Setting_Label_Interval}" />
-                <TextBox Text="{Binding Path=Interval, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" />
+                <TextBox Text="{Binding Interval, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" />
             </StackPanel>
             <StackPanel Margin="10,0,10,10">
                 <TextBlock Text="{x:Static p:Resources.EditSettings_Setting_Label_CultureName}" />
-                <ComboBox SelectedValue="{Binding Path=CultureName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                <ComboBox SelectedValue="{Binding CultureName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                     <sys:String>en-US</sys:String>
                     <sys:String>sv-SE</sys:String>
                 </ComboBox>
@@ -26,11 +26,12 @@
                 <Button
                     x:Name="Save"
                     Margin="0,0,2,0"
-                    Content="OK"
-                    IsDefault="True" />
+                    Content="{x:Static p:Resources.EditSettings_Button_Save}"
+                    IsDefault="True"
+                    IsEnabled="{Binding IsValid, Mode=OneWay}" />
                 <Button
                     x:Name="TryClose"
-                    Content="Cancel"
+                    Content="{x:Static p:Resources.EditSettings_Button_Cancel}"
                     IsCancel="True" />
             </WrapPanel>
         </StackPanel>

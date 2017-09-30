@@ -54,6 +54,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             {
                 _interval = value;
                 NotifyOfPropertyChange(() => Interval);
+                NotifyOfPropertyChange(() => IsValid);
             }
         }
 
@@ -74,8 +75,17 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             {
                 _cultureName = value;
                 NotifyOfPropertyChange(() => CultureName);
+                NotifyOfPropertyChange(() => IsValid);
             }
         }
+
+        /// <summary>
+        /// Gets a value indicating whether this instance is valid.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if this instance is valid; otherwise, <c>false</c>.
+        /// </value>
+        public bool IsValid => _validator.Validate(this).IsValid;
 
         /// <summary>
         /// Gets an error message indicating what is wrong with this object.
@@ -107,11 +117,11 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         }
 
         /// <summary>
-        /// Save the settings.
+        /// Edit the settings.
         /// </summary>
-        public void Save()
+        public void Edit()
         {
-            if (!_validator.Validate(this).IsValid)
+            if (!IsValid)
             {
                 return;
             }

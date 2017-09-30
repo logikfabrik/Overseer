@@ -104,5 +104,32 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity.Properties {
                 return ResourceManager.GetString("ConnectionSettings_Setting_Label_Username", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Password is missing.
+        /// </summary>
+        public static string ConnectionSettings_Validation_Password {
+            get {
+                return ResourceManager.GetString("ConnectionSettings_Validation_Password", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to URL is missing.
+        /// </summary>
+        public static string ConnectionSettings_Validation_Url {
+            get {
+                return ResourceManager.GetString("ConnectionSettings_Validation_Url", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Username is missing.
+        /// </summary>
+        public static string ConnectionSettings_Validation_Username {
+            get {
+                return ResourceManager.GetString("ConnectionSettings_Validation_Username", resourceCulture);
+            }
+        }
     }
 }

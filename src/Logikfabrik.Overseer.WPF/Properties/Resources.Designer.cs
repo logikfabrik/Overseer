@@ -101,6 +101,24 @@ namespace Logikfabrik.Overseer.WPF.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to We have to get at least 1 build per project.
+        /// </summary>
+        public static string ConnectionSettings_Validation_BuildsPerProject {
+            get {
+                return ResourceManager.GetString("ConnectionSettings_Validation_BuildsPerProject", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name is missing.
+        /// </summary>
+        public static string ConnectionSettings_Validation_Name {
+            get {
+                return ResourceManager.GetString("ConnectionSettings_Validation_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Sorry, there seems to be a problem!
         ///We couldn&apos;t connect to the CI/CD service. Please check your settings and try again..
         /// </summary>
@@ -137,6 +155,24 @@ namespace Logikfabrik.Overseer.WPF.Properties {
         public static string EditConnection_Error_Standard {
             get {
                 return ResourceManager.GetString("EditConnection_Error_Standard", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Language is missing.
+        /// </summary>
+        public static string EditSettings_Validation_CultureName {
+            get {
+                return ResourceManager.GetString("EditSettings_Validation_CultureName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Interval can be between 10 and 86400 (24 hours).
+        /// </summary>
+        public static string EditSettings_Validation_Interval {
+            get {
+                return ResourceManager.GetString("EditSettings_Validation_Interval", resourceCulture);
             }
         }
     }

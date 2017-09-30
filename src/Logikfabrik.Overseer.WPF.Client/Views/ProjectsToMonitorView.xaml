@@ -18,11 +18,11 @@
             Padding="2"
             Background="{DynamicResource Panel.Background}">
             <Grid>
-                <TextBox Text="{Binding Path=Filter, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                <TextBox Text="{Binding Filter, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                 <TextBlock IsHitTestVisible="False" 
                            Foreground="{DynamicResource Filter.Foreground}" 
                            Text="Filter" VerticalAlignment="Center" HorizontalAlignment="Center"
-                           Visibility="{Binding Path=Filter.IsEmpty,
+                           Visibility="{Binding Filter.IsEmpty,
                            Converter={StaticResource BooleanToVisibilityConverter}}" />
             </Grid>
         </Border>
@@ -30,7 +30,7 @@
             Grid.Row="1"
             BorderBrush="{DynamicResource Panel.Border}"
             BorderThickness="2,0,2,2">
-            <ItemsControl ItemsSource="{Binding Path=FilteredProjects}">
+            <ItemsControl ItemsSource="{Binding FilteredProjects}">
                 <ItemsControl.ItemContainerStyle>
                     <Style>
                         <!--  ReSharper disable once Xaml.RedundantPropertyTypeQualifier  -->

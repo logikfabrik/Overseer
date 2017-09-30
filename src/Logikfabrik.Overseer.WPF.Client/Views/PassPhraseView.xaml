@@ -5,24 +5,27 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:views="clr-namespace:Logikfabrik.Overseer.WPF.Client.Views"
+    xmlns:p="clr-namespace:Logikfabrik.Overseer.WPF.Client.Properties"
     d:DesignHeight="300"
     d:DesignWidth="300"
     Style="{StaticResource WindowDefaultStyle}"
     mc:Ignorable="d">
     <ScrollViewer>
-        <StackPanel Margin="25">
-            <StackPanel Margin="0,0,0,20">
+        <StackPanel>
+            <StackPanel Margin="10">
                 <TextBlock FontSize="24" Text="Pass phrase" />
             </StackPanel>
-            <StackPanel Margin="0,0,0,20">
+            <StackPanel Margin="10,0,10,10">
                 <TextBlock Text="Pass phrase" />
-                <TextBox Text="{Binding Path=PassPhrase, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" />
+                <TextBlock Text="A passphrase is similar to a password in usage, but is generally longer" />
+                <TextBox Text="{Binding PassPhrase, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" />
             </StackPanel>
-            <StackPanel Orientation="Horizontal">
+            <StackPanel Margin="10,0,10,10" Orientation="Horizontal">
                 <Button
                     x:Name="Save"
-                    Content="OK"
-                    IsDefault="True" />
+                    Content="{x:Static p:Resources.PassPhrase_Button_Save}"
+                    IsDefault="True" 
+                    IsEnabled="{Binding IsValid, Mode=OneWay}" />
             </StackPanel>
         </StackPanel>
     </ScrollViewer>

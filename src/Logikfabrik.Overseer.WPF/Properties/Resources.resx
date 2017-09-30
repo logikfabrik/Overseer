@@ -133,6 +133,12 @@ We couldn't connect to the CI/CD service. Please check your network connection a
     <value>Sorry, there seems to be a problem!
 We couldn't connect to the CI/CD service. Please try again.</value>
   </data>
+  <data name="ConnectionSettings_Validation_BuildsPerProject" xml:space="preserve">
+    <value>We have to get at least 1 build per project</value>
+  </data>
+  <data name="ConnectionSettings_Validation_Name" xml:space="preserve">
+    <value>Name is missing</value>
+  </data>
   <data name="EditConnection_Error_HTTP4xx" xml:space="preserve">
     <value>Sorry, there seems to be a problem!
 We couldn't connect to the CI/CD service. Please check your settings and try again.</value>
@@ -148,5 +154,11 @@ We couldn't connect to the CI/CD service. Please check your network connection a
   <data name="EditConnection_Error_Standard" xml:space="preserve">
     <value>Sorry, there seems to be a problem!
 We couldn't connect to the CI/CD service. Please try again.</value>
+  </data>
+  <data name="EditSettings_Validation_CultureName" xml:space="preserve">
+    <value>Language is missing</value>
+  </data>
+  <data name="EditSettings_Validation_Interval" xml:space="preserve">
+    <value>Interval can be between 10 and 86400 (24 hours)</value>
   </data>
 </root>

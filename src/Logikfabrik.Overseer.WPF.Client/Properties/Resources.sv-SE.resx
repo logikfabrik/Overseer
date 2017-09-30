@@ -136,6 +136,21 @@ Vänligen försök igen.</value>
   <data name="ConnectionSettings_Setting_Label_BuildsPerProject" xml:space="preserve">
     <value>Byggen per projekt</value>
   </data>
+  <data name="EditConnection_Button_Cancel" xml:space="preserve">
+    <value>Avbryt</value>
+  </data>
+  <data name="EditConnection_Button_Edit" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="EditConnection_Button_TryConnect" xml:space="preserve">
+    <value>Prova att ansluta</value>
+  </data>
+  <data name="EditSettings_Button_Cancel" xml:space="preserve">
+    <value>Avbryt</value>
+  </data>
+  <data name="EditSettings_Button_Save" xml:space="preserve">
+    <value>OK</value>
+  </data>
   <data name="EditSettings_Setting_Label_CultureName" xml:space="preserve">
     <value>Språk</value>
   </data>
@@ -156,5 +171,14 @@ Vänligen försök igen.</value>
   </data>
   <data name="Menu_MenuItem_Label_GoToSettings" xml:space="preserve">
     <value>Inställningar</value>
+  </data>
+  <data name="PassPhrase_Button_Save" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="RemoveConnection_Button_Cancel" xml:space="preserve">
+    <value>Avbryt</value>
+  </data>
+  <data name="RemoveConnection_Button_Remove" xml:space="preserve">
+    <value>OK</value>
   </data>
 </root>
