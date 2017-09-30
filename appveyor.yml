@@ -25,7 +25,7 @@ build_script:
   - choco install "opencover.portable" -y
   - SonarQube.Scanner.MSBuild.exe begin /k:"overseer" /o:"logikfabrik-github" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.login="%sonar_login%" /d:sonar.projectBaseDir="src" /d:sonar.cs.opencover.reportsPaths="results.xml" /v:%appveyor_build_version%
   - msbuild src\Logikfabrik.Overseer.sln /p:Configuration=%configuration% /p:InstallerVersion=%appveyor_build_version% /p:WarningLevel=1 -verbosity:minimal /logger:"C:\Program Files\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll"
-  - OpenCover.Console.exe "-register:user" "-target:xunit.console.x86.exe" "-targetargs:"src\Logikfabrik.Overseer.Test\bin\Release\Logikfabrik.Overseer.Test.dll" "src\Logikfabrik.Overseer.WPF.Client.Test\bin\Release\Logikfabrik.Overseer.WPF.Client.Test.dll" "src\Logikfabrik.Overseer.WPF.Provider.TeamCity.Test\bin\Release\Logikfabrik.Overseer.WPF.Provider.TeamCity.Test.dll" "src\Logikfabrik.Overseer.WPF.Test\bin\Release\Logikfabrik.Overseer.WPF.Test.dll""
+  - OpenCover.Console.exe "-register:user" "-target:xunit.console.x86.exe" "-targetargs:"src\Logikfabrik.Overseer.Test\bin\Release\Logikfabrik.Overseer.Test.dll" "src\Logikfabrik.Overseer.WPF.Client.Test\bin\Release\Logikfabrik.Overseer.WPF.Client.Test.dll" "src\Logikfabrik.Overseer.WPF.Test\bin\Release\Logikfabrik.Overseer.WPF.Test.dll""
   - SonarQube.Scanner.MSBuild.exe end /d:sonar.login="%sonar_login%"
 artifacts:
   - path: src\Logikfabrik.Overseer.Setup\bin\$(configuration)\*.msi
