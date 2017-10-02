@@ -24,7 +24,7 @@ build_script:
   - msbuild src\Logikfabrik.Overseer.sln /p:Configuration=%configuration% /p:InstallerVersion=%appveyor_build_version% /p:WarningLevel=1 -verbosity:minimal /logger:"C:\Program Files\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll"
   - ps: >-
       $assemblies = Get-ChildItem $PSScriptRoot *.Test.dll -Recurse | % { $($_.FullName) }
-      $opencover = (Resolve-Path "packages\OpenCover.*\tools\OpenCover.Console.exe").ToString()
+      $opencover = (Resolve-Path "OpenCover.Console.exe").ToString()
       $xunit = (Resolve-Path "xunit.console.exe").ToString()
       & $opencover "-register:user" "-target:$xunit" "-targetargs:$assemblies -noshadow -appveyor"
 artifacts:
