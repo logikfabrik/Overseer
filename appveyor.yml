@@ -22,11 +22,7 @@ before_build:
 build_script: 
   - choco install "opencover.portable" -y
   - msbuild src\Logikfabrik.Overseer.sln /p:Configuration=%configuration% /p:InstallerVersion=%appveyor_build_version% /p:WarningLevel=1 -verbosity:minimal /logger:"C:\Program Files\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll"
-  - ps: >-
-      $assemblies = Get-ChildItem $PSScriptRoot *.Test.dll -Recurse | % { $($_.FullName) }
-      $opencover = (Resolve-Path "OpenCover.Console.exe").ToString()
-      $xunit = (Resolve-Path "xunit.console.exe").ToString()
-      & $opencover "-register:user" "-target:$xunit" "-targetargs:$assemblies -noshadow -appveyor"
+  - OpenCover.Console.exe "-register:user" "-target:xunit.ps1"
 artifacts:
   - path: src\Logikfabrik.Overseer.Setup\bin\$(configuration)\*.msi
     name: Setup

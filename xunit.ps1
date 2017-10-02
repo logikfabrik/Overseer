@@ -1,0 +1,1 @@
+& $(Join-Path $PSScriptRoot "xunit.console.exe") $(Get-ChildItem $PSScriptRoot *.Test.dll -Recurse | % { $($_.FullName) }) -noshadow -appveyor
