@@ -24,6 +24,7 @@ namespace Logikfabrik.Overseer.Test.Settings
 
             store.Save(settings);
 
+            // TODO: Only 1 Verify
             encrypterMock.Verify(m => m.Encrypt(It.IsAny<string>()), Times.Once);
             fileStoreMock.Verify(m => m.Write(It.IsAny<string>()), Times.Once);
         }
@@ -42,6 +43,7 @@ namespace Logikfabrik.Overseer.Test.Settings
 
             store.Load();
 
+            // TODO: Only 1 Verify
             fileStoreMock.Verify(m => m.Read(), Times.Once);
             encrypterMock.Verify(m => m.Decrypt(It.IsAny<string>()), Times.Once);
         }

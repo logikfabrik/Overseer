@@ -6,6 +6,7 @@ namespace Logikfabrik.Overseer.Test.Settings
 {
     using Overseer.Settings;
     using Ploeh.AutoFixture.Xunit2;
+    using Shouldly;
     using Xunit;
 
     public class HashUtilityTest
@@ -17,7 +18,7 @@ namespace Logikfabrik.Overseer.Test.Settings
         {
             var salt = HashUtility.GetSalt(size);
 
-            Assert.Equal(size, salt.Length);
+            salt.Length.ShouldBe(size);
         }
 
         [Theory]
@@ -27,7 +28,7 @@ namespace Logikfabrik.Overseer.Test.Settings
             var salt = HashUtility.GetSalt(16);
             var hash = HashUtility.GetHash(passPhrase, salt, 32);
 
-            Assert.Equal(32, hash.Length);
+            hash.Length.ShouldBe(32);
         }
     }
 }

@@ -48,6 +48,7 @@ namespace Logikfabrik.Overseer.WPF.Client
             kernel.Bind<IAppSettingsFactory>().ToFactory();
             kernel.Bind<ILogService>().To<LogService>();
             kernel.Bind<IConnectionSettingsSerializer>().ToProvider<ConnectionSettingsSerializerProvider>();
+            kernel.Bind<IFileSystem>().To<FileSystem>();
             kernel.Bind<IFileStore>().ToProvider<FileStoreProvider>();
             kernel.Bind<IDataProtector>().To<DataProtector>();
             kernel.Bind<IRegistryStore>().ToProvider<RegistryStoreProvider>();

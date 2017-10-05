@@ -12,7 +12,7 @@ namespace Logikfabrik.Overseer.Test.Extensions
     public class ExceptionExtensionsTest
     {
         [Fact]
-        public void GetsInnerExceptionWhenInnerExceptionExist()
+        public void GetsInnerExceptionWhenInnerExceptionExists()
         {
             var innerException = new Exception();
             var exception = new Exception(null, innerException);

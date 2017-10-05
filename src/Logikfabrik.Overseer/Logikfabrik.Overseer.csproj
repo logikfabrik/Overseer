@@ -103,9 +103,11 @@
     <Compile Include="Settings\ConnectionSettingsEncrypter.cs" />
     <Compile Include="Settings\ConnectionSettingsRepository.cs" />
     <Compile Include="Settings\DataProtector.cs" />
+    <Compile Include="Settings\FileSystem.cs" />
     <Compile Include="Settings\HashUtility.cs" />
     <Compile Include="Settings\IConnectionSettingsEncrypter.cs" />
     <Compile Include="Settings\IDataProtector.cs" />
+    <Compile Include="Settings\IFileSystem.cs" />
     <Compile Include="Settings\IRegistryStore.cs" />
     <Compile Include="Settings\XmlEncrypter.cs" />
     <Compile Include="Settings\IXmlEncrypter.cs" />

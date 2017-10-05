@@ -39,11 +39,6 @@ namespace Logikfabrik.Overseer.Logging
 
             var logger = _logger.ForContext(type);
 
-            if (logger == null)
-            {
-                return;
-            }
-
             // ReSharper disable once SwitchStatementMissingSomeCases
             switch (entry.Type)
             {
