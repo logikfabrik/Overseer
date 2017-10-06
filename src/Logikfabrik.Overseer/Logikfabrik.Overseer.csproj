@@ -112,6 +112,7 @@
     <Compile Include="Settings\XmlEncrypter.cs" />
     <Compile Include="Settings\IXmlEncrypter.cs" />
     <Compile Include="Settings\RegistryStore.cs" />
+    <Compile Include="Settings\XmlEncrypterKey.cs" />
     <Compile Include="Subscription{T}.cs" />
     <Compile Include="Settings\ConnectionSettingsSerializer.cs" />
     <Compile Include="Settings\ConnectionSettingsStore.cs" />

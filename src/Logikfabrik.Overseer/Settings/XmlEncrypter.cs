@@ -117,7 +117,7 @@ namespace Logikfabrik.Overseer.Settings
 
             var registryValue = Convert.ToBase64String(registryValueBytes);
 
-            _registryStore.Write("PassPhrase", registryValue);
+            _registryStore.Write(XmlEncrypterKey.Name, registryValue);
         }
 
         /// <summary>
@@ -126,7 +126,7 @@ namespace Logikfabrik.Overseer.Settings
         /// <returns>The pass phrase hash.</returns>
         internal byte[] ReadPassPhraseHash()
         {
-            var registryValue = _registryStore.Read("PassPhrase");
+            var registryValue = _registryStore.Read(XmlEncrypterKey.Name);
 
             if (registryValue == null)
             {
