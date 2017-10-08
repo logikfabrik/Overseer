@@ -2,16 +2,36 @@
 //   Copyright (c) 2016 anton(at)logikfabrik.se. Licensed under the MIT license.
 // </copyright>
 
-using Ploeh.AutoFixture.Xunit2;
-
 namespace Logikfabrik.Overseer.Test.Settings
 {
+    using System;
     using Moq;
     using Overseer.Settings;
+    using Ploeh.AutoFixture.Xunit2;
     using Xunit;
 
     public class XmlEncrypterTest
     {
+        [Theory]
+        [InlineAutoData(16)]
+        [InlineAutoData(32)]
+        public void CanSetPassPhrase(int size, string passPhrase)
+        {
+            var dataProtectorMock = new Mock<IDataProtector>();
+
+            dataProtectorMock.Setup(m => m.Protect(It.IsAny<byte[]>(), It.IsAny<byte[]>())).Returns((byte[] userData, byte[] entropy) => userData);
+
+            var registryStoreMock = new Mock<IRegistryStore>();
+
+            var xmlEncrypter = new XmlEncrypter(dataProtectorMock.Object, registryStoreMock.Object);
+
+            var salt = HashUtility.GetSalt(size);
+
+            xmlEncrypter.SetPassPhrase(passPhrase, salt);
+
+            registryStoreMock.Verify(m => m.Write(XmlEncrypterKey.Name, It.IsAny<string>()), Times.Once);
+        }
+
         [Theory]
         [AutoData]
         public void CanWritePassPhraseHash(string passPhrase)
@@ -31,8 +51,9 @@ namespace Logikfabrik.Overseer.Test.Settings
             registryStoreMock.Verify(m => m.Write(XmlEncrypterKey.Name, It.IsAny<string>()), Times.Once);
         }
 
-        [Fact]
-        public void CanReadPassPhraseHash()
+        [Theory]
+        [AutoData]
+        public void CanReadPassPhraseHash(string passPhrase)
         {
             var dataProtectorMock = new Mock<IDataProtector>();
 
@@ -40,13 +61,25 @@ namespace Logikfabrik.Overseer.Test.Settings
 
             var registryStoreMock = new Mock<IRegistryStore>();
 
-            registryStoreMock.Setup(m => m.Read(XmlEncrypterKey.Name)).Returns("OOXdCEW9XVjm0AhwZGI7ZgEAAADQjJ3fARXREYx6AMBPwpfrAQAAAMDS/gO4PMNGkJjVFCAGp/EAAAAAAgAAAAAAEGYAAAABAAAgAAAA9xzZ6/gd+YVubAGDZo8LfKMOE8zfXTs4d8EbpFVBpjMAAAAADoAAAAACAAAgAAAAmIpps3dMzaUtsJUD6Ps2nRJukNoSAyTeoycwDJQ1LVMwAAAAAp0owlWiJRH8LkT9jzESm9Q3wfHSInSir+ocdva35A66pdMsTuW9TeuaRTzF7RZ0QAAAAMjgQPCjnlvuTavlrP9MqKgao99bA4Tdy9OnHdIS/Tmb55B8WMXh0hK3SMZX9s5wveUspH37dmFNLZ7fwAOuYrU=");
+            registryStoreMock.Setup(m => m.Read(XmlEncrypterKey.Name)).Returns(Convert.ToBase64String(HashUtility.GetHash(passPhrase, HashUtility.GetSalt(16), 32)));
 
             var xmlEncrypter = new XmlEncrypter(dataProtectorMock.Object, registryStoreMock.Object);
 
             var passPhraseHash = xmlEncrypter.ReadPassPhraseHash();
 
             Assert.NotEmpty(passPhraseHash);
+        }
+
+        //[Fact]
+        public void CanEncrypt()
+        {
+            throw new NotImplementedException();
+        }
+
+        //[Fact]
+        public void CanDecrypt()
+        {
+            throw new NotImplementedException();
         }
     }
 }

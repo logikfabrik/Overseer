@@ -23,6 +23,7 @@ namespace Logikfabrik.Overseer.Settings
         /// <summary>
         /// Initializes a new instance of the <see cref="FileStore" /> class.
         /// </summary>
+        /// <param name="fileSystem">The file system.</param>
         /// <param name="path">The path.</param>
         public FileStore(IFileSystem fileSystem, string path)
         {
