@@ -7,12 +7,13 @@ namespace Logikfabrik.Overseer.Extensions
     using System;
     using System.Net;
     using System.Net.Http;
+    using System.Runtime.Serialization;
 
     /// <summary>
     /// The <see cref="HttpException" /> class.
     /// </summary>
     [Serializable]
-    public sealed class HttpException : HttpRequestException
+    public class HttpException : HttpRequestException
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="HttpException" /> class.
@@ -30,5 +31,13 @@ namespace Logikfabrik.Overseer.Extensions
         /// The status code.
         /// </value>
         public HttpStatusCode StatusCode { get; }
+
+        /// <inheritdoc/>
+        public override void GetObjectData(SerializationInfo info, StreamingContext context)
+        {
+            base.GetObjectData(info, context);
+
+            info.AddValue(nameof(StatusCode), StatusCode);
+        }
     }
 }

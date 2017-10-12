@@ -20,7 +20,7 @@ namespace Logikfabrik.Overseer
     {
         private readonly IAppSettingsFactory _appSettingsFactory;
         private readonly ILogService _logService;
-        private IDictionary<Guid, Connection> _connections;
+        private IDictionary<Guid, IConnection> _connections;
         private IDisposable _subscription;
         private CancellationTokenSource _cancellationTokenSource;
         private bool _isDisposed;
@@ -39,7 +39,7 @@ namespace Logikfabrik.Overseer
 
             _appSettingsFactory = appSettingsFactory;
             _logService = logService;
-            _connections = new Dictionary<Guid, Connection>();
+            _connections = new Dictionary<Guid, IConnection>();
             _subscription = connectionPool.Subscribe(this);
         }
 
@@ -67,7 +67,7 @@ namespace Logikfabrik.Overseer
         /// Provides the observer with new data.
         /// </summary>
         /// <param name="value">The current notification information.</param>
-        public void OnNext(Notification<Connection>[] value)
+        public void OnNext(Notification<IConnection>[] value)
         {
             if (_isDisposed)
             {
@@ -91,15 +91,7 @@ namespace Logikfabrik.Overseer
                         {
                             cancellationToken.ThrowIfCancellationRequested();
 
-                            foreach (var connection in Notification<Connection>.GetPayloads(value, NotificationType.Removed, c => _connections.ContainsKey(c.Settings.Id)))
-                            {
-                                _connections.Remove(connection.Settings.Id);
-                            }
-
-                            foreach (var connection in Notification<Connection>.GetPayloads(value, NotificationType.Added, connection => !_connections.ContainsKey(connection.Settings.Id)))
-                            {
-                                _connections.Add(connection.Settings.Id, connection);
-                            }
+                            UpdateConnections(_connections, value);
 
                             await GetProjectsAndBuildsAsync(_connections.Values, cancellationToken).ConfigureAwait(false);
 
@@ -143,6 +135,69 @@ namespace Logikfabrik.Overseer
         {
             Dispose(true);
             GC.SuppressFinalize(this);
+        }
+
+        internal static void UpdateConnections(IDictionary<Guid, IConnection> connections, Notification<IConnection>[] notifications)
+        {
+            foreach (var connection in Notification<IConnection>.GetPayloads(notifications, NotificationType.Removed, c => connections.ContainsKey(c.Settings.Id)))
+            {
+                connections.Remove(connection.Settings.Id);
+            }
+
+            foreach (var connection in Notification<IConnection>.GetPayloads(notifications, NotificationType.Added, connection => !connections.ContainsKey(connection.Settings.Id)))
+            {
+                connections.Add(connection.Settings.Id, connection);
+            }
+        }
+
+        internal async Task<IEnumerable<IProject>> GetProjectsAsync(IConnection connection, CancellationToken cancellationToken)
+        {
+            try
+            {
+                cancellationToken.ThrowIfCancellationRequested();
+
+                var projects =
+                    (await connection.GetProjectsAsync(cancellationToken).ConfigureAwait(false)).Where(
+                        project => connection.Settings.ProjectsToMonitor.Contains(project.Id)).ToArray();
+
+                OnConnectionProgressChanged(new BuildMonitorConnectionProgressEventArgs(connection.Settings.Id, projects));
+
+                return projects;
+            }
+            catch (OperationCanceledException)
+            {
+                throw;
+            }
+            catch (Exception ex)
+            {
+                OnConnectionError(new BuildMonitorConnectionErrorEventArgs(connection.Settings.Id));
+
+                _logService.Log(GetType(), new LogEntry(LogEntryType.Error, "An unexpected error occurred while polling projects.", ex));
+
+                return new IProject[] { };
+            }
+        }
+
+        internal async Task GetBuildsAsync(IConnection connection, IProject project, CancellationToken cancellationToken)
+        {
+            try
+            {
+                cancellationToken.ThrowIfCancellationRequested();
+
+                var builds = await connection.GetBuildsAsync(project, cancellationToken).ConfigureAwait(false);
+
+                OnProjectProgressChanged(new BuildMonitorProjectProgressEventArgs(connection.Settings.Id, project, builds));
+            }
+            catch (OperationCanceledException)
+            {
+                throw;
+            }
+            catch (Exception ex)
+            {
+                OnProjectError(new BuildMonitorProjectErrorEventArgs(connection.Settings.Id, project));
+
+                _logService.Log(GetType(), new LogEntry(LogEntryType.Error, "An unexpected error occurred while polling builds.", ex));
+            }
         }
 
         /// <summary>
@@ -217,15 +272,15 @@ namespace Logikfabrik.Overseer
             ProjectProgressChanged?.Invoke(this, e);
         }
 
-        private async Task GetProjectsAndBuildsAsync(IEnumerable<Connection> connections, CancellationToken cancellationToken)
+        private async Task GetProjectsAndBuildsAsync(IEnumerable<IConnection> connections, CancellationToken cancellationToken)
         {
-            var projectBufferBlock = new BufferBlock<Connection>(new DataflowBlockOptions
+            var projectBufferBlock = new BufferBlock<IConnection>(new DataflowBlockOptions
             {
                 BoundedCapacity = 8,
                 CancellationToken = cancellationToken
             });
 
-            var buildsBufferBlock = new BufferBlock<Tuple<Connection, IProject>>(new DataflowBlockOptions
+            var buildsBufferBlock = new BufferBlock<Tuple<IConnection, IProject>>(new DataflowBlockOptions
             {
                 BoundedCapacity = 16,
                 CancellationToken = cancellationToken
@@ -239,12 +294,12 @@ namespace Logikfabrik.Overseer
             };
 
             var projectBlock =
-                new TransformManyBlock<Connection, Tuple<Connection, IProject>>(
+                new TransformManyBlock<IConnection, Tuple<IConnection, IProject>>(
                     async param =>
-                        (await GetProjectsAsync(param, cancellationToken).ConfigureAwait(false)).Select(project => new Tuple<Connection, IProject>(param, project)).ToArray(), executionOptions);
+                        (await GetProjectsAsync(param, cancellationToken).ConfigureAwait(false)).Select(project => new Tuple<IConnection, IProject>(param, project)).ToArray(), executionOptions);
 
             var buildsBlock =
-                new ActionBlock<Tuple<Connection, IProject>>(
+                new ActionBlock<Tuple<IConnection, IProject>>(
                     async param =>
                         await GetBuildsAsync(param.Item1, param.Item2, cancellationToken).ConfigureAwait(false), executionOptions);
 
@@ -262,56 +317,6 @@ namespace Logikfabrik.Overseer
             projectBufferBlock.Complete();
 
             await buildsBlock.Completion;
-        }
-
-        private async Task<IEnumerable<IProject>> GetProjectsAsync(Connection connection, CancellationToken cancellationToken)
-        {
-            try
-            {
-                cancellationToken.ThrowIfCancellationRequested();
-
-                var projects =
-                    (await connection.GetProjectsAsync(cancellationToken).ConfigureAwait(false)).Where(
-                        project => connection.Settings.ProjectsToMonitor.Contains(project.Id)).ToArray();
-
-                OnConnectionProgressChanged(new BuildMonitorConnectionProgressEventArgs(connection.Settings.Id, projects));
-
-                return projects;
-            }
-            catch (OperationCanceledException)
-            {
-                throw;
-            }
-            catch (Exception ex)
-            {
-                OnConnectionError(new BuildMonitorConnectionErrorEventArgs(connection.Settings.Id));
-
-                _logService.Log(GetType(), new LogEntry(LogEntryType.Error, "An unexpected error occurred while polling projects.", ex));
-
-                return new IProject[] { };
-            }
-        }
-
-        private async Task GetBuildsAsync(Connection connection, IProject project, CancellationToken cancellationToken)
-        {
-            try
-            {
-                cancellationToken.ThrowIfCancellationRequested();
-
-                var builds = await connection.GetBuildsAsync(project, cancellationToken).ConfigureAwait(false);
-
-                OnProjectProgressChanged(new BuildMonitorProjectProgressEventArgs(connection.Settings.Id, project, builds));
-            }
-            catch (OperationCanceledException)
-            {
-                throw;
-            }
-            catch (Exception ex)
-            {
-                OnProjectError(new BuildMonitorProjectErrorEventArgs(connection.Settings.Id, project));
-
-                _logService.Log(GetType(), new LogEntry(LogEntryType.Error, "An unexpected error occurred while polling builds.", ex));
-            }
         }
     }
 }

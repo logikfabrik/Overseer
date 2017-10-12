@@ -15,7 +15,7 @@ namespace Logikfabrik.Overseer
     /// <summary>
     /// The <see cref="Connection" /> class.
     /// </summary>
-    public class Connection : IDisposable
+    public class Connection : IDisposable, IConnection
     {
         private readonly IBuildProviderStrategy _buildProviderStrategy;
         private IBuildProvider _provider;

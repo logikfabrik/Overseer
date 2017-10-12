@@ -81,6 +81,7 @@
     <Compile Include="Extensions\ExceptionExtensions.cs" />
     <Compile Include="Extensions\HttpException.cs" />
     <Compile Include="Extensions\HttpResponseMessageExtensions.cs" />
+    <Compile Include="IConnection.cs" />
     <Compile Include="Notification{T}.cs" />
     <Compile Include="NotificationType.cs" />
     <Compile Include="Extensions\BuildExtensions.cs" />

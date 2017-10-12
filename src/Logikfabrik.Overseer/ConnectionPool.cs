@@ -17,7 +17,7 @@ namespace Logikfabrik.Overseer
     public class ConnectionPool : IConnectionPool, IDisposable
     {
         private readonly IBuildProviderStrategy _buildProviderStrategy;
-        private HashSet<IObserver<Notification<Connection>[]>> _observers;
+        private HashSet<IObserver<Notification<IConnection>[]>> _observers;
         private IDictionary<Guid, Connection> _connections;
         private IDisposable _subscription;
         private bool _isDisposed;
@@ -34,7 +34,7 @@ namespace Logikfabrik.Overseer
 
             _buildProviderStrategy = buildProviderStrategy;
             _connections = new Dictionary<Guid, Connection>();
-            _observers = new HashSet<IObserver<Notification<Connection>[]>>();
+            _observers = new HashSet<IObserver<Notification<IConnection>[]>>();
             _subscription = settingsRepository.Subscribe(this);
         }
 
@@ -58,7 +58,7 @@ namespace Logikfabrik.Overseer
                 return;
             }
 
-            var notifications = new List<Notification<Connection>>();
+            var notifications = new List<Notification<IConnection>>();
             var toDisposeOf = new List<Connection>();
 
             foreach (var settings in Notification<ConnectionSettings>.GetPayloads(value, NotificationType.Removed, s => _connections.ContainsKey(s.Id)))
@@ -117,7 +117,7 @@ namespace Logikfabrik.Overseer
         /// <returns>
         /// A reference to an interface that allows observers to stop receiving notifications before the provider has finished sending them.
         /// </returns>
-        public IDisposable Subscribe(IObserver<Notification<Connection>[]> observer)
+        public IDisposable Subscribe(IObserver<Notification<IConnection>[]> observer)
         {
             this.ThrowIfDisposed(_isDisposed);
 
@@ -126,7 +126,7 @@ namespace Logikfabrik.Overseer
             // ReSharper disable once InvertIf
             if (_observers.Add(observer))
             {
-                var notifications = Notification<Connection>.Create(NotificationType.Added, _connections.Values);
+                var notifications = Notification<IConnection>.Create(NotificationType.Added, _connections.Values);
 
                 if (notifications.Any())
                 {
@@ -134,7 +134,7 @@ namespace Logikfabrik.Overseer
                 }
             }
 
-            return new Subscription<Notification<Connection>[]>(_observers, observer);
+            return new Subscription<Notification<IConnection>[]>(_observers, observer);
         }
 
         /// <summary>
@@ -177,7 +177,7 @@ namespace Logikfabrik.Overseer
             _isDisposed = true;
         }
 
-        private void Next(Notification<Connection>[] notifications)
+        private void Next(Notification<IConnection>[] notifications)
         {
             if (!notifications.Any())
             {
@@ -190,22 +190,22 @@ namespace Logikfabrik.Overseer
             }
         }
 
-        private void Add(ICollection<Notification<Connection>> notifications, ConnectionSettings settings)
+        private void Add(ICollection<Notification<IConnection>> notifications, ConnectionSettings settings)
         {
             var connection = new Connection(_buildProviderStrategy, settings);
 
             _connections.Add(settings.Id, connection);
 
-            notifications.Add(Notification<Connection>.Create(NotificationType.Added, connection));
+            notifications.Add(Notification<IConnection>.Create(NotificationType.Added, connection));
         }
 
-        private void Update(ICollection<Notification<Connection>> notifications, ConnectionSettings settings, ICollection<Connection> toDisposeOf)
+        private void Update(ICollection<Notification<IConnection>> notifications, ConnectionSettings settings, ICollection<Connection> toDisposeOf)
         {
             Remove(notifications, settings, toDisposeOf);
             Add(notifications, settings);
         }
 
-        private void Remove(ICollection<Notification<Connection>> notifications, ConnectionSettings settings, ICollection<Connection> toDisposeOf)
+        private void Remove(ICollection<Notification<IConnection>> notifications, ConnectionSettings settings, ICollection<Connection> toDisposeOf)
         {
             var connection = _connections[settings.Id];
 
@@ -213,7 +213,7 @@ namespace Logikfabrik.Overseer
 
             _connections.Remove(settings.Id);
 
-            notifications.Add(Notification<Connection>.Create(NotificationType.Removed, connection));
+            notifications.Add(Notification<IConnection>.Create(NotificationType.Removed, connection));
         }
     }
 }

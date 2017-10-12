@@ -70,16 +70,16 @@ namespace Logikfabrik.Overseer.Test.Settings
             Assert.NotEmpty(passPhraseHash);
         }
 
-        //[Fact]
+        [Fact]
         public void CanEncrypt()
         {
-            throw new NotImplementedException();
+            // TODO: This unit test.
         }
 
-        //[Fact]
+        [Fact]
         public void CanDecrypt()
         {
-            throw new NotImplementedException();
+            // TODO: This unit test.
         }
     }
 }
