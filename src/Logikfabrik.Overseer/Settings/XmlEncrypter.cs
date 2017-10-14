@@ -17,6 +17,8 @@ namespace Logikfabrik.Overseer.Settings
     /// </summary>
     public class XmlEncrypter : IXmlEncrypter
     {
+        public const string KeyName = "PassPhrase";
+
         private readonly IDataProtector _dataProtector;
         private readonly IRegistryStore _registryStore;
 
@@ -117,7 +119,7 @@ namespace Logikfabrik.Overseer.Settings
 
             var registryValue = Convert.ToBase64String(registryValueBytes);
 
-            _registryStore.Write(XmlEncrypterKey.Name, registryValue);
+            _registryStore.Write(KeyName, registryValue);
         }
 
         /// <summary>
@@ -126,7 +128,7 @@ namespace Logikfabrik.Overseer.Settings
         /// <returns>The pass phrase hash.</returns>
         internal byte[] ReadPassPhraseHash()
         {
-            var registryValue = _registryStore.Read(XmlEncrypterKey.Name);
+            var registryValue = _registryStore.Read(KeyName);
 
             if (registryValue == null)
             {

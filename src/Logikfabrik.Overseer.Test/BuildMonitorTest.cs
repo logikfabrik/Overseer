@@ -12,6 +12,7 @@ namespace Logikfabrik.Overseer.Test
     using Moq.AutoMock;
     using Overseer.Logging;
     using Overseer.Settings;
+    using Shouldly;
     using Xunit;
 
     public class BuildMonitorTest
@@ -56,7 +57,7 @@ namespace Logikfabrik.Overseer.Test
                 handler => buildMonitor.ConnectionError -= handler,
                 () => buildMonitor.GetProjectsAsync(connectionMock.Object, CancellationToken.None));
 
-            Assert.NotNull(evt);
+            evt.ShouldNotBeNull();
         }
 
         [Fact]
@@ -78,7 +79,7 @@ namespace Logikfabrik.Overseer.Test
                 handler => buildMonitor.ConnectionProgressChanged -= handler,
                 () => buildMonitor.GetProjectsAsync(connectionMock.Object, CancellationToken.None));
 
-            Assert.NotNull(evt);
+            evt.ShouldNotBeNull();
         }
 
         [Fact]
@@ -125,7 +126,7 @@ namespace Logikfabrik.Overseer.Test
                 handler => buildMonitor.ProjectError -= handler,
                 () => buildMonitor.GetBuildsAsync(connectionMock.Object, projectMock.Object, CancellationToken.None));
 
-            Assert.NotNull(evt);
+            evt.ShouldNotBeNull();
         }
 
         [Fact]
@@ -149,7 +150,7 @@ namespace Logikfabrik.Overseer.Test
                 handler => buildMonitor.ProjectProgressChanged -= handler,
                 () => buildMonitor.GetBuildsAsync(connectionMock.Object, projectMock.Object, CancellationToken.None));
 
-            Assert.NotNull(evt);
+            evt.ShouldNotBeNull();
         }
 
         [Fact]

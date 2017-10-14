@@ -4,7 +4,9 @@
 
 namespace Logikfabrik.Overseer.WPF.Test.Logging
 {
+    using System;
     using Moq;
+    using Moq.AutoMock;
     using Overseer.Logging;
     using WPF.Logging;
     using Xunit;
@@ -14,37 +16,43 @@ namespace Logikfabrik.Overseer.WPF.Test.Logging
         [Fact]
         public void CanLogInfo()
         {
-            var logServiceMock = new Mock<ILogService>();
+            var mocker = new AutoMocker();
 
-            var uiLogService = new UILogService(logServiceMock.Object, typeof(object));
+            var uiLogService = mocker.CreateInstance<UILogService>();
+
+            var logServiceMock = mocker.GetMock<ILogService>();
 
             uiLogService.Info(null, null);
 
-            logServiceMock.Verify(m => m.Log(typeof(object), It.Is<LogEntry>(entry => entry.Type == LogEntryType.Information)), Times.Once);
+            logServiceMock.Verify(m => m.Log(It.IsAny<Type>(), It.Is<LogEntry>(entry => entry.Type == LogEntryType.Information)), Times.Once);
         }
 
         [Fact]
         public void CanLogWarn()
         {
-            var logServiceMock = new Mock<ILogService>();
+            var mocker = new AutoMocker();
 
-            var uiLogService = new UILogService(logServiceMock.Object, typeof(object));
+            var uiLogService = mocker.CreateInstance<UILogService>();
+
+            var logServiceMock = mocker.GetMock<ILogService>();
 
             uiLogService.Warn(null, null);
 
-            logServiceMock.Verify(m => m.Log(typeof(object), It.Is<LogEntry>(entry => entry.Type == LogEntryType.Warning)), Times.Once);
+            logServiceMock.Verify(m => m.Log(It.IsAny<Type>(), It.Is<LogEntry>(entry => entry.Type == LogEntryType.Warning)), Times.Once);
         }
 
         [Fact]
         public void CanLogError()
         {
-            var logServiceMock = new Mock<ILogService>();
+            var mocker = new AutoMocker();
 
-            var uiLogService = new UILogService(logServiceMock.Object, typeof(object));
+            var uiLogService = mocker.CreateInstance<UILogService>();
+
+            var logServiceMock = mocker.GetMock<ILogService>();
 
             uiLogService.Error(null);
 
-            logServiceMock.Verify(m => m.Log(typeof(object), It.Is<LogEntry>(entry => entry.Type == LogEntryType.Error)), Times.Once);
+            logServiceMock.Verify(m => m.Log(It.IsAny<Type>(), It.Is<LogEntry>(entry => entry.Type == LogEntryType.Error)), Times.Once);
         }
     }
 }

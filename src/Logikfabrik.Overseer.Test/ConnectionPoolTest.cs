@@ -8,7 +8,9 @@ namespace Logikfabrik.Overseer.Test
     using System.Linq;
     using Moq;
     using Overseer.Settings;
+    using Ploeh.AutoFixture.Xunit2;
     using Settings;
+    using Shouldly;
     using Xunit;
 
     public class ConnectionPoolTest
@@ -30,19 +32,18 @@ namespace Logikfabrik.Overseer.Test
 
             var connectionPool = new ConnectionPool(repository, factoryMock.Object);
 
-            Assert.Equal(2, connectionPool.CurrentConnections.Count());
+            connectionPool.CurrentConnections.Count().ShouldBe(2);
         }
 
-        [Fact]
-        public void CanUpdate()
+        [Theory]
+        [AutoData]
+        public void CanUpdate(Guid id, string nameBeforeUpdate, string nameAfterUpdate)
         {
-            var id = Guid.NewGuid();
-
-            var settings1 = new ConnectionSettingsA { Id = id, Name = "My Settings" };
+            var settingsBeforeUpdate = new ConnectionSettingsA { Id = id, Name = nameBeforeUpdate };
 
             var settingsStoreMock = new Mock<IConnectionSettingsStore>();
 
-            settingsStoreMock.Setup(m => m.Load()).Returns(new ConnectionSettings[] { settings1 });
+            settingsStoreMock.Setup(m => m.Load()).Returns(new ConnectionSettings[] { settingsBeforeUpdate });
 
             var repository = new ConnectionSettingsRepository(settingsStoreMock.Object);
 
@@ -50,11 +51,13 @@ namespace Logikfabrik.Overseer.Test
 
             var connectionPool = new ConnectionPool(repository, factoryMock.Object);
 
-            var settings2 = new ConnectionSettingsA { Id = id, Name = "Your Settings" };
+            var settingsToUpdate = new ConnectionSettingsA { Id = id, Name = nameAfterUpdate };
 
-            repository.Update(settings2);
+            repository.Update(settingsToUpdate);
 
-            Assert.Equal(settings2.Name, connectionPool.CurrentConnections.Single().Settings.Name);
+            var connection = connectionPool.CurrentConnections.Single();
+
+            connection.Settings.Name.ShouldBe(nameAfterUpdate);
         }
 
         [Fact]
@@ -74,7 +77,7 @@ namespace Logikfabrik.Overseer.Test
 
             repository.Remove(settingsA.Id);
 
-            Assert.Equal(0, connectionPool.CurrentConnections.Count());
+            connectionPool.CurrentConnections.Count().ShouldBe(0);
         }
 
         [Fact]
@@ -92,7 +95,7 @@ namespace Logikfabrik.Overseer.Test
 
             repository.Add(new ConnectionSettingsA());
 
-            Assert.Equal(1, connectionPool.CurrentConnections.Count());
+            connectionPool.CurrentConnections.Count().ShouldBe(1);
         }
     }
 }
