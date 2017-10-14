@@ -200,15 +200,7 @@ namespace Logikfabrik.Overseer.Settings
                 {
                     var element = (XmlElement)elements[0];
 
-                    var encryptedData = new EncryptedData();
-
-                    encryptedData.LoadXml(element);
-
-                    var encryptedXml = new EncryptedXml();
-
-                    var decryptedData = encryptedXml.DecryptData(encryptedData, algorithm);
-
-                    encryptedXml.ReplaceData(element, decryptedData);
+                    DecryptElement(element, algorithm);
 
                     elements = xml.GetElementsByTagName(nameof(EncryptedData));
                 }
@@ -233,6 +225,19 @@ namespace Logikfabrik.Overseer.Settings
             algorithm.IV = iv;
 
             return algorithm;
+        }
+
+        private static void DecryptElement(XmlElement element, SymmetricAlgorithm algorithm)
+        {
+            var encryptedData = new EncryptedData();
+
+            encryptedData.LoadXml(element);
+
+            var encryptedXml = new EncryptedXml();
+
+            var decryptedData = encryptedXml.DecryptData(encryptedData, algorithm);
+
+            encryptedXml.ReplaceData(element, decryptedData);
         }
 
         private Rijndael GetAlgorithm()

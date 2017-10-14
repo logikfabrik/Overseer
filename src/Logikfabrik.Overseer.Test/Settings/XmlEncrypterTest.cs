@@ -5,6 +5,7 @@
 namespace Logikfabrik.Overseer.Test.Settings
 {
     using System;
+    using System.Xml;
     using Moq;
     using Moq.AutoMock;
     using Overseer.Settings;
@@ -84,10 +85,26 @@ namespace Logikfabrik.Overseer.Test.Settings
             // TODO: This unit test.
         }
 
-        [Fact]
-        public void CanDecrypt()
+        [Theory]
+        [AutoData]
+        public void CanDecrypt(string passPhrase)
         {
-            // TODO: This unit test.
+            var mocker = new AutoMocker();
+
+            var xmlEncrypter = mocker.CreateInstance<XmlEncrypter>();
+
+            var dataProtectorMock = mocker.GetMock<IDataProtector>();
+
+            dataProtectorMock.Setup(m => m.Unprotect(It.IsAny<byte[]>(), It.IsAny<byte[]>())).Returns((byte[] encryptedData, byte[] entropy) => encryptedData);
+
+            var registryStoreMock = mocker.GetMock<IRegistryStore>();
+
+            registryStoreMock.Setup(m => m.Read(XmlEncrypter.KeyName)).Returns(Convert.ToBase64String(HashUtility.GetHash(passPhrase, HashUtility.GetSalt(16), 32)));
+
+            var xmlDocument = xmlEncrypter.Decrypt(new XmlDocument(), new[] { "EncryptedData" });
+
+            // TODO: Coverage.
+            xmlDocument.ShouldNotBeNull();
         }
     }
 }
