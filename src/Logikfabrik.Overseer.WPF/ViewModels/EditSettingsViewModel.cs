@@ -6,7 +6,9 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
 {
     using System.ComponentModel;
     using System.Linq;
+    using System.Windows;
     using EnsureThat;
+    using Extensions;
     using Validators;
 
     /// <summary>
@@ -14,6 +16,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     /// </summary>
     public class EditSettingsViewModel : ViewModel, IDataErrorInfo
     {
+        private readonly Application _application;
         private readonly EditSettingsViewModelValidator _validator;
         private readonly AppSettings _appSettings;
         private int _interval;
@@ -22,11 +25,14 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// <summary>
         /// Initializes a new instance of the <see cref="EditSettingsViewModel" /> class.
         /// </summary>
+        /// <param name="application">The application.</param>
         /// <param name="appSettingsFactory">The app settings factory.</param>
-        public EditSettingsViewModel(IAppSettingsFactory appSettingsFactory)
+        public EditSettingsViewModel(Application application, IAppSettingsFactory appSettingsFactory)
         {
+            Ensure.That(application).IsNotNull();
             Ensure.That(appSettingsFactory).IsNotNull();
 
+            _application = application;
             _validator = new EditSettingsViewModelValidator();
 
             var appSettings = appSettingsFactory.Create();
@@ -117,21 +123,26 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         }
 
         /// <summary>
-        /// Edit the settings.
+        /// Saves the settings.
         /// </summary>
-        public void Edit()
+        public void Save()
         {
             if (!IsValid)
             {
                 return;
             }
 
+            var restart = _appSettings.CultureName != CultureName;
+
             _appSettings.Interval = _interval;
             _appSettings.CultureName = _cultureName;
 
             _appSettings.Save();
 
-            LanguageConfigurator.Configure(_appSettings);
+            if (restart)
+            {
+                _application.Restart();
+            }
         }
     }
 }
