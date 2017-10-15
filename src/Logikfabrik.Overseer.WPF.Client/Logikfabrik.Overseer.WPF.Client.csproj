@@ -117,6 +117,7 @@
     <Compile Include="AssemblyLoader.cs" />
     <Compile Include="DataBindingActionConfigurator.cs" />
     <Compile Include="ErrorLogHandlerConfigurator.cs" />
+    <Compile Include="IApp.cs" />
     <Compile Include="KernelConfigurator.cs" />
     <Compile Include="DataBindingLanguageConfigurator.cs" />
     <Compile Include="Localization\AppViewErrorLocalizer.cs" />

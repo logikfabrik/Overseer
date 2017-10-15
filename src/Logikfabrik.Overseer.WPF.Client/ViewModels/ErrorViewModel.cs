@@ -4,7 +4,6 @@
 
 namespace Logikfabrik.Overseer.WPF.Client.ViewModels
 {
-    using System.Windows;
     using Caliburn.Micro;
     using EnsureThat;
     using Localization;
@@ -21,7 +20,7 @@ namespace Logikfabrik.Overseer.WPF.Client.ViewModels
         /// Initializes a new instance of the <see cref="ErrorViewModel" /> class.
         /// </summary>
         /// <param name="application">The application.</param>
-        public ErrorViewModel(Application application)
+        public ErrorViewModel(IApp application)
         {
             Ensure.That(application).IsNotNull();
 
