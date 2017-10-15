@@ -18,7 +18,7 @@ namespace Logikfabrik.Overseer.Test
     public class BuildMonitorTest
     {
         [Fact]
-        public async void WillLogOnExceptionWhenGettingProjects()
+        public async Task WillLogOnExceptionWhenGettingProjects()
         {
             var mocker = new AutoMocker();
 
@@ -39,7 +39,7 @@ namespace Logikfabrik.Overseer.Test
         }
 
         [Fact]
-        public async void CanRaiseConnectionErrorWhenGettingProjects()
+        public async Task CanRaiseConnectionErrorWhenGettingProjects()
         {
             var mocker = new AutoMocker();
 
@@ -61,7 +61,7 @@ namespace Logikfabrik.Overseer.Test
         }
 
         [Fact]
-        public async void CanRaiseConnectionProgressChangedWhenGettingProjects()
+        public async Task CanRaiseConnectionProgressChangedWhenGettingProjects()
         {
             var mocker = new AutoMocker();
 
@@ -83,7 +83,7 @@ namespace Logikfabrik.Overseer.Test
         }
 
         [Fact]
-        public async void WillLogOnExceptionWhenGettingBuilds()
+        public async Task WillLogOnExceptionWhenGettingBuilds()
         {
             var mocker = new AutoMocker();
 
@@ -106,7 +106,7 @@ namespace Logikfabrik.Overseer.Test
         }
 
         [Fact]
-        public async void CanRaiseProjectErrorWhenGettingBuilds()
+        public async Task CanRaiseProjectErrorWhenGettingBuilds()
         {
             var mocker = new AutoMocker();
 
@@ -130,7 +130,7 @@ namespace Logikfabrik.Overseer.Test
         }
 
         [Fact]
-        public async void CanRaiseProjectProgressChangedWhenGettingBuilds()
+        public async Task CanRaiseProjectProgressChangedWhenGettingBuilds()
         {
             var mocker = new AutoMocker();
 
