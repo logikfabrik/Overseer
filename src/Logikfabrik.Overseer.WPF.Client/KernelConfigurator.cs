@@ -38,7 +38,10 @@ namespace Logikfabrik.Overseer.WPF.Client
             Ensure.That(modules).IsNotNull();
 
             kernel.Bind<AppDomain>().ToConstant(AppDomain.CurrentDomain);
+
+            // TODO: Replace all uses of Application.Current with IApp.
             kernel.Bind<Application>().ToConstant(Application.Current);
+            kernel.Bind<IApp>().ToConstant((IApp)Application.Current);
             kernel.Bind<InputManager>().ToProvider<InputManagerProvider>();
 
             // Serilog setup.
