@@ -133,11 +133,26 @@ We couldn't connect to the CI/CD service. Please check your network connection a
     <value>Sorry, there seems to be a problem!
 We couldn't connect to the CI/CD service. Please try again.</value>
   </data>
+  <data name="AddConnection_View" xml:space="preserve">
+    <value>Add connection</value>
+  </data>
+  <data name="BuildProviders_View" xml:space="preserve">
+    <value>Select CI/DI service</value>
+  </data>
   <data name="ConnectionSettings_Validation_BuildsPerProject" xml:space="preserve">
     <value>We have to get at least 1 build per project</value>
   </data>
   <data name="ConnectionSettings_Validation_Name" xml:space="preserve">
     <value>Name is missing</value>
+  </data>
+  <data name="Connections_View" xml:space="preserve">
+    <value>Connections</value>
+  </data>
+  <data name="Connection_View" xml:space="preserve">
+    <value>Connection</value>
+  </data>
+  <data name="Dashboard_View" xml:space="preserve">
+    <value>Dashboard</value>
   </data>
   <data name="EditConnection_Error_HTTP4xx" xml:space="preserve">
     <value>Sorry, there seems to be a problem!
@@ -155,10 +170,22 @@ We couldn't connect to the CI/CD service. Please check your network connection a
     <value>Sorry, there seems to be a problem!
 We couldn't connect to the CI/CD service. Please try again.</value>
   </data>
+  <data name="EditConnection_View" xml:space="preserve">
+    <value>Edit connection</value>
+  </data>
   <data name="EditSettings_Validation_CultureName" xml:space="preserve">
     <value>Language is missing</value>
   </data>
   <data name="EditSettings_Validation_Interval" xml:space="preserve">
     <value>Interval can be between 10 and 86400 (24 hours)</value>
+  </data>
+  <data name="EditSettings_View" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+  <data name="Project_View" xml:space="preserve">
+    <value>Project</value>
+  </data>
+  <data name="RemoveConnection_View" xml:space="preserve">
+    <value>Remove connection</value>
   </data>
 </root>

@@ -133,11 +133,26 @@ Vi kunde inte ansluta till CI/CD-tjänsten. Vänligen kontrollera din nätverksa
     <value>Tyvärr, det verkar vara ett problem!
 Vi kunde inte ansluta till CI/CD-tjänsten. Vänligen försök igen.</value>
   </data>
+  <data name="AddConnection_View" xml:space="preserve">
+    <value>Lägg till anslutning</value>
+  </data>
+  <data name="BuildProviders_View" xml:space="preserve">
+    <value>Välj CI/DI-tjänst</value>
+  </data>
   <data name="ConnectionSettings_Validation_BuildsPerProject" xml:space="preserve">
     <value>Vi måste hämta minst 1 bygge per projekt</value>
   </data>
   <data name="ConnectionSettings_Validation_Name" xml:space="preserve">
     <value>Namn saknas</value>
+  </data>
+  <data name="Connections_View" xml:space="preserve">
+    <value>Anslutningar</value>
+  </data>
+  <data name="Connection_View" xml:space="preserve">
+    <value>Anslutning</value>
+  </data>
+  <data name="Dashboard_View" xml:space="preserve">
+    <value>Instrumentbräda</value>
   </data>
   <data name="EditConnection_Error_HTTP4xx" xml:space="preserve">
     <value>Tyvärr, det verkar vara ett problem!
@@ -155,10 +170,22 @@ Vi kunde inte ansluta till CI/CD-tjänsten. Vänligen kontrollera din nätverksa
     <value>Tyvärr, det verkar vara ett problem!
 Vi kunde inte ansluta till CI/CD-tjänsten. Vänligen försök igen.</value>
   </data>
+  <data name="EditConnection_View" xml:space="preserve">
+    <value>Redigera anslutning</value>
+  </data>
   <data name="EditSettings_Validation_CultureName" xml:space="preserve">
     <value>Språk saknas</value>
   </data>
   <data name="EditSettings_Validation_Interval" xml:space="preserve">
     <value>Intervall kan vara mellan 10 och 86400 (24 timmar)</value>
+  </data>
+  <data name="EditSettings_View" xml:space="preserve">
+    <value>Inställningar</value>
+  </data>
+  <data name="Project_View" xml:space="preserve">
+    <value>Projekt</value>
+  </data>
+  <data name="RemoveConnection_View" xml:space="preserve">
+    <value>Ta bort anslutning</value>
   </data>
 </root>

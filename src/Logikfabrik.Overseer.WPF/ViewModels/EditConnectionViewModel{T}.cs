@@ -61,7 +61,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             _projectToMonitorFactory = projectToMonitorFactory;
             _projectsToMonitorFactory = projectsToMonitorFactory;
             _currentSettings = currentSettings;
-            DisplayName = "Edit connection";
+            DisplayName = Properties.Resources.EditConnection_View;
         }
 
         /// <summary>

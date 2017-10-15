@@ -34,7 +34,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             _appSettings = appSettings;
             _interval = appSettings.Interval;
             _cultureName = appSettings.CultureName;
-            DisplayName = "Settings";
+            DisplayName = Properties.Resources.EditSettings_View;
         }
 
         /// <summary>

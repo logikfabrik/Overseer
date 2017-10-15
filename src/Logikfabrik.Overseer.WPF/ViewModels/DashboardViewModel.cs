@@ -14,7 +14,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// </summary>
         public DashboardViewModel()
         {
-            DisplayName = "Dashboard";
+            DisplayName = Properties.Resources.Dashboard_View;
         }
     }
 }

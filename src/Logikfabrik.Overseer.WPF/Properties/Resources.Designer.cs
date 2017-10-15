@@ -19,7 +19,7 @@ namespace Logikfabrik.Overseer.WPF.Properties {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class Resources {
@@ -101,6 +101,42 @@ namespace Logikfabrik.Overseer.WPF.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add connection.
+        /// </summary>
+        public static string AddConnection_View {
+            get {
+                return ResourceManager.GetString("AddConnection_View", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select CI/DI service.
+        /// </summary>
+        public static string BuildProviders_View {
+            get {
+                return ResourceManager.GetString("BuildProviders_View", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Connection.
+        /// </summary>
+        public static string Connection_View {
+            get {
+                return ResourceManager.GetString("Connection_View", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Connections.
+        /// </summary>
+        public static string Connections_View {
+            get {
+                return ResourceManager.GetString("Connections_View", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to We have to get at least 1 build per project.
         /// </summary>
         public static string ConnectionSettings_Validation_BuildsPerProject {
@@ -115,6 +151,15 @@ namespace Logikfabrik.Overseer.WPF.Properties {
         public static string ConnectionSettings_Validation_Name {
             get {
                 return ResourceManager.GetString("ConnectionSettings_Validation_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dashboard.
+        /// </summary>
+        public static string Dashboard_View {
+            get {
+                return ResourceManager.GetString("Dashboard_View", resourceCulture);
             }
         }
         
@@ -159,6 +204,15 @@ namespace Logikfabrik.Overseer.WPF.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Edit connection.
+        /// </summary>
+        public static string EditConnection_View {
+            get {
+                return ResourceManager.GetString("EditConnection_View", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Language is missing.
         /// </summary>
         public static string EditSettings_Validation_CultureName {
@@ -173,6 +227,33 @@ namespace Logikfabrik.Overseer.WPF.Properties {
         public static string EditSettings_Validation_Interval {
             get {
                 return ResourceManager.GetString("EditSettings_Validation_Interval", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Settings.
+        /// </summary>
+        public static string EditSettings_View {
+            get {
+                return ResourceManager.GetString("EditSettings_View", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Project.
+        /// </summary>
+        public static string Project_View {
+            get {
+                return ResourceManager.GetString("Project_View", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remove connection.
+        /// </summary>
+        public static string RemoveConnection_View {
+            get {
+                return ResourceManager.GetString("RemoveConnection_View", resourceCulture);
             }
         }
     }

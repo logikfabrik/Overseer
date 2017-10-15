@@ -73,7 +73,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
 
             Settings = connectionSettingsFactory.Create();
             Settings.BuildsPerProject = 5;
-            DisplayName = "Add connection";
+            DisplayName = Properties.Resources.AddConnection_View;
         }
 
         /// <summary>

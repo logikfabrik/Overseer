@@ -61,7 +61,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             _name = projectName;
             _isBusy = true;
             _isErrored = false;
-            DisplayName = "Project";
+            DisplayName = Properties.Resources.Project_View;
 
             WeakEventManager<IBuildMonitor, BuildMonitorProjectErrorEventArgs>.AddHandler(buildMonitor, nameof(buildMonitor.ProjectError), BuildMonitorProjectError);
             WeakEventManager<IBuildMonitor, BuildMonitorProjectProgressEventArgs>.AddHandler(buildMonitor, nameof(buildMonitor.ProjectProgressChanged), BuildMonitorProjectProgressChanged);

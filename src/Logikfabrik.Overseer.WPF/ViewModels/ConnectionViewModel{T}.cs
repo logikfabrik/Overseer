@@ -69,7 +69,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             Settings = settings;
             _isBusy = true;
             _isErrored = false;
-            DisplayName = "Connection";
+            DisplayName = Properties.Resources.Connection_View;
             KeepAlive = true;
 
             WeakEventManager<IBuildMonitor, BuildMonitorConnectionErrorEventArgs>.AddHandler(buildMonitor, nameof(buildMonitor.ConnectionError), BuildMonitorConnectionError);

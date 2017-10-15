@@ -20,7 +20,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             Ensure.That(connectionsListViewModel).IsNotNull();
 
             ConnectionsList = connectionsListViewModel;
-            DisplayName = "Connections";
+            DisplayName = Properties.Resources.Connections_View;
             KeepAlive = true; // TODO: Why do we need this?
         }
 

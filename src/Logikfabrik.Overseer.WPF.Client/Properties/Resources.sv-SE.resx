@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="About_View" xml:space="preserve">
+    <value>Om</value>
+  </data>
   <data name="AddConnection_Button_Add" xml:space="preserve">
     <value>OK</value>
   </data>
@@ -174,6 +177,9 @@ Vänligen försök igen.</value>
   </data>
   <data name="PassPhrase_Button_Save" xml:space="preserve">
     <value>OK</value>
+  </data>
+  <data name="PassPhrase_View" xml:space="preserve">
+    <value>Lösenordsfras</value>
   </data>
   <data name="RemoveConnection_Button_Cancel" xml:space="preserve">
     <value>Avbryt</value>

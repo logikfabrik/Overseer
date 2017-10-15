@@ -21,7 +21,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             Ensure.That(providers).IsNotNull();
 
             Providers = providers;
-            DisplayName = "Add connection";
+            DisplayName = Properties.Resources.BuildProviders_View;
         }
 
         /// <summary>

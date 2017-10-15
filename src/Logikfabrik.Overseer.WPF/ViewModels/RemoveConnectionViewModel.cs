@@ -33,7 +33,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             _eventAggregator = eventAggregator;
             _settingsRepository = settingsRepository;
             _connectionViewModel = connectionViewModel;
-            DisplayName = "Remove connection";
+            DisplayName = Properties.Resources.RemoveConnection_View;
         }
 
         /// <summary>

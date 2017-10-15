@@ -39,7 +39,7 @@ namespace Logikfabrik.Overseer.WPF.Client.ViewModels
         /// <value>
         /// The display name.
         /// </value>
-        public string DisplayName { get; set; } = "Pass phrase";
+        public string DisplayName { get; set; } = Properties.Resources.PassPhrase_View;
 
         /// <summary>
         /// Gets or sets the pass phrase.
