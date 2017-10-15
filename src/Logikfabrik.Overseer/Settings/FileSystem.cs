@@ -11,21 +11,25 @@ namespace Logikfabrik.Overseer.Settings
     /// </summary>
     public class FileSystem : IFileSystem
     {
+        /// <inheritdoc />
         public bool FileExists(string path)
         {
             return File.Exists(path);
         }
 
+        /// <inheritdoc />
         public string ReadFileText(string path)
         {
             return File.ReadAllText(path);
         }
 
+        /// <inheritdoc />
         public void WriteFileText(string path, string text)
         {
             File.WriteAllText(path, text);
         }
 
+        /// <inheritdoc />
         public void CreateDirectory(string path)
         {
             Directory.CreateDirectory(path);

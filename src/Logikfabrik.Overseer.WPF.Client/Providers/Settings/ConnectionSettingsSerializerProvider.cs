@@ -17,6 +17,10 @@ namespace Logikfabrik.Overseer.WPF.Client.Providers.Settings
     {
         private readonly AppDomain _appDomain;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ConnectionSettingsSerializerProvider" /> class.
+        /// </summary>
+        /// <param name="appDomain">The application domain.</param>
         public ConnectionSettingsSerializerProvider(AppDomain appDomain)
         {
             Ensure.That(appDomain).IsNotNull();

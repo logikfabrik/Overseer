@@ -17,6 +17,10 @@ namespace Logikfabrik.Overseer.WPF.Client.Providers.Settings
     {
         private readonly IFileSystem _fileSystem;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="FileStoreProvider" /> class.
+        /// </summary>
+        /// <param name="fileSystem">The file system.</param>
         public FileStoreProvider(IFileSystem fileSystem)
         {
             Ensure.That(fileSystem).IsNotNull();

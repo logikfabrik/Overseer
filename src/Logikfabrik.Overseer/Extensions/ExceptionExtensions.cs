@@ -11,6 +11,11 @@ namespace Logikfabrik.Overseer.Extensions
     /// </summary>
     public static class ExceptionExtensions
     {
+        /// <summary>
+        /// Gets the inner exception of the specified exception.
+        /// </summary>
+        /// <param name="exception">The exception.</param>
+        /// <returns>The inner exception, or the specified exception.</returns>
         public static Exception InnerException(this Exception exception)
         {
             var ex = exception;
