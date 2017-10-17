@@ -67,7 +67,7 @@ namespace Logikfabrik.Overseer.WPF.Client
 
             if (dialogResult == null || !dialogResult.Value)
             {
-                Application.Current.Shutdown();
+                _kernel.Get<IApp>().Shutdown();
 
                 return;
             }
@@ -98,6 +98,7 @@ namespace Logikfabrik.Overseer.WPF.Client
             LanguageConfigurator.Configure(_kernel.Get<IAppSettingsFactory>());
             DataBindingLanguageConfigurator.Configure();
             DataBindingActionConfigurator.Configure();
+            ConventionConfigurator.Configure();
             ErrorLogHandlerConfigurator.Configure(_kernel.Get<AppDomain>(), _kernel.Get<Application>(), _kernel.Get<ILogService>());
             BuildNotificationConfigurator.Configure(_kernel.Get<IBuildMonitor>(), _kernel.Get<IBuildNotificationManager>());
         }

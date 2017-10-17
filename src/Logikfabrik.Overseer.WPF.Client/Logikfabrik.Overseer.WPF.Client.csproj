@@ -115,12 +115,15 @@
     <Compile Include="AppBootstrapper.cs" />
     <Compile Include="AppCatalog.cs" />
     <Compile Include="AssemblyLoader.cs" />
+    <Compile Include="ConventionConfigurator.cs" />
     <Compile Include="DataBindingActionConfigurator.cs" />
     <Compile Include="ErrorLogHandlerConfigurator.cs" />
     <Compile Include="IApp.cs" />
+    <Compile Include="IMouseManager.cs" />
     <Compile Include="KernelConfigurator.cs" />
     <Compile Include="DataBindingLanguageConfigurator.cs" />
     <Compile Include="Localization\AppViewErrorLocalizer.cs" />
+    <Compile Include="MouseManager.cs" />
     <Compile Include="NativeMethods.cs" />
     <Compile Include="Properties\Resources.en-US.Designer.cs">
       <DependentUpon>Resources.en-US.resx</DependentUpon>

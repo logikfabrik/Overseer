@@ -43,9 +43,9 @@ namespace Logikfabrik.Overseer.WPF.Extensions
             obj.SetValue(IsExternalProperty, value);
         }
 
-        private static void OnIsExternalChanged(object sender, DependencyPropertyChangedEventArgs args)
+        private static void OnIsExternalChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
-            var isExternal = args.NewValue as bool?;
+            var isExternal = e.NewValue as bool?;
 
             if (!isExternal.HasValue || !isExternal.Value)
             {

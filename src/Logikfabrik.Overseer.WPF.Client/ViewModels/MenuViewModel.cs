@@ -17,7 +17,7 @@ namespace Logikfabrik.Overseer.WPF.Client.ViewModels
     public class MenuViewModel : PropertyChangedBase, IDisposable
     {
         private readonly IEventAggregator _eventAggregator;
-        private readonly InputManager _inputManager;
+        private readonly IMouseManager _mouseManager;
         private bool _isExpanded;
         private bool _isDisposed;
 
@@ -25,18 +25,18 @@ namespace Logikfabrik.Overseer.WPF.Client.ViewModels
         /// Initializes a new instance of the <see cref="MenuViewModel" /> class.
         /// </summary>
         /// <param name="eventAggregator">The event aggregator.</param>
-        /// <param name="inputManager">The input manager.</param>
+        /// <param name="mouseManager">The mouse manager.</param>
         /// <param name="connectionsListViewModel">The connections list view model.</param>
-        public MenuViewModel(IEventAggregator eventAggregator, InputManager inputManager, ConnectionsListViewModel connectionsListViewModel)
+        public MenuViewModel(IEventAggregator eventAggregator, IMouseManager mouseManager, ConnectionsListViewModel connectionsListViewModel)
         {
             Ensure.That(eventAggregator).IsNotNull();
-            Ensure.That(inputManager).IsNotNull();
+            Ensure.That(mouseManager).IsNotNull();
             Ensure.That(connectionsListViewModel).IsNotNull();
 
             _eventAggregator = eventAggregator;
-            _inputManager = inputManager;
+            _mouseManager = mouseManager;
 
-            _inputManager.PreProcessInput += InputManager_PreProcessInput;
+            _mouseManager.PreProcessInput += MouseManagerPreProcessMouse;
 
             ConnectionsList = connectionsListViewModel;
         }
@@ -147,7 +147,7 @@ namespace Logikfabrik.Overseer.WPF.Client.ViewModels
 
             if (disposing)
             {
-                _inputManager.PreProcessInput -= InputManager_PreProcessInput;
+                _mouseManager.PreProcessInput -= MouseManagerPreProcessMouse;
             }
 
             _isDisposed = true;
@@ -162,7 +162,7 @@ namespace Logikfabrik.Overseer.WPF.Client.ViewModels
             Close();
         }
 
-        private void InputManager_PreProcessInput(object sender, NotifyInputEventArgs e)
+        private void MouseManagerPreProcessMouse(object sender, NotifyInputEventArgs e)
         {
             var args = e.StagingItem.Input as MouseButtonEventArgs;
 

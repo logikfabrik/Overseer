@@ -25,16 +25,18 @@ namespace Logikfabrik.Overseer.WPF.Client.Test.ViewModels
             model.Message.ShouldBe(message);
         }
 
-        [Fact]
-        public void CanGetIsExpanded()
+        [Theory]
+        [InlineData(true)]
+        [InlineData(false)]
+        public void CanGetIsExpanded(bool isExpanded)
         {
             var mocker = new AutoMocker();
 
             var model = mocker.CreateInstance<ErrorViewModel>();
 
-            model.IsExpanded = true;
+            model.IsExpanded = isExpanded;
 
-            model.IsExpanded.ShouldBeTrue();
+            model.IsExpanded.ShouldBe(isExpanded);
         }
 
         [Fact]

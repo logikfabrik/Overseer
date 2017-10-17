@@ -14,6 +14,8 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity.Test.Api
         [Fact(Skip = "This is an integration test")]
         public async Task CanGetProjects()
         {
+            // TODO: Rewrite.
+
             var settings = new ConnectionSettings
             {
                 AuthenticationType = AuthenticationType.GuestAuth,

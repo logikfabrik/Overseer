@@ -94,6 +94,7 @@
     <Compile Include="Converters\ValueConverterGroup.cs" />
     <Compile Include="Extensions\ApplicationExtensions.cs" />
     <Compile Include="Extensions\HyperlinkExtensions.cs" />
+    <Compile Include="Extensions\PasswordBoxExtensions.cs" />
     <Compile Include="IBuildNotificationManager.cs" />
     <Compile Include="INotificationManager.cs" />
     <Compile Include="INotifyTask.cs" />

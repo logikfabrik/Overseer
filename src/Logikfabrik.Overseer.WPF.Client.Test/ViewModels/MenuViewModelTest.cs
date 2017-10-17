@@ -4,21 +4,56 @@
 
 namespace Logikfabrik.Overseer.WPF.Client.Test.ViewModels
 {
+    using Client.ViewModels;
+    using Moq.AutoMock;
+    using Shouldly;
+    using WPF.ViewModels;
+    using Xunit;
+
     public class MenuViewModelTest
     {
+        [Fact]
         public void CanOpen()
         {
-            // TODO: This unit test.
+            var mocker = new AutoMocker();
+
+            mocker.Use(mocker.CreateInstance<ConnectionsListViewModel>());
+
+            var model = mocker.CreateInstance<MenuViewModel>();
+
+            model.Open();
+
+            model.IsExpanded.ShouldBeTrue();
         }
 
+        [Fact]
         public void CanClose()
         {
-            // TODO: This unit test.
+            var mocker = new AutoMocker();
+
+            mocker.Use(mocker.CreateInstance<ConnectionsListViewModel>());
+
+            var model = mocker.CreateInstance<MenuViewModel>();
+
+            model.Close();
+
+            model.IsExpanded.ShouldBeFalse();
         }
 
-        public void CanGetIsExpanded()
+        [Theory]
+        [InlineData(true)]
+        [InlineData(false)]
+        public void CanGetIsExpanded(bool isExpanded)
         {
-            // TODO: This unit test.
+            var mocker = new AutoMocker();
+
+            mocker.Use(mocker.CreateInstance<ConnectionsListViewModel>());
+
+            var model = mocker.CreateInstance<MenuViewModel>();
+
+            model.IsExpanded = isExpanded;
+
+            model.IsExpanded.ShouldBe(isExpanded);
         }
     }
 }

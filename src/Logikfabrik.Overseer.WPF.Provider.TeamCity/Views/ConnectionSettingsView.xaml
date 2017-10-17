@@ -7,6 +7,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:teamCity="clr-namespace:Logikfabrik.Overseer.WPF.Provider.TeamCity"
     xmlns:p="clr-namespace:Logikfabrik.Overseer.WPF.Provider.TeamCity.Properties"
+    xmlns:ex="clr-namespace:Logikfabrik.Overseer.WPF.Extensions;assembly=Logikfabrik.Overseer.WPF"
     d:DesignHeight="300"
     d:DesignWidth="300"
     mc:Ignorable="d">
@@ -47,7 +48,7 @@
             </StackPanel>
             <StackPanel>
                 <TextBlock Text="{x:Static p:Resources.ConnectionSettings_Setting_Label_Password}" />
-                <TextBox Text="{Binding Password, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" />
+                <PasswordBox ex:PasswordBoxExtensions.BoundPassword="{Binding Password, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" />
             </StackPanel>
         </StackPanel>
     </StackPanel>

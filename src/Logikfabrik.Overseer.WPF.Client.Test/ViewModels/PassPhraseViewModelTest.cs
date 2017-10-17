@@ -5,9 +5,8 @@
 namespace Logikfabrik.Overseer.WPF.Client.Test.ViewModels
 {
     using Client.ViewModels;
-    using Moq;
+    using Moq.AutoMock;
     using Ploeh.AutoFixture.Xunit2;
-    using Settings;
     using Shouldly;
     using Xunit;
 
@@ -16,9 +15,9 @@ namespace Logikfabrik.Overseer.WPF.Client.Test.ViewModels
         [Fact]
         public void IsInvalidWithoutPassPhrase()
         {
-            var encrypterMock = new Mock<IConnectionSettingsEncrypter>();
+            var mocker = new AutoMocker();
 
-            var model = new PassPhraseViewModel(encrypterMock.Object);
+            var model = mocker.CreateInstance<PassPhraseViewModel>();
 
             model.IsValid.ShouldBeFalse();
         }
@@ -27,9 +26,11 @@ namespace Logikfabrik.Overseer.WPF.Client.Test.ViewModels
         [AutoData]
         public void IsValidWithPassPhrase(string passPhrase)
         {
-            var encrypterMock = new Mock<IConnectionSettingsEncrypter>();
+            var mocker = new AutoMocker();
 
-            var model = new PassPhraseViewModel(encrypterMock.Object) { PassPhrase = passPhrase };
+            var model = mocker.CreateInstance<PassPhraseViewModel>();
+
+            model.PassPhrase = passPhrase;
 
             model.IsValid.ShouldBeTrue();
         }

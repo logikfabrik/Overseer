@@ -66,7 +66,7 @@ namespace Logikfabrik.Overseer.WPF.Client
             kernel.Bind<IWindowManager>().To<WindowManager>().InSingletonScope();
             kernel.Bind<IEventAggregator>().To<EventAggregator>().InSingletonScope();
 
-            // WPF client setup.
+            // WPF setup.
             kernel.Bind<IUILogService>().To<UILogService>();
             kernel.Bind<INotificationManager>().To<NotificationManager>();
             kernel.Bind<IBuildNotificationViewModelFactory>().ToFactory();
@@ -79,6 +79,9 @@ namespace Logikfabrik.Overseer.WPF.Client
             kernel.Bind<IRemoveConnectionViewModelFactory>().ToFactory();
             kernel.Bind<IConnectionViewModelStrategy>().To<ConnectionViewModelStrategy>();
             kernel.Bind<ConnectionsListViewModel>().ToSelf().InSingletonScope();
+
+            // WPF client setup.
+            kernel.Bind<IMouseManager>().To<MouseManager>();
 
             kernel.Load(modules);
         }

@@ -87,6 +87,8 @@
   <ItemGroup>
     <Compile Include="Api\ApiClientTest.cs" />
     <Compile Include="BaseUriUtilityTest.cs" />
+    <Compile Include="ConnectionSettingsTest.cs" />
+    <Compile Include="ProjectTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

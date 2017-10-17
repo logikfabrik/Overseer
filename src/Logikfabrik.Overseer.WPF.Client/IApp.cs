@@ -15,5 +15,7 @@ namespace Logikfabrik.Overseer.WPF.Client
         /// Occurs when an exception is thrown by an application but not handled.
         /// </summary>
         event DispatcherUnhandledExceptionEventHandler DispatcherUnhandledException;
+
+        void Shutdown();
     }
 }
