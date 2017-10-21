@@ -27,9 +27,14 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity.Test
             settings.Url.ShouldBe(url);
         }
 
-        public void CanGetAuthenticationType()
+        [Theory]
+        [InlineData(AuthenticationType.GuestAuth)]
+        [InlineData(AuthenticationType.HttpAuth)]
+        public void CanGetAuthenticationType(AuthenticationType authenticationType)
         {
-            // TODO: This unit test.
+            var settings = new ConnectionSettings { AuthenticationType = authenticationType };
+
+            settings.AuthenticationType.ShouldBe(authenticationType);
         }
 
         [Theory]

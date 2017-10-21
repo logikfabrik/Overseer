@@ -20,7 +20,7 @@ namespace Logikfabrik.Overseer.WPF.Client
         /// <param name="appDomain">The application domain.</param>
         /// <param name="application">The application.</param>
         /// <param name="logService">The log service.</param>
-        public static void Configure(AppDomain appDomain, Application application, ILogService logService)
+        public static void Configure(AppDomain appDomain, IApp application, ILogService logService)
         {
             Ensure.That(appDomain).IsNotNull();
             Ensure.That(application).IsNotNull();

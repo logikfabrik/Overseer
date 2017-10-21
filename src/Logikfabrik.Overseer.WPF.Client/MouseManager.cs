@@ -14,6 +14,13 @@ namespace Logikfabrik.Overseer.WPF.Client
     {
         private readonly InputManager _inputManager;
 
+        public MouseManager(InputManager inputManager)
+        {
+            Ensure.That(inputManager).IsNotNull();
+
+            _inputManager = inputManager;
+        }
+
         public event PreProcessInputEventHandler PreProcessInput
         {
             add
@@ -25,13 +32,6 @@ namespace Logikfabrik.Overseer.WPF.Client
             {
                 _inputManager.PreProcessInput -= value;
             }
-        }
-
-        public MouseManager(InputManager inputManager)
-        {
-            Ensure.That(inputManager).IsNotNull();
-
-            _inputManager = inputManager;
         }
     }
 }

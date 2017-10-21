@@ -20,6 +20,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     /// </summary>
     public class ProjectViewModel : ViewModel, IProjectViewModel
     {
+        private readonly IApp _application;
         private readonly IEventAggregator _eventAggregator;
         private readonly IBuildViewModelFactory _buildFactory;
         private readonly Guid _settingsId;
@@ -34,6 +35,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// <summary>
         /// Initializes a new instance of the <see cref="ProjectViewModel" /> class.
         /// </summary>
+        /// <param name="application">The application.</param>
         /// <param name="eventAggregator">The event aggregator.</param>
         /// <param name="buildMonitor">The build monitor.</param>
         /// <param name="buildFactory">The build factory.</param>
@@ -41,6 +43,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// <param name="projectId">The project identifier.</param>
         /// <param name="projectName">The project name.</param>
         public ProjectViewModel(
+            IApp application,
             IEventAggregator eventAggregator,
             IBuildMonitor buildMonitor,
             IBuildViewModelFactory buildFactory,
@@ -48,12 +51,14 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             string projectId,
             string projectName)
         {
+            Ensure.That(application).IsNotNull();
             Ensure.That(eventAggregator).IsNotNull();
             Ensure.That(buildMonitor).IsNotNull();
             Ensure.That(buildFactory).IsNotNull();
             Ensure.That(settingsId).IsNotEmpty();
             Ensure.That(projectId).IsNotNullOrWhiteSpace();
 
+            _application = application;
             _eventAggregator = eventAggregator;
             _buildFactory = buildFactory;
             _settingsId = settingsId;
@@ -223,51 +228,48 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
                 return;
             }
 
-            Application.Current.Dispatcher.Invoke(() =>
+            foreach (var build in e.Builds)
             {
-                foreach (var build in e.Builds)
+                var buildToUpdate = _builds.SingleOrDefault(b => b.Id == build.Id);
+
+                if (buildToUpdate != null)
                 {
-                    var buildToUpdate = _builds.SingleOrDefault(b => b.Id == build.Id);
-
-                    if (buildToUpdate != null)
-                    {
-                        buildToUpdate.TryUpdate(e.Project.Name, build.Status, build.StartTime, build.EndTime, build.RunTime());
-                    }
-                    else
-                    {
-                        Application.Current.Dispatcher.Invoke(() =>
-                        {
-                            var buildToAdd = _buildFactory.Create(e.Project.Name, build.Id, build.Branch, build.VersionNumber(), build.RequestedBy, build.Changes, build.Status, build.StartTime, build.EndTime, build.RunTime());
-
-                            var time = new Tuple<DateTime, DateTime>(buildToAdd.EndTime ?? DateTime.MaxValue, buildToAdd.StartTime ?? DateTime.MaxValue);
-
-                            var times = _builds.Select(b => new Tuple<DateTime, DateTime>(b.EndTime ?? DateTime.MaxValue, b.StartTime ?? DateTime.MaxValue)).Concat(new[] { time }).OrderByDescending(t => t.Item1).ThenByDescending(t => t.Item2).ToArray();
-
-                            var index = Array.IndexOf(times, time);
-
-                            _builds.Insert(index, buildToAdd);
-                        });
-                    }
+                    buildToUpdate.TryUpdate(e.Project.Name, build.Status, build.StartTime, build.EndTime, build.RunTime());
                 }
-
-                var buildsToKeep = e.Builds.Select(build => build.Id).ToArray();
-                var buildsToRemove = _builds.Where(build => !buildsToKeep.Contains(build.Id)).ToArray();
-
-                if (buildsToRemove.Any())
+                else
                 {
-                    Application.Current.Dispatcher.Invoke(() =>
+                    _application.Dispatcher.Invoke(() =>
                     {
-                        _builds.RemoveRange(buildsToRemove);
+                        var buildToAdd = _buildFactory.Create(e.Project.Name, build.Id, build.Branch, build.VersionNumber(), build.RequestedBy, build.Changes, build.Status, build.StartTime, build.EndTime, build.RunTime());
+
+                        var time = new Tuple<DateTime, DateTime>(buildToAdd.EndTime ?? DateTime.MaxValue, buildToAdd.StartTime ?? DateTime.MaxValue);
+
+                        var times = _builds.Select(b => new Tuple<DateTime, DateTime>(b.EndTime ?? DateTime.MaxValue, b.StartTime ?? DateTime.MaxValue)).Concat(new[] { time }).OrderByDescending(t => t.Item1).ThenByDescending(t => t.Item2).ToArray();
+
+                        var index = Array.IndexOf(times, time);
+
+                        _builds.Insert(index, buildToAdd);
                     });
                 }
+            }
 
-                IsErrored = false;
-                IsBusy = false;
+            var buildsToKeep = e.Builds.Select(build => build.Id).ToArray();
+            var buildsToRemove = _builds.Where(build => !buildsToKeep.Contains(build.Id)).ToArray();
 
-                NotifyOfPropertyChange(() => HasBuilds);
-                NotifyOfPropertyChange(() => LatestBuild);
-                NotifyOfPropertyChange(() => IsViewable);
-            });
+            if (buildsToRemove.Any())
+            {
+                _application.Dispatcher.Invoke(() =>
+                {
+                    _builds.RemoveRange(buildsToRemove);
+                });
+            }
+
+            IsErrored = false;
+            IsBusy = false;
+
+            NotifyOfPropertyChange(() => HasBuilds);
+            NotifyOfPropertyChange(() => LatestBuild);
+            NotifyOfPropertyChange(() => IsViewable);
         }
 
         private bool ShouldExitHandler(BuildMonitorProjectEventArgs e)

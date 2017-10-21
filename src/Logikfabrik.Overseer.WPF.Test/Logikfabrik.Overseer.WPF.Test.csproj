@@ -95,6 +95,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BuildMessageUtilityTest.cs" />
+    <Compile Include="Converters\AddConnectionViewExceptionToLocalizedStringConverterTest.cs" />
+    <Compile Include="Converters\EditConnectionViewExceptionToLocalizedStringConverterTest.cs" />
     <Compile Include="Localization\AddConnectionViewErrorLocalizerTest.cs" />
     <Compile Include="Localization\EditConnectionViewErrorLocalizerTest.cs" />
     <Compile Include="Logging\UILogServiceTest.cs" />

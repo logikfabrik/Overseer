@@ -24,6 +24,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     public class ConnectionViewModel<T> : ViewModel, IConnectionViewModel
         where T : ConnectionSettings
     {
+        private readonly IApp _application;
         private readonly IEventAggregator _eventAggregator;
         private readonly IProjectViewModelFactory _projectFactory;
         private readonly IRemoveConnectionViewModelFactory _removeConnectionFactory;
@@ -41,6 +42,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// <summary>
         /// Initializes a new instance of the <see cref="ConnectionViewModel{T}" /> class.
         /// </summary>
+        /// <param name="application">The application.</param>
         /// <param name="eventAggregator">The event aggregator.</param>
         /// <param name="buildMonitor">The build monitor.</param>
         /// <param name="projectFactory">The project factory.</param>
@@ -48,6 +50,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// <param name="editConnectionFactory">The edit connection factory.</param>
         /// <param name="settings">The settings.</param>
         public ConnectionViewModel(
+            IApp application,
             IEventAggregator eventAggregator,
             IBuildMonitor buildMonitor,
             IProjectViewModelFactory projectFactory,
@@ -55,6 +58,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             IEditConnectionViewModelFactory<T> editConnectionFactory,
             T settings)
         {
+            Ensure.That(application).IsNotNull();
             Ensure.That(eventAggregator).IsNotNull();
             Ensure.That(buildMonitor).IsNotNull();
             Ensure.That(projectFactory).IsNotNull();
@@ -62,6 +66,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             Ensure.That(editConnectionFactory).IsNotNull();
             Ensure.That(settings).IsNotNull();
 
+            _application = application;
             _eventAggregator = eventAggregator;
             _projectFactory = projectFactory;
             _removeConnectionFactory = removeConnectionFactory;
@@ -290,7 +295,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
                 }
                 else
                 {
-                    Application.Current.Dispatcher.Invoke(() =>
+                    _application.Dispatcher.Invoke(() =>
                     {
                         var projectToAdd = _projectFactory.Create(SettingsId, project.Id, project.Name);
 
@@ -308,7 +313,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
 
             if (_projects.Any())
             {
-                Application.Current.Dispatcher.Invoke(() =>
+                _application.Dispatcher.Invoke(() =>
                 {
                     _projects.RemoveRange(projectsToRemove);
                 });

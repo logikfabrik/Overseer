@@ -19,21 +19,25 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     /// </summary>
     public class BuildNotificationViewModel : ViewAware, IBuildNotificationViewModel
     {
+        private readonly IApp _application;
         private readonly Uri _webUrl;
         private DispatcherTimer _dispatcher;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="BuildNotificationViewModel" /> class.
         /// </summary>
+        /// <param name="application">The application.</param>
         /// <param name="buildViewModelFactory">The build view model factory.</param>
         /// <param name="project">The project.</param>
         /// <param name="build">The build.</param>
-        public BuildNotificationViewModel(IBuildViewModelFactory buildViewModelFactory, IProject project, IBuild build)
+        public BuildNotificationViewModel(IApp application, IBuildViewModelFactory buildViewModelFactory, IProject project, IBuild build)
         {
+            Ensure.That(application).IsNotNull();
             Ensure.That(buildViewModelFactory).IsNotNull();
             Ensure.That(project).IsNotNull();
             Ensure.That(build).IsNotNull();
 
+            _application = application;
             Build = buildViewModelFactory.Create(project.Name, build.Id, build.Branch, build.VersionNumber(), build.RequestedBy, build.Changes, build.Status, build.StartTime, build.EndTime, build.RunTime());
             _webUrl = build.WebUrl;
 
@@ -83,7 +87,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
 
             _dispatcher?.Stop();
 
-            _dispatcher = new DispatcherTimer(TimeSpan.FromSeconds(showForSeconds), DispatcherPriority.Normal, (sender, e) => { Close(); }, Application.Current.Dispatcher);
+            _dispatcher = new DispatcherTimer(TimeSpan.FromSeconds(showForSeconds), DispatcherPriority.Normal, (sender, e) => { Close(); }, _application.Dispatcher);
 
             _dispatcher.Start();
         }

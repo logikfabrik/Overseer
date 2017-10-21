@@ -118,7 +118,6 @@
     <Compile Include="ConventionConfigurator.cs" />
     <Compile Include="DataBindingActionConfigurator.cs" />
     <Compile Include="ErrorLogHandlerConfigurator.cs" />
-    <Compile Include="IApp.cs" />
     <Compile Include="IMouseManager.cs" />
     <Compile Include="KernelConfigurator.cs" />
     <Compile Include="DataBindingLanguageConfigurator.cs" />

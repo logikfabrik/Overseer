@@ -6,7 +6,6 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
 {
     using System.ComponentModel;
     using System.Linq;
-    using System.Windows;
     using EnsureThat;
     using Extensions;
     using Validators;
@@ -16,7 +15,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     /// </summary>
     public class EditSettingsViewModel : ViewModel, IDataErrorInfo
     {
-        private readonly Application _application;
+        private readonly IApp _application;
         private readonly EditSettingsViewModelValidator _validator;
         private readonly AppSettings _appSettings;
         private int _interval;
@@ -27,7 +26,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// </summary>
         /// <param name="application">The application.</param>
         /// <param name="appSettingsFactory">The app settings factory.</param>
-        public EditSettingsViewModel(Application application, IAppSettingsFactory appSettingsFactory)
+        public EditSettingsViewModel(IApp application, IAppSettingsFactory appSettingsFactory)
         {
             Ensure.That(application).IsNotNull();
             Ensure.That(appSettingsFactory).IsNotNull();

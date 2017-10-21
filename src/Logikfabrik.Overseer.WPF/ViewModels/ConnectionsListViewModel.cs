@@ -7,7 +7,6 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Windows;
     using Caliburn.Micro;
     using EnsureThat;
     using Factories;
@@ -18,6 +17,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     /// </summary>
     public class ConnectionsListViewModel : PropertyChangedBase, IObserver<Notification<ConnectionSettings>[]>, IDisposable
     {
+        private readonly IApp _application;
         private readonly IConnectionViewModelStrategy _connectionViewModelStrategy;
         private BindableCollection<IConnectionViewModel> _connections;
         private IDisposable _subscription;
@@ -26,15 +26,19 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// <summary>
         /// Initializes a new instance of the <see cref="ConnectionsListViewModel" /> class.
         /// </summary>
+        /// <param name="application">The application.</param>
         /// <param name="connectionViewModelStrategy">The connection view model strategy.</param>
         /// <param name="connectionSettingsRepository">The connection settings repository.</param>
         public ConnectionsListViewModel(
+            IApp application,
             IConnectionViewModelStrategy connectionViewModelStrategy,
             IConnectionSettingsRepository connectionSettingsRepository)
         {
+            Ensure.That(application).IsNotNull();
             Ensure.That(connectionViewModelStrategy).IsNotNull();
             Ensure.That(connectionSettingsRepository).IsNotNull();
 
+            _application = application;
             _connectionViewModelStrategy = connectionViewModelStrategy;
             _connections = new BindableCollection<IConnectionViewModel>();
             _subscription = connectionSettingsRepository.Subscribe(this);
@@ -66,7 +70,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             {
                 var connectionToRemove = currentConnections[settings.Id];
 
-                Application.Current.Dispatcher.Invoke(() =>
+                _application.Dispatcher.Invoke(() =>
                 {
                     _connections.Remove(connectionToRemove);
                 });
@@ -81,7 +85,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
 
             foreach (var settings in Notification<ConnectionSettings>.GetPayloads(value, NotificationType.Added, s => !currentConnections.ContainsKey(s.Id)))
             {
-                Application.Current.Dispatcher.Invoke(() =>
+                _application.Dispatcher.Invoke(() =>
                 {
                     var connectionToAdd = _connectionViewModelStrategy.Create(settings);
 

@@ -2,7 +2,7 @@
 //   Copyright (c) 2016 anton(at)logikfabrik.se. Licensed under the MIT license.
 // </copyright>
 
-namespace Logikfabrik.Overseer.WPF.Client
+namespace Logikfabrik.Overseer.WPF
 {
     using System.Windows.Threading;
 
@@ -15,6 +15,8 @@ namespace Logikfabrik.Overseer.WPF.Client
         /// Occurs when an exception is thrown by an application but not handled.
         /// </summary>
         event DispatcherUnhandledExceptionEventHandler DispatcherUnhandledException;
+
+        Dispatcher Dispatcher { get; }
 
         void Shutdown();
     }

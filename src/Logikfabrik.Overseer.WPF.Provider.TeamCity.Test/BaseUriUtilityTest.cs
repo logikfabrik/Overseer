@@ -11,6 +11,12 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity.Test
     public class BaseUriUtilityTest
     {
         [Fact]
+        public void WillThrowIfUnsupportedScheme()
+        {
+            Assert.Throws<NotSupportedException>(() => BaseUriUtility.GetBaseUri("ftp://teamcity.jetbrains.com", "10.0", AuthenticationType.HttpAuth));
+        }
+
+        [Fact]
         public void CanGetBaseUriForHttpAuth()
         {
             var baseUri = BaseUriUtility.GetBaseUri("http://teamcity.jetbrains.com", "10.0", AuthenticationType.HttpAuth);
@@ -48,6 +54,22 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity.Test
             Uri result;
 
             BaseUriUtility.TryGetBaseUri("http://teamcity.jetbrains.com", "9.1", AuthenticationType.HttpAuth, out result).ShouldBeTrue();
+        }
+
+        [Fact]
+        public void CanTryAndFailToGetBaseUriForNullUrl()
+        {
+            Uri result;
+
+            BaseUriUtility.TryGetBaseUri(null, "10.0", AuthenticationType.HttpAuth, out result).ShouldBeFalse();
+        }
+
+        [Fact]
+        public void CanTryAndFailToGetBaseUriForNullVersion()
+        {
+            Uri result;
+
+            BaseUriUtility.TryGetBaseUri("http://teamcity.jetbrains.com", null, AuthenticationType.HttpAuth, out result).ShouldBeFalse();
         }
     }
 }
