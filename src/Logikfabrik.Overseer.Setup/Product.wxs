@@ -246,6 +246,22 @@
               KeyPath="yes" />
       </Component>
 
+	  <Component Id="cmp3EFFBACC2FE845B786DB01C09C5135B6"
+                 Guid="3EFFBACC-2FE8-45B7-86DB-01C09C5135B6"
+                 Directory="dir3EF976885ADC44579DBE3C2EE8B49489">
+        <File Id="fil0D3DD25AECD04731BAD06F404DAF05D7"
+              Source="$(var.Logikfabrik.Overseer.WPF.Client.TargetDir)en-US\Logikfabrik.Overseer.WPF.Provider.AppVeyor.resources.dll"
+              KeyPath="yes" />
+      </Component>
+
+      <Component Id="cmp6FA90B0F333242E7B24ECAEDE4550927"
+                 Guid="6FA90B0F-3332-42E7-B24E-CAEDE4550927"
+                 Directory="dirAB1506D5F38C44EB96FB28C4C896C3F1">
+        <File Id="fil841D3617B9C24A8EB4BD0E4003850129"
+              Source="$(var.Logikfabrik.Overseer.WPF.Client.TargetDir)sv-SE\Logikfabrik.Overseer.WPF.Provider.AppVeyor.resources.dll"
+              KeyPath="yes" />
+      </Component>
+
       <Component Id="cmpFFF3E2AD366E4CB5B2DA7E26D4F59B5F"
                  Guid="FFF3E2AD-366E-4CB5-B2DA-7E26D4F59B5F"
                  Directory="INSTALLFOLDER">
