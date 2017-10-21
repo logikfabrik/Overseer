@@ -61,6 +61,15 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Name.
+        /// </summary>
+        public static string ConnectionSettings_Setting_Label_Name {
+            get {
+                return ResourceManager.GetString("ConnectionSettings_Setting_Label_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Token.
         /// </summary>
         public static string ConnectionSettings_Setting_Label_Token {

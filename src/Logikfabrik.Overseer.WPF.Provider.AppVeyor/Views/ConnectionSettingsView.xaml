@@ -4,6 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:appVeyor="clr-namespace:Logikfabrik.Overseer.WPF.Provider.AppVeyor"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:p="clr-namespace:Logikfabrik.Overseer.WPF.Provider.AppVeyor.Properties"
     xmlns:ex="clr-namespace:Logikfabrik.Overseer.WPF.Extensions;assembly=Logikfabrik.Overseer.WPF"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     d:DesignHeight="300"
@@ -24,11 +25,11 @@
             <TextBlock Text="AppVeyor" />
         </StackPanel>
         <StackPanel Margin="10,0,10,10">
-            <TextBlock Text="Name" />
+            <TextBlock Text="{x:Static p:Resources.ConnectionSettings_Setting_Label_Name}" />
             <TextBox Text="{Binding Name, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" />
         </StackPanel>
         <StackPanel Margin="10,0,10,10">
-            <TextBlock Text="Token" />
+            <TextBlock Text="{x:Static p:Resources.ConnectionSettings_Setting_Label_Token}" />
             <TextBlock>
                 You create your token at
                 <Hyperlink ex:HyperlinkExtensions.IsExternal="True" NavigateUri="{Binding Source={x:Static appVeyor:UriUtility.BaseUri}}">ci.appveyor.com</Hyperlink>
