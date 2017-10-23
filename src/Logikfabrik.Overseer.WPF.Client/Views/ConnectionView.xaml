@@ -17,7 +17,30 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <StackPanel Background="{DynamicResource Panel.Background}">
+        <ItemsControl Grid.Row="1" ItemsSource="{Binding FilteredProjects, Mode=OneWay}">
+            <ItemsControl.ItemContainerStyle>
+                <Style>
+                    <!--  ReSharper disable once Xaml.RedundantPropertyTypeQualifier  -->
+                    <Setter Property="FrameworkElement.Margin" Value="10,10,0,0" />
+                </Style>
+            </ItemsControl.ItemContainerStyle>
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <ContentControl
+                        cal:View.Context="Tile"
+                        cal:View.Model="{Binding}"
+                        Focusable="False" />
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+            <ItemsControl.Template>
+                <ControlTemplate>
+                    <ScrollViewer>
+                        <ItemsPresenter Margin="0,0,10,10" />
+                    </ScrollViewer>
+                </ControlTemplate>
+            </ItemsControl.Template>
+        </ItemsControl>
+        <StackPanel Grid.Row="0" Background="{DynamicResource Panel.Background}">
             <StackPanel.Effect>
                 <DropShadowEffect
                     BlurRadius="3"
@@ -29,17 +52,17 @@
                 FontSize="18"
                 Text="{Binding SettingsName, Mode=OneWay}"
                 TextAlignment="Center" />
-            <Border
-                Padding="2"
-                Background="{DynamicResource Panel.Background}">
+            <Border Padding="2" Background="{DynamicResource Panel.Background}">
                 <Grid>
                     <TextBox Text="{Binding Filter, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-                    <!-- ReSharper disable once Xaml.BindingWithContextNotResolved -->
-                    <TextBlock IsHitTestVisible="False" 
-                               Foreground="{DynamicResource Filter.Foreground}" 
-                               Text="Filter" VerticalAlignment="Center" HorizontalAlignment="Center"
-                               Visibility="{Binding Filter.IsEmpty,
-                           Converter={StaticResource BooleanToVisibilityConverter}}" />
+                    <!--  ReSharper disable once Xaml.BindingWithContextNotResolved  -->
+                    <TextBlock
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Foreground="{DynamicResource Filter.Foreground}"
+                        IsHitTestVisible="False"
+                        Text="Filter"
+                        Visibility="{Binding Filter.IsEmpty, Converter={StaticResource BooleanToVisibilityConverter}}" />
                 </Grid>
             </Border>
             <Grid>
@@ -66,28 +89,5 @@
                 </Button>
             </Grid>
         </StackPanel>
-        <ItemsControl Grid.Row="1" ItemsSource="{Binding FilteredProjects, Mode=OneWay}">
-            <ItemsControl.ItemContainerStyle>
-                <Style>
-                    <!--  ReSharper disable once Xaml.RedundantPropertyTypeQualifier  -->
-                    <Setter Property="FrameworkElement.Margin" Value="10,10,0,0" />
-                </Style>
-            </ItemsControl.ItemContainerStyle>
-            <ItemsControl.ItemTemplate>
-                <DataTemplate>
-                    <ContentControl
-                        cal:View.Context="Tile"
-                        cal:View.Model="{Binding}"
-                        Focusable="False" />
-                </DataTemplate>
-            </ItemsControl.ItemTemplate>
-            <ItemsControl.Template>
-                <ControlTemplate>
-                    <ScrollViewer>
-                        <ItemsPresenter Margin="0,0,10,10" />
-                    </ScrollViewer>
-                </ControlTemplate>
-            </ItemsControl.Template>
-        </ItemsControl>
     </Grid>
 </UserControl>
