@@ -12,7 +12,11 @@
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
-            <Grid Background="{DynamicResource Panel.Background}">
+            <ContentControl
+                Grid.Row="1"
+                cal:View.Model="{Binding ActiveItem, Mode=OneWay}"
+                Focusable="False" />
+            <Grid Grid.Row="0" Background="{DynamicResource Panel.Background}">
                 <Grid.Effect>
                     <DropShadowEffect
                         BlurRadius="3"
@@ -29,10 +33,6 @@
                 </Button>
                 <TextBlock x:Name="ViewDisplayName" HorizontalAlignment="Center" />
             </Grid>
-            <ContentControl
-                Grid.Row="1"
-                cal:View.Model="{Binding ActiveItem, Mode=OneWay}"
-                Focusable="False" />
         </Grid>
         <ContentControl
             HorizontalAlignment="Left"
