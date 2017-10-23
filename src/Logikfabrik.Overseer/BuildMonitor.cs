@@ -150,6 +150,14 @@ namespace Logikfabrik.Overseer
             }
         }
 
+        /// <summary>
+        /// Gets the projects.
+        /// </summary>
+        /// <param name="connection">The connection.</param>
+        /// <param name="cancellationToken">A cancellation token.</param>
+        /// <returns>
+        /// A task.
+        /// </returns>
         internal async Task<IEnumerable<IProject>> GetProjectsAsync(IConnection connection, CancellationToken cancellationToken)
         {
             try
@@ -178,6 +186,15 @@ namespace Logikfabrik.Overseer
             }
         }
 
+        /// <summary>
+        /// Gets the builds for the specified project.
+        /// </summary>
+        /// <param name="connection">The connection.</param>
+        /// <param name="project">The project.</param>
+        /// <param name="cancellationToken">A cancellation token.</param>
+        /// <returns>
+        /// A task.
+        /// </returns>
         internal async Task GetBuildsAsync(IConnection connection, IProject project, CancellationToken cancellationToken)
         {
             try

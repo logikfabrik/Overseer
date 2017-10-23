@@ -14,6 +14,10 @@ namespace Logikfabrik.Overseer.WPF.Client
     {
         private readonly InputManager _inputManager;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MouseManager" /> class.
+        /// </summary>
+        /// <param name="inputManager">The input manager.</param>
         public MouseManager(InputManager inputManager)
         {
             Ensure.That(inputManager).IsNotNull();

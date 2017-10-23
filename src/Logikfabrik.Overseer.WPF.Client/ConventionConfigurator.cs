@@ -8,8 +8,14 @@ namespace Logikfabrik.Overseer.WPF.Client
     using Caliburn.Micro;
     using Extensions;
 
+    /// <summary>
+    /// The <see cref="ConventionConfigurator" /> class.
+    /// </summary>
     public static class ConventionConfigurator
     {
+        /// <summary>
+        /// Configures conventions.
+        /// </summary>
         public static void Configure()
         {
             ConventionManager.AddElementConvention<PasswordBox>(

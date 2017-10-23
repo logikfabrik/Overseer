@@ -16,8 +16,17 @@ namespace Logikfabrik.Overseer.WPF
         /// </summary>
         event DispatcherUnhandledExceptionEventHandler DispatcherUnhandledException;
 
+        /// <summary>
+        /// Gets the dispatcher.
+        /// </summary>
+        /// <value>
+        /// The dispatcher.
+        /// </value>
         Dispatcher Dispatcher { get; }
 
+        /// <summary>
+        /// Shuts this instance down.
+        /// </summary>
         void Shutdown();
     }
 }
