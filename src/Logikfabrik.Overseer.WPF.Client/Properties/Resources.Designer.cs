@@ -107,6 +107,33 @@ namespace Logikfabrik.Overseer.WPF.Client.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Edit.
+        /// </summary>
+        public static string Connection_Button_Edit {
+            get {
+                return ResourceManager.GetString("Connection_Button_Edit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Filter.
+        /// </summary>
+        public static string Connection_Button_Filter {
+            get {
+                return ResourceManager.GetString("Connection_Button_Filter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remove.
+        /// </summary>
+        public static string Connection_Button_Remove {
+            get {
+                return ResourceManager.GetString("Connection_Button_Remove", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Number of builds to get from the CI/DI service per project.
         /// </summary>
         public static string ConnectionSettings_Setting_Description_BuildsPerProject {

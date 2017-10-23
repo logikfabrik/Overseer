@@ -4,10 +4,6 @@
     </ResourceDictionary.MergedDictionaries>
     <Style BasedOn="{StaticResource {x:Type ToggleButton}}" TargetType="{x:Type ToggleButton}">
         <Style.Resources>
-            <!--  Change text block foreground on mouse over  -->
-            <Style BasedOn="{StaticResource {x:Type TextBlock}}" TargetType="{x:Type TextBlock}">
-                <Setter Property="Foreground" Value="{Binding (TextElement.Foreground), RelativeSource={RelativeSource AncestorType={x:Type ToggleButton}}}" />
-            </Style>
             <!--  Change path fill on mouse over  -->
             <Style TargetType="{x:Type Path}">
                 <Setter Property="Fill" Value="{Binding (TextElement.Foreground), RelativeSource={RelativeSource AncestorType={x:Type ToggleButton}}}" />

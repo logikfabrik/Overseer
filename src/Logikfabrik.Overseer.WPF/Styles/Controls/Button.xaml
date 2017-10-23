@@ -4,10 +4,6 @@
     </ResourceDictionary.MergedDictionaries>
     <Style BasedOn="{StaticResource {x:Type Button}}" TargetType="{x:Type Button}">
         <Style.Resources>
-            <!--  Change text block foreground on mouse over  -->
-            <Style BasedOn="{StaticResource {x:Type TextBlock}}" TargetType="{x:Type TextBlock}">
-                <Setter Property="Foreground" Value="{Binding (TextElement.Foreground), RelativeSource={RelativeSource AncestorType={x:Type Button}}}" />
-            </Style>
             <!--  Change path fill on mouse over  -->
             <Style TargetType="{x:Type Path}">
                 <Setter Property="Fill" Value="{Binding (TextElement.Foreground), RelativeSource={RelativeSource AncestorType={x:Type Button}}}" />
@@ -62,7 +58,7 @@
                         <Trigger Property="IsPressed" Value="True">
                             <Setter TargetName="PART_Border" Property="Background" Value="{DynamicResource Button.Pressed.Background}" />
                             <Setter TargetName="PART_Border" Property="BorderBrush" Value="{DynamicResource Button.Pressed.Border}" />
-                            <Setter TargetName="PART_ContentPresenter" Property="TextElement.Foreground" Value="{DynamicResource Button.Pressed.Foreground}" />
+                            <Setter Property="TextElement.Foreground" Value="{DynamicResource Button.Pressed.Foreground}" />
                         </Trigger>
                         <Trigger Property="IsEnabled" Value="False">
                             <Setter TargetName="PART_Border" Property="Background" Value="{DynamicResource Button.Disabled.Background}" />

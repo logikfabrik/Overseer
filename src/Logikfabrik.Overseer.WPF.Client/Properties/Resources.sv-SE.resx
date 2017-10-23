@@ -139,6 +139,15 @@ Vänligen försök igen.</value>
   <data name="ConnectionSettings_Setting_Label_BuildsPerProject" xml:space="preserve">
     <value>Byggen per projekt</value>
   </data>
+  <data name="Connection_Button_Edit" xml:space="preserve">
+    <value>Redigera</value>
+  </data>
+  <data name="Connection_Button_Filter" xml:space="preserve">
+    <value>Filtrera</value>
+  </data>
+  <data name="Connection_Button_Remove" xml:space="preserve">
+    <value>Ta bort</value>
+  </data>
   <data name="EditConnection_Button_Cancel" xml:space="preserve">
     <value>Avbryt</value>
   </data>

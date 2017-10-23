@@ -139,6 +139,15 @@ Please try again.</value>
   <data name="ConnectionSettings_Setting_Label_BuildsPerProject" xml:space="preserve">
     <value>Builds per project</value>
   </data>
+  <data name="Connection_Button_Edit" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="Connection_Button_Filter" xml:space="preserve">
+    <value>Filter</value>
+  </data>
+  <data name="Connection_Button_Remove" xml:space="preserve">
+    <value>Remove</value>
+  </data>
   <data name="EditConnection_Button_Cancel" xml:space="preserve">
     <value>Cancel</value>
   </data>
