@@ -16,12 +16,7 @@ namespace Logikfabrik.Overseer
     public class Notification<T>
         where T : class
     {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="Notification{T}" /> class.
-        /// </summary>
-        /// <param name="type">The type.</param>
-        /// <param name="payload">The payload.</param>
-        public Notification(NotificationType type, T payload)
+        private Notification(NotificationType type, T payload)
         {
             Ensure.That(payload).IsNotNull();
 

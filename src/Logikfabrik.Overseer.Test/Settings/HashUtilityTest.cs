@@ -12,8 +12,8 @@ namespace Logikfabrik.Overseer.Test.Settings
     public class HashUtilityTest
     {
         [Theory]
-        [InlineAutoData(16)]
-        [InlineAutoData(32)]
+        [InlineData(16)]
+        [InlineData(32)]
         public void CanGetSalt(int size)
         {
             var salt = HashUtility.GetSalt(size);

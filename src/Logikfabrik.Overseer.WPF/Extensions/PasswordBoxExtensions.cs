@@ -16,6 +16,9 @@ namespace Logikfabrik.Overseer.WPF.Extensions
     /// </remarks>
     public static class PasswordBoxExtensions
     {
+        /// <summary>
+        /// A dependency property.
+        /// </summary>
         public static readonly DependencyProperty BoundPasswordProperty = DependencyProperty.RegisterAttached("BoundPassword", typeof(string), typeof(PasswordBoxExtensions), new FrameworkPropertyMetadata(string.Empty, OnBoundPasswordChanged));
 
         public static string GetBoundPassword(DependencyObject obj)

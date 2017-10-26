@@ -64,6 +64,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
 
         public void TryClose(bool? dialogResult = null)
         {
+            // TODO: Inject
             PlatformProvider.Current.GetViewCloseAction(this, Views.Values, dialogResult).OnUIThread();
         }
     }
