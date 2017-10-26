@@ -53,11 +53,6 @@
                 FontSize="18"
                 Text="{Binding SettingsName, Mode=OneWay}"
                 TextAlignment="Center" />
-            <TextBox
-                BorderBrush="{StaticResource ToggleButton.Checked.Background}"
-                BorderThickness="0,0,0,5"
-                Text="{Binding Filter, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                Visibility="{Binding ElementName=PART_Filter, Path=IsChecked, Converter={StaticResource BooleanToVisibilityConverter}}" />
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
@@ -94,6 +89,11 @@
                     </Viewbox>
                 </Button>
             </Grid>
+            <TextBox
+                BorderBrush="{StaticResource ToggleButton.Checked.Background}"
+                BorderThickness="0,5,0,0"
+                Text="{Binding Filter, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                Visibility="{Binding ElementName=PART_Filter, Path=IsChecked, Converter={StaticResource BooleanToVisibilityConverter}}" />
         </StackPanel>
     </Grid>
 </UserControl>
