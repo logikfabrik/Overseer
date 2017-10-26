@@ -1,6 +1,6 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
-    <LinearGradientBrush x:Key="Status.Queued" StartPoint="0,0" EndPoint="1,1" SpreadMethod="Repeat">
+    <LinearGradientBrush x:Key="Status.Queued" SpreadMethod="Repeat" StartPoint="0,0" EndPoint="1,1">
         <GradientStop Offset="0" Color="#5500FF" />
         <GradientStop Offset="0.5" Color="#5500FF" />
         <GradientStop Offset="0.5" Color="Transparent" />

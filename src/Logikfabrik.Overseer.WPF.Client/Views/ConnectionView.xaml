@@ -53,22 +53,11 @@
                 FontSize="18"
                 Text="{Binding SettingsName, Mode=OneWay}"
                 TextAlignment="Center" />
-            <Border
-                Padding="2"
-                Background="{DynamicResource Panel.Background}"
-                Visibility="{Binding ElementName=PART_Filter, Path=IsChecked, Converter={StaticResource BooleanToVisibilityConverter}}">
-                <Grid>
-                    <TextBox Text="{Binding Filter, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-                    <!--  ReSharper disable once Xaml.BindingWithContextNotResolved  -->
-                    <TextBlock
-                        HorizontalAlignment="Center"
-                        VerticalAlignment="Center"
-                        Foreground="{DynamicResource Filter.Foreground}"
-                        IsHitTestVisible="False"
-                        Text="Filter"
-                        Visibility="{Binding Filter.IsEmpty, Converter={StaticResource BooleanToVisibilityConverter}}" />
-                </Grid>
-            </Border>
+            <TextBox
+                BorderBrush="{StaticResource ToggleButton.Checked.Background}"
+                BorderThickness="0,0,0,5"
+                Text="{Binding Filter, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                Visibility="{Binding ElementName=PART_Filter, Path=IsChecked, Converter={StaticResource BooleanToVisibilityConverter}}" />
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
