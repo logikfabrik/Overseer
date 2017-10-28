@@ -1,4 +1,4 @@
-﻿// <copyright file="BuildMonitorConnectionEventArgs.cs" company="Logikfabrik">
+﻿// <copyright file="BuildTrackerConnectionEventArgs.cs" company="Logikfabrik">
 //   Copyright (c) 2016 anton(at)logikfabrik.se. Licensed under the MIT license.
 // </copyright>
 
@@ -8,15 +8,15 @@ namespace Logikfabrik.Overseer
     using EnsureThat;
 
     /// <summary>
-    /// The <see cref="BuildMonitorConnectionEventArgs" /> class.
+    /// The <see cref="BuildTrackerConnectionEventArgs" /> class.
     /// </summary>
-    public abstract class BuildMonitorConnectionEventArgs : EventArgs
+    public abstract class BuildTrackerConnectionEventArgs : EventArgs
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="BuildMonitorConnectionEventArgs" /> class.
+        /// Initializes a new instance of the <see cref="BuildTrackerConnectionEventArgs" /> class.
         /// </summary>
         /// <param name="settingsId">The settings identifier.</param>
-        protected BuildMonitorConnectionEventArgs(Guid settingsId)
+        protected BuildTrackerConnectionEventArgs(Guid settingsId)
         {
             Ensure.That(settingsId).IsNotEmpty();
 

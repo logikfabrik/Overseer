@@ -173,7 +173,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity.ViewModels
         /// <returns>The settings.</returns>
         public override ConnectionSettings GetSettings()
         {
-            var projects = ProjectsToMonitor?.Projects?.Where(project => project.Monitor).ToArray() ?? new ProjectToMonitorViewModel[] { };
+            var projects = TrackedProjects?.Projects?.Where(project => project.Track).ToArray() ?? new TrackedProjectViewModel[] { };
 
             return new ConnectionSettings
             {
@@ -183,7 +183,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity.ViewModels
                 Version = Version,
                 Username = Username,
                 Password = Password,
-                ProjectsToMonitor = projects.Select(project => project.Id).ToArray(),
+                TrackedProjects = projects.Select(project => project.Id).ToArray(),
                 BuildsPerProject = BuildsPerProject
             };
         }
@@ -200,7 +200,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity.ViewModels
             current.Version = Version;
             current.Username = Username;
             current.Password = Password;
-            current.ProjectsToMonitor = ProjectsToMonitor.Projects.Where(project => project.Monitor).Select(project => project.Id).ToArray();
+            current.TrackedProjects = TrackedProjects.Projects.Where(project => project.Track).Select(project => project.Id).ToArray();
             current.BuildsPerProject = BuildsPerProject;
         }
     }

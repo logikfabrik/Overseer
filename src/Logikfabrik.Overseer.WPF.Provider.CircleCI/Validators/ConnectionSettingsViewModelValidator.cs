@@ -18,7 +18,8 @@ namespace Logikfabrik.Overseer.WPF.Provider.CircleCI.Validators
         public ConnectionSettingsViewModelValidator()
         {
             RuleFor(viewModel => viewModel.Token)
-                .NotEmpty();
+                .NotEmpty()
+                .WithMessage(viewModel => Properties.Resources.ConnectionSettings_Validation_Token);
         }
     }
 }

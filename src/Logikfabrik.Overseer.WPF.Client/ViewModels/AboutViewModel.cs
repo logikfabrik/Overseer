@@ -5,6 +5,7 @@
 namespace Logikfabrik.Overseer.WPF.Client.ViewModels
 {
     using System.Reflection;
+    using Caliburn.Micro;
     using WPF.ViewModels;
 
     /// <summary>
@@ -15,7 +16,9 @@ namespace Logikfabrik.Overseer.WPF.Client.ViewModels
         /// <summary>
         /// Initializes a new instance of the <see cref="AboutViewModel" /> class.
         /// </summary>
-        public AboutViewModel()
+        /// <param name="platformProvider">The platform provider.</param>
+        public AboutViewModel(IPlatformProvider platformProvider)
+            : base(platformProvider)
         {
             Version = GetType().Assembly.GetCustomAttribute<AssemblyInformationalVersionAttribute>()?.InformationalVersion;
             DisplayName = Properties.Resources.About_View;

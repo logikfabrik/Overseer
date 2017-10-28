@@ -25,10 +25,12 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices.Validators
                     Uri result;
 
                     return Uri.TryCreate(url, UriKind.Absolute, out result) && (result.Scheme == Uri.UriSchemeHttp || result.Scheme == Uri.UriSchemeHttps);
-                });
+                })
+                .WithMessage(viewModel => Properties.Resources.ConnectionSettings_Validation_Url);
 
             RuleFor(viewModel => viewModel.Token)
-                .NotEmpty();
+                .NotEmpty()
+                .WithMessage(viewModel => Properties.Resources.ConnectionSettings_Validation_Token);
         }
     }
 }

@@ -15,14 +15,14 @@ namespace Logikfabrik.Overseer.WPF
         /// <summary>
         /// Configures build notification.
         /// </summary>
-        /// <param name="buildMonitor">The build monitor.</param>
+        /// <param name="buildTracker">The build tracker.</param>
         /// <param name="buildNotificationManager">The build notification manager.</param>
-        public static void Configure(IBuildMonitor buildMonitor, IBuildNotificationManager buildNotificationManager)
+        public static void Configure(IBuildTracker buildTracker, IBuildNotificationManager buildNotificationManager)
         {
-            Ensure.That(buildMonitor).IsNotNull();
+            Ensure.That(buildTracker).IsNotNull();
             Ensure.That(buildNotificationManager).IsNotNull();
 
-            buildMonitor.ProjectProgressChanged += (sender, e) =>
+            buildTracker.ProjectProgressChanged += (sender, e) =>
             {
                 if (!e.Builds.Any())
                 {

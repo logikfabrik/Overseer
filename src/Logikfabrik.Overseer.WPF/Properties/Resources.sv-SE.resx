@@ -137,7 +137,7 @@ Vi kunde inte ansluta till CI/CD-tjänsten. Vänligen försök igen.</value>
     <value>Lägg till anslutning</value>
   </data>
   <data name="BuildProviders_View" xml:space="preserve">
-    <value>Välj CI/DI-tjänst</value>
+    <value>Välj CI/CD-tjänst</value>
   </data>
   <data name="ConnectionSettings_Validation_BuildsPerProject" xml:space="preserve">
     <value>Vi måste hämta minst 1 bygge per projekt</value>

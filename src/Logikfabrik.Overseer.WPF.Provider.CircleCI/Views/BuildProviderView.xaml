@@ -4,12 +4,11 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    Width="200"
-    Height="200"
+    Style="{StaticResource BuildProviderView}"
     mc:Ignorable="d">
-    <Button x:Name="AddConnection" VerticalContentAlignment="Stretch">
+    <Button x:Name="AddConnection">
         <Grid>
-            <Viewbox Width="50" Height="50">
+            <Viewbox>
                 <Path>
                     <Path.Data>
                         <GeometryGroup>
@@ -19,7 +18,7 @@
                     </Path.Data>
                 </Path>
             </Viewbox>
-            <TextBlock VerticalAlignment="Bottom" Text="CircleCI" />
+            <TextBlock Text="CircleCI" ToolTip="CircleCI" />
         </Grid>
     </Button>
 </UserControl>

@@ -19,15 +19,17 @@ namespace Logikfabrik.Overseer.WPF.Client
         /// <summary>
         /// Loads assemblies from the base directory into the current application domain.
         /// </summary>
+        /// <param name="currentAppDomain">The current application domain.</param>
         /// <param name="predicate">The predicate.</param>
         /// <returns>Loaded assemblies.</returns>
-        public static IEnumerable<AssemblyName> Load(Func<Assembly, bool> predicate)
+        public static IEnumerable<AssemblyName> Load(AppDomain currentAppDomain, Func<Assembly, bool> predicate)
         {
+            Ensure.That(currentAppDomain).IsNotNull();
             Ensure.That(predicate).IsNotNull();
 
             var appDomain = AppDomain.CreateDomain("temp");
 
-            Load(appDomain);
+            Load(currentAppDomain, appDomain);
 
             var assemblies = appDomain.GetAssemblies().Where(predicate).Select(assembly => assembly.GetName());
 
@@ -36,11 +38,11 @@ namespace Logikfabrik.Overseer.WPF.Client
             return assemblies;
         }
 
-        private static void Load(AppDomain appDomain)
+        private static void Load(AppDomain currentAppDomain, AppDomain appDomain)
         {
             Ensure.That(appDomain).IsNotNull();
 
-            var paths = Directory.EnumerateFiles(AppDomain.CurrentDomain.BaseDirectory, "*.dll", SearchOption.TopDirectoryOnly);
+            var paths = Directory.EnumerateFiles(currentAppDomain.BaseDirectory, "*.dll", SearchOption.TopDirectoryOnly);
 
             foreach (var path in paths)
             {

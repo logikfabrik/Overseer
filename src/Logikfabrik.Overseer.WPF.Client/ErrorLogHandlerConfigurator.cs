@@ -17,16 +17,16 @@ namespace Logikfabrik.Overseer.WPF.Client
         /// <summary>
         /// Configures error handling.
         /// </summary>
-        /// <param name="appDomain">The application domain.</param>
+        /// <param name="currentAppDomain">The current application domain.</param>
         /// <param name="application">The application.</param>
         /// <param name="logService">The log service.</param>
-        public static void Configure(AppDomain appDomain, IApp application, ILogService logService)
+        public static void Configure(AppDomain currentAppDomain, IApp application, ILogService logService)
         {
-            Ensure.That(appDomain).IsNotNull();
+            Ensure.That(currentAppDomain).IsNotNull();
             Ensure.That(application).IsNotNull();
             Ensure.That(logService).IsNotNull();
 
-            appDomain.UnhandledException += (sender, e) =>
+            currentAppDomain.UnhandledException += (sender, e) =>
             {
                 var exception = e.ExceptionObject as Exception;
 

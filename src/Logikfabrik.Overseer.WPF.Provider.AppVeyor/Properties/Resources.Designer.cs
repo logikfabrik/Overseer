@@ -61,7 +61,16 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Name.
+        ///   Looks up a localized string similar to You create your token at.
+        /// </summary>
+        public static string ConnectionSettings_Setting_Description_Token {
+            get {
+                return ResourceManager.GetString("ConnectionSettings_Setting_Description_Token", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to NAME.
         /// </summary>
         public static string ConnectionSettings_Setting_Label_Name {
             get {
@@ -70,7 +79,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Token.
+        ///   Looks up a localized string similar to TOKEN.
         /// </summary>
         public static string ConnectionSettings_Setting_Label_Token {
             get {

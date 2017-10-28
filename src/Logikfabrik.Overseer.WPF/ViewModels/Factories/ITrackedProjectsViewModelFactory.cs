@@ -1,4 +1,4 @@
-﻿// <copyright file="IProjectsToMonitorViewModelFactory.cs" company="Logikfabrik">
+﻿// <copyright file="ITrackedProjectsViewModelFactory.cs" company="Logikfabrik">
 //   Copyright (c) 2016 anton(at)logikfabrik.se. Licensed under the MIT license.
 // </copyright>
 
@@ -7,15 +7,15 @@ namespace Logikfabrik.Overseer.WPF.ViewModels.Factories
     using System.Collections.Generic;
 
     /// <summary>
-    /// The <see cref="IProjectsToMonitorViewModelFactory" /> interface.
+    /// The <see cref="ITrackedProjectsViewModelFactory" /> interface.
     /// </summary>
-    public interface IProjectsToMonitorViewModelFactory
+    public interface ITrackedProjectsViewModelFactory
     {
         /// <summary>
         /// Creates a view model.
         /// </summary>
         /// <param name="projects">The projects.</param>
         /// <returns>A view model.</returns>
-        ProjectsToMonitorViewModel Create(IEnumerable<ProjectToMonitorViewModel> projects);
+        TrackedProjectsViewModel Create(IEnumerable<TrackedProjectViewModel> projects);
     }
 }

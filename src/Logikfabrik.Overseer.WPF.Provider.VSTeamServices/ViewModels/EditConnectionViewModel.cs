@@ -4,6 +4,7 @@
 
 namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices.ViewModels
 {
+    using Caliburn.Micro;
     using EnsureThat;
     using Overseer.Logging;
     using Settings;
@@ -17,27 +18,30 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices.ViewModels
         /// <summary>
         /// Initializes a new instance of the <see cref="EditConnectionViewModel" /> class.
         /// </summary>
+        /// <param name="platformProvider">The platform provider.</param>
         /// <param name="logService">The log service.</param>
         /// <param name="settingsRepository">The build provider settings repository.</param>
         /// <param name="connectionSettingsFactory">The connection settings factory.</param>
         /// <param name="buildProviderStrategy">The build provider strategy.</param>
-        /// <param name="projectToMonitorFactory">The project to monitor factory.</param>
-        /// <param name="projectsToMonitorFactory">The projects to monitor factory.</param>
+        /// <param name="trackedProjectFactory">The tracked project factory.</param>
+        /// <param name="trackedProjectsFactory">The tracked projects factory.</param>
         /// <param name="currentSettings">The current settings.</param>
         public EditConnectionViewModel(
+            IPlatformProvider platformProvider,
             ILogService logService,
             IConnectionSettingsRepository settingsRepository,
             IConnectionSettingsViewModelFactory<VSTeamServices.ConnectionSettings, ConnectionSettingsViewModel> connectionSettingsFactory,
             IBuildProviderStrategy buildProviderStrategy,
-            IProjectToMonitorViewModelFactory projectToMonitorFactory,
-            IProjectsToMonitorViewModelFactory projectsToMonitorFactory,
+            ITrackedProjectViewModelFactory trackedProjectFactory,
+            ITrackedProjectsViewModelFactory trackedProjectsFactory,
             VSTeamServices.ConnectionSettings currentSettings)
             : base(
+                  platformProvider,
                   logService,
                   settingsRepository,
                   buildProviderStrategy,
-                  projectToMonitorFactory,
-                  projectsToMonitorFactory,
+                  trackedProjectFactory,
+                  trackedProjectsFactory,
                   currentSettings)
         {
             Ensure.That(connectionSettingsFactory).IsNotNull();

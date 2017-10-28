@@ -137,7 +137,10 @@ Please try again.</value>
     <value>Number of builds to get from the CI/DI service per project</value>
   </data>
   <data name="ConnectionSettings_Setting_Label_BuildsPerProject" xml:space="preserve">
-    <value>Builds per project</value>
+    <value>BUILDS PER PROJECT</value>
+  </data>
+  <data name="ConnectionSettings_Setting_Label_TrackedProjects" xml:space="preserve">
+    <value>PROJECTS</value>
   </data>
   <data name="Connection_Button_Edit" xml:space="preserve">
     <value>Edit</value>
@@ -195,5 +198,14 @@ Please try again.</value>
   </data>
   <data name="RemoveConnection_Button_Remove" xml:space="preserve">
     <value>OK</value>
+  </data>
+  <data name="TrackedProjects_Button_DeselectAll" xml:space="preserve">
+    <value>Deselect all</value>
+  </data>
+  <data name="TrackedProjects_Button_Filter" xml:space="preserve">
+    <value>Filter</value>
+  </data>
+  <data name="TrackedProjects_Button_SelectAll" xml:space="preserve">
+    <value>Select all</value>
   </data>
 </root>

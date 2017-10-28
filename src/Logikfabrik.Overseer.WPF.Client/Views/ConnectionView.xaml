@@ -7,6 +7,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:p="clr-namespace:Logikfabrik.Overseer.WPF.Client.Properties"
     xmlns:vm="clr-namespace:Logikfabrik.Overseer.WPF.ViewModels.DesignTime;assembly=Logikfabrik.Overseer.WPF"
+    Style="{StaticResource ConnectionView}"
     cal:Bind.AtDesignTime="True"
     d:DataContext="{d:DesignInstance d:Type=vm:ConnectionViewModel,
                                      d:IsDesignTimeCreatable=True}"

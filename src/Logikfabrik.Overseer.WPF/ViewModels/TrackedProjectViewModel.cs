@@ -1,4 +1,4 @@
-﻿// <copyright file="ProjectToMonitorViewModel.cs" company="Logikfabrik">
+﻿// <copyright file="TrackedProjectViewModel.cs" company="Logikfabrik">
 //   Copyright (c) 2016 anton(at)logikfabrik.se. Licensed under the MIT license.
 // </copyright>
 
@@ -8,26 +8,26 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     using EnsureThat;
 
     /// <summary>
-    /// The <see cref="ProjectToMonitorViewModel" /> class.
+    /// The <see cref="TrackedProjectViewModel" /> class.
     /// </summary>
-    public class ProjectToMonitorViewModel : PropertyChangedBase
+    public class TrackedProjectViewModel : PropertyChangedBase
     {
-        private bool _monitor;
+        private bool _track;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ProjectToMonitorViewModel" /> class.
+        /// Initializes a new instance of the <see cref="TrackedProjectViewModel" /> class.
         /// </summary>
         /// <param name="projectId">The project identifier.</param>
         /// <param name="projectName">The project name.</param>
-        /// <param name="monitor">Whether this project should be monitored.</param>
-        public ProjectToMonitorViewModel(string projectId, string projectName, bool monitor)
+        /// <param name="track">Whether this project should be tracked.</param>
+        public TrackedProjectViewModel(string projectId, string projectName, bool track)
         {
             Ensure.That(projectId).IsNotNullOrWhiteSpace();
             Ensure.That(projectName).IsNotNullOrWhiteSpace();
 
             Id = projectId;
             Name = projectName;
-            _monitor = monitor;
+            _track = track;
         }
 
         /// <summary>
@@ -47,22 +47,22 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         public string Id { get; }
 
         /// <summary>
-        /// Gets or sets a value indicating whether this project should be monitored.
+        /// Gets or sets a value indicating whether this project should be tracked.
         /// </summary>
         /// <value>
-        ///   <c>true</c> if this project should be monitored; otherwise, <c>false</c>.
+        ///   <c>true</c> if this project should be tracked; otherwise, <c>false</c>.
         /// </value>
-        public bool Monitor
+        public bool Track
         {
             get
             {
-                return _monitor;
+                return _track;
             }
 
             set
             {
-                _monitor = value;
-                NotifyOfPropertyChange(() => Monitor);
+                _track = value;
+                NotifyOfPropertyChange(() => Track);
             }
         }
     }

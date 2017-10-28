@@ -57,19 +57,20 @@ namespace Logikfabrik.Overseer.WPF.Client
             kernel.Bind<IConnectionSettingsRepository>().To<ConnectionSettingsRepository>().InSingletonScope();
             kernel.Bind<IBuildProviderStrategy>().To<BuildProviderStrategy>();
             kernel.Bind<IConnectionPool>().To<ConnectionPool>().InSingletonScope();
-            kernel.Bind<IBuildMonitor>().To<BuildMonitor>().InSingletonScope();
+            kernel.Bind<IBuildTracker>().To<BuildTracker>().InSingletonScope();
 
             // Caliburn Micro setup.
             kernel.Bind<IWindowManager>().To<WindowManager>().InSingletonScope();
             kernel.Bind<IEventAggregator>().To<EventAggregator>().InSingletonScope();
+            kernel.Bind<IPlatformProvider>().ToConstant(PlatformProvider.Current);
 
             // WPF setup.
             kernel.Bind<IUILogService>().To<UILogService>();
             kernel.Bind<INotificationManager>().To<NotificationManager>();
             kernel.Bind<IBuildNotificationViewModelFactory>().ToFactory();
             kernel.Bind<IBuildNotificationManager>().To<BuildNotificationManager>().InSingletonScope();
-            kernel.Bind<IProjectToMonitorViewModelFactory>().ToFactory();
-            kernel.Bind<IProjectsToMonitorViewModelFactory>().ToFactory();
+            kernel.Bind<ITrackedProjectViewModelFactory>().ToFactory();
+            kernel.Bind<ITrackedProjectsViewModelFactory>().ToFactory();
             kernel.Bind<IChangeViewModelFactory>().ToFactory();
             kernel.Bind<IBuildViewModelFactory>().ToFactory();
             kernel.Bind<IProjectViewModelFactory>().ToFactory();

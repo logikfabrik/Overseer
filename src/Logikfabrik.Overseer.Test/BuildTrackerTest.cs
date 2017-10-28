@@ -1,4 +1,4 @@
-﻿// <copyright file="BuildMonitorTest.cs" company="Logikfabrik">
+﻿// <copyright file="BuildTrackerTest.cs" company="Logikfabrik">
 //   Copyright (c) 2016 anton(at)logikfabrik.se. Licensed under the MIT license.
 // </copyright>
 
@@ -15,14 +15,14 @@ namespace Logikfabrik.Overseer.Test
     using Shouldly;
     using Xunit;
 
-    public class BuildMonitorTest
+    public class BuildTrackerTest
     {
         [Fact]
         public async Task WillLogOnExceptionWhenGettingProjects()
         {
             var mocker = new AutoMocker();
 
-            var buildMonitor = mocker.CreateInstance<BuildMonitor>();
+            var buildTracker = mocker.CreateInstance<BuildTracker>();
 
             var connectionMock = new Mock<IConnection>();
 
@@ -31,11 +31,11 @@ namespace Logikfabrik.Overseer.Test
             connectionMock.Setup(m => m.Settings).Returns(settingsMock.Object);
             connectionMock.Setup(m => m.GetProjectsAsync(It.IsAny<CancellationToken>())).Throws<Exception>();
 
-            await buildMonitor.GetProjectsAsync(connectionMock.Object, CancellationToken.None);
+            await buildTracker.GetProjectsAsync(connectionMock.Object, CancellationToken.None);
 
             var logServiceMock = mocker.GetMock<ILogService>();
 
-            logServiceMock.Verify(m => m.Log(typeof(BuildMonitor), It.Is<LogEntry>(entry => entry.Type == LogEntryType.Error)), Times.Once);
+            logServiceMock.Verify(m => m.Log(typeof(BuildTracker), It.Is<LogEntry>(entry => entry.Type == LogEntryType.Error)), Times.Once);
         }
 
         [Fact]
@@ -43,7 +43,7 @@ namespace Logikfabrik.Overseer.Test
         {
             var mocker = new AutoMocker();
 
-            var buildMonitor = mocker.CreateInstance<BuildMonitor>();
+            var buildTracker = mocker.CreateInstance<BuildTracker>();
 
             var connectionMock = new Mock<IConnection>();
 
@@ -52,10 +52,10 @@ namespace Logikfabrik.Overseer.Test
             connectionMock.Setup(m => m.Settings).Returns(settingsMock.Object);
             connectionMock.Setup(m => m.GetProjectsAsync(It.IsAny<CancellationToken>())).Throws<Exception>();
 
-            var evt = await Assert.RaisesAsync<BuildMonitorConnectionErrorEventArgs>(
-                handler => buildMonitor.ConnectionError += handler,
-                handler => buildMonitor.ConnectionError -= handler,
-                () => buildMonitor.GetProjectsAsync(connectionMock.Object, CancellationToken.None));
+            var evt = await Assert.RaisesAsync<BuildTrackerConnectionErrorEventArgs>(
+                handler => buildTracker.ConnectionError += handler,
+                handler => buildTracker.ConnectionError -= handler,
+                () => buildTracker.GetProjectsAsync(connectionMock.Object, CancellationToken.None));
 
             evt.ShouldNotBeNull();
         }
@@ -65,7 +65,7 @@ namespace Logikfabrik.Overseer.Test
         {
             var mocker = new AutoMocker();
 
-            var buildMonitor = mocker.CreateInstance<BuildMonitor>();
+            var buildTracker = mocker.CreateInstance<BuildTracker>();
 
             var connectionMock = new Mock<IConnection>();
 
@@ -74,10 +74,10 @@ namespace Logikfabrik.Overseer.Test
             connectionMock.Setup(m => m.Settings).Returns(settingsMock.Object);
             connectionMock.Setup(m => m.GetProjectsAsync(It.IsAny<CancellationToken>())).Returns(Task.FromResult<IEnumerable<IProject>>(new IProject[] { }));
 
-            var evt = await Assert.RaisesAsync<BuildMonitorConnectionProgressEventArgs>(
-                handler => buildMonitor.ConnectionProgressChanged += handler,
-                handler => buildMonitor.ConnectionProgressChanged -= handler,
-                () => buildMonitor.GetProjectsAsync(connectionMock.Object, CancellationToken.None));
+            var evt = await Assert.RaisesAsync<BuildTrackerConnectionProgressEventArgs>(
+                handler => buildTracker.ConnectionProgressChanged += handler,
+                handler => buildTracker.ConnectionProgressChanged -= handler,
+                () => buildTracker.GetProjectsAsync(connectionMock.Object, CancellationToken.None));
 
             evt.ShouldNotBeNull();
         }
@@ -87,7 +87,7 @@ namespace Logikfabrik.Overseer.Test
         {
             var mocker = new AutoMocker();
 
-            var buildMonitor = mocker.CreateInstance<BuildMonitor>();
+            var buildTracker = mocker.CreateInstance<BuildTracker>();
 
             var connectionMock = new Mock<IConnection>();
 
@@ -98,11 +98,11 @@ namespace Logikfabrik.Overseer.Test
 
             var projectMock = new Mock<IProject>();
 
-            await buildMonitor.GetBuildsAsync(connectionMock.Object, projectMock.Object, CancellationToken.None);
+            await buildTracker.GetBuildsAsync(connectionMock.Object, projectMock.Object, CancellationToken.None);
 
             var logServiceMock = mocker.GetMock<ILogService>();
 
-            logServiceMock.Verify(m => m.Log(typeof(BuildMonitor), It.Is<LogEntry>(entry => entry.Type == LogEntryType.Error)), Times.Once);
+            logServiceMock.Verify(m => m.Log(typeof(BuildTracker), It.Is<LogEntry>(entry => entry.Type == LogEntryType.Error)), Times.Once);
         }
 
         [Fact]
@@ -110,7 +110,7 @@ namespace Logikfabrik.Overseer.Test
         {
             var mocker = new AutoMocker();
 
-            var buildMonitor = mocker.CreateInstance<BuildMonitor>();
+            var buildTracker = mocker.CreateInstance<BuildTracker>();
 
             var connectionMock = new Mock<IConnection>();
 
@@ -121,10 +121,10 @@ namespace Logikfabrik.Overseer.Test
 
             var projectMock = new Mock<IProject>();
 
-            var evt = await Assert.RaisesAsync<BuildMonitorProjectErrorEventArgs>(
-                handler => buildMonitor.ProjectError += handler,
-                handler => buildMonitor.ProjectError -= handler,
-                () => buildMonitor.GetBuildsAsync(connectionMock.Object, projectMock.Object, CancellationToken.None));
+            var evt = await Assert.RaisesAsync<BuildTrackerProjectErrorEventArgs>(
+                handler => buildTracker.ProjectError += handler,
+                handler => buildTracker.ProjectError -= handler,
+                () => buildTracker.GetBuildsAsync(connectionMock.Object, projectMock.Object, CancellationToken.None));
 
             evt.ShouldNotBeNull();
         }
@@ -134,7 +134,7 @@ namespace Logikfabrik.Overseer.Test
         {
             var mocker = new AutoMocker();
 
-            var buildMonitor = mocker.CreateInstance<BuildMonitor>();
+            var buildTracker = mocker.CreateInstance<BuildTracker>();
 
             var connectionMock = new Mock<IConnection>();
 
@@ -145,10 +145,10 @@ namespace Logikfabrik.Overseer.Test
 
             var projectMock = new Mock<IProject>();
 
-            var evt = await Assert.RaisesAsync<BuildMonitorProjectProgressEventArgs>(
-                handler => buildMonitor.ProjectProgressChanged += handler,
-                handler => buildMonitor.ProjectProgressChanged -= handler,
-                () => buildMonitor.GetBuildsAsync(connectionMock.Object, projectMock.Object, CancellationToken.None));
+            var evt = await Assert.RaisesAsync<BuildTrackerProjectProgressEventArgs>(
+                handler => buildTracker.ProjectProgressChanged += handler,
+                handler => buildTracker.ProjectProgressChanged -= handler,
+                () => buildTracker.GetBuildsAsync(connectionMock.Object, projectMock.Object, CancellationToken.None));
 
             evt.ShouldNotBeNull();
         }

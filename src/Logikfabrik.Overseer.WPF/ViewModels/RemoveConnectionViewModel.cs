@@ -21,10 +21,12 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// <summary>
         /// Initializes a new instance of the <see cref="RemoveConnectionViewModel" /> class.
         /// </summary>
+        /// <param name="platformProvider">The platform provider.</param>
         /// <param name="eventAggregator">The event aggregator.</param>
         /// <param name="settingsRepository">The settings repository.</param>
         /// <param name="connectionViewModel">The connection view model.</param>
-        public RemoveConnectionViewModel(IEventAggregator eventAggregator, IConnectionSettingsRepository settingsRepository, IConnectionViewModel connectionViewModel)
+        public RemoveConnectionViewModel(IPlatformProvider platformProvider, IEventAggregator eventAggregator, IConnectionSettingsRepository settingsRepository, IConnectionViewModel connectionViewModel)
+            : base(platformProvider)
         {
             Ensure.That(eventAggregator).IsNotNull();
             Ensure.That(settingsRepository).IsNotNull();

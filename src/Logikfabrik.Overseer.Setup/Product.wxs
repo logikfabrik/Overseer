@@ -246,7 +246,7 @@
               KeyPath="yes" />
       </Component>
 
-	  <Component Id="cmp3EFFBACC2FE845B786DB01C09C5135B6"
+      <Component Id="cmp3EFFBACC2FE845B786DB01C09C5135B6"
                  Guid="3EFFBACC-2FE8-45B7-86DB-01C09C5135B6"
                  Directory="dir3EF976885ADC44579DBE3C2EE8B49489">
         <File Id="fil0D3DD25AECD04731BAD06F404DAF05D7"
@@ -267,6 +267,22 @@
                  Directory="INSTALLFOLDER">
         <File Id="fil10600A4661D84D1EAC82D7488A6C9BB0"
               Source="$(var.Logikfabrik.Overseer.WPF.Client.TargetDir)Logikfabrik.Overseer.WPF.Provider.CircleCI.dll"
+              KeyPath="yes" />
+      </Component>
+
+      <Component Id="cmp496082EA9C444F4590FA-D3E8FAE8F0C4"
+                 Guid="496082EA-9C44-4F45-90FA-D3E8FAE8F0C4"
+                 Directory="dir3EF976885ADC44579DBE3C2EE8B49489">
+        <File Id="fil7447F86DD9B94FB4A0FBB6A5E4EA1B6C"
+              Source="$(var.Logikfabrik.Overseer.WPF.Client.TargetDir)en-US\Logikfabrik.Overseer.WPF.Provider.CircleCI.resources.dll"
+              KeyPath="yes" />
+      </Component>
+
+      <Component Id="cmp1B2DCAFC85A3401CA5CA02140BB25D08"
+                 Guid="1B2DCAFC-85A3-401C-A5CA-02140BB25D08"
+                 Directory="dirAB1506D5F38C44EB96FB28C4C896C3F1">
+        <File Id="fil3182E40AA38F423186D5B3705AD39F06"
+              Source="$(var.Logikfabrik.Overseer.WPF.Client.TargetDir)sv-SE\Logikfabrik.Overseer.WPF.Provider.CircleCI.resources.dll"
               KeyPath="yes" />
       </Component>
 
@@ -315,6 +331,22 @@
                  Directory="INSTALLFOLDER">
         <File Id="fil1899D5500C4547D38A50D0A66BA55ACC"
               Source="$(var.Logikfabrik.Overseer.WPF.Client.TargetDir)Logikfabrik.Overseer.WPF.Provider.VSTeamServices.dll"
+              KeyPath="yes" />
+      </Component>
+
+      <Component Id="cmpC3FC534127694E208F64F58E8899E46B"
+                 Guid="C3FC5341-2769-4E20-8F64-F58E8899E46B"
+                 Directory="dir3EF976885ADC44579DBE3C2EE8B49489">
+        <File Id="filF844C8C38212415388FCCD98F5DA7EF6"
+              Source="$(var.Logikfabrik.Overseer.WPF.Client.TargetDir)en-US\Logikfabrik.Overseer.WPF.Provider.VSTeamServices.resources.dll"
+              KeyPath="yes" />
+      </Component>
+
+      <Component Id="cmp385C823AD3934295B80EC04C92D4E706"
+                 Guid="385C823A-D393-4295-B80E-C04C92D4E706"
+                 Directory="dirAB1506D5F38C44EB96FB28C4C896C3F1">
+        <File Id="filD5E0B0F7ACC846E48B2C397E62C5069B"
+              Source="$(var.Logikfabrik.Overseer.WPF.Client.TargetDir)sv-SE\Logikfabrik.Overseer.WPF.Provider.VSTeamServices.resources.dll"
               KeyPath="yes" />
       </Component>
 

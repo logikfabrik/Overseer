@@ -137,7 +137,7 @@ We couldn't connect to the CI/CD service. Please try again.</value>
     <value>Add connection</value>
   </data>
   <data name="BuildProviders_View" xml:space="preserve">
-    <value>Select CI/DI service</value>
+    <value>Select CI/CD service</value>
   </data>
   <data name="ConnectionSettings_Validation_BuildsPerProject" xml:space="preserve">
     <value>We have to get at least 1 build per project</value>

@@ -7,12 +7,13 @@
     xmlns:p="clr-namespace:Logikfabrik.Overseer.WPF.Provider.AppVeyor.Properties"
     xmlns:ex="clr-namespace:Logikfabrik.Overseer.WPF.Extensions;assembly=Logikfabrik.Overseer.WPF"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    d:DesignHeight="300"
-    d:DesignWidth="300"
+    Style="{StaticResource ConnectionSettingsView}"
+    d:DesignHeight="500"
+    d:DesignWidth="400"
     mc:Ignorable="d">
     <StackPanel>
-        <StackPanel Margin="10">
-            <Viewbox Width="50" Height="50">
+        <Grid Style="{DynamicResource Header}">
+            <Viewbox>
                 <Path Fill="#FFFFFF">
                     <Path.Data>
                         <GeometryGroup>
@@ -22,16 +23,16 @@
                     </Path.Data>
                 </Path>
             </Viewbox>
-            <TextBlock Text="AppVeyor" />
-        </StackPanel>
-        <StackPanel Margin="10,0,10,10">
-            <TextBlock Text="{x:Static p:Resources.ConnectionSettings_Setting_Label_Name}" />
+            <TextBlock Text="APPVEYOR" Style="{DynamicResource ProviderType}" />
+        </Grid>
+        <StackPanel Style="{DynamicResource Panel}">
+            <TextBlock Text="{x:Static p:Resources.ConnectionSettings_Setting_Label_Name}" Style="{DynamicResource Label}" />
             <TextBox Text="{Binding Name, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" />
         </StackPanel>
-        <StackPanel Margin="10,0,10,10">
-            <TextBlock Text="{x:Static p:Resources.ConnectionSettings_Setting_Label_Token}" />
-            <TextBlock>
-                You create your token at
+        <StackPanel Style="{DynamicResource Panel}">
+            <TextBlock Text="{x:Static p:Resources.ConnectionSettings_Setting_Label_Token}" Style="{DynamicResource Label}" />
+            <TextBlock Style="{DynamicResource Description}">
+                <Run Text="{x:Static p:Resources.ConnectionSettings_Setting_Description_Token}" />
                 <Hyperlink ex:HyperlinkExtensions.IsExternal="True" NavigateUri="{Binding Source={x:Static appVeyor:UriUtility.BaseUri}}">ci.appveyor.com</Hyperlink>
             </TextBlock>
             <PasswordBox ex:PasswordBoxExtensions.BoundPassword="{Binding Token, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" />

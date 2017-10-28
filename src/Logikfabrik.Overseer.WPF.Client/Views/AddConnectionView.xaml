@@ -7,6 +7,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:uc="clr-namespace:Logikfabrik.Overseer.WPF.Client.Views.UserControls"
     xmlns:p="clr-namespace:Logikfabrik.Overseer.WPF.Client.Properties"
+    Style="{StaticResource AddOrEditConnectionView}"
     d:DesignHeight="300"
     d:DesignWidth="300"
     mc:Ignorable="d">
@@ -17,7 +18,7 @@
                 VerticalAlignment="Stretch"
                 cal:View.Model="{Binding Settings, Mode=OneWay}"
                 Focusable="False" />
-            <StackPanel Margin="10,0,10,10">
+            <StackPanel Style="{DynamicResource Panel}">
                 <Grid>
                     <Button
                         x:Name="TryConnect"
@@ -30,22 +31,22 @@
                 </Grid>
                 <TextBlock Text="{Binding ConnectionTask.Exception, Converter={StaticResource AddConnectionViewExceptionToLocalizedStringConverter}}" Visibility="{Binding ConnectionTask.Status, Converter={StaticResource TaskStatusFaultedToVisibilityConverter}}" />
             </StackPanel>
-            <StackPanel Margin="10,0,10,10" Visibility="{Binding HasConnected, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <StackPanel Style="{DynamicResource Panel}" Visibility="{Binding HasConnected, Converter={StaticResource BooleanToVisibilityConverter}}">
+                <TextBlock Text="{x:Static p:Resources.ConnectionSettings_Setting_Label_TrackedProjects}" Style="{DynamicResource Label}" />
                 <ContentControl
                     MaxHeight="304"
                     HorizontalAlignment="Stretch"
-                    cal:View.Model="{Binding Settings.ProjectsToMonitor, Mode=OneWay}"
+                    cal:View.Model="{Binding Settings.TrackedProjects, Mode=OneWay}"
                     Focusable="False" />
             </StackPanel>
-            <StackPanel Margin="10,0,10,10">
-                <TextBlock Text="{x:Static p:Resources.ConnectionSettings_Setting_Label_BuildsPerProject}" />
-                <TextBlock Text="{x:Static p:Resources.ConnectionSettings_Setting_Description_BuildsPerProject}" />
+            <StackPanel Style="{DynamicResource Panel}">
+                <TextBlock Text="{x:Static p:Resources.ConnectionSettings_Setting_Label_BuildsPerProject}" Style="{DynamicResource Label}" />
+                <TextBlock Text="{x:Static p:Resources.ConnectionSettings_Setting_Description_BuildsPerProject}" Style="{DynamicResource Description}" />
                 <TextBox Text="{Binding Settings.BuildsPerProject, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" />
             </StackPanel>
-            <WrapPanel Margin="10,0,10,10" Orientation="Horizontal">
+            <WrapPanel Style="{DynamicResource Footer}">
                 <Button
                     x:Name="Add"
-                    Margin="0,0,2,0"
                     Content="{x:Static p:Resources.AddConnection_Button_Add}"
                     IsDefault="True"
                     IsEnabled="{Binding IsValidAndHasConnected, Mode=OneWay}" />

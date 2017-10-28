@@ -5,6 +5,7 @@
 namespace Logikfabrik.Overseer.WPF.Client.Test.ViewModels
 {
     using Client.ViewModels;
+    using Moq.AutoMock;
     using Shouldly;
     using Xunit;
 
@@ -13,7 +14,9 @@ namespace Logikfabrik.Overseer.WPF.Client.Test.ViewModels
         [Fact]
         public void CanGetVersion()
         {
-            var model = new AboutViewModel();
+            var mocker = new AutoMocker();
+
+            var model = mocker.CreateInstance<AboutViewModel>();
 
             model.Version.ShouldNotBeNull();
         }

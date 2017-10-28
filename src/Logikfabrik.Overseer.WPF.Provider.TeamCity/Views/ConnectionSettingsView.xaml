@@ -8,12 +8,13 @@
     xmlns:teamCity="clr-namespace:Logikfabrik.Overseer.WPF.Provider.TeamCity"
     xmlns:p="clr-namespace:Logikfabrik.Overseer.WPF.Provider.TeamCity.Properties"
     xmlns:ex="clr-namespace:Logikfabrik.Overseer.WPF.Extensions;assembly=Logikfabrik.Overseer.WPF"
-    d:DesignHeight="300"
-    d:DesignWidth="300"
+    Style="{StaticResource ConnectionSettingsView}"
+    d:DesignHeight="500"
+    d:DesignWidth="400"
     mc:Ignorable="d">
     <StackPanel>
-        <StackPanel Margin="10">
-            <Viewbox Width="50" Height="50">
+        <Grid Style="{DynamicResource Header}">
+            <Viewbox>
                 <Path Fill="#FFFFFF">
                     <Path.Data>
                         <GeometryGroup>
@@ -22,32 +23,32 @@
                     </Path.Data>
                 </Path>
             </Viewbox>
-            <TextBlock Text="TeamCity" />
-        </StackPanel>
-        <StackPanel Margin="10,0,10,10">
-            <TextBlock Text="{x:Static p:Resources.ConnectionSettings_Setting_Label_Name}" />
+            <TextBlock Text="TEAMCITY" Style="{DynamicResource ProviderType}" />
+        </Grid>
+        <StackPanel Style="{DynamicResource Panel}">
+            <TextBlock Text="{x:Static p:Resources.ConnectionSettings_Setting_Label_Name}" Style="{DynamicResource Label}" />
             <TextBox Text="{Binding Name, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" />
         </StackPanel>
-        <StackPanel Margin="10,0,10,10">
-            <TextBlock Text="{x:Static p:Resources.ConnectionSettings_Setting_Label_Url}" />
-            <TextBlock Text="{Binding BaseUri, Mode=OneWay}" Visibility="{Binding ShowBaseUri, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}" />
+        <StackPanel Style="{DynamicResource Panel}">
+            <TextBlock Text="{x:Static p:Resources.ConnectionSettings_Setting_Label_Url}" Style="{DynamicResource Label}" />
+            <TextBlock Text="{Binding BaseUri, Mode=OneWay}" Visibility="{Binding ShowBaseUri, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}" Style="{DynamicResource Description}" />
             <TextBox Text="{Binding Url, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" />
         </StackPanel>
-        <StackPanel Margin="10,0,10,10">
-            <TextBlock Text="{x:Static p:Resources.ConnectionSettings_Setting_Label_AuthenticationType}" />
+        <StackPanel Style="{DynamicResource Panel}">
+            <TextBlock Text="{x:Static p:Resources.ConnectionSettings_Setting_Label_AuthenticationType}" Style="{DynamicResource Label}" />
             <ComboBox
                 DisplayMemberPath="DisplayName"
                 ItemsSource="{markupExtensions:EnumToItemsSourceMarkup {x:Type teamCity:AuthenticationType}}"
                 SelectedValue="{Binding AuthenticationType, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                 SelectedValuePath="Value" />
         </StackPanel>
-        <StackPanel Margin="10,0,10,10" Visibility="{Binding ShowUsernameAndPassword, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}">
-            <StackPanel>
-                <TextBlock Text="{x:Static p:Resources.ConnectionSettings_Setting_Label_Username}" />
+        <StackPanel Visibility="{Binding ShowUsernameAndPassword, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <StackPanel Style="{DynamicResource Panel}">
+                <TextBlock Text="{x:Static p:Resources.ConnectionSettings_Setting_Label_Username}" Style="{DynamicResource Label}" />
                 <TextBox Text="{Binding Username, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" />
             </StackPanel>
-            <StackPanel>
-                <TextBlock Text="{x:Static p:Resources.ConnectionSettings_Setting_Label_Password}" />
+            <StackPanel Style="{DynamicResource Panel}">
+                <TextBlock Text="{x:Static p:Resources.ConnectionSettings_Setting_Label_Password}" Style="{DynamicResource Label}" />
                 <PasswordBox ex:PasswordBoxExtensions.BoundPassword="{Binding Password, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" />
             </StackPanel>
         </StackPanel>

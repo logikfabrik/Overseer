@@ -213,11 +213,11 @@
     <Compile Include="Views\PassPhraseView.xaml.cs">
       <DependentUpon>PassPhraseView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\ProjectsToMonitorView.xaml.cs">
-      <DependentUpon>ProjectsToMonitorView.xaml</DependentUpon>
+    <Compile Include="Views\TrackedProjectsView.xaml.cs">
+      <DependentUpon>TrackedProjectsView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\ProjectToMonitorView.xaml.cs">
-      <DependentUpon>ProjectToMonitorView.xaml</DependentUpon>
+    <Compile Include="Views\TrackedProjectView.xaml.cs">
+      <DependentUpon>TrackedProjectView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ProjectView.xaml.cs">
       <DependentUpon>ProjectView.xaml</DependentUpon>
@@ -338,11 +338,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\ProjectsToMonitorView.xaml">
+    <Page Include="Views\TrackedProjectsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\ProjectToMonitorView.xaml">
+    <Page Include="Views\TrackedProjectView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

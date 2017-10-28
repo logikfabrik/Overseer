@@ -19,7 +19,7 @@ namespace Logikfabrik.Overseer.WPF.Client.Properties {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class Resources {
@@ -143,11 +143,20 @@ namespace Logikfabrik.Overseer.WPF.Client.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Builds per project.
+        ///   Looks up a localized string similar to BUILDS PER PROJECT.
         /// </summary>
         public static string ConnectionSettings_Setting_Label_BuildsPerProject {
             get {
                 return ResourceManager.GetString("ConnectionSettings_Setting_Label_BuildsPerProject", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to PROJECTS.
+        /// </summary>
+        public static string ConnectionSettings_Setting_Label_TrackedProjects {
+            get {
+                return ResourceManager.GetString("ConnectionSettings_Setting_Label_TrackedProjects", resourceCulture);
             }
         }
         
@@ -292,6 +301,33 @@ namespace Logikfabrik.Overseer.WPF.Client.Properties {
         public static string RemoveConnection_Button_Remove {
             get {
                 return ResourceManager.GetString("RemoveConnection_Button_Remove", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Deselect all.
+        /// </summary>
+        public static string TrackedProjects_Button_DeselectAll {
+            get {
+                return ResourceManager.GetString("TrackedProjects_Button_DeselectAll", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Filter.
+        /// </summary>
+        public static string TrackedProjects_Button_Filter {
+            get {
+                return ResourceManager.GetString("TrackedProjects_Button_Filter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select all.
+        /// </summary>
+        public static string TrackedProjects_Button_SelectAll {
+            get {
+                return ResourceManager.GetString("TrackedProjects_Button_SelectAll", resourceCulture);
             }
         }
     }

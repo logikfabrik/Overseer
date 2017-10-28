@@ -84,7 +84,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BuildMonitorTest.cs" />
+    <Compile Include="BuildTrackerTest.cs" />
     <Compile Include="Extensions\BuildExtensionsTest.cs" />
     <Compile Include="Extensions\BuildStatusExtensionsTest.cs" />
     <Compile Include="ChangeTest.cs" />

@@ -4,7 +4,6 @@
 
 namespace Logikfabrik.Overseer.Test
 {
-    using System;
     using System.Linq;
     using Ploeh.AutoFixture.Xunit2;
     using Shouldly;
@@ -79,12 +78,14 @@ namespace Logikfabrik.Overseer.Test
         }
 
         [Theory]
-        [InlineData(NotificationType.Added)]
-        [InlineData(NotificationType.Updated)]
-        [InlineData(NotificationType.Removed)]
-        public void CanGetPayloads(NotificationType type)
+        [InlineAutoData(NotificationType.Added)]
+        [InlineAutoData(NotificationType.Updated)]
+        [InlineAutoData(NotificationType.Removed)]
+        public void CanGetPayloads(NotificationType type, int count, object payload)
         {
-            // TODO: This unit test.
+            var notifications = Notification<object>.Create(type, Enumerable.Repeat(payload, count));
+
+            Notification<object>.GetPayloads(notifications, type, o => true).Count().ShouldBe(count);
         }
     }
 }

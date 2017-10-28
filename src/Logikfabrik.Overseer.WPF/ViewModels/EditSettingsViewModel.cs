@@ -6,6 +6,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
 {
     using System.ComponentModel;
     using System.Linq;
+    using Caliburn.Micro;
     using EnsureThat;
     using Extensions;
     using Validators;
@@ -25,8 +26,10 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// Initializes a new instance of the <see cref="EditSettingsViewModel" /> class.
         /// </summary>
         /// <param name="application">The application.</param>
+        /// <param name="platformProvider">The platform provider.</param>
         /// <param name="appSettingsFactory">The app settings factory.</param>
-        public EditSettingsViewModel(IApp application, IAppSettingsFactory appSettingsFactory)
+        public EditSettingsViewModel(IApp application, IPlatformProvider platformProvider, IAppSettingsFactory appSettingsFactory)
+            : base(platformProvider)
         {
             Ensure.That(application).IsNotNull();
             Ensure.That(appSettingsFactory).IsNotNull();

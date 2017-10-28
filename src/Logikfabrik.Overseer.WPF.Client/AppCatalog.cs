@@ -19,12 +19,14 @@ namespace Logikfabrik.Overseer.WPF.Client
         /// <summary>
         /// Initializes a new instance of the <see cref="AppCatalog" /> class.
         /// </summary>
+        /// <param name="currentAppDomain">The current application domain.</param>
         /// <param name="product">The product.</param>
-        public AppCatalog(string product)
+        public AppCatalog(AppDomain currentAppDomain, string product)
         {
+            Ensure.That(currentAppDomain).IsNotNull();
             Ensure.That(product).IsNotNullOrWhiteSpace();
 
-            Assemblies = GetAssemblies(product);
+            Assemblies = GetAssemblies(currentAppDomain, product);
             Modules = GetModules(Assemblies);
         }
 
@@ -56,13 +58,13 @@ namespace Logikfabrik.Overseer.WPF.Client
             return assembly.GetCustomAttribute<AssemblyProductAttribute>()?.Product;
         }
 
-        private static IEnumerable<Assembly> GetAssemblies(string product)
+        private static IEnumerable<Assembly> GetAssemblies(AppDomain currentAppDomain, string product)
         {
             Func<Assembly, bool> predicate = assembly => GetProduct(assembly) == product;
 
-            AssemblyLoader.Load(predicate);
+            AssemblyLoader.Load(currentAppDomain, predicate);
 
-            return AppDomain.CurrentDomain.GetAssemblies().Where(predicate);
+            return currentAppDomain.GetAssemblies().Where(predicate);
         }
 
         private static IEnumerable<Assembly> GetModules(IEnumerable<Assembly> assemblies)

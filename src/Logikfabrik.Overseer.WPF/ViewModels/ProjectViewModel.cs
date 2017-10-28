@@ -36,24 +36,27 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// Initializes a new instance of the <see cref="ProjectViewModel" /> class.
         /// </summary>
         /// <param name="application">The application.</param>
+        /// <param name="platformProvider">The platform provider.</param>
         /// <param name="eventAggregator">The event aggregator.</param>
-        /// <param name="buildMonitor">The build monitor.</param>
+        /// <param name="buildTracker">The build tracker.</param>
         /// <param name="buildFactory">The build factory.</param>
         /// <param name="settingsId">The settings identifier.</param>
         /// <param name="projectId">The project identifier.</param>
         /// <param name="projectName">The project name.</param>
         public ProjectViewModel(
             IApp application,
+            IPlatformProvider platformProvider,
             IEventAggregator eventAggregator,
-            IBuildMonitor buildMonitor,
+            IBuildTracker buildTracker,
             IBuildViewModelFactory buildFactory,
             Guid settingsId,
             string projectId,
             string projectName)
+            : base(platformProvider)
         {
             Ensure.That(application).IsNotNull();
             Ensure.That(eventAggregator).IsNotNull();
-            Ensure.That(buildMonitor).IsNotNull();
+            Ensure.That(buildTracker).IsNotNull();
             Ensure.That(buildFactory).IsNotNull();
             Ensure.That(settingsId).IsNotEmpty();
             Ensure.That(projectId).IsNotNullOrWhiteSpace();
@@ -68,8 +71,8 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             _isErrored = false;
             DisplayName = Properties.Resources.Project_View;
 
-            WeakEventManager<IBuildMonitor, BuildMonitorProjectErrorEventArgs>.AddHandler(buildMonitor, nameof(buildMonitor.ProjectError), BuildMonitorProjectError);
-            WeakEventManager<IBuildMonitor, BuildMonitorProjectProgressEventArgs>.AddHandler(buildMonitor, nameof(buildMonitor.ProjectProgressChanged), BuildMonitorProjectProgressChanged);
+            WeakEventManager<IBuildTracker, BuildTrackerProjectErrorEventArgs>.AddHandler(buildTracker, nameof(buildTracker.ProjectError), BuildTrackerProjectError);
+            WeakEventManager<IBuildTracker, BuildTrackerProjectProgressEventArgs>.AddHandler(buildTracker, nameof(buildTracker.ProjectProgressChanged), BuildTrackerProjectProgressChanged);
 
             _builds = new BindableCollection<IBuildViewModel>();
 
@@ -210,7 +213,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             return true;
         }
 
-        private void BuildMonitorProjectError(object sender, BuildMonitorProjectErrorEventArgs e)
+        private void BuildTrackerProjectError(object sender, BuildTrackerProjectErrorEventArgs e)
         {
             if (ShouldExitHandler(e))
             {
@@ -221,7 +224,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             IsBusy = false;
         }
 
-        private void BuildMonitorProjectProgressChanged(object sender, BuildMonitorProjectProgressEventArgs e)
+        private void BuildTrackerProjectProgressChanged(object sender, BuildTrackerProjectProgressEventArgs e)
         {
             if (ShouldExitHandler(e))
             {
@@ -272,7 +275,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             NotifyOfPropertyChange(() => IsViewable);
         }
 
-        private bool ShouldExitHandler(BuildMonitorProjectEventArgs e)
+        private bool ShouldExitHandler(BuildTrackerProjectEventArgs e)
         {
             return _settingsId != e.SettingsId || Id != e.Project.Id;
         }

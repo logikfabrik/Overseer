@@ -3,15 +3,17 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:p="clr-namespace:Logikfabrik.Overseer.WPF.Provider.CircleCI.Properties"
     xmlns:ex="clr-namespace:Logikfabrik.Overseer.WPF.Extensions;assembly=Logikfabrik.Overseer.WPF"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:circleCi="clr-namespace:Logikfabrik.Overseer.WPF.Provider.CircleCI"
-    d:DesignHeight="300"
-    d:DesignWidth="300"
+    Style="{StaticResource ConnectionSettingsView}"
+    d:DesignHeight="500"
+    d:DesignWidth="400"
     mc:Ignorable="d">
     <StackPanel>
-        <StackPanel Margin="10">
-            <Viewbox Width="50" Height="50">
+        <Grid Style="{DynamicResource Header}">
+            <Viewbox>
                 <Path Fill="#FFFFFF">
                     <Path.Data>
                         <GeometryGroup>
@@ -21,16 +23,16 @@
                     </Path.Data>
                 </Path>
             </Viewbox>
-            <TextBlock Text="CircleCI" />
-        </StackPanel>
-        <StackPanel Margin="10,0,10,10">
-            <TextBlock Text="Name" />
+            <TextBlock Text="CIRCLECI" Style="{DynamicResource ProviderType}" />
+        </Grid>
+        <StackPanel Style="{DynamicResource Panel}">
+            <TextBlock Text="{x:Static p:Resources.ConnectionSettings_Setting_Label_Name}" Style="{DynamicResource Label}" />
             <TextBox Text="{Binding Name, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" />
         </StackPanel>
-        <StackPanel Margin="10,0,10,10">
-            <TextBlock Text="Token" />
-            <TextBlock>
-                You create your token at
+        <StackPanel Style="{DynamicResource Panel}">
+            <TextBlock Text="{x:Static p:Resources.ConnectionSettings_Setting_Label_Token}" Style="{DynamicResource Label}" />
+            <TextBlock Style="{DynamicResource Description}">
+                <Run Text="{x:Static p:Resources.ConnectionSettings_Setting_Description_Token}" />
                 <Hyperlink ex:HyperlinkExtensions.IsExternal="True" NavigateUri="{Binding Source={x:Static circleCi:UriUtility.BaseUri}}">circleci.com</Hyperlink>
             </TextBlock>
             <PasswordBox ex:PasswordBoxExtensions.BoundPassword="{Binding Token, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" />

@@ -4,6 +4,7 @@
 
 namespace Logikfabrik.Overseer.WPF.Test.ViewModels
 {
+    using Caliburn.Micro;
     using Moq;
     using Ploeh.AutoFixture.Xunit2;
     using Shouldly;
@@ -16,7 +17,7 @@ namespace Logikfabrik.Overseer.WPF.Test.ViewModels
         [AutoData]
         public void CanSetParent(object parent)
         {
-            var model = new Mock<ViewModel>().Object;
+            var model = new Mock<ViewModel>(new Mock<IPlatformProvider>().Object).Object;
 
             model.Parent = parent;
 
@@ -27,7 +28,7 @@ namespace Logikfabrik.Overseer.WPF.Test.ViewModels
         [AutoData]
         public void CanSetDisplayName(string displayName)
         {
-            var model = new Mock<ViewModel>().Object;
+            var model = new Mock<ViewModel>(new Mock<IPlatformProvider>().Object).Object;
 
             model.DisplayName = displayName;
 
@@ -39,7 +40,7 @@ namespace Logikfabrik.Overseer.WPF.Test.ViewModels
         [InlineData(false)]
         public void CanSetKeepAlive(bool keepAlive)
         {
-            var model = new Mock<ViewModel>().Object;
+            var model = new Mock<ViewModel>(new Mock<IPlatformProvider>().Object).Object;
 
             model.KeepAlive = keepAlive;
 

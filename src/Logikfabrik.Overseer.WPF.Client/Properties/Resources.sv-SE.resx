@@ -137,7 +137,10 @@ Vänligen försök igen.</value>
     <value>Antal byggen att hämta från CI/DI-tjänsten per projekt</value>
   </data>
   <data name="ConnectionSettings_Setting_Label_BuildsPerProject" xml:space="preserve">
-    <value>Byggen per projekt</value>
+    <value>BYGGEN PER PROJEKT</value>
+  </data>
+  <data name="ConnectionSettings_Setting_Label_TrackedProjects" xml:space="preserve">
+    <value>PROJEKT</value>
   </data>
   <data name="Connection_Button_Edit" xml:space="preserve">
     <value>Redigera</value>
@@ -195,5 +198,14 @@ Vänligen försök igen.</value>
   </data>
   <data name="RemoveConnection_Button_Remove" xml:space="preserve">
     <value>OK</value>
+  </data>
+  <data name="TrackedProjects_Button_DeselectAll" xml:space="preserve">
+    <value>Välj bort alla</value>
+  </data>
+  <data name="TrackedProjects_Button_Filter" xml:space="preserve">
+    <value>Filtrera</value>
+  </data>
+  <data name="TrackedProjects_Button_SelectAll" xml:space="preserve">
+    <value>Välj alla</value>
   </data>
 </root>

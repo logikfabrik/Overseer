@@ -1,4 +1,4 @@
-﻿// <copyright file="BuildMonitorProjectProgressEventArgs.cs" company="Logikfabrik">
+﻿// <copyright file="BuildTrackerProjectProgressEventArgs.cs" company="Logikfabrik">
 //   Copyright (c) 2016 anton(at)logikfabrik.se. Licensed under the MIT license.
 // </copyright>
 
@@ -9,17 +9,17 @@ namespace Logikfabrik.Overseer
     using EnsureThat;
 
     /// <summary>
-    /// The <see cref="BuildMonitorProjectProgressEventArgs" /> class.
+    /// The <see cref="BuildTrackerProjectProgressEventArgs" /> class.
     /// </summary>
-    public class BuildMonitorProjectProgressEventArgs : BuildMonitorProjectEventArgs
+    public class BuildTrackerProjectProgressEventArgs : BuildTrackerProjectEventArgs
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="BuildMonitorProjectProgressEventArgs" /> class.
+        /// Initializes a new instance of the <see cref="BuildTrackerProjectProgressEventArgs" /> class.
         /// </summary>
         /// <param name="settingsId">The settings identifier.</param>
         /// <param name="project">The project.</param>
         /// <param name="builds">The builds.</param>
-        public BuildMonitorProjectProgressEventArgs(Guid settingsId, IProject project, IEnumerable<IBuild> builds)
+        public BuildTrackerProjectProgressEventArgs(Guid settingsId, IProject project, IEnumerable<IBuild> builds)
             : base(settingsId, project)
         {
             Ensure.That(builds).IsNotNull();

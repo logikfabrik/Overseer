@@ -43,24 +43,27 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// Initializes a new instance of the <see cref="ConnectionViewModel{T}" /> class.
         /// </summary>
         /// <param name="application">The application.</param>
+        /// <param name="platformProvider">The platform provider.</param>
         /// <param name="eventAggregator">The event aggregator.</param>
-        /// <param name="buildMonitor">The build monitor.</param>
+        /// <param name="buildTracker">The build tracker.</param>
         /// <param name="projectFactory">The project factory.</param>
         /// <param name="removeConnectionFactory">The remove connection factory.</param>
         /// <param name="editConnectionFactory">The edit connection factory.</param>
         /// <param name="settings">The settings.</param>
         public ConnectionViewModel(
             IApp application,
+            IPlatformProvider platformProvider,
             IEventAggregator eventAggregator,
-            IBuildMonitor buildMonitor,
+            IBuildTracker buildTracker,
             IProjectViewModelFactory projectFactory,
             IRemoveConnectionViewModelFactory removeConnectionFactory,
             IEditConnectionViewModelFactory<T> editConnectionFactory,
             T settings)
+            : base(platformProvider)
         {
             Ensure.That(application).IsNotNull();
             Ensure.That(eventAggregator).IsNotNull();
-            Ensure.That(buildMonitor).IsNotNull();
+            Ensure.That(buildTracker).IsNotNull();
             Ensure.That(projectFactory).IsNotNull();
             Ensure.That(removeConnectionFactory).IsNotNull();
             Ensure.That(editConnectionFactory).IsNotNull();
@@ -77,8 +80,8 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             DisplayName = Properties.Resources.Connection_View;
             KeepAlive = true;
 
-            WeakEventManager<IBuildMonitor, BuildMonitorConnectionErrorEventArgs>.AddHandler(buildMonitor, nameof(buildMonitor.ConnectionError), BuildMonitorConnectionError);
-            WeakEventManager<IBuildMonitor, BuildMonitorConnectionProgressEventArgs>.AddHandler(buildMonitor, nameof(buildMonitor.ConnectionProgressChanged), BuildMonitorConnectionProgressChanged);
+            WeakEventManager<IBuildTracker, BuildTrackerConnectionErrorEventArgs>.AddHandler(buildTracker, nameof(buildTracker.ConnectionError), BuildTrackerConnectionError);
+            WeakEventManager<IBuildTracker, BuildTrackerConnectionProgressEventArgs>.AddHandler(buildTracker, nameof(buildTracker.ConnectionProgressChanged), BuildTrackerConnectionProgressChanged);
 
             _projects = new BindableCollection<IProjectViewModel>();
 
@@ -267,7 +270,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             _eventAggregator.PublishOnUIThread(message);
         }
 
-        private void BuildMonitorConnectionError(object sender, BuildMonitorConnectionErrorEventArgs e)
+        private void BuildTrackerConnectionError(object sender, BuildTrackerConnectionErrorEventArgs e)
         {
             if (ShouldExitHandler(e))
             {
@@ -278,7 +281,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             IsBusy = false;
         }
 
-        private void BuildMonitorConnectionProgressChanged(object sender, BuildMonitorConnectionProgressEventArgs e)
+        private void BuildTrackerConnectionProgressChanged(object sender, BuildTrackerConnectionProgressEventArgs e)
         {
             if (ShouldExitHandler(e))
             {
@@ -333,7 +336,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             NotifyOfPropertyChange(() => IsViewable);
         }
 
-        private bool ShouldExitHandler(BuildMonitorConnectionEventArgs e)
+        private bool ShouldExitHandler(BuildTrackerConnectionEventArgs e)
         {
             return SettingsId != e.SettingsId;
         }

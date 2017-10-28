@@ -17,11 +17,16 @@
         G="34"
         R="34" />
 
-    <SolidColorBrush x:Key="Control.Focus" Color="#E1FF57" />
+    <Color x:Key="Color.Yellow">#E1FF57</Color>
+    <Color x:Key="Color.White">#FFFFFF</Color>
+    <Color x:Key="Color.Black">#222222</Color>
+
+    <SolidColorBrush x:Key="Control.Focus" Color="{DynamicResource Color.Yellow}" />
     <SolidColorBrush x:Key="Control.Error" Color="#FF3300" />
 
     <SolidColorBrush x:Key="Window.Background" Color="#2A2A2A" />
     <SolidColorBrush x:Key="Window.Foreground" Color="#FFFFFF" />
+    <SolidColorBrush x:Key="Window.XXX" Color="#7E7E7E" />
 
     <SolidColorBrush x:Key="Separator.Background" Color="#7E7E7E" />
     <SolidColorBrush x:Key="Separator.Border" Color="Transparent" />
@@ -31,7 +36,7 @@
 
     <SolidColorBrush x:Key="ToolTip.Background" Color="#7E7E7E" />
 
-    <SolidColorBrush x:Key="Hyperlink.Foreground" Color="#E1FF57" />
+    <SolidColorBrush x:Key="Hyperlink.Foreground" Color="{DynamicResource Color.Yellow}" />
 
     <SolidColorBrush x:Key="ComboBox.Static.Background" Color="#525252" />
     <SolidColorBrush x:Key="ComboBox.Static.Foreground" Color="#FFFFFF" />
@@ -43,7 +48,7 @@
 
     <SolidColorBrush x:Key="ComboBox.Pressed.Background" Color="#7E7E7E" />
     <SolidColorBrush x:Key="ComboBox.Pressed.Foreground" Color="#222222" />
-    <SolidColorBrush x:Key="ComboBox.Pressed.Border" Color="#E1FF57" />
+    <SolidColorBrush x:Key="ComboBox.Pressed.Border" Color="{DynamicResource Color.Yellow}" />
 
     <SolidColorBrush x:Key="ComboBox.Disabled.Background" Color="#525252" />
     <SolidColorBrush x:Key="ComboBox.Disabled.Foreground" Color="#7E7E7E" />
@@ -57,9 +62,9 @@
     <SolidColorBrush x:Key="ComboBoxItem.MouseOver.Foreground" Color="#222222" />
     <SolidColorBrush x:Key="ComboBoxItem.MouseOver.Border" Color="#7E7E7E" />
 
-    <SolidColorBrush x:Key="ComboBoxItem.Pressed.Background" Color="#E1FF57" />
+    <SolidColorBrush x:Key="ComboBoxItem.Pressed.Background" Color="{DynamicResource Color.Yellow}" />
     <SolidColorBrush x:Key="ComboBoxItem.Pressed.Foreground" Color="#222222" />
-    <SolidColorBrush x:Key="ComboBoxItem.Pressed.Border" Color="#E1FF57" />
+    <SolidColorBrush x:Key="ComboBoxItem.Pressed.Border" Color="{DynamicResource Color.Yellow}" />
 
     <SolidColorBrush x:Key="Button.Defaulted.Background" Color="Transparent" />
     <SolidColorBrush x:Key="Button.Defaulted.Foreground" Color="#FFFFFF" />
@@ -73,9 +78,9 @@
     <SolidColorBrush x:Key="Button.MouseOver.Foreground" Color="#222222" />
     <SolidColorBrush x:Key="Button.MouseOver.Border" Color="#7E7E7E" />
 
-    <SolidColorBrush x:Key="Button.Pressed.Background" Color="#E1FF57" />
+    <SolidColorBrush x:Key="Button.Pressed.Background" Color="{DynamicResource Color.Yellow}" />
     <SolidColorBrush x:Key="Button.Pressed.Foreground" Color="#222222" />
-    <SolidColorBrush x:Key="Button.Pressed.Border" Color="#E1FF57" />
+    <SolidColorBrush x:Key="Button.Pressed.Border" Color="{DynamicResource Color.Yellow}" />
 
     <SolidColorBrush x:Key="Button.Disabled.Background" Color="#525252" />
     <SolidColorBrush x:Key="Button.Disabled.Foreground" Color="#7E7E7E" />
@@ -91,7 +96,7 @@
 
     <SolidColorBrush x:Key="CheckBox.Pressed.Background" Color="Transparent" />
     <SolidColorBrush x:Key="CheckBox.Pressed.Foreground" Color="#FFFFFF" />
-    <SolidColorBrush x:Key="CheckBox.Pressed.Border" Color="#E1FF57" />
+    <SolidColorBrush x:Key="CheckBox.Pressed.Border" Color="{DynamicResource Color.Yellow}" />
 
     <SolidColorBrush x:Key="CheckBox.Disabled.Background" Color="Transparent" />
     <SolidColorBrush x:Key="CheckBox.Disabled.Foreground" Color="#7E7E7E" />
@@ -99,7 +104,7 @@
 
     <SolidColorBrush x:Key="ScrollBar.Static.Thumb" Color="#525252" />
     <SolidColorBrush x:Key="ScrollBar.MouseOver.Thumb" Color="#7E7E7E" />
-    <SolidColorBrush x:Key="ScrollBar.Pressed.Thumb" Color="#E1FF57" />
+    <SolidColorBrush x:Key="ScrollBar.Pressed.Thumb" Color="{DynamicResource Color.Yellow}" />
 
     <SolidColorBrush x:Key="TextBox.Static.Background" Color="#FFFFFF" />
     <SolidColorBrush x:Key="TextBox.Static.Foreground" Color="#222222" />
@@ -107,7 +112,7 @@
 
     <SolidColorBrush x:Key="TextBox.Focus.Background" Color="#FFFFFF" />
     <SolidColorBrush x:Key="TextBox.Focus.Foreground" Color="#222222" />
-    <SolidColorBrush x:Key="TextBox.Focus.Border" Color="#E1FF57" />
+    <SolidColorBrush x:Key="TextBox.Focus.Border" Color="{DynamicResource Color.Yellow}" />
 
     <SolidColorBrush x:Key="TextBox.Disabled.Background" Color="#FFFFFF" />
     <SolidColorBrush x:Key="TextBox.Disabled.Foreground" Color="#222222" />
@@ -121,13 +126,13 @@
     <SolidColorBrush x:Key="ToggleButton.MouseOver.Foreground" Color="#222222" />
     <SolidColorBrush x:Key="ToggleButton.MouseOver.Border" Color="#7E7E7E" />
 
-    <SolidColorBrush x:Key="ToggleButton.Pressed.Background" Color="#E1FF57" />
+    <SolidColorBrush x:Key="ToggleButton.Pressed.Background" Color="{DynamicResource Color.Yellow}" />
     <SolidColorBrush x:Key="ToggleButton.Pressed.Foreground" Color="#222222" />
-    <SolidColorBrush x:Key="ToggleButton.Pressed.Border" Color="#E1FF57" />
+    <SolidColorBrush x:Key="ToggleButton.Pressed.Border" Color="{DynamicResource Color.Yellow}" />
 
-    <SolidColorBrush x:Key="ToggleButton.Checked.Background" Color="#E1FF57" />
+    <SolidColorBrush x:Key="ToggleButton.Checked.Background" Color="{DynamicResource Color.Yellow}" />
     <SolidColorBrush x:Key="ToggleButton.Checked.Foreground" Color="#222222" />
-    <SolidColorBrush x:Key="ToggleButton.Checked.Border" Color="#E1FF57" />
+    <SolidColorBrush x:Key="ToggleButton.Checked.Border" Color="{DynamicResource Color.Yellow}" />
 
     <SolidColorBrush x:Key="ToggleButton.Disabled.Background" Color="#525252" />
     <SolidColorBrush x:Key="ToggleButton.Disabled.Foreground" Color="#7E7E7E" />

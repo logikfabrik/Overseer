@@ -1,4 +1,4 @@
-﻿// <copyright file="BuildMonitor.cs" company="Logikfabrik">
+﻿// <copyright file="BuildTracker.cs" company="Logikfabrik">
 //   Copyright (c) 2016 anton(at)logikfabrik.se. Licensed under the MIT license.
 // </copyright>
 
@@ -14,9 +14,9 @@ namespace Logikfabrik.Overseer
     using Logging;
 
     /// <summary>
-    /// The <see cref="BuildMonitor" /> class.
+    /// The <see cref="BuildTracker" /> class.
     /// </summary>
-    public class BuildMonitor : IBuildMonitor, IDisposable
+    public class BuildTracker : IBuildTracker, IDisposable
     {
         private readonly IAppSettingsFactory _appSettingsFactory;
         private readonly ILogService _logService;
@@ -26,12 +26,12 @@ namespace Logikfabrik.Overseer
         private bool _isDisposed;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="BuildMonitor" /> class.
+        /// Initializes a new instance of the <see cref="BuildTracker" /> class.
         /// </summary>
         /// <param name="connectionPool">The connection pool.</param>
         /// <param name="appSettingsFactory">The app settings factory.</param>
         /// <param name="logService">The log service.</param>
-        public BuildMonitor(IConnectionPool connectionPool, IAppSettingsFactory appSettingsFactory, ILogService logService)
+        public BuildTracker(IConnectionPool connectionPool, IAppSettingsFactory appSettingsFactory, ILogService logService)
         {
             Ensure.That(connectionPool).IsNotNull();
             Ensure.That(appSettingsFactory).IsNotNull();
@@ -46,22 +46,22 @@ namespace Logikfabrik.Overseer
         /// <summary>
         /// Occurs if there is an connection error.
         /// </summary>
-        public event EventHandler<BuildMonitorConnectionErrorEventArgs> ConnectionError;
+        public event EventHandler<BuildTrackerConnectionErrorEventArgs> ConnectionError;
 
         /// <summary>
         /// Occurs when connection progress changes.
         /// </summary>
-        public event EventHandler<BuildMonitorConnectionProgressEventArgs> ConnectionProgressChanged;
+        public event EventHandler<BuildTrackerConnectionProgressEventArgs> ConnectionProgressChanged;
 
         /// <summary>
         /// Occurs if there is an project error.
         /// </summary>
-        public event EventHandler<BuildMonitorProjectErrorEventArgs> ProjectError;
+        public event EventHandler<BuildTrackerProjectErrorEventArgs> ProjectError;
 
         /// <summary>
         /// Occurs when project progress changes.
         /// </summary>
-        public event EventHandler<BuildMonitorProjectProgressEventArgs> ProjectProgressChanged;
+        public event EventHandler<BuildTrackerProjectProgressEventArgs> ProjectProgressChanged;
 
         /// <summary>
         /// Provides the observer with new data.
@@ -166,9 +166,9 @@ namespace Logikfabrik.Overseer
 
                 var projects =
                     (await connection.GetProjectsAsync(cancellationToken).ConfigureAwait(false)).Where(
-                        project => connection.Settings.ProjectsToMonitor.Contains(project.Id)).ToArray();
+                        project => connection.Settings.TrackedProjects.Contains(project.Id)).ToArray();
 
-                OnConnectionProgressChanged(new BuildMonitorConnectionProgressEventArgs(connection.Settings.Id, projects));
+                OnConnectionProgressChanged(new BuildTrackerConnectionProgressEventArgs(connection.Settings.Id, projects));
 
                 return projects;
             }
@@ -178,7 +178,7 @@ namespace Logikfabrik.Overseer
             }
             catch (Exception ex)
             {
-                OnConnectionError(new BuildMonitorConnectionErrorEventArgs(connection.Settings.Id));
+                OnConnectionError(new BuildTrackerConnectionErrorEventArgs(connection.Settings.Id));
 
                 _logService.Log(GetType(), new LogEntry(LogEntryType.Error, "An unexpected error occurred while polling projects.", ex));
 
@@ -203,7 +203,7 @@ namespace Logikfabrik.Overseer
 
                 var builds = await connection.GetBuildsAsync(project, cancellationToken).ConfigureAwait(false);
 
-                OnProjectProgressChanged(new BuildMonitorProjectProgressEventArgs(connection.Settings.Id, project, builds));
+                OnProjectProgressChanged(new BuildTrackerProjectProgressEventArgs(connection.Settings.Id, project, builds));
             }
             catch (OperationCanceledException)
             {
@@ -211,7 +211,7 @@ namespace Logikfabrik.Overseer
             }
             catch (Exception ex)
             {
-                OnProjectError(new BuildMonitorProjectErrorEventArgs(connection.Settings.Id, project));
+                OnProjectError(new BuildTrackerProjectErrorEventArgs(connection.Settings.Id, project));
 
                 _logService.Log(GetType(), new LogEntry(LogEntryType.Error, "An unexpected error occurred while polling builds.", ex));
             }
@@ -256,8 +256,8 @@ namespace Logikfabrik.Overseer
         /// <summary>
         /// Raises the <see cref="ConnectionError" /> event.
         /// </summary>
-        /// <param name="e">The <see cref="BuildMonitorConnectionErrorEventArgs" /> instance containing the event data.</param>
-        protected virtual void OnConnectionError(BuildMonitorConnectionErrorEventArgs e)
+        /// <param name="e">The <see cref="BuildTrackerConnectionErrorEventArgs" /> instance containing the event data.</param>
+        protected virtual void OnConnectionError(BuildTrackerConnectionErrorEventArgs e)
         {
             ConnectionError?.Invoke(this, e);
         }
@@ -265,8 +265,8 @@ namespace Logikfabrik.Overseer
         /// <summary>
         /// Raises the <see cref="ConnectionProgressChanged" /> event.
         /// </summary>
-        /// <param name="e">The <see cref="BuildMonitorConnectionProgressEventArgs" /> instance containing the event data.</param>
-        protected virtual void OnConnectionProgressChanged(BuildMonitorConnectionProgressEventArgs e)
+        /// <param name="e">The <see cref="BuildTrackerConnectionProgressEventArgs" /> instance containing the event data.</param>
+        protected virtual void OnConnectionProgressChanged(BuildTrackerConnectionProgressEventArgs e)
         {
             ConnectionProgressChanged?.Invoke(this, e);
         }
@@ -274,8 +274,8 @@ namespace Logikfabrik.Overseer
         /// <summary>
         /// Raises the <see cref="ProjectError" /> event.
         /// </summary>
-        /// <param name="e">The <see cref="BuildMonitorProjectErrorEventArgs" /> instance containing the event data.</param>
-        protected virtual void OnProjectError(BuildMonitorProjectErrorEventArgs e)
+        /// <param name="e">The <see cref="BuildTrackerProjectErrorEventArgs" /> instance containing the event data.</param>
+        protected virtual void OnProjectError(BuildTrackerProjectErrorEventArgs e)
         {
             ProjectError?.Invoke(this, e);
         }
@@ -283,8 +283,8 @@ namespace Logikfabrik.Overseer
         /// <summary>
         /// Raises the <see cref="ProjectProgressChanged" /> event.
         /// </summary>
-        /// <param name="e">The <see cref="BuildMonitorProjectProgressEventArgs" /> instance containing the event data.</param>
-        protected virtual void OnProjectProgressChanged(BuildMonitorProjectProgressEventArgs e)
+        /// <param name="e">The <see cref="BuildTrackerProjectProgressEventArgs" /> instance containing the event data.</param>
+        protected virtual void OnProjectProgressChanged(BuildTrackerProjectProgressEventArgs e)
         {
             ProjectProgressChanged?.Invoke(this, e);
         }

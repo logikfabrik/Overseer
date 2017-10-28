@@ -5,14 +5,24 @@
 namespace Logikfabrik.Overseer.WPF.ViewModels
 {
     using Caliburn.Micro;
+    using EnsureThat;
 
     /// <summary>
     /// The <see cref="ViewModel" /> class. Base class for view models intended to be accessed using a <see cref="Conductor{IViewModel}.Collection.OneActive" /> implementation.
     /// </summary>
     public abstract class ViewModel : ViewAware, IViewModel
     {
+        private readonly IPlatformProvider _platformProvider;
+
         private object _parent;
         private string _displayName;
+
+        protected ViewModel(IPlatformProvider platformProvider)
+        {
+            Ensure.That(platformProvider).IsNotNull();
+
+            _platformProvider = platformProvider;
+        }
 
         /// <summary>
         /// Gets or sets the parent.
@@ -64,8 +74,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
 
         public void TryClose(bool? dialogResult = null)
         {
-            // TODO: Inject
-            PlatformProvider.Current.GetViewCloseAction(this, Views.Values, dialogResult).OnUIThread();
+            _platformProvider.GetViewCloseAction(this, Views.Values, dialogResult).OnUIThread();
         }
     }
 }

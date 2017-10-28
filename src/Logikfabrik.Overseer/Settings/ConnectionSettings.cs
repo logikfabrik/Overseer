@@ -14,7 +14,7 @@ namespace Logikfabrik.Overseer.Settings
     {
         private Guid _id;
         private string _name;
-        private string[] _projectsToMonitor;
+        private string[] _trackedProjects;
         private int _buildsPerProject;
 
         /// <summary>
@@ -23,6 +23,7 @@ namespace Logikfabrik.Overseer.Settings
         protected ConnectionSettings()
         {
             _id = Guid.NewGuid();
+            _trackedProjects = new string[] { };
         }
 
         /// <summary>
@@ -68,23 +69,23 @@ namespace Logikfabrik.Overseer.Settings
         }
 
         /// <summary>
-        /// Gets or sets the projects to monitor.
+        /// Gets or sets the tracked projects.
         /// </summary>
         /// <value>
-        /// The projects to monitor.
+        /// The tracked projects.
         /// </value>
-        public string[] ProjectsToMonitor
+        public string[] TrackedProjects
         {
             get
             {
-                return _projectsToMonitor;
+                return _trackedProjects;
             }
 
             set
             {
                 Ensure.That(value).IsNotNull();
 
-                _projectsToMonitor = value;
+                _trackedProjects = value;
             }
         }
 

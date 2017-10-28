@@ -9,6 +9,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     using System.Linq;
     using System.Threading;
     using System.Threading.Tasks;
+    using Caliburn.Micro;
     using EnsureThat;
     using Factories;
     using Overseer.Logging;
@@ -24,8 +25,8 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         private readonly ILogService _logService;
         private readonly IConnectionSettingsRepository _settingsRepository;
         private readonly IBuildProviderStrategy _buildProviderStrategy;
-        private readonly IProjectToMonitorViewModelFactory _projectToMonitorFactory;
-        private readonly IProjectsToMonitorViewModelFactory _projectsToMonitorFactory;
+        private readonly ITrackedProjectViewModelFactory _trackedProjectFactory;
+        private readonly ITrackedProjectsViewModelFactory _trackedProjectsFactory;
         private readonly T _currentSettings;
         private INotifyTask _connectionTask;
         private bool _hasConnected;
@@ -34,32 +35,35 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// <summary>
         /// Initializes a new instance of the <see cref="EditConnectionViewModel{T}" /> class.
         /// </summary>
+        /// <param name="platformProvider">The platform provider.</param>
         /// <param name="logService">The log service.</param>
         /// <param name="settingsRepository">The settings repository.</param>
         /// <param name="buildProviderStrategy">The build provider strategy.</param>
-        /// <param name="projectToMonitorFactory">The project to monitor factory.</param>
-        /// <param name="projectsToMonitorFactory">The projects to monitor factory.</param>
+        /// <param name="trackedProjectFactory">The tracked project factory.</param>
+        /// <param name="trackedProjectsFactory">The tracked projects factory.</param>
         /// <param name="currentSettings">The current settings.</param>
         protected EditConnectionViewModel(
+            IPlatformProvider platformProvider,
             ILogService logService,
             IConnectionSettingsRepository settingsRepository,
             IBuildProviderStrategy buildProviderStrategy,
-            IProjectToMonitorViewModelFactory projectToMonitorFactory,
-            IProjectsToMonitorViewModelFactory projectsToMonitorFactory,
+            ITrackedProjectViewModelFactory trackedProjectFactory,
+            ITrackedProjectsViewModelFactory trackedProjectsFactory,
             T currentSettings)
+            : base(platformProvider)
         {
             Ensure.That(logService).IsNotNull();
             Ensure.That(settingsRepository).IsNotNull();
             Ensure.That(buildProviderStrategy).IsNotNull();
-            Ensure.That(projectToMonitorFactory).IsNotNull();
-            Ensure.That(projectsToMonitorFactory).IsNotNull();
+            Ensure.That(trackedProjectFactory).IsNotNull();
+            Ensure.That(trackedProjectsFactory).IsNotNull();
             Ensure.That(currentSettings).IsNotNull();
 
             _logService = logService;
             _settingsRepository = settingsRepository;
             _buildProviderStrategy = buildProviderStrategy;
-            _projectToMonitorFactory = projectToMonitorFactory;
-            _projectsToMonitorFactory = projectsToMonitorFactory;
+            _trackedProjectFactory = trackedProjectFactory;
+            _trackedProjectsFactory = trackedProjectsFactory;
             _currentSettings = currentSettings;
             DisplayName = Properties.Resources.EditConnection_View;
         }
@@ -183,7 +187,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
                 var projects = await provider.GetProjectsAsync(CancellationToken.None).ConfigureAwait(false);
 
                 Settings.IsDirty = false;
-                Settings.ProjectsToMonitor = _projectsToMonitorFactory.Create(projects.OrderBy(project => project.Name).Select(project => _projectToMonitorFactory.Create(project.Id, project.Name, _currentSettings.ProjectsToMonitor.Contains(project.Id))).ToArray());
+                Settings.TrackedProjects = _trackedProjectsFactory.Create(projects.OrderBy(project => project.Name).Select(project => _trackedProjectFactory.Create(project.Id, project.Name, _currentSettings.TrackedProjects.Contains(project.Id))).ToArray());
 
                 HasConnected = true;
             }
@@ -203,7 +207,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             {
                 HasConnected = false;
 
-                Settings.ProjectsToMonitor = null;
+                Settings.TrackedProjects = null;
             }
 
             if (e.PropertyName == nameof(Settings.IsValid))

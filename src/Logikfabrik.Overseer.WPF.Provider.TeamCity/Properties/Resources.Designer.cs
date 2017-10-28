@@ -61,7 +61,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Authentication type.
+        ///   Looks up a localized string similar to AUTHENTICATION TYPE.
         /// </summary>
         public static string ConnectionSettings_Setting_Label_AuthenticationType {
             get {
@@ -70,7 +70,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Name.
+        ///   Looks up a localized string similar to NAME.
         /// </summary>
         public static string ConnectionSettings_Setting_Label_Name {
             get {
@@ -79,7 +79,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Password.
+        ///   Looks up a localized string similar to PASSWORD.
         /// </summary>
         public static string ConnectionSettings_Setting_Label_Password {
             get {
@@ -97,7 +97,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Username.
+        ///   Looks up a localized string similar to USERNAME.
         /// </summary>
         public static string ConnectionSettings_Setting_Label_Username {
             get {

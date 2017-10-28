@@ -4,6 +4,7 @@
 
 namespace Logikfabrik.Overseer.WPF.ViewModels
 {
+    using Caliburn.Micro;
     using EnsureThat;
 
     /// <summary>
@@ -14,8 +15,10 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// <summary>
         /// Initializes a new instance of the <see cref="ConnectionsViewModel" /> class.
         /// </summary>
+        /// <param name="platformProvider">The platform provider.</param>
         /// <param name="connectionsListViewModel">The connections list view model.</param>
-        public ConnectionsViewModel(ConnectionsListViewModel connectionsListViewModel)
+        public ConnectionsViewModel(IPlatformProvider platformProvider, ConnectionsListViewModel connectionsListViewModel)
+            : base(platformProvider)
         {
             Ensure.That(connectionsListViewModel).IsNotNull();
 

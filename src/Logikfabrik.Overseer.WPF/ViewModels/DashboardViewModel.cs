@@ -4,6 +4,8 @@
 
 namespace Logikfabrik.Overseer.WPF.ViewModels
 {
+    using Caliburn.Micro;
+
     /// <summary>
     /// The <see cref="DashboardViewModel" /> class.
     /// </summary>
@@ -12,7 +14,9 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// <summary>
         /// Initializes a new instance of the <see cref="DashboardViewModel" /> class.
         /// </summary>
-        public DashboardViewModel()
+        /// <param name="platformProvider">The platform provider.</param>
+        public DashboardViewModel(IPlatformProvider platformProvider)
+            : base(platformProvider)
         {
             DisplayName = Properties.Resources.Dashboard_View;
         }

@@ -30,7 +30,7 @@ namespace Logikfabrik.Overseer.WPF.Client
         public AppBootstrapper()
         {
             _kernel = new StandardKernel();
-            _catalog = new AppCatalog(AppCatalog.GetProduct(GetType().Assembly));
+            _catalog = new AppCatalog(AppDomain.CurrentDomain, AppCatalog.GetProduct(GetType().Assembly));
 
             Initialize();
         }
@@ -100,7 +100,7 @@ namespace Logikfabrik.Overseer.WPF.Client
             DataBindingActionConfigurator.Configure();
             ConventionConfigurator.Configure();
             ErrorLogHandlerConfigurator.Configure(_kernel.Get<AppDomain>(), _kernel.Get<IApp>(), _kernel.Get<ILogService>());
-            BuildNotificationConfigurator.Configure(_kernel.Get<IBuildMonitor>(), _kernel.Get<IBuildNotificationManager>());
+            BuildNotificationConfigurator.Configure(_kernel.Get<IBuildTracker>(), _kernel.Get<IBuildNotificationManager>());
         }
 
         /// <summary>

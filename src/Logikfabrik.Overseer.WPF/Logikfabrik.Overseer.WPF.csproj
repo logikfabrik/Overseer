@@ -158,8 +158,8 @@
     <Compile Include="ViewModels\Factories\IConnectionViewModelFactory.cs" />
     <Compile Include="ViewModels\Factories\IConnectionViewModelStrategy.cs" />
     <Compile Include="ViewModels\Factories\IEditConnectionViewModelFactory{T}.cs" />
-    <Compile Include="ViewModels\Factories\IProjectsToMonitorViewModelFactory.cs" />
-    <Compile Include="ViewModels\Factories\IProjectToMonitorViewModelFactory.cs" />
+    <Compile Include="ViewModels\Factories\ITrackedProjectsViewModelFactory.cs" />
+    <Compile Include="ViewModels\Factories\ITrackedProjectViewModelFactory.cs" />
     <Compile Include="ViewModels\Factories\IProjectViewModelFactory.cs" />
     <Compile Include="ViewModels\Factories\IRemoveConnectionViewModelFactory.cs" />
     <Compile Include="ViewModels\IBuildNotificationViewModel.cs" />
@@ -169,8 +169,8 @@
     <Compile Include="ViewModels\IConnectionViewModel.cs" />
     <Compile Include="ViewModels\IProjectViewModel.cs" />
     <Compile Include="ViewModels\IViewModel.cs" />
-    <Compile Include="ViewModels\ProjectsToMonitorViewModel.cs" />
-    <Compile Include="ViewModels\ProjectToMonitorViewModel.cs" />
+    <Compile Include="ViewModels\TrackedProjectsViewModel.cs" />
+    <Compile Include="ViewModels\TrackedProjectViewModel.cs" />
     <Compile Include="ViewModels\RemoveConnectionViewModel.cs" />
     <Compile Include="ViewModels\ViewModel.cs" />
     <Compile Include="ViewModels\AddConnectionViewModel{T1,T2}.cs">
@@ -274,6 +274,18 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Styles\Brushes.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Styles\Styles\Button.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Styles\Styles\TextBlock.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Styles\Styles\View.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

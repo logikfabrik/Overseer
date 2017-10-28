@@ -1,4 +1,4 @@
-﻿// <copyright file="ProjectsToMonitorViewModel.cs" company="Logikfabrik">
+﻿// <copyright file="TrackedProjectsViewModel.cs" company="Logikfabrik">
 //   Copyright (c) 2016 anton(at)logikfabrik.se. Licensed under the MIT license.
 // </copyright>
 
@@ -13,21 +13,21 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     using Gma.DataStructures.StringSearch;
 
     /// <summary>
-    /// The <see cref="ProjectsToMonitorViewModel" /> class.
+    /// The <see cref="TrackedProjectsViewModel" /> class.
     /// </summary>
-    public class ProjectsToMonitorViewModel : PropertyChangedBase
+    public class TrackedProjectsViewModel : PropertyChangedBase
     {
         // ReSharper disable once PrivateFieldCanBeConvertedToLocalVariable
         private readonly CollectionViewSource _filteredProjects;
-        private readonly SuffixTrie<ProjectToMonitorViewModel> _trie;
+        private readonly SuffixTrie<TrackedProjectViewModel> _trie;
         private string _filter;
-        private IEnumerable<ProjectToMonitorViewModel> _matches;
+        private IEnumerable<TrackedProjectViewModel> _matches;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ProjectsToMonitorViewModel" /> class.
+        /// Initializes a new instance of the <see cref="TrackedProjectsViewModel" /> class.
         /// </summary>
         /// <param name="projects">The projects.</param>
-        public ProjectsToMonitorViewModel(IEnumerable<ProjectToMonitorViewModel> projects)
+        public TrackedProjectsViewModel(IEnumerable<TrackedProjectViewModel> projects)
         {
             Ensure.That(projects).IsNotNull();
 
@@ -40,14 +40,14 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
 
             _filteredProjects.Filter += (sender, e) =>
             {
-                var project = (ProjectToMonitorViewModel)e.Item;
+                var project = (TrackedProjectViewModel)e.Item;
 
                 e.Accepted = _matches?.Contains(project) ?? true;
             };
 
             FilteredProjects = _filteredProjects.View;
 
-            _trie = new SuffixTrie<ProjectToMonitorViewModel>(3);
+            _trie = new SuffixTrie<TrackedProjectViewModel>(3);
 
             foreach (var project in Projects)
             {
@@ -61,7 +61,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// <value>
         /// The projects.
         /// </value>
-        public IEnumerable<ProjectToMonitorViewModel> Projects { get; }
+        public IEnumerable<TrackedProjectViewModel> Projects { get; }
 
         /// <summary>
         /// Gets the filtered projects.
@@ -96,30 +96,30 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         }
 
         /// <summary>
-        /// Monitor all projects.
+        /// Track all projects.
         /// </summary>
-        public void MonitorAll()
+        public void TrackAll()
         {
-            ToggleMonitoring(true);
+            ToggleTracking(true);
         }
 
         /// <summary>
-        /// Monitor no projects.
+        /// Track no projects.
         /// </summary>
-        public void MonitorNone()
+        public void TrackNone()
         {
-            ToggleMonitoring(false);
+            ToggleTracking(false);
         }
 
-        private void ToggleMonitoring(bool monitor)
+        private void ToggleTracking(bool track)
         {
             var projects = FilteredProjects
-                .OfType<ProjectToMonitorViewModel>()
-                .Where(project => project.Monitor != monitor);
+                .OfType<TrackedProjectViewModel>()
+                .Where(project => project.Track != track);
 
             foreach (var project in projects)
             {
-                project.Monitor = monitor;
+                project.Track = track;
             }
         }
     }

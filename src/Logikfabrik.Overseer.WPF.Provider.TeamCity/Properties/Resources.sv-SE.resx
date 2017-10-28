@@ -118,20 +118,19 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="ConnectionSettings_Setting_Label_AuthenticationType" xml:space="preserve">
-    <value>Autentiseringstyp</value>
+    <value>AUTENTISERINGSTYP</value>
   </data>
   <data name="ConnectionSettings_Setting_Label_Name" xml:space="preserve">
-    <value>Namn</value>
+    <value>NAMN</value>
   </data>
   <data name="ConnectionSettings_Setting_Label_Password" xml:space="preserve">
-    <value>Lösenord</value>
+    <value>LÖSENORD</value>
   </data>
-  <!-- ReSharper disable once OverriddenWithSameValue -->
   <data name="ConnectionSettings_Setting_Label_Url" xml:space="preserve">
     <value>URL</value>
   </data>
   <data name="ConnectionSettings_Setting_Label_Username" xml:space="preserve">
-    <value>Användarnamn</value>
+    <value>ANVÄNDARNAMN</value>
   </data>
   <data name="ConnectionSettings_Validation_Password" xml:space="preserve">
     <value>Lösenord saknas</value>

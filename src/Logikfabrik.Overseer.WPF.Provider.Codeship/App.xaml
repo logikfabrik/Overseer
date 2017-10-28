@@ -2,9 +2,14 @@
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
+                <!-- Brushes -->
                 <ResourceDictionary Source="pack://application:,,,/Logikfabrik.Overseer.WPF;component/Styles/Brushes.xaml" />
+
+                <!-- Resources -->
                 <ResourceDictionary Source="pack://application:,,,/Logikfabrik.Overseer.WPF;component/Styles/Resources/Converters.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/Logikfabrik.Overseer.WPF;component/Styles/Resources/FocusVisuals.xaml" />
+
+                <!-- Controls -->
                 <ResourceDictionary Source="pack://application:,,,/Logikfabrik.Overseer.WPF;component/Styles/Controls/TextBlock.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/Logikfabrik.Overseer.WPF;component/Styles/Controls/ToolTip.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/Logikfabrik.Overseer.WPF;component/Styles/Controls/Window.xaml" />
@@ -21,6 +26,11 @@
                 <ResourceDictionary Source="pack://application:,,,/Logikfabrik.Overseer.WPF;component/Styles/Controls/ItemsControl.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/Logikfabrik.Overseer.WPF;component/Styles/Controls/Canvas.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/Logikfabrik.Overseer.WPF;component/Styles/Controls/Viewbox.xaml" />
+
+                <!-- Styles -->
+                <ResourceDictionary Source="pack://application:,,,/Logikfabrik.Overseer.WPF;component/Styles/Styles/TextBlock.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/Logikfabrik.Overseer.WPF;component/Styles/Styles/Button.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/Logikfabrik.Overseer.WPF;component/Styles/Styles/View.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

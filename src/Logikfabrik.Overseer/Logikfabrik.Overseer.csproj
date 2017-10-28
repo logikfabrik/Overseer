@@ -61,13 +61,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppSettings.cs" />
-    <Compile Include="BuildMonitor.cs" />
-    <Compile Include="BuildMonitorConnectionErrorEventArgs.cs" />
-    <Compile Include="BuildMonitorConnectionEventArgs.cs" />
-    <Compile Include="BuildMonitorConnectionProgressEventArgs.cs" />
-    <Compile Include="BuildMonitorProjectErrorEventArgs.cs" />
-    <Compile Include="BuildMonitorProjectEventArgs.cs" />
-    <Compile Include="BuildMonitorProjectProgressEventArgs.cs" />
+    <Compile Include="BuildTracker.cs" />
+    <Compile Include="BuildTrackerConnectionErrorEventArgs.cs" />
+    <Compile Include="BuildTrackerConnectionEventArgs.cs" />
+    <Compile Include="BuildTrackerConnectionProgressEventArgs.cs" />
+    <Compile Include="BuildTrackerProjectErrorEventArgs.cs" />
+    <Compile Include="BuildTrackerProjectEventArgs.cs" />
+    <Compile Include="BuildTrackerProjectProgressEventArgs.cs" />
     <Compile Include="BuildProviderFactory{T1,T2}.cs">
       <SonarQubeExclude>true</SonarQubeExclude>
     </Compile>
@@ -83,7 +83,7 @@
     <Compile Include="Extensions\BuildStatusExtensions.cs" />
     <Compile Include="Extensions\DisposableExtensions.cs" />
     <Compile Include="IAppSettingsFactory.cs" />
-    <Compile Include="IBuildMonitor.cs" />
+    <Compile Include="IBuildTracker.cs" />
     <Compile Include="IBuildProvider.cs" />
     <Compile Include="IBuildProviderFactory.cs" />
     <Compile Include="IBuildProviderStrategy.cs" />

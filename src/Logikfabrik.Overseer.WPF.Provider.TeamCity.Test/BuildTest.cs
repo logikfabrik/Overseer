@@ -144,7 +144,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity.Test
             private readonly IEnumerable<object[]> _data = new[]
             {
                 new object[] { null },
-                new object[] { DateTime.UtcNow},
+                new object[] { DateTime.UtcNow },
                 new object[] { DateTime.UtcNow.ToUniversalTime() }
             };
 
