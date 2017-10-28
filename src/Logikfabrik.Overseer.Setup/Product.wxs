@@ -270,7 +270,7 @@
               KeyPath="yes" />
       </Component>
 
-      <Component Id="cmp496082EA9C444F4590FA-D3E8FAE8F0C4"
+      <Component Id="cmp496082EA9C444F4590FAD3E8FAE8F0C4"
                  Guid="496082EA-9C44-4F45-90FA-D3E8FAE8F0C4"
                  Directory="dir3EF976885ADC44579DBE3C2EE8B49489">
         <File Id="fil7447F86DD9B94FB4A0FBB6A5E4EA1B6C"
