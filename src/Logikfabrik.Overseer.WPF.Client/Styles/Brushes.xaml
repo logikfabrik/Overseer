@@ -15,9 +15,6 @@
     <SolidColorBrush x:Key="Status.Stopped" Color="#FFFF00" />
     <SolidColorBrush x:Key="Status.Failed" Color="#FF3300" />
 
-    <SolidColorBrush x:Key="ProgressControl.Background" Color="#7E7E7E" />
-    <SolidColorBrush x:Key="ProgressControl.Foreground" Color="#E1FF57" />
-
-    <SolidColorBrush x:Key="Filter.Foreground" Color="#7E7E7E" />
-
+    <SolidColorBrush x:Key="ProgressControl.Background" Color="{DynamicResource Color.LightGrey}" />
+    <SolidColorBrush x:Key="ProgressControl.Foreground" Color="{DynamicResource Color.Yellow}" />
 </ResourceDictionary>
