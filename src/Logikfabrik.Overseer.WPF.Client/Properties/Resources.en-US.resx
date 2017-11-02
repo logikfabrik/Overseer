@@ -167,10 +167,10 @@ Please try again.</value>
     <value>OK</value>
   </data>
   <data name="EditSettings_Setting_Label_CultureName" xml:space="preserve">
-    <value>Language</value>
+    <value>LANGUAGE</value>
   </data>
   <data name="EditSettings_Setting_Label_Interval" xml:space="preserve">
-    <value>Interval (s)</value>
+    <value>INTERVAL (s)</value>
   </data>
   <data name="Menu_MenuItem_Label_GoToAbout" xml:space="preserve">
     <value>About</value>

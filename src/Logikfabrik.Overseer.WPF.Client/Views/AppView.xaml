@@ -31,7 +31,10 @@
                         </Canvas>
                     </Viewbox>
                 </Button>
-                <TextBlock x:Name="ViewDisplayName" HorizontalAlignment="Center" />
+                <TextBlock
+                    x:Name="ViewDisplayName"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center" />
             </Grid>
         </Grid>
         <ContentControl

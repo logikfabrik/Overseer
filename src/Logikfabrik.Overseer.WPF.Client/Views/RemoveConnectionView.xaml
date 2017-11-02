@@ -10,20 +10,20 @@
     mc:Ignorable="d">
     <ScrollViewer>
         <StackPanel>
-            <StackPanel Margin="10">
-                <TextBlock Text="Remove connection" />
+            <StackPanel Style="{StaticResource Common.Panel}">
                 <TextBlock Text="Are you sure you want to remove the connection?" TextWrapping="Wrap" />
             </StackPanel>
-            <WrapPanel Margin="10,0,10,10" Orientation="Horizontal">
+            <WrapPanel Style="{StaticResource Common.Footer}">
                 <Button
                     x:Name="Remove"
-                    Margin="0,0,2,0"
                     Content="{x:Static p:Resources.RemoveConnection_Button_Remove}"
-                    IsDefault="True" />
+                    IsDefault="True"
+                    ToolTip="{x:Static p:Resources.RemoveConnection_Button_Remove}" />
                 <Button
                     x:Name="TryClose"
                     Content="{x:Static p:Resources.RemoveConnection_Button_Cancel}"
-                    IsCancel="True" />
+                    IsCancel="True"
+                    ToolTip="{x:Static p:Resources.RemoveConnection_Button_Cancel}" />
             </WrapPanel>
         </StackPanel>
     </ScrollViewer>
