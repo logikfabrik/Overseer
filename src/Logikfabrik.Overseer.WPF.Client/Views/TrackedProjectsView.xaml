@@ -5,7 +5,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:p="clr-namespace:Logikfabrik.Overseer.WPF.Client.Properties"
-    d:DesignHeight="150"
+    d:DesignHeight="300"
     d:DesignWidth="300"
     mc:Ignorable="d">
     <Grid>
@@ -14,6 +14,7 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <Border
+            Grid.Row="0"
             BorderBrush="{DynamicResource Panel.Border}"
             BorderThickness="2">
             <ItemsControl ItemsSource="{Binding FilteredProjects}">
@@ -32,36 +33,40 @@
                 </ItemsControl.Template>
             </ItemsControl>
         </Border>
-        <StackPanel Grid.Row="1">
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
-                <ToggleButton x:Name="PART_Filter" ToolTip="{x:Static p:Resources.TrackedProjects_Button_Filter}">
-                    <Viewbox>
-                        <Canvas>
-                            <Path Data="M10,1C5.092,1,2,2.512,2,4.001v2c0,0.918,6,6,6,6v6c-0.001,0.684,1,1,2,1s2.001-0.316,2-1v-6c0,0,6-5.082,6-6v-2  C18,2.512,14.908,1,10,1z M10,6.123C6.409,6.122,3.862,4.79,3.862,4.292C3.86,3.797,6.41,2.461,10,2.463  c3.59-0.002,6.14,1.334,6.138,1.828C16.138,4.79,13.591,6.122,10,6.123z" />
-                        </Canvas>
-                    </Viewbox>
-                </ToggleButton>
-                <Button
-                    x:Name="TrackAll"
-                    Grid.Column="1"
-                    Content="{x:Static p:Resources.TrackedProjects_Button_SelectAll}"
-                    ToolTip="{x:Static p:Resources.TrackedProjects_Button_SelectAll}" />
-                <Button
-                    x:Name="TrackNone"
-                    Grid.Column="2"
-                    Content="{x:Static p:Resources.TrackedProjects_Button_DeselectAll}" 
-                    ToolTip="{x:Static p:Resources.TrackedProjects_Button_DeselectAll}" />
-            </Grid>
-            <TextBox
-                BorderBrush="{StaticResource ToggleButton.Checked.Background}"
-                BorderThickness="0,5,0,0"
-                Text="{Binding Filter, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                Visibility="{Binding ElementName=PART_Filter, Path=IsChecked, Converter={StaticResource BooleanToVisibilityConverter}}" />
-        </StackPanel>
+        <Border Grid.Row="1" Style="{StaticResource Common.ContextMenu}">
+            <StackPanel>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <ToggleButton
+                        x:Name="PART_Filter"
+                        Grid.Column="0"
+                        ToolTip="{x:Static p:Resources.TrackedProjects_Button_Filter}">
+                        <Viewbox>
+                            <Canvas>
+                                <Path Data="M10,1C5.092,1,2,2.512,2,4.001v2c0,0.918,6,6,6,6v6c-0.001,0.684,1,1,2,1s2.001-0.316,2-1v-6c0,0,6-5.082,6-6v-2  C18,2.512,14.908,1,10,1z M10,6.123C6.409,6.122,3.862,4.79,3.862,4.292C3.86,3.797,6.41,2.461,10,2.463  c3.59-0.002,6.14,1.334,6.138,1.828C16.138,4.79,13.591,6.122,10,6.123z" />
+                            </Canvas>
+                        </Viewbox>
+                    </ToggleButton>
+                    <Button
+                        x:Name="TrackAll"
+                        Grid.Column="1"
+                        Content="{x:Static p:Resources.TrackedProjects_Button_SelectAll}"
+                        ToolTip="{x:Static p:Resources.TrackedProjects_Button_SelectAll}" />
+                    <Button
+                        x:Name="TrackNone"
+                        Grid.Column="2"
+                        Content="{x:Static p:Resources.TrackedProjects_Button_DeselectAll}"
+                        ToolTip="{x:Static p:Resources.TrackedProjects_Button_DeselectAll}" />
+                </Grid>
+                <TextBox
+                    Style="{StaticResource Common.Filter}"
+                    Text="{Binding Filter, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    Visibility="{Binding ElementName=PART_Filter, Path=IsChecked, Converter={StaticResource BooleanToVisibilityConverter}}" />
+            </StackPanel>
+        </Border>
     </Grid>
 </UserControl>

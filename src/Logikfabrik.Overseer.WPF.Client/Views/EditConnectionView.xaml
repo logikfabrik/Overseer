@@ -5,9 +5,8 @@
     xmlns:cal="http://www.caliburnproject.org"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:uc="clr-namespace:Logikfabrik.Overseer.WPF.Client.Views.UserControls"
     xmlns:p="clr-namespace:Logikfabrik.Overseer.WPF.Client.Properties"
-    Style="{StaticResource AddOrEditConnectionView}"
+    xmlns:uc="clr-namespace:Logikfabrik.Overseer.WPF.Client.Views.UserControls"
     d:DesignHeight="300"
     d:DesignWidth="300"
     mc:Ignorable="d">
@@ -18,12 +17,13 @@
                 VerticalAlignment="Stretch"
                 cal:View.Model="{Binding Settings, Mode=OneWay}"
                 Focusable="False" />
-            <StackPanel Style="{DynamicResource Panel}">
+            <StackPanel Style="{StaticResource Common.Panel}">
                 <Grid>
                     <Button
                         x:Name="TryConnect"
                         Content="{x:Static p:Resources.EditConnection_Button_TryConnect}"
-                        IsEnabled="{Binding IsValidAndHasNotConnected, Mode=OneWay}" />
+                        IsEnabled="{Binding IsValidAndHasNotConnected, Mode=OneWay}"
+                        ToolTip="{x:Static p:Resources.EditConnection_Button_TryConnect}" />
                     <uc:ProgressControl
                         VerticalAlignment="Top"
                         IsErrored="{Binding ConnectionTask.Status, Converter={StaticResource TaskStatusFaultedToBooleanConverter}}"
@@ -31,29 +31,31 @@
                 </Grid>
                 <TextBlock Text="{Binding ConnectionTask.Exception, Converter={StaticResource EditConnectionViewExceptionToLocalizedStringConverter}}" Visibility="{Binding ConnectionTask.Status, Converter={StaticResource TaskStatusFaultedToVisibilityConverter}}" />
             </StackPanel>
-            <StackPanel Style="{DynamicResource Panel}" Visibility="{Binding HasConnected, Converter={StaticResource BooleanToVisibilityConverter}}">
-                <TextBlock Text="{x:Static p:Resources.ConnectionSettings_Setting_Label_TrackedProjects}" Style="{DynamicResource Label}" />
+            <StackPanel Style="{StaticResource Common.Panel}" Visibility="{Binding HasConnected, Converter={StaticResource BooleanToVisibilityConverter}}">
+                <TextBlock Style="{StaticResource Common.Label}" Text="{x:Static p:Resources.ConnectionSettings_Setting_Label_TrackedProjects}" />
                 <ContentControl
                     MaxHeight="304"
                     HorizontalAlignment="Stretch"
                     cal:View.Model="{Binding Settings.TrackedProjects, Mode=OneWay}"
                     Focusable="False" />
             </StackPanel>
-            <StackPanel Style="{DynamicResource Panel}">
-                <TextBlock Text="{x:Static p:Resources.ConnectionSettings_Setting_Label_BuildsPerProject}" Style="{DynamicResource Label}" />
-                <TextBlock Text="{x:Static p:Resources.ConnectionSettings_Setting_Description_BuildsPerProject}" Style="{DynamicResource Description}" />
+            <StackPanel Style="{StaticResource Common.Panel}">
+                <TextBlock Style="{StaticResource Common.Label}" Text="{x:Static p:Resources.ConnectionSettings_Setting_Label_BuildsPerProject}" />
+                <TextBlock Style="{StaticResource Common.Description}" Text="{x:Static p:Resources.ConnectionSettings_Setting_Description_BuildsPerProject}" />
                 <TextBox Text="{Binding Settings.BuildsPerProject, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" />
             </StackPanel>
-            <WrapPanel Style="{DynamicResource Footer}">
+            <WrapPanel Style="{StaticResource Common.Footer}">
                 <Button
                     x:Name="Edit"
                     Content="{x:Static p:Resources.EditConnection_Button_Edit}"
                     IsDefault="True"
-                    IsEnabled="{Binding IsValidAndHasConnected, Mode=OneWay}" />
+                    IsEnabled="{Binding IsValidAndHasConnected, Mode=OneWay}"
+                    ToolTip="{x:Static p:Resources.EditConnection_Button_Edit}" />
                 <Button
                     x:Name="TryClose"
                     Content="{x:Static p:Resources.EditConnection_Button_Cancel}"
-                    IsCancel="True" />
+                    IsCancel="True"
+                    ToolTip="{x:Static p:Resources.EditConnection_Button_Cancel}" />
             </WrapPanel>
         </StackPanel>
     </ScrollViewer>

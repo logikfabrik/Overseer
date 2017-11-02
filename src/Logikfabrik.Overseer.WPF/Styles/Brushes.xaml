@@ -23,6 +23,10 @@
     <Color x:Key="Color.LightGrey">#7E7E7E</Color>
     <Color x:Key="Color.Grey">#525252</Color>
 
+    <SolidColorBrush x:Key="Brush.Yellow" Color="{DynamicResource Color.Yellow}" />
+    <SolidColorBrush x:Key="Brush.LightGrey" Color="{DynamicResource Color.LightGrey}" />
+
+
     <SolidColorBrush x:Key="Control.Focus" Color="{DynamicResource Color.Yellow}" />
     <SolidColorBrush x:Key="Control.Error" Color="#FF3300" />
 

@@ -3,37 +3,24 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:p="clr-namespace:Logikfabrik.Overseer.WPF.Provider.VSTeamServices.Properties"
     xmlns:ex="clr-namespace:Logikfabrik.Overseer.WPF.Extensions;assembly=Logikfabrik.Overseer.WPF"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    Style="{StaticResource ConnectionSettingsView}"
-    d:DesignHeight="500"
-    d:DesignWidth="400"
+    xmlns:p="clr-namespace:Logikfabrik.Overseer.WPF.Provider.VSTeamServices.Properties"
+    d:DesignHeight="300"
+    d:DesignWidth="300"
     mc:Ignorable="d">
     <StackPanel>
-        <Grid Style="{DynamicResource Header}">
-            <Viewbox>
-                <Path Fill="#FFFFFF">
-                    <Path.Data>
-                        <GeometryGroup>
-                            <Geometry>F 1 M 466.627,44.571 L 355.439,0 161.359,189.002 44.486,100.034 0.044,122.385 0,355.698 44.232,377.887 161.01,288.992 355.567,477.821 466.669,433.425 466.627,44.571 Z M 55.593,288.954 L 55.527,189.097 111.077,238.689 55.593,288.954 Z M 233.315,238.651 L 344.373,155.63 344.416,322.325 233.315,238.651 Z</Geometry>
-                        </GeometryGroup>
-                    </Path.Data>
-                </Path>
-            </Viewbox>
-            <TextBlock Text="VISUAL STUDIO TEAM SERVICES" Style="{DynamicResource ProviderType}" />
-        </Grid>
-        <StackPanel Style="{DynamicResource Panel}">
-            <TextBlock Text="{x:Static p:Resources.ConnectionSettings_Setting_Label_Name}" Style="{DynamicResource Label}" />
+        <StackPanel Style="{StaticResource Common.Panel}">
+            <TextBlock Style="{StaticResource Common.Label}" Text="{x:Static p:Resources.ConnectionSettings_Setting_Label_Name}" />
             <TextBox Text="{Binding Name, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" />
         </StackPanel>
-        <StackPanel Style="{DynamicResource Panel}">
-            <TextBlock Text="{x:Static p:Resources.ConnectionSettings_Setting_Label_Url}" Style="{DynamicResource Label}" />
+        <StackPanel Style="{StaticResource Common.Panel}">
+            <TextBlock Style="{StaticResource Common.Label}" Text="{x:Static p:Resources.ConnectionSettings_Setting_Label_Url}" />
             <TextBox Text="{Binding Url, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" />
         </StackPanel>
-        <StackPanel Style="{DynamicResource Panel}">
-            <TextBlock Text="{x:Static p:Resources.ConnectionSettings_Setting_Label_Token}" Style="{DynamicResource Label}" />
-            <TextBlock Style="{DynamicResource Description}">
+        <StackPanel Style="{StaticResource Common.Panel}">
+            <TextBlock Style="{StaticResource Common.Label}" Text="{x:Static p:Resources.ConnectionSettings_Setting_Label_Token}" />
+            <TextBlock Style="{StaticResource Common.Description}">
                 <Run Text="{x:Static p:Resources.ConnectionSettings_Setting_Description_Token}" />
                 <Hyperlink ex:HyperlinkExtensions.IsExternal="True" NavigateUri="https://www.visualstudio.com">visualstudio.com</Hyperlink>
             </TextBlock>
