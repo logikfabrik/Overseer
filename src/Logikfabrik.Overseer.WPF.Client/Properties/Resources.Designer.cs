@@ -206,7 +206,7 @@ namespace Logikfabrik.Overseer.WPF.Client.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to LANGUAGE.
+        ///   Looks up a localized string similar to Language.
         /// </summary>
         public static string EditSettings_Setting_Label_CultureName {
             get {
@@ -215,11 +215,20 @@ namespace Logikfabrik.Overseer.WPF.Client.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to INTERVAL (s).
+        ///   Looks up a localized string similar to Interval.
         /// </summary>
         public static string EditSettings_Setting_Label_Interval {
             get {
                 return ResourceManager.GetString("EditSettings_Setting_Label_Interval", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit settings.
+        /// </summary>
+        public static string EditSettings_View {
+            get {
+                return ResourceManager.GetString("EditSettings_View", resourceCulture);
             }
         }
         

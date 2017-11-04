@@ -15,16 +15,16 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <Border Grid.Row="0" Style="{StaticResource Common.Header}">
-            <TextBlock Text="SETTINGS" />
+            <TextBlock Text="{Binding Source={x:Static p:Resources.EditSettings_View}, Converter={StaticResource StringToUpperCaseConverter}}" />
         </Border>
         <ScrollViewer Grid.Row="1">
             <StackPanel>
                 <StackPanel Style="{StaticResource Common.Panel}">
-                    <TextBlock Style="{StaticResource Common.Setting.Label}" Text="{x:Static p:Resources.EditSettings_Setting_Label_Interval}" />
+                    <TextBlock Style="{StaticResource Common.Setting.Label}" Text="{Binding Source={x:Static p:Resources.EditSettings_Setting_Label_Interval}, Converter={StaticResource StringToUpperCaseConverter}}" />
                     <TextBox Text="{Binding Interval, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" />
                 </StackPanel>
                 <StackPanel Style="{StaticResource Common.Panel}">
-                    <TextBlock Style="{StaticResource Common.Setting.Label}" Text="{x:Static p:Resources.EditSettings_Setting_Label_CultureName}" />
+                    <TextBlock Style="{StaticResource Common.Setting.Label}" Text="{Binding Source={x:Static p:Resources.EditSettings_Setting_Label_CultureName}, Converter={StaticResource StringToUpperCaseConverter}}" />
                     <ComboBox SelectedValue="{Binding CultureName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                         <sys:String>en-US</sys:String>
                         <sys:String>sv-SE</sys:String>
