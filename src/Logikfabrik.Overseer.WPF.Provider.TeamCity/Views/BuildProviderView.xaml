@@ -17,7 +17,7 @@
                     </Path.Data>
                 </Path>
             </Viewbox>
-            <TextBlock Text="TeamCity" ToolTip="TeamCity" />
+            <TextBlock Text="TeamCity" />
         </Grid>
     </Button>
 </UserControl>

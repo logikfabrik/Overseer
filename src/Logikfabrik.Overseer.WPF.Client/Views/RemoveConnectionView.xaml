@@ -17,13 +17,11 @@
                 <Button
                     x:Name="Remove"
                     Content="{x:Static p:Resources.RemoveConnection_Button_Remove}"
-                    IsDefault="True"
-                    ToolTip="{x:Static p:Resources.RemoveConnection_Button_Remove}" />
+                    IsDefault="True" />
                 <Button
                     x:Name="TryClose"
                     Content="{x:Static p:Resources.RemoveConnection_Button_Cancel}"
-                    IsCancel="True"
-                    ToolTip="{x:Static p:Resources.RemoveConnection_Button_Cancel}" />
+                    IsCancel="True" />
             </WrapPanel>
         </StackPanel>
     </ScrollViewer>

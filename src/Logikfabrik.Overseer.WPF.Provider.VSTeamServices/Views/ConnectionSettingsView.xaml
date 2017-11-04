@@ -11,16 +11,16 @@
     mc:Ignorable="d">
     <StackPanel>
         <StackPanel Style="{StaticResource Common.Panel}">
-            <TextBlock Style="{StaticResource Common.Label}" Text="{x:Static p:Resources.ConnectionSettings_Setting_Label_Name}" />
+            <TextBlock Style="{StaticResource Common.Setting.Label}" Text="{x:Static p:Resources.ConnectionSettings_Setting_Label_Name}" />
             <TextBox Text="{Binding Name, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" />
         </StackPanel>
         <StackPanel Style="{StaticResource Common.Panel}">
-            <TextBlock Style="{StaticResource Common.Label}" Text="{x:Static p:Resources.ConnectionSettings_Setting_Label_Url}" />
+            <TextBlock Style="{StaticResource Common.Setting.Label}" Text="{x:Static p:Resources.ConnectionSettings_Setting_Label_Url}" />
             <TextBox Text="{Binding Url, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" />
         </StackPanel>
         <StackPanel Style="{StaticResource Common.Panel}">
-            <TextBlock Style="{StaticResource Common.Label}" Text="{x:Static p:Resources.ConnectionSettings_Setting_Label_Token}" />
-            <TextBlock Style="{StaticResource Common.Description}">
+            <TextBlock Style="{StaticResource Common.Setting.Label}" Text="{x:Static p:Resources.ConnectionSettings_Setting_Label_Token}" />
+            <TextBlock Style="{StaticResource Common.Setting.Description}">
                 <Run Text="{x:Static p:Resources.ConnectionSettings_Setting_Description_Token}" />
                 <Hyperlink ex:HyperlinkExtensions.IsExternal="True" NavigateUri="https://www.visualstudio.com">visualstudio.com</Hyperlink>
             </TextBlock>

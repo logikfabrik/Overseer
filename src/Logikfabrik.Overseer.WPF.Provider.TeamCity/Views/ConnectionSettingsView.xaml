@@ -13,19 +13,19 @@
     mc:Ignorable="d">
     <StackPanel>
         <StackPanel Style="{StaticResource Common.Panel}">
-            <TextBlock Style="{StaticResource Common.Label}" Text="{x:Static p:Resources.ConnectionSettings_Setting_Label_Name}" />
+            <TextBlock Style="{StaticResource Common.Setting.Label}" Text="{x:Static p:Resources.ConnectionSettings_Setting_Label_Name}" />
             <TextBox Text="{Binding Name, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" />
         </StackPanel>
         <StackPanel Style="{StaticResource Common.Panel}">
-            <TextBlock Style="{StaticResource Common.Label}" Text="{x:Static p:Resources.ConnectionSettings_Setting_Label_Url}" />
+            <TextBlock Style="{StaticResource Common.Setting.Label}" Text="{x:Static p:Resources.ConnectionSettings_Setting_Label_Url}" />
             <TextBlock
-                Style="{StaticResource Common.Description}"
+                Style="{StaticResource Common.Setting.Description}"
                 Text="{Binding BaseUri, Mode=OneWay}"
                 Visibility="{Binding ShowBaseUri, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}" />
             <TextBox Text="{Binding Url, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" />
         </StackPanel>
         <StackPanel Style="{StaticResource Common.Panel}">
-            <TextBlock Style="{StaticResource Common.Label}" Text="{x:Static p:Resources.ConnectionSettings_Setting_Label_AuthenticationType}" />
+            <TextBlock Style="{StaticResource Common.Setting.Label}" Text="{x:Static p:Resources.ConnectionSettings_Setting_Label_AuthenticationType}" />
             <ComboBox
                 DisplayMemberPath="DisplayName"
                 ItemsSource="{markupExtensions:EnumToItemsSourceMarkup {x:Type teamCity:AuthenticationType}}"
@@ -34,11 +34,11 @@
         </StackPanel>
         <StackPanel Visibility="{Binding ShowUsernameAndPassword, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}">
             <StackPanel Style="{StaticResource Common.Panel}">
-                <TextBlock Style="{StaticResource Common.Label}" Text="{x:Static p:Resources.ConnectionSettings_Setting_Label_Username}" />
+                <TextBlock Style="{StaticResource Common.Setting.Label}" Text="{x:Static p:Resources.ConnectionSettings_Setting_Label_Username}" />
                 <TextBox Text="{Binding Username, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" />
             </StackPanel>
             <StackPanel Style="{StaticResource Common.Panel}">
-                <TextBlock Style="{StaticResource Common.Label}" Text="{x:Static p:Resources.ConnectionSettings_Setting_Label_Password}" />
+                <TextBlock Style="{StaticResource Common.Setting.Label}" Text="{x:Static p:Resources.ConnectionSettings_Setting_Label_Password}" />
                 <PasswordBox ex:PasswordBoxExtensions.BoundPassword="{Binding Password, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" />
             </StackPanel>
         </StackPanel>

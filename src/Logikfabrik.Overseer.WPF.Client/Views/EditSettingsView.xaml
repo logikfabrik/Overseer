@@ -9,35 +9,39 @@
     d:DesignHeight="300"
     d:DesignWidth="300"
     mc:Ignorable="d">
-    <ScrollViewer>
-        <StackPanel>
-            <Border Style="{StaticResource Common.Header}">
-                <TextBlock Text="SETTINGS" />
-            </Border>
-            <StackPanel Style="{StaticResource Common.Panel}">
-                <TextBlock Style="{StaticResource Common.Label}" Text="{x:Static p:Resources.EditSettings_Setting_Label_Interval}" />
-                <TextBox Text="{Binding Interval, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" />
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Border Grid.Row="0" Style="{StaticResource Common.Header}">
+            <TextBlock Text="SETTINGS" />
+        </Border>
+        <ScrollViewer Grid.Row="1">
+            <StackPanel>
+                <StackPanel Style="{StaticResource Common.Panel}">
+                    <TextBlock Style="{StaticResource Common.Setting.Label}" Text="{x:Static p:Resources.EditSettings_Setting_Label_Interval}" />
+                    <TextBox Text="{Binding Interval, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" />
+                </StackPanel>
+                <StackPanel Style="{StaticResource Common.Panel}">
+                    <TextBlock Style="{StaticResource Common.Setting.Label}" Text="{x:Static p:Resources.EditSettings_Setting_Label_CultureName}" />
+                    <ComboBox SelectedValue="{Binding CultureName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                        <sys:String>en-US</sys:String>
+                        <sys:String>sv-SE</sys:String>
+                    </ComboBox>
+                </StackPanel>
+                <WrapPanel Style="{StaticResource Common.Footer}">
+                    <Button
+                        x:Name="Save"
+                        Content="{x:Static p:Resources.EditSettings_Button_Save}"
+                        IsDefault="True"
+                        IsEnabled="{Binding IsValid, Mode=OneWay}" />
+                    <Button
+                        x:Name="TryClose"
+                        Content="{x:Static p:Resources.EditSettings_Button_Cancel}"
+                        IsCancel="True" />
+                </WrapPanel>
             </StackPanel>
-            <StackPanel Style="{StaticResource Common.Panel}">
-                <TextBlock Style="{StaticResource Common.Label}" Text="{x:Static p:Resources.EditSettings_Setting_Label_CultureName}" />
-                <ComboBox SelectedValue="{Binding CultureName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
-                    <sys:String>en-US</sys:String>
-                    <sys:String>sv-SE</sys:String>
-                </ComboBox>
-            </StackPanel>
-            <WrapPanel Style="{StaticResource Common.Footer}">
-                <Button
-                    x:Name="Save"
-                    Content="{x:Static p:Resources.EditSettings_Button_Save}"
-                    IsDefault="True"
-                    IsEnabled="{Binding IsValid, Mode=OneWay}"
-                    ToolTip="{x:Static p:Resources.EditSettings_Button_Save}" />
-                <Button
-                    x:Name="TryClose"
-                    Content="{x:Static p:Resources.EditSettings_Button_Cancel}"
-                    IsCancel="True"
-                    ToolTip="{x:Static p:Resources.EditSettings_Button_Cancel}" />
-            </WrapPanel>
-        </StackPanel>
-    </ScrollViewer>
+        </ScrollViewer>
+    </Grid>
 </UserControl>

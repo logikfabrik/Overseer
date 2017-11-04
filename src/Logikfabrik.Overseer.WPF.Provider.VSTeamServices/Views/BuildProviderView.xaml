@@ -17,7 +17,7 @@
                     </Path.Data>
                 </Path>
             </Viewbox>
-            <TextBlock Text="Visual Studio Team Services" ToolTip="Visual Studio Team Services" />
+            <TextBlock Text="Visual Studio Team Services" />
         </Grid>
     </Button>
 </UserControl>

@@ -18,7 +18,7 @@
                     </Path.Data>
                 </Path>
             </Viewbox>
-            <TextBlock Text="CircleCI" ToolTip="CircleCI" />
+            <TextBlock Text="CircleCI" />
         </Grid>
     </Button>
 </UserControl>
