@@ -11,6 +11,9 @@
     mc:Ignorable="d">
     <ScrollViewer>
         <StackPanel>
+            <Border Style="{StaticResource Common.Header}">
+                <TextBlock Text="SETTINGS" />
+            </Border>
             <StackPanel Style="{StaticResource Common.Panel}">
                 <TextBlock Style="{StaticResource Common.Label}" Text="{x:Static p:Resources.EditSettings_Setting_Label_Interval}" />
                 <TextBox Text="{Binding Interval, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" />

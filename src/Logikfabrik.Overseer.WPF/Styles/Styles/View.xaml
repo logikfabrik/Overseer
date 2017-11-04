@@ -68,6 +68,17 @@
         <Setter Property="Orientation" Value="Horizontal" />
     </Style>
 
+    <Style x:Key="Common.Header" TargetType="{x:Type Border}">
+        <Style.Resources>
+            <Style BasedOn="{StaticResource {x:Type TextBlock}}" TargetType="{x:Type TextBlock}">
+                <Setter Property="FontWeight" Value="Bold" />
+                <Setter Property="TextWrapping" Value="Wrap" />
+                <Setter Property="TextAlignment" Value="Center" />
+            </Style>
+        </Style.Resources>
+        <Setter Property="Padding" Value="10" />
+    </Style>
+
     <Style
         x:Key="Common.Label"
         BasedOn="{StaticResource {x:Type TextBlock}}"

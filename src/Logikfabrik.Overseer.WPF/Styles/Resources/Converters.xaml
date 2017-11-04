@@ -30,4 +30,5 @@
     <c:AddConnectionViewExceptionToLocalizedStringConverter x:Key="AddConnectionViewExceptionToLocalizedStringConverter" />
     <c:EditConnectionViewExceptionToLocalizedStringConverter x:Key="EditConnectionViewExceptionToLocalizedStringConverter" />
 
+    <c:StringToUpperCaseConverter x:Key="StringToUpperCaseConverter" />
 </ResourceDictionary>
