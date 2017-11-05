@@ -161,7 +161,7 @@ namespace Logikfabrik.Overseer.WPF.Client.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to BUILDS PER PROJECT.
+        ///   Looks up a localized string similar to Builds per project.
         /// </summary>
         public static string ConnectionSettings_Setting_Label_BuildsPerProject {
             get {
@@ -170,7 +170,7 @@ namespace Logikfabrik.Overseer.WPF.Client.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to PROJECTS.
+        ///   Looks up a localized string similar to Projects.
         /// </summary>
         public static string ConnectionSettings_Setting_Label_TrackedProjects {
             get {

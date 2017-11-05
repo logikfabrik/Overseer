@@ -143,10 +143,10 @@ Please try again.</value>
     <value>Number of builds to get from the CI/DI service per project</value>
   </data>
   <data name="ConnectionSettings_Setting_Label_BuildsPerProject" xml:space="preserve">
-    <value>BUILDS PER PROJECT</value>
+    <value>Builds per project</value>
   </data>
   <data name="ConnectionSettings_Setting_Label_TrackedProjects" xml:space="preserve">
-    <value>PROJECTS</value>
+    <value>Projects</value>
   </data>
   <data name="Connection_Button_Edit" xml:space="preserve">
     <value>Edit</value>

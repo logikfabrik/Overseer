@@ -121,10 +121,10 @@
     <value>You create your token at</value>
   </data>
   <data name="ConnectionSettings_Setting_Label_Name" xml:space="preserve">
-    <value>NAME</value>
+    <value>Name</value>
   </data>
   <data name="ConnectionSettings_Setting_Label_Token" xml:space="preserve">
-    <value>TOKEN</value>
+    <value>Token</value>
   </data>
   <data name="ConnectionSettings_Validation_Token" xml:space="preserve">
     <value>Token is missing</value>

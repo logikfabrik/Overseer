@@ -143,10 +143,10 @@ Vänligen försök igen.</value>
     <value>Antal byggen att hämta från CI/DI-tjänsten per projekt</value>
   </data>
   <data name="ConnectionSettings_Setting_Label_BuildsPerProject" xml:space="preserve">
-    <value>BYGGEN PER PROJEKT</value>
+    <value>Byggen per projekt</value>
   </data>
   <data name="ConnectionSettings_Setting_Label_TrackedProjects" xml:space="preserve">
-    <value>PROJEKT</value>
+    <value>Projekt</value>
   </data>
   <data name="Connection_Button_Edit" xml:space="preserve">
     <value>Redigera</value>

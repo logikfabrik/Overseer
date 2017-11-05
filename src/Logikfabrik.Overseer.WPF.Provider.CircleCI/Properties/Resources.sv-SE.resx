@@ -121,10 +121,10 @@
     <value>Du skapar ditt bevis på</value>
   </data>
   <data name="ConnectionSettings_Setting_Label_Name" xml:space="preserve">
-    <value>NAMN</value>
+    <value>Namn</value>
   </data>
   <data name="ConnectionSettings_Setting_Label_Token" xml:space="preserve">
-    <value>BEVIS</value>
+    <value>Bevis</value>
   </data>
   <data name="ConnectionSettings_Validation_Token" xml:space="preserve">
     <value>Bevis saknas</value>

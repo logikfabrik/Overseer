@@ -19,7 +19,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor.Properties {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class Resources {
@@ -70,7 +70,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to NAME.
+        ///   Looks up a localized string similar to Name.
         /// </summary>
         public static string ConnectionSettings_Setting_Label_Name {
             get {
@@ -79,7 +79,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TOKEN.
+        ///   Looks up a localized string similar to Token.
         /// </summary>
         public static string ConnectionSettings_Setting_Label_Token {
             get {

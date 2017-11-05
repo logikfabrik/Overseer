@@ -12,11 +12,11 @@
     mc:Ignorable="d">
     <StackPanel>
         <StackPanel Style="{StaticResource Common.Panel}">
-            <TextBlock Style="{StaticResource Common.Setting.Label}" Text="{x:Static p:Resources.ConnectionSettings_Setting_Label_Name}" />
+            <TextBlock Style="{StaticResource Common.Setting.Label}" Text="{Binding Source={x:Static p:Resources.ConnectionSettings_Setting_Label_Name}, Converter={StaticResource StringToUpperCaseConverter}}" />
             <TextBox Text="{Binding Name, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" />
         </StackPanel>
         <StackPanel Style="{StaticResource Common.Panel}">
-            <TextBlock Style="{StaticResource Common.Setting.Label}" Text="{x:Static p:Resources.ConnectionSettings_Setting_Label_Token}" />
+            <TextBlock Style="{StaticResource Common.Setting.Label}" Text="{Binding Source={x:Static p:Resources.ConnectionSettings_Setting_Label_Token}, Converter={StaticResource StringToUpperCaseConverter}}" />
             <TextBlock Style="{StaticResource Common.Setting.Description}">
                 <Run Text="{x:Static p:Resources.ConnectionSettings_Setting_Description_Token}" />
                 <Hyperlink ex:HyperlinkExtensions.IsExternal="True" NavigateUri="{Binding Source={x:Static appVeyor:UriUtility.BaseUri}}">ci.appveyor.com</Hyperlink>
