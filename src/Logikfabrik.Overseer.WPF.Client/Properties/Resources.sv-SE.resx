@@ -117,6 +117,12 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="About_Setting_Label_Attribution" xml:space="preserve">
+    <value>Erkännande</value>
+  </data>
+  <data name="About_Setting_Label_Version" xml:space="preserve">
+    <value>Version</value>
+  </data>
   <data name="About_View" xml:space="preserve">
     <value>Om</value>
   </data>
@@ -165,6 +171,12 @@ Vänligen försök igen.</value>
   </data>
   <data name="EditSettings_Button_Save" xml:space="preserve">
     <value>OK</value>
+  </data>
+  <data name="EditSettings_Setting_Description_CultureName" xml:space="preserve">
+    <value>Byte av språk kommer att starta om programmet</value>
+  </data>
+  <data name="EditSettings_Setting_Description_Interval" xml:space="preserve">
+    <value>Antal sekunder mellan uppdateringar av byggen</value>
   </data>
   <data name="EditSettings_Setting_Label_CultureName" xml:space="preserve">
     <value>Språk</value>

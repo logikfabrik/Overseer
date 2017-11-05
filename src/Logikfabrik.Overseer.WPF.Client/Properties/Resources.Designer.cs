@@ -61,6 +61,24 @@ namespace Logikfabrik.Overseer.WPF.Client.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Attribution.
+        /// </summary>
+        public static string About_Setting_Label_Attribution {
+            get {
+                return ResourceManager.GetString("About_Setting_Label_Attribution", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Version.
+        /// </summary>
+        public static string About_Setting_Label_Version {
+            get {
+                return ResourceManager.GetString("About_Setting_Label_Version", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to About.
         /// </summary>
         public static string About_View {
@@ -202,6 +220,24 @@ namespace Logikfabrik.Overseer.WPF.Client.Properties {
         public static string EditSettings_Button_Save {
             get {
                 return ResourceManager.GetString("EditSettings_Button_Save", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Changing language will restart the program.
+        /// </summary>
+        public static string EditSettings_Setting_Description_CultureName {
+            get {
+                return ResourceManager.GetString("EditSettings_Setting_Description_CultureName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Number of seconds between build updates.
+        /// </summary>
+        public static string EditSettings_Setting_Description_Interval {
+            get {
+                return ResourceManager.GetString("EditSettings_Setting_Description_Interval", resourceCulture);
             }
         }
         

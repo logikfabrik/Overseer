@@ -21,10 +21,12 @@
             <StackPanel>
                 <StackPanel Style="{StaticResource Common.Panel}">
                     <TextBlock Style="{StaticResource Common.Setting.Label}" Text="{Binding Source={x:Static p:Resources.EditSettings_Setting_Label_Interval}, Converter={StaticResource StringToUpperCaseConverter}}" />
+                    <TextBlock Style="{StaticResource Common.Setting.Description}" Text="{x:Static p:Resources.EditSettings_Setting_Description_Interval}" />
                     <TextBox Text="{Binding Interval, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" />
                 </StackPanel>
                 <StackPanel Style="{StaticResource Common.Panel}">
                     <TextBlock Style="{StaticResource Common.Setting.Label}" Text="{Binding Source={x:Static p:Resources.EditSettings_Setting_Label_CultureName}, Converter={StaticResource StringToUpperCaseConverter}}" />
+                    <TextBlock Style="{StaticResource Common.Setting.Description}" Text="{x:Static p:Resources.EditSettings_Setting_Description_CultureName}" />
                     <ComboBox SelectedValue="{Binding CultureName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                         <sys:String>en-US</sys:String>
                         <sys:String>sv-SE</sys:String>

@@ -5,6 +5,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:ex="clr-namespace:Logikfabrik.Overseer.WPF.Extensions;assembly=Logikfabrik.Overseer.WPF"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:p="clr-namespace:Logikfabrik.Overseer.WPF.Client.Properties"
     d:DesignHeight="300"
     d:DesignWidth="300"
     mc:Ignorable="d">
@@ -14,12 +15,12 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <Border Grid.Row="0" Style="{StaticResource Common.Header}">
-            <TextBlock Text="ABOUT" />
+            <TextBlock Text="{Binding Source={x:Static p:Resources.About_View}, Converter={StaticResource StringToUpperCaseConverter}}" />
         </Border>
         <ScrollViewer Grid.Row="1">
             <StackPanel>
                 <StackPanel Style="{StaticResource Common.Panel}">
-                    <TextBlock Style="{StaticResource Common.Setting.Label}" Text="VERSION" />
+                    <TextBlock Style="{StaticResource Common.Setting.Label}" Text="{Binding Source={x:Static p:Resources.About_Setting_Label_Version}, Converter={StaticResource StringToUpperCaseConverter}}" />
                     <TextBlock Style="{StaticResource Common.Setting.Value}" Text="{Binding Version, Mode=OneTime}" />
                 </StackPanel>
                 <StackPanel Style="{StaticResource Common.Panel}">
@@ -32,7 +33,7 @@
                     </TextBlock>
                 </StackPanel>
                 <StackPanel Style="{StaticResource Common.Panel}">
-                    <TextBlock Style="{StaticResource Common.Setting.Label}" Text="ATTRIBUTION" />
+                    <TextBlock Style="{StaticResource Common.Setting.Label}" Text="{Binding Source={x:Static p:Resources.About_Setting_Label_Attribution}, Converter={StaticResource StringToUpperCaseConverter}}" />
                 </StackPanel>
             </StackPanel>
         </ScrollViewer>
