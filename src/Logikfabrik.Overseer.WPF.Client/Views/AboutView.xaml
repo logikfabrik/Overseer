@@ -34,6 +34,27 @@
                 </StackPanel>
                 <StackPanel Style="{StaticResource Common.Panel}">
                     <TextBlock Style="{StaticResource Common.Setting.Label}" Text="{Binding Source={x:Static p:Resources.About_Setting_Label_Attribution}, Converter={StaticResource StringToUpperCaseConverter}}" />
+                    <TextBlock>
+                        <Hyperlink ex:HyperlinkExtensions.IsExternal="True" NavigateUri="https://github.com/Caliburn-Micro/Caliburn.Micro">Caliburn.Micro</Hyperlink>
+                        <LineBreak />
+                        <Hyperlink ex:HyperlinkExtensions.IsExternal="True" NavigateUri="https://github.com/castleproject/Core">Castle.Core</Hyperlink>
+                        <LineBreak />
+                        <Hyperlink ex:HyperlinkExtensions.IsExternal="True" NavigateUri="https://github.com/danielwertheim/Ensure.That">Ensure.That</Hyperlink>
+                        <LineBreak />
+                        <Hyperlink ex:HyperlinkExtensions.IsExternal="True" NavigateUri="http://www.entypo.com">Entypo</Hyperlink>
+                        <LineBreak />
+                        <Hyperlink ex:HyperlinkExtensions.IsExternal="True" NavigateUri="https://github.com/JeremySkinner/FluentValidation">FluentValidation</Hyperlink>
+                        <LineBreak />
+                        <Hyperlink ex:HyperlinkExtensions.IsExternal="True" NavigateUri="https://github.com/Humanizr/Humanizer">Humanizer</Hyperlink>
+                        <LineBreak />
+                        <Hyperlink ex:HyperlinkExtensions.IsExternal="True" NavigateUri="https://github.com/JamesNK/Newtonsoft.Json">Newtonsoft.Json</Hyperlink>
+                        <LineBreak />
+                        <Hyperlink ex:HyperlinkExtensions.IsExternal="True" NavigateUri="https://github.com/ninject/Ninject">Ninject</Hyperlink>
+                        <LineBreak />
+                        <Hyperlink ex:HyperlinkExtensions.IsExternal="True" NavigateUri="https://github.com/serilog/serilog">Serilog</Hyperlink>
+                        <LineBreak />
+                        <Hyperlink ex:HyperlinkExtensions.IsExternal="True" NavigateUri="https://github.com/gmamaladze/trienet">TrieNet</Hyperlink>
+                    </TextBlock>
                 </StackPanel>
             </StackPanel>
         </ScrollViewer>
