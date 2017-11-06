@@ -18,6 +18,15 @@
     </Style>
 
     <Style
+        x:Key="TrackedProjectsView"
+        BasedOn="{StaticResource {x:Type UserControl}}"
+        TargetType="{x:Type UserControl}">
+        <Style.Resources />
+
+
+    </Style>
+
+    <Style
         x:Key="BuildProviderView"
         BasedOn="{StaticResource {x:Type UserControl}}"
         TargetType="{x:Type UserControl}">
@@ -54,9 +63,9 @@
         <Setter Property="BorderThickness" Value="0,2,0,0" />
     </Style>
 
-    <Style x:Key="Common.Panel" TargetType="{x:Type StackPanel}">
-        <Setter Property="Margin" Value="10" />
-    </Style>
+
+
+
 
     <Style x:Key="Common.Footer" TargetType="{x:Type WrapPanel}">
         <Style.Resources>
@@ -68,7 +77,7 @@
         <Setter Property="Orientation" Value="Horizontal" />
     </Style>
 
-    <Style x:Key="Common.Header" TargetType="{x:Type Border}">
+    <Style x:Key="Common.Header.Panel" TargetType="{x:Type Border}">
         <Style.Resources>
             <Style BasedOn="{StaticResource {x:Type TextBlock}}" TargetType="{x:Type TextBlock}">
                 <Setter Property="FontWeight" Value="Bold" />
@@ -77,6 +86,29 @@
             </Style>
         </Style.Resources>
         <Setter Property="Padding" Value="10" />
+    </Style>
+
+    <Style x:Key="Common.Section.Panel" TargetType="{x:Type StackPanel}">
+        <Style.Resources>
+            <Style BasedOn="{StaticResource {x:Type TextBlock}}" TargetType="{x:Type TextBlock}">
+                <Setter Property="TextWrapping" Value="Wrap" />
+            </Style>
+        </Style.Resources>
+        <Setter Property="Margin" Value="10" />
+    </Style>
+
+    <Style
+        x:Key="Common.Section.Header"
+        BasedOn="{StaticResource {x:Type TextBlock}}"
+        TargetType="{x:Type TextBlock}">
+        <Setter Property="FontWeight" Value="Bold" />
+        <Setter Property="TextWrapping" Value="Wrap" />
+    </Style>
+
+
+
+    <Style x:Key="Common.Setting.Panel" TargetType="{x:Type StackPanel}">
+        <Setter Property="Margin" Value="10" />
     </Style>
 
     <Style

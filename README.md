@@ -27,7 +27,7 @@ If you have a bug report, feature request, or suggestion, please open a new issu
 - [AutoFixture](https://github.com/AutoFixture/AutoFixture)
 - [Moq](https://github.com/moq/moq)
 - [Moq.AutoMocker](https://github.com/tkellogg/Moq.AutoMocker)
+- [Shouldly](https://github.com/shouldly/shouldly)
 - [StyleCop.Analyzers](https://github.com/DotNetAnalyzers/StyleCopAnalyzers)
 - [WiX](https://github.com/wixtoolset/wix3)
 - [xUnit](https://github.com/xunit/xunit)
-- [Shouldly](https://github.com/shouldly/shouldly)

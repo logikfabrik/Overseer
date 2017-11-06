@@ -19,7 +19,7 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        <Border Grid.Row="0" Style="{StaticResource Common.Header}">
+        <Border Grid.Row="0" Style="{StaticResource Common.Header.Panel}">
             <TextBlock Text="{Binding Path=SettingsName, Converter={StaticResource StringToUpperCaseConverter}}" />
         </Border>
         <ItemsControl Grid.Row="1" ItemsSource="{Binding FilteredProjects, Mode=OneWay}">

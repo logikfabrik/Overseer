@@ -10,7 +10,7 @@
     mc:Ignorable="d">
     <ScrollViewer>
         <StackPanel>
-            <StackPanel Style="{StaticResource Common.Panel}">
+            <StackPanel Style="{StaticResource Common.Section.Panel}">
                 <TextBlock Text="Are you sure you want to remove the connection?" TextWrapping="Wrap" />
             </StackPanel>
             <WrapPanel Style="{StaticResource Common.Footer}">

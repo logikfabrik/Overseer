@@ -18,7 +18,7 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        <Border Grid.Row="0" Style="{StaticResource Common.Header}">
+        <Border Grid.Row="0" Style="{StaticResource Common.Header.Panel}">
             <TextBlock Text="{Binding Path=Name, Converter={StaticResource StringToUpperCaseConverter}}" />
         </Border>
         <ItemsControl Grid.Row="1" ItemsSource="{Binding OrderedBuilds, Mode=OneWay}">

@@ -15,7 +15,7 @@
             <StackPanel Margin="10">
                 <TextBlock FontSize="24" Text="Pass phrase" />
             </StackPanel>
-            <StackPanel Style="{StaticResource Common.Panel}">
+            <StackPanel Style="{StaticResource Common.Setting.Panel}">
                 <TextBlock Style="{StaticResource Common.Setting.Label}" Text="Pass phrase" />
                 <TextBlock Style="{StaticResource Common.Setting.Description}" Text="A passphrase is similar to a password in usage, but is generally longer" />
                 <TextBox Text="{Binding PassPhrase, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" />

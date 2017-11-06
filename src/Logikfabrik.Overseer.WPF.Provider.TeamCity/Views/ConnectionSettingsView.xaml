@@ -12,11 +12,11 @@
     d:DesignWidth="300"
     mc:Ignorable="d">
     <StackPanel>
-        <StackPanel Style="{StaticResource Common.Panel}">
+        <StackPanel Style="{StaticResource Common.Setting.Panel}">
             <TextBlock Style="{StaticResource Common.Setting.Label}" Text="{Binding Source={x:Static p:Resources.ConnectionSettings_Setting_Label_Name}, Converter={StaticResource StringToUpperCaseConverter}}" />
             <TextBox Text="{Binding Name, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" />
         </StackPanel>
-        <StackPanel Style="{StaticResource Common.Panel}">
+        <StackPanel Style="{StaticResource Common.Setting.Panel}">
             <TextBlock Style="{StaticResource Common.Setting.Label}" Text="{Binding Source={x:Static p:Resources.ConnectionSettings_Setting_Label_Url}, Converter={StaticResource StringToUpperCaseConverter}}" />
             <TextBlock
                 Style="{StaticResource Common.Setting.Description}"
@@ -24,7 +24,7 @@
                 Visibility="{Binding ShowBaseUri, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}" />
             <TextBox Text="{Binding Url, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" />
         </StackPanel>
-        <StackPanel Style="{StaticResource Common.Panel}">
+        <StackPanel Style="{StaticResource Common.Setting.Panel}">
             <TextBlock Style="{StaticResource Common.Setting.Label}" Text="{Binding Source={x:Static p:Resources.ConnectionSettings_Setting_Label_AuthenticationType}, Converter={StaticResource StringToUpperCaseConverter}}" />
             <ComboBox
                 DisplayMemberPath="DisplayName"
@@ -33,11 +33,11 @@
                 SelectedValuePath="Value" />
         </StackPanel>
         <StackPanel Visibility="{Binding ShowUsernameAndPassword, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}">
-            <StackPanel Style="{StaticResource Common.Panel}">
+            <StackPanel Style="{StaticResource Common.Setting.Panel}">
                 <TextBlock Style="{StaticResource Common.Setting.Label}" Text="{Binding Source={x:Static p:Resources.ConnectionSettings_Setting_Label_Username}, Converter={StaticResource StringToUpperCaseConverter}}" />
                 <TextBox Text="{Binding Username, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" />
             </StackPanel>
-            <StackPanel Style="{StaticResource Common.Panel}">
+            <StackPanel Style="{StaticResource Common.Setting.Panel}">
                 <TextBlock Style="{StaticResource Common.Setting.Label}" Text="{Binding Source={x:Static p:Resources.ConnectionSettings_Setting_Label_Password}, Converter={StaticResource StringToUpperCaseConverter}}" />
                 <PasswordBox ex:PasswordBoxExtensions.BoundPassword="{Binding Password, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" />
             </StackPanel>
