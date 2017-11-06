@@ -34,13 +34,13 @@
                                 Width="250"
                                 Margin="-250,0,0,0"
                                 HorizontalAlignment="Left"
-                                Background="{DynamicResource Panel.Background}">
+                                Background="{StaticResource Panel.Background}">
                                 <StackPanel.Effect>
                                     <DropShadowEffect
                                         BlurRadius="3"
                                         Opacity="0.1"
                                         ShadowDepth="3"
-                                        Color="{DynamicResource Effect.Shadow}" />
+                                        Color="{StaticResource Effect.Shadow}" />
                                 </StackPanel.Effect>
                                 <Button cal:Message.Attach="GoToDashboard">
                                     <StackPanel>

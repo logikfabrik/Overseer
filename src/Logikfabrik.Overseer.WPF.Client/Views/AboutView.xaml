@@ -54,6 +54,20 @@
                         <Hyperlink ex:HyperlinkExtensions.IsExternal="True" NavigateUri="https://github.com/serilog/serilog">Serilog</Hyperlink>
                         <LineBreak />
                         <Hyperlink ex:HyperlinkExtensions.IsExternal="True" NavigateUri="https://github.com/gmamaladze/trienet">TrieNet</Hyperlink>
+                        <LineBreak />
+                        <Hyperlink ex:HyperlinkExtensions.IsExternal="True" NavigateUri="https://github.com/AutoFixture/AutoFixture">AutoFixture</Hyperlink>
+                        <LineBreak />
+                        <Hyperlink ex:HyperlinkExtensions.IsExternal="True" NavigateUri="https://github.com/moq/moq">Moq</Hyperlink>
+                        <LineBreak />
+                        <Hyperlink ex:HyperlinkExtensions.IsExternal="True" NavigateUri="https://github.com/tkellogg/Moq.AutoMocker">Moq.AutoMocker</Hyperlink>
+                        <LineBreak />
+                        <Hyperlink ex:HyperlinkExtensions.IsExternal="True" NavigateUri="https://github.com/DotNetAnalyzers/StyleCopAnalyzers">StyleCop.Analyzers</Hyperlink>
+                        <LineBreak />
+                        <Hyperlink ex:HyperlinkExtensions.IsExternal="True" NavigateUri="https://github.com/wixtoolset/wix3">WiX</Hyperlink>
+                        <LineBreak />
+                        <Hyperlink ex:HyperlinkExtensions.IsExternal="True" NavigateUri="https://github.com/xunit/xunit">xUnit</Hyperlink>
+                        <LineBreak />
+                        <Hyperlink ex:HyperlinkExtensions.IsExternal="True" NavigateUri="https://github.com/shouldly/shouldly">Shouldly</Hyperlink>
                     </TextBlock>
                 </StackPanel>
             </StackPanel>

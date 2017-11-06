@@ -11,10 +11,10 @@
         <Setter Property="MinWidth" Value="300" />
         <Setter Property="Height" Value="650" />
         <Setter Property="MinHeight" Value="550" />
-        <Setter Property="Background" Value="{DynamicResource Window.Background}" />
+        <Setter Property="Background" Value="{StaticResource Window.Background}" />
         <Setter Property="TextOptions.TextFormattingMode" Value="Display" />
         <Setter Property="UseLayoutRounding" Value="True" />
-        <Setter Property="TextElement.Foreground" Value="{DynamicResource Window.Foreground}" />
+        <Setter Property="TextElement.Foreground" Value="{StaticResource Window.Foreground}" />
     </Style>
 
     <Style

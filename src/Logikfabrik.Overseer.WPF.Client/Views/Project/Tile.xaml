@@ -23,7 +23,7 @@
                     BlurRadius="3"
                     Opacity="0.1"
                     ShadowDepth="3"
-                    Color="{DynamicResource Effect.Shadow}" />
+                    Color="{StaticResource Effect.Shadow}" />
             </Button.Effect>
             <StackPanel>
                 <TextBlock

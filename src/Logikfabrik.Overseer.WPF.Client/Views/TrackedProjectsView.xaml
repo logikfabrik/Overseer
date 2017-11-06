@@ -15,7 +15,7 @@
         </Grid.RowDefinitions>
         <Border
             Grid.Row="0"
-            BorderBrush="{DynamicResource Panel.Border}"
+            BorderBrush="{StaticResource Panel.Border}"
             BorderThickness="2">
             <ItemsControl ItemsSource="{Binding FilteredProjects}">
                 <ItemsControl.ItemContainerStyle>

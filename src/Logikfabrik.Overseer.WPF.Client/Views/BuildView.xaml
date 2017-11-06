@@ -14,13 +14,13 @@
     <StackPanel>
 
 
-        <Border Background="{DynamicResource Button.Static.Background}">
+        <Border Background="{StaticResource Button.Static.Background}">
             <Border.Effect>
                 <DropShadowEffect
                     BlurRadius="3"
                     Opacity="0.1"
                     ShadowDepth="3"
-                    Color="{DynamicResource Effect.Shadow}" />
+                    Color="{StaticResource Effect.Shadow}" />
             </Border.Effect>
             <ContentControl
                 cal:View.Context="Base"

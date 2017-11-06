@@ -11,13 +11,13 @@
     d:DataContext="{d:DesignInstance d:Type=vm:ChangeViewModel,
                                      d:IsDesignTimeCreatable=True}"
     mc:Ignorable="d">
-    <StackPanel Background="{DynamicResource Button.Static.Background}">
+    <StackPanel Background="{StaticResource Button.Static.Background}">
         <StackPanel.Effect>
             <DropShadowEffect
                 BlurRadius="3"
                 Opacity="0.1"
                 ShadowDepth="3"
-                Color="{DynamicResource Effect.Shadow}" />
+                Color="{StaticResource Effect.Shadow}" />
         </StackPanel.Effect>
         <WrapPanel>
             <uc:ValueControl

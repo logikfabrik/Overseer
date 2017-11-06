@@ -45,7 +45,7 @@
                 </ControlTemplate>
             </ItemsControl.Template>
         </ItemsControl>
-        <Border Grid.Row="2" Style="{DynamicResource Common.ContextMenu}">
+        <Border Grid.Row="2" Style="{StaticResource Common.ContextMenu}">
             <StackPanel>
                 <Grid>
                     <Grid.ColumnDefinitions>

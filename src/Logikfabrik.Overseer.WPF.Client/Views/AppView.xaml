@@ -16,13 +16,13 @@
                 Grid.Row="1"
                 cal:View.Model="{Binding ActiveItem, Mode=OneWay}"
                 Focusable="False" />
-            <Grid Grid.Row="0" Background="{DynamicResource Panel.Background}">
+            <Grid Grid.Row="0" Background="{StaticResource Panel.Background}">
                 <Grid.Effect>
                     <DropShadowEffect
                         BlurRadius="3"
                         Opacity="0.1"
                         ShadowDepth="3"
-                        Color="{DynamicResource Effect.Shadow}" />
+                        Color="{StaticResource Effect.Shadow}" />
                 </Grid.Effect>
                 <Button HorizontalAlignment="Left" cal:Message.Attach="Menu.Open">
                     <Viewbox>

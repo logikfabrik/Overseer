@@ -2,12 +2,13 @@
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="../Resources/Converters.xaml" />
         <ResourceDictionary Source="TextBlock.xaml" />
+        <ResourceDictionary Source="../Brushes.xaml" />
     </ResourceDictionary.MergedDictionaries>
     <Style BasedOn="{StaticResource {x:Type TextBox}}" TargetType="{x:Type TextBox}">
         <Setter Property="FocusVisualStyle" Value="{x:Null}" />
-        <Setter Property="Background" Value="{DynamicResource TextBox.Static.Background}" />
-        <Setter Property="Foreground" Value="{DynamicResource TextBox.Static.Foreground}" />
-        <Setter Property="BorderBrush" Value="{DynamicResource TextBox.Static.Border}" />
+        <Setter Property="Background" Value="{StaticResource TextBox.Static.Background}" />
+        <Setter Property="Foreground" Value="{StaticResource TextBox.Static.Foreground}" />
+        <Setter Property="BorderBrush" Value="{StaticResource TextBox.Static.Border}" />
         <Setter Property="BorderThickness" Value="0,0,0,2" />
         <Setter Property="KeyboardNavigation.TabNavigation" Value="None" />
         <Setter Property="HorizontalContentAlignment" Value="Left" />
@@ -34,19 +35,19 @@
                         <ItemsControl ItemsSource="{Binding (Validation.Errors), Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}">
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate DataType="{x:Type ValidationError}">
-                                    <TextBlock Foreground="{DynamicResource Control.Error}" Text="{Binding ErrorContent, Mode=OneWay}" />
+                                    <TextBlock Foreground="{StaticResource Control.Error}" Text="{Binding ErrorContent, Mode=OneWay}" />
                                 </DataTemplate>
                             </ItemsControl.ItemTemplate>
                         </ItemsControl>
                     </StackPanel>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsEnabled" Value="False">
-                            <Setter TargetName="PART_Border" Property="Background" Value="{DynamicResource TextBox.Disabled.Background}" />
-                            <Setter TargetName="PART_Border" Property="BorderBrush" Value="{DynamicResource TextBox.Disabled.Border}" />
+                            <Setter TargetName="PART_Border" Property="Background" Value="{StaticResource TextBox.Disabled.Background}" />
+                            <Setter TargetName="PART_Border" Property="BorderBrush" Value="{StaticResource TextBox.Disabled.Border}" />
                         </Trigger>
                         <Trigger Property="IsKeyboardFocused" Value="True">
-                            <Setter TargetName="PART_Border" Property="Background" Value="{DynamicResource TextBox.Focus.Background}" />
-                            <Setter TargetName="PART_Border" Property="BorderBrush" Value="{DynamicResource TextBox.Focus.Border}" />
+                            <Setter TargetName="PART_Border" Property="Background" Value="{StaticResource TextBox.Focus.Background}" />
+                            <Setter TargetName="PART_Border" Property="BorderBrush" Value="{StaticResource TextBox.Focus.Border}" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>

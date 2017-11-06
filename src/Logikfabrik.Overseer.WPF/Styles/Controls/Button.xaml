@@ -1,6 +1,7 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="../Resources/FocusVisuals.xaml" />
+        <ResourceDictionary Source="../Brushes.xaml" />
     </ResourceDictionary.MergedDictionaries>
     <Style BasedOn="{StaticResource {x:Type Button}}" TargetType="{x:Type Button}">
         <Style.Resources>
@@ -13,16 +14,16 @@
                 <Style.Resources>
                     <Style BasedOn="{StaticResource {x:Type TextBlock}}" TargetType="{x:Type TextBlock}">
                         <!--  NOTE: If foreground in ToolTip.xaml is changed, this setter needs to be changed accordingly  -->
-                        <Setter Property="Foreground" Value="{DynamicResource Window.Foreground}" />
+                        <Setter Property="Foreground" Value="{StaticResource Window.Foreground}" />
                     </Style>
                 </Style.Resources>
             </Style>
         </Style.Resources>
         <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}" />
-        <Setter Property="Background" Value="{DynamicResource Button.Static.Background}" />
+        <Setter Property="Background" Value="{StaticResource Button.Static.Background}" />
         <Setter Property="Foreground" Value="{Binding (TextElement.Foreground), RelativeSource={RelativeSource Self}}" />
-        <Setter Property="TextElement.Foreground" Value="{DynamicResource Button.Static.Foreground}" />
-        <Setter Property="BorderBrush" Value="{DynamicResource Button.Static.Border}" />
+        <Setter Property="TextElement.Foreground" Value="{StaticResource Button.Static.Foreground}" />
+        <Setter Property="BorderBrush" Value="{StaticResource Button.Static.Border}" />
         <Setter Property="BorderThickness" Value="2" />
         <Setter Property="HorizontalContentAlignment" Value="Center" />
         <Setter Property="VerticalContentAlignment" Value="Center" />
@@ -46,24 +47,24 @@
                     </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsDefault" Value="True">
-                            <Setter TargetName="PART_Border" Property="Background" Value="{DynamicResource Button.Defaulted.Background}" />
-                            <Setter TargetName="PART_Border" Property="BorderBrush" Value="{DynamicResource Button.Defaulted.Border}" />
-                            <Setter Property="TextElement.Foreground" Value="{DynamicResource Button.Defaulted.Foreground}" />
+                            <Setter TargetName="PART_Border" Property="Background" Value="{StaticResource Button.Defaulted.Background}" />
+                            <Setter TargetName="PART_Border" Property="BorderBrush" Value="{StaticResource Button.Defaulted.Border}" />
+                            <Setter Property="TextElement.Foreground" Value="{StaticResource Button.Defaulted.Foreground}" />
                         </Trigger>
                         <Trigger Property="IsMouseOver" Value="True">
-                            <Setter TargetName="PART_Border" Property="Background" Value="{DynamicResource Button.MouseOver.Background}" />
-                            <Setter TargetName="PART_Border" Property="BorderBrush" Value="{DynamicResource Button.MouseOver.Border}" />
-                            <Setter Property="TextElement.Foreground" Value="{DynamicResource Button.MouseOver.Foreground}" />
+                            <Setter TargetName="PART_Border" Property="Background" Value="{StaticResource Button.MouseOver.Background}" />
+                            <Setter TargetName="PART_Border" Property="BorderBrush" Value="{StaticResource Button.MouseOver.Border}" />
+                            <Setter Property="TextElement.Foreground" Value="{StaticResource Button.MouseOver.Foreground}" />
                         </Trigger>
                         <Trigger Property="IsPressed" Value="True">
-                            <Setter TargetName="PART_Border" Property="Background" Value="{DynamicResource Button.Pressed.Background}" />
-                            <Setter TargetName="PART_Border" Property="BorderBrush" Value="{DynamicResource Button.Pressed.Border}" />
-                            <Setter Property="TextElement.Foreground" Value="{DynamicResource Button.Pressed.Foreground}" />
+                            <Setter TargetName="PART_Border" Property="Background" Value="{StaticResource Button.Pressed.Background}" />
+                            <Setter TargetName="PART_Border" Property="BorderBrush" Value="{StaticResource Button.Pressed.Border}" />
+                            <Setter Property="TextElement.Foreground" Value="{StaticResource Button.Pressed.Foreground}" />
                         </Trigger>
                         <Trigger Property="IsEnabled" Value="False">
-                            <Setter TargetName="PART_Border" Property="Background" Value="{DynamicResource Button.Disabled.Background}" />
-                            <Setter TargetName="PART_Border" Property="BorderBrush" Value="{DynamicResource Button.Disabled.Border}" />
-                            <Setter Property="TextElement.Foreground" Value="{DynamicResource Button.Disabled.Foreground}" />
+                            <Setter TargetName="PART_Border" Property="Background" Value="{StaticResource Button.Disabled.Background}" />
+                            <Setter TargetName="PART_Border" Property="BorderBrush" Value="{StaticResource Button.Disabled.Border}" />
+                            <Setter Property="TextElement.Foreground" Value="{StaticResource Button.Disabled.Foreground}" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>

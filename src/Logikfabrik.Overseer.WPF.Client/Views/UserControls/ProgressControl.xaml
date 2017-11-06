@@ -10,8 +10,8 @@
     mc:Ignorable="d">
     <UserControl.Resources>
         <Style TargetType="{x:Type uc:ProgressControl}">
-            <Setter Property="Background" Value="{DynamicResource ProgressControl.Background}" />
-            <Setter Property="Foreground" Value="{DynamicResource ProgressControl.Foreground}" />
+            <Setter Property="Background" Value="{StaticResource ProgressControl.Background}" />
+            <Setter Property="Foreground" Value="{StaticResource ProgressControl.Foreground}" />
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type uc:ProgressControl}">
@@ -30,7 +30,7 @@
                         </Grid>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsErrored" Value="True">
-                                <Setter TargetName="PART_Track" Property="Background" Value="{DynamicResource Control.Error}" />
+                                <Setter TargetName="PART_Track" Property="Background" Value="{StaticResource Control.Error}" />
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>

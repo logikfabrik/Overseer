@@ -22,35 +22,35 @@
             x:Key="BuildSucceededBorderStyle"
             BasedOn="{StaticResource BuildBorderStyle}"
             TargetType="{x:Type Border}">
-            <Setter Property="BorderBrush" Value="{DynamicResource Status.Succeeded}" />
+            <Setter Property="BorderBrush" Value="{StaticResource Status.Succeeded}" />
         </Style>
         <!--  ReSharper disable once Xaml.RedundantResource  -->
         <Style
             x:Key="BuildQueuedBorderStyle"
             BasedOn="{StaticResource BuildBorderStyle}"
             TargetType="{x:Type Border}">
-            <Setter Property="BorderBrush" Value="{DynamicResource Status.Queued}" />
+            <Setter Property="BorderBrush" Value="{StaticResource Status.Queued}" />
         </Style>
         <!--  ReSharper disable once Xaml.RedundantResource  -->
         <Style
             x:Key="BuildInProgressBorderStyle"
             BasedOn="{StaticResource BuildBorderStyle}"
             TargetType="{x:Type Border}">
-            <Setter Property="BorderBrush" Value="{DynamicResource Status.InProgress}" />
+            <Setter Property="BorderBrush" Value="{StaticResource Status.InProgress}" />
         </Style>
         <!--  ReSharper disable once Xaml.RedundantResource  -->
         <Style
             x:Key="BuildFailedBorderStyle"
             BasedOn="{StaticResource BuildBorderStyle}"
             TargetType="{x:Type Border}">
-            <Setter Property="BorderBrush" Value="{DynamicResource Status.Failed}" />
+            <Setter Property="BorderBrush" Value="{StaticResource Status.Failed}" />
         </Style>
         <!--  ReSharper disable once Xaml.RedundantResource  -->
         <Style
             x:Key="BuildStoppedBorderStyle"
             BasedOn="{StaticResource BuildBorderStyle}"
             TargetType="{x:Type Border}">
-            <Setter Property="BorderBrush" Value="{DynamicResource Status.Stopped}" />
+            <Setter Property="BorderBrush" Value="{StaticResource Status.Stopped}" />
         </Style>
     </UserControl.Resources>
     <Border>
