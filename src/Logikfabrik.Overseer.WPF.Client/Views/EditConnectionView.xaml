@@ -10,49 +10,58 @@
     d:DesignHeight="300"
     d:DesignWidth="300"
     mc:Ignorable="d">
-    <ScrollViewer>
-        <StackPanel>
-            <ContentControl
-                HorizontalAlignment="Stretch"
-                VerticalAlignment="Stretch"
-                cal:View.Model="{Binding Settings, Mode=OneWay}"
-                Focusable="False" />
-            <StackPanel Style="{StaticResource Common.Section.Panel}">
-                <Grid>
-                    <Button
-                        x:Name="TryConnect"
-                        Content="{x:Static p:Resources.EditConnection_Button_TryConnect}"
-                        IsEnabled="{Binding IsValidAndHasNotConnected, Mode=OneWay}" />
-                    <uc:ProgressControl
-                        VerticalAlignment="Top"
-                        IsErrored="{Binding ConnectionTask.Status, Converter={StaticResource TaskStatusFaultedToBooleanConverter}}"
-                        IsInProgress="{Binding ConnectionTask.Status, Converter={StaticResource TaskStatusRunningToBooleanConverter}}" />
-                </Grid>
-                <TextBlock Text="{Binding ConnectionTask.Exception, Converter={StaticResource EditConnectionViewExceptionToLocalizedStringConverter}}" Visibility="{Binding ConnectionTask.Status, Converter={StaticResource TaskStatusFaultedToVisibilityConverter}}" />
-            </StackPanel>
-            <StackPanel Style="{StaticResource Common.Setting.Panel}" Visibility="{Binding HasConnected, Converter={StaticResource BooleanToVisibilityConverter}}">
-                <TextBlock Style="{StaticResource Common.Setting.Label}" Text="{Binding Source={x:Static p:Resources.ConnectionSettings_Setting_Label_TrackedProjects}, Converter={StaticResource StringToUpperCaseConverter}}" />
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Border Grid.Row="0" Style="{StaticResource Common.Header.Panel}">
+            <TextBlock Text="{Binding Source={x:Static p:Resources.EditConnection_View}, Converter={StaticResource StringToUpperCaseConverter}}" />
+        </Border>
+        <ScrollViewer Grid.Row="1">
+            <StackPanel>
                 <ContentControl
-                    MaxHeight="304"
-                    cal:View.Model="{Binding Settings.TrackedProjects, Mode=OneWay}"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch"
+                    cal:View.Model="{Binding Settings, Mode=OneWay}"
                     Focusable="False" />
+                <StackPanel Style="{StaticResource Common.Section.Panel}">
+                    <Grid>
+                        <Button
+                            x:Name="TryConnect"
+                            Content="{x:Static p:Resources.EditConnection_Button_TryConnect}"
+                            IsEnabled="{Binding IsValidAndHasNotConnected, Mode=OneWay}" />
+                        <uc:ProgressControl
+                            VerticalAlignment="Top"
+                            IsErrored="{Binding ConnectionTask.Status, Converter={StaticResource TaskStatusFaultedToBooleanConverter}}"
+                            IsInProgress="{Binding ConnectionTask.Status, Converter={StaticResource TaskStatusRunningToBooleanConverter}}" />
+                    </Grid>
+                    <TextBlock Text="{Binding ConnectionTask.Exception, Converter={StaticResource EditConnectionViewExceptionToLocalizedStringConverter}}" Visibility="{Binding ConnectionTask.Status, Converter={StaticResource TaskStatusFaultedToVisibilityConverter}}" />
+                </StackPanel>
+                <StackPanel Style="{StaticResource Common.Setting.Panel}" Visibility="{Binding HasConnected, Converter={StaticResource BooleanToVisibilityConverter}}">
+                    <TextBlock Style="{StaticResource Common.Setting.Label}" Text="{Binding Source={x:Static p:Resources.ConnectionSettings_Setting_Label_TrackedProjects}, Converter={StaticResource StringToUpperCaseConverter}}" />
+                    <ContentControl
+                        MaxHeight="304"
+                        cal:View.Model="{Binding Settings.TrackedProjects, Mode=OneWay}"
+                        Focusable="False" />
+                </StackPanel>
+                <StackPanel Style="{StaticResource Common.Setting.Panel}">
+                    <TextBlock Style="{StaticResource Common.Setting.Label}" Text="{Binding Source={x:Static p:Resources.ConnectionSettings_Setting_Label_BuildsPerProject}, Converter={StaticResource StringToUpperCaseConverter}}" />
+                    <TextBlock Style="{StaticResource Common.Setting.Description}" Text="{x:Static p:Resources.ConnectionSettings_Setting_Description_BuildsPerProject}" />
+                    <TextBox Text="{Binding Settings.BuildsPerProject, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" />
+                </StackPanel>
+                <WrapPanel Style="{StaticResource Common.Footer}">
+                    <Button
+                        x:Name="Edit"
+                        Content="{x:Static p:Resources.EditConnection_Button_Edit}"
+                        IsDefault="True"
+                        IsEnabled="{Binding IsValidAndHasConnected, Mode=OneWay}" />
+                    <Button
+                        x:Name="TryClose"
+                        Content="{x:Static p:Resources.EditConnection_Button_Cancel}"
+                        IsCancel="True" />
+                </WrapPanel>
             </StackPanel>
-            <StackPanel Style="{StaticResource Common.Setting.Panel}">
-                <TextBlock Style="{StaticResource Common.Setting.Label}" Text="{Binding Source={x:Static p:Resources.ConnectionSettings_Setting_Label_BuildsPerProject}, Converter={StaticResource StringToUpperCaseConverter}}" />
-                <TextBlock Style="{StaticResource Common.Setting.Description}" Text="{x:Static p:Resources.ConnectionSettings_Setting_Description_BuildsPerProject}" />
-                <TextBox Text="{Binding Settings.BuildsPerProject, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" />
-            </StackPanel>
-            <WrapPanel Style="{StaticResource Common.Footer}">
-                <Button
-                    x:Name="Edit"
-                    Content="{x:Static p:Resources.EditConnection_Button_Edit}"
-                    IsDefault="True"
-                    IsEnabled="{Binding IsValidAndHasConnected, Mode=OneWay}" />
-                <Button
-                    x:Name="TryClose"
-                    Content="{x:Static p:Resources.EditConnection_Button_Cancel}"
-                    IsCancel="True" />
-            </WrapPanel>
-        </StackPanel>
-    </ScrollViewer>
+        </ScrollViewer>
+    </Grid>
 </UserControl>

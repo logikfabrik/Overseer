@@ -135,6 +135,9 @@
   <data name="AddConnection_Button_TryConnect" xml:space="preserve">
     <value>Prova att ansluta</value>
   </data>
+  <data name="AddConnection_View" xml:space="preserve">
+    <value>Lägg till anslutning</value>
+  </data>
   <data name="App_Error_Standard" xml:space="preserve">
     <value>Tyvärr, det verkar vara ett problem!
 Vänligen försök igen.</value>
@@ -165,6 +168,9 @@ Vänligen försök igen.</value>
   </data>
   <data name="EditConnection_Button_TryConnect" xml:space="preserve">
     <value>Prova att ansluta</value>
+  </data>
+  <data name="EditConnection_View" xml:space="preserve">
+    <value>Redigera anslutning</value>
   </data>
   <data name="EditSettings_Button_Cancel" xml:space="preserve">
     <value>Avbryt</value>

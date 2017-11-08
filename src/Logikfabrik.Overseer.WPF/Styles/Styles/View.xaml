@@ -50,6 +50,40 @@
         <Setter Property="Height" Value="200" />
     </Style>
 
+    <!--  Build  -->
+
+    <Style x:Key="Build.Header.Panel" TargetType="{x:Type Border}">
+        <Style.Resources>
+            <Style BasedOn="{StaticResource {x:Type TextBlock}}" TargetType="{x:Type TextBlock}">
+                <Setter Property="FontSize" Value="18" />
+            </Style>
+        </Style.Resources>
+    </Style>
+
+    <!--  Project  -->
+
+    <Style x:Key="Project.Header.Panel" TargetType="{x:Type Border}">
+        <Style.Resources>
+            <Style BasedOn="{StaticResource {x:Type TextBlock}}" TargetType="{x:Type TextBlock}">
+                <Setter Property="FontSize" Value="22" />
+            </Style>
+        </Style.Resources>
+    </Style>
+
+    <Style x:Key="Project.Build.Panel" TargetType="{x:Type StackPanel}" />
+
+    <Style
+        x:Key="Project.Build.Header"
+        BasedOn="{StaticResource {x:Type TextBlock}}"
+        TargetType="{x:Type TextBlock}">
+        <Setter Property="FontWeight" Value="Bold" />
+        <Setter Property="TextWrapping" Value="Wrap" />
+    </Style>
+
+
+
+
+
     <Style
         x:Key="Common.Filter"
         BasedOn="{StaticResource {x:Type TextBox}}"
@@ -63,9 +97,7 @@
         <Setter Property="BorderThickness" Value="0,2,0,0" />
     </Style>
 
-
-
-
+    <!--  Common.Footer  -->
 
     <Style x:Key="Common.Footer" TargetType="{x:Type WrapPanel}">
         <Style.Resources>
@@ -77,6 +109,8 @@
         <Setter Property="Orientation" Value="Horizontal" />
     </Style>
 
+    <!--  Common.Header  -->
+
     <Style x:Key="Common.Header.Panel" TargetType="{x:Type Border}">
         <Style.Resources>
             <Style BasedOn="{StaticResource {x:Type TextBlock}}" TargetType="{x:Type TextBlock}">
@@ -87,6 +121,8 @@
         </Style.Resources>
         <Setter Property="Padding" Value="10" />
     </Style>
+
+    <!--  Common.Section  -->
 
     <Style x:Key="Common.Section.Panel" TargetType="{x:Type StackPanel}">
         <Style.Resources>
@@ -105,7 +141,7 @@
         <Setter Property="TextWrapping" Value="Wrap" />
     </Style>
 
-
+    <!--  Common.Setting  -->
 
     <Style x:Key="Common.Setting.Panel" TargetType="{x:Type StackPanel}">
         <Setter Property="Margin" Value="10" />

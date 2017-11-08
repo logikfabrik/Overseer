@@ -26,17 +26,19 @@
                     Color="{StaticResource Effect.Shadow}" />
             </Button.Effect>
             <StackPanel>
-                <TextBlock
-                    VerticalAlignment="Center"
-                    FontSize="20"
-                    ToolTip="{Binding Name, Mode=OneWay}">
-                    <Run Text="{Binding Name, Mode=OneWay}" />
-                    <Run Text="{Binding Id, Mode=OneWay, StringFormat=({0})}" />
-                </TextBlock>
-                <ContentControl
-                    cal:View.Context="Tile"
-                    cal:View.Model="{Binding LatestBuild, Mode=OneWay}"
-                    Focusable="False" />
+                <Border Style="{DynamicResource Project.Header.Panel}">
+                    <TextBlock>
+                        <Run Text="{Binding Name, Mode=OneWay}" />
+                        <Run Text="{Binding Id, Mode=OneWay, StringFormat=({0})}" />
+                    </TextBlock>
+                </Border>
+                <StackPanel Style="{StaticResource Project.Build.Panel}">
+                    <TextBlock Style="{StaticResource Project.Build.Header}" Text="LATEST BUILD" />
+                    <ContentControl
+                        cal:View.Context="Tile"
+                        cal:View.Model="{Binding LatestBuild, Mode=OneWay}"
+                        Focusable="False" />
+                </StackPanel>
             </StackPanel>
         </Button>
         <uc:ProgressControl
