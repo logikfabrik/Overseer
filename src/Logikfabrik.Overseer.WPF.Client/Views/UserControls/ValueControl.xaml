@@ -12,19 +12,19 @@
             <Setter Property="Margin" Value="5,5,0,5" />
         </Style>
     </UserControl.Resources>
-    <Grid Visibility="{Binding HasValue, Mode=OneWay, RelativeSource={RelativeSource AncestorType=UserControl}, Converter={StaticResource BooleanToVisibilityConverter}}">
+    <Grid Visibility="{Binding HasValue, Mode=OneWay, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}, Converter={StaticResource BooleanToVisibilityConverter}}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
         <Viewbox>
             <Canvas>
-                <Path Data="{Binding Icon, Mode=OneWay, RelativeSource={RelativeSource AncestorType=UserControl}}" />
+                <Path Data="{Binding Icon, Mode=OneWay, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}" />
             </Canvas>
         </Viewbox>
         <TextBlock
             Grid.Column="1"
-            Text="{Binding Value, Mode=OneWay, RelativeSource={RelativeSource AncestorType=UserControl}}"
-            ToolTip="{Binding ToolTip, Mode=OneWay, RelativeSource={RelativeSource AncestorType=UserControl}}" />
+            Text="{Binding Value, Mode=OneWay, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}"
+            ToolTip="{Binding ToolTip, Mode=OneWay, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}" />
     </Grid>
 </UserControl>

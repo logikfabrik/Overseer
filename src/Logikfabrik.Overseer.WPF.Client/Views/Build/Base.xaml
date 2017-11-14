@@ -56,7 +56,7 @@
     <Border>
         <Border.Style>
             <MultiBinding Converter="{StaticResource BuildStatusToStyleConverter}" ConverterParameter="Build{0}BorderStyle">
-                <Binding RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType=UserControl}" />
+                <Binding RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}" />
                 <Binding Path="Status" />
             </MultiBinding>
         </Border.Style>
