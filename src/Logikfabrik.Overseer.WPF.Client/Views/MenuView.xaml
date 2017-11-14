@@ -34,14 +34,8 @@
                                 Width="250"
                                 Margin="-250,0,0,0"
                                 HorizontalAlignment="Left"
-                                Background="{StaticResource Panel.Background}">
-                                <StackPanel.Effect>
-                                    <DropShadowEffect
-                                        BlurRadius="3"
-                                        Opacity="0.1"
-                                        ShadowDepth="3"
-                                        Color="{StaticResource Effect.Shadow}" />
-                                </StackPanel.Effect>
+                                Background="{StaticResource Panel.Background}"
+                                Effect="{StaticResource DropShadowEffect}">
                                 <Button cal:Message.Attach="GoToDashboard">
                                     <StackPanel>
                                         <Viewbox>
@@ -54,35 +48,40 @@
                                 </Button>
                                 <Separator />
                                 <Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="*" />
-                                        <ColumnDefinition Width="Auto" />
-                                    </Grid.ColumnDefinitions>
-                                    <Button Grid.Column="0" cal:Message.Attach="GoToConnections">
-                                        <StackPanel>
-                                            <Viewbox>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+                                    <ContentControl
+                                        Grid.Row="1"
+                                        cal:View.Context="Bricks"
+                                        cal:View.Model="{Binding ConnectionsList, Mode=OneTime}"
+                                        Focusable="False" />
+                                    <Grid Grid.Row="0" Effect="{StaticResource DropShadowEffect}">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="Auto" />
+                                        </Grid.ColumnDefinitions>
+                                        <Button Grid.Column="0" cal:Message.Attach="GoToConnections">
+                                            <StackPanel>
+                                                <Viewbox>
+                                                    <Canvas>
+                                                        <Path Data="M 16.4,9 H 8.6 C 8.048,9 8,9.447 8,10 c 0,0.553 0.048,1 0.6,1 h 7.8 C 16.952,11 17,10.553 17,10 17,9.447 16.952,9 16.4,9 Z m 0,5 H 8.6 C 8.048,14 8,14.447 8,15 c 0,0.553 0.048,1 0.6,1 h 7.8 c 0.552,0 0.6,-0.447 0.6,-1 0,-0.553 -0.048,-1 -0.6,-1 z M 8.6,6 h 7.8 C 16.952,6 17,5.553 17,5 17,4.447 16.952,4 16.4,4 H 8.6 C 8.048,4 8,4.447 8,5 8,5.553 8.048,6 8.6,6 Z M 5.4,9 H 3.6 C 3.048,9 3,9.447 3,10 c 0,0.553 0.048,1 0.6,1 H 5.4 C 5.952,11 6,10.553 6,10 6,9.447 5.952,9 5.4,9 Z m 0,5 H 3.6 C 3.048,14 3,14.447 3,15 c 0,0.553 0.048,1 0.6,1 H 5.4 C 5.952,16 6,15.553 6,15 6,14.447 5.952,14 5.4,14 Z M 5.4,4 H 3.6 C 3.048,4 3,4.447 3,5 3,5.553 3.048,6 3.6,6 H 5.4 C 5.952,6 6,5.553 6,5 6,4.447 5.952,4 5.4,4 Z" />
+                                                    </Canvas>
+                                                </Viewbox>
+                                                <TextBlock Text="{x:Static p:Resources.Menu_MenuItem_Label_GoToConnections}" />
+                                            </StackPanel>
+                                        </Button>
+                                        <Button Grid.Column="1" cal:Message.Attach="GoToAddConnection">
+                                            <Viewbox Margin="0">
                                                 <Canvas>
-                                                    <Path Data="M14.4,9H8.6C8.048,9,8,9.447,8,10s0.048,1,0.6,1H14.4c0.552,0,0.6-0.447,0.6-1S14.952,9,14.4,9z M16.4,14H8.6  C8.048,14,8,14.447,8,15s0.048,1,0.6,1H16.4c0.552,0,0.6-0.447,0.6-1S16.952,14,16.4,14z M8.6,6H16.4C16.952,6,17,5.553,17,5  s-0.048-1-0.6-1H8.6C8.048,4,8,4.447,8,5S8.048,6,8.6,6z M5.4,9H3.6C3.048,9,3,9.447,3,10s0.048,1,0.6,1H5.4C5.952,11,6,10.553,6,10  S5.952,9,5.4,9z M5.4,14H3.6C3.048,14,3,14.447,3,15s0.048,1,0.6,1H5.4C5.952,16,6,15.553,6,15S5.952,14,5.4,14z M5.4,4H3.6  C3.048,4,3,4.447,3,5s0.048,1,0.6,1H5.4C5.952,6,6,5.553,6,5S5.952,4,5.4,4z" />
+                                                    <Path Data="M 5.4,4 H 3.6 C 3.048,4 3,4.447 3,5 3,5.553 3.048,6 3.6,6 H 5.4 C 5.952,6 6,5.553 6,5 6,4.447 5.952,4 5.4,4 Z m 0,10 H 3.6 C 3.048,14 3,14.447 3,15 c 0,0.553 0.048,1 0.6,1 H 5.4 C 5.952,16 6,15.553 6,15 6,14.447 5.952,14 5.4,14 Z m 0,-5 H 3.6 C 3.048,9 3,9.447 3,10 c 0,0.553 0.048,1 0.6,1 H 5.4 C 5.952,11 6,10.553 6,10 6,9.447 5.952,9 5.4,9 Z m 11.8,3e-7 h -3.4 v -3.4 c 0,-0.6 -0.4,-0.6 -1,-0.6 -0.6,0 -0.982361,2.593e-4 -1,0.6 v 3.4 H 8.4 c -0.6,0 -0.6,0.4 -0.6,0.9999997 0,0.6 0,1 0.6,1 h 3.4 v 3.4 c 0,0.6 0.4,0.6 1,0.6 0.6,0 1.017639,-2.59e-4 1,-0.6 V 11 h 3.4 c 0.6,0 0.6,-0.4 0.6,-1 0,-0.5999997 0,-0.9999997 -0.6,-0.9999997 z" />
                                                 </Canvas>
                                             </Viewbox>
-                                            <TextBlock Text="{x:Static p:Resources.Menu_MenuItem_Label_GoToConnections}" />
-                                        </StackPanel>
-                                    </Button>
-                                    <Button Grid.Column="1" cal:Message.Attach="GoToAddConnection">
-                                        <StackPanel>
-                                            <Viewbox>
-                                                <Canvas>
-                                                    <Path Data="M19.4,9H16V5.6C16,5,15.6,5,15,5s-1,0-1,0.6V9h-3.4C10,9,10,9.4,10,10s0,1,0.6,1H14v3.4c0,0.6,0.4,0.6,1,0.6s1,0,1-0.6V11  h3.4c0.6,0,0.6-0.4,0.6-1S20,9,19.4,9z M7.4,9H0.6C0,9,0,9.4,0,10s0,1,0.6,1h6.8C8,11,8,10.6,8,10S8,9,7.4,9z M7.4,14H0.6  C0,14,0,14.4,0,15s0,1,0.6,1h6.8C8,16,8,15.6,8,15S8,14,7.4,14z M7.4,4H0.6C0,4,0,4.4,0,5s0,1,0.6,1h6.8C8,6,8,5.6,8,5S8,4,7.4,4z" />
-                                                </Canvas>
-                                            </Viewbox>
-                                            <TextBlock Text="{x:Static p:Resources.Menu_MenuItem_Label_GoToAddConnection}" />
-                                        </StackPanel>
-                                    </Button>
+                                        </Button>
+                                    </Grid>
+
                                 </Grid>
-                                <ContentControl
-                                    cal:View.Context="Bricks"
-                                    cal:View.Model="{Binding ConnectionsList, Mode=OneTime}"
-                                    Focusable="False" />
                                 <Separator />
                                 <Button cal:Message.Attach="GoToSettings">
                                     <StackPanel>

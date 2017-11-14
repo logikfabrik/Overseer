@@ -17,16 +17,10 @@
             x:Name="View"
             HorizontalContentAlignment="Stretch"
             VerticalContentAlignment="Stretch"
+            Effect="{StaticResource DropShadowEffect}"
             IsEnabled="{Binding IsViewable}">
-            <Button.Effect>
-                <DropShadowEffect
-                    BlurRadius="3"
-                    Opacity="0.1"
-                    ShadowDepth="3"
-                    Color="{StaticResource Effect.Shadow}" />
-            </Button.Effect>
             <StackPanel>
-                <Border Style="{DynamicResource Project.Header.Panel}">
+                <Border Style="{StaticResource Project.Header.Panel}">
                     <TextBlock>
                         <Run Text="{Binding Name, Mode=OneWay}" />
                         <Run Text="{Binding Id, Mode=OneWay, StringFormat=({0})}" />

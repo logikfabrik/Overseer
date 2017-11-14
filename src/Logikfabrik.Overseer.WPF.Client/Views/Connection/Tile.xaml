@@ -13,18 +13,11 @@
     d:DataContext="{d:DesignInstance d:Type=vm:ConnectionViewModel,
                                      d:IsDesignTimeCreatable=True}"
     mc:Ignorable="d">
-    <Grid IsEnabled="{Binding IsEditable}">
+    <Grid Effect="{StaticResource DropShadowEffect}" IsEnabled="{Binding IsEditable}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
-        <Grid.Effect>
-            <DropShadowEffect
-                BlurRadius="3"
-                Opacity="0.1"
-                ShadowDepth="3"
-                Color="{StaticResource Effect.Shadow}" />
-        </Grid.Effect>
         <Button
             x:Name="View"
             Grid.ColumnSpan="2"

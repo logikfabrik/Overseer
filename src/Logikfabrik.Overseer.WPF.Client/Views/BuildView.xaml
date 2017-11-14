@@ -14,14 +14,7 @@
     <StackPanel>
 
 
-        <Border Background="{StaticResource Button.Static.Background}">
-            <Border.Effect>
-                <DropShadowEffect
-                    BlurRadius="3"
-                    Opacity="0.1"
-                    ShadowDepth="3"
-                    Color="{StaticResource Effect.Shadow}" />
-            </Border.Effect>
+        <Border Background="{StaticResource Button.Static.Background}" Effect="{StaticResource DropShadowEffect}">
             <ContentControl
                 cal:View.Context="Base"
                 cal:View.Model="{Binding}"

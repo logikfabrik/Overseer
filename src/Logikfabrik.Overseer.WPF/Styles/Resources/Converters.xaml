@@ -6,7 +6,7 @@
 
     <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
 
-    <!-- TODO: Move to Logikfabrik.Overseer.WPF.Client or remove/rework?  -->
+    <!--  TODO: Move to Logikfabrik.Overseer.WPF.Client or remove/rework?  -->
     <c:BuildStatusToStyleConverter x:Key="BuildStatusToStyleConverter" />
 
     <x:Array x:Key="StatusFaulted" Type="{x:Type s:TaskStatus}">

@@ -18,6 +18,7 @@
         R="34" />
 
     <Color x:Key="Color.Yellow">#E1FF57</Color>
+
     <Color x:Key="Color.Black">#222222</Color>
 
     <Color x:Key="Color.LightGrey">#7E7E7E</Color>

@@ -196,9 +196,6 @@ Please try again.</value>
   <data name="Menu_MenuItem_Label_GoToAbout" xml:space="preserve">
     <value>About</value>
   </data>
-  <data name="Menu_MenuItem_Label_GoToAddConnection" xml:space="preserve">
-    <value>Add</value>
-  </data>
   <data name="Menu_MenuItem_Label_GoToConnections" xml:space="preserve">
     <value>Connections</value>
   </data>

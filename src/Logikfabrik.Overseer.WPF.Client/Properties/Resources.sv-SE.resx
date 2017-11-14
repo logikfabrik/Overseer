@@ -196,9 +196,6 @@ Vänligen försök igen.</value>
   <data name="Menu_MenuItem_Label_GoToAbout" xml:space="preserve">
     <value>Om</value>
   </data>
-  <data name="Menu_MenuItem_Label_GoToAddConnection" xml:space="preserve">
-    <value>Lägg till</value>
-  </data>
   <data name="Menu_MenuItem_Label_GoToConnections" xml:space="preserve">
     <value>Anslutningar</value>
   </data>

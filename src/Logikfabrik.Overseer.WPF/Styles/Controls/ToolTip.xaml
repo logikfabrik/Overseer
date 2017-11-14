@@ -14,14 +14,8 @@
                         Margin="10"
                         Background="{TemplateBinding Background}"
                         BorderBrush="{TemplateBinding BorderBrush}"
-                        BorderThickness="{TemplateBinding BorderThickness}">
-                        <Border.Effect>
-                            <DropShadowEffect
-                                BlurRadius="3"
-                                Opacity="0.1"
-                                ShadowDepth="3"
-                                Color="{StaticResource Effect.Shadow}" />
-                        </Border.Effect>
+                        BorderThickness="{TemplateBinding BorderThickness}"
+                        Effect="{StaticResource DropShadowEffect}">
                         <ContentPresenter x:Name="PART_ContentPresenter" />
                     </Border>
                 </ControlTemplate>

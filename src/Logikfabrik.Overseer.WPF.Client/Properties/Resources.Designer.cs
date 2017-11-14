@@ -296,15 +296,6 @@ namespace Logikfabrik.Overseer.WPF.Client.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Add.
-        /// </summary>
-        public static string Menu_MenuItem_Label_GoToAddConnection {
-            get {
-                return ResourceManager.GetString("Menu_MenuItem_Label_GoToAddConnection", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Connections.
         /// </summary>
         public static string Menu_MenuItem_Label_GoToConnections {
