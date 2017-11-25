@@ -1,6 +1,6 @@
 environment:
   sonar_login:
-    secure: wA8dX4gVDmyoUNjC+y37ygfPAekg/EyWs7Z7SkRp8vDr1Vv7oBB9R6nif4yzRza4
+    secure: GRQOT/Rl3Xn8lskpEWsQuc0ejmh1Xi0CP2BZ7tWi2eo8p8XgVfekFdbYMRz4QVZJ
 version: 0.0.1.{build}
 skip_tags: true
 skip_commits:
