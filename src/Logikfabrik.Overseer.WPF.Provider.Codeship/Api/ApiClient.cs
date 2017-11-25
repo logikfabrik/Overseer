@@ -6,6 +6,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.Codeship.Api
 {
     using System;
     using System.Collections.Generic;
+    using System.Net;
     using System.Net.Http;
     using System.Net.Http.Headers;
     using System.Text;
@@ -20,6 +21,8 @@ namespace Logikfabrik.Overseer.WPF.Provider.Codeship.Api
     /// </summary>
     public class ApiClient : IApiClient, IDisposable
     {
+        private readonly string _username;
+        private readonly string _password;
         private Lazy<HttpClient> _httpClient;
         private bool _isDisposed;
 
@@ -31,7 +34,28 @@ namespace Logikfabrik.Overseer.WPF.Provider.Codeship.Api
         {
             Ensure.That(settings).IsNotNull();
 
+            _username = settings.Username;
+            _password = settings.Password;
+
             _httpClient = new Lazy<HttpClient>(() => GetHttpClient(UriUtility.BaseUri));
+        }
+
+        /// <summary>
+        /// Gets the organizations.
+        /// </summary>
+        /// <param name="cancellationToken">A cancellation token.</param>
+        /// <returns>A task.</returns>
+        public async Task<IEnumerable<Organization>> GetOrganizationsAsync(CancellationToken cancellationToken)
+        {
+            this.ThrowIfDisposed(_isDisposed);
+
+            cancellationToken.ThrowIfCancellationRequested();
+
+            var accessToken = await GetAccessToken(_httpClient.Value, _username, _password, cancellationToken).ConfigureAwait(false);
+
+            _httpClient.Value.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", accessToken.Token);
+
+            return accessToken.Organizations;
         }
 
         /// <summary>
@@ -42,23 +66,36 @@ namespace Logikfabrik.Overseer.WPF.Provider.Codeship.Api
         /// <param name="page">The current page.</param>
         /// <param name="cancellationToken">A cancellation token.</param>
         /// <returns>A task.</returns>
-        public async Task<IEnumerable<Project>> GetProjectsAsync(string organizationId, int perPage, int page, CancellationToken cancellationToken)
+        public async Task<Projects> GetProjectsAsync(Guid organizationId, int perPage, int page, CancellationToken cancellationToken)
         {
             this.ThrowIfDisposed(_isDisposed);
 
-            Ensure.That(organizationId).IsNotNullOrWhiteSpace();
+            Ensure.That(organizationId).IsNotEmpty();
             Ensure.That(perPage).IsInRange(0, 50);
-            Ensure.That(page).IsInRange(0, int.MaxValue);
+            Ensure.That(page).IsInRange(1, int.MaxValue);
 
             cancellationToken.ThrowIfCancellationRequested();
 
             var url = $"organizations/{organizationId}/projects?per_page={perPage}&page={page}";
 
+            if (!HasAccessToken(_httpClient.Value))
+            {
+                await SetAccessToken(_httpClient.Value, _username, _password, cancellationToken).ConfigureAwait(false);
+            }
+
             using (var response = await _httpClient.Value.GetAsync(url, cancellationToken).ConfigureAwait(false))
             {
+                if (response.StatusCode == HttpStatusCode.Unauthorized)
+                {
+                    await SetAccessToken(_httpClient.Value, _username, _password, cancellationToken).ConfigureAwait(false);
+
+                    // TODO: Handle infinite loops.
+                    return await GetProjectsAsync(organizationId, perPage, page, cancellationToken).ConfigureAwait(false);
+                }
+
                 response.ThrowIfUnsuccessful();
 
-                return await response.Content.ReadAsAsync<IEnumerable<Project>>(cancellationToken).ConfigureAwait(false);
+                return await response.Content.ReadAsAsync<Projects>(cancellationToken).ConfigureAwait(false);
             }
         }
 
@@ -71,24 +108,37 @@ namespace Logikfabrik.Overseer.WPF.Provider.Codeship.Api
         /// <param name="page">The current page.</param>
         /// <param name="cancellationToken">A cancellation token.</param>
         /// <returns>A task.</returns>
-        public async Task<IEnumerable<Build>> GetBuildsAsync(string organizationId, string projectId, int perPage, int page, CancellationToken cancellationToken)
+        public async Task<Builds> GetBuildsAsync(Guid organizationId, Guid projectId, int perPage, int page, CancellationToken cancellationToken)
         {
             this.ThrowIfDisposed(_isDisposed);
 
-            Ensure.That(organizationId).IsNotNullOrWhiteSpace();
-            Ensure.That(projectId).IsNotNullOrWhiteSpace();
+            Ensure.That(organizationId).IsNotEmpty();
+            Ensure.That(projectId).IsNotEmpty();
             Ensure.That(perPage).IsInRange(0, 50);
-            Ensure.That(page).IsInRange(0, int.MaxValue);
+            Ensure.That(page).IsInRange(1, int.MaxValue);
 
             cancellationToken.ThrowIfCancellationRequested();
 
             var url = $"organizations/{organizationId}/projects/{projectId}/builds?per_page={perPage}&page={page}";
 
+            if (!HasAccessToken(_httpClient.Value))
+            {
+                await SetAccessToken(_httpClient.Value, _username, _password, cancellationToken).ConfigureAwait(false);
+            }
+
             using (var response = await _httpClient.Value.GetAsync(url, cancellationToken).ConfigureAwait(false))
             {
+                if (response.StatusCode == HttpStatusCode.Unauthorized)
+                {
+                    await SetAccessToken(_httpClient.Value, _username, _password, cancellationToken).ConfigureAwait(false);
+
+                    // TODO: Handle infinite loops.
+                    return await GetBuildsAsync(organizationId, projectId, perPage, page, cancellationToken).ConfigureAwait(false);
+                }
+
                 response.ThrowIfUnsuccessful();
 
-                return await response.Content.ReadAsAsync<IEnumerable<Build>>(cancellationToken).ConfigureAwait(false);
+                return await response.Content.ReadAsAsync<Builds>(cancellationToken).ConfigureAwait(false);
             }
         }
 
@@ -128,7 +178,26 @@ namespace Logikfabrik.Overseer.WPF.Provider.Codeship.Api
             _isDisposed = true;
         }
 
-        private async Task SetAccessToken(string username, string password, CancellationToken cancellationToken)
+        private static void SetDefaultRequestHeaders(HttpClient client)
+        {
+            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+        }
+
+        private static bool HasAccessToken(HttpClient client)
+        {
+            return client.DefaultRequestHeaders.Authorization != null;
+        }
+
+        private static async Task SetAccessToken(HttpClient client, string username, string password, CancellationToken cancellationToken)
+        {
+            cancellationToken.ThrowIfCancellationRequested();
+
+            var accessToken = await GetAccessToken(client, username, password, cancellationToken).ConfigureAwait(false);
+
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", accessToken.Token);
+        }
+
+        private static async Task<AccessToken> GetAccessToken(HttpClient httpClient, string username, string password, CancellationToken cancellationToken)
         {
             cancellationToken.ThrowIfCancellationRequested();
 
@@ -140,13 +209,13 @@ namespace Logikfabrik.Overseer.WPF.Provider.Codeship.Api
 
             request.Headers.Authorization = new AuthenticationHeaderValue("Basic", credentials);
 
-            using (var response = await _httpClient.Value.SendAsync(request, cancellationToken).ConfigureAwait(false))
+            httpClient.DefaultRequestHeaders.Authorization = null;
+
+            using (var response = await httpClient.SendAsync(request, cancellationToken).ConfigureAwait(false))
             {
                 response.ThrowIfUnsuccessful();
 
-                var accessToken = await response.Content.ReadAsAsync<AccessToken>(cancellationToken).ConfigureAwait(false);
-
-                _httpClient.Value.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", accessToken.Token);
+                return await response.Content.ReadAsAsync<AccessToken>(cancellationToken).ConfigureAwait(false);
             }
         }
 
@@ -157,11 +226,6 @@ namespace Logikfabrik.Overseer.WPF.Provider.Codeship.Api
             SetDefaultRequestHeaders(client);
 
             return client;
-        }
-
-        private static void SetDefaultRequestHeaders(HttpClient client)
-        {
-            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
         }
     }
 }

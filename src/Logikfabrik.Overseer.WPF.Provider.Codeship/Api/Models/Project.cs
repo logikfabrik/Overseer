@@ -47,5 +47,31 @@ namespace Logikfabrik.Overseer.WPF.Provider.Codeship.Api.Models
         /// </value>
         [JsonProperty(PropertyName = "name")]
         public string Name { get; set; }
+
+        /// <summary>
+        /// Gets or sets the type.
+        /// </summary>
+        /// <value>
+        /// The type.
+        /// </value>
+        public string Type { get; set; }
+
+        /// <summary>
+        /// Gets or sets the created at time.
+        /// </summary>
+        /// <value>
+        /// The created at time.
+        /// </value>
+        [JsonProperty(PropertyName = "created_at")]
+        public DateTime CreatedAt { get; set; }
+
+        /// <summary>
+        /// Gets or sets the updated at time.
+        /// </summary>
+        /// <value>
+        /// The updated at time.
+        /// </value>
+        [JsonProperty(PropertyName = "updated_at")]
+        public DateTime UpdatedAt { get; set; }
     }
 }

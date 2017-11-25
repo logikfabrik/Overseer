@@ -4,6 +4,7 @@
 
 namespace Logikfabrik.Overseer.WPF.Provider.Codeship.Api
 {
+    using System;
     using System.Collections.Generic;
     using System.Threading;
     using System.Threading.Tasks;
@@ -14,6 +15,13 @@ namespace Logikfabrik.Overseer.WPF.Provider.Codeship.Api
     public interface IApiClient
     {
         /// <summary>
+        /// Gets the organizations.
+        /// </summary>
+        /// <param name="cancellationToken">A cancellation token.</param>
+        /// <returns>A task.</returns>
+        Task<IEnumerable<Models.Organization>> GetOrganizationsAsync(CancellationToken cancellationToken);
+
+        /// <summary>
         /// Gets the projects.
         /// </summary>
         /// <param name="organizationId">The organization identifier.</param>
@@ -21,7 +29,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.Codeship.Api
         /// <param name="page">The current page.</param>
         /// <param name="cancellationToken">A cancellation token.</param>
         /// <returns>A task.</returns>
-        Task<IEnumerable<Models.Project>> GetProjectsAsync(string organizationId, int perPage, int page, CancellationToken cancellationToken);
+        Task<Models.Projects> GetProjectsAsync(Guid organizationId, int perPage, int page, CancellationToken cancellationToken);
 
         /// <summary>
         /// Gets the builds.
@@ -32,6 +40,6 @@ namespace Logikfabrik.Overseer.WPF.Provider.Codeship.Api
         /// <param name="page">The current page.</param>
         /// <param name="cancellationToken">A cancellation token.</param>
         /// <returns>A task.</returns>
-        Task<IEnumerable<Models.Build>> GetBuildsAsync(string organizationId, string projectId, int perPage, int page, CancellationToken cancellationToken);
+        Task<Models.Builds> GetBuildsAsync(Guid organizationId, Guid projectId, int perPage, int page, CancellationToken cancellationToken);
     }
 }
