@@ -5,7 +5,6 @@
 namespace Logikfabrik.Overseer.WPF.Client
 {
     using System;
-    using System.Windows;
     using EnsureThat;
     using Overseer.Logging;
 

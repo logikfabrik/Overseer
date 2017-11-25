@@ -38,12 +38,20 @@ namespace Logikfabrik.Overseer.WPF.ViewModels.DesignTime
         public ICollectionView OrderedBuilds { get; } = new CollectionView(new[] { new BuildViewModel(), new BuildViewModel(), new BuildViewModel() });
 
         /// <summary>
-        /// Gets the latest build.
+        /// Gets the latest in progress or finished build.
         /// </summary>
         /// <value>
-        /// The latest build.
+        /// The latest in progress or finished build.
         /// </value>
         public IBuildViewModel LatestBuild => new BuildViewModel();
+
+        /// <summary>
+        /// Gets the number of queued builds.
+        /// </summary>
+        /// <value>
+        /// The number of queued builds.
+        /// </value>
+        public int QueuedBuilds => 3;
 
         /// <summary>
         /// Gets a value indicating whether this instance has builds.

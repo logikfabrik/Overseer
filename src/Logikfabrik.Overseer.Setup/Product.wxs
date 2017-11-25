@@ -294,6 +294,22 @@
               KeyPath="yes" />
       </Component>
 
+      <Component Id="cmpEF0CA477EE724C3EB6F7D535205664FC"
+                 Guid="EF0CA477-EE72-4C3E-B6F7-D535205664FC"
+                 Directory="dir3EF976885ADC44579DBE3C2EE8B49489">
+        <File Id="filDAE15047C3CD43AD93E4C046A3F39F06"
+              Source="$(var.Logikfabrik.Overseer.WPF.Client.TargetDir)en-US\Logikfabrik.Overseer.WPF.Provider.Codeship.resources.dll"
+              KeyPath="yes" />
+      </Component>
+
+      <Component Id="cmp5C5DC0F7006B426882D60EA1711FDBE6"
+                 Guid="5C5DC0F7-006B-4268-82D6-0EA1711FDBE6"
+                 Directory="dirAB1506D5F38C44EB96FB28C4C896C3F1">
+        <File Id="fil875DC7FD411C4CBFA95C292DEAC55AAE"
+              Source="$(var.Logikfabrik.Overseer.WPF.Client.TargetDir)sv-SE\Logikfabrik.Overseer.WPF.Provider.Codeship.resources.dll"
+              KeyPath="yes" />
+      </Component>
+
       <Component Id="cmp480792B488E74B8D95360C15DE017376"
                  Guid="480792B4-88E7-4B8D-9536-0C15DE017376"
                  Directory="INSTALLFOLDER">

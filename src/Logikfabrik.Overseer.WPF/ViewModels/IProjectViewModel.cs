@@ -36,12 +36,20 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         ICollectionView OrderedBuilds { get; }
 
         /// <summary>
-        /// Gets the latest build.
+        /// Gets the latest in progress or finished build.
         /// </summary>
         /// <value>
-        /// The latest build.
+        /// The latest in progress or finished build.
         /// </value>
         IBuildViewModel LatestBuild { get; }
+
+        /// <summary>
+        /// Gets the number of queued builds.
+        /// </summary>
+        /// <value>
+        /// The number of queued builds.
+        /// </value>
+        int QueuedBuilds { get; }
 
         /// <summary>
         /// Gets a value indicating whether this instance has builds.

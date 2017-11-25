@@ -33,6 +33,10 @@
                         cal:View.Model="{Binding LatestBuild, Mode=OneWay}"
                         Focusable="False" />
                 </StackPanel>
+                <StackPanel Style="{StaticResource Project.Build.Panel}">
+                    <TextBlock Text="Queued:"></TextBlock>
+                    <TextBlock Text="{Binding QueuedBuilds, Mode=OneWay}"></TextBlock>
+                </StackPanel>
             </StackPanel>
         </Button>
         <uc:ProgressControl

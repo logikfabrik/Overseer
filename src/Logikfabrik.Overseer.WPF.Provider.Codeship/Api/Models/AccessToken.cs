@@ -4,7 +4,6 @@
 
 namespace Logikfabrik.Overseer.WPF.Provider.Codeship.Api.Models
 {
-    using System;
     using System.Collections.Generic;
     using Newtonsoft.Json;
 
@@ -21,15 +20,6 @@ namespace Logikfabrik.Overseer.WPF.Provider.Codeship.Api.Models
         /// </value>
         [JsonProperty(PropertyName = "access_token")]
         public string Token { get; set; }
-
-        /// <summary>
-        /// Gets or sets the expiration date.
-        /// </summary>
-        /// <value>
-        /// The expiration date.
-        /// </value>
-        [JsonProperty(PropertyName = "expires_at")]
-        public DateTime ExpiresAt { get; set; }
 
         /// <summary>
         /// Gets or sets the organizations.

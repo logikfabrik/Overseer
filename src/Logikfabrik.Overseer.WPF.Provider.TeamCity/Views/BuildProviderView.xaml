@@ -17,7 +17,7 @@
                     </Path.Data>
                 </Path>
             </Viewbox>
-            <TextBlock Text="TeamCity" />
+            <TextBlock Text="{Binding ProviderName, Mode=OneTime}" />
         </Grid>
     </Button>
 </UserControl>

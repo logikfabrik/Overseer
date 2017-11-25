@@ -18,7 +18,7 @@
                     </Path.Data>
                 </Path>
             </Viewbox>
-            <TextBlock Text="CircleCI" />
+            <TextBlock Text="{Binding ProviderName, Mode=OneTime}" />
         </Grid>
     </Button>
 </UserControl>

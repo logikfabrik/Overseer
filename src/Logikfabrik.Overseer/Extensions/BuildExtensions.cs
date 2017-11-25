@@ -12,6 +12,16 @@ namespace Logikfabrik.Overseer.Extensions
     public static class BuildExtensions
     {
         /// <summary>
+        /// Gets whether the specified <see cref="IBuild" /> is in progress or finished.
+        /// </summary>
+        /// <param name="build">The build.</param>
+        /// <returns><c>true</c> if in progress or finished; otherwise, <c>false</c>.</returns>
+        public static bool IsInProgressOrFinished(this IBuild build)
+        {
+            return build.Status.IsInProgressOrFinished();
+        }
+
+        /// <summary>
         /// Gets whether the specified <see cref="IBuild" /> is finished.
         /// </summary>
         /// <param name="build">The build.</param>
