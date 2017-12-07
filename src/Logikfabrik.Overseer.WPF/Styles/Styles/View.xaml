@@ -18,15 +18,6 @@
     </Style>
 
     <Style
-        x:Key="TrackedProjectsView"
-        BasedOn="{StaticResource {x:Type UserControl}}"
-        TargetType="{x:Type UserControl}">
-        <Style.Resources />
-
-
-    </Style>
-
-    <Style
         x:Key="BuildProviderView"
         BasedOn="{StaticResource {x:Type UserControl}}"
         TargetType="{x:Type UserControl}">
@@ -59,9 +50,13 @@
         <Setter Property="Height" Value="200" />
     </Style>
 
-    <!--  Build  -->
 
-    <Style x:Key="Build.Header.Panel" TargetType="{x:Type Border}">
+
+    <!--  BEGIN Build.Base  -->
+
+    <!--  BEGIN Build.Base.Header  -->
+
+    <Style x:Key="Build.Base.Header.Panel" TargetType="{x:Type Border}">
         <Style.Resources>
             <Style BasedOn="{StaticResource {x:Type TextBlock}}" TargetType="{x:Type TextBlock}">
                 <Setter Property="FontSize" Value="18" />
@@ -69,7 +64,15 @@
         </Style.Resources>
     </Style>
 
-    <!--  Project  -->
+    <!--  END Build.Base.Header  -->
+
+    <!--  END Build.Base  -->
+
+
+
+    <!--  BEGIN Project.Tile  -->
+
+    <!--  BEGIN Project.Tile.Header  -->
 
     <Style x:Key="Project.Tile.Header.Panel" TargetType="{x:Type Border}">
         <Style.Resources>
@@ -78,6 +81,10 @@
             </Style>
         </Style.Resources>
     </Style>
+
+    <!--  END Project.Tile.Header  -->
+
+    <!--  BEGIN Project.Tile.LatestBuild  -->
 
     <Style x:Key="Project.Tile.LatestBuild.Panel" TargetType="{x:Type StackPanel}" />
 
@@ -89,6 +96,10 @@
         <Setter Property="TextWrapping" Value="Wrap" />
     </Style>
 
+    <!--  END Project.Tile.LatestBuild  -->
+
+    <!--  BEGIN Project.Tile.QueuedBuilds  -->
+
     <Style x:Key="Project.Tile.QueuedBuilds.Panel" TargetType="{x:Type StackPanel}" />
 
     <Style
@@ -99,9 +110,15 @@
         <Setter Property="TextWrapping" Value="Wrap" />
     </Style>
 
+    <!--  END Project.Tile.QueuedBuilds  -->
+
+    <!--  END Project.Tile  -->
 
 
 
+    <!--  BEGIN Common  -->
+
+    <!--  BEGIN Common.Filter  -->
 
     <Style
         x:Key="Common.Filter"
@@ -111,12 +128,18 @@
         <Setter Property="BorderThickness" Value="0,5,0,0" />
     </Style>
 
+    <!--  END Common.Filter  -->
+
+    <!--  BEGIN Common.ContextMenu  -->
+
     <Style x:Key="Common.ContextMenu" TargetType="{x:Type Border}">
         <Setter Property="BorderBrush" Value="{StaticResource Brush.LightGrey}" />
         <Setter Property="BorderThickness" Value="0,2,0,0" />
     </Style>
 
-    <!--  Common.Footer  -->
+    <!--  END Common.ContextMenu  -->
+
+    <!--  BEGIN Common.Footer  -->
 
     <Style x:Key="Common.Footer" TargetType="{x:Type WrapPanel}">
         <Style.Resources>
@@ -128,7 +151,9 @@
         <Setter Property="Orientation" Value="Horizontal" />
     </Style>
 
-    <!--  Common.Header  -->
+    <!--  END Common.Footer  -->
+
+    <!--  BEGIN Common.Header  -->
 
     <Style x:Key="Common.Header.Panel" TargetType="{x:Type Border}">
         <Style.Resources>
@@ -141,7 +166,9 @@
         <Setter Property="Padding" Value="10" />
     </Style>
 
-    <!--  Common.Section  -->
+    <!--  END Common.Header  -->
+
+    <!--  BEGIN Common.Section  -->
 
     <Style x:Key="Common.Section.Panel" TargetType="{x:Type StackPanel}">
         <Style.Resources>
@@ -160,7 +187,9 @@
         <Setter Property="TextWrapping" Value="Wrap" />
     </Style>
 
-    <!--  Common.Setting  -->
+    <!--  END Common.Section  -->
+
+    <!--  BEGIN Common.Setting  -->
 
     <Style x:Key="Common.Setting.Panel" TargetType="{x:Type StackPanel}">
         <Setter Property="Margin" Value="10" />
@@ -190,5 +219,9 @@
         <Setter Property="Margin" Value="5,-5,5,5" />
         <Setter Property="TextWrapping" Value="Wrap" />
     </Style>
+
+    <!--  END Common.Setting  -->
+
+    <!--  END Common  -->
 
 </ResourceDictionary>
