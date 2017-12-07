@@ -217,13 +217,13 @@ Please try again.</value>
   <data name="PassPhrase_View" xml:space="preserve">
     <value>Pass phrase</value>
   </data>
-  <data name="Project_Label_LatestBuild" xml:space="preserve">
+  <data name="Project_Tile_Label_LatestBuild" xml:space="preserve">
     <value>Latest build</value>
   </data>
-  <data name="Project_Label_QueuedBuilds" xml:space="preserve">
+  <data name="Project_Tile_Label_QueuedBuilds" xml:space="preserve">
     <value>Queued builds</value>
   </data>
-  <data name="Project_Message_NoBuilds" xml:space="preserve">
+  <data name="Project_Tile_Message_NoBuilds" xml:space="preserve">
     <value>There are no builds for this project</value>
   </data>
   <data name="RemoveConnection_Button_Cancel" xml:space="preserve">

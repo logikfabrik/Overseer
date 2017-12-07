@@ -71,7 +71,7 @@
 
     <!--  Project  -->
 
-    <Style x:Key="Project.Header.Panel" TargetType="{x:Type Border}">
+    <Style x:Key="Project.Tile.Header.Panel" TargetType="{x:Type Border}">
         <Style.Resources>
             <Style BasedOn="{StaticResource {x:Type TextBlock}}" TargetType="{x:Type TextBlock}">
                 <Setter Property="FontSize" Value="22" />
@@ -79,20 +79,20 @@
         </Style.Resources>
     </Style>
 
-    <Style x:Key="Project.LatestBuild.Panel" TargetType="{x:Type StackPanel}" />
+    <Style x:Key="Project.Tile.LatestBuild.Panel" TargetType="{x:Type StackPanel}" />
 
     <Style
-        x:Key="Project.LatestBuild.Header"
+        x:Key="Project.Tile.LatestBuild.Header"
         BasedOn="{StaticResource {x:Type TextBlock}}"
         TargetType="{x:Type TextBlock}">
         <Setter Property="FontWeight" Value="Bold" />
         <Setter Property="TextWrapping" Value="Wrap" />
     </Style>
 
-    <Style x:Key="Project.QueuedBuilds.Panel" TargetType="{x:Type StackPanel}" />
+    <Style x:Key="Project.Tile.QueuedBuilds.Panel" TargetType="{x:Type StackPanel}" />
 
     <Style
-        x:Key="Project.QueuedBuilds.Header"
+        x:Key="Project.Tile.QueuedBuilds.Header"
         BasedOn="{StaticResource {x:Type TextBlock}}"
         TargetType="{x:Type TextBlock}">
         <Setter Property="FontWeight" Value="Bold" />

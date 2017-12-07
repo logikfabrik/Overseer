@@ -217,13 +217,13 @@ Vänligen försök igen.</value>
   <data name="PassPhrase_View" xml:space="preserve">
     <value>Lösenordsfras</value>
   </data>
-  <data name="Project_Label_LatestBuild" xml:space="preserve">
+  <data name="Project_Tile_Label_LatestBuild" xml:space="preserve">
     <value>Senaste bygget</value>
   </data>
-  <data name="Project_Label_QueuedBuilds" xml:space="preserve">
+  <data name="Project_Tile_Label_QueuedBuilds" xml:space="preserve">
     <value>Köade byggen</value>
   </data>
-  <data name="Project_Message_NoBuilds" xml:space="preserve">
+  <data name="Project_Tile_Message_NoBuilds" xml:space="preserve">
     <value>Det finns inga byggen för detta projekt</value>
   </data>
   <data name="RemoveConnection_Button_Cancel" xml:space="preserve">

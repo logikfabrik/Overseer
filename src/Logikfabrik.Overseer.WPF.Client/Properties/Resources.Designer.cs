@@ -361,27 +361,27 @@ namespace Logikfabrik.Overseer.WPF.Client.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Latest build.
         /// </summary>
-        public static string Project_Label_LatestBuild {
+        public static string Project_Tile_Label_LatestBuild {
             get {
-                return ResourceManager.GetString("Project_Label_LatestBuild", resourceCulture);
+                return ResourceManager.GetString("Project_Tile_Label_LatestBuild", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Queued builds.
         /// </summary>
-        public static string Project_Label_QueuedBuilds {
+        public static string Project_Tile_Label_QueuedBuilds {
             get {
-                return ResourceManager.GetString("Project_Label_QueuedBuilds", resourceCulture);
+                return ResourceManager.GetString("Project_Tile_Label_QueuedBuilds", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to There are no builds for this project.
         /// </summary>
-        public static string Project_Message_NoBuilds {
+        public static string Project_Tile_Message_NoBuilds {
             get {
-                return ResourceManager.GetString("Project_Message_NoBuilds", resourceCulture);
+                return ResourceManager.GetString("Project_Tile_Message_NoBuilds", resourceCulture);
             }
         }
         

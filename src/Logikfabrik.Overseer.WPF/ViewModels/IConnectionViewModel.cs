@@ -85,17 +85,25 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         bool HasProjects { get; }
 
         /// <summary>
-        /// Edit the connection.
+        /// Gets a value indicating whether this instance has no projects.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if this instance has no projects; otherwise, <c>false</c>.
+        /// </value>
+        bool HasNoProjects { get; }
+
+        /// <summary>
+        /// Edits this instance.
         /// </summary>
         void Edit();
 
         /// <summary>
-        /// Remove the connection.
+        /// Removes this instance.
         /// </summary>
         void Remove();
 
         /// <summary>
-        /// View the connection.
+        /// Views this instance.
         /// </summary>
         void View();
     }

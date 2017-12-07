@@ -100,20 +100,10 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             FilteredProjects = _filteredProjects.View;
         }
 
-        /// <summary>
-        /// Gets the settings identifier.
-        /// </summary>
-        /// <value>
-        /// The settings identifier.
-        /// </value>
+        /// <inheritdoc/>
         public Guid SettingsId => Settings.Id;
 
-        /// <summary>
-        /// Gets or sets the settings name.
-        /// </summary>
-        /// <value>
-        /// The settings name.
-        /// </value>
+        /// <inheritdoc/>
         public string SettingsName
         {
             get
@@ -128,12 +118,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             }
         }
 
-        /// <summary>
-        /// Gets a value indicating whether this instance is busy.
-        /// </summary>
-        /// <value>
-        ///   <c>true</c> if this instance is busy; otherwise, <c>false</c>.
-        /// </value>
+        /// <inheritdoc/>
         public bool IsBusy
         {
             get
@@ -150,28 +135,13 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             }
         }
 
-        /// <summary>
-        /// Gets a value indicating whether this instance is viewable.
-        /// </summary>
-        /// <value>
-        ///   <c>true</c> if this instance is viewable; otherwise, <c>false</c>.
-        /// </value>
+        /// <inheritdoc/>
         public bool IsViewable => !IsErrored && !IsBusy && HasProjects;
 
-        /// <summary>
-        /// Gets a value indicating whether this instance is editable.
-        /// </summary>
-        /// <value>
-        ///   <c>true</c> if this instance is editable; otherwise, <c>false</c>.
-        /// </value>
+        /// <inheritdoc/>
         public bool IsEditable => IsErrored || !IsBusy;
 
-        /// <summary>
-        /// Gets a value indicating whether this instance is errored.
-        /// </summary>
-        /// <value>
-        ///   <c>true</c> if this instance is errored; otherwise, <c>false</c>.
-        /// </value>
+        /// <inheritdoc/>
         public bool IsErrored
         {
             get
@@ -188,20 +158,10 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             }
         }
 
-        /// <summary>
-        /// Gets the filtered projects.
-        /// </summary>
-        /// <value>
-        /// The filtered projects.
-        /// </value>
+        /// <inheritdoc/>
         public ICollectionView FilteredProjects { get; }
 
-        /// <summary>
-        /// Gets or sets the filter.
-        /// </summary>
-        /// <value>
-        /// The filter.
-        /// </value>
+        /// <inheritdoc/>
         public string Filter
         {
             get
@@ -220,13 +180,11 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             }
         }
 
-        /// <summary>
-        /// Gets a value indicating whether this instance has projects.
-        /// </summary>
-        /// <value>
-        ///   <c>true</c> if this instance has projects; otherwise, <c>false</c>.
-        /// </value>
-        public bool HasProjects => _projects.Any();
+        /// <inheritdoc/>
+        public bool HasProjects => !IsBusy && _projects.Any();
+
+        /// <inheritdoc/>
+        public bool HasNoProjects => !IsBusy && !_projects.Any();
 
         /// <summary>
         /// Gets the settings.
@@ -236,9 +194,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// </value>
         protected T Settings { get; }
 
-        /// <summary>
-        /// Edit the connection.
-        /// </summary>
+        /// <inheritdoc/>
         public void Edit()
         {
             var item = _editConnectionFactory.Create(Settings);
@@ -248,9 +204,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             _eventAggregator.PublishOnUIThread(message);
         }
 
-        /// <summary>
-        /// Remove the connection.
-        /// </summary>
+        /// <inheritdoc/>
         public void Remove()
         {
             var item = _removeConnectionFactory.Create(this);
@@ -260,9 +214,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             _eventAggregator.PublishOnUIThread(message);
         }
 
-        /// <summary>
-        /// View the connection.
-        /// </summary>
+        /// <inheritdoc/>
         public void View()
         {
             var message = new NavigationMessage(this);
@@ -333,6 +285,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             IsBusy = false;
 
             NotifyOfPropertyChange(() => HasProjects);
+            NotifyOfPropertyChange(() => HasNoProjects);
             NotifyOfPropertyChange(() => IsViewable);
         }
 

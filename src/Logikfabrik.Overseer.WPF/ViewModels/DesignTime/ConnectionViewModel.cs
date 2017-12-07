@@ -7,146 +7,71 @@ namespace Logikfabrik.Overseer.WPF.ViewModels.DesignTime
     using System;
     using System.ComponentModel;
     using System.Windows.Data;
-    using Caliburn.Micro;
 
     /// <summary>
     /// The <see cref="ConnectionViewModel" /> class.
     /// </summary>
     public class ConnectionViewModel : IConnectionViewModel
     {
-        public event EventHandler<ViewAttachedEventArgs> ViewAttached = (sender, e) => { };
-
-        /// <summary>
-        /// Gets the settings identifier.
-        /// </summary>
-        /// <value>
-        /// The settings identifier.
-        /// </value>
+        /// <inheritdoc/>
         public Guid SettingsId { get; } = Guid.NewGuid();
 
-        /// <summary>
-        /// Gets or sets the settings name.
-        /// </summary>
-        /// <value>
-        /// The settings name.
-        /// </value>
+        /// <inheritdoc/>
         public string SettingsName { get; set; } = "My Connection";
 
-        /// <summary>
-        /// Gets a value indicating whether this instance is busy.
-        /// </summary>
-        /// <value>
-        ///   <c>true</c> if this instance is busy; otherwise, <c>false</c>.
-        /// </value>
+        /// <inheritdoc/>
         public bool IsBusy { get; } = false;
 
-        /// <summary>
-        /// Gets a value indicating whether this instance is viewable.
-        /// </summary>
-        /// <value>
-        ///   <c>true</c> if this instance is viewable; otherwise, <c>false</c>.
-        /// </value>
+        /// <inheritdoc/>
         public bool IsViewable { get; } = true;
 
-        /// <summary>
-        /// Gets a value indicating whether this instance is editable.
-        /// </summary>
-        /// <value>
-        ///   <c>true</c> if this instance is editable; otherwise, <c>false</c>.
-        /// </value>
+        /// <inheritdoc/>
         public bool IsEditable { get; } = true;
 
-        /// <summary>
-        /// Gets a value indicating whether this instance is errored.
-        /// </summary>
-        /// <value>
-        ///   <c>true</c> if this instance is errored; otherwise, <c>false</c>.
-        /// </value>
+        /// <inheritdoc/>
         public bool IsErrored { get; } = false;
 
-        /// <summary>
-        /// Gets the filtered projects.
-        /// </summary>
-        /// <value>
-        /// The filtered projects.
-        /// </value>
+        /// <inheritdoc/>
         public ICollectionView FilteredProjects { get; } = new CollectionView(new[] { new ProjectViewModel(), new ProjectViewModel(), new ProjectViewModel() });
 
-        /// <summary>
-        /// Gets or sets the filter.
-        /// </summary>
-        /// <value>
-        /// The filter.
-        /// </value>
+        /// <inheritdoc/>
         public string Filter { get; set; }
 
-        /// <summary>
-        /// Gets a value indicating whether this instance has projects.
-        /// </summary>
-        /// <value>
-        ///   <c>true</c> if this instance has projects; otherwise, <c>false</c>.
-        /// </value>
+        /// <inheritdoc/>
         public bool HasProjects { get; } = true;
 
-        /// <summary>
-        /// Gets or sets the display name.
-        /// </summary>
-        /// <value>
-        /// The display name.
-        /// </value>
+        /// <inheritdoc/>
+        public bool HasNoProjects { get; } = false;
+
+        /// <inheritdoc/>
         public string DisplayName { get; set; }
 
-        /// <summary>
-        /// Gets or sets the parent.
-        /// </summary>
-        /// <value>
-        /// The parent.
-        /// </value>
+        /// <inheritdoc/>
         public object Parent { get; set; }
 
-        /// <summary>
-        /// Gets or sets a value indicating whether this instance should be kept alive on navigation.
-        /// </summary>
-        /// <value>
-        ///   <c>true</c> if this instance should be kept alive on navigation; otherwise, <c>false</c>.
-        /// </value>
+        /// <inheritdoc/>
         public bool KeepAlive { get; set; }
 
-        /// <summary>
-        /// Edits the connection.
-        /// </summary>
+        /// <inheritdoc/>
         public void Edit()
         {
-            // Method intentionally left empty.
+            throw new NotImplementedException();
         }
 
-        /// <summary>
-        /// Removes the connection.
-        /// </summary>
+        /// <inheritdoc />
         public void Remove()
         {
-            // Method intentionally left empty.
+            throw new NotImplementedException();
         }
 
-        /// <summary>
-        /// Views the connection.
-        /// </summary>
+        /// <inheritdoc />
         public void View()
         {
-            // Method intentionally left empty.
+            throw new NotImplementedException();
         }
 
-        public void AttachView(object view, object context = null)
-        {
-            // Method intentionally left empty.
-        }
-
+        /// <inheritdoc />
         public void TryClose(bool? dialogResult = null)
-        {
-            // Method intentionally left empty.
-        }
-
-        public object GetView(object context = null)
         {
             throw new NotImplementedException();
         }
