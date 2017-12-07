@@ -34,6 +34,15 @@
             <Style BasedOn="{StaticResource {x:Type Button}}" TargetType="{x:Type Button}">
                 <Style.Resources>
                     <Style TargetType="{x:Type Viewbox}">
+                        <Setter Property="Effect">
+                            <Setter.Value>
+                                <DropShadowEffect
+                                    BlurRadius="100"
+                                    Opacity=".4"
+                                    ShadowDepth="0"
+                                    Color="White" />
+                            </Setter.Value>
+                        </Setter>
                         <Setter Property="Width" Value="50" />
                         <Setter Property="Height" Value="50" />
                     </Style>
@@ -70,10 +79,20 @@
         </Style.Resources>
     </Style>
 
-    <Style x:Key="Project.Build.Panel" TargetType="{x:Type StackPanel}" />
+    <Style x:Key="Project.LatestBuild.Panel" TargetType="{x:Type StackPanel}" />
 
     <Style
-        x:Key="Project.Build.Header"
+        x:Key="Project.LatestBuild.Header"
+        BasedOn="{StaticResource {x:Type TextBlock}}"
+        TargetType="{x:Type TextBlock}">
+        <Setter Property="FontWeight" Value="Bold" />
+        <Setter Property="TextWrapping" Value="Wrap" />
+    </Style>
+
+    <Style x:Key="Project.QueuedBuilds.Panel" TargetType="{x:Type StackPanel}" />
+
+    <Style
+        x:Key="Project.QueuedBuilds.Header"
         BasedOn="{StaticResource {x:Type TextBlock}}"
         TargetType="{x:Type TextBlock}">
         <Setter Property="FontWeight" Value="Bold" />

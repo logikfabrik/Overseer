@@ -151,6 +151,9 @@ Vänligen försök igen.</value>
   <data name="ConnectionSettings_Setting_Label_TrackedProjects" xml:space="preserve">
     <value>Projekt</value>
   </data>
+  <data name="Connections_Message_NoConnections" xml:space="preserve">
+    <value>Det finns inga anslutningar</value>
+  </data>
   <data name="Connection_Button_Edit" xml:space="preserve">
     <value>Redigera</value>
   </data>
@@ -159,6 +162,9 @@ Vänligen försök igen.</value>
   </data>
   <data name="Connection_Button_Remove" xml:space="preserve">
     <value>Ta bort</value>
+  </data>
+  <data name="Connection_Message_NoProjects" xml:space="preserve">
+    <value>Det finns inga projekt för denna anslutning</value>
   </data>
   <data name="EditConnection_Button_Cancel" xml:space="preserve">
     <value>Avbryt</value>
@@ -210,6 +216,15 @@ Vänligen försök igen.</value>
   </data>
   <data name="PassPhrase_View" xml:space="preserve">
     <value>Lösenordsfras</value>
+  </data>
+  <data name="Project_Label_LatestBuild" xml:space="preserve">
+    <value>Senaste bygget</value>
+  </data>
+  <data name="Project_Label_QueuedBuilds" xml:space="preserve">
+    <value>Köade byggen</value>
+  </data>
+  <data name="Project_Message_NoBuilds" xml:space="preserve">
+    <value>Det finns inga byggen för detta projekt</value>
   </data>
   <data name="RemoveConnection_Button_Cancel" xml:space="preserve">
     <value>Avbryt</value>

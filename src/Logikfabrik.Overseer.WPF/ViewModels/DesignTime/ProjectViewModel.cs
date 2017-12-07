@@ -13,83 +13,49 @@ namespace Logikfabrik.Overseer.WPF.ViewModels.DesignTime
     /// </summary>
     public class ProjectViewModel : IProjectViewModel
     {
-        /// <summary>
-        /// Gets the identifier.
-        /// </summary>
-        /// <value>
-        /// The identifier.
-        /// </value>
+        /// <inheritdoc/>
         public string Id { get; } = "1234";
 
-        /// <summary>
-        /// Gets the name.
-        /// </summary>
-        /// <value>
-        /// The name.
-        /// </value>
+        /// <inheritdoc/>
         public string Name { get; } = "Overseer";
 
-        /// <summary>
-        /// Gets the ordered builds.
-        /// </summary>
-        /// <value>
-        /// The ordered builds.
-        /// </value>
+        /// <inheritdoc/>
         public ICollectionView OrderedBuilds { get; } = new CollectionView(new[] { new BuildViewModel(), new BuildViewModel(), new BuildViewModel() });
 
-        /// <summary>
-        /// Gets the latest in progress or finished build.
-        /// </summary>
-        /// <value>
-        /// The latest in progress or finished build.
-        /// </value>
+        /// <inheritdoc/>
         public IBuildViewModel LatestBuild => new BuildViewModel();
 
-        /// <summary>
-        /// Gets the number of queued builds.
-        /// </summary>
-        /// <value>
-        /// The number of queued builds.
-        /// </value>
+        /// <inheritdoc/>
         public int QueuedBuilds => 3;
 
-        /// <summary>
-        /// Gets a value indicating whether this instance has builds.
-        /// </summary>
-        /// <value>
-        ///   <c>true</c> if this instance has builds; otherwise, <c>false</c>.
-        /// </value>
+        /// <inheritdoc/>
         public bool HasBuilds { get; } = true;
 
-        /// <summary>
-        /// Gets a value indicating whether this instance is busy.
-        /// </summary>
-        /// <value>
-        ///   <c>true</c> if this instance is busy; otherwise, <c>false</c>.
-        /// </value>
+        /// <inheritdoc/>
+        public bool HasNoBuilds { get; } = false;
+
+        /// <inheritdoc/>
+        public bool HasLatestBuild { get; } = true;
+
+        /// <inheritdoc/>
+        public bool HasQueuedBuilds => true;
+
+        /// <inheritdoc/>
         public bool IsBusy { get; } = false;
 
-        /// <summary>
-        /// Gets a value indicating whether this instance is viewable.
-        /// </summary>
-        /// <value>
-        ///   <c>true</c> if this instance is viewable; otherwise, <c>false</c>.
-        /// </value>
+        /// <inheritdoc/>
         public bool IsViewable { get; } = true;
 
-        /// <summary>
-        /// Gets a value indicating whether this instance is errored.
-        /// </summary>
-        /// <value>
-        ///   <c>true</c> if this instance is errored; otherwise, <c>false</c>.
-        /// </value>
+        /// <inheritdoc/>
         public bool IsErrored { get; } = false;
 
-        /// <summary>
-        /// Tries to update this instance.
-        /// </summary>
-        /// <param name="name">The name.</param>
-        /// <returns><c>true</c> if this instance was updated; otherwise, <c>false</c>.</returns>
+        /// <inheritdoc/>
+        public void View()
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <inheritdoc/>
         public bool TryUpdate(string name)
         {
             throw new NotImplementedException();

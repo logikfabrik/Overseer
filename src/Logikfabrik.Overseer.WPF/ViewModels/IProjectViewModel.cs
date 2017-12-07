@@ -60,6 +60,30 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         bool HasBuilds { get; }
 
         /// <summary>
+        /// Gets a value indicating whether this instance has no builds.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if this instance has no builds; otherwise, <c>false</c>.
+        /// </value>
+        bool HasNoBuilds { get; }
+
+        /// <summary>
+        /// Gets a value indicating whether this instance has a latest build.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if this instance has a latest build; otherwise, <c>false</c>.
+        /// </value>
+        bool HasLatestBuild { get; }
+
+        /// <summary>
+        /// Gets a value indicating whether this instance has queued builds.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if this instance has queued builds; otherwise, <c>false</c>.
+        /// </value>
+        bool HasQueuedBuilds { get; }
+
+        /// <summary>
         /// Gets a value indicating whether this instance is busy.
         /// </summary>
         /// <value>
@@ -82,6 +106,11 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         ///   <c>true</c> if this instance is errored; otherwise, <c>false</c>.
         /// </value>
         bool IsErrored { get; }
+
+        /// <summary>
+        /// Views this instance.
+        /// </summary>
+        void View();
 
         /// <summary>
         /// Tries to update this instance.

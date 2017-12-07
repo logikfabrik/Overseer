@@ -151,6 +151,9 @@ Please try again.</value>
   <data name="ConnectionSettings_Setting_Label_TrackedProjects" xml:space="preserve">
     <value>Projects</value>
   </data>
+  <data name="Connections_Message_NoConnections" xml:space="preserve">
+    <value>There are no connections</value>
+  </data>
   <data name="Connection_Button_Edit" xml:space="preserve">
     <value>Edit</value>
   </data>
@@ -159,6 +162,9 @@ Please try again.</value>
   </data>
   <data name="Connection_Button_Remove" xml:space="preserve">
     <value>Remove</value>
+  </data>
+  <data name="Connection_Message_NoProjects" xml:space="preserve">
+    <value>There are no projects for this connection</value>
   </data>
   <data name="EditConnection_Button_Cancel" xml:space="preserve">
     <value>Cancel</value>
@@ -210,6 +216,15 @@ Please try again.</value>
   </data>
   <data name="PassPhrase_View" xml:space="preserve">
     <value>Pass phrase</value>
+  </data>
+  <data name="Project_Label_LatestBuild" xml:space="preserve">
+    <value>Latest build</value>
+  </data>
+  <data name="Project_Label_QueuedBuilds" xml:space="preserve">
+    <value>Queued builds</value>
+  </data>
+  <data name="Project_Message_NoBuilds" xml:space="preserve">
+    <value>There are no builds for this project</value>
   </data>
   <data name="RemoveConnection_Button_Cancel" xml:space="preserve">
     <value>Cancel</value>

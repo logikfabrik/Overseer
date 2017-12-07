@@ -29,10 +29,8 @@
                     </TextBlock>
                     <TextBlock>
                         Overseer is Open Source (MIT), and you're welcome to contribute!
-                        Get involved and help out on
-                        <Hyperlink ex:HyperlinkExtensions.IsExternal="True" NavigateUri="https://github.com/logikfabrik/overseer">GitHub</Hyperlink>
-                        .
-                    </TextBlock>
+                        Get involved and help out on<Hyperlink ex:HyperlinkExtensions.IsExternal="True" NavigateUri="https://github.com/logikfabrik/overseer">GitHub</Hyperlink>
+                        .</TextBlock>
                 </StackPanel>
                 <StackPanel Style="{StaticResource Common.Section.Panel}">
                     <TextBlock Style="{StaticResource Common.Section.Header}" Text="{Binding Source={x:Static p:Resources.About_Setting_Label_Attribution}, Converter={StaticResource StringToUpperCaseConverter}}" />

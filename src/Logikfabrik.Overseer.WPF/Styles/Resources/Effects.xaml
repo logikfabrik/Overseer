@@ -6,7 +6,7 @@
         x:Key="DropShadowEffect"
         BlurRadius="8"
         Direction="270"
+        Opacity=".2"
         ShadowDepth="2.5"
-        Color="{StaticResource Color.Black}"
-        Opacity=".2"/>
+        Color="{StaticResource Color.Black}" />
 </ResourceDictionary>

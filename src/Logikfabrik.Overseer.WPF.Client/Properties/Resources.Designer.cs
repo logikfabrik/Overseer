@@ -19,7 +19,7 @@ namespace Logikfabrik.Overseer.WPF.Client.Properties {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class Resources {
@@ -157,6 +157,24 @@ namespace Logikfabrik.Overseer.WPF.Client.Properties {
         public static string Connection_Button_Remove {
             get {
                 return ResourceManager.GetString("Connection_Button_Remove", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to There are no projects for this connection.
+        /// </summary>
+        public static string Connection_Message_NoProjects {
+            get {
+                return ResourceManager.GetString("Connection_Message_NoProjects", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to There are no connections.
+        /// </summary>
+        public static string Connections_Message_NoConnections {
+            get {
+                return ResourceManager.GetString("Connections_Message_NoConnections", resourceCulture);
             }
         }
         
@@ -337,6 +355,33 @@ namespace Logikfabrik.Overseer.WPF.Client.Properties {
         public static string PassPhrase_View {
             get {
                 return ResourceManager.GetString("PassPhrase_View", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Latest build.
+        /// </summary>
+        public static string Project_Label_LatestBuild {
+            get {
+                return ResourceManager.GetString("Project_Label_LatestBuild", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Queued builds.
+        /// </summary>
+        public static string Project_Label_QueuedBuilds {
+            get {
+                return ResourceManager.GetString("Project_Label_QueuedBuilds", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to There are no builds for this project.
+        /// </summary>
+        public static string Project_Message_NoBuilds {
+            get {
+                return ResourceManager.GetString("Project_Message_NoBuilds", resourceCulture);
             }
         }
         

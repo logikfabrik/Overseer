@@ -84,20 +84,10 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             OrderedBuilds = _orderedBuilds.View;
         }
 
-        /// <summary>
-        /// Gets the identifier.
-        /// </summary>
-        /// <value>
-        /// The identifier.
-        /// </value>
+        /// <inheritdoc />
         public string Id { get; }
 
-        /// <summary>
-        /// Gets the name.
-        /// </summary>
-        /// <value>
-        /// The name.
-        /// </value>
+        /// <inheritdoc />
         public string Name
         {
             get
@@ -112,44 +102,28 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             }
         }
 
-        /// <summary>
-        /// Gets the ordered builds.
-        /// </summary>
-        /// <value>
-        /// The ordered builds.
-        /// </value>
+        /// <inheritdoc />
         public ICollectionView OrderedBuilds { get; }
 
-        /// <summary>
-        /// Gets the latest in progress or finished build.
-        /// </summary>
-        /// <value>
-        /// The latest in progress or finished build.
-        /// </value>
+        /// <inheritdoc />
         public IBuildViewModel LatestBuild => _builds.FirstOrDefault(build => build.Status.IsInProgressOrFinished());
 
-        /// <summary>
-        /// Gets the number of queued builds.
-        /// </summary>
-        /// <value>
-        /// The number of queued builds.
-        /// </value>
+        /// <inheritdoc />
         public int QueuedBuilds => _builds.Count(build => build.Status == BuildStatus.Queued);
 
-        /// <summary>
-        /// Gets a value indicating whether this instance has builds.
-        /// </summary>
-        /// <value>
-        ///   <c>true</c> if this instance has builds; otherwise, <c>false</c>.
-        /// </value>
-        public bool HasBuilds => _builds.Any();
+        /// <inheritdoc />
+        public bool HasBuilds => !IsBusy && _builds.Any();
 
-        /// <summary>
-        /// Gets a value indicating whether this instance is busy.
-        /// </summary>
-        /// <value>
-        ///   <c>true</c> if this instance is busy; otherwise, <c>false</c>.
-        /// </value>
+        /// <inheritdoc />
+        public bool HasNoBuilds => !IsBusy && !_builds.Any();
+
+        /// <inheritdoc />
+        public bool HasLatestBuild => LatestBuild != null;
+
+        /// <inheritdoc />
+        public bool HasQueuedBuilds => QueuedBuilds > 0;
+
+        /// <inheritdoc />
         public bool IsBusy
         {
             get
@@ -165,20 +139,10 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             }
         }
 
-        /// <summary>
-        /// Gets a value indicating whether this instance is viewable.
-        /// </summary>
-        /// <value>
-        ///   <c>true</c> if this instance is viewable; otherwise, <c>false</c>.
-        /// </value>
+        /// <inheritdoc />
         public bool IsViewable => !IsErrored && !IsBusy && HasBuilds;
 
-        /// <summary>
-        /// Gets a value indicating whether this instance is errored.
-        /// </summary>
-        /// <value>
-        ///   <c>true</c> if this instance is errored; otherwise, <c>false</c>.
-        /// </value>
+        /// <inheritdoc />
         public bool IsErrored
         {
             get
@@ -194,9 +158,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             }
         }
 
-        /// <summary>
-        /// View the connection.
-        /// </summary>
+        /// <inheritdoc/>
         public void View()
         {
             var message = new NavigationMessage(this);
@@ -204,11 +166,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             _eventAggregator.PublishOnUIThread(message);
         }
 
-        /// <summary>
-        /// Tries to update this instance.
-        /// </summary>
-        /// <param name="name">The name.</param>
-        /// <returns><c>true</c> if this instance was updated; otherwise, <c>false</c>.</returns>
+        /// <inheritdoc/>
         public bool TryUpdate(string name)
         {
             if (Name == name)
@@ -279,8 +237,11 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             IsBusy = false;
 
             NotifyOfPropertyChange(() => HasBuilds);
+            NotifyOfPropertyChange(() => HasNoBuilds);
             NotifyOfPropertyChange(() => LatestBuild);
+            NotifyOfPropertyChange(() => HasLatestBuild);
             NotifyOfPropertyChange(() => QueuedBuilds);
+            NotifyOfPropertyChange(() => HasQueuedBuilds);
             NotifyOfPropertyChange(() => IsViewable);
         }
 
