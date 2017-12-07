@@ -87,7 +87,6 @@
     <Compile Include="BuildNotificationConfigurator.cs" />
     <Compile Include="BuildNotificationManager.cs" />
     <Compile Include="Converters\AddConnectionViewExceptionToLocalizedStringConverter.cs" />
-    <Compile Include="Converters\BooleanToVisibilityConverter.cs" />
     <Compile Include="Converters\BuildStatusToStyleConverter.cs" />
     <Compile Include="Converters\EditConnectionViewExceptionToLocalizedStringConverter.cs" />
     <Compile Include="Converters\StringToUpperCaseConverter.cs" />
