@@ -42,5 +42,6 @@
                 </Style>
             </ItemsControl.ItemContainerStyle>
         </ItemsControl>
+        <Separator Margin="0,10,0,0" />
     </StackPanel>
 </UserControl>

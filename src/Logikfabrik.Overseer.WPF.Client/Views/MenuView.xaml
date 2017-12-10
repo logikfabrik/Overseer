@@ -80,7 +80,6 @@
                                             </Viewbox>
                                         </Button>
                                     </Grid>
-
                                 </Grid>
                                 <Separator />
                                 <Button cal:Message.Attach="GoToSettings">
