@@ -5,7 +5,6 @@
 namespace Logikfabrik.Overseer.WPF.ViewModels
 {
     using System;
-    using System.Diagnostics;
     using System.Windows;
     using System.Windows.Controls.Primitives;
     using System.Windows.Threading;
@@ -20,7 +19,6 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     public class BuildNotificationViewModel : ViewAware, IBuildNotificationViewModel
     {
         private readonly IApp _application;
-        private readonly Uri _webUrl;
         private DispatcherTimer _dispatcher;
 
         /// <summary>
@@ -38,8 +36,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             Ensure.That(build).IsNotNull();
 
             _application = application;
-            Build = buildViewModelFactory.Create(project.Name, build.Id, build.Branch, build.VersionNumber(), build.RequestedBy, build.Changes, build.Status, build.StartTime, build.EndTime, build.RunTime());
-            _webUrl = build.WebUrl;
+            Build = buildViewModelFactory.Create(project.Name, build.Id, build.Branch, build.VersionNumber(), build.RequestedBy, build.Changes, build.Status, build.StartTime, build.EndTime, build.RunTime(), build.WebUrl);
 
             StartClosing();
         }
@@ -49,38 +46,16 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// </summary>
         public event EventHandler<EventArgs> Closing;
 
-        /// <summary>
-        /// Gets the build.
-        /// </summary>
-        /// <value>
-        /// The build.
-        /// </value>
+        /// <inheritdoc />
         public IBuildViewModel Build { get; }
 
-        /// <summary>
-        /// Opens the notification in the browser.
-        /// </summary>
-        public void ViewInBrowser()
-        {
-            if (_webUrl == null)
-            {
-                return;
-            }
-
-            Process.Start(new ProcessStartInfo(_webUrl.AbsoluteUri));
-        }
-
-        /// <summary>
-        /// Keeps the notification open.
-        /// </summary>
+        /// <inheritdoc />
         public void KeepOpen()
         {
             _dispatcher?.Stop();
         }
 
-        /// <summary>
-        /// Starts closing the notification.
-        /// </summary>
+        /// <inheritdoc />
         public void StartClosing()
         {
             const int showForSeconds = 10;
@@ -92,10 +67,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             _dispatcher.Start();
         }
 
-        /// <summary>
-        /// Closes the notification.
-        /// </summary>
-        /// <param name="e">The <see cref="RoutedEventArgs" /> instance containing the event data.</param>
+        /// <inheritdoc />
         public void Close(RoutedEventArgs e)
         {
             Close();

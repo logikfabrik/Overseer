@@ -12,88 +12,44 @@ namespace Logikfabrik.Overseer.WPF.ViewModels.DesignTime
     /// </summary>
     public class BuildViewModel : IBuildViewModel
     {
-        /// <summary>
-        /// Gets the identifier.
-        /// </summary>
-        /// <value>
-        /// The identifier.
-        /// </value>
+        /// <inheritdoc />
         public string Id { get; } = "1234";
 
-        /// <summary>
-        /// Gets the name.
-        /// </summary>
-        /// <value>
-        /// The name.
-        /// </value>
+        /// <inheritdoc />
         public string Name { get; } = "1234";
 
-        /// <summary>
-        /// Gets the name of whoever requested the build.
-        /// </summary>
-        /// <value>
-        /// The name of whoever requested the build.
-        /// </value>
+        /// <inheritdoc />
         public string RequestedBy { get; } = "John Doe";
 
-        /// <summary>
-        /// Gets the branch.
-        /// </summary>
-        /// <value>
-        /// The branch.
-        /// </value>
+        /// <inheritdoc />
         public string Branch { get; } = "master";
 
-        /// <summary>
-        /// Gets the message.
-        /// </summary>
-        /// <value>
-        /// The message.
-        /// </value>
+        /// <inheritdoc />
         public string Message { get; } = "Message goes here";
 
-        /// <summary>
-        /// Gets the status.
-        /// </summary>
-        /// <value>
-        /// The status.
-        /// </value>
+        /// <inheritdoc />
         public BuildStatus? Status { get; } = BuildStatus.Succeeded;
 
-        /// <summary>
-        /// Gets the start time.
-        /// </summary>
-        /// <value>
-        /// The start time.
-        /// </value>
+        /// <inheritdoc />
         public DateTime? StartTime { get; } = DateTime.UtcNow;
 
-        /// <summary>
-        /// Gets the end time.
-        /// </summary>
-        /// <value>
-        /// The end time.
-        /// </value>
+        /// <inheritdoc />
         public DateTime? EndTime { get; } = DateTime.UtcNow;
 
-        /// <summary>
-        /// Gets the changes.
-        /// </summary>
-        /// <value>
-        /// The changes.
-        /// </value>
+        /// <inheritdoc />
         public IEnumerable<IChangeViewModel> Changes { get; } = new[] { new ChangeViewModel(), new ChangeViewModel(), new ChangeViewModel() };
 
-        /// <summary>
-        /// Tries to update this instance.
-        /// </summary>
-        /// <param name="projectName">The project name.</param>
-        /// <param name="status">The status.</param>
-        /// <param name="startTime">The start time.</param>
-        /// <param name="endTime">The end time.</param>
-        /// <param name="runTime">The run time.</param>
-        /// <returns><c>true</c> if this instance was updated; otherwise, <c>false</c>.</returns>
+        /// <inheritdoc />
+        public bool IsViewable { get; } = true;
+
+        /// <inheritdoc />
         public bool TryUpdate(string projectName, BuildStatus? status, DateTime? startTime, DateTime? endTime, TimeSpan? runTime)
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <inheritdoc />
+        public void View()
         {
             throw new NotImplementedException();
         }

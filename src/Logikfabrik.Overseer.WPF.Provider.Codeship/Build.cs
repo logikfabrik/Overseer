@@ -25,7 +25,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.Codeship
             EndTime = build.FinishedAt?.ToUniversalTime();
             Status = GetStatus(build);
             RequestedBy = build.Username;
-            //WebUrl = build.WebUrl;
+            WebUrl = null;
             Changes = GetChanges(build);
         }
 

@@ -20,22 +20,17 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         IBuildViewModel Build { get; }
 
         /// <summary>
-        /// Opens the notification in the browser.
-        /// </summary>
-        void ViewInBrowser();
-
-        /// <summary>
-        /// Keeps the notification open.
+        /// Keeps this instance open.
         /// </summary>
         void KeepOpen();
 
         /// <summary>
-        /// Starts closing the notification.
+        /// Starts closing this instance.
         /// </summary>
         void StartClosing();
 
         /// <summary>
-        /// Closes the notification.
+        /// Closes this instance.
         /// </summary>
         /// <param name="e">The <see cref="RoutedEventArgs" /> instance containing the event data.</param>
         void Close(RoutedEventArgs e);

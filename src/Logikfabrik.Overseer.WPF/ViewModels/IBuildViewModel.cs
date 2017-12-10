@@ -85,6 +85,19 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         IEnumerable<IChangeViewModel> Changes { get; }
 
         /// <summary>
+        /// Gets a value indicating whether this instance is viewable.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if this instance is viewable; otherwise, <c>false</c>.
+        /// </value>
+        bool IsViewable { get; }
+
+        /// <summary>
+        /// Views this instance.
+        /// </summary>
+        void View();
+
+        /// <summary>
         /// Tries to update this instance.
         /// </summary>
         /// <param name="projectName">The project name.</param>

@@ -170,15 +170,6 @@ namespace Logikfabrik.Overseer.WPF.Client.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to There are no connections.
-        /// </summary>
-        public static string Connections_Message_NoConnections {
-            get {
-                return ResourceManager.GetString("Connections_Message_NoConnections", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Number of builds to get from the CI/DI service per project.
         /// </summary>
         public static string ConnectionSettings_Setting_Description_BuildsPerProject {
@@ -202,6 +193,15 @@ namespace Logikfabrik.Overseer.WPF.Client.Properties {
         public static string ConnectionSettings_Setting_Label_TrackedProjects {
             get {
                 return ResourceManager.GetString("ConnectionSettings_Setting_Label_TrackedProjects", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to There are no connections.
+        /// </summary>
+        public static string ConnectionsList_Tile_Message_NoConnections {
+            get {
+                return ResourceManager.GetString("ConnectionsList_Tile_Message_NoConnections", resourceCulture);
             }
         }
         

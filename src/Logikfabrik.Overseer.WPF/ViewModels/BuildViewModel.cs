@@ -6,6 +6,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
 {
     using System;
     using System.Collections.Generic;
+    using System.Diagnostics;
     using System.Linq;
     using Caliburn.Micro;
     using EnsureThat;
@@ -17,6 +18,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     public class BuildViewModel : PropertyChangedBase, IBuildViewModel
     {
         private readonly string _versionNumber;
+        private readonly Uri _webUrl;
         private string _name;
         private string _message;
         private BuildStatus? _status;
@@ -37,7 +39,8 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// <param name="startTime">The start time.</param>
         /// <param name="endTime">The end time.</param>
         /// <param name="runTime">The run time.</param>
-        public BuildViewModel(IChangeViewModelFactory changeFactory, string projectName, string id, string branch, string versionNumber, string requestedBy, IEnumerable<IChange> changes, BuildStatus? status, DateTime? startTime, DateTime? endTime, TimeSpan? runTime)
+        /// <param name="webUrl">The web URL.</param>
+        public BuildViewModel(IChangeViewModelFactory changeFactory, string projectName, string id, string branch, string versionNumber, string requestedBy, IEnumerable<IChange> changes, BuildStatus? status, DateTime? startTime, DateTime? endTime, TimeSpan? runTime, Uri webUrl)
         {
             Ensure.That(changeFactory).IsNotNull();
             Ensure.That(id).IsNotNullOrWhiteSpace();
@@ -46,6 +49,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             Id = id;
             Branch = branch;
             _versionNumber = versionNumber;
+            _webUrl = webUrl;
             RequestedBy = requestedBy;
 
             Changes = changes.Select(changeFactory.Create).ToArray();
@@ -53,20 +57,10 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             TryUpdate(projectName, status, startTime, endTime, runTime);
         }
 
-        /// <summary>
-        /// Gets the identifier.
-        /// </summary>
-        /// <value>
-        /// The identifier.
-        /// </value>
+        /// <inheritdoc />
         public string Id { get; }
 
-        /// <summary>
-        /// Gets the name.
-        /// </summary>
-        /// <value>
-        /// The name.
-        /// </value>
+        /// <inheritdoc />
         public string Name
         {
             get
@@ -81,28 +75,13 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             }
         }
 
-        /// <summary>
-        /// Gets the name of whoever requested the build.
-        /// </summary>
-        /// <value>
-        /// The name of whoever requested the build.
-        /// </value>
+        /// <inheritdoc />
         public string RequestedBy { get; }
 
-        /// <summary>
-        /// Gets the branch.
-        /// </summary>
-        /// <value>
-        /// The branch.
-        /// </value>
+        /// <inheritdoc />
         public string Branch { get; }
 
-        /// <summary>
-        /// Gets the message.
-        /// </summary>
-        /// <value>
-        /// The message.
-        /// </value>
+        /// <inheritdoc />
         public string Message
         {
             get
@@ -117,12 +96,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             }
         }
 
-        /// <summary>
-        /// Gets the status.
-        /// </summary>
-        /// <value>
-        /// The status.
-        /// </value>
+        /// <inheritdoc />
         public BuildStatus? Status
         {
             get
@@ -137,12 +111,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             }
         }
 
-        /// <summary>
-        /// Gets the start time.
-        /// </summary>
-        /// <value>
-        /// The start time.
-        /// </value>
+        /// <inheritdoc />
         public DateTime? StartTime
         {
             get
@@ -157,12 +126,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             }
         }
 
-        /// <summary>
-        /// Gets the end time.
-        /// </summary>
-        /// <value>
-        /// The end time.
-        /// </value>
+        /// <inheritdoc />
         public DateTime? EndTime
         {
             get
@@ -177,23 +141,24 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             }
         }
 
-        /// <summary>
-        /// Gets the changes.
-        /// </summary>
-        /// <value>
-        /// The changes.
-        /// </value>
+        /// <inheritdoc />
         public IEnumerable<IChangeViewModel> Changes { get; }
 
-        /// <summary>
-        /// Tries to update this instance.
-        /// </summary>
-        /// <param name="projectName">The project name.</param>
-        /// <param name="status">The status.</param>
-        /// <param name="startTime">The start time.</param>
-        /// <param name="endTime">The end time.</param>
-        /// <param name="runTime">The run time.</param>
-        /// <returns><c>true</c> if this instance was updated; otherwise, <c>false</c>.</returns>
+        /// <inheritdoc />
+        public bool IsViewable => _webUrl != null;
+
+        /// <inheritdoc />
+        public void View()
+        {
+            if (IsViewable)
+            {
+                return;
+            }
+
+            Process.Start(new ProcessStartInfo(_webUrl.AbsoluteUri));
+        }
+
+        /// <inheritdoc />
         public bool TryUpdate(string projectName, BuildStatus? status, DateTime? startTime, DateTime? endTime, TimeSpan? runTime)
         {
             var name = BuildMessageUtility.GetBuildName(projectName, _versionNumber);

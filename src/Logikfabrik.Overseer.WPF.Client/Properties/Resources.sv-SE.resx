@@ -151,7 +151,7 @@ Vänligen försök igen.</value>
   <data name="ConnectionSettings_Setting_Label_TrackedProjects" xml:space="preserve">
     <value>Projekt</value>
   </data>
-  <data name="Connections_Message_NoConnections" xml:space="preserve">
+  <data name="ConnectionsList_Tile_Message_NoConnections" xml:space="preserve">
     <value>Det finns inga anslutningar</value>
   </data>
   <data name="Connection_Button_Edit" xml:space="preserve">

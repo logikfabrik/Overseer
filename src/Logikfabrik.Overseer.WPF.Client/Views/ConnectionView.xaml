@@ -16,15 +16,18 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <Border Grid.Row="0" Style="{StaticResource Common.Header.Panel}">
             <TextBlock Text="{Binding Path=SettingsName, Converter={StaticResource StringToUpperCaseConverter}}" />
         </Border>
+        <StackPanel Grid.Row="1" Visibility="{Binding HasNoProjects, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <TextBlock Text="{Binding Source={x:Static p:Resources.Connection_Message_NoProjects}}" />
+        </StackPanel>
         <ItemsControl
-            Grid.Row="1"
+            Grid.Row="2"
             ItemsSource="{Binding FilteredProjects, Mode=OneWay}"
             Visibility="{Binding HasProjects, Converter={StaticResource BooleanToVisibilityConverter}}">
             <ItemsControl.ItemContainerStyle>
@@ -49,9 +52,6 @@
                 </ControlTemplate>
             </ItemsControl.Template>
         </ItemsControl>
-        <StackPanel Grid.Row="2" Visibility="{Binding HasNoProjects, Converter={StaticResource BooleanToVisibilityConverter}}">
-            <TextBlock Text="{Binding Source={x:Static p:Resources.Connection_Message_NoProjects}}" />
-        </StackPanel>
         <Border Grid.Row="3" Style="{StaticResource Common.ContextMenu}">
             <StackPanel>
                 <Grid>
@@ -60,6 +60,7 @@
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
+                    <!-- ReSharper disable once InconsistentNaming -->
                     <ToggleButton
                         x:Name="PART_Filter"
                         Grid.Column="0"

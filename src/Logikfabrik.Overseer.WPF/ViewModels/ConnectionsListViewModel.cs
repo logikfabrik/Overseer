@@ -53,6 +53,22 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         public IEnumerable<IConnectionViewModel> Connections => _connections;
 
         /// <summary>
+        /// Gets a value indicating whether this instance has connections.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if this instance has connections; otherwise, <c>false</c>.
+        /// </value>
+        public bool HasConnections => _connections.Any();
+
+        /// <summary>
+        /// Gets a value indicating whether this instance has no connections.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if this instance has no connections; otherwise, <c>false</c>.
+        /// </value>
+        public bool HasNoConnections => !_connections.Any();
+
+        /// <summary>
         /// Provides the observer with new data.
         /// </summary>
         /// <param name="value">The current notification information.</param>

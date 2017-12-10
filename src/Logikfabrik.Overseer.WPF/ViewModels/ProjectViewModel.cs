@@ -209,7 +209,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
                 {
                     _application.Dispatcher.Invoke(() =>
                     {
-                        var buildToAdd = _buildFactory.Create(e.Project.Name, build.Id, build.Branch, build.VersionNumber(), build.RequestedBy, build.Changes, build.Status, build.StartTime, build.EndTime, build.RunTime());
+                        var buildToAdd = _buildFactory.Create(e.Project.Name, build.Id, build.Branch, build.VersionNumber(), build.RequestedBy, build.Changes, build.Status, build.StartTime, build.EndTime, build.RunTime(), build.WebUrl);
 
                         var time = new Tuple<DateTime, DateTime>(buildToAdd.EndTime ?? DateTime.MaxValue, buildToAdd.StartTime ?? DateTime.MaxValue);
 

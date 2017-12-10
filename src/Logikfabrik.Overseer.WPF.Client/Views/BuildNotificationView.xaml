@@ -14,7 +14,7 @@
                                      d:IsDesignTimeCreatable=True}"
     mc:Ignorable="d">
 
-    <Button cal:Message.Attach="ViewInBrowser">
+    <Button cal:Message.Attach="Build.View">
         <Button.Template>
             <ControlTemplate>
                 <Border

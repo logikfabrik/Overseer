@@ -37,9 +37,9 @@ namespace Logikfabrik.Overseer.WPF.Extensions
 
         public static void SetBoundPassword(DependencyObject obj, string value)
         {
-            if (string.Equals(value, GetBoundPassword(obj)))
+            if (value == GetBoundPassword(obj))
             {
-                return; // and this is how we prevent infinite recursion
+                return;
             }
 
             obj.SetValue(BoundPasswordProperty, value);
@@ -68,7 +68,9 @@ namespace Logikfabrik.Overseer.WPF.Extensions
 
             SetBoundPassword(passwordBox, passwordBox.Password);
 
-            passwordBox.GetType().GetMethod("Select", BindingFlags.Instance | BindingFlags.NonPublic).Invoke(passwordBox, new object[] { passwordBox.Password.Length, 0 });
+            var method = passwordBox.GetType().GetMethod("Select", BindingFlags.Instance | BindingFlags.NonPublic);
+
+            method?.Invoke(passwordBox, new object[] { passwordBox.Password.Length, 0 });
         }
     }
 }

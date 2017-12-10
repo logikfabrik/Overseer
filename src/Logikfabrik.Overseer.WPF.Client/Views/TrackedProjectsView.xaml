@@ -41,6 +41,7 @@
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
+                    <!-- ReSharper disable once InconsistentNaming -->
                     <ToggleButton x:Name="PART_Filter" Grid.Column="0">
                         <Viewbox>
                             <Canvas>

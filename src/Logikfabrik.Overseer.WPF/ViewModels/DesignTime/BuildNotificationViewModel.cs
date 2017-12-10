@@ -4,6 +4,7 @@
 
 namespace Logikfabrik.Overseer.WPF.ViewModels.DesignTime
 {
+    using System;
     using System.Windows;
 
     /// <summary>
@@ -11,45 +12,25 @@ namespace Logikfabrik.Overseer.WPF.ViewModels.DesignTime
     /// </summary>
     public class BuildNotificationViewModel : IBuildNotificationViewModel
     {
-        /// <summary>
-        /// Gets or sets the build.
-        /// </summary>
-        /// <value>
-        /// The build.
-        /// </value>
+        /// <inheritdoc />
         public IBuildViewModel Build { get; set; }
 
-        /// <summary>
-        /// Opens the notification in the browser.
-        /// </summary>
-        public void ViewInBrowser()
-        {
-            // Method intentionally left empty.
-        }
-
-        /// <summary>
-        /// Keeps the notification open.
-        /// </summary>
+        /// <inheritdoc />
         public void KeepOpen()
         {
-            // Method intentionally left empty.
+            throw new NotImplementedException();
         }
 
-        /// <summary>
-        /// Starts closing the notification.
-        /// </summary>
+        /// <inheritdoc />
         public void StartClosing()
         {
-            // Method intentionally left empty.
+            throw new NotImplementedException();
         }
 
-        /// <summary>
-        /// Closes the notification.
-        /// </summary>
-        /// <param name="e">The <see cref="RoutedEventArgs" /> instance containing the event data.</param>
+        /// <inheritdoc />
         public void Close(RoutedEventArgs e)
         {
-            // Method intentionally left empty.
+            throw new NotImplementedException();
         }
     }
 }

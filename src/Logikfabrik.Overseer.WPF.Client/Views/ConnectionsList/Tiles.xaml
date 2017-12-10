@@ -5,35 +5,45 @@
     xmlns:cal="http://www.caliburnproject.org"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:p="clr-namespace:Logikfabrik.Overseer.WPF.Client.Properties"
     d:DesignHeight="300"
     d:DesignWidth="300"
     mc:Ignorable="d">
-    <ItemsControl ItemsSource="{Binding Connections, Mode=OneWay}">
-        <ItemsControl.ItemContainerStyle>
-            <Style>
-                <!--  ReSharper disable once Xaml.RedundantPropertyTypeQualifier  -->
-                <Setter Property="FrameworkElement.Margin" Value="10,10,0,0" />
-            </Style>
-        </ItemsControl.ItemContainerStyle>
-        <ItemsControl.ItemTemplate>
-            <DataTemplate>
-                <ContentControl
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" Visibility="{Binding HasNoConnections, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <TextBlock Text="{Binding Source={x:Static p:Resources.ConnectionsList_Tile_Message_NoConnections}}" />
+        </StackPanel>
+        <ItemsControl Grid.Row="1" ItemsSource="{Binding Connections, Mode=OneWay}" Visibility="{Binding HasConnections, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <ItemsControl.ItemContainerStyle>
+                <Style>
+                    <!--  ReSharper disable once Xaml.RedundantPropertyTypeQualifier  -->
+                    <Setter Property="FrameworkElement.Margin" Value="10,10,0,0" />
+                </Style>
+            </ItemsControl.ItemContainerStyle>
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <ContentControl
                     cal:View.Context="Tile"
                     cal:View.Model="{Binding}"
                     Focusable="False" />
-            </DataTemplate>
-        </ItemsControl.ItemTemplate>
-        <ItemsControl.Template>
-            <ControlTemplate>
-                <ScrollViewer>
-                    <ItemsPresenter Margin="0,0,10,10" />
-                </ScrollViewer>
-            </ControlTemplate>
-        </ItemsControl.Template>
-        <ItemsControl.ItemsPanel>
-            <ItemsPanelTemplate>
-                <WrapPanel />
-            </ItemsPanelTemplate>
-        </ItemsControl.ItemsPanel>
-    </ItemsControl>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+            <ItemsControl.Template>
+                <ControlTemplate>
+                    <ScrollViewer>
+                        <ItemsPresenter Margin="0,0,10,10" />
+                    </ScrollViewer>
+                </ControlTemplate>
+            </ItemsControl.Template>
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel />
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+        </ItemsControl>
+    </Grid>
 </UserControl>

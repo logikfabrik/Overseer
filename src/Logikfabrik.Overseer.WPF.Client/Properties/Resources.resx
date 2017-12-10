@@ -151,7 +151,7 @@ Please try again.</value>
   <data name="ConnectionSettings_Setting_Label_TrackedProjects" xml:space="preserve">
     <value>Projects</value>
   </data>
-  <data name="Connections_Message_NoConnections" xml:space="preserve">
+  <data name="ConnectionsList_Tile_Message_NoConnections" xml:space="preserve">
     <value>There are no connections</value>
   </data>
   <data name="Connection_Button_Edit" xml:space="preserve">
