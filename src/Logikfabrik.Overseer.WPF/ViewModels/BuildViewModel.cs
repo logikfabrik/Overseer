@@ -17,7 +17,6 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     /// </summary>
     public class BuildViewModel : PropertyChangedBase, IBuildViewModel
     {
-        private readonly string _versionNumber;
         private readonly Uri _webUrl;
         private string _name;
         private string _message;
@@ -48,7 +47,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
 
             Id = id;
             Branch = branch;
-            _versionNumber = versionNumber;
+            VersionNumber = versionNumber;
             _webUrl = webUrl;
             RequestedBy = requestedBy;
 
@@ -74,6 +73,9 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
                 NotifyOfPropertyChange(() => Name);
             }
         }
+
+        /// <inheritdoc />
+        public string VersionNumber { get; }
 
         /// <inheritdoc />
         public string RequestedBy { get; }
@@ -161,7 +163,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// <inheritdoc />
         public bool TryUpdate(string projectName, BuildStatus? status, DateTime? startTime, DateTime? endTime, TimeSpan? runTime)
         {
-            var name = BuildMessageUtility.GetBuildName(projectName, _versionNumber);
+            var name = BuildMessageUtility.GetBuildName(projectName, VersionNumber);
 
             var isUpdated = false;
 

@@ -29,6 +29,14 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         string Name { get; }
 
         /// <summary>
+        /// Gets the version number.
+        /// </summary>
+        /// <value>
+        /// The version number.
+        /// </value>
+        string VersionNumber { get; }
+
+        /// <summary>
         /// Gets the name of whoever requested the build.
         /// </summary>
         /// <value>

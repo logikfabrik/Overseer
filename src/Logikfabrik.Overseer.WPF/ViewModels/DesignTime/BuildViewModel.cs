@@ -19,6 +19,9 @@ namespace Logikfabrik.Overseer.WPF.ViewModels.DesignTime
         public string Name { get; } = "1234";
 
         /// <inheritdoc />
+        public string VersionNumber { get; } = "100";
+
+        /// <inheritdoc />
         public string RequestedBy { get; } = "John Doe";
 
         /// <inheritdoc />
