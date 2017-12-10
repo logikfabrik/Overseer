@@ -150,7 +150,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// <inheritdoc />
         public void View()
         {
-            if (IsViewable)
+            if (!IsViewable)
             {
                 return;
             }
