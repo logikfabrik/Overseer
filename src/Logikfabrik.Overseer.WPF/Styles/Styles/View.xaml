@@ -25,15 +25,6 @@
             <Style BasedOn="{StaticResource {x:Type Button}}" TargetType="{x:Type Button}">
                 <Style.Resources>
                     <Style TargetType="{x:Type Viewbox}">
-                        <Setter Property="Effect">
-                            <Setter.Value>
-                                <DropShadowEffect
-                                    BlurRadius="100"
-                                    Opacity=".4"
-                                    ShadowDepth="0"
-                                    Color="White" />
-                            </Setter.Value>
-                        </Setter>
                         <Setter Property="Width" Value="50" />
                         <Setter Property="Height" Value="50" />
                     </Style>

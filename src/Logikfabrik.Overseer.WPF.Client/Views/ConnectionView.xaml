@@ -23,8 +23,11 @@
         <Border Grid.Row="0" Style="{StaticResource Common.Header.Panel}">
             <TextBlock Text="{Binding Path=SettingsName, Converter={StaticResource StringToUpperCaseConverter}}" />
         </Border>
-        <StackPanel Grid.Row="1" Visibility="{Binding HasNoProjects, Converter={StaticResource BooleanToVisibilityConverter}}">
-            <TextBlock Text="{Binding Source={x:Static p:Resources.Connection_Message_NoProjects}}" />
+        <StackPanel
+            Grid.Row="1"
+            Style="{DynamicResource Common.Empty.Section.Panel}"
+            Visibility="{Binding HasNoProjects, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <TextBlock Style="{DynamicResource Common.Empty.Section.Header}" Text="{Binding Source={x:Static p:Resources.Connection_Message_NoProjects}}" />
         </StackPanel>
         <ItemsControl
             Grid.Row="2"
@@ -60,7 +63,7 @@
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
-                    <!-- ReSharper disable once InconsistentNaming -->
+                    <!--  ReSharper disable once InconsistentNaming  -->
                     <ToggleButton
                         x:Name="PART_Filter"
                         Grid.Column="0"
