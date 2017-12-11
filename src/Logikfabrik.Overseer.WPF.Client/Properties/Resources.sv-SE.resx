@@ -152,7 +152,7 @@ Vänligen försök igen.</value>
     <value>Projekt</value>
   </data>
   <data name="ConnectionsList_Tile_Message_NoConnections" xml:space="preserve">
-    <value>Det finns inga anslutningar</value>
+    <value>Du har inga anslutningar. Kom igång genom att lägga till en.</value>
   </data>
   <data name="Connection_Button_Edit" xml:space="preserve">
     <value>Redigera</value>
@@ -240,5 +240,8 @@ Vänligen försök igen.</value>
   </data>
   <data name="TrackedProjects_Button_SelectAll" xml:space="preserve">
     <value>Välj alla</value>
+  </data>
+  <data name="ConnectionsList_Tile_Button_Add" xml:space="preserve">
+    <value>Lägg till anslutning</value>
   </data>
 </root>

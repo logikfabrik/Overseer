@@ -118,6 +118,37 @@
 
     <!--  BEGIN Common  -->
 
+    <!--  BEGIN Common.Empty  -->
+
+    <Style x:Key="Common.Empty.Section.Panel" TargetType="{x:Type StackPanel}">
+        <Style.Resources>
+            <Style BasedOn="{StaticResource {x:Type Button}}" TargetType="{x:Type Button}">
+                <Style.Resources>
+                    <Style TargetType="{x:Type Viewbox}">
+                        <Setter Property="Margin" Value="0,0,10,0" />
+                    </Style>
+                    <Style TargetType="{x:Type StackPanel}">
+                        <Setter Property="Orientation" Value="Horizontal" />
+                    </Style>
+                </Style.Resources>
+                <Setter Property="HorizontalAlignment" Value="Center" />
+                <Setter Property="Margin" Value="10" />
+            </Style>
+        </Style.Resources>
+        <Setter Property="Margin" Value="10,50" />
+    </Style>
+
+    <Style
+        x:Key="Common.Empty.Section.Header"
+        BasedOn="{StaticResource {x:Type TextBlock}}"
+        TargetType="{x:Type TextBlock}">
+        <Setter Property="FontSize" Value="18" />
+        <Setter Property="TextWrapping" Value="Wrap" />
+        <Setter Property="TextAlignment" Value="Center" />
+    </Style>
+
+    <!--  BEGIN Common.Empty  -->
+
     <!--  BEGIN Common.Filter  -->
 
     <Style

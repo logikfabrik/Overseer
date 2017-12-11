@@ -197,7 +197,16 @@ namespace Logikfabrik.Overseer.WPF.Client.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to There are no connections.
+        ///   Looks up a localized string similar to Add connection.
+        /// </summary>
+        public static string ConnectionsList_Tile_Button_Add {
+            get {
+                return ResourceManager.GetString("ConnectionsList_Tile_Button_Add", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You have no connections. Get started by adding one..
         /// </summary>
         public static string ConnectionsList_Tile_Message_NoConnections {
             get {

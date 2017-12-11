@@ -152,7 +152,7 @@ Please try again.</value>
     <value>Projects</value>
   </data>
   <data name="ConnectionsList_Tile_Message_NoConnections" xml:space="preserve">
-    <value>There are no connections</value>
+    <value>You have no connections. Get started by adding one.</value>
   </data>
   <data name="Connection_Button_Edit" xml:space="preserve">
     <value>Edit</value>
@@ -240,5 +240,8 @@ Please try again.</value>
   </data>
   <data name="TrackedProjects_Button_SelectAll" xml:space="preserve">
     <value>Select all</value>
+  </data>
+  <data name="ConnectionsList_Tile_Button_Add" xml:space="preserve">
+    <value>Add connection</value>
   </data>
 </root>

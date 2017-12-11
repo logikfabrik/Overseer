@@ -10,6 +10,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     using Caliburn.Micro;
     using EnsureThat;
     using Factories;
+    using Navigation;
     using Settings;
 
     /// <summary>
@@ -18,6 +19,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     public class ConnectionsListViewModel : PropertyChangedBase, IObserver<Notification<ConnectionSettings>[]>, IDisposable
     {
         private readonly IApp _application;
+        private readonly IEventAggregator _eventAggregator;
         private readonly IConnectionViewModelStrategy _connectionViewModelStrategy;
         private BindableCollection<IConnectionViewModel> _connections;
         private IDisposable _subscription;
@@ -27,18 +29,22 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// Initializes a new instance of the <see cref="ConnectionsListViewModel" /> class.
         /// </summary>
         /// <param name="application">The application.</param>
+        /// <param name="eventAggregator">The event aggregator.</param>
         /// <param name="connectionViewModelStrategy">The connection view model strategy.</param>
         /// <param name="connectionSettingsRepository">The connection settings repository.</param>
         public ConnectionsListViewModel(
             IApp application,
+            IEventAggregator eventAggregator,
             IConnectionViewModelStrategy connectionViewModelStrategy,
             IConnectionSettingsRepository connectionSettingsRepository)
         {
             Ensure.That(application).IsNotNull();
+            Ensure.That(eventAggregator).IsNotNull();
             Ensure.That(connectionViewModelStrategy).IsNotNull();
             Ensure.That(connectionSettingsRepository).IsNotNull();
 
             _application = application;
+            _eventAggregator = eventAggregator;
             _connectionViewModelStrategy = connectionViewModelStrategy;
             _connections = new BindableCollection<IConnectionViewModel>();
             _subscription = connectionSettingsRepository.Subscribe(this);
@@ -112,6 +118,13 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
                     _connections.Insert(index, connectionToAdd);
                 });
             }
+        }
+
+        public void Add()
+        {
+            var message = new NavigationMessage(typeof(BuildProvidersViewModel));
+
+            _eventAggregator.PublishOnUIThread(message);
         }
 
         /// <summary>
