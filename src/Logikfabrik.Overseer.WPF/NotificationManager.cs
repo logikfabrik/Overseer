@@ -5,7 +5,6 @@
 namespace Logikfabrik.Overseer.WPF
 {
     using System.Collections.Generic;
-    using System.Windows;
     using System.Windows.Controls.Primitives;
     using Caliburn.Micro;
     using EnsureThat;
@@ -33,27 +32,19 @@ namespace Logikfabrik.Overseer.WPF
         /// </summary>
         /// <typeparam name="T">The view model type.</typeparam>
         /// <param name="viewModel">The view model.</param>
-        public void ShowNotification<T>(T viewModel)
+        /// <param name="placementCallback">The placement callback.</param>
+        public void ShowNotification<T>(T viewModel, CustomPopupPlacementCallback placementCallback)
             where T : PropertyChangedBase
         {
             Ensure.That(viewModel).IsNotNull();
+            Ensure.That(placementCallback).IsNotNull();
 
             Execute.OnUIThread(() =>
             {
                 var settings = new Dictionary<string, object>
                 {
                     { "Placement", PlacementMode.Custom },
-                    {
-                        "CustomPopupPlacementCallback", (CustomPopupPlacementCallback)((size, targetSize, offset) =>
-                        {
-                            var workArea = SystemParameters.WorkArea;
-
-                            return new[]
-                            {
-                                new CustomPopupPlacement(new Point(workArea.Right - size.Width, workArea.Bottom - size.Height), PopupPrimaryAxis.Horizontal)
-                            };
-                        })
-                    },
+                    { "CustomPopupPlacementCallback", placementCallback },
                     { "PopupAnimation", PopupAnimation.Fade }
                 };
 

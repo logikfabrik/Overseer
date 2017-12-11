@@ -1,10 +1,9 @@
-﻿// <copyright file="IConnection.cs" company="Logikfabrik">
+// <copyright file="IConnection.cs" company="Logikfabrik">
 //   Copyright (c) 2016 anton(at)logikfabrik.se. Licensed under the MIT license.
 // </copyright>
 
 namespace Logikfabrik.Overseer
 {
-    using System;
     using System.Collections.Generic;
     using System.Threading;
     using System.Threading.Tasks;
@@ -13,15 +12,15 @@ namespace Logikfabrik.Overseer
     /// <summary>
     /// The <see cref="IConnection" /> interface.
     /// </summary>
-    public interface IConnection : IDisposable
+    public interface IConnection
     {
         /// <summary>
-        /// Gets or sets the settings.
+        /// Gets the settings.
         /// </summary>
         /// <value>
         /// The settings.
         /// </value>
-        ConnectionSettings Settings { get; set; }
+        ConnectionSettings Settings { get; }
 
         /// <summary>
         /// Gets the projects.

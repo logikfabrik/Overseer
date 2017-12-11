@@ -20,14 +20,6 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity.Api.Models
         public string Id { get; set; }
 
         /// <summary>
-        /// Gets or sets the build type identifier.
-        /// </summary>
-        /// <value>
-        /// The build type identifier.
-        /// </value>
-        public string BuildTypeId { get; set; }
-
-        /// <summary>
         /// Gets or sets the number.
         /// </summary>
         /// <value>
@@ -52,20 +44,20 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity.Api.Models
         public BuildState? State { get; set; }
 
         /// <summary>
-        /// Gets or sets the web URL.
-        /// </summary>
-        /// <value>
-        /// The web URL.
-        /// </value>
-        public Uri WebUrl { get; set; }
-
-        /// <summary>
         /// Gets or sets the branch name.
         /// </summary>
         /// <value>
         /// The branch name.
         /// </value>
         public string BranchName { get; set; }
+
+        /// <summary>
+        /// Gets or sets the web URL.
+        /// </summary>
+        /// <value>
+        /// The web URL.
+        /// </value>
+        public Uri WebUrl { get; set; }
 
         /// <summary>
         /// Gets or sets the start date.

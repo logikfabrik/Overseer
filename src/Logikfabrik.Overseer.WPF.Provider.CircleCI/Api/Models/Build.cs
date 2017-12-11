@@ -90,6 +90,12 @@ namespace Logikfabrik.Overseer.WPF.Provider.CircleCI.Api.Models
         /// </value>
         public string Body { get; set; }
 
+        /// <summary>
+        /// Gets or sets the queued at time.
+        /// </summary>
+        /// <value>
+        /// The queued at time.
+        /// </value>
         [JsonProperty(PropertyName = "queued_at")]
         public DateTime? QueuedAt { get; set; }
 

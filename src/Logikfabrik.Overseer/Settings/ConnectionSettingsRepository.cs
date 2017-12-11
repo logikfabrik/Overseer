@@ -13,11 +13,11 @@ namespace Logikfabrik.Overseer.Settings
     /// <summary>
     /// The <see cref="ConnectionSettingsRepository" /> class.
     /// </summary>
-    public class ConnectionSettingsRepository : IConnectionSettingsRepository
+    public class ConnectionSettingsRepository : IConnectionSettingsRepository, IDisposable
     {
-        private readonly HashSet<IObserver<ConnectionSettings[]>> _observers;
         private readonly IConnectionSettingsStore _settingsStore;
-        private readonly IDictionary<Guid, ConnectionSettings> _settings;
+        private HashSet<IObserver<Notification<ConnectionSettings>[]>> _observers;
+        private IDictionary<Guid, ConnectionSettings> _settings;
         private bool _isDisposed;
 
         /// <summary>
@@ -28,8 +28,8 @@ namespace Logikfabrik.Overseer.Settings
         {
             Ensure.That(settingsStore).IsNotNull();
 
-            _observers = new HashSet<IObserver<ConnectionSettings[]>>();
             _settingsStore = settingsStore;
+            _observers = new HashSet<IObserver<Notification<ConnectionSettings>[]>>();
             _settings = _settingsStore.Load().ToDictionary(settings => settings.Id, settings => settings);
         }
 
@@ -42,6 +42,7 @@ namespace Logikfabrik.Overseer.Settings
             this.ThrowIfDisposed(_isDisposed);
 
             Ensure.That(settings).IsNotNull();
+            Ensure.That(() => _settings.ContainsKey(settings.Id), nameof(settings)).IsFalse();
 
             var clone = settings.Clone();
 
@@ -49,27 +50,7 @@ namespace Logikfabrik.Overseer.Settings
 
             Save();
 
-            Next();
-        }
-
-        /// <summary>
-        /// Removes the settings with the specified identifier.
-        /// </summary>
-        /// <param name="id">The identifier.</param>
-        public void Remove(Guid id)
-        {
-            this.ThrowIfDisposed(_isDisposed);
-
-            Ensure.That(id).IsNotEmpty();
-
-            if (!_settings.Remove(id))
-            {
-                return;
-            }
-
-            Save();
-
-            Next();
+            Next(NotificationType.Added, clone.Clone());
         }
 
         /// <summary>
@@ -81,11 +62,7 @@ namespace Logikfabrik.Overseer.Settings
             this.ThrowIfDisposed(_isDisposed);
 
             Ensure.That(settings).IsNotNull();
-
-            if (settings.Equals(_settings[settings.Id]))
-            {
-                return;
-            }
+            Ensure.That(() => _settings.ContainsKey(settings.Id), nameof(settings)).IsTrue();
 
             var clone = settings.Clone();
 
@@ -93,7 +70,27 @@ namespace Logikfabrik.Overseer.Settings
 
             Save();
 
-            Next();
+            Next(NotificationType.Updated, clone.Clone());
+        }
+
+        /// <summary>
+        /// Removes the settings with the specified identifier.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        public void Remove(Guid id)
+        {
+            this.ThrowIfDisposed(_isDisposed);
+
+            Ensure.That(id).IsNotEmpty();
+            Ensure.That(() => _settings.ContainsKey(id), nameof(id)).IsTrue();
+
+            var clone = _settings[id].Clone();
+
+            _settings.Remove(id);
+
+            Save();
+
+            Next(NotificationType.Removed, clone);
         }
 
         /// <summary>
@@ -124,26 +121,13 @@ namespace Logikfabrik.Overseer.Settings
         }
 
         /// <summary>
-        /// Gets the settings.
-        /// </summary>
-        /// <returns>
-        /// The settings.
-        /// </returns>
-        public IEnumerable<ConnectionSettings> Get()
-        {
-            var clones = _settings.Values.Select(settings => settings.Clone()).ToArray();
-
-            return clones;
-        }
-
-        /// <summary>
         /// Notifies the provider that an observer is to receive notifications.
         /// </summary>
         /// <param name="observer">The object that is to receive notifications.</param>
         /// <returns>
         /// A reference to an interface that allows observers to stop receiving notifications before the provider has finished sending them.
         /// </returns>
-        public IDisposable Subscribe(IObserver<ConnectionSettings[]> observer)
+        public IDisposable Subscribe(IObserver<Notification<ConnectionSettings>[]> observer)
         {
             this.ThrowIfDisposed(_isDisposed);
 
@@ -152,12 +136,15 @@ namespace Logikfabrik.Overseer.Settings
             // ReSharper disable once InvertIf
             if (_observers.Add(observer))
             {
-                var clones = _settings.Values.Select(settings => settings.Clone()).ToArray();
+                var notifications = Notification<ConnectionSettings>.Create(NotificationType.Added, _settings.Values.Select(s => s.Clone()));
 
-                observer.OnNext(clones);
+                if (notifications.Any())
+                {
+                    observer.OnNext(notifications);
+                }
             }
 
-            return new Subscription<ConnectionSettings[]>(_observers, observer);
+            return new Subscription<Notification<ConnectionSettings>[]>(_observers, observer);
         }
 
         /// <summary>
@@ -171,22 +158,28 @@ namespace Logikfabrik.Overseer.Settings
                 return;
             }
 
-            // ReSharper disable once InvertIf
             if (disposing)
             {
-                _observers.Clear();
+                if (_observers != null)
+                {
+                    _observers.Clear();
+                    _observers = null;
+
+                    _settings.Clear();
+                    _settings = null;
+                }
             }
 
             _isDisposed = true;
         }
 
-        private void Next()
+        private void Next(NotificationType type, ConnectionSettings settings)
         {
-            var clones = _settings.Values.Select(settings => settings.Clone()).ToArray();
+            var notifications = new[] { Notification<ConnectionSettings>.Create(type, settings) };
 
             foreach (var observer in _observers)
             {
-                observer.OnNext(clones);
+                observer.OnNext(notifications);
             }
         }
 

@@ -4,37 +4,46 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:p="clr-namespace:Logikfabrik.Overseer.WPF.Client.Properties"
+    xmlns:sys="clr-namespace:System;assembly=mscorlib"
     d:DesignHeight="300"
     d:DesignWidth="300"
     mc:Ignorable="d">
-    <ScrollViewer>
-        <StackPanel Margin="25">
-            <StackPanel Margin="0,0,0,20">
-                <TextBlock FontSize="24" Text="Edit application settings" />
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Border Grid.Row="0" Style="{StaticResource Common.Header.Panel}">
+            <TextBlock Text="{Binding Source={x:Static p:Resources.EditSettings_View}, Converter={StaticResource StringToUpperCaseConverter}}" />
+        </Border>
+        <ScrollViewer Grid.Row="1">
+            <StackPanel>
+                <StackPanel Style="{StaticResource Common.Setting.Panel}">
+                    <TextBlock Style="{StaticResource Common.Setting.Label}" Text="{Binding Source={x:Static p:Resources.EditSettings_Setting_Label_Interval}, Converter={StaticResource StringToUpperCaseConverter}}" />
+                    <TextBlock Style="{StaticResource Common.Setting.Description}" Text="{x:Static p:Resources.EditSettings_Setting_Description_Interval}" />
+                    <TextBox Text="{Binding Interval, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" />
+                </StackPanel>
+                <StackPanel Style="{StaticResource Common.Setting.Panel}">
+                    <TextBlock Style="{StaticResource Common.Setting.Label}" Text="{Binding Source={x:Static p:Resources.EditSettings_Setting_Label_CultureName}, Converter={StaticResource StringToUpperCaseConverter}}" />
+                    <TextBlock Style="{StaticResource Common.Setting.Description}" Text="{x:Static p:Resources.EditSettings_Setting_Description_CultureName}" />
+                    <ComboBox SelectedValue="{Binding CultureName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                        <sys:String>en-US</sys:String>
+                        <sys:String>sv-SE</sys:String>
+                    </ComboBox>
+                </StackPanel>
+                <WrapPanel Style="{StaticResource Common.Footer}">
+                    <Button
+                        x:Name="Save"
+                        Content="{x:Static p:Resources.EditSettings_Button_Save}"
+                        IsDefault="True"
+                        IsEnabled="{Binding IsValid, Mode=OneWay}" />
+                    <Button
+                        x:Name="TryClose"
+                        Content="{x:Static p:Resources.EditSettings_Button_Cancel}"
+                        IsCancel="True" />
+                </WrapPanel>
             </StackPanel>
-            <StackPanel Margin="0,0,0,20">
-                <TextBlock Text="Interval (s)" />
-                <TextBox Text="{Binding Path=Interval, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" />
-            </StackPanel>
-            <StackPanel Margin="0,0,0,20">
-                <TextBlock Text="Proxy URL" />
-                <TextBox Text="{Binding Path=ProxyUrl, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" />
-            </StackPanel>
-            <StackPanel Margin="0,0,0,20">
-                <TextBlock Text="Proxy Username" />
-                <TextBox Text="{Binding Path=ProxyUsername, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" />
-            </StackPanel>
-            <StackPanel Margin="0,0,0,20">
-                <TextBlock Text="Proxy Password" />
-                <TextBox Text="{Binding Path=ProxyPassword, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" />
-            </StackPanel>
-            <StackPanel Orientation="Horizontal">
-                <Button
-                    x:Name="Save"
-                    Margin="0,0,2,0"
-                    Content="OK"
-                    IsDefault="True" />
-            </StackPanel>
-        </StackPanel>
-    </ScrollViewer>
+        </ScrollViewer>
+    </Grid>
 </UserControl>

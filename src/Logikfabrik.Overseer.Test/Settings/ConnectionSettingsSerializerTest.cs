@@ -5,6 +5,7 @@
 namespace Logikfabrik.Overseer.Test.Settings
 {
     using Overseer.Settings;
+    using Shouldly;
     using Xunit;
 
     public class ConnectionSettingsSerializerTest
@@ -22,11 +23,11 @@ namespace Logikfabrik.Overseer.Test.Settings
 
             var settings = serializer.Serialize(new ConnectionSettings[]
             {
-                new ConnectionSettingsA { SettingA = "SettingA" },
-                new ConnectionSettingsB { SettingB = "SettingB" }
+                new ConnectionSettingsA { SettingA = "SettingA", BuildsPerProject = 5 },
+                new ConnectionSettingsB { SettingB = "SettingB", BuildsPerProject = 5 }
             });
 
-            Assert.NotNull(serializer.Deserialize(settings));
+            serializer.Deserialize(settings).Length.ShouldBe(2);
         }
 
         [Fact]
@@ -46,7 +47,7 @@ namespace Logikfabrik.Overseer.Test.Settings
                 new ConnectionSettingsB { SettingB = "SettingB" }
             });
 
-            Assert.NotNull(settings);
+            settings.ShouldNotBeNull();
         }
     }
 }

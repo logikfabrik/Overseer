@@ -5,70 +5,57 @@
 namespace Logikfabrik.Overseer.WPF.ViewModels.DesignTime
 {
     using System;
-    using System.Collections.Generic;
-    using System.Linq;
+    using System.ComponentModel;
+    using System.Windows.Data;
 
     /// <summary>
     /// The <see cref="ProjectViewModel" /> class.
     /// </summary>
     public class ProjectViewModel : IProjectViewModel
     {
-        /// <summary>
-        /// Gets the identifier.
-        /// </summary>
-        /// <value>
-        /// The identifier.
-        /// </value>
+        /// <inheritdoc/>
         public string Id { get; } = "1234";
 
-        /// <summary>
-        /// Gets the name.
-        /// </summary>
-        /// <value>
-        /// The name.
-        /// </value>
+        /// <inheritdoc/>
         public string Name { get; } = "Overseer";
 
-        /// <summary>
-        /// Gets the build view models.
-        /// </summary>
-        /// <value>
-        /// The build view models.
-        /// </value>
-        public IEnumerable<IBuildViewModel> Builds { get; } = new[] { new BuildViewModel(), new BuildViewModel(), new BuildViewModel() };
+        /// <inheritdoc/>
+        public ICollectionView OrderedBuilds { get; } = new CollectionView(new[] { new BuildViewModel(), new BuildViewModel(), new BuildViewModel() });
 
-        /// <summary>
-        /// Gets the latest build.
-        /// </summary>
-        /// <value>
-        /// The latest build.
-        /// </value>
-        public IBuildViewModel LatestBuild => Builds.FirstOrDefault();
+        /// <inheritdoc/>
+        public IBuildViewModel LatestBuild => new BuildViewModel();
 
-        /// <summary>
-        /// Gets a value indicating whether this instance has builds.
-        /// </summary>
-        /// <value>
-        ///   <c>true</c> if this instance has builds; otherwise, <c>false</c>.
-        /// </value>
+        /// <inheritdoc/>
+        public int QueuedBuilds => 3;
+
+        /// <inheritdoc/>
         public bool HasBuilds { get; } = true;
 
-        /// <summary>
-        /// Gets a value indicating whether this instance is busy.
-        /// </summary>
-        /// <value>
-        ///   <c>true</c> if this instance is busy; otherwise, <c>false</c>.
-        /// </value>
+        /// <inheritdoc/>
+        public bool HasNoBuilds { get; } = false;
+
+        /// <inheritdoc/>
+        public bool HasLatestBuild { get; } = true;
+
+        /// <inheritdoc/>
+        public bool HasQueuedBuilds => true;
+
+        /// <inheritdoc/>
         public bool IsBusy { get; } = false;
 
-        /// <summary>
-        /// Gets a value indicating whether this instance is errored.
-        /// </summary>
-        /// <value>
-        ///   <c>true</c> if this instance is errored; otherwise, <c>false</c>.
-        /// </value>
+        /// <inheritdoc/>
+        public bool IsViewable { get; } = true;
+
+        /// <inheritdoc/>
         public bool IsErrored { get; } = false;
 
+        /// <inheritdoc/>
+        public void View()
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <inheritdoc/>
         public bool TryUpdate(string name)
         {
             throw new NotImplementedException();

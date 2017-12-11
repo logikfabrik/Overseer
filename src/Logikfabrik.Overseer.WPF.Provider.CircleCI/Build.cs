@@ -29,15 +29,10 @@ namespace Logikfabrik.Overseer.WPF.Provider.CircleCI
             EndTime = build.StopTime?.ToUniversalTime();
             Status = GetStatus(build);
             RequestedBy = null;
+            WebUrl = build.BuildUrl;
             Changes = new[]
             {
-                new Change
-                {
-                    Id = build.VcsRevision,
-                    Changed = build.QueuedAt?.ToUniversalTime(),
-                    ChangedBy = build.CommitterName,
-                    Comment = build.Subject
-                }
+                new Change(build.VcsRevision, build.QueuedAt?.ToUniversalTime(), build.CommitterName, build.Subject?.Trim())
             };
         }
 
@@ -106,6 +101,14 @@ namespace Logikfabrik.Overseer.WPF.Provider.CircleCI
         public string RequestedBy { get; }
 
         /// <summary>
+        /// Gets the web URL.
+        /// </summary>
+        /// <value>
+        /// The web URL.
+        /// </value>
+        public Uri WebUrl { get; }
+
+        /// <summary>
         /// Gets the changes.
         /// </summary>
         /// <value>
@@ -115,19 +118,17 @@ namespace Logikfabrik.Overseer.WPF.Provider.CircleCI
 
         private static BuildStatus? GetStatus(Api.Models.Build build)
         {
-            if (!build.StopTime.HasValue || !build.Outcome.HasValue)
-            {
-                return BuildStatus.InProgress;
-            }
-
             // ReSharper disable once SwitchStatementMissingSomeCases
             switch (build.Status)
             {
+                case Api.Models.BuildStatus.Queued:
+                    return BuildStatus.Queued;
+
                 case Api.Models.BuildStatus.Success:
-                case Api.Models.BuildStatus.NoTests:
                     return BuildStatus.Succeeded;
 
                 case Api.Models.BuildStatus.Failed:
+                case Api.Models.BuildStatus.NoTests:
                     return BuildStatus.Failed;
 
                 case Api.Models.BuildStatus.Canceled:
@@ -136,6 +137,11 @@ namespace Logikfabrik.Overseer.WPF.Provider.CircleCI
                     return BuildStatus.Stopped;
 
                 default:
+                    if (!build.StopTime.HasValue || !build.Outcome.HasValue)
+                    {
+                        return BuildStatus.InProgress;
+                    }
+
                     return null;
             }
         }

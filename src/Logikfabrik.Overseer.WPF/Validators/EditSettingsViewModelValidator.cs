@@ -4,7 +4,8 @@
 
 namespace Logikfabrik.Overseer.WPF.Validators
 {
-    using System;
+    using System.Globalization;
+    using System.Linq;
     using FluentValidation;
     using ViewModels;
 
@@ -20,18 +21,19 @@ namespace Logikfabrik.Overseer.WPF.Validators
         {
             CascadeMode = CascadeMode.StopOnFirstFailure;
 
-            RuleFor(viewModel => viewModel.Interval).InclusiveBetween(1, int.MaxValue);
-            RuleFor(viewModel => viewModel.ProxyUrl).Must(url =>
-            {
-                if (string.IsNullOrWhiteSpace(url))
+            RuleFor(viewModel => viewModel.Interval)
+                .InclusiveBetween(10, 86400)
+                .WithMessage(viewModel => Properties.Resources.EditSettings_Validation_Interval);
+
+            RuleFor(viewModel => viewModel.CultureName)
+                .NotEmpty()
+                .Must(cultureName =>
                 {
-                    return true;
-                }
-
-                Uri result;
-
-                return Uri.TryCreate(url, UriKind.Absolute, out result) && (result.Scheme == Uri.UriSchemeHttp || result.Scheme == Uri.UriSchemeHttps);
-            });
+                    return CultureInfo
+                        .GetCultures(CultureTypes.SpecificCultures)
+                        .Any(c => c.Name == cultureName);
+                })
+                .WithMessage(viewModel => Properties.Resources.EditSettings_Validation_CultureName);
         }
     }
 }

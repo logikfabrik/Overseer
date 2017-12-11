@@ -4,22 +4,25 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:p="clr-namespace:Logikfabrik.Overseer.WPF.Client.Properties"
     d:DesignHeight="300"
     d:DesignWidth="300"
     mc:Ignorable="d">
     <ScrollViewer>
-        <StackPanel Margin="25">
-            <StackPanel Margin="0,0,0,20">
-                <TextBlock FontSize="24" Text="Remove connection" />
-                <TextBlock Text="Are you sure you want to remove the connection?" />
+        <StackPanel>
+            <StackPanel Style="{StaticResource Common.Section.Panel}">
+                <TextBlock Text="Are you sure you want to remove the connection?" TextWrapping="Wrap" />
             </StackPanel>
-            <StackPanel Orientation="Horizontal">
+            <WrapPanel Style="{StaticResource Common.Footer}">
                 <Button
-                    x:Name="RemoveConnection"
-                    Margin="0,0,2,0"
-                    Content="Yes"
+                    x:Name="Remove"
+                    Content="{x:Static p:Resources.RemoveConnection_Button_Remove}"
                     IsDefault="True" />
-            </StackPanel>
+                <Button
+                    x:Name="TryClose"
+                    Content="{x:Static p:Resources.RemoveConnection_Button_Cancel}"
+                    IsCancel="True" />
+            </WrapPanel>
         </StackPanel>
     </ScrollViewer>
 </UserControl>

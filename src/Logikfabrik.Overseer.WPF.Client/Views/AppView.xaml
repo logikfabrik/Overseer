@@ -4,42 +4,42 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:cal="http://www.caliburnproject.org"
     xmlns:views="clr-namespace:Logikfabrik.Overseer.WPF.Client.Views"
+    cal:Message.Attach="[Event MouseUp] = [Action Menu.Close]"
     Style="{StaticResource WindowDefaultStyle}">
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto" />
-            <ColumnDefinition />
-        </Grid.ColumnDefinitions>
-        <ContentControl cal:View.Model="{Binding Menu, Mode=OneTime}" Focusable="False" />
-        <Grid Grid.Column="1">
+        <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
-            <Grid Background="{DynamicResource Panel.Background}" ZIndex="2">
-                <Grid.Effect>
-                    <DropShadowEffect
-                        BlurRadius="3"
-                        Opacity="0.1"
-                        ShadowDepth="3"
-                        Color="{StaticResource Effect.Shadow}" />
-                </Grid.Effect>
-                <Button
-                    HorizontalAlignment="Left"
-                    cal:Bind.Model="{Binding Menu}"
-                    cal:Message.Attach="Toggle">
-                    <Viewbox>
-                        <Canvas>
-                            <Path Data="M16.4,9L3.6,9C3.048,9 3,9.447 3,10 3,10.553 3.048,11 3.6,11L16.4,11C16.952,11 17,10.553 17,10 17,9.447 16.952,9 16.4,9z M16.4,13L3.6,13C3.048,13 3,13.447 3,14 3,14.553 3.048,15 3.6,15L16.4,15C16.952,15 17,14.553 17,14 17,13.447 16.952,13 16.4,13z M3.6,7L16.4,7C16.952,7 17,6.553 17,6 17,5.447 16.952,5 16.4,5L3.6,5C3.048,5 3,5.447 3,6 3,6.553 3.048,7 3.6,7z" />
-                        </Canvas>
-                    </Viewbox>
-                </Button>
-                <TextBlock x:Name="ViewDisplayName" HorizontalAlignment="Center" />
-            </Grid>
             <ContentControl
                 Grid.Row="1"
                 cal:View.Model="{Binding ActiveItem, Mode=OneWay}"
                 Focusable="False" />
+            <Grid
+                Grid.Row="0"
+                Background="{StaticResource Panel.Background}"
+                Effect="{StaticResource DropShadowEffect}">
+                <Button HorizontalAlignment="Left" cal:Message.Attach="Menu.Open">
+                    <Viewbox>
+                        <Canvas>
+                            <Path Data="M16.4,9H3.6C3.048,9,3,9.447,3,10c0,0.553,0.048,1,0.6,1H16.4c0.552,0,0.6-0.447,0.6-1C17,9.447,16.952,9,16.4,9z M16.4,13  H3.6C3.048,13,3,13.447,3,14c0,0.553,0.048,1,0.6,1H16.4c0.552,0,0.6-0.447,0.6-1C17,13.447,16.952,13,16.4,13z M3.6,7H16.4  C16.952,7,17,6.553,17,6c0-0.553-0.048-1-0.6-1H3.6C3.048,5,3,5.447,3,6C3,6.553,3.048,7,3.6,7z" />
+                        </Canvas>
+                    </Viewbox>
+                </Button>
+                <TextBlock
+                    x:Name="ViewDisplayName"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center" />
+            </Grid>
         </Grid>
+        <ContentControl
+            HorizontalAlignment="Left"
+            cal:View.Model="{Binding Menu, Mode=OneTime}"
+            Focusable="False" />
+        <ContentControl
+            VerticalAlignment="Bottom"
+            cal:View.Model="{Binding Error, Mode=OneTime}"
+            Focusable="False" />
     </Grid>
 </views:AppWindow>

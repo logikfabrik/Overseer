@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.26730.15
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Logikfabrik.Overseer", "Logikfabrik.Overseer\Logikfabrik.Overseer.csproj", "{C5200750-C9E9-43F5-8EE5-DA7FECC32135}"
 EndProject
@@ -26,6 +26,12 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Logikfabrik.Overseer.WPF.Provider.TeamCity.Test", "Logikfabrik.Overseer.WPF.Provider.TeamCity.Test\Logikfabrik.Overseer.WPF.Provider.TeamCity.Test.csproj", "{A673BD86-AD99-4CF7-A83B-AE39196BA846}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Logikfabrik.Overseer.WPF.Provider.CircleCI", "Logikfabrik.Overseer.WPF.Provider.CircleCI\Logikfabrik.Overseer.WPF.Provider.CircleCI.csproj", "{261D8616-8433-4C31-BB88-FC62FA389029}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Logikfabrik.Overseer.WPF.Provider.Codeship", "Logikfabrik.Overseer.WPF.Provider.Codeship\Logikfabrik.Overseer.WPF.Provider.Codeship.csproj", "{8E789175-EB12-43D0-B432-9308AE97D989}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Logikfabrik.Overseer.WPF.Client.Test", "Logikfabrik.Overseer.WPF.Client.Test\Logikfabrik.Overseer.WPF.Client.Test.csproj", "{B6DB0C8E-217D-438A-B747-1357000104CB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{94E511CC-D818-414E-AE3E-0DE69D66D0DB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -130,8 +136,33 @@ Global
 		{261D8616-8433-4C31-BB88-FC62FA389029}.Release|Any CPU.Build.0 = Release|Any CPU
 		{261D8616-8433-4C31-BB88-FC62FA389029}.Release|x86.ActiveCfg = Release|Any CPU
 		{261D8616-8433-4C31-BB88-FC62FA389029}.Release|x86.Build.0 = Release|Any CPU
+		{8E789175-EB12-43D0-B432-9308AE97D989}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8E789175-EB12-43D0-B432-9308AE97D989}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8E789175-EB12-43D0-B432-9308AE97D989}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{8E789175-EB12-43D0-B432-9308AE97D989}.Debug|x86.Build.0 = Debug|Any CPU
+		{8E789175-EB12-43D0-B432-9308AE97D989}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8E789175-EB12-43D0-B432-9308AE97D989}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8E789175-EB12-43D0-B432-9308AE97D989}.Release|x86.ActiveCfg = Release|Any CPU
+		{8E789175-EB12-43D0-B432-9308AE97D989}.Release|x86.Build.0 = Release|Any CPU
+		{B6DB0C8E-217D-438A-B747-1357000104CB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B6DB0C8E-217D-438A-B747-1357000104CB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B6DB0C8E-217D-438A-B747-1357000104CB}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{B6DB0C8E-217D-438A-B747-1357000104CB}.Debug|x86.Build.0 = Debug|Any CPU
+		{B6DB0C8E-217D-438A-B747-1357000104CB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B6DB0C8E-217D-438A-B747-1357000104CB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B6DB0C8E-217D-438A-B747-1357000104CB}.Release|x86.ActiveCfg = Release|Any CPU
+		{B6DB0C8E-217D-438A-B747-1357000104CB}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{8D66C1CD-1215-478B-B1E7-BB7630FFDDD9} = {94E511CC-D818-414E-AE3E-0DE69D66D0DB}
+		{ACFF75F6-9B51-4A84-912C-202D4FFD77AD} = {94E511CC-D818-414E-AE3E-0DE69D66D0DB}
+		{A673BD86-AD99-4CF7-A83B-AE39196BA846} = {94E511CC-D818-414E-AE3E-0DE69D66D0DB}
+		{B6DB0C8E-217D-438A-B747-1357000104CB} = {94E511CC-D818-414E-AE3E-0DE69D66D0DB}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C09F4D6A-98F9-4D88-886B-45D09D2709AB}
 	EndGlobalSection
 EndGlobal

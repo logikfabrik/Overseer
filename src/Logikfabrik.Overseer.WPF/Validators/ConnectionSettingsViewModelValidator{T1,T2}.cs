@@ -25,7 +25,13 @@ namespace Logikfabrik.Overseer.WPF.Validators
         {
             CascadeMode = CascadeMode.StopOnFirstFailure;
 
-            RuleFor(viewModel => viewModel.Name).NotEmpty();
+            RuleFor(viewModel => viewModel.Name)
+                .NotEmpty()
+                .WithMessage(viewModel => Properties.Resources.ConnectionSettings_Validation_Name);
+
+            RuleFor(viewModel => viewModel.BuildsPerProject)
+                .GreaterThan(0)
+                .WithMessage(viewModel => Properties.Resources.ConnectionSettings_Validation_BuildsPerProject);
         }
     }
 }

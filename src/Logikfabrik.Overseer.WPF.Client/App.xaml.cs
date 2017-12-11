@@ -7,7 +7,7 @@ namespace Logikfabrik.Overseer.WPF.Client
     /// <summary>
     /// The <see cref="App" /> class.
     /// </summary>
-    public partial class App
+    public partial class App : IApp
     {
     }
 }

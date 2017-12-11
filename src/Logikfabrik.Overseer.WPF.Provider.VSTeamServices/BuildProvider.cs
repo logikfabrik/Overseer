@@ -9,7 +9,6 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices
     using System.Threading;
     using System.Threading.Tasks;
     using EnsureThat;
-    using Overseer.Extensions;
 
     /// <summary>
     /// The <see cref="BuildProvider" /> class.
@@ -17,7 +16,6 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices
     public class BuildProvider : BuildProvider<ConnectionSettings>
     {
         private readonly Api.IApiClient _apiClient;
-        private bool _isDisposed;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="BuildProvider" /> class.
@@ -41,8 +39,6 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices
         /// </returns>
         public override async Task<IEnumerable<IProject>> GetProjectsAsync(CancellationToken cancellationToken)
         {
-            this.ThrowIfDisposed(_isDisposed);
-
             var projects = await _apiClient.GetProjectsAsync(0, int.MaxValue, cancellationToken).ConfigureAwait(false);
 
             return projects.Value.Select(project => new Project(project)).ToArray();
@@ -58,15 +54,11 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices
         /// </returns>
         public override async Task<IEnumerable<IBuild>> GetBuildsAsync(string projectId, CancellationToken cancellationToken)
         {
-            this.ThrowIfDisposed(_isDisposed);
-
             Ensure.That(projectId).IsNotNullOrWhiteSpace();
 
             var builds = new List<IBuild>();
 
-            const int numberOfBuilds = 3;
-
-            foreach (var build in (await _apiClient.GetBuildsAsync(projectId, 0, numberOfBuilds, cancellationToken).ConfigureAwait(false)).Value)
+            foreach (var build in (await _apiClient.GetBuildsAsync(projectId, 0, Settings.BuildsPerProject, cancellationToken).ConfigureAwait(false)).Value)
             {
                 var changes = await _apiClient.GetChangesAsync(projectId, build.Id, cancellationToken).ConfigureAwait(false);
 
@@ -74,26 +66,6 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices
             }
 
             return builds.ToArray();
-        }
-
-        /// <summary>
-        /// Releases unmanaged and managed resources.
-        /// </summary>
-        /// <param name="disposing"><c>true</c> to release both managed and unmanaged resources; <c>false</c> to release only unmanaged resources.</param>
-        protected override void Dispose(bool disposing)
-        {
-            if (_isDisposed)
-            {
-                return;
-            }
-
-            // ReSharper disable once InvertIf
-            if (disposing)
-            {
-                _apiClient.Dispose();
-            }
-
-            _isDisposed = true;
         }
     }
 }

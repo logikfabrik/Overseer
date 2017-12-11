@@ -4,10 +4,9 @@
 
 namespace Logikfabrik.Overseer.WPF.ViewModels
 {
-    using System;
-    using System.Linq;
     using Caliburn.Micro;
     using EnsureThat;
+    using Navigation;
     using Settings;
 
     /// <summary>
@@ -17,39 +16,38 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     {
         private readonly IEventAggregator _eventAggregator;
         private readonly IConnectionSettingsRepository _settingsRepository;
-        private readonly Guid _settingsId;
+        private readonly IConnectionViewModel _connectionViewModel;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="RemoveConnectionViewModel" /> class.
         /// </summary>
+        /// <param name="platformProvider">The platform provider.</param>
         /// <param name="eventAggregator">The event aggregator.</param>
         /// <param name="settingsRepository">The settings repository.</param>
-        /// <param name="settingsId">The settings identifier.</param>
-        public RemoveConnectionViewModel(IEventAggregator eventAggregator, IConnectionSettingsRepository settingsRepository, Guid settingsId)
+        /// <param name="connectionViewModel">The connection view model.</param>
+        public RemoveConnectionViewModel(IPlatformProvider platformProvider, IEventAggregator eventAggregator, IConnectionSettingsRepository settingsRepository, IConnectionViewModel connectionViewModel)
+            : base(platformProvider)
         {
             Ensure.That(eventAggregator).IsNotNull();
             Ensure.That(settingsRepository).IsNotNull();
-            Ensure.That(settingsId).IsNotEmpty();
+            Ensure.That(connectionViewModel).IsNotNull();
 
             _eventAggregator = eventAggregator;
             _settingsRepository = settingsRepository;
-            _settingsId = settingsId;
-            DisplayName = "Remove connection";
+            _connectionViewModel = connectionViewModel;
+            DisplayName = Properties.Resources.RemoveConnection_View;
         }
 
         /// <summary>
         /// Remove the connection.
         /// </summary>
-        public void RemoveConnection()
+        public void Remove()
         {
-            _settingsRepository.Remove(_settingsId);
+            var settingsId = _connectionViewModel.SettingsId;
 
-            var viewModel = GetOpenChildren<IConnectionViewModel>().Single(vm => vm.SettingsId == _settingsId);
+            _connectionViewModel.TryClose();
 
-            CloseChild(viewModel);
-
-            // TODO: Remove this view model from the conductor.
-            // TODO: Remove the corresponding connection view model from the conductor.
+            _settingsRepository.Remove(settingsId);
 
             var message = new NavigationMessage(typeof(ConnectionsViewModel));
 

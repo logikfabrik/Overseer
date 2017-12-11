@@ -17,15 +17,15 @@ namespace Logikfabrik.Overseer.WPF.ViewModels.DesignTime
         /// <value>
         /// The identifier.
         /// </value>
-        public string Id { get; } = "1234";
+        public string Id { get; } = "2fd4e1c67a2d28fced849ee1bb76e7391b93eb12";
 
         /// <summary>
-        /// Gets a value indicating whether to show the identifier.
+        /// Gets the identifier or short identifier.
         /// </summary>
         /// <value>
-        ///   <c>true</c> if the identifier should be shown; otherwise, <c>false</c>.
+        /// The identifier or short identifier.
         /// </value>
-        public bool ShowId { get; } = true;
+        public string IdOrShortId { get; } = "2fd4e1c6";
 
         /// <summary>
         /// Gets the changed date.
@@ -36,28 +36,12 @@ namespace Logikfabrik.Overseer.WPF.ViewModels.DesignTime
         public DateTime? Changed { get; } = DateTime.UtcNow;
 
         /// <summary>
-        /// Gets a value indicating whether to show the changed date.
-        /// </summary>
-        /// <value>
-        ///   <c>true</c> if the changed date should be shown; otherwise, <c>false</c>.
-        /// </value>
-        public bool ShowChanged { get; } = true;
-
-        /// <summary>
         /// Gets the name of whoever made the change.
         /// </summary>
         /// <value>
         /// The name of whoever made the change.
         /// </value>
         public string ChangedBy { get; } = "John Doe";
-
-        /// <summary>
-        /// Gets a value indicating whether to show the name of whoever made the changed.
-        /// </summary>
-        /// <value>
-        ///   <c>true</c> if the name of whoever made the change should be shown; otherwise, <c>false</c>.
-        /// </value>
-        public bool ShowChangedBy { get; } = true;
 
         /// <summary>
         /// Gets the comment.

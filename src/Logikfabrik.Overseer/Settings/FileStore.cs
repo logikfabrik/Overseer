@@ -13,29 +13,33 @@ namespace Logikfabrik.Overseer.Settings
     /// <summary>
     /// The <see cref="FileStore" /> class.
     /// </summary>
-    public class FileStore : IFileStore
+    public class FileStore : IFileStore, IDisposable
     {
+        private readonly IFileSystem _fileSystem;
         private readonly string _path;
-        private readonly ManualResetEventSlim _resetEvent;
+        private ManualResetEventSlim _resetEvent;
         private bool _isDisposed;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="FileStore" /> class.
         /// </summary>
+        /// <param name="fileSystem">The file system.</param>
         /// <param name="path">The path.</param>
-        public FileStore(string path)
+        public FileStore(IFileSystem fileSystem, string path)
         {
+            Ensure.That(fileSystem).IsNotNull();
             Ensure.That(path).IsNotNullOrWhiteSpace();
 
+            _fileSystem = fileSystem;
             _path = path;
             _resetEvent = new ManualResetEventSlim(true);
         }
 
         /// <summary>
-        /// Reads the file.
+        /// Reads the file text.
         /// </summary>
         /// <returns>
-        /// The contents.
+        /// The file text.
         /// </returns>
         public string Read()
         {
@@ -45,7 +49,7 @@ namespace Logikfabrik.Overseer.Settings
 
             try
             {
-                return !File.Exists(_path) ? null : File.ReadAllText(_path);
+                return _fileSystem.FileExists(_path) ? _fileSystem.ReadFileText(_path) : null;
             }
             finally
             {
@@ -54,10 +58,10 @@ namespace Logikfabrik.Overseer.Settings
         }
 
         /// <summary>
-        /// Writes the specified contents to the file.
+        /// Writes the specified file text to the file.
         /// </summary>
-        /// <param name="contents">The contents.</param>
-        public void Write(string contents)
+        /// <param name="text">The file text.</param>
+        public void Write(string text)
         {
             this.ThrowIfDisposed(_isDisposed);
 
@@ -65,10 +69,8 @@ namespace Logikfabrik.Overseer.Settings
 
             try
             {
-                // ReSharper disable once AssignNullToNotNullAttribute
-                Directory.CreateDirectory(Path.GetDirectoryName(_path));
-
-                File.WriteAllText(_path, contents);
+                _fileSystem.CreateDirectory(Path.GetDirectoryName(_path));
+                _fileSystem.WriteFileText(_path, text);
             }
             finally
             {
@@ -98,7 +100,11 @@ namespace Logikfabrik.Overseer.Settings
 
             if (disposing)
             {
-                _resetEvent.Dispose();
+                if (_resetEvent != null)
+                {
+                    _resetEvent.Dispose();
+                    _resetEvent = null;
+                }
             }
 
             _isDisposed = true;

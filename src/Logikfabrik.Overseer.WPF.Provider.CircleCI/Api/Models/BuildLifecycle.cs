@@ -9,18 +9,36 @@ namespace Logikfabrik.Overseer.WPF.Provider.CircleCI.Api.Models
     /// </summary>
     public enum BuildLifecycle
     {
+        /// <summary>
+        /// The build finished.
+        /// </summary>
         Finished,
 
+        /// <summary>
+        /// The build is queued.
+        /// </summary>
         Queued,
 
+        /// <summary>
+        /// The build is scheduled.
+        /// </summary>
         Scheduled,
 
+        /// <summary>
+        /// The build was not run.
+        /// </summary>
         // ReSharper disable once InconsistentNaming
         Not_run,
 
+        /// <summary>
+        /// The build is not running.
+        /// </summary>
         // ReSharper disable once InconsistentNaming
         Not_running,
 
-        Running,
+        /// <summary>
+        /// The build is running.
+        /// </summary>
+        Running
     }
 }

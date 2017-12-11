@@ -5,6 +5,7 @@
 namespace Logikfabrik.Overseer.Test.Settings
 {
     using Moq;
+    using Moq.AutoMock;
     using Overseer.Settings;
     using Ploeh.AutoFixture.Xunit2;
     using Xunit;
@@ -12,38 +13,64 @@ namespace Logikfabrik.Overseer.Test.Settings
     public class ConnectionSettingsStoreTest
     {
         [Fact]
-        public void CanSave()
+        public void WillEncryptOnSave()
         {
-            var settings = new ConnectionSettings[] { };
+            var mocker = new AutoMocker();
 
-            var serializerMock = new Mock<IConnectionSettingsSerializer>();
-            var encrypterMock = new Mock<IConnectionSettingsEncrypter>();
-            var fileStoreMock = new Mock<IFileStore>();
+            var store = mocker.CreateInstance<ConnectionSettingsStore>();
 
-            var store = new ConnectionSettingsStore(serializerMock.Object, encrypterMock.Object, fileStoreMock.Object);
+            var encrypterMock = mocker.GetMock<IConnectionSettingsEncrypter>();
 
-            store.Save(settings);
+            store.Save(new ConnectionSettings[] { });
 
             encrypterMock.Verify(m => m.Encrypt(It.IsAny<string>()), Times.Once);
+        }
+
+        [Fact]
+        public void WillWiteOnSave()
+        {
+            var mocker = new AutoMocker();
+
+            var store = mocker.CreateInstance<ConnectionSettingsStore>();
+
+            var fileStoreMock = mocker.GetMock<IFileStore>();
+
+            store.Save(new ConnectionSettings[] { });
+
             fileStoreMock.Verify(m => m.Write(It.IsAny<string>()), Times.Once);
         }
 
         [Theory]
         [AutoData]
-        public void CanLoad()
+        public void WillDecryptOnLoad(string xml)
         {
-            var serializerMock = new Mock<IConnectionSettingsSerializer>();
-            var encrypterMock = new Mock<IConnectionSettingsEncrypter>();
-            var fileStoreMock = new Mock<IFileStore>();
+            var mocker = new AutoMocker();
 
-            fileStoreMock.Setup(m => m.Read()).Returns("XML");
+            var store = mocker.CreateInstance<ConnectionSettingsStore>();
 
-            var store = new ConnectionSettingsStore(serializerMock.Object, encrypterMock.Object, fileStoreMock.Object);
+            var fileStoreMock = mocker.GetMock<IFileStore>();
+
+            fileStoreMock.Setup(m => m.Read()).Returns(xml);
+
+            var encrypterMock = mocker.GetMock<IConnectionSettingsEncrypter>();
+
+            store.Load();
+
+            encrypterMock.Verify(m => m.Decrypt(It.IsAny<string>()), Times.Once);
+        }
+
+        [Fact]
+        public void WillReadOnLoad()
+        {
+            var mocker = new AutoMocker();
+
+            var store = mocker.CreateInstance<ConnectionSettingsStore>();
+
+            var fileStoreMock = mocker.GetMock<IFileStore>();
 
             store.Load();
 
             fileStoreMock.Verify(m => m.Read(), Times.Once);
-            encrypterMock.Verify(m => m.Decrypt(It.IsAny<string>()), Times.Once);
         }
     }
 }

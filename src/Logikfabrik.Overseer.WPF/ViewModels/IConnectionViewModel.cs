@@ -5,7 +5,7 @@
 namespace Logikfabrik.Overseer.WPF.ViewModels
 {
     using System;
-    using System.Collections.Generic;
+    using System.ComponentModel;
 
     /// <summary>
     /// The <see cref="IConnectionViewModel" /> interface.
@@ -37,6 +37,14 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         bool IsBusy { get; }
 
         /// <summary>
+        /// Gets a value indicating whether this instance is viewable.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if this instance is viewable; otherwise, <c>false</c>.
+        /// </value>
+        bool IsViewable { get; }
+
+        /// <summary>
         /// Gets a value indicating whether this instance is editable.
         /// </summary>
         /// <value>
@@ -53,12 +61,20 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         bool IsErrored { get; }
 
         /// <summary>
-        /// Gets the projects.
+        /// Gets the filtered projects.
         /// </summary>
         /// <value>
-        /// The projects.
+        /// The filtered projects.
         /// </value>
-        IEnumerable<IProjectViewModel> Projects { get; }
+        ICollectionView FilteredProjects { get; }
+
+        /// <summary>
+        /// Gets or sets the filter.
+        /// </summary>
+        /// <value>
+        /// The filter.
+        /// </value>
+        string Filter { get; set; }
 
         /// <summary>
         /// Gets a value indicating whether this instance has projects.
@@ -69,17 +85,25 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         bool HasProjects { get; }
 
         /// <summary>
-        /// Edit the connection.
+        /// Gets a value indicating whether this instance has no projects.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if this instance has no projects; otherwise, <c>false</c>.
+        /// </value>
+        bool HasNoProjects { get; }
+
+        /// <summary>
+        /// Edits this instance.
         /// </summary>
         void Edit();
 
         /// <summary>
-        /// Remove the connection.
+        /// Removes this instance.
         /// </summary>
         void Remove();
 
         /// <summary>
-        /// View the connection.
+        /// Views this instance.
         /// </summary>
         void View();
     }

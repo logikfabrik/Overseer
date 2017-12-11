@@ -5,7 +5,7 @@
 using System.Reflection;
 using System.Runtime.InteropServices;
 
-[assembly: AssemblyTitle("Logikfabrik.Overseer.WPF.Provider.CircleCI")]
+[assembly: AssemblyTitle("Logikfabrik Overseer")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Anton Frennevi")]

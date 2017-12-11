@@ -4,14 +4,19 @@
 
 namespace Logikfabrik.Overseer.Settings
 {
-    using System;
     using System.Xml;
 
     /// <summary>
     /// The <see cref="IXmlEncrypter" /> interface.
     /// </summary>
-    public interface IXmlEncrypter : IDisposable
+    public interface IXmlEncrypter
     {
+        /// <summary>
+        /// Gets a value indicating whether this instance has a pass phrase.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if this instance has a pass phrase; otherwise, <c>false</c>.
+        /// </value>
         bool HasPassPhrase { get; }
 
         /// <summary>

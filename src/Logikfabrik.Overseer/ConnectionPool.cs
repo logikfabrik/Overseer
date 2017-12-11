@@ -14,16 +14,16 @@ namespace Logikfabrik.Overseer
     /// <summary>
     /// The <see cref="ConnectionPool" /> class.
     /// </summary>
-    public class ConnectionPool : IConnectionPool
+    public class ConnectionPool : IConnectionPool, IDisposable
     {
         private readonly IBuildProviderStrategy _buildProviderStrategy;
-        private readonly IDisposable _subscription;
-        private readonly HashSet<IObserver<IConnection[]>> _observers;
-        private readonly IDictionary<Guid, IConnection> _connections;
+        private HashSet<IObserver<Notification<IConnection>[]>> _observers;
+        private IDictionary<Guid, Connection> _connections;
+        private IDisposable _subscription;
         private bool _isDisposed;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ConnectionPool"/> class.
+        /// Initializes a new instance of the <see cref="ConnectionPool" /> class.
         /// </summary>
         /// <param name="settingsRepository">The settings repository.</param>
         /// <param name="buildProviderStrategy">The build provider strategy.</param>
@@ -33,8 +33,8 @@ namespace Logikfabrik.Overseer
             Ensure.That(buildProviderStrategy).IsNotNull();
 
             _buildProviderStrategy = buildProviderStrategy;
-            _connections = new Dictionary<Guid, IConnection>();
-            _observers = new HashSet<IObserver<IConnection[]>>();
+            _connections = new Dictionary<Guid, Connection>();
+            _observers = new HashSet<IObserver<Notification<IConnection>[]>>();
             _subscription = settingsRepository.Subscribe(this);
         }
 
@@ -44,13 +44,13 @@ namespace Logikfabrik.Overseer
         /// <value>
         /// The current connections.
         /// </value>
-        internal IEnumerable<IConnection> CurrentConnections => _connections.Values;
+        internal IEnumerable<Connection> CurrentConnections => _connections.Values;
 
         /// <summary>
         /// Provides the observer with new data.
         /// </summary>
         /// <param name="value">The current notification information.</param>
-        public void OnNext(ConnectionSettings[] value)
+        public void OnNext(Notification<ConnectionSettings>[] value)
         {
             if (_isDisposed)
             {
@@ -58,50 +58,27 @@ namespace Logikfabrik.Overseer
                 return;
             }
 
-            var connectionsToDispose = new List<IConnection>();
+            var notifications = new List<Notification<IConnection>>();
+            var toDisposeOf = new List<Connection>();
 
-            if (!value.Any())
+            foreach (var settings in Notification<ConnectionSettings>.GetPayloads(value, NotificationType.Removed, s => _connections.ContainsKey(s.Id)))
             {
-                _connections.Clear();
-            }
-            else
-            {
-                foreach (var settings in value)
-                {
-                    IConnection connectionToUpdate;
-
-                    if (_connections.TryGetValue(settings.Id, out connectionToUpdate))
-                    {
-                        if (connectionToUpdate.Settings.Signature() == settings.Signature())
-                        {
-                            continue;
-                        }
-
-                        connectionToUpdate.Settings = settings;
-                    }
-                    else
-                    {
-                        var connectionToAdd = new Connection(_buildProviderStrategy, settings);
-
-                        _connections.Add(settings.Id, connectionToAdd);
-                    }
-                }
-
-                var connectionsToRemove = _connections.Keys.Except(value.Select(s => s.Id)).ToArray();
-
-                foreach (var id in connectionsToRemove)
-                {
-                    var connection = _connections[id];
-
-                    connectionsToDispose.Add(connection);
-
-                    _connections.Remove(id);
-                }
+                Remove(notifications, settings, toDisposeOf);
             }
 
-            Next();
+            foreach (var settings in Notification<ConnectionSettings>.GetPayloads(value, NotificationType.Updated, s => _connections.ContainsKey(s.Id)))
+            {
+                Update(notifications, settings, toDisposeOf);
+            }
 
-            foreach (var connection in connectionsToDispose)
+            foreach (var settings in Notification<ConnectionSettings>.GetPayloads(value, NotificationType.Added, s => !_connections.ContainsKey(s.Id)))
+            {
+                Add(notifications, settings);
+            }
+
+            Next(notifications.ToArray());
+
+            foreach (var connection in toDisposeOf)
             {
                 connection.Dispose();
             }
@@ -140,7 +117,7 @@ namespace Logikfabrik.Overseer
         /// <returns>
         /// A reference to an interface that allows observers to stop receiving notifications before the provider has finished sending them.
         /// </returns>
-        public IDisposable Subscribe(IObserver<IConnection[]> observer)
+        public IDisposable Subscribe(IObserver<Notification<IConnection>[]> observer)
         {
             this.ThrowIfDisposed(_isDisposed);
 
@@ -149,10 +126,15 @@ namespace Logikfabrik.Overseer
             // ReSharper disable once InvertIf
             if (_observers.Add(observer))
             {
-                observer.OnNext(_connections.Values.ToArray());
+                var notifications = Notification<IConnection>.Create(NotificationType.Added, _connections.Values);
+
+                if (notifications.Any())
+                {
+                    observer.OnNext(notifications);
+                }
             }
 
-            return new Subscription<IConnection[]>(_observers, observer);
+            return new Subscription<Notification<IConnection>[]>(_observers, observer);
         }
 
         /// <summary>
@@ -166,32 +148,72 @@ namespace Logikfabrik.Overseer
                 return;
             }
 
-            // ReSharper disable once InvertIf
             if (disposing)
             {
-                _subscription.Dispose();
-
-                _observers.Clear();
-
-                foreach (var connection in _connections.Values)
+                if (_subscription != null)
                 {
-                    connection.Dispose();
+                    _subscription.Dispose();
+                    _subscription = null;
                 }
 
-                _connections.Clear();
+                if (_observers != null)
+                {
+                    _observers.Clear();
+                    _observers = null;
+                }
+
+                if (_connections != null)
+                {
+                    foreach (var connection in _connections.Values)
+                    {
+                        connection.Dispose();
+                    }
+
+                    _connections.Clear();
+                    _connections = null;
+                }
             }
 
             _isDisposed = true;
         }
 
-        private void Next()
+        private void Next(Notification<IConnection>[] notifications)
         {
-            var connections = _connections.Values.ToArray();
+            if (!notifications.Any())
+            {
+                return;
+            }
 
             foreach (var observer in _observers)
             {
-                observer.OnNext(connections);
+                observer.OnNext(notifications);
             }
+        }
+
+        private void Add(ICollection<Notification<IConnection>> notifications, ConnectionSettings settings)
+        {
+            var connection = new Connection(_buildProviderStrategy, settings);
+
+            _connections.Add(settings.Id, connection);
+
+            notifications.Add(Notification<IConnection>.Create(NotificationType.Added, connection));
+        }
+
+        private void Update(ICollection<Notification<IConnection>> notifications, ConnectionSettings settings, ICollection<Connection> toDisposeOf)
+        {
+            Remove(notifications, settings, toDisposeOf);
+            Add(notifications, settings);
+        }
+
+        private void Remove(ICollection<Notification<IConnection>> notifications, ConnectionSettings settings, ICollection<Connection> toDisposeOf)
+        {
+            var connection = _connections[settings.Id];
+
+            toDisposeOf.Add(connection);
+
+            _connections.Remove(settings.Id);
+
+            notifications.Add(Notification<IConnection>.Create(NotificationType.Removed, connection));
         }
     }
 }

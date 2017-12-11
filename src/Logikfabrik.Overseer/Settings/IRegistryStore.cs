@@ -4,12 +4,10 @@
 
 namespace Logikfabrik.Overseer.Settings
 {
-    using System;
-
     /// <summary>
     /// The <see cref="IRegistryStore" /> interface.
     /// </summary>
-    public interface IRegistryStore : IDisposable
+    public interface IRegistryStore
     {
         /// <summary>
         /// Writes the specified key.

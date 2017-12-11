@@ -12,10 +12,13 @@ namespace Logikfabrik.Overseer.WPF.Extensions
     /// <summary>
     /// The <see cref="HyperlinkExtensions" /> class.
     /// </summary>
+    /// <remarks>
+    /// Based on SO https://stackoverflow.com/a/11433814, answered by Arthur Nunes, https://stackoverflow.com/users/702828/arthur-nunes.
+    /// </remarks>
     public static class HyperlinkExtensions
     {
         /// <summary>
-        /// The is external property.
+        /// A dependency property.
         /// </summary>
         public static readonly DependencyProperty IsExternalProperty = DependencyProperty.RegisterAttached("IsExternal", typeof(bool), typeof(HyperlinkExtensions), new UIPropertyMetadata(false, OnIsExternalChanged));
 
@@ -26,6 +29,7 @@ namespace Logikfabrik.Overseer.WPF.Extensions
         /// <returns><c>true</c> if external; otherwise, <c>false</c>.</returns>
         public static bool GetIsExternal(DependencyObject obj)
         {
+            // ReSharper disable once PossibleNullReferenceException
             return (bool)obj.GetValue(IsExternalProperty);
         }
 
@@ -39,9 +43,9 @@ namespace Logikfabrik.Overseer.WPF.Extensions
             obj.SetValue(IsExternalProperty, value);
         }
 
-        private static void OnIsExternalChanged(object sender, DependencyPropertyChangedEventArgs args)
+        private static void OnIsExternalChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
-            var isExternal = args.NewValue as bool?;
+            var isExternal = e.NewValue as bool?;
 
             if (!isExternal.HasValue || !isExternal.Value)
             {

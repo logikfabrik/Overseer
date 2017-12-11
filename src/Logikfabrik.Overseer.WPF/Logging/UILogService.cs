@@ -41,7 +41,7 @@ namespace Logikfabrik.Overseer.WPF.Logging
         /// <param name="args">The arguments.</param>
         public void Info(string format, params object[] args)
         {
-            _logService.Log(_type, new LogEntry(LogEntryType.Information, string.Format(format, args)));
+            _logService.Log(_type, new LogEntry(LogEntryType.Information, format, args));
         }
 
         /// <summary>
@@ -51,7 +51,7 @@ namespace Logikfabrik.Overseer.WPF.Logging
         /// <param name="args">The arguments.</param>
         public void Warn(string format, params object[] args)
         {
-            _logService.Log(_type, new LogEntry(LogEntryType.Warning, string.Format(format, args)));
+            _logService.Log(_type, new LogEntry(LogEntryType.Warning, format, args));
         }
 
         /// <summary>

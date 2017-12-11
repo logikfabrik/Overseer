@@ -6,7 +6,9 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
 {
     using System.ComponentModel;
     using System.Linq;
+    using Caliburn.Micro;
     using EnsureThat;
+    using Extensions;
     using Validators;
 
     /// <summary>
@@ -14,28 +16,33 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     /// </summary>
     public class EditSettingsViewModel : ViewModel, IDataErrorInfo
     {
+        private readonly IApp _application;
         private readonly EditSettingsViewModelValidator _validator;
         private readonly AppSettings _appSettings;
         private int _interval;
-        private string _proxyUrl;
-        private string _proxyUsername;
-        private string _proxyPassword;
+        private string _cultureName;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="EditSettingsViewModel" /> class.
         /// </summary>
-        /// <param name="appSettings">The application settings.</param>
-        public EditSettingsViewModel(AppSettings appSettings)
+        /// <param name="application">The application.</param>
+        /// <param name="platformProvider">The platform provider.</param>
+        /// <param name="appSettingsFactory">The app settings factory.</param>
+        public EditSettingsViewModel(IApp application, IPlatformProvider platformProvider, IAppSettingsFactory appSettingsFactory)
+            : base(platformProvider)
         {
-            Ensure.That(appSettings).IsNotNull();
+            Ensure.That(application).IsNotNull();
+            Ensure.That(appSettingsFactory).IsNotNull();
 
+            _application = application;
             _validator = new EditSettingsViewModelValidator();
+
+            var appSettings = appSettingsFactory.Create();
+
             _appSettings = appSettings;
             _interval = appSettings.Interval;
-            _proxyUrl = appSettings.ProxyUrl;
-            _proxyUsername = appSettings.ProxyUsername;
-            _proxyPassword = appSettings.ProxyPassword;
-            DisplayName = "Edit settings";
+            _cultureName = appSettings.CultureName;
+            DisplayName = Properties.Resources.EditSettings_View;
         }
 
         /// <summary>
@@ -55,68 +62,38 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             {
                 _interval = value;
                 NotifyOfPropertyChange(() => Interval);
+                NotifyOfPropertyChange(() => IsValid);
             }
         }
 
         /// <summary>
-        /// Gets or sets the proxy URL.
+        /// Gets or sets the culture name.
         /// </summary>
         /// <value>
-        /// The proxy URL.
+        /// The culture name.
         /// </value>
-        public string ProxyUrl
+        public string CultureName
         {
             get
             {
-                return _proxyUrl;
+                return _cultureName;
             }
 
             set
             {
-                _proxyUrl = value;
-                NotifyOfPropertyChange(() => ProxyUrl);
+                _cultureName = value;
+                NotifyOfPropertyChange(() => CultureName);
+                NotifyOfPropertyChange(() => IsValid);
             }
         }
 
         /// <summary>
-        /// Gets or sets the proxy username.
+        /// Gets a value indicating whether this instance is valid.
         /// </summary>
         /// <value>
-        /// The proxy username.
+        ///   <c>true</c> if this instance is valid; otherwise, <c>false</c>.
         /// </value>
-        public string ProxyUsername
-        {
-            get
-            {
-                return _proxyUsername;
-            }
-
-            set
-            {
-                _proxyUsername = value;
-                NotifyOfPropertyChange(() => ProxyUsername);
-            }
-        }
-
-        /// <summary>
-        /// Gets or sets the proxy password.
-        /// </summary>
-        /// <value>
-        /// The proxy password.
-        /// </value>
-        public string ProxyPassword
-        {
-            get
-            {
-                return _proxyPassword;
-            }
-
-            set
-            {
-                _proxyPassword = value;
-                NotifyOfPropertyChange(() => ProxyPassword);
-            }
-        }
+        public bool IsValid => _validator.Validate(this).IsValid;
 
         /// <summary>
         /// Gets an error message indicating what is wrong with this object.
@@ -148,21 +125,26 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         }
 
         /// <summary>
-        /// Save the settings.
+        /// Saves the settings.
         /// </summary>
         public void Save()
         {
-            if (!_validator.Validate(this).IsValid)
+            if (!IsValid)
             {
                 return;
             }
 
+            var restart = _appSettings.CultureName != CultureName;
+
             _appSettings.Interval = _interval;
-            _appSettings.ProxyUrl = _proxyUrl;
-            _appSettings.ProxyUsername = _proxyUsername;
-            _appSettings.ProxyPassword = _proxyPassword;
+            _appSettings.CultureName = _cultureName;
 
             _appSettings.Save();
+
+            if (restart)
+            {
+                _application.Restart();
+            }
         }
     }
 }

@@ -6,6 +6,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.CircleCI.ViewModels
 {
     using Caliburn.Micro;
     using EnsureThat;
+    using Overseer.Logging;
     using Settings;
     using WPF.ViewModels.Factories;
 
@@ -17,27 +18,30 @@ namespace Logikfabrik.Overseer.WPF.Provider.CircleCI.ViewModels
         /// <summary>
         /// Initializes a new instance of the <see cref="EditConnectionViewModel" /> class.
         /// </summary>
-        /// <param name="eventAggregator">The event aggregator.</param>
+        /// <param name="platformProvider">The platform provider.</param>
+        /// <param name="logService">The log service.</param>
         /// <param name="settingsRepository">The build provider settings repository.</param>
         /// <param name="connectionSettingsFactory">The connection settings factory.</param>
         /// <param name="buildProviderStrategy">The build provider strategy.</param>
-        /// <param name="projectToMonitorFactory">The project to monitor factory.</param>
-        /// <param name="projectsToMonitorFactory">The projects to monitor factory.</param>
+        /// <param name="trackedProjectFactory">The tracked project factory.</param>
+        /// <param name="trackedProjectsFactory">The tracked projects factory.</param>
         /// <param name="currentSettings">The current settings.</param>
         public EditConnectionViewModel(
-            IEventAggregator eventAggregator,
+            IPlatformProvider platformProvider,
+            ILogService logService,
             IConnectionSettingsRepository settingsRepository,
             IConnectionSettingsViewModelFactory<CircleCI.ConnectionSettings, ConnectionSettingsViewModel> connectionSettingsFactory,
             IBuildProviderStrategy buildProviderStrategy,
-            IProjectToMonitorViewModelFactory projectToMonitorFactory,
-            IProjectsToMonitorViewModelFactory projectsToMonitorFactory,
+            ITrackedProjectViewModelFactory trackedProjectFactory,
+            ITrackedProjectsViewModelFactory trackedProjectsFactory,
             CircleCI.ConnectionSettings currentSettings)
             : base(
-                  eventAggregator,
+                  platformProvider,
+                  logService,
                   settingsRepository,
                   buildProviderStrategy,
-                  projectToMonitorFactory,
-                  projectsToMonitorFactory,
+                  trackedProjectFactory,
+                  trackedProjectsFactory,
                   currentSettings)
         {
             Ensure.That(connectionSettingsFactory).IsNotNull();
@@ -46,11 +50,12 @@ namespace Logikfabrik.Overseer.WPF.Provider.CircleCI.ViewModels
 
             settings.Name = currentSettings.Name;
             settings.Token = currentSettings.Token;
+            settings.BuildsPerProject = currentSettings.BuildsPerProject;
             settings.IsDirty = false;
 
             Settings = settings;
 
-            TryConnection();
+            TryConnect();
         }
     }
 }

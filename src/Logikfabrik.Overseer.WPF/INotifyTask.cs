@@ -4,6 +4,7 @@
 
 namespace Logikfabrik.Overseer.WPF
 {
+    using System;
     using System.Threading.Tasks;
     using Caliburn.Micro;
 
@@ -19,5 +20,13 @@ namespace Logikfabrik.Overseer.WPF
         /// The status.
         /// </value>
         TaskStatus? Status { get; }
+
+        /// <summary>
+        /// Gets the exception.
+        /// </summary>
+        /// <value>
+        /// The exception.
+        /// </value>
+        Exception Exception { get; }
     }
 }

@@ -1,6 +1,7 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="../Resources/FocusVisuals.xaml" />
+        <ResourceDictionary Source="../Brushes.xaml" />
     </ResourceDictionary.MergedDictionaries>
     <Style BasedOn="{StaticResource {x:Type RepeatButton}}" TargetType="{x:Type RepeatButton}">
         <Setter Property="OverridesDefaultStyle" Value="True" />
@@ -28,13 +29,13 @@
                         x:Name="Rectangle"
                         Width="{TemplateBinding Width}"
                         Height="{TemplateBinding Height}"
-                        Fill="{DynamicResource ScrollBar.Static.Thumb}" />
+                        Fill="{StaticResource ScrollBar.Static.Thumb}" />
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
-                            <Setter TargetName="Rectangle" Property="Fill" Value="{DynamicResource ScrollBar.MouseOver.Thumb}" />
+                            <Setter TargetName="Rectangle" Property="Fill" Value="{StaticResource ScrollBar.MouseOver.Thumb}" />
                         </Trigger>
                         <Trigger Property="IsDragging" Value="True">
-                            <Setter TargetName="Rectangle" Property="Fill" Value="{DynamicResource ScrollBar.Pressed.Thumb}" />
+                            <Setter TargetName="Rectangle" Property="Fill" Value="{StaticResource ScrollBar.Pressed.Thumb}" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -75,8 +76,8 @@
             <Trigger Property="Orientation" Value="Horizontal">
                 <Setter Property="Width" Value="Auto" />
                 <Setter Property="MinWidth" Value="0" />
-                <Setter Property="Height" Value="10" />
-                <Setter Property="MinHeight" Value="10" />
+                <Setter Property="Height" Value="5" />
+                <Setter Property="MinHeight" Value="5" />
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="{x:Type ScrollBar}">

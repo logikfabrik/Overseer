@@ -5,6 +5,7 @@
 namespace Logikfabrik.Overseer.WPF.ViewModels
 {
     using System.Collections.Generic;
+    using Caliburn.Micro;
     using EnsureThat;
 
     /// <summary>
@@ -15,13 +16,15 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// <summary>
         /// Initializes a new instance of the <see cref="BuildProvidersViewModel" /> class.
         /// </summary>
+        /// <param name="platformProvider">The platform provider.</param>
         /// <param name="providers">The providers.</param>
-        public BuildProvidersViewModel(IEnumerable<IBuildProviderViewModel> providers)
+        public BuildProvidersViewModel(IPlatformProvider platformProvider, IEnumerable<IBuildProviderViewModel> providers)
+            : base(platformProvider)
         {
             Ensure.That(providers).IsNotNull();
 
             Providers = providers;
-            DisplayName = "Add connection";
+            DisplayName = Properties.Resources.BuildProviders_View;
         }
 
         /// <summary>

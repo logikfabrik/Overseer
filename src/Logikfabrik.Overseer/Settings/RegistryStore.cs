@@ -12,9 +12,10 @@ namespace Logikfabrik.Overseer.Settings
     /// <summary>
     /// The <see cref="RegistryStore" /> class.
     /// </summary>
-    public class RegistryStore : IRegistryStore
+    public class RegistryStore : IRegistryStore, IDisposable
     {
         private RegistryKey _key;
+        private bool _isDisposed;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="RegistryStore" /> class.
@@ -27,8 +28,6 @@ namespace Logikfabrik.Overseer.Settings
             _key = Registry.CurrentUser.CreateSubKey(path);
         }
 
-        protected bool IsDisposed { get; private set; }
-
         /// <summary>
         /// Writes the specified key.
         /// </summary>
@@ -36,7 +35,7 @@ namespace Logikfabrik.Overseer.Settings
         /// <param name="value">The value.</param>
         public void Write(string name, string value)
         {
-            this.ThrowIfDisposed(IsDisposed);
+            this.ThrowIfDisposed(_isDisposed);
 
             Ensure.That(name).IsNotNullOrWhiteSpace();
             Ensure.That(value).IsNotNullOrWhiteSpace();
@@ -51,7 +50,7 @@ namespace Logikfabrik.Overseer.Settings
         /// <returns>The value.</returns>
         public string Read(string name)
         {
-            this.ThrowIfDisposed(IsDisposed);
+            this.ThrowIfDisposed(_isDisposed);
 
             Ensure.That(name).IsNotNullOrWhiteSpace();
 
@@ -73,20 +72,21 @@ namespace Logikfabrik.Overseer.Settings
         /// <param name="disposing"><c>true</c> to release both managed and unmanaged resources; <c>false</c> to release only unmanaged resources.</param>
         protected virtual void Dispose(bool disposing)
         {
-            if (IsDisposed)
+            if (_isDisposed)
             {
                 return;
             }
 
-            // ReSharper disable once InvertIf
             if (disposing)
             {
-                _key?.Dispose();
-
-                _key = null;
+                if (_key != null)
+                {
+                    _key.Dispose();
+                    _key = null;
+                }
             }
 
-            IsDisposed = true;
+            _isDisposed = true;
         }
     }
 }

@@ -12,15 +12,14 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor.Api
     using System.Threading.Tasks;
     using EnsureThat;
     using Models;
-    using Overseer.Api;
     using Overseer.Extensions;
 
     /// <summary>
     /// The <see cref="ApiClient" /> class.
     /// </summary>
-    public class ApiClient : CacheableApiClient<ConnectionSettings>, IApiClient
+    public class ApiClient : IApiClient, IDisposable
     {
-        private readonly Lazy<HttpClient> _httpClient;
+        private Lazy<HttpClient> _httpClient;
         private bool _isDisposed;
 
         /// <summary>
@@ -28,9 +27,10 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor.Api
         /// </summary>
         /// <param name="settings">The settings.</param>
         public ApiClient(ConnectionSettings settings)
-            : base(settings)
         {
-            _httpClient = new Lazy<HttpClient>(() => GetHttpClient(new Uri("https://ci.appveyor.com/"), settings.Token));
+            Ensure.That(settings).IsNotNull();
+
+            _httpClient = new Lazy<HttpClient>(() => GetHttpClient(UriUtility.BaseUri, settings.Token));
         }
 
         /// <summary>
@@ -48,7 +48,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor.Api
 
             using (var response = await _httpClient.Value.GetAsync(url, cancellationToken).ConfigureAwait(false))
             {
-                response.EnsureSuccessStatusCode();
+                response.ThrowIfUnsuccessful();
 
                 return await response.Content.ReadAsAsync<IEnumerable<Project>>(cancellationToken).ConfigureAwait(false);
             }
@@ -76,7 +76,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor.Api
 
             using (var response = await _httpClient.Value.GetAsync(url, cancellationToken).ConfigureAwait(false))
             {
-                response.EnsureSuccessStatusCode();
+                response.ThrowIfUnsuccessful();
 
                 return await response.Content.ReadAsAsync<ProjectHistory>(cancellationToken).ConfigureAwait(false);
             }
@@ -102,16 +102,17 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor.Api
                 return;
             }
 
-            // ReSharper disable once InvertIf
             if (disposing)
             {
-                if (!_httpClient.IsValueCreated)
+                if (_httpClient != null)
                 {
-                    return;
-                }
+                    if (_httpClient.IsValueCreated)
+                    {
+                        _httpClient.Value.Dispose();
+                    }
 
-                _httpClient.Value.CancelPendingRequests();
-                _httpClient.Value.Dispose();
+                    _httpClient = null;
+                }
             }
 
             _isDisposed = true;

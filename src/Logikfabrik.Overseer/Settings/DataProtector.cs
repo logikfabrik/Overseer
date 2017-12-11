@@ -5,7 +5,6 @@
 namespace Logikfabrik.Overseer.Settings
 {
     using System.Security.Cryptography;
-    using EnsureThat;
 
     /// <summary>
     /// The <see cref="DataProtector" /> class.
@@ -20,9 +19,6 @@ namespace Logikfabrik.Overseer.Settings
         /// <returns>The protected user data.</returns>
         public byte[] Protect(byte[] userData, byte[] entropy)
         {
-            Ensure.That(userData).IsNotNull();
-            Ensure.That(entropy).IsNotNull();
-
             return ProtectedData.Protect(userData, entropy, DataProtectionScope.CurrentUser);
         }
 
@@ -34,9 +30,6 @@ namespace Logikfabrik.Overseer.Settings
         /// <returns>The unprotected user data.</returns>
         public byte[] Unprotect(byte[] userData, byte[] entropy)
         {
-            Ensure.That(userData).IsNotNull();
-            Ensure.That(entropy).IsNotNull();
-
             return ProtectedData.Unprotect(userData, entropy, DataProtectionScope.CurrentUser);
         }
     }

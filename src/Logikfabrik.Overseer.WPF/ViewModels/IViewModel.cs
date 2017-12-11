@@ -5,11 +5,12 @@
 namespace Logikfabrik.Overseer.WPF.ViewModels
 {
     using Caliburn.Micro;
+    using Navigation;
 
     /// <summary>
     /// The <see cref="IViewModel" /> interface.
     /// </summary>
-    public interface IViewModel : IViewAware, IClose, IHaveDisplayName, IChild
+    public interface IViewModel : IClose, IHaveDisplayName, IChild, INavigable
     {
     }
 }

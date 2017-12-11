@@ -24,6 +24,7 @@
     <WarningLevel>4</WarningLevel>
     <DocumentationFile>bin\Debug\Logikfabrik.Overseer.WPF.xml</DocumentationFile>
     <CodeAnalysisRuleSet>..\Logikfabrik.ruleset</CodeAnalysisRuleSet>
+    <LangVersion>6</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -36,38 +37,33 @@
     <CodeAnalysisRuleSet>..\Logikfabrik.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Caliburn.Micro, Version=3.0.3.0, Culture=neutral, PublicKeyToken=8e5891231f2ed21f, processorArchitecture=MSIL">
-      <HintPath>..\packages\Caliburn.Micro.Core.3.0.3\lib\net45\Caliburn.Micro.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Caliburn.Micro, Version=3.2.0.0, Culture=neutral, PublicKeyToken=8e5891231f2ed21f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Caliburn.Micro.Core.3.2.0\lib\net45\Caliburn.Micro.dll</HintPath>
     </Reference>
-    <Reference Include="Caliburn.Micro.Platform, Version=3.0.3.0, Culture=neutral, PublicKeyToken=8e5891231f2ed21f, processorArchitecture=MSIL">
-      <HintPath>..\packages\Caliburn.Micro.3.0.3\lib\net45\Caliburn.Micro.Platform.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Caliburn.Micro.Platform, Version=3.2.0.0, Culture=neutral, PublicKeyToken=8e5891231f2ed21f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Caliburn.Micro.3.2.0\lib\net45\Caliburn.Micro.Platform.dll</HintPath>
     </Reference>
-    <Reference Include="Caliburn.Micro.Platform.Core, Version=3.0.3.0, Culture=neutral, PublicKeyToken=8e5891231f2ed21f, processorArchitecture=MSIL">
-      <HintPath>..\packages\Caliburn.Micro.3.0.3\lib\net45\Caliburn.Micro.Platform.Core.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Caliburn.Micro.Platform.Core, Version=3.2.0.0, Culture=neutral, PublicKeyToken=8e5891231f2ed21f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Caliburn.Micro.3.2.0\lib\net45\Caliburn.Micro.Platform.Core.dll</HintPath>
     </Reference>
     <Reference Include="Ensure.That, Version=5.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Ensure.That.5.0.0\lib\net45\Ensure.That.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="FluentValidation, Version=6.2.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\FluentValidation.6.2.1.0\lib\Net45\FluentValidation.dll</HintPath>
+    <Reference Include="FluentValidation, Version=7.0.0.0, Culture=neutral, PublicKeyToken=7de548da2fbae0f0, processorArchitecture=MSIL">
+      <HintPath>..\packages\FluentValidation.7.2.0\lib\net45\FluentValidation.dll</HintPath>
+    </Reference>
+    <Reference Include="Humanizer, Version=2.2.0.0, Culture=neutral, PublicKeyToken=979442b78dfc278e, processorArchitecture=MSIL">
+      <HintPath>..\packages\Humanizer.Core.2.2.0\lib\netstandard1.0\Humanizer.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Humanizer, Version=2.1.0.0, Culture=neutral, PublicKeyToken=979442b78dfc278e, processorArchitecture=MSIL">
-      <HintPath>..\packages\Humanizer.Core.2.1.0\lib\netstandard1.0\Humanizer.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Ninject, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
-      <HintPath>..\packages\Ninject.3.2.2.0\lib\net45-full\Ninject.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Ninject, Version=3.3.1.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.3.3.1\lib\net45\Ninject.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Caliburn.Micro.3.0.3\lib\net45\System.Windows.Interactivity.dll</HintPath>
+      <HintPath>..\packages\Caliburn.Micro.3.2.0\lib\net45\System.Windows.Interactivity.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Xml" />
@@ -79,63 +75,111 @@
     <Reference Include="System.Xaml">
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
     </Reference>
+    <Reference Include="TrieNet, Version=1.0.3.26316, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\TrieNet.1.0.3.26316\lib\net461\TrieNet.dll</HintPath>
+    </Reference>
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BuildMessageUtility.cs" />
+    <Compile Include="BuildNotificationConfigurator.cs" />
     <Compile Include="BuildNotificationManager.cs" />
-    <Compile Include="Converters\BooleanToVisibilityConverter.cs" />
+    <Compile Include="Converters\AddConnectionViewExceptionToLocalizedStringConverter.cs" />
     <Compile Include="Converters\BuildStatusToStyleConverter.cs" />
+    <Compile Include="Converters\EditConnectionViewExceptionToLocalizedStringConverter.cs" />
+    <Compile Include="Converters\StringToUpperCaseConverter.cs" />
     <Compile Include="Converters\TaskStatusToBooleanConverter.cs" />
+    <Compile Include="Converters\ValueConverterGroup.cs" />
+    <Compile Include="Extensions\AppExtensions.cs" />
     <Compile Include="Extensions\HyperlinkExtensions.cs" />
+    <Compile Include="Extensions\PasswordBoxExtensions.cs" />
+    <Compile Include="IApp.cs" />
     <Compile Include="IBuildNotificationManager.cs" />
     <Compile Include="INotificationManager.cs" />
     <Compile Include="INotifyTask.cs" />
+    <Compile Include="LanguageConfigurator.cs" />
+    <Compile Include="Localization\AddConnectionViewErrorLocalizer.cs" />
+    <Compile Include="Localization\EditConnectionViewErrorLocalizer.cs" />
     <Compile Include="Logging\IUILogService.cs" />
     <Compile Include="Logging\UILogService.cs" />
     <Compile Include="MarkupExtensions\EnumToItemsSourceMarkupExtension.cs" />
-    <Compile Include="NavigationMessage.cs" />
-    <Compile Include="NavigationMessage2.cs" />
+    <Compile Include="NativeMethods.cs" />
+    <Compile Include="Navigation\INavigable.cs" />
+    <Compile Include="Navigation\NavigationMessage.cs" />
+    <Compile Include="Navigation\Navigator{T}.cs" />
     <Compile Include="NotificationManager.cs" />
+    <Compile Include="PopupPlacementHelper.cs" />
     <Compile Include="NotifyTask.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Validators\ConnectionSettingsViewModelValidator{T1,T2}.cs" />
+    <Compile Include="Properties\Resources.sv-SE.Designer.cs">
+      <DependentUpon>Resources.sv-SE.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Properties\Resources.en-US.Designer.cs">
+      <DependentUpon>Resources.en-US.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Validators\ConnectionSettingsViewModelValidator{T1,T2}.cs">
+      <SonarQubeExclude>true</SonarQubeExclude>
+    </Compile>
     <Compile Include="Validators\EditSettingsViewModelValidator.cs" />
+    <Compile Include="ViewModels\ConnectionsListViewModel.cs" />
+    <Compile Include="ViewModels\DashboardViewModel.cs" />
+    <Compile Include="ViewModels\DesignTime\BuildNotificationViewModel.cs" />
     <Compile Include="ViewModels\DesignTime\BuildViewModel.cs" />
     <Compile Include="ViewModels\DesignTime\ChangeViewModel.cs" />
     <Compile Include="ViewModels\ConnectionSettingsViewModel{T}.cs" />
     <Compile Include="ViewModels\DesignTime\ConnectionViewModel.cs" />
     <Compile Include="ViewModels\DesignTime\ProjectViewModel.cs" />
-    <Compile Include="ViewModels\Factories\ConnectionSettingsViewModelFactory{T1,T2}.cs" />
-    <Compile Include="ViewModels\Factories\ConnectionViewModelFactory{T1,T2}.cs" />
+    <Compile Include="ViewModels\Factories\IBuildNotificationViewModelFactory.cs" />
+    <Compile Include="ViewModels\Factories\ConnectionSettingsViewModelFactory{T1,T2}.cs">
+      <SonarQubeExclude>true</SonarQubeExclude>
+    </Compile>
+    <Compile Include="ViewModels\Factories\ConnectionViewModelFactory{T1,T2}.cs">
+      <SonarQubeExclude>true</SonarQubeExclude>
+    </Compile>
     <Compile Include="ViewModels\Factories\ConnectionViewModelStrategy.cs" />
     <Compile Include="ViewModels\Factories\IBuildViewModelFactory.cs" />
     <Compile Include="ViewModels\Factories\IChangeViewModelFactory.cs" />
-    <Compile Include="ViewModels\Factories\IConnectionSettingsViewModelFactory{T1,T2}.cs" />
+    <Compile Include="ViewModels\Factories\IConnectionSettingsViewModelFactory{T1,T2}.cs">
+      <SonarQubeExclude>true</SonarQubeExclude>
+    </Compile>
     <Compile Include="ViewModels\Factories\IConnectionViewModelFactory.cs" />
     <Compile Include="ViewModels\Factories\IConnectionViewModelStrategy.cs" />
     <Compile Include="ViewModels\Factories\IEditConnectionViewModelFactory{T}.cs" />
-    <Compile Include="ViewModels\Factories\IProjectsToMonitorViewModelFactory.cs" />
-    <Compile Include="ViewModels\Factories\IProjectToMonitorViewModelFactory.cs" />
+    <Compile Include="ViewModels\Factories\ITrackedProjectsViewModelFactory.cs" />
+    <Compile Include="ViewModels\Factories\ITrackedProjectViewModelFactory.cs" />
     <Compile Include="ViewModels\Factories\IProjectViewModelFactory.cs" />
     <Compile Include="ViewModels\Factories\IRemoveConnectionViewModelFactory.cs" />
+    <Compile Include="ViewModels\IBuildNotificationViewModel.cs" />
     <Compile Include="ViewModels\IBuildProviderViewModel.cs" />
     <Compile Include="ViewModels\IBuildViewModel.cs" />
     <Compile Include="ViewModels\IChangeViewModel.cs" />
     <Compile Include="ViewModels\IConnectionViewModel.cs" />
     <Compile Include="ViewModels\IProjectViewModel.cs" />
     <Compile Include="ViewModels\IViewModel.cs" />
-    <Compile Include="ViewModels\ProjectsToMonitorViewModel.cs" />
-    <Compile Include="ViewModels\ProjectToMonitorViewModel.cs" />
+    <Compile Include="ViewModels\TrackedProjectsViewModel.cs" />
+    <Compile Include="ViewModels\TrackedProjectViewModel.cs" />
     <Compile Include="ViewModels\RemoveConnectionViewModel.cs" />
     <Compile Include="ViewModels\ViewModel.cs" />
-    <Compile Include="ViewModels\AddConnectionViewModel{T1,T2}.cs" />
+    <Compile Include="ViewModels\AddConnectionViewModel{T1,T2}.cs">
+      <SonarQubeExclude>true</SonarQubeExclude>
+    </Compile>
     <Compile Include="ViewModels\BuildNotificationViewModel.cs" />
-    <Compile Include="ViewModels\BuildProviderViewModel{T1,T2}.cs" />
+    <Compile Include="ViewModels\BuildProviderViewModel{T1,T2}.cs">
+      <SonarQubeExclude>true</SonarQubeExclude>
+    </Compile>
     <Compile Include="ViewModels\BuildViewModel.cs" />
     <Compile Include="ViewModels\ChangeViewModel.cs" />
     <Compile Include="ViewModels\ConnectionsViewModel.cs" />
@@ -144,14 +188,11 @@
     <Compile Include="ViewModels\ProjectViewModel.cs" />
     <Compile Include="ViewModels\BuildProvidersViewModel.cs" />
     <Compile Include="ViewModels\EditSettingsViewModel.cs" />
-    <None Include="packages.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
     <AppDesigner Include="Properties\" />
     <AdditionalFiles Include="stylecop.json" />
-  </ItemGroup>
-  <ItemGroup>
-    <Analyzer Include="..\packages\StyleCop.Analyzers.1.0.0\analyzers\dotnet\cs\Newtonsoft.Json.dll" />
-    <Analyzer Include="..\packages\StyleCop.Analyzers.1.0.0\analyzers\dotnet\cs\StyleCop.Analyzers.CodeFixes.dll" />
-    <Analyzer Include="..\packages\StyleCop.Analyzers.1.0.0\analyzers\dotnet\cs\StyleCop.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Logikfabrik.Overseer\Logikfabrik.Overseer.csproj">
@@ -172,11 +213,27 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Styles\Controls\ComboBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Styles\Controls\Hyperlink.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Styles\Controls\ItemsControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Styles\Controls\PasswordBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Styles\Controls\Separator.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Styles\Controls\ToggleButton.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -193,6 +250,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Styles\Resources\Converters.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Styles\Resources\Effects.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -220,8 +281,29 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Styles\Styles\View.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Analyzer Include="..\packages\StyleCop.Analyzers.1.0.2\analyzers\dotnet\cs\StyleCop.Analyzers.CodeFixes.dll" />
+    <Analyzer Include="..\packages\StyleCop.Analyzers.1.0.2\analyzers\dotnet\cs\StyleCop.Analyzers.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.sv-SE.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.sv-SE.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.en-US.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.en-US.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

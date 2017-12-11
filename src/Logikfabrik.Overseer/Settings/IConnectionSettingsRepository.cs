@@ -5,12 +5,11 @@
 namespace Logikfabrik.Overseer.Settings
 {
     using System;
-    using System.Collections.Generic;
 
     /// <summary>
     /// The <see cref="IConnectionSettingsRepository" /> interface.
     /// </summary>
-    public interface IConnectionSettingsRepository : IObservable<ConnectionSettings[]>, IDisposable
+    public interface IConnectionSettingsRepository : IObservable<Notification<ConnectionSettings>[]>
     {
         /// <summary>
         /// Adds the specified settings.
@@ -19,16 +18,16 @@ namespace Logikfabrik.Overseer.Settings
         void Add(ConnectionSettings settings);
 
         /// <summary>
-        /// Removes the settings with the specified identifier.
-        /// </summary>
-        /// <param name="id">The identifier.</param>
-        void Remove(Guid id);
-
-        /// <summary>
         /// Updates the specified settings.
         /// </summary>
         /// <param name="settings">The settings.</param>
         void Update(ConnectionSettings settings);
+
+        /// <summary>
+        /// Removes the settings with the specified identifier.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        void Remove(Guid id);
 
         /// <summary>
         /// Gets the settings with the specified identifier.
@@ -38,13 +37,5 @@ namespace Logikfabrik.Overseer.Settings
         /// The settings with the specified identifier.
         /// </returns>
         ConnectionSettings Get(Guid id);
-
-        /// <summary>
-        /// Gets the settings.
-        /// </summary>
-        /// <returns>
-        /// The settings.
-        /// </returns>
-        IEnumerable<ConnectionSettings> Get();
     }
 }

@@ -1,0 +1,132 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="../Resources/FocusVisuals.xaml" />
+        <ResourceDictionary Source="../Brushes.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+    <Style BasedOn="{StaticResource {x:Type ComboBox}}" TargetType="{x:Type ComboBox}">
+        <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}" />
+        <Setter Property="Background" Value="{StaticResource ComboBox.Static.Background}" />
+        <Setter Property="Foreground" Value="{Binding (TextElement.Foreground), RelativeSource={RelativeSource Self}}" />
+        <Setter Property="TextElement.Foreground" Value="{StaticResource ComboBox.Static.Foreground}" />
+        <Setter Property="BorderBrush" Value="{StaticResource ComboBox.Static.Border}" />
+        <Setter Property="BorderThickness" Value="2" />
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="Padding" Value="10,5,10,5" />
+        <Setter Property="FontSize" Value="14" />
+        <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto" />
+        <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto" />
+        <Setter Property="ScrollViewer.PanningMode" Value="Both" />
+        <Setter Property="Stylus.IsFlicksEnabled" Value="False" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ComboBox}">
+                    <ControlTemplate.Resources>
+                        <Style BasedOn="{StaticResource {x:Type ComboBoxItem}}" TargetType="{x:Type ComboBoxItem}">
+                            <Setter Property="OverridesDefaultStyle" Value="True" />
+                            <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}" />
+                            <Setter Property="Background" Value="{StaticResource ComboBoxItem.Static.Background}" />
+                            <Setter Property="Foreground" Value="{Binding (TextElement.Foreground), RelativeSource={RelativeSource Self}}" />
+                            <Setter Property="TextElement.Foreground" Value="{StaticResource ComboBoxItem.Static.Foreground}" />
+                            <Setter Property="BorderBrush" Value="{StaticResource ComboBoxItem.Static.Border}" />
+                            <Setter Property="BorderThickness" Value="2" />
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="{x:Type ComboBoxItem}">
+                                        <Border
+                                            x:Name="PART_Border"
+                                            Background="{StaticResource ComboBox.Static.Background}"
+                                            BorderBrush="{TemplateBinding BorderBrush}"
+                                            BorderThickness="{TemplateBinding BorderThickness}">
+                                            <ContentPresenter />
+                                        </Border>
+                                        <ControlTemplate.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter TargetName="PART_Border" Property="Background" Value="{StaticResource ComboBoxItem.MouseOver.Background}" />
+                                                <Setter TargetName="PART_Border" Property="BorderBrush" Value="{StaticResource ComboBoxItem.MouseOver.Border}" />
+                                                <Setter Property="TextElement.Foreground" Value="{StaticResource ComboBoxItem.MouseOver.Foreground}" />
+                                            </Trigger>
+                                            <Trigger Property="IsHighlighted" Value="True">
+                                                <Setter TargetName="PART_Border" Property="Background" Value="{StaticResource ComboBoxItem.Pressed.Background}" />
+                                                <Setter TargetName="PART_Border" Property="BorderBrush" Value="{StaticResource ComboBoxItem.Pressed.Border}" />
+                                                <Setter Property="TextElement.Foreground" Value="{StaticResource ComboBoxItem.Pressed.Foreground}" />
+                                            </Trigger>
+                                        </ControlTemplate.Triggers>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                        <Style BasedOn="{StaticResource {x:Type ToggleButton}}" TargetType="{x:Type ToggleButton}">
+                            <Setter Property="OverridesDefaultStyle" Value="True" />
+                            <Setter Property="IsTabStop" Value="False" />
+                            <Setter Property="Focusable" Value="False" />
+                            <Setter Property="ClickMode" Value="Press" />
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="{x:Type ToggleButton}">
+                                        <Border
+                                            x:Name="PART_Border"
+                                            Background="{StaticResource ComboBox.Static.Background}"
+                                            BorderBrush="{StaticResource ComboBox.Static.Border}"
+                                            BorderThickness="{TemplateBinding BorderThickness}" />
+                                        <ControlTemplate.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter TargetName="PART_Border" Property="Background" Value="{StaticResource ComboBox.MouseOver.Background}" />
+                                                <Setter TargetName="PART_Border" Property="BorderBrush" Value="{StaticResource ComboBox.MouseOver.Border}" />
+                                            </Trigger>
+                                            <Trigger Property="IsPressed" Value="True">
+                                                <Setter TargetName="PART_Border" Property="Background" Value="{StaticResource ComboBox.Pressed.Background}" />
+                                                <Setter TargetName="PART_Border" Property="BorderBrush" Value="{StaticResource ComboBox.Pressed.Border}" />
+                                            </Trigger>
+                                            <Trigger Property="IsChecked" Value="True">
+                                                <Setter TargetName="PART_Border" Property="Background" Value="{StaticResource ComboBox.Pressed.Background}" />
+                                                <Setter TargetName="PART_Border" Property="BorderBrush" Value="{StaticResource ComboBox.Pressed.Border}" />
+                                            </Trigger>
+                                            <Trigger Property="IsEnabled" Value="False">
+                                                <Setter TargetName="PART_Border" Property="Background" Value="{StaticResource ComboBox.Disabled.Background}" />
+                                                <Setter TargetName="PART_Border" Property="BorderBrush" Value="{StaticResource ComboBox.Disabled.Border}" />
+                                            </Trigger>
+                                        </ControlTemplate.Triggers>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </ControlTemplate.Resources>
+                    <Grid>
+                        <Popup
+                            x:Name="PART_Popup"
+                            IsOpen="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
+                            Placement="Bottom">
+                            <ScrollViewer x:Name="DropDownScrollViewer">
+                                <ItemsPresenter x:Name="ItemsPresenter" KeyboardNavigation.DirectionalNavigation="Contained" />
+                            </ScrollViewer>
+                        </Popup>
+                        <ToggleButton
+                            x:Name="PART_ToggleButton"
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}" />
+                        <ContentPresenter
+                            Margin="{TemplateBinding Padding}"
+                            HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                            VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                            Content="{TemplateBinding SelectionBoxItem}"
+                            ContentStringFormat="{TemplateBinding SelectionBoxItemStringFormat}"
+                            ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"
+                            ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}"
+                            IsHitTestVisible="False" />
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger SourceName="PART_ToggleButton" Property="IsChecked" Value="True">
+                            <Setter Property="TextElement.Foreground" Value="{StaticResource ComboBox.Pressed.Foreground}" />
+                        </Trigger>
+                        <Trigger SourceName="PART_ToggleButton" Property="IsPressed" Value="True">
+                            <Setter Property="TextElement.Foreground" Value="{StaticResource ComboBox.Pressed.Foreground}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

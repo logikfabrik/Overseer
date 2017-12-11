@@ -6,33 +6,23 @@ namespace Logikfabrik.Overseer.WPF.Client
 {
     using System;
     using System.Collections.Generic;
-    using System.IO;
-    using System.Linq;
     using System.Reflection;
     using System.Windows;
-    using CacheManager.Core;
     using Caliburn.Micro;
-    using log4net.Config;
     using Logging;
     using Ninject;
-    using Ninject.Extensions.Factory;
-    using Ninject.Modules;
     using Ninject.Parameters;
     using Overseer.Logging;
-    using Providers.Caching;
-    using Providers.Settings;
-    using Settings;
     using ViewModels;
-    using WPF.ViewModels;
-    using WPF.ViewModels.Factories;
 
     /// <summary>
     /// The <see cref="AppBootstrapper" /> class.
     /// </summary>
     public class AppBootstrapper : BootstrapperBase, IDisposable
     {
-        private readonly IKernel _kernel;
-        private readonly Lazy<IEnumerable<Assembly>> _runtimeAssemblies;
+        private IKernel _kernel;
+        private AppCatalog _catalog;
+        private bool _isDisposed;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="AppBootstrapper" /> class.
@@ -40,9 +30,7 @@ namespace Logikfabrik.Overseer.WPF.Client
         public AppBootstrapper()
         {
             _kernel = new StandardKernel();
-            _runtimeAssemblies = new Lazy<IEnumerable<Assembly>>(GetRuntimeAssemblies);
-
-            XmlConfigurator.Configure();
+            _catalog = new AppCatalog(AppDomain.CurrentDomain, AppCatalog.GetProduct(GetType().Assembly));
 
             Initialize();
         }
@@ -79,7 +67,7 @@ namespace Logikfabrik.Overseer.WPF.Client
 
             if (dialogResult == null || !dialogResult.Value)
             {
-                Application.Current.Shutdown();
+                _kernel.Get<IApp>().Shutdown();
 
                 return;
             }
@@ -94,37 +82,46 @@ namespace Logikfabrik.Overseer.WPF.Client
         {
             base.Configure();
 
-            if (Execute.InDesignMode)
+            if (!Execute.InDesignMode)
             {
-                ConfigureDesignTime();
-            }
-            else
-            {
-                ConfigureRuntime();
+                KernelConfigurator.Configure(_kernel, _catalog.Modules);
+
+#pragma warning disable S2696
+                LogManager.GetLog = type => _kernel.Get<IUILogService>(new ConstructorArgument("type", type));
+#pragma warning restore S2696
             }
 
             ViewLocator.AddNamespaceMapping("*", "Logikfabrik.Overseer.WPF.Client.Views");
+
+            _catalog = null;
+
+            LanguageConfigurator.Configure(_kernel.Get<IAppSettingsFactory>());
+            DataBindingLanguageConfigurator.Configure();
+            DataBindingActionConfigurator.Configure();
+            ConventionConfigurator.Configure();
+            ErrorLogHandlerConfigurator.Configure(_kernel.Get<AppDomain>(), _kernel.Get<IApp>(), _kernel.Get<ILogService>());
+            BuildNotificationConfigurator.Configure(_kernel.Get<IBuildTracker>(), _kernel.Get<IBuildNotificationManager>());
         }
 
         /// <summary>
-        /// Gets the instance of the specified service type.
+        /// Gets the instance of the specified service.
         /// </summary>
-        /// <param name="serviceType">The service type.</param>
+        /// <param name="service">The service.</param>
         /// <param name="key">The key.</param>
-        /// <returns>The instance of the specified service type.</returns>
-        protected override object GetInstance(Type serviceType, string key)
+        /// <returns>The instance of the specified service.</returns>
+        protected override object GetInstance(Type service, string key)
         {
-            return string.IsNullOrEmpty(key) ? _kernel.Get(serviceType) : _kernel.Get(serviceType, key);
+            return string.IsNullOrEmpty(key) ? _kernel.Get(service) : _kernel.Get(service, key);
         }
 
         /// <summary>
-        /// Gets all instances of the specified service type.
+        /// Gets all instances of the specified service.
         /// </summary>
-        /// <param name="serviceType">The service type.</param>
+        /// <param name="service">The service.</param>
         /// <returns>All instances of the specified service type.</returns>
-        protected override IEnumerable<object> GetAllInstances(Type serviceType)
+        protected override IEnumerable<object> GetAllInstances(Type service)
         {
-            return _kernel.GetAll(serviceType);
+            return _kernel.GetAll(service);
         }
 
         /// <summary>
@@ -144,7 +141,7 @@ namespace Logikfabrik.Overseer.WPF.Client
         /// </returns>
         protected override IEnumerable<Assembly> SelectAssemblies()
         {
-            return Execute.InDesignMode ? base.SelectAssemblies() : _runtimeAssemblies.Value;
+            return Execute.InDesignMode ? base.SelectAssemblies() : _catalog.Assemblies;
         }
 
         /// <summary>
@@ -153,94 +150,23 @@ namespace Logikfabrik.Overseer.WPF.Client
         /// <param name="disposing"><c>true</c> to release both managed and unmanaged resources; <c>false</c> to release only unmanaged resources.</param>
         protected virtual void Dispose(bool disposing)
         {
-            // ReSharper disable once InvertIf
-            if (disposing)
-            {
-                if (_kernel == null || _kernel.IsDisposed)
-                {
-                    return;
-                }
-
-                _kernel.Dispose();
-            }
-        }
-
-        private IEnumerable<Assembly> GetRuntimeAssemblies()
-        {
-            LoadAllAssemblies();
-
-            var product = GetType().Assembly.GetCustomAttribute<AssemblyProductAttribute>()?.Product;
-
-            Func<Assembly, bool> isProductAssembly = assembly => assembly.GetCustomAttribute<AssemblyProductAttribute>()?.Product == product;
-
-            return AppDomain.CurrentDomain.GetAssemblies().Where(assembly => !assembly.IsDynamic && isProductAssembly(assembly)).ToArray();
-        }
-
-        private IEnumerable<Assembly> GetModules()
-        {
-            return _runtimeAssemblies.Value.Where(assembly => assembly.GetExportedTypes().Any(type => !type.IsAbstract && typeof(INinjectModule).IsAssignableFrom(type)));
-        }
-
-        // ReSharper disable once MemberCanBeMadeStatic.Local
-        private void ConfigureDesignTime()
-        {
-            // Do nothing.
-        }
-
-        private void ConfigureRuntime()
-        {
-            // Business logic setup.
-            _kernel.Bind<IAppSettingsFactory>().ToFactory();
-            _kernel.Bind<ICacheManager<object>>().ToProvider<CacheManagerProvider>();
-            _kernel.Bind<ILogService>().To<LogService>();
-            _kernel.Bind<IConnectionSettingsSerializer>().ToProvider<ConnectionSettingsSerializerProvider>();
-            _kernel.Bind<IFileStore>().ToProvider<FileStoreProvider>();
-            _kernel.Bind<IDataProtector>().To<DataProtector>();
-            _kernel.Bind<IRegistryStore>().ToProvider<RegistryStoreProvider>();
-            _kernel.Bind<IConnectionSettingsEncrypter>().To<ConnectionSettingsEncrypter>().InSingletonScope();
-            _kernel.Bind<IConnectionSettingsStore>().To<ConnectionSettingsStore>();
-            _kernel.Bind<IConnectionSettingsRepository>().To<ConnectionSettingsRepository>().InSingletonScope();
-            _kernel.Bind<IBuildProviderStrategy>().To<BuildProviderStrategy>();
-            _kernel.Bind<IConnectionPool>().To<ConnectionPool>().InSingletonScope();
-            _kernel.Bind<IBuildMonitor>().To<BuildMonitor>().InSingletonScope();
-
-            // Caliburn Micro setup.
-            _kernel.Bind<IWindowManager>().To<WindowManager>().InSingletonScope();
-            _kernel.Bind<IEventAggregator>().To<EventAggregator>().InSingletonScope();
-
-            // WPF client setup.
-            _kernel.Bind<IUILogService>().To<UILogService>();
-            _kernel.Bind<INotificationManager>().To<NotificationManager>();
-            _kernel.Bind<IBuildNotificationManager>().To<BuildNotificationManager>().InSingletonScope();
-            _kernel.Bind<IProjectToMonitorViewModelFactory>().ToFactory();
-            _kernel.Bind<IProjectsToMonitorViewModelFactory>().ToFactory();
-            _kernel.Bind<IChangeViewModelFactory>().ToFactory();
-            _kernel.Bind<IBuildViewModelFactory>().ToFactory();
-            _kernel.Bind<IProjectViewModelFactory>().ToFactory();
-            _kernel.Bind<IRemoveConnectionViewModelFactory>().ToFactory();
-            _kernel.Bind<IConnectionViewModelStrategy>().To<ConnectionViewModelStrategy>();
-            _kernel.Bind<ConnectionsViewModel>().ToSelf().InSingletonScope();
-
-            _kernel.Load(GetModules());
-
-            LogManager.GetLog = type => _kernel.Get<IUILogService>(new ConstructorArgument("type", type));
-        }
-
-        private void LoadAllAssemblies()
-        {
-            var directoryName = Path.GetDirectoryName(GetType().Assembly.Location);
-
-            if (string.IsNullOrWhiteSpace(directoryName))
+            if (_isDisposed)
             {
                 return;
             }
 
-            var assemblyPaths = Directory.EnumerateFiles(directoryName, "*.dll", SearchOption.TopDirectoryOnly);
-
-            foreach (var path in assemblyPaths)
+            if (disposing)
             {
-                AppDomain.CurrentDomain.Load(AssemblyName.GetAssemblyName(path));
+                if (_kernel != null)
+                {
+                    _kernel.Dispose();
+                    _kernel = null;
+                }
+
+                _catalog = null;
             }
+
+            _isDisposed = true;
         }
     }
 }

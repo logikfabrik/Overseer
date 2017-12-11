@@ -1,8 +1,34 @@
 ﻿<ResourceDictionary
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:c="clr-namespace:Logikfabrik.Overseer.WPF.Converters">
+    xmlns:c="clr-namespace:Logikfabrik.Overseer.WPF.Converters"
+    xmlns:s="clr-namespace:System.Threading.Tasks;assembly=mscorlib">
+
     <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+
+    <!--  TODO: Move to Logikfabrik.Overseer.WPF.Client or remove/rework?  -->
     <c:BuildStatusToStyleConverter x:Key="BuildStatusToStyleConverter" />
-    <c:TaskStatusToBooleanConverter x:Key="TaskStatusFaultedToBooleanConverter" TrueFor="Faulted" />
+
+    <x:Array x:Key="StatusFaulted" Type="{x:Type s:TaskStatus}">
+        <s:TaskStatus>Faulted</s:TaskStatus>
+    </x:Array>
+
+    <x:Array x:Key="StatusRunning" Type="{x:Type s:TaskStatus}">
+        <s:TaskStatus>WaitingForActivation</s:TaskStatus>
+        <s:TaskStatus>WaitingToRun</s:TaskStatus>
+        <s:TaskStatus>Running</s:TaskStatus>
+    </x:Array>
+
+    <c:TaskStatusToBooleanConverter x:Key="TaskStatusFaultedToBooleanConverter" TrueFor="{StaticResource StatusFaulted}" />
+    <c:TaskStatusToBooleanConverter x:Key="TaskStatusRunningToBooleanConverter" TrueFor="{StaticResource StatusRunning}" />
+
+    <c:ValueConverterGroup x:Key="TaskStatusFaultedToVisibilityConverter">
+        <c:TaskStatusToBooleanConverter TrueFor="{StaticResource StatusFaulted}" />
+        <BooleanToVisibilityConverter />
+    </c:ValueConverterGroup>
+
+    <c:AddConnectionViewExceptionToLocalizedStringConverter x:Key="AddConnectionViewExceptionToLocalizedStringConverter" />
+    <c:EditConnectionViewExceptionToLocalizedStringConverter x:Key="EditConnectionViewExceptionToLocalizedStringConverter" />
+
+    <c:StringToUpperCaseConverter x:Key="StringToUpperCaseConverter" />
 </ResourceDictionary>

@@ -18,13 +18,19 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices.Validators
         /// </summary>
         public ConnectionSettingsViewModelValidator()
         {
-            RuleFor(viewModel => viewModel.Url).NotEmpty().Must(url =>
-            {
-                Uri result;
+            RuleFor(viewModel => viewModel.Url)
+                .NotEmpty()
+                .Must(url =>
+                {
+                    Uri result;
 
-                return Uri.TryCreate(url, UriKind.Absolute, out result) && (result.Scheme == Uri.UriSchemeHttp || result.Scheme == Uri.UriSchemeHttps);
-            });
-            RuleFor(viewModel => viewModel.Token).NotEmpty();
+                    return Uri.TryCreate(url, UriKind.Absolute, out result) && (result.Scheme == Uri.UriSchemeHttp || result.Scheme == Uri.UriSchemeHttps);
+                })
+                .WithMessage(viewModel => Properties.Resources.ConnectionSettings_Validation_Url);
+
+            RuleFor(viewModel => viewModel.Token)
+                .NotEmpty()
+                .WithMessage(viewModel => Properties.Resources.ConnectionSettings_Validation_Token);
         }
     }
 }

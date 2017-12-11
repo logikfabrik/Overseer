@@ -21,7 +21,9 @@ namespace Logikfabrik.Overseer.WPF.Client.Validators
 
             // ReSharper disable once ArgumentsStyleNamedExpression
             // ReSharper disable once ArgumentsStyleLiteral
-            RuleFor(viewModel => viewModel.PassPhrase).NotEmpty().Length(min: 8, max: int.MaxValue);
+            RuleFor(viewModel => viewModel.PassPhrase)
+                .NotEmpty()
+                .Length(min: 8, max: int.MaxValue);
         }
     }
 }

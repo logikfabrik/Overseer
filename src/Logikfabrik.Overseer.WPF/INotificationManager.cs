@@ -4,6 +4,7 @@
 
 namespace Logikfabrik.Overseer.WPF
 {
+    using System.Windows.Controls.Primitives;
     using Caliburn.Micro;
 
     /// <summary>
@@ -16,7 +17,8 @@ namespace Logikfabrik.Overseer.WPF
         /// </summary>
         /// <typeparam name="T">The view model type.</typeparam>
         /// <param name="viewModel">The view model.</param>
-        void ShowNotification<T>(T viewModel)
+        /// <param name="placementCallback">The placement callback.</param>
+        void ShowNotification<T>(T viewModel, CustomPopupPlacementCallback placementCallback)
             where T : PropertyChangedBase;
     }
 }

@@ -5,13 +5,18 @@
 namespace Logikfabrik.Overseer.WPF.MarkupExtensions
 {
     using System;
+    using System.ComponentModel;
     using System.Linq;
+    using System.Reflection;
     using System.Windows.Markup;
     using EnsureThat;
 
     /// <summary>
     /// The <see cref="EnumToItemsSourceMarkupExtension" /> class.
     /// </summary>
+    /// <remarks>
+    /// Based on SO https://stackoverflow.com/a/20919656, answered by Rohit Vats, https://stackoverflow.com/users/632337/rohit-vats.
+    /// </remarks>
     public class EnumToItemsSourceMarkupExtension : MarkupExtension
     {
         private readonly Type _enumType;
@@ -37,7 +42,15 @@ namespace Logikfabrik.Overseer.WPF.MarkupExtensions
         /// </returns>
         public override object ProvideValue(IServiceProvider serviceProvider)
         {
-            return Enum.GetValues(_enumType).Cast<object>().Select(value => new { Value = value, DisplayName = value.ToString() }).ToArray();
+            Func<object, string> getDescription = value =>
+            {
+                var field = _enumType.GetField(value.ToString());
+                var attribute = field.GetCustomAttribute<DescriptionAttribute>();
+
+                return string.IsNullOrWhiteSpace(attribute?.Description) ? value.ToString() : attribute.Description;
+            };
+
+            return Enum.GetValues(_enumType).Cast<object>().Select(value => new { Value = value, DisplayName = getDescription(value) }).ToArray();
         }
     }
 }

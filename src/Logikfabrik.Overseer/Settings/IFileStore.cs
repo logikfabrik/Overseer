@@ -4,25 +4,23 @@
 
 namespace Logikfabrik.Overseer.Settings
 {
-    using System;
-
     /// <summary>
     /// The <see cref="IFileStore" /> interface.
     /// </summary>
-    public interface IFileStore : IDisposable
+    public interface IFileStore
     {
         /// <summary>
-        /// Reads the file.
+        /// Reads the file text.
         /// </summary>
         /// <returns>
-        /// The contents.
+        /// The file text.
         /// </returns>
         string Read();
 
         /// <summary>
-        /// Writes the specified contents to the file.
+        /// Writes the specified file text to the file.
         /// </summary>
-        /// <param name="contents">The contents.</param>
-        void Write(string contents);
+        /// <param name="text">The file text.</param>
+        void Write(string text);
     }
 }

@@ -19,7 +19,8 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     {
         private bool _isDirty;
         private string _name;
-        private ProjectsToMonitorViewModel _projectsToMonitor;
+        private int _buildsPerProject;
+        private TrackedProjectsViewModel _trackedProjects;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ConnectionSettingsViewModel{T}" /> class.
@@ -51,22 +52,43 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         }
 
         /// <summary>
-        /// Gets or sets the projects to monitor.
+        /// Gets or sets the tracked projects.
         /// </summary>
         /// <value>
-        /// The projects to monitor.
+        /// The tracked projects.
         /// </value>
-        public ProjectsToMonitorViewModel ProjectsToMonitor
+        public TrackedProjectsViewModel TrackedProjects
         {
             get
             {
-                return _projectsToMonitor;
+                return _trackedProjects;
             }
 
             set
             {
-                _projectsToMonitor = value;
-                NotifyOfPropertyChange(() => ProjectsToMonitor);
+                _trackedProjects = value;
+                NotifyOfPropertyChange(() => TrackedProjects);
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the number of builds per project.
+        /// </summary>
+        /// <value>
+        /// The number of builds per project.
+        /// </value>
+        public int BuildsPerProject
+        {
+            get
+            {
+                return _buildsPerProject;
+            }
+
+            set
+            {
+                _buildsPerProject = value;
+                NotifyOfPropertyChange(() => BuildsPerProject);
+                NotifyOfPropertyChange(() => IsValid);
             }
         }
 

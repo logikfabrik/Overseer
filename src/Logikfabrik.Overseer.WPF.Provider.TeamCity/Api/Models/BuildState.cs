@@ -12,6 +12,16 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity.Api.Models
         /// <summary>
         /// The build has finished.
         /// </summary>
-        Finished
+        Finished,
+
+        /// <summary>
+        /// The build is running.
+        /// </summary>
+        Running,
+
+        /// <summary>
+        /// The build is queued.
+        /// </summary>
+        Queued
     }
 }

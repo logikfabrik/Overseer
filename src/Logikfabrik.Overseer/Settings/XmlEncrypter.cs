@@ -6,19 +6,24 @@ namespace Logikfabrik.Overseer.Settings
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using System.Security.Cryptography;
     using System.Security.Cryptography.Xml;
     using System.Xml;
     using EnsureThat;
-    using Extensions;
 
     /// <summary>
     /// The <see cref="XmlEncrypter" /> class.
     /// </summary>
     public class XmlEncrypter : IXmlEncrypter
     {
-        private IDataProtector _dataProtector;
-        private IRegistryStore _registryStore;
+        /// <summary>
+        /// The key name.
+        /// </summary>
+        public const string KeyName = "PassPhrase";
+
+        private readonly IDataProtector _dataProtector;
+        private readonly IRegistryStore _registryStore;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="XmlEncrypter" /> class.
@@ -33,12 +38,16 @@ namespace Logikfabrik.Overseer.Settings
             _dataProtector = dataProtector;
             _registryStore = registryStore;
 
-            HasPassPhrase = ReadPassPhraseHash() != null;
+            HasPassPhrase = ReadPassPhraseHash().Any();
         }
 
+        /// <summary>
+        /// Gets a value indicating whether this instance has a pass phrase.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if this instance has a pass phrase; otherwise, <c>false</c>.
+        /// </value>
         public bool HasPassPhrase { get; private set; }
-
-        protected bool IsDisposed { get; private set; }
 
         /// <summary>
         /// Sets the pass phrase.
@@ -47,13 +56,11 @@ namespace Logikfabrik.Overseer.Settings
         /// <param name="salt">The salt.</param>
         public void SetPassPhrase(string passPhrase, byte[] salt)
         {
-            this.ThrowIfDisposed(IsDisposed);
-
             Ensure.That(passPhrase).IsNotNullOrWhiteSpace();
             Ensure.That(salt).IsNotNull();
             Ensure.That(salt.Length % 16).Is(0);
 
-            var passPhraseHash = HashHelper.GetHash(passPhrase, salt, 32);
+            var passPhraseHash = HashUtility.GetHash(passPhrase, salt, 32);
 
             WritePassPhraseHash(passPhraseHash);
 
@@ -70,8 +77,6 @@ namespace Logikfabrik.Overseer.Settings
         /// </returns>
         public XmlDocument Encrypt(XmlDocument xml, string[] tagNames)
         {
-            this.ThrowIfDisposed(IsDisposed);
-
             Ensure.That(xml).IsNotNull();
             Ensure.That(tagNames).IsNotNull();
 
@@ -91,8 +96,6 @@ namespace Logikfabrik.Overseer.Settings
         /// </returns>
         public XmlDocument Decrypt(XmlDocument xml, string[] tagNames)
         {
-            this.ThrowIfDisposed(IsDisposed);
-
             Ensure.That(xml).IsNotNull();
             Ensure.That(tagNames).IsNotNull();
 
@@ -103,21 +106,12 @@ namespace Logikfabrik.Overseer.Settings
         }
 
         /// <summary>
-        /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
-        /// </summary>
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
-        }
-
-        /// <summary>
         /// Writes the pass phrase hash.
         /// </summary>
         /// <param name="passPhraseHash">The pass phrase hash.</param>
         internal void WritePassPhraseHash(byte[] passPhraseHash)
         {
-            var entropy = HashHelper.GetSalt(16);
+            var entropy = HashUtility.GetSalt(16);
 
             var cipherValue = _dataProtector.Protect(passPhraseHash, entropy);
 
@@ -128,7 +122,7 @@ namespace Logikfabrik.Overseer.Settings
 
             var registryValue = Convert.ToBase64String(registryValueBytes);
 
-            _registryStore.Write("PassPhrase", registryValue);
+            _registryStore.Write(KeyName, registryValue);
         }
 
         /// <summary>
@@ -137,11 +131,11 @@ namespace Logikfabrik.Overseer.Settings
         /// <returns>The pass phrase hash.</returns>
         internal byte[] ReadPassPhraseHash()
         {
-            var registryValue = _registryStore.Read("PassPhrase");
+            var registryValue = _registryStore.Read(KeyName);
 
             if (registryValue == null)
             {
-                return null;
+                return new byte[] { };
             }
 
             var registryValueBytes = Convert.FromBase64String(registryValue);
@@ -158,31 +152,11 @@ namespace Logikfabrik.Overseer.Settings
             return passPhraseHash;
         }
 
-        /// <summary>
-        /// Releases unmanaged and managed resources.
-        /// </summary>
-        /// <param name="disposing"><c>true</c> to release both managed and unmanaged resources; <c>false</c> to release only unmanaged resources.</param>
-        protected virtual void Dispose(bool disposing)
-        {
-            if (IsDisposed)
-            {
-                return;
-            }
-
-            // ReSharper disable once InvertIf
-            if (disposing)
-            {
-                _registryStore?.Dispose();
-
-                _registryStore = null;
-                _dataProtector = null;
-            }
-
-            IsDisposed = true;
-        }
+#pragma warning disable S3242
 
         // ReSharper disable once SuggestBaseTypeForParameter
         private static XmlDocument Encrypt(XmlDocument xml, IEnumerable<string> tagNames, Rijndael algorithm)
+#pragma warning restore S3242
         {
             foreach (var tagName in tagNames)
             {
@@ -204,14 +178,6 @@ namespace Logikfabrik.Overseer.Settings
                     {
                         case 128:
                             encryptedData.EncryptionMethod = new EncryptionMethod(EncryptedXml.XmlEncAES128Url);
-                            break;
-
-                        case 192:
-                            encryptedData.EncryptionMethod = new EncryptionMethod(EncryptedXml.XmlEncAES192Url);
-                            break;
-
-                        case 256:
-                            encryptedData.EncryptionMethod = new EncryptionMethod(EncryptedXml.XmlEncAES256Url);
                             break;
 
                         default:
@@ -237,15 +203,7 @@ namespace Logikfabrik.Overseer.Settings
                 {
                     var element = (XmlElement)elements[0];
 
-                    var encryptedData = new EncryptedData();
-
-                    encryptedData.LoadXml(element);
-
-                    var encryptedXml = new EncryptedXml();
-
-                    var decryptedData = encryptedXml.DecryptData(encryptedData, algorithm);
-
-                    encryptedXml.ReplaceData(element, decryptedData);
+                    DecryptElement(element, algorithm);
 
                     elements = xml.GetElementsByTagName(nameof(EncryptedData));
                 }
@@ -260,7 +218,7 @@ namespace Logikfabrik.Overseer.Settings
             var iv = new byte[16];
 
             Array.Copy(passPhraseHash, 0, key, 0, 16);
-            Array.Copy(passPhraseHash, 0, iv, 0, 16);
+            Array.Copy(passPhraseHash, 0, iv, 0, 16); // TODO: Generate/save/load IV seperate from pass phrase (key).
 
             var algorithm = Rijndael.Create();
 
@@ -270,6 +228,19 @@ namespace Logikfabrik.Overseer.Settings
             algorithm.IV = iv;
 
             return algorithm;
+        }
+
+        private static void DecryptElement(XmlElement element, SymmetricAlgorithm algorithm)
+        {
+            var encryptedData = new EncryptedData();
+
+            encryptedData.LoadXml(element);
+
+            var encryptedXml = new EncryptedXml();
+
+            var decryptedData = encryptedXml.DecryptData(encryptedData, algorithm);
+
+            encryptedXml.ReplaceData(element, decryptedData);
         }
 
         private Rijndael GetAlgorithm()

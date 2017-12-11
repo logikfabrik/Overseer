@@ -9,7 +9,6 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor
     using System.Threading;
     using System.Threading.Tasks;
     using EnsureThat;
-    using Overseer.Extensions;
 
     /// <summary>
     /// The <see cref="BuildProvider" /> class.
@@ -17,7 +16,6 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor
     public class BuildProvider : BuildProvider<ConnectionSettings>
     {
         private readonly Api.IApiClient _apiClient;
-        private bool _isDisposed;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="BuildProvider" /> class.
@@ -41,8 +39,6 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor
         /// </returns>
         public override async Task<IEnumerable<IProject>> GetProjectsAsync(CancellationToken cancellationToken)
         {
-            this.ThrowIfDisposed(_isDisposed);
-
             var projects = await _apiClient.GetProjectsAsync(cancellationToken).ConfigureAwait(false);
 
             return projects.Select(project => new Project(project)).ToArray();
@@ -58,8 +54,6 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor
         /// </returns>
         public override async Task<IEnumerable<IBuild>> GetBuildsAsync(string projectId, CancellationToken cancellationToken)
         {
-            this.ThrowIfDisposed(_isDisposed);
-
             Ensure.That(projectId).IsNotNullOrWhiteSpace();
 
             var projects = await _apiClient.GetProjectsAsync(cancellationToken).ConfigureAwait(false);
@@ -71,31 +65,9 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor
                 return new IBuild[] { };
             }
 
-            const int numberOfBuilds = 3;
+            var projectHistory = await _apiClient.GetProjectHistoryAsync(project.AccountName, project.Slug, Settings.BuildsPerProject, cancellationToken).ConfigureAwait(false);
 
-            var projectHistory = await _apiClient.GetProjectHistoryAsync(project.AccountName, project.Slug, numberOfBuilds, cancellationToken).ConfigureAwait(false);
-
-            return projectHistory.Builds.Select(build => new Build(build)).ToArray();
-        }
-
-        /// <summary>
-        /// Releases unmanaged and managed resources.
-        /// </summary>
-        /// <param name="disposing"><c>true</c> to release both managed and unmanaged resources; <c>false</c> to release only unmanaged resources.</param>
-        protected override void Dispose(bool disposing)
-        {
-            if (_isDisposed)
-            {
-                return;
-            }
-
-            // ReSharper disable once InvertIf
-            if (disposing)
-            {
-                _apiClient.Dispose();
-            }
-
-            _isDisposed = true;
+            return projectHistory.Builds.Select(build => new Build(project, build)).ToArray();
         }
     }
 }

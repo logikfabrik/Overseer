@@ -4,43 +4,47 @@
 
 namespace Logikfabrik.Overseer.WPF.Client.ViewModels
 {
-    using System.Linq;
-    using System.Windows;
+    using System;
     using Caliburn.Micro;
     using EnsureThat;
+    using Navigation;
+    using Overseer.Extensions;
     using WPF.ViewModels;
 
     /// <summary>
     /// The <see cref="AppViewModel" /> class.
     /// </summary>
-    public sealed class AppViewModel : Conductor<IViewModel>.Collection.OneActive, IHandle<NavigationMessage>
+#pragma warning disable S110 // Inheritance tree of classes should not be too deep
+    public sealed class AppViewModel : Conductor<IViewModel>.Collection.OneActive, IHandle<NavigationMessage>, IDisposable
+#pragma warning restore S110 // Inheritance tree of classes should not be too deep
     {
-        private readonly IBuildNotificationManager _buildNotificationManager;
+        private IEventAggregator _eventAggregator;
+        private Navigator<IViewModel> _navigator;
+        private bool _isDisposed;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="AppViewModel" /> class.
         /// </summary>
         /// <param name="eventAggregator">The event aggregator.</param>
-        /// <param name="buildMonitor">The build monitor.</param>
-        /// /// <param name="buildNotificationManager">The build notification manager.</param>
+        /// <param name="menuViewModel">The menu view model.</param>
+        /// <param name="errorViewModel">The error view model.</param>
         /// <param name="connectionsViewModel">The connections view model.</param>
-        public AppViewModel(IEventAggregator eventAggregator, IBuildMonitor buildMonitor, IBuildNotificationManager buildNotificationManager, MenuViewModel menuViewModel, ConnectionsViewModel connectionsViewModel)
+        public AppViewModel(IEventAggregator eventAggregator, MenuViewModel menuViewModel, ErrorViewModel errorViewModel, ConnectionsViewModel connectionsViewModel)
         {
             Ensure.That(eventAggregator).IsNotNull();
-            Ensure.That(buildMonitor).IsNotNull();
-            Ensure.That(buildNotificationManager).IsNotNull();
             Ensure.That(menuViewModel).IsNotNull();
+            Ensure.That(errorViewModel).IsNotNull();
             Ensure.That(connectionsViewModel).IsNotNull();
 
-            _buildNotificationManager = buildNotificationManager;
+            _eventAggregator = eventAggregator;
+            _eventAggregator.Subscribe(this);
 
-            eventAggregator.Subscribe(this);
-
-            WeakEventManager<IBuildMonitor, BuildMonitorProjectProgressEventArgs>.AddHandler(buildMonitor, nameof(buildMonitor.ProjectProgressChanged), BuildMonitorProgressChanged);
-
-            DisplayName = "Overseer";
+            _navigator = new Navigator<IViewModel>(this);
 
             Menu = menuViewModel;
+            Error = errorViewModel;
+
+            DisplayName = "Overseer";
 
             ActivateItem(connectionsViewModel);
         }
@@ -51,7 +55,7 @@ namespace Logikfabrik.Overseer.WPF.Client.ViewModels
         /// <value>
         /// The view display name.
         /// </value>
-        public string ViewDisplayName => ActiveItem.DisplayName;
+        public string ViewDisplayName => ActiveItem?.DisplayName;
 
         /// <summary>
         /// Gets the menu.
@@ -62,37 +66,51 @@ namespace Logikfabrik.Overseer.WPF.Client.ViewModels
         public MenuViewModel Menu { get; }
 
         /// <summary>
+        /// Gets the error.
+        /// </summary>
+        /// <value>
+        /// The error.
+        /// </value>
+        public ErrorViewModel Error { get; }
+
+        /// <summary>
         /// Handles the specified message.
         /// </summary>
         /// <param name="message">The message to handle.</param>
         public void Handle(NavigationMessage message)
         {
-            var viewModel = (message as NavigationMessage2)?.ViewModel;
+            this.ThrowIfDisposed(_isDisposed);
 
-            // ReSharper disable once ConvertIfStatementToNullCoalescingExpression
-            if (viewModel == null)
-            {
-                viewModel = GetChildren().SingleOrDefault(child => child.GetType() == message.ViewModelType) ?? IoC.GetInstance(message.ViewModelType, null) as IViewModel;
-            }
-
-            ActivateItem(viewModel);
-
-            NotifyOfPropertyChange(() => ViewDisplayName);
-
-            // TODO: Keep track of children that can be closed (and disposed). Make sure navigation takes this into consideration.
+            _navigator.Navigate(message);
         }
 
-        private void BuildMonitorProgressChanged(object sender, BuildMonitorProjectProgressEventArgs e)
+        /// <summary>
+        /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+        /// </summary>
+        public void Dispose()
         {
-            if (!e.Builds.Any())
+            if (_isDisposed)
             {
                 return;
             }
 
-            foreach (var build in e.Builds)
-            {
-                _buildNotificationManager.ShowNotification(e.Project, build);
-            }
+            _eventAggregator?.Unsubscribe(this);
+            _eventAggregator = null;
+            _navigator = null;
+
+            _isDisposed = true;
+        }
+
+        /// <summary>
+        /// Changes the active item.
+        /// </summary>
+        /// <param name="newItem">The new item to activate.</param>
+        /// <param name="closePrevious">Indicates whether or not to close the previous active item.</param>
+        protected override void ChangeActiveItem(IViewModel newItem, bool closePrevious)
+        {
+            base.ChangeActiveItem(newItem, closePrevious);
+
+            NotifyOfPropertyChange(() => ViewDisplayName);
         }
     }
 }

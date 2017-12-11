@@ -6,6 +6,7 @@ namespace Logikfabrik.Overseer.WPF.Client.Providers.Settings
 {
     using System;
     using System.Linq;
+    using EnsureThat;
     using Ninject.Activation;
     using Overseer.Settings;
 
@@ -14,6 +15,19 @@ namespace Logikfabrik.Overseer.WPF.Client.Providers.Settings
     /// </summary>
     public class ConnectionSettingsSerializerProvider : Provider<IConnectionSettingsSerializer>
     {
+        private readonly AppDomain _appDomain;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ConnectionSettingsSerializerProvider" /> class.
+        /// </summary>
+        /// <param name="appDomain">The application domain.</param>
+        public ConnectionSettingsSerializerProvider(AppDomain appDomain)
+        {
+            Ensure.That(appDomain).IsNotNull();
+
+            _appDomain = appDomain;
+        }
+
         /// <summary>
         /// Creates an instance within the specified context.
         /// </summary>
@@ -24,7 +38,7 @@ namespace Logikfabrik.Overseer.WPF.Client.Providers.Settings
         protected override IConnectionSettingsSerializer CreateInstance(IContext context)
         {
             var supportedTypes =
-                AppDomain.CurrentDomain.GetAssemblies()
+                _appDomain.GetAssemblies()
                     .SelectMany(assembly => assembly.GetTypes())
                     .Where(type => !type.IsAbstract)
                     .Where(type => typeof(ConnectionSettings).IsAssignableFrom(type))

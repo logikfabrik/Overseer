@@ -5,6 +5,7 @@
     xmlns:cal="http://www.caliburnproject.org"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:p="clr-namespace:Logikfabrik.Overseer.WPF.Client.Properties"
     xmlns:vm="clr-namespace:Logikfabrik.Overseer.WPF.ViewModels.DesignTime;assembly=Logikfabrik.Overseer.WPF"
     cal:Bind.AtDesignTime="True"
     d:DataContext="{d:DesignInstance d:Type=vm:ConnectionViewModel,
@@ -15,49 +16,20 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        <StackPanel Background="{DynamicResource Panel.Background}" ZIndex="1">
-            <StackPanel.Effect>
-                <DropShadowEffect
-                    BlurRadius="3"
-                    Opacity="0.1"
-                    ShadowDepth="3"
-                    Color="{StaticResource Effect.Shadow}" />
-            </StackPanel.Effect>
-            <Button x:Name="TryClose">
-                <Viewbox>
-                    <Canvas>
-                        <Path Data="M2.5,10L9,3.5 9,7 17,7 17,13 9,13 9,16.5 2.5,10z" />
-                    </Canvas>
-                </Viewbox>
-            </Button>
-            <TextBlock
-                FontSize="18"
-                Text="{Binding SettingsName, Mode=OneWay}"
-                TextAlignment="Center" />
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
-                <Button x:Name="Edit">
-                    <Viewbox>
-                        <Canvas>
-                            <Path Data="M17.561,2.439C16.119,0.996,15.036,1.212,15.036,1.212L8.984,7.264 2.21,14.037 1.2,18.799 5.963,17.789 12.737,11.018 18.789,4.966C18.788,4.966,19.005,3.883,17.561,2.439z M5.68,17.217L4.056,17.567C3.9,17.274 3.711,16.981 3.366,16.635 3.02,16.289 2.727,16.102 2.434,15.944L2.784,14.321 3.254,13.852C3.254,13.852 4.137,13.87 5.135,14.868 6.132,15.864 6.151,16.749 6.151,16.749L5.68,17.217z" />
-                        </Canvas>
-                    </Viewbox>
-                </Button>
-                <Button x:Name="Remove" Grid.Column="1">
-                    <Viewbox>
-                        <Canvas>
-                            <Path Data="M10,1C5.721,1,3.06,2.41,3.205,3.555L4.647,17.022C4.705,17.482 6.868,18.998 10,19 13.131,18.998 15.295,17.482 15.351,17.021L16.793,3.554C16.938,2.41,14.279,1,10,1z M10,5.291C6.868,5.289 4.647,4.174 4.647,3.756 4.646,3.342 6.869,2.225 10,2.227 13.131,2.225 15.354,3.342 15.351,3.756 15.351,4.174 13.131,5.289 10,5.291z" />
-                        </Canvas>
-                    </Viewbox>
-                </Button>
-            </Grid>
+        <Border Grid.Row="0" Style="{StaticResource Common.Header.Panel}">
+            <TextBlock Text="{Binding Path=SettingsName, Converter={StaticResource StringToUpperCaseConverter}}" />
+        </Border>
+        <StackPanel Grid.Row="1" Visibility="{Binding HasNoProjects, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <TextBlock Text="{Binding Source={x:Static p:Resources.Connection_Message_NoProjects}}" />
         </StackPanel>
-        <ItemsControl Grid.Row="1" ItemsSource="{Binding Projects, Mode=OneWay}">
+        <ItemsControl
+            Grid.Row="2"
+            ItemsSource="{Binding FilteredProjects, Mode=OneWay}"
+            Visibility="{Binding HasProjects, Converter={StaticResource BooleanToVisibilityConverter}}">
             <ItemsControl.ItemContainerStyle>
                 <Style>
                     <!--  ReSharper disable once Xaml.RedundantPropertyTypeQualifier  -->
@@ -80,5 +52,51 @@
                 </ControlTemplate>
             </ItemsControl.Template>
         </ItemsControl>
+        <Border Grid.Row="3" Style="{StaticResource Common.ContextMenu}">
+            <StackPanel>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <!-- ReSharper disable once InconsistentNaming -->
+                    <ToggleButton
+                        x:Name="PART_Filter"
+                        Grid.Column="0"
+                        IsEnabled="{Binding HasProjects}">
+                        <Viewbox>
+                            <Canvas>
+                                <Path Data="M10,1C5.092,1,2,2.512,2,4.001v2c0,0.918,6,6,6,6v6c-0.001,0.684,1,1,2,1s2.001-0.316,2-1v-6c0,0,6-5.082,6-6v-2  C18,2.512,14.908,1,10,1z M10,6.123C6.409,6.122,3.862,4.79,3.862,4.292C3.86,3.797,6.41,2.461,10,2.463  c3.59-0.002,6.14,1.334,6.138,1.828C16.138,4.79,13.591,6.122,10,6.123z" />
+                            </Canvas>
+                        </Viewbox>
+                    </ToggleButton>
+                    <Button
+                        x:Name="Edit"
+                        Grid.Column="1"
+                        IsEnabled="{Binding IsEditable}">
+                        <Viewbox>
+                            <Canvas>
+                                <Path Data="M17.561,2.439c-1.442-1.443-2.525-1.227-2.525-1.227L8.984,7.264L2.21,14.037L1.2,18.799l4.763-1.01l6.774-6.771  l6.052-6.052C18.788,4.966,19.005,3.883,17.561,2.439z M5.68,17.217l-1.624,0.35c-0.156-0.293-0.345-0.586-0.69-0.932  c-0.346-0.346-0.639-0.533-0.932-0.691l0.35-1.623l0.47-0.469c0,0,0.883,0.018,1.881,1.016c0.997,0.996,1.016,1.881,1.016,1.881  L5.68,17.217z" />
+                            </Canvas>
+                        </Viewbox>
+                    </Button>
+                    <Button
+                        x:Name="Remove"
+                        Grid.Column="2"
+                        IsEnabled="{Binding IsEditable}">
+                        <Viewbox>
+                            <Canvas>
+                                <Path Data="M3.389,7.113L4.49,18.021C4.551,18.482,6.777,19.998,10,20c3.225-0.002,5.451-1.518,5.511-1.979l1.102-10.908  C14.929,8.055,12.412,8.5,10,8.5C7.59,8.5,5.072,8.055,3.389,7.113z M13.168,1.51l-0.859-0.951C11.977,0.086,11.617,0,10.916,0  H9.085c-0.7,0-1.061,0.086-1.392,0.559L6.834,1.51C4.264,1.959,2.4,3.15,2.4,4.029v0.17C2.4,5.746,5.803,7,10,7  c4.198,0,7.601-1.254,7.601-2.801v-0.17C17.601,3.15,15.738,1.959,13.168,1.51z M12.07,4.34L11,3H9L7.932,4.34h-1.7  c0,0,1.862-2.221,2.111-2.522C8.533,1.588,8.727,1.5,8.979,1.5h2.043c0.253,0,0.447,0.088,0.637,0.318  c0.248,0.301,2.111,2.522,2.111,2.522H12.07z" />
+                            </Canvas>
+                        </Viewbox>
+                    </Button>
+                </Grid>
+                <TextBox
+                    Style="{StaticResource Common.Filter}"
+                    Text="{Binding Filter, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    Visibility="{Binding ElementName=PART_Filter, Path=IsChecked, Converter={StaticResource BooleanToVisibilityConverter}}" />
+            </StackPanel>
+        </Border>
     </Grid>
 </UserControl>

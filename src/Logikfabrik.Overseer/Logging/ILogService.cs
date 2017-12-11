@@ -14,13 +14,6 @@ namespace Logikfabrik.Overseer.Logging
         /// <summary>
         /// Logs the specified entry.
         /// </summary>
-        /// <typeparam name="T">The logging type.</typeparam>
-        /// <param name="entry">The entry.</param>
-        void Log<T>(LogEntry entry);
-
-        /// <summary>
-        /// Logs the specified entry.
-        /// </summary>
         /// <param name="type">The logging type.</param>
         /// <param name="entry">The entry.</param>
         void Log(Type type, LogEntry entry);

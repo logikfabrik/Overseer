@@ -12,6 +12,8 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     using Caliburn.Micro;
     using EnsureThat;
     using Factories;
+    using Navigation;
+    using Overseer.Logging;
     using Settings;
 
     /// <summary>
@@ -24,10 +26,11 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         where T2 : ConnectionSettingsViewModel<T1>, new()
     {
         private readonly IEventAggregator _eventAggregator;
+        private readonly ILogService _logService;
         private readonly IConnectionSettingsRepository _settingsRepository;
         private readonly IBuildProviderStrategy _buildProviderStrategy;
-        private readonly IProjectToMonitorViewModelFactory _projectToMonitorFactory;
-        private readonly IProjectsToMonitorViewModelFactory _projectsToMonitorFactory;
+        private readonly ITrackedProjectViewModelFactory _trackedProjectFactory;
+        private readonly ITrackedProjectsViewModelFactory _trackedProjectsFactory;
         private INotifyTask _connectionTask;
         private bool _hasConnected;
         private ConnectionSettingsViewModel<T1> _settings;
@@ -35,37 +38,45 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// <summary>
         /// Initializes a new instance of the <see cref="AddConnectionViewModel{T1,T2}" /> class.
         /// </summary>
+        /// <param name="platformProvider">The platform provider.</param>
         /// <param name="eventAggregator">The event aggregator.</param>
+        /// <param name="logService">The log service.</param>
         /// <param name="settingsRepository">The settings repository.</param>
         /// <param name="buildProviderStrategy">The build provider strategy.</param>
-        /// <param name="projectToMonitorFactory">The project to monitor factory.</param>
-        /// <param name="projectsToMonitorFactory">The projects to monitor factory.</param>
+        /// <param name="trackedProjectFactory">The tracked project factory.</param>
+        /// <param name="trackedProjectsFactory">The tracked projects factory.</param>
         /// <param name="connectionSettingsFactory">The settings factory.</param>
         public AddConnectionViewModel(
+            IPlatformProvider platformProvider,
             IEventAggregator eventAggregator,
+            ILogService logService,
             IConnectionSettingsRepository settingsRepository,
             IBuildProviderStrategy buildProviderStrategy,
-            IProjectToMonitorViewModelFactory projectToMonitorFactory,
-            IProjectsToMonitorViewModelFactory projectsToMonitorFactory,
+            ITrackedProjectViewModelFactory trackedProjectFactory,
+            ITrackedProjectsViewModelFactory trackedProjectsFactory,
             IConnectionSettingsViewModelFactory<T1, T2> connectionSettingsFactory)
+            : base(platformProvider)
         {
             Ensure.That(eventAggregator).IsNotNull();
+            Ensure.That(logService).IsNotNull();
             Ensure.That(settingsRepository).IsNotNull();
             Ensure.That(buildProviderStrategy).IsNotNull();
-            Ensure.That(projectToMonitorFactory).IsNotNull();
-            Ensure.That(projectsToMonitorFactory).IsNotNull();
+            Ensure.That(trackedProjectFactory).IsNotNull();
+            Ensure.That(trackedProjectsFactory).IsNotNull();
             Ensure.That(connectionSettingsFactory).IsNotNull();
 
             _eventAggregator = eventAggregator;
+            _logService = logService;
             _settingsRepository = settingsRepository;
             _buildProviderStrategy = buildProviderStrategy;
-            _projectToMonitorFactory = projectToMonitorFactory;
-            _projectsToMonitorFactory = projectsToMonitorFactory;
+            _trackedProjectFactory = trackedProjectFactory;
+            _trackedProjectsFactory = trackedProjectsFactory;
 
             _connectionTask = new NotifyTask();
 
             Settings = connectionSettingsFactory.Create();
-            DisplayName = "Add connection";
+            Settings.BuildsPerProject = 5;
+            DisplayName = Properties.Resources.AddConnection_View;
         }
 
         /// <summary>
@@ -133,18 +144,10 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             {
                 _hasConnected = value;
                 NotifyOfPropertyChange(() => HasConnected);
-                NotifyOfPropertyChange(() => HasNotConnected);
                 NotifyOfPropertyChange(() => IsValidAndHasConnected);
+                NotifyOfPropertyChange(() => IsValidAndHasNotConnected);
             }
         }
-
-        /// <summary>
-        /// Gets a value indicating whether the settings for this instance have not been used to successfully connect.
-        /// </summary>
-        /// <value>
-        ///   <c>true</c> if the settings for this instance have not been used to successfully connect; otherwise, <c>false</c>.
-        /// </value>
-        public bool HasNotConnected => !HasConnected;
 
         /// <summary>
         /// Gets a value indicating whether the settings for this instance are valid and have been used to successfully connect.
@@ -154,10 +157,12 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// </value>
         public bool IsValidAndHasConnected => Settings.IsValid && HasConnected;
 
+        public bool IsValidAndHasNotConnected => Settings.IsValid && !HasConnected;
+
         /// <summary>
-        /// Try the connection.
+        /// Tries to connect.
         /// </summary>
-        public void TryConnection()
+        public void TryConnect()
         {
             if (!Settings.IsValid || HasConnected)
             {
@@ -168,9 +173,9 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         }
 
         /// <summary>
-        /// Add the connection.
+        /// Adds the connection.
         /// </summary>
-        public void AddConnection()
+        public void Add()
         {
             if (!IsValidAndHasConnected)
             {
@@ -178,8 +183,6 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             }
 
             _settingsRepository.Add(Settings.GetSettings());
-
-            // TODO: Remove this view model from the conductor.
 
             var message = new NavigationMessage(typeof(ConnectionsViewModel));
 
@@ -192,18 +195,19 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             {
                 var candidateSettings = Settings.GetSettings();
 
-                using (var provider = _buildProviderStrategy.Create(candidateSettings))
-                {
-                    var projects = await provider.GetProjectsAsync(CancellationToken.None).ConfigureAwait(false);
+                var provider = _buildProviderStrategy.Create(candidateSettings);
 
-                    Settings.IsDirty = false;
-                    Settings.ProjectsToMonitor = _projectsToMonitorFactory.Create(projects.OrderBy(project => project.Name).Select(project => _projectToMonitorFactory.Create(project.Id, project.Name, true)).ToArray());
+                var projects = await provider.GetProjectsAsync(CancellationToken.None).ConfigureAwait(false);
 
-                    HasConnected = true;
-                }
+                Settings.IsDirty = false;
+                Settings.TrackedProjects = _trackedProjectsFactory.Create(projects.OrderBy(project => project.Name).Select(project => _trackedProjectFactory.Create(project.Id, project.Name, true)).ToArray());
+
+                HasConnected = true;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                _logService.Log(GetType(), new LogEntry(LogEntryType.Error, "An error occurred while adding connection.", ex));
+
                 HasConnected = false;
 
                 throw;
@@ -216,12 +220,13 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             {
                 HasConnected = false;
 
-                Settings.ProjectsToMonitor = null;
+                Settings.TrackedProjects = null;
             }
 
             if (e.PropertyName == nameof(Settings.IsValid))
             {
                 NotifyOfPropertyChange(() => IsValidAndHasConnected);
+                NotifyOfPropertyChange(() => IsValidAndHasNotConnected);
             }
         }
     }

@@ -17,74 +17,132 @@
         G="34"
         R="34" />
 
-    <SolidColorBrush x:Key="Control.Focus" Color="#AAFF00" />
+    <Color x:Key="Color.Yellow">#E1FF57</Color>
+
+    <Color x:Key="Color.Black">#222222</Color>
+
+    <Color x:Key="Color.LightGrey">#7E7E7E</Color>
+    <Color x:Key="Color.Grey">#525252</Color>
+    <Color x:Key="Color.DarkGrey">#2A2A2A</Color>
+
+    <SolidColorBrush x:Key="Brush.Yellow" Color="{StaticResource Color.Yellow}" />
+    <SolidColorBrush x:Key="Brush.LightGrey" Color="{StaticResource Color.LightGrey}" />
+
+
+    <SolidColorBrush x:Key="Control.Focus" Color="{StaticResource Color.Yellow}" />
     <SolidColorBrush x:Key="Control.Error" Color="#FF3300" />
 
-    <SolidColorBrush x:Key="Window.Background" Color="#2A2A2A" />
-    <SolidColorBrush x:Key="Window.Foreground" Color="#FFFFFF" />
+    <SolidColorBrush x:Key="Window.Background" Color="{StaticResource Color.DarkGrey}" />
+    <SolidColorBrush x:Key="Window.Foreground" Color="White" />
 
-    <SolidColorBrush x:Key="Separator.Background" Color="#7E7E7E" />
+    <SolidColorBrush x:Key="Separator.Background" Color="{StaticResource Color.LightGrey}" />
     <SolidColorBrush x:Key="Separator.Border" Color="Transparent" />
 
-    <SolidColorBrush x:Key="Panel.Background" Color="#525252" />
+    <SolidColorBrush x:Key="Panel.Background" Color="{StaticResource Color.Grey}" />
+    <SolidColorBrush x:Key="Panel.Border" Color="{StaticResource Color.Grey}" />
 
-    <SolidColorBrush x:Key="TextBlock.Foreground" Color="#FFFFFF" />
+    <SolidColorBrush x:Key="ToolTip.Background" Color="{StaticResource Color.LightGrey}" />
+
+    <SolidColorBrush x:Key="Hyperlink.Foreground" Color="{StaticResource Color.Yellow}" />
+
+    <SolidColorBrush x:Key="ComboBox.Static.Background" Color="{StaticResource Color.Grey}" />
+    <SolidColorBrush x:Key="ComboBox.Static.Foreground" Color="White" />
+    <SolidColorBrush x:Key="ComboBox.Static.Border" Color="{StaticResource Color.Grey}" />
+
+    <SolidColorBrush x:Key="ComboBox.MouseOver.Background" Color="{StaticResource Color.LightGrey}" />
+    <SolidColorBrush x:Key="ComboBox.MouseOver.Foreground" Color="{StaticResource Color.Black}" />
+    <SolidColorBrush x:Key="ComboBox.MouseOver.Border" Color="{StaticResource Color.LightGrey}" />
+
+    <SolidColorBrush x:Key="ComboBox.Pressed.Background" Color="{StaticResource Color.LightGrey}" />
+    <SolidColorBrush x:Key="ComboBox.Pressed.Foreground" Color="{StaticResource Color.Black}" />
+    <SolidColorBrush x:Key="ComboBox.Pressed.Border" Color="{StaticResource Color.Yellow}" />
+
+    <SolidColorBrush x:Key="ComboBox.Disabled.Background" Color="{StaticResource Color.Grey}" />
+    <SolidColorBrush x:Key="ComboBox.Disabled.Foreground" Color="{StaticResource Color.LightGrey}" />
+    <SolidColorBrush x:Key="ComboBox.Disabled.Border" Color="{StaticResource Color.Grey}" />
+
+    <SolidColorBrush x:Key="ComboBoxItem.Static.Background" Color="{StaticResource Color.Grey}" />
+    <SolidColorBrush x:Key="ComboBoxItem.Static.Foreground" Color="White" />
+    <SolidColorBrush x:Key="ComboBoxItem.Static.Border" Color="{StaticResource Color.Grey}" />
+
+    <SolidColorBrush x:Key="ComboBoxItem.MouseOver.Background" Color="{StaticResource Color.LightGrey}" />
+    <SolidColorBrush x:Key="ComboBoxItem.MouseOver.Foreground" Color="{StaticResource Color.Black}" />
+    <SolidColorBrush x:Key="ComboBoxItem.MouseOver.Border" Color="{StaticResource Color.LightGrey}" />
+
+    <SolidColorBrush x:Key="ComboBoxItem.Pressed.Background" Color="{StaticResource Color.Yellow}" />
+    <SolidColorBrush x:Key="ComboBoxItem.Pressed.Foreground" Color="{StaticResource Color.Black}" />
+    <SolidColorBrush x:Key="ComboBoxItem.Pressed.Border" Color="{StaticResource Color.Yellow}" />
 
     <SolidColorBrush x:Key="Button.Defaulted.Background" Color="Transparent" />
-    <SolidColorBrush x:Key="Button.Defaulted.Foreground" Color="#FFFFFF" />
-    <SolidColorBrush x:Key="Button.Defaulted.Border" Color="#525252" />
+    <SolidColorBrush x:Key="Button.Defaulted.Foreground" Color="White" />
+    <SolidColorBrush x:Key="Button.Defaulted.Border" Color="{StaticResource Color.Grey}" />
 
-    <SolidColorBrush x:Key="Button.Static.Background" Color="#525252" />
-    <SolidColorBrush x:Key="Button.Static.Foreground" Color="#FFFFFF" />
-    <SolidColorBrush x:Key="Button.Static.Border" Color="#525252" />
+    <SolidColorBrush x:Key="Button.Static.Background" Color="{StaticResource Color.Grey}" />
+    <SolidColorBrush x:Key="Button.Static.Foreground" Color="White" />
+    <SolidColorBrush x:Key="Button.Static.Border" Color="{StaticResource Color.Grey}" />
 
-    <SolidColorBrush x:Key="Button.MouseOver.Background" Color="#7E7E7E" />
-    <SolidColorBrush x:Key="Button.MouseOver.Foreground" Color="#222222" />
-    <SolidColorBrush x:Key="Button.MouseOver.Border" Color="#7E7E7E" />
+    <SolidColorBrush x:Key="Button.MouseOver.Background" Color="{StaticResource Color.LightGrey}" />
+    <SolidColorBrush x:Key="Button.MouseOver.Foreground" Color="{StaticResource Color.Black}" />
+    <SolidColorBrush x:Key="Button.MouseOver.Border" Color="{StaticResource Color.LightGrey}" />
 
-    <SolidColorBrush x:Key="Button.Pressed.Background" Color="#E1FF57" />
-    <SolidColorBrush x:Key="Button.Pressed.Foreground" Color="#222222" />
-    <SolidColorBrush x:Key="Button.Pressed.Border" Color="#E1FF57" />
+    <SolidColorBrush x:Key="Button.Pressed.Background" Color="{StaticResource Color.Yellow}" />
+    <SolidColorBrush x:Key="Button.Pressed.Foreground" Color="{StaticResource Color.Black}" />
+    <SolidColorBrush x:Key="Button.Pressed.Border" Color="{StaticResource Color.Yellow}" />
 
-    <SolidColorBrush x:Key="Button.Disabled.Background" Color="#525252" />
-    <SolidColorBrush x:Key="Button.Disabled.Foreground" Color="#7E7E7E" />
-    <SolidColorBrush x:Key="Button.Disabled.Border" Color="#525252" />
+    <SolidColorBrush x:Key="Button.Disabled.Background" Color="{StaticResource Color.Grey}" />
+    <SolidColorBrush x:Key="Button.Disabled.Foreground" Color="{StaticResource Color.LightGrey}" />
+    <SolidColorBrush x:Key="Button.Disabled.Border" Color="{StaticResource Color.Grey}" />
 
     <SolidColorBrush x:Key="CheckBox.Static.Background" Color="Transparent" />
-    <SolidColorBrush x:Key="CheckBox.Static.Foreground" Color="#FFFFFF" />
-    <SolidColorBrush x:Key="CheckBox.Static.Border" Color="#525252" />
+    <SolidColorBrush x:Key="CheckBox.Static.Foreground" Color="White" />
+    <SolidColorBrush x:Key="CheckBox.Static.Border" Color="{StaticResource Color.Grey}" />
 
     <SolidColorBrush x:Key="CheckBox.Checked.Background" Color="Transparent" />
-    <SolidColorBrush x:Key="CheckBox.Checked.Foreground" Color="#FFFFFF" />
-    <SolidColorBrush x:Key="CheckBox.Checked.Border" Color="#FF525252" />
+    <SolidColorBrush x:Key="CheckBox.Checked.Foreground" Color="White" />
+    <SolidColorBrush x:Key="CheckBox.Checked.Border" Color="{StaticResource Color.Grey}" />
 
     <SolidColorBrush x:Key="CheckBox.Pressed.Background" Color="Transparent" />
-    <SolidColorBrush x:Key="CheckBox.Pressed.Foreground" Color="#FFFFFF" />
-    <SolidColorBrush x:Key="CheckBox.Pressed.Border" Color="#E1FF57" />
+    <SolidColorBrush x:Key="CheckBox.Pressed.Foreground" Color="White" />
+    <SolidColorBrush x:Key="CheckBox.Pressed.Border" Color="{StaticResource Color.Yellow}" />
 
     <SolidColorBrush x:Key="CheckBox.Disabled.Background" Color="Transparent" />
-    <SolidColorBrush x:Key="CheckBox.Disabled.Foreground" Color="#7E7E7E" />
-    <SolidColorBrush x:Key="CheckBox.Disabled.Border" Color="#525252" />
+    <SolidColorBrush x:Key="CheckBox.Disabled.Foreground" Color="{StaticResource Color.LightGrey}" />
+    <SolidColorBrush x:Key="CheckBox.Disabled.Border" Color="{StaticResource Color.Grey}" />
 
-    <SolidColorBrush x:Key="ScrollBar.Static.Thumb" Color="#595959" />
-    <SolidColorBrush x:Key="ScrollBar.MouseOver.Thumb" Color="#7E7E7E" />
-    <SolidColorBrush x:Key="ScrollBar.Pressed.Thumb" Color="#E1FF57" />
+    <SolidColorBrush x:Key="ScrollBar.Static.Thumb" Color="{StaticResource Color.Grey}" />
+    <SolidColorBrush x:Key="ScrollBar.MouseOver.Thumb" Color="{StaticResource Color.LightGrey}" />
+    <SolidColorBrush x:Key="ScrollBar.Pressed.Thumb" Color="{StaticResource Color.Yellow}" />
 
-    <SolidColorBrush x:Key="TextBox.Static.Background" Color="#FFFFFF" />
-    <SolidColorBrush x:Key="TextBox.Static.Foreground" Color="#222222" />
+    <SolidColorBrush x:Key="TextBox.Static.Background" Color="White" />
+    <SolidColorBrush x:Key="TextBox.Static.Foreground" Color="{StaticResource Color.Black}" />
     <SolidColorBrush x:Key="TextBox.Static.Border" Color="Transparent" />
 
-    <SolidColorBrush x:Key="TextBox.Focus.Background" Color="#FFFFFF" />
-    <SolidColorBrush x:Key="TextBox.Focus.Foreground" Color="#222222" />
-    <SolidColorBrush x:Key="TextBox.Focus.Border" Color="#AAFF00" />
+    <SolidColorBrush x:Key="TextBox.Focus.Background" Color="White" />
+    <SolidColorBrush x:Key="TextBox.Focus.Foreground" Color="{StaticResource Color.Black}" />
+    <SolidColorBrush x:Key="TextBox.Focus.Border" Color="{StaticResource Color.Yellow}" />
 
-    <SolidColorBrush x:Key="TextBox.Disabled.Background" Color="#FFFFFF" />
-    <SolidColorBrush x:Key="TextBox.Disabled.Foreground" Color="#222222" />
+    <SolidColorBrush x:Key="TextBox.Disabled.Background" Color="White" />
+    <SolidColorBrush x:Key="TextBox.Disabled.Foreground" Color="{StaticResource Color.Black}" />
     <SolidColorBrush x:Key="TextBox.Disabled.Border" Color="Transparent" />
 
-    <SolidColorBrush x:Key="Status.InProgress" Color="#5500FF" />
-    <SolidColorBrush x:Key="Status.Succeeded" Color="#AAFF00" />
-    <SolidColorBrush x:Key="Status.Stopped" Color="#FFFF00" />
-    <SolidColorBrush x:Key="Status.Failed" Color="#FF3300" />
+    <SolidColorBrush x:Key="ToggleButton.Static.Background" Color="{StaticResource Color.Grey}" />
+    <SolidColorBrush x:Key="ToggleButton.Static.Foreground" Color="White" />
+    <SolidColorBrush x:Key="ToggleButton.Static.Border" Color="{StaticResource Color.Grey}" />
+
+    <SolidColorBrush x:Key="ToggleButton.MouseOver.Background" Color="{StaticResource Color.LightGrey}" />
+    <SolidColorBrush x:Key="ToggleButton.MouseOver.Foreground" Color="{StaticResource Color.Black}" />
+    <SolidColorBrush x:Key="ToggleButton.MouseOver.Border" Color="{StaticResource Color.LightGrey}" />
+
+    <SolidColorBrush x:Key="ToggleButton.Pressed.Background" Color="{StaticResource Color.Yellow}" />
+    <SolidColorBrush x:Key="ToggleButton.Pressed.Foreground" Color="{StaticResource Color.Black}" />
+    <SolidColorBrush x:Key="ToggleButton.Pressed.Border" Color="{StaticResource Color.Yellow}" />
+
+    <SolidColorBrush x:Key="ToggleButton.Checked.Background" Color="{StaticResource Color.Yellow}" />
+    <SolidColorBrush x:Key="ToggleButton.Checked.Foreground" Color="{StaticResource Color.Black}" />
+    <SolidColorBrush x:Key="ToggleButton.Checked.Border" Color="{StaticResource Color.Yellow}" />
+
+    <SolidColorBrush x:Key="ToggleButton.Disabled.Background" Color="{StaticResource Color.Grey}" />
+    <SolidColorBrush x:Key="ToggleButton.Disabled.Foreground" Color="{StaticResource Color.LightGrey}" />
+    <SolidColorBrush x:Key="ToggleButton.Disabled.Border" Color="{StaticResource Color.Grey}" />
 
 </ResourceDictionary>

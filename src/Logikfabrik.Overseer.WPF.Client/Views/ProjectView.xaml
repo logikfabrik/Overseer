@@ -9,35 +9,19 @@
     cal:Bind.AtDesignTime="True"
     d:DataContext="{d:DesignInstance d:Type=vm:ProjectViewModel,
                                      d:IsDesignTimeCreatable=True}"
+    d:DesignHeight="300"
     d:DesignWidth="300"
     mc:Ignorable="d">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        <StackPanel Background="{DynamicResource Panel.Background}" ZIndex="1">
-            <StackPanel.Effect>
-                <DropShadowEffect
-                    BlurRadius="3"
-                    Opacity="0.1"
-                    ShadowDepth="3"
-                    Color="{StaticResource Effect.Shadow}" />
-            </StackPanel.Effect>
-            <Button x:Name="TryClose">
-                <Viewbox>
-                    <Canvas>
-                        <Path Data="M2.5,10L9,3.5 9,7 17,7 17,13 9,13 9,16.5 2.5,10z" />
-                    </Canvas>
-                </Viewbox>
-            </Button>
-            <TextBlock
-                FontSize="18"
-                Text="{Binding Name, Mode=OneWay}"
-                TextAlignment="Center" />
-        </StackPanel>
-        <ItemsControl Grid.Row="2" ItemsSource="{Binding Builds, Mode=OneWay}">
+        <Border Grid.Row="0" Style="{StaticResource Common.Header.Panel}">
+            <TextBlock Text="{Binding Path=Name, Converter={StaticResource StringToUpperCaseConverter}}" />
+        </Border>
+        <ItemsControl Grid.Row="1" ItemsSource="{Binding OrderedBuilds, Mode=OneWay}">
             <ItemsControl.ItemContainerStyle>
                 <Style>
                     <!--  ReSharper disable once Xaml.RedundantPropertyTypeQualifier  -->
@@ -52,5 +36,14 @@
                 </ControlTemplate>
             </ItemsControl.Template>
         </ItemsControl>
+        <Border Grid.Row="2" Style="{StaticResource Common.ContextMenu}">
+            <Button x:Name="TryClose">
+                <Viewbox>
+                    <Canvas>
+                        <Path Data="M2.5,10L9,3.5V7h8v6H9v3.5L2.5,10z" />
+                    </Canvas>
+                </Viewbox>
+            </Button>
+        </Border>
     </Grid>
 </UserControl>

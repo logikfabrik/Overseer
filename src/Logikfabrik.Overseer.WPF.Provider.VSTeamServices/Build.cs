@@ -32,13 +32,8 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices
             EndTime = build.FinishTime?.ToUniversalTime();
             Status = GetStatus(build);
             RequestedBy = build.RequestedFor.DisplayName;
-            Changes = changes.Select(lastChange => new Change
-            {
-                Id = lastChange.Id,
-                Changed = lastChange.Timestamp?.ToUniversalTime(),
-                ChangedBy = lastChange.Author.DisplayName,
-                Comment = lastChange.Message
-            }).ToArray();
+            WebUrl = build.Url;
+            Changes = changes.Select(lastChange => new Change(lastChange.Id, lastChange.Timestamp?.ToUniversalTime(), lastChange.Author.DisplayName, lastChange.Message?.Trim())).ToArray();
         }
 
         /// <summary>
@@ -106,6 +101,14 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices
         public string RequestedBy { get; }
 
         /// <summary>
+        /// Gets the web URL.
+        /// </summary>
+        /// <value>
+        /// The web URL.
+        /// </value>
+        public Uri WebUrl { get; }
+
+        /// <summary>
         /// Gets the changes.
         /// </summary>
         /// <value>
@@ -115,23 +118,36 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices
 
         private static BuildStatus? GetStatus(Api.Models.Build build)
         {
-            if (!build.FinishTime.HasValue)
-            {
-                return BuildStatus.InProgress;
-            }
-
             // ReSharper disable once SwitchStatementMissingSomeCases
-            switch (build.Result)
+            switch (build.Status)
             {
-                case Api.Models.BuildResult.Canceled:
+                case Api.Models.BuildStatus.InProgress:
+                    return BuildStatus.InProgress;
+
+                case Api.Models.BuildStatus.Cancelling:
                     return BuildStatus.Stopped;
 
-                case Api.Models.BuildResult.Succeeded:
-                case Api.Models.BuildResult.PartiallySucceeded:
-                    return BuildStatus.Succeeded;
+                case Api.Models.BuildStatus.NotStarted:
+                case Api.Models.BuildStatus.Postponed:
+                    return BuildStatus.Queued;
 
-                case Api.Models.BuildResult.Failed:
-                    return BuildStatus.Failed;
+                case Api.Models.BuildStatus.Completed:
+                    // ReSharper disable once SwitchStatementMissingSomeCases
+                    switch (build.Result)
+                    {
+                        case Api.Models.BuildResult.Canceled:
+                            return BuildStatus.Stopped;
+
+                        case Api.Models.BuildResult.Failed:
+                            return BuildStatus.Failed;
+
+                        case Api.Models.BuildResult.PartiallySucceeded:
+                        case Api.Models.BuildResult.Succeeded:
+                            return BuildStatus.Succeeded;
+
+                        default:
+                            return null;
+                    }
 
                 default:
                     return null;

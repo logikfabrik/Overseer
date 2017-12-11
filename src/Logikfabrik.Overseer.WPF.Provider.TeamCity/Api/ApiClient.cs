@@ -12,19 +12,19 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity.Api
     using System.Text;
     using System.Threading;
     using System.Threading.Tasks;
+    using EnsureThat;
     using Models;
     using Newtonsoft.Json;
     using Newtonsoft.Json.Converters;
-    using Overseer.Api;
     using Overseer.Extensions;
 
     /// <summary>
     /// The <see cref="ApiClient" /> class.
     /// </summary>
-    public class ApiClient : CacheableApiClient<ConnectionSettings>, IApiClient
+    public class ApiClient : IApiClient, IDisposable
     {
-        private readonly Lazy<HttpClient> _httpClient;
         private readonly JsonMediaTypeFormatter _mediaTypeFormatter;
+        private Lazy<HttpClient> _httpClient;
         private bool _isDisposed;
 
         /// <summary>
@@ -32,8 +32,9 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity.Api
         /// </summary>
         /// <param name="settings">The settings.</param>
         public ApiClient(ConnectionSettings settings)
-            : base(settings)
         {
+            Ensure.That(settings).IsNotNull();
+
             _mediaTypeFormatter = new JsonMediaTypeFormatter
             {
                 SerializerSettings = new JsonSerializerSettings
@@ -48,7 +49,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity.Api
                 }
             };
 
-            var baseUri = BaseUriHelper.GetBaseUri(settings.Url, settings.Version, settings.AuthenticationType);
+            var baseUri = BaseUriUtility.GetBaseUri(settings.Url, settings.Version, settings.AuthenticationType);
 
             switch (settings.AuthenticationType)
             {
@@ -82,30 +83,35 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity.Api
 
             using (var response = await _httpClient.Value.GetAsync(url, cancellationToken).ConfigureAwait(false))
             {
-                response.EnsureSuccessStatusCode();
+                response.ThrowIfUnsuccessful();
 
                 return await response.Content.ReadAsAsync<Projects>(cancellationToken).ConfigureAwait(false);
             }
         }
 
         /// <summary>
-        /// Gets the build types.
+        /// Gets the builds.
         /// </summary>
-        /// <param name="cancellationToken">A cancellation token.</param>
+        /// <param name="projectId">The project identifier.</param>
+        /// <param name="count">The count.</param>
+        /// <param name="cancellationToken">The cancellation token.</param>
         /// <returns>A task.</returns>
-        public async Task<BuildTypes> GetBuildTypesAsync(CancellationToken cancellationToken)
+        public async Task<Builds> GetBuildsAsync(string projectId, int count, CancellationToken cancellationToken)
         {
             this.ThrowIfDisposed(_isDisposed);
 
+            Ensure.That(projectId).IsNotNullOrWhiteSpace();
+            Ensure.That(count).IsInRange(1, int.MaxValue);
+
             cancellationToken.ThrowIfCancellationRequested();
 
-            const string url = "buildTypes?fields=buildType(projectId,projectName,builds($locator(count:1),build(id,triggered(user),startDate,finishDate,status,state,number,lastChanges:(change),branchName,testOccurrences,webUrl)))";
+            var url = $"builds?locator=defaultFilter:false,project:{projectId},count:{count}&fields=build(id,triggered(user),branchName,startDate,finishDate,status,state,number,lastChanges(change(id,version,username,date,comment)),testOccurrences,webUrl)";
 
             using (var response = await _httpClient.Value.GetAsync(url, cancellationToken).ConfigureAwait(false))
             {
-                response.EnsureSuccessStatusCode();
+                response.ThrowIfUnsuccessful();
 
-                return await response.Content.ReadAsAsync<BuildTypes>(new[] { _mediaTypeFormatter }, cancellationToken).ConfigureAwait(false);
+                return await response.Content.ReadAsAsync<Builds>(new[] { _mediaTypeFormatter }, cancellationToken).ConfigureAwait(false);
             }
         }
 
@@ -129,16 +135,17 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity.Api
                 return;
             }
 
-            // ReSharper disable once InvertIf
             if (disposing)
             {
-                if (!_httpClient.IsValueCreated)
+                if (_httpClient != null)
                 {
-                    return;
-                }
+                    if (_httpClient.IsValueCreated)
+                    {
+                        _httpClient.Value.Dispose();
+                    }
 
-                _httpClient.Value.CancelPendingRequests();
-                _httpClient.Value.Dispose();
+                    _httpClient = null;
+                }
             }
 
             _isDisposed = true;
@@ -170,7 +177,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity.Api
 
         private static void SetAuthRequestHeaders(HttpClient client, string username, string password)
         {
-            var credentials = Convert.ToBase64String(Encoding.ASCII.GetBytes($"{username}:{password}"));
+            var credentials = Convert.ToBase64String(Encoding.UTF8.GetBytes($"{username}:{password}"));
 
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", credentials);
         }

@@ -30,20 +30,8 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity
             EndTime = build.FinishDate?.ToUniversalTime();
             Status = GetStatus(build);
             RequestedBy = GetRequestedBy(build);
-
-            if (build.LastChanges != null)
-            {
-                Changes = build.LastChanges.Change.Select(change => new Change
-                {
-                    Id = change.Id,
-                    Changed = change.Date?.ToUniversalTime(),
-                    ChangedBy = change.Username
-                }).ToArray();
-            }
-            else
-            {
-                Changes = new IChange[] { };
-            }
+            WebUrl = build.WebUrl;
+            Changes = build.LastChanges?.Change.Select(change => new Change(change.Version, change.Date?.ToUniversalTime(), change.Username, change.Comment?.Trim())).ToArray() ?? new IChange[] { };
         }
 
         /// <summary>
@@ -111,6 +99,14 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity
         public string RequestedBy { get; }
 
         /// <summary>
+        /// Gets the web URL.
+        /// </summary>
+        /// <value>
+        /// The web URL.
+        /// </value>
+        public Uri WebUrl { get; }
+
+        /// <summary>
         /// Gets the changes.
         /// </summary>
         /// <value>
@@ -120,38 +116,32 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity
 
         private static string GetRequestedBy(Api.Models.Build build)
         {
-            // ReSharper disable once SwitchStatementMissingSomeCases
-            switch (build.Triggered.Type)
-            {
-                case Api.Models.TriggerType.Vcs:
-                    return build.Triggered.Details;
-
-                case Api.Models.TriggerType.User:
-                    return build.Triggered.User?.Username;
-
-                default:
-                    return null;
-            }
+            return build.Triggered?.User?.Username;
         }
 
         private static BuildStatus? GetStatus(Api.Models.Build build)
         {
-            if (!build.FinishDate.HasValue)
+            switch (build.State)
             {
-                return BuildStatus.InProgress;
-            }
+                case Api.Models.BuildState.Queued:
+                    return BuildStatus.Queued;
 
-            // ReSharper disable once SwitchStatementMissingSomeCases
-            switch (build.Status)
-            {
-                case Api.Models.BuildStatus.Success:
-                    return BuildStatus.Succeeded;
+                case Api.Models.BuildState.Running:
+                    return BuildStatus.InProgress;
 
-                case Api.Models.BuildStatus.Failure:
-                    return BuildStatus.Failed;
+                case Api.Models.BuildState.Finished:
+                    switch (build.Status)
+                    {
+                        case Api.Models.BuildStatus.Success:
+                            return BuildStatus.Succeeded;
 
-                case Api.Models.BuildStatus.Error:
-                    return BuildStatus.Stopped;
+                        case Api.Models.BuildStatus.Failure:
+                        case Api.Models.BuildStatus.Error:
+                            return BuildStatus.Failed;
+
+                        default:
+                            return null;
+                    }
 
                 default:
                     return null;

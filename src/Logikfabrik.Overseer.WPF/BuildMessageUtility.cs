@@ -28,7 +28,7 @@ namespace Logikfabrik.Overseer.WPF
             Ensure.That(project).IsNotNull();
             Ensure.That(build).IsNotNull();
 
-            return GetBuildName(project.Name, build.GetVersionNumber(), build.Branch);
+            return GetBuildName(project.Name, build.VersionNumber());
         }
 
         /// <summary>
@@ -36,9 +36,8 @@ namespace Logikfabrik.Overseer.WPF
         /// </summary>
         /// <param name="projectName">The project name.</param>
         /// <param name="versionNumber">The version number.</param>
-        /// <param name="branch">The branch.</param>
         /// <returns>The build name.</returns>
-        public static string GetBuildName(string projectName, string versionNumber, string branch)
+        public static string GetBuildName(string projectName, string versionNumber)
         {
             var builder = new StringBuilder();
 
@@ -52,12 +51,7 @@ namespace Logikfabrik.Overseer.WPF
                 builder.AppendFormat("{0} ", versionNumber);
             }
 
-            if (!string.IsNullOrWhiteSpace(branch))
-            {
-                builder.AppendFormat("({0})", branch);
-            }
-
-            return builder.Length > 0 ? builder.ToString() : null;
+            return builder.Length > 0 ? builder.ToString().Trim() : null;
         }
 
         /// <summary>
@@ -95,12 +89,18 @@ namespace Logikfabrik.Overseer.WPF
         /// <summary>
         /// Gets the build run time message.
         /// </summary>
+        /// <param name="currentTime">The current time.</param>
         /// <param name="status">The status.</param>
         /// <param name="endTime">The end time.</param>
         /// <param name="runTime">The run time.</param>
         /// <returns>The build run time message.</returns>
-        public static string GetBuildRunTimeMessage(BuildStatus? status, DateTime? endTime, TimeSpan? runTime)
+        public static string GetBuildRunTimeMessage(DateTime currentTime, BuildStatus? status, DateTime? endTime, TimeSpan? runTime)
         {
+            if (status.IsQueued())
+            {
+                return status.Humanize();
+            }
+
             if (status.IsInProgress())
             {
                 return !runTime.HasValue
@@ -126,7 +126,7 @@ namespace Logikfabrik.Overseer.WPF
             return null;
         }
 
-        private static string GetMessageParts(IDictionary<string, string> parts)
+        private static string GetMessageParts(IEnumerable<KeyValuePair<string, string>> parts)
         {
             var messageParts = parts.Where(part => !string.IsNullOrWhiteSpace(part.Value));
 

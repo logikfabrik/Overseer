@@ -29,6 +29,14 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         string Name { get; }
 
         /// <summary>
+        /// Gets the version number.
+        /// </summary>
+        /// <value>
+        /// The version number.
+        /// </value>
+        string VersionNumber { get; }
+
+        /// <summary>
         /// Gets the name of whoever requested the build.
         /// </summary>
         /// <value>
@@ -37,28 +45,12 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         string RequestedBy { get; }
 
         /// <summary>
-        /// Gets a value indicating whether to show the name of whoever requested the build.
-        /// </summary>
-        /// <value>
-        ///   <c>true</c> if the name of whoever requested the build should be shown; otherwise, <c>false</c>.
-        /// </value>
-        bool ShowRequestedBy { get; }
-
-        /// <summary>
         /// Gets the branch.
         /// </summary>
         /// <value>
         /// The branch.
         /// </value>
         string Branch { get; }
-
-        /// <summary>
-        /// Gets a value indicating whether to show the branch.
-        /// </summary>
-        /// <value>
-        ///   <c>true</c> if the branch should be shown; otherwise, <c>false</c>.
-        /// </value>
-        bool ShowBranch { get; }
 
         /// <summary>
         /// Gets the message.
@@ -85,14 +77,6 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         DateTime? StartTime { get; }
 
         /// <summary>
-        /// Gets a value indicating whether to show the start time.
-        /// </summary>
-        /// <value>
-        ///   <c>true</c> if the start time should be shown; otherwise, <c>false</c>.
-        /// </value>
-        bool ShowStartTime { get; }
-
-        /// <summary>
         /// Gets the end time.
         /// </summary>
         /// <value>
@@ -108,6 +92,28 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// </value>
         IEnumerable<IChangeViewModel> Changes { get; }
 
+        /// <summary>
+        /// Gets a value indicating whether this instance is viewable.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if this instance is viewable; otherwise, <c>false</c>.
+        /// </value>
+        bool IsViewable { get; }
+
+        /// <summary>
+        /// Views this instance.
+        /// </summary>
+        void View();
+
+        /// <summary>
+        /// Tries to update this instance.
+        /// </summary>
+        /// <param name="projectName">The project name.</param>
+        /// <param name="status">The status.</param>
+        /// <param name="startTime">The start time.</param>
+        /// <param name="endTime">The end time.</param>
+        /// <param name="runTime">The run time.</param>
+        /// <returns><c>true</c> if this instance was updated; otherwise, <c>false</c>.</returns>
         bool TryUpdate(string projectName, BuildStatus? status, DateTime? startTime, DateTime? endTime, TimeSpan? runTime);
     }
 }

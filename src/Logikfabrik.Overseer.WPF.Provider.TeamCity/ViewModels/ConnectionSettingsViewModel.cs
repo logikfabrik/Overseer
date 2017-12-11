@@ -48,7 +48,10 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity.ViewModels
                 _url = value;
                 NotifyOfPropertyChange(() => Url);
                 NotifyOfPropertyChange(() => IsValid);
+
+                // Trigger revalidation of base URI.
                 NotifyOfPropertyChange(() => BaseUri);
+                NotifyOfPropertyChange(() => ShowBaseUri);
 
                 IsDirty = true;
             }
@@ -66,9 +69,17 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity.ViewModels
             {
                 Uri baseUri;
 
-                return BaseUriHelper.TryGetBaseUri(Url, Version, AuthenticationType, out baseUri) ? baseUri.ToString() : null;
+                return BaseUriUtility.TryGetBaseUri(Url, Version, AuthenticationType, out baseUri) ? baseUri.ToString() : null;
             }
         }
+
+        /// <summary>
+        /// Gets a value indicating whether to show the base URI.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if the base URI should be shown; otherwise, <c>false</c>.
+        /// </value>
+        public bool ShowBaseUri => BaseUri != null;
 
         /// <summary>
         /// Gets or sets the authentication type.
@@ -88,9 +99,13 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity.ViewModels
                 _authenticationType = value;
                 NotifyOfPropertyChange(() => AuthenticationType);
                 NotifyOfPropertyChange(() => IsValid);
+
+                // Trigger revalidation of base URI.
                 NotifyOfPropertyChange(() => BaseUri);
+                NotifyOfPropertyChange(() => ShowBaseUri);
 
                 // Trigger revalidation of username and password.
+                NotifyOfPropertyChange(() => ShowUsernameAndPassword);
                 NotifyOfPropertyChange(() => Username);
                 NotifyOfPropertyChange(() => Password);
 
@@ -145,12 +160,20 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity.ViewModels
         }
 
         /// <summary>
+        /// Gets a value indicating whether to show the username and password.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if the username and password should be shown; otherwise, <c>false</c>.
+        /// </value>
+        public bool ShowUsernameAndPassword => AuthenticationType == AuthenticationType.HttpAuth;
+
+        /// <summary>
         /// Gets the settings.
         /// </summary>
         /// <returns>The settings.</returns>
         public override ConnectionSettings GetSettings()
         {
-            var projects = ProjectsToMonitor?.Projects?.Where(project => project.Monitor).ToArray() ?? new ProjectToMonitorViewModel[] { };
+            var projects = TrackedProjects?.Projects?.Where(project => project.Track).ToArray() ?? new TrackedProjectViewModel[] { };
 
             return new ConnectionSettings
             {
@@ -160,7 +183,8 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity.ViewModels
                 Version = Version,
                 Username = Username,
                 Password = Password,
-                ProjectsToMonitor = projects.Select(project => project.Id).ToArray()
+                TrackedProjects = projects.Select(project => project.Id).ToArray(),
+                BuildsPerProject = BuildsPerProject
             };
         }
 
@@ -176,7 +200,8 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity.ViewModels
             current.Version = Version;
             current.Username = Username;
             current.Password = Password;
-            current.ProjectsToMonitor = ProjectsToMonitor.Projects.Where(project => project.Monitor).Select(project => project.Id).ToArray();
+            current.TrackedProjects = TrackedProjects.Projects.Where(project => project.Track).Select(project => project.Id).ToArray();
+            current.BuildsPerProject = BuildsPerProject;
         }
     }
 }

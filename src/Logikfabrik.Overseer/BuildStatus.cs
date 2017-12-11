@@ -27,6 +27,11 @@ namespace Logikfabrik.Overseer
         /// <summary>
         /// The build was stopped.
         /// </summary>
-        Stopped = 3
+        Stopped = 3,
+
+        /// <summary>
+        /// The build is queued.
+        /// </summary>
+        Queued = 4
     }
 }

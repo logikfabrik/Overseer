@@ -5,7 +5,6 @@
 namespace Logikfabrik.Overseer.WPF.Provider.CircleCI
 {
     using Ninject.Extensions.Factory;
-    using Ninject.Extensions.Interception.Infrastructure.Language;
     using Ninject.Modules;
     using ViewModels;
 
@@ -19,12 +18,11 @@ namespace Logikfabrik.Overseer.WPF.Provider.CircleCI
         /// </summary>
         public override void Load()
         {
-            Bind<Api.IApiClient>().To<Api.ApiClient>().Intercept().With<Caching.CacheInterceptor>();
+            Bind<Api.IApiClient>().To<Api.ApiClient>();
 
             Bind<IBuildProviderFactory>().To<BuildProviderFactory<ConnectionSettings, BuildProvider>>();
 
             Bind<WPF.ViewModels.IBuildProviderViewModel>().To<BuildProviderViewModel>();
-            Bind<Settings.ConnectionSettings>().To<ConnectionSettings>();
             Bind<WPF.ViewModels.EditConnectionViewModel<ConnectionSettings>>().To<EditConnectionViewModel>();
             Bind<WPF.ViewModels.Factories.IConnectionSettingsViewModelFactory<ConnectionSettings, ConnectionSettingsViewModel>>().To<WPF.ViewModels.Factories.ConnectionSettingsViewModelFactory<ConnectionSettings, ConnectionSettingsViewModel>>();
             Bind<WPF.ViewModels.Factories.IConnectionViewModelFactory>().To<WPF.ViewModels.Factories.ConnectionViewModelFactory<ConnectionSettings, WPF.ViewModels.ConnectionViewModel<ConnectionSettings>>>();

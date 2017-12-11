@@ -20,12 +20,12 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         string Id { get; }
 
         /// <summary>
-        /// Gets a value indicating whether to show the identifier.
+        /// Gets the identifier or short identifier.
         /// </summary>
         /// <value>
-        ///   <c>true</c> if the identifier should be shown; otherwise, <c>false</c>.
+        /// The identifier or short identifier.
         /// </value>
-        bool ShowId { get; }
+        string IdOrShortId { get; }
 
         /// <summary>
         /// Gets the changed date.
@@ -36,28 +36,12 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         DateTime? Changed { get; }
 
         /// <summary>
-        /// Gets a value indicating whether to show the changed date.
-        /// </summary>
-        /// <value>
-        ///   <c>true</c> if the changed date should be shown; otherwise, <c>false</c>.
-        /// </value>
-        bool ShowChanged { get; }
-
-        /// <summary>
         /// Gets the name of whoever made the change.
         /// </summary>
         /// <value>
         /// The name of whoever made the change.
         /// </value>
         string ChangedBy { get; }
-
-        /// <summary>
-        /// Gets a value indicating whether to show the name of whoever made the changed.
-        /// </summary>
-        /// <value>
-        ///   <c>true</c> if the name of whoever made the change should be shown; otherwise, <c>false</c>.
-        /// </value>
-        bool ShowChangedBy { get; }
 
         /// <summary>
         /// Gets the comment.

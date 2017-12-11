@@ -17,7 +17,9 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor.Validators
         /// </summary>
         public ConnectionSettingsViewModelValidator()
         {
-            RuleFor(viewModel => viewModel.Token).NotEmpty();
+            RuleFor(viewModel => viewModel.Token)
+                .NotEmpty()
+                .WithMessage(viewModel => Properties.Resources.ConnectionSettings_Validation_Token);
         }
     }
 }

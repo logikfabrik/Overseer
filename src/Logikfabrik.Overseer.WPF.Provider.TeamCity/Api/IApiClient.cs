@@ -4,28 +4,28 @@
 
 namespace Logikfabrik.Overseer.WPF.Provider.TeamCity.Api
 {
-    using System;
     using System.Threading;
     using System.Threading.Tasks;
-    using Models;
 
     /// <summary>
     /// The <see cref="IApiClient" /> interface.
     /// </summary>
-    public interface IApiClient : IDisposable
+    public interface IApiClient
     {
         /// <summary>
         /// Gets the projects.
         /// </summary>
         /// <param name="cancellationToken">A cancellation token.</param>
         /// <returns>A task.</returns>
-        Task<Projects> GetProjectsAsync(CancellationToken cancellationToken);
+        Task<Models.Projects> GetProjectsAsync(CancellationToken cancellationToken);
 
         /// <summary>
-        /// Gets the build types.
+        /// Gets the builds.
         /// </summary>
-        /// <param name="cancellationToken">A cancellation token.</param>
+        /// <param name="projectId">The project identifier.</param>
+        /// <param name="count">The count.</param>
+        /// <param name="cancellationToken">The cancellation token.</param>
         /// <returns>A task.</returns>
-        Task<BuildTypes> GetBuildTypesAsync(CancellationToken cancellationToken);
+        Task<Models.Builds> GetBuildsAsync(string projectId, int count, CancellationToken cancellationToken);
     }
 }

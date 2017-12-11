@@ -2,21 +2,36 @@
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
+                <!--  Brushes  -->
                 <ResourceDictionary Source="pack://application:,,,/Logikfabrik.Overseer.WPF;component/Styles/Brushes.xaml" />
+
+                <!--  Resources  -->
                 <ResourceDictionary Source="pack://application:,,,/Logikfabrik.Overseer.WPF;component/Styles/Resources/Converters.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/Logikfabrik.Overseer.WPF;component/Styles/Resources/FocusVisuals.xaml" />
+
+                <!--  Effects  -->
+                <ResourceDictionary Source="pack://application:,,,/Logikfabrik.Overseer.WPF;component/Styles/Resources/Effects.xaml" />
+
+                <!--  Controls  -->
                 <ResourceDictionary Source="pack://application:,,,/Logikfabrik.Overseer.WPF;component/Styles/Controls/TextBlock.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/Logikfabrik.Overseer.WPF;component/Styles/Controls/ToolTip.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/Logikfabrik.Overseer.WPF;component/Styles/Controls/Window.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/Logikfabrik.Overseer.WPF;component/Styles/Controls/Button.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/Logikfabrik.Overseer.WPF;component/Styles/Controls/CheckBox.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/Logikfabrik.Overseer.WPF;component/Styles/Controls/ComboBox.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/Logikfabrik.Overseer.WPF;component/Styles/Controls/ToggleButton.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/Logikfabrik.Overseer.WPF;component/Styles/Controls/Hyperlink.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/Logikfabrik.Overseer.WPF;component/Styles/Controls/TextBox.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/Logikfabrik.Overseer.WPF;component/Styles/Controls/PasswordBox.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/Logikfabrik.Overseer.WPF;component/Styles/Controls/ScrollBar.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/Logikfabrik.Overseer.WPF;component/Styles/Controls/ScrollViewer.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/Logikfabrik.Overseer.WPF;component/Styles/Controls/Separator.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/Logikfabrik.Overseer.WPF;component/Styles/Controls/ItemsControl.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/Logikfabrik.Overseer.WPF;component/Styles/Controls/Canvas.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/Logikfabrik.Overseer.WPF;component/Styles/Controls/Viewbox.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/Logikfabrik.Overseer.WPF;component/Styles/Controls/ToolTip.xaml" />
+
+                <!--  Styles  -->
+                <ResourceDictionary Source="pack://application:,,,/Logikfabrik.Overseer.WPF;component/Styles/Styles/View.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

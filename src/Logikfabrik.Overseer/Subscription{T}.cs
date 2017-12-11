@@ -14,8 +14,9 @@ namespace Logikfabrik.Overseer
     /// <typeparam name="T">The notification type.</typeparam>
     internal class Subscription<T> : IDisposable
     {
-        private readonly HashSet<IObserver<T>> _observers;
-        private readonly IObserver<T> _observer;
+        private HashSet<IObserver<T>> _observers;
+        private IObserver<T> _observer;
+        private bool _isDisposed;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Subscription{T}" /> class.
@@ -36,7 +37,33 @@ namespace Logikfabrik.Overseer
         /// </summary>
         public void Dispose()
         {
-            _observers.Remove(_observer);
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        /// <summary>
+        /// Releases unmanaged and managed resources.
+        /// </summary>
+        /// <param name="disposing"><c>true</c> to release both managed and unmanaged resources; <c>false</c> to release only unmanaged resources.</param>
+        protected virtual void Dispose(bool disposing)
+        {
+            if (_isDisposed)
+            {
+                return;
+            }
+
+            if (disposing)
+            {
+                if (_observers != null && _observer != null)
+                {
+                    _observers.Remove(_observer);
+                }
+
+                _observers = null;
+                _observer = null;
+            }
+
+            _isDisposed = true;
         }
     }
 }

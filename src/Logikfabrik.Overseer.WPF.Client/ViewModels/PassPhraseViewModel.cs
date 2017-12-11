@@ -21,6 +21,10 @@ namespace Logikfabrik.Overseer.WPF.Client.ViewModels
         private readonly PassPhraseViewModelValidator _validator;
         private string _passPhrase;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PassPhraseViewModel" /> class.
+        /// </summary>
+        /// <param name="encrypter">The encrypter.</param>
         public PassPhraseViewModel(IConnectionSettingsEncrypter encrypter)
         {
             Ensure.That(encrypter).IsNotNull();
@@ -35,7 +39,7 @@ namespace Logikfabrik.Overseer.WPF.Client.ViewModels
         /// <value>
         /// The display name.
         /// </value>
-        public string DisplayName { get; set; } = "Pass phrase";
+        public string DisplayName { get; set; } = Properties.Resources.PassPhrase_View;
 
         /// <summary>
         /// Gets or sets the pass phrase.
@@ -54,8 +58,17 @@ namespace Logikfabrik.Overseer.WPF.Client.ViewModels
             {
                 _passPhrase = value;
                 NotifyOfPropertyChange(() => PassPhrase);
+                NotifyOfPropertyChange(() => IsValid);
             }
         }
+
+        /// <summary>
+        /// Gets a value indicating whether this instance is valid.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if this instance is valid; otherwise, <c>false</c>.
+        /// </value>
+        public bool IsValid => _validator.Validate(this).IsValid;
 
         /// <summary>
         /// Gets an error message indicating what is wrong with this object.
@@ -87,11 +100,11 @@ namespace Logikfabrik.Overseer.WPF.Client.ViewModels
         }
 
         /// <summary>
-        /// Save the pass phrase.
+        /// Saves the pass phrase.
         /// </summary>
         public void Save()
         {
-            if (!_validator.Validate(this).IsValid)
+            if (!IsValid)
             {
                 return;
             }

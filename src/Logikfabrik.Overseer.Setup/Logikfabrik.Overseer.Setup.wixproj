@@ -9,7 +9,7 @@
     <ProductVersion>3.10</ProductVersion>
     <ProjectGuid>93446262-5f80-4ed6-b53b-e543ac8245ef</ProjectGuid>
     <SchemaVersion>2.0</SchemaVersion>
-    <OutputName>Overseer</OutputName>
+    <OutputName>Overseer.$(InstallerVersion)</OutputName>
     <OutputType>Package</OutputType>
     <WixTargetsPath Condition=" '$(WixTargetsPath)' == '' AND '$(MSBuildExtensionsPath32)' != '' ">$(MSBuildExtensionsPath32)\Microsoft\WiX\v3.x\Wix.targets</WixTargetsPath>
     <WixTargetsPath Condition=" '$(WixTargetsPath)' == '' ">$(MSBuildExtensionsPath)\Microsoft\WiX\v3.x\Wix.targets</WixTargetsPath>
@@ -45,9 +45,18 @@
       </RefProjectOutputGroups>
       <RefTargetDir>INSTALLFOLDER</RefTargetDir>
     </ProjectReference>
-	<ProjectReference Include="..\Logikfabrik.Overseer.WPF.Provider.CircleCI\Logikfabrik.Overseer.WPF.Provider.CircleCI.csproj">
+    <ProjectReference Include="..\Logikfabrik.Overseer.WPF.Provider.CircleCI\Logikfabrik.Overseer.WPF.Provider.CircleCI.csproj">
       <Name>Logikfabrik.Overseer.WPF.Provider.CircleCI</Name>
       <Project>{261d8616-8433-4c31-bb88-fc62fa389029}</Project>
+      <Private>True</Private>
+      <DoNotHarvest>True</DoNotHarvest>
+      <RefProjectOutputGroups>
+      </RefProjectOutputGroups>
+      <RefTargetDir>INSTALLFOLDER</RefTargetDir>
+    </ProjectReference>
+    <ProjectReference Include="..\Logikfabrik.Overseer.WPF.Provider.Codeship\Logikfabrik.Overseer.WPF.Provider.Codeship.csproj">
+      <Name>Logikfabrik.Overseer.WPF.Provider.Codeship</Name>
+      <Project>{8e789175-eb12-43d0-b432-9308ae97d989}</Project>
       <Private>True</Private>
       <DoNotHarvest>True</DoNotHarvest>
       <RefProjectOutputGroups>
@@ -111,7 +120,35 @@
     </WixExtension>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Attribution\Caliburn.Micro\LICENSE.txt" />
+    <Content Include="Attribution\Castle.Core\LICENSE.txt" />
+    <Content Include="Attribution\Ensure.That\LICENSE.txt" />
+    <Content Include="Attribution\Entypo\LICENSE.txt" />
+    <Content Include="Attribution\FluentValidation\LICENSE.txt" />
+    <Content Include="Attribution\Humanizer\LICENSE.txt" />
+    <Content Include="Attribution\Newtonsoft.Json\LICENSE.txt" />
+    <Content Include="Attribution\Ninject\LICENSE.txt" />
+    <Content Include="Attribution\Serilog\LICENSE.txt" />
+    <Content Include="Attribution\TrieNet\LICENSE.txt" />
     <Content Include="LICENSE.rtf" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Attribution\" />
+    <Folder Include="Attribution\Caliburn.Micro\" />
+    <Folder Include="Attribution\Castle.Core\" />
+    <Folder Include="Attribution\Ensure.That\" />
+    <Folder Include="Attribution\Entypo\" />
+    <Folder Include="Attribution\FluentValidation\" />
+    <Folder Include="Attribution\Humanizer\" />
+    <Folder Include="Attribution\Newtonsoft.Json\" />
+    <Folder Include="Attribution\Ninject\" />
+    <Folder Include="Attribution\Serilog\" />
+    <Folder Include="Attribution\TrieNet\" />
+  </ItemGroup>
   <Import Project="$(WixTargetsPath)" />
+  <Target Name="BeforeBuild">
+    <CreateProperty Condition="$(InstallerVersion) != ''" Value="INSTALLERVERSION=$(InstallerVersion);$(DefineConstants)">
+      <Output TaskParameter="Value" PropertyName="DefineConstants" />
+    </CreateProperty>
+  </Target>
 </Project>

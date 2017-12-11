@@ -14,6 +14,8 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity.Test.Api
         [Fact(Skip = "This is an integration test")]
         public async Task CanGetProjects()
         {
+            // TODO: Rewrite.
+
             var settings = new ConnectionSettings
             {
                 AuthenticationType = AuthenticationType.GuestAuth,
@@ -26,23 +28,6 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity.Test.Api
             var projects = await client.GetProjectsAsync(CancellationToken.None).ConfigureAwait(false);
 
             Assert.NotNull(projects);
-        }
-
-        [Fact(Skip = "This is an integration test")]
-        public async Task CanGetBuildTypes()
-        {
-            var settings = new ConnectionSettings
-            {
-                AuthenticationType = AuthenticationType.GuestAuth,
-                Url = "http://teamcity.jetbrains.com",
-                Version = "10.0"
-            };
-
-            var client = new ApiClient(settings);
-
-            var buildTypes = await client.GetBuildTypesAsync(CancellationToken.None).ConfigureAwait(false);
-
-            Assert.NotNull(buildTypes);
         }
     }
 }
