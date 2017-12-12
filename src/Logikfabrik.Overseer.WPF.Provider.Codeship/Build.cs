@@ -13,6 +13,10 @@ namespace Logikfabrik.Overseer.WPF.Provider.Codeship
     /// </summary>
     public class Build : IBuild
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Build" /> class.
+        /// </summary>
+        /// <param name="build">The build.</param>
         public Build(Api.Models.Build build)
         {
             Ensure.That(build).IsNotNull();
@@ -29,84 +33,34 @@ namespace Logikfabrik.Overseer.WPF.Provider.Codeship
             Changes = GetChanges(build);
         }
 
-        /// <summary>
-        /// Gets the identifier.
-        /// </summary>
-        /// <value>
-        /// The identifier.
-        /// </value>
+        /// <inheritdoc/>
         public string Id { get; }
 
-        /// <summary>
-        /// Gets the version.
-        /// </summary>
-        /// <value>
-        /// The version.
-        /// </value>
+        /// <inheritdoc/>
         public string Version { get; }
 
-        /// <summary>
-        /// Gets the number.
-        /// </summary>
-        /// <value>
-        /// The number.
-        /// </value>
+        /// <inheritdoc/>
         public string Number { get; }
 
-        /// <summary>
-        /// Gets the branch.
-        /// </summary>
-        /// <value>
-        /// The branch.
-        /// </value>
+        /// <inheritdoc/>
         public string Branch { get; }
 
-        /// <summary>
-        /// Gets the start time.
-        /// </summary>
-        /// <value>
-        /// The start time.
-        /// </value>
+        /// <inheritdoc/>
         public DateTime? StartTime { get; }
 
-        /// <summary>
-        /// Gets the end time.
-        /// </summary>
-        /// <value>
-        /// The end time.
-        /// </value>
+        /// <inheritdoc/>
         public DateTime? EndTime { get; }
 
-        /// <summary>
-        /// Gets the status.
-        /// </summary>
-        /// <value>
-        /// The status.
-        /// </value>
+        /// <inheritdoc/>
         public BuildStatus? Status { get; }
 
-        /// <summary>
-        /// Gets the name of whoever requested the build.
-        /// </summary>
-        /// <value>
-        /// The name of whoever requested the build.
-        /// </value>
+        /// <inheritdoc/>
         public string RequestedBy { get; }
 
-        /// <summary>
-        /// Gets the web URL.
-        /// </summary>
-        /// <value>
-        /// The web URL.
-        /// </value>
+        /// <inheritdoc/>
         public Uri WebUrl { get; }
 
-        /// <summary>
-        /// Gets the changes.
-        /// </summary>
-        /// <value>
-        /// The changes.
-        /// </value>
+        /// <inheritdoc/>
         public IEnumerable<IChange> Changes { get; }
 
         private static BuildStatus? GetStatus(Api.Models.Build build)

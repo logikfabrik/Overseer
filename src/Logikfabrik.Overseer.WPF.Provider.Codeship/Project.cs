@@ -4,6 +4,7 @@
 
 namespace Logikfabrik.Overseer.WPF.Provider.Codeship
 {
+    using System;
     using EnsureThat;
 
     /// <summary>
@@ -11,28 +12,34 @@ namespace Logikfabrik.Overseer.WPF.Provider.Codeship
     /// </summary>
     public class Project : IProject
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Project" /> class.
+        /// </summary>
+        /// <param name="project">The project.</param>
         public Project(Api.Models.Project project)
         {
             Ensure.That(project).IsNotNull();
 
             Id = project.Id.ToString();
-            Name = project.Name;
+            Name = GetName(project.Name);
         }
 
-        /// <summary>
-        /// Gets the identifier.
-        /// </summary>
-        /// <value>
-        /// The identifier.
-        /// </value>
+        /// <inheritdoc/>
         public string Id { get; }
 
-        /// <summary>
-        /// Gets the name.
-        /// </summary>
-        /// <value>
-        /// The name.
-        /// </value>
+        /// <inheritdoc/>
         public string Name { get; }
+
+        private static string GetName(string name)
+        {
+            if (string.IsNullOrWhiteSpace(name))
+            {
+                return name;
+            }
+
+            var index = name.IndexOf("/", StringComparison.Ordinal);
+
+            return index == -1 ? name : name.Substring(index + 1);
+        }
     }
 }
