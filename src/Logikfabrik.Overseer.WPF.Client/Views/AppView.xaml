@@ -5,6 +5,7 @@
     xmlns:cal="http://www.caliburnproject.org"
     xmlns:views="clr-namespace:Logikfabrik.Overseer.WPF.Client.Views"
     cal:Message.Attach="[Event MouseUp] = [Action Menu.Close]"
+    Icon="..\Overseer.ico"
     Style="{StaticResource WindowDefaultStyle}">
     <Grid>
         <Grid>

@@ -8,6 +8,7 @@
     xmlns:views="clr-namespace:Logikfabrik.Overseer.WPF.Client.Views"
     d:DesignHeight="300"
     d:DesignWidth="300"
+    Icon="..\Overseer.ico"
     Style="{StaticResource WindowDefaultStyle}"
     mc:Ignorable="d">
     <ScrollViewer>

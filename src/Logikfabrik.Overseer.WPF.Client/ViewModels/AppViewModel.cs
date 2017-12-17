@@ -73,10 +73,7 @@ namespace Logikfabrik.Overseer.WPF.Client.ViewModels
         /// </value>
         public ErrorViewModel Error { get; }
 
-        /// <summary>
-        /// Handles the specified message.
-        /// </summary>
-        /// <param name="message">The message to handle.</param>
+        /// <inheritdoc />
         public void Handle(NavigationMessage message)
         {
             this.ThrowIfDisposed(_isDisposed);
@@ -84,9 +81,7 @@ namespace Logikfabrik.Overseer.WPF.Client.ViewModels
             _navigator.Navigate(message);
         }
 
-        /// <summary>
-        /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
-        /// </summary>
+        /// <inheritdoc/>
         public void Dispose()
         {
             if (_isDisposed)
@@ -101,11 +96,7 @@ namespace Logikfabrik.Overseer.WPF.Client.ViewModels
             _isDisposed = true;
         }
 
-        /// <summary>
-        /// Changes the active item.
-        /// </summary>
-        /// <param name="newItem">The new item to activate.</param>
-        /// <param name="closePrevious">Indicates whether or not to close the previous active item.</param>
+        /// <inheritdoc/>
         protected override void ChangeActiveItem(IViewModel newItem, bool closePrevious)
         {
             base.ChangeActiveItem(newItem, closePrevious);

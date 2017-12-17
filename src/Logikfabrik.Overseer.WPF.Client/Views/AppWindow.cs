@@ -27,19 +27,15 @@ namespace Logikfabrik.Overseer.WPF.Client.Views
                     return;
                 }
 
-                HideIcon(hWnd);
                 DisableMaximizeButton(hWnd);
             });
         }
 
-        private static void HideIcon(IntPtr hWnd)
-        {
-            NativeMethods.SetWindowLong(hWnd, NativeMethods.GWL_EXSTYLE, NativeMethods.GetWindowLong(hWnd, NativeMethods.GWL_EXSTYLE) | NativeMethods.WS_EX_DLGMODALFRAME);
-        }
-
         private static void DisableMaximizeButton(IntPtr hWnd)
         {
-            NativeMethods.SetWindowLong(hWnd, NativeMethods.GWL_STYLE, NativeMethods.GetWindowLong(hWnd, NativeMethods.GWL_STYLE) & ~NativeMethods.WS_MAXIMIZEBOX);
+            var currentStyle = NativeMethods.GetWindowLong(hWnd, NativeMethods.GWL_STYLE);
+
+            NativeMethods.SetWindowLong(hWnd, NativeMethods.GWL_STYLE, currentStyle & ~NativeMethods.WS_MAXIMIZEBOX);
         }
     }
 }
