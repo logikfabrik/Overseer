@@ -22,6 +22,7 @@ namespace Logikfabrik.Overseer.WPF.Client.Views
         /// <summary>
         /// Initializes a new instance of the <see cref="AppView" /> class.
         /// </summary>
+        /// <param name="application">The application.</param>
         public AppView(IApp application)
         {
             Ensure.That(application).IsNotNull();
@@ -41,8 +42,7 @@ namespace Logikfabrik.Overseer.WPF.Client.Views
             {
                 _notifyIcon = new NotifyIcon
                 {
-                    Icon = new System.Drawing.Icon(stream),
-
+                    Icon = new System.Drawing.Icon(stream)
                 };
 
                 _notifyIcon.Click += (sender, args) =>

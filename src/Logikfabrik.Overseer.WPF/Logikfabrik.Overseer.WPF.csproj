@@ -51,14 +51,14 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="FluentValidation, Version=7.0.0.0, Culture=neutral, PublicKeyToken=7de548da2fbae0f0, processorArchitecture=MSIL">
-      <HintPath>..\packages\FluentValidation.7.2.0\lib\net45\FluentValidation.dll</HintPath>
+      <HintPath>..\packages\FluentValidation.7.3.1\lib\net45\FluentValidation.dll</HintPath>
     </Reference>
     <Reference Include="Humanizer, Version=2.2.0.0, Culture=neutral, PublicKeyToken=979442b78dfc278e, processorArchitecture=MSIL">
       <HintPath>..\packages\Humanizer.Core.2.2.0\lib\netstandard1.0\Humanizer.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Ninject, Version=3.3.1.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
-      <HintPath>..\packages\Ninject.3.3.1\lib\net45\Ninject.dll</HintPath>
+    <Reference Include="Ninject, Version=3.3.4.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.3.3.4\lib\net45\Ninject.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -92,16 +92,18 @@
     <Compile Include="Converters\StringToUpperCaseConverter.cs" />
     <Compile Include="Converters\TaskStatusToBooleanConverter.cs" />
     <Compile Include="Converters\ValueConverterGroup.cs" />
+    <Compile Include="DisplaySetting.cs" />
     <Compile Include="Extensions\AppExtensions.cs" />
     <Compile Include="Extensions\HyperlinkExtensions.cs" />
     <Compile Include="Extensions\PasswordBoxExtensions.cs" />
     <Compile Include="IApp.cs" />
     <Compile Include="IBuildNotificationManager.cs" />
-    <Compile Include="INotificationManager.cs" />
+    <Compile Include="IDisplaySetting.cs" />
     <Compile Include="INotifyTask.cs" />
     <Compile Include="LanguageConfigurator.cs" />
     <Compile Include="Localization\AddConnectionViewErrorLocalizer.cs" />
     <Compile Include="Localization\EditConnectionViewErrorLocalizer.cs" />
+    <Compile Include="Localization\SupportedCultures.cs" />
     <Compile Include="Logging\IUILogService.cs" />
     <Compile Include="Logging\UILogService.cs" />
     <Compile Include="MarkupExtensions\EnumToItemsSourceMarkupExtension.cs" />
@@ -109,7 +111,7 @@
     <Compile Include="Navigation\INavigable.cs" />
     <Compile Include="Navigation\NavigationMessage.cs" />
     <Compile Include="Navigation\Navigator{T}.cs" />
-    <Compile Include="NotificationManager.cs" />
+    <Compile Include="NotificationManager{T}.cs" />
     <Compile Include="PopupPlacementHelper.cs" />
     <Compile Include="NotifyTask.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -167,6 +169,7 @@
     <Compile Include="ViewModels\IBuildViewModel.cs" />
     <Compile Include="ViewModels\IChangeViewModel.cs" />
     <Compile Include="ViewModels\IConnectionViewModel.cs" />
+    <Compile Include="INotification.cs" />
     <Compile Include="ViewModels\IProjectViewModel.cs" />
     <Compile Include="ViewModels\IViewModel.cs" />
     <Compile Include="ViewModels\TrackedProjectsViewModel.cs" />
