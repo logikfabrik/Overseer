@@ -1,0 +1,13 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Path x:Key="Icon.Build.Failed" Data="" />
+
+    <Path x:Key="Icon.Build.Succeeded" Data="" />
+
+    <Path x:Key="Icon.Build.InProgress" Data="" />
+
+    <Path x:Key="Icon.Build.Stopped" Data="" />
+
+    <Path x:Key="Icon.Build.Queued" Data="" />
+
+</ResourceDictionary>
