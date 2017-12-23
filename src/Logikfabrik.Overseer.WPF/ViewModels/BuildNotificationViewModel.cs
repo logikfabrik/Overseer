@@ -16,7 +16,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     /// <summary>
     /// The <see cref="BuildNotificationViewModel" /> class.
     /// </summary>
-    public class BuildNotificationViewModel : ViewAware, IBuildNotificationViewModel
+    public class BuildNotificationViewModel : ViewAware, IBuildNotificationViewModel, INotification
     {
         private readonly IApp _application;
         private DispatcherTimer _dispatcher;

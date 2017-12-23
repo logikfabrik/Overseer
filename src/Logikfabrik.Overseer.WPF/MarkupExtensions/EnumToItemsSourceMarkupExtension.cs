@@ -33,13 +33,7 @@ namespace Logikfabrik.Overseer.WPF.MarkupExtensions
             _enumType = enumType;
         }
 
-        /// <summary>
-        /// Returns an object that is provided as the value of the target property for this markup extension.
-        /// </summary>
-        /// <param name="serviceProvider">A service provider helper that can provide services for the markup extension.</param>
-        /// <returns>
-        /// The object value to set on the property where the extension is applied.
-        /// </returns>
+        /// <inheritdoc/>
         public override object ProvideValue(IServiceProvider serviceProvider)
         {
             Func<object, string> getDescription = value =>

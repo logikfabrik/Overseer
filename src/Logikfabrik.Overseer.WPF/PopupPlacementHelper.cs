@@ -5,8 +5,6 @@
 namespace Logikfabrik.Overseer.WPF
 {
     using System;
-    using System.Collections.Generic;
-    using System.Linq;
     using System.Windows;
     using EnsureThat;
 
@@ -15,82 +13,86 @@ namespace Logikfabrik.Overseer.WPF
     /// </summary>
     internal class PopupPlacementHelper
     {
-        private readonly Func<Rect> _getWorkArea;
+        private readonly IDisplaySetting _displaySetting;
         private readonly Size _popupSize;
 
         private DateTime?[,] _grid;
         private Point _offset;
 
-        public PopupPlacementHelper(Func<Rect> getWorkArea, Size popupSize)
+        public PopupPlacementHelper(IDisplaySetting displaySetting, Size popupSize)
         {
-            Ensure.That(() => getWorkArea).IsNotNull();
+            Ensure.That(displaySetting).IsNotNull();
 
-            _getWorkArea = getWorkArea;
+            _displaySetting = displaySetting;
             _popupSize = popupSize;
+
+            _displaySetting.DisplaySettingsChanged += (sender, args) =>
+            {
+                Reinitialize();
+            };
 
             Initialize();
         }
 
-        public Point Hold()
+        public Point? Hold()
         {
-            var cells = new List<KeyValuePair<DateTime, Tuple<int, int>>>();
+            var cellIndex = GetNextFreeCellIndex();
 
-            // Find the first free cell.
-            for (var columnIndex = _grid.GetLength(0) - 1; columnIndex >= 0; columnIndex--)
+            if (cellIndex == null)
             {
-                for (var rowIndex = _grid.GetLength(1) - 1; rowIndex >= 0; rowIndex--)
-                {
-                    if (_grid[columnIndex, rowIndex].HasValue)
-                    {
-                        cells.Add(new KeyValuePair<DateTime, Tuple<int, int>>(_grid[columnIndex, rowIndex].Value, new Tuple<int, int>(columnIndex, rowIndex)));
-
-                        continue;
-                    }
-
-                    _grid[columnIndex, rowIndex] = DateTime.UtcNow;
-
-                    return TranslateCellIndexToScreenPoint(columnIndex, rowIndex);
-                }
+                return null;
             }
 
-            // No free cell was found.
-            var cell = cells.OrderBy(c => c.Key).FirstOrDefault().Value ?? new Tuple<int, int>(_grid.GetLength(0) - 1, _grid.GetLength(1) - 1);
+            _grid[cellIndex.Item1, cellIndex.Item2] = DateTime.UtcNow;
 
-            _grid[cell.Item1, cell.Item2] = DateTime.UtcNow;
+            var screenPoint = TranslateCellIndexToScreenPoint(_popupSize, _offset, cellIndex.Item1, cellIndex.Item2);
 
-            return TranslateCellIndexToScreenPoint(cell.Item1, cell.Item2);
+            return screenPoint;
         }
 
         public void Release(Point screenPoint)
         {
-            var cellIndex = TranslateScreenPointToCellIndex(screenPoint);
+            var cellIndex = TranslateScreenPointToCellIndex(_grid, _popupSize, _offset, screenPoint);
 
             _grid[cellIndex.Item1, cellIndex.Item2] = null;
-
-            // The client might have changed screen resolution; reinitialize.
-            Reinitialize();
         }
 
-        private Point TranslateCellIndexToScreenPoint(int columnIndex, int rowIndex)
+        private static DateTime?[,] GetGrid(Rect workArea, Size popupSize)
         {
-            var x = (columnIndex * _popupSize.Width) + _offset.X;
-            var y = (rowIndex * _popupSize.Height) + _offset.Y;
+            var maxColumns = (int)Math.Floor(workArea.Width / popupSize.Width);
+            var maxRows = (int)Math.Floor(workArea.Height / popupSize.Height);
+
+            return new DateTime?[maxColumns, maxRows];
+        }
+
+        private static Point GetOffset(Rect workArea, Size popupSize)
+        {
+            var remainingScreenWidth = workArea.Width % popupSize.Width;
+            var remainingScreenHeight = workArea.Height % popupSize.Height;
+
+            return new Point(remainingScreenWidth, remainingScreenHeight);
+        }
+
+        private static Point TranslateCellIndexToScreenPoint(Size popupSize, Point offset, int columnIndex, int rowIndex)
+        {
+            var x = (columnIndex * popupSize.Width) + offset.X;
+            var y = (rowIndex * popupSize.Height) + offset.Y;
 
             return new Point(x, y);
         }
 
-        private Tuple<int, int> TranslateScreenPointToCellIndex(Point screenPoint)
+        private static Tuple<int, int> TranslateScreenPointToCellIndex(DateTime?[,] grid, Size popupSize, Point offset, Point screenPoint)
         {
-            var columnCount = _grid.GetLength(0);
-            var columnIndex = (int)Math.Floor((screenPoint.X - _offset.X) / _popupSize.Width);
+            var columnCount = grid.GetLength(0);
+            var columnIndex = (int)Math.Floor((screenPoint.X - offset.X) / popupSize.Width);
 
             if (columnIndex < 0 || columnIndex >= columnCount)
             {
                 throw new IndexOutOfRangeException();
             }
 
-            var rowCount = _grid.GetLength(1);
-            var rowIndex = (int)Math.Floor((screenPoint.Y - _offset.Y) / _popupSize.Height);
+            var rowCount = grid.GetLength(1);
+            var rowIndex = (int)Math.Floor((screenPoint.Y - offset.Y) / popupSize.Height);
 
             if (rowIndex < 0 || rowIndex >= rowCount)
             {
@@ -98,6 +100,27 @@ namespace Logikfabrik.Overseer.WPF
             }
 
             return new Tuple<int, int>(columnIndex, rowIndex);
+        }
+
+        private Tuple<int, int> GetNextFreeCellIndex()
+        {
+            var columnCount = _grid.GetLength(0);
+            var rowCount = _grid.GetLength(1);
+
+            for (var columnIndex = columnCount - 1; columnIndex >= 0; columnIndex--)
+            {
+                for (var rowIndex = rowCount - 1; rowIndex >= 0; rowIndex--)
+                {
+                    if (_grid[columnIndex, rowIndex].HasValue)
+                    {
+                        continue;
+                    }
+
+                    return new Tuple<int, int>(columnIndex, rowIndex);
+                }
+            }
+
+            return null;
         }
 
         private void Reinitialize()
@@ -123,6 +146,7 @@ namespace Logikfabrik.Overseer.WPF
 
             if (!gridIsEmpty())
             {
+                // TODO: Resize if possible.
                 return;
             }
 
@@ -132,19 +156,13 @@ namespace Logikfabrik.Overseer.WPF
 
         private void Initialize()
         {
-            var area = _getWorkArea();
-
-            var maxColumns = (int)Math.Floor(area.Width / _popupSize.Width);
-            var maxRows = (int)Math.Floor(area.Height / _popupSize.Height);
+            var workArea = _displaySetting.WorkArea;
 
             // Create a grid. The number of cells in the grid represents the max number of popups that can be displayed on screen at the same time.
-            _grid = new DateTime?[maxColumns, maxRows];
-
-            var remainingScreenWidth = area.Width % _popupSize.Width;
-            var remainingScreenHeight = area.Height % _popupSize.Height;
+            _grid = GetGrid(workArea, _popupSize);
 
             // Popups are to be displayed from the bottom right corner. The max number of popups will most likely not fill the entire screen. Therefor the grid must be offset.
-            _offset = new Point(remainingScreenWidth, remainingScreenHeight);
+            _offset = GetOffset(workArea, _popupSize);
         }
     }
 }

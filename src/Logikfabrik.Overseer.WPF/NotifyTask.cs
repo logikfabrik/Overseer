@@ -48,20 +48,10 @@ namespace Logikfabrik.Overseer.WPF
             });
         }
 
-        /// <summary>
-        /// Gets the status.
-        /// </summary>
-        /// <value>
-        /// The status.
-        /// </value>
+        /// <inheritdoc />
         public TaskStatus? Status => _task?.Status;
 
-        /// <summary>
-        /// Gets the exception.
-        /// </summary>
-        /// <value>
-        /// The exception.
-        /// </value>
+        /// <inheritdoc />
         public Exception Exception => _task?.Exception;
     }
 }

@@ -4,9 +4,9 @@
 
 namespace Logikfabrik.Overseer.WPF.Validators
 {
-    using System.Globalization;
     using System.Linq;
     using FluentValidation;
+    using Localization;
     using ViewModels;
 
     /// <summary>
@@ -27,12 +27,7 @@ namespace Logikfabrik.Overseer.WPF.Validators
 
             RuleFor(viewModel => viewModel.CultureName)
                 .NotEmpty()
-                .Must(cultureName =>
-                {
-                    return CultureInfo
-                        .GetCultures(CultureTypes.SpecificCultures)
-                        .Any(c => c.Name == cultureName);
-                })
+                .Must(cultureName => SupportedCultures.CultureNames.Contains(cultureName))
                 .WithMessage(viewModel => Properties.Resources.EditSettings_Validation_CultureName);
         }
     }

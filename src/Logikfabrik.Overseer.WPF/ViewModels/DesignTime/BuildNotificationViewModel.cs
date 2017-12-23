@@ -4,7 +4,6 @@
 
 namespace Logikfabrik.Overseer.WPF.ViewModels.DesignTime
 {
-    using System;
     using System.Windows;
 
     /// <summary>
@@ -13,24 +12,21 @@ namespace Logikfabrik.Overseer.WPF.ViewModels.DesignTime
     public class BuildNotificationViewModel : IBuildNotificationViewModel
     {
         /// <inheritdoc />
-        public IBuildViewModel Build { get; set; }
+        public IBuildViewModel Build { get; set; } = new BuildViewModel();
 
         /// <inheritdoc />
         public void KeepOpen()
         {
-            throw new NotImplementedException();
         }
 
         /// <inheritdoc />
         public void StartClosing()
         {
-            throw new NotImplementedException();
         }
 
         /// <inheritdoc />
         public void Close(RoutedEventArgs e)
         {
-            throw new NotImplementedException();
         }
     }
 }

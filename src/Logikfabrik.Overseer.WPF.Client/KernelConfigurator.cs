@@ -66,7 +66,7 @@ namespace Logikfabrik.Overseer.WPF.Client
 
             // WPF setup.
             kernel.Bind<IUILogService>().To<UILogService>();
-            kernel.Bind<INotificationManager>().To<NotificationManager>();
+            kernel.Bind<IDisplaySetting>().To<DisplaySetting>();
             kernel.Bind<IBuildNotificationViewModelFactory>().ToFactory();
             kernel.Bind<IBuildNotificationManager>().To<BuildNotificationManager>().InSingletonScope();
             kernel.Bind<ITrackedProjectViewModelFactory>().ToFactory();

@@ -18,7 +18,7 @@
         <Button.Template>
             <ControlTemplate>
                 <Border
-                    Margin="10"
+                    Margin="0 0 10 10"
                     Background="{StaticResource Button.Static.Background}"
                     Effect="{StaticResource DropShadowEffect}">
                     <Grid>
