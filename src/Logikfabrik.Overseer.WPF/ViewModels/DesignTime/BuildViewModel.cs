@@ -46,7 +46,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels.DesignTime
         public bool IsViewable { get; } = true;
 
         /// <inheritdoc />
-        public bool TryUpdate(string projectName, BuildStatus? status, DateTime? startTime, DateTime? endTime, TimeSpan? runTime)
+        public bool TryUpdate(IProject project, IBuild build)
         {
             throw new NotImplementedException();
         }

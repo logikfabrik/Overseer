@@ -11,6 +11,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     using Caliburn.Micro;
     using EnsureThat;
     using Factories;
+    using Overseer.Extensions;
 
     /// <summary>
     /// The <see cref="BuildViewModel" /> class.
@@ -28,32 +29,22 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// Initializes a new instance of the <see cref="BuildViewModel" /> class.
         /// </summary>
         /// <param name="changeFactory">The change factory.</param>
-        /// <param name="projectName">The project name.</param>
-        /// <param name="id">The identifier.</param>
-        /// <param name="branch">The branch.</param>
-        /// <param name="versionNumber">The version number.</param>
-        /// <param name="requestedBy">The name of whoever requested the build.</param>
-        /// <param name="changes">The changes.</param>
-        /// <param name="status">The status.</param>
-        /// <param name="startTime">The start time.</param>
-        /// <param name="endTime">The end time.</param>
-        /// <param name="runTime">The run time.</param>
-        /// <param name="webUrl">The web URL.</param>
-        public BuildViewModel(IChangeViewModelFactory changeFactory, string projectName, string id, string branch, string versionNumber, string requestedBy, IEnumerable<IChange> changes, BuildStatus? status, DateTime? startTime, DateTime? endTime, TimeSpan? runTime, Uri webUrl)
+        /// <param name="project">The project.</param>
+        /// <param name="build">The build.</param>
+        public BuildViewModel(IChangeViewModelFactory changeFactory, IProject project, IBuild build)
         {
             Ensure.That(changeFactory).IsNotNull();
-            Ensure.That(id).IsNotNullOrWhiteSpace();
-            Ensure.That(changes).IsNotNull();
+            Ensure.That(project).IsNotNull();
+            Ensure.That(build).IsNotNull();
 
-            Id = id;
-            Branch = branch;
-            VersionNumber = versionNumber;
-            _webUrl = webUrl;
-            RequestedBy = requestedBy;
+            Id = build.Id;
+            Branch = build.Branch;
+            VersionNumber = build.VersionNumber();
+            _webUrl = build.WebUrl;
+            RequestedBy = build.RequestedBy;
+            Changes = build.Changes.Select(changeFactory.Create).ToArray();
 
-            Changes = changes.Select(changeFactory.Create).ToArray();
-
-            TryUpdate(projectName, status, startTime, endTime, runTime);
+            TryUpdate(project, build);
         }
 
         /// <inheritdoc />
@@ -161,9 +152,9 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         }
 
         /// <inheritdoc />
-        public bool TryUpdate(string projectName, BuildStatus? status, DateTime? startTime, DateTime? endTime, TimeSpan? runTime)
+        public bool TryUpdate(IProject project, IBuild build)
         {
-            var name = BuildMessageUtility.GetBuildName(projectName, VersionNumber);
+            var name = BuildMessageUtility.GetBuildName(project.Name, VersionNumber);
 
             var isUpdated = false;
 
@@ -173,30 +164,30 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
                 isUpdated = true;
             }
 
-            var message = BuildMessageUtility.GetBuildRunTimeMessage(DateTime.UtcNow, status, endTime, runTime);
+            var message = BuildMessageUtility.GetBuildRunTimeMessage(DateTime.UtcNow, build.Status, build.EndTime, build.RunTime());
 
             if (Message != message)
             {
                 Message = message;
-                Status = status;
-                EndTime = endTime;
+                Status = build.Status;
+                EndTime = build.EndTime;
                 isUpdated = true;
             }
 
-            if (StartTime != startTime)
+            if (StartTime != build.StartTime)
             {
-                StartTime = startTime;
+                StartTime = build.StartTime;
                 isUpdated = true;
             }
 
-            // ReSharper disable once InvertIf
-            if (EndTime != endTime)
+            if (EndTime == build.EndTime)
             {
-                EndTime = endTime;
-                isUpdated = true;
+                return isUpdated;
             }
 
-            return isUpdated;
+            EndTime = build.EndTime;
+
+            return true;
         }
     }
 }

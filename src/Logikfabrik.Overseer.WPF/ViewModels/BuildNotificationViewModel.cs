@@ -11,7 +11,6 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     using Caliburn.Micro;
     using EnsureThat;
     using Factories;
-    using Overseer.Extensions;
 
     /// <summary>
     /// The <see cref="BuildNotificationViewModel" /> class.
@@ -36,14 +35,12 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             Ensure.That(build).IsNotNull();
 
             _application = application;
-            Build = buildViewModelFactory.Create(project.Name, build.Id, build.Branch, build.VersionNumber(), build.RequestedBy, build.Changes, build.Status, build.StartTime, build.EndTime, build.RunTime(), build.WebUrl);
+            Build = buildViewModelFactory.Create(project, build);
 
             StartClosing();
         }
 
-        /// <summary>
-        /// Occurs if closing.
-        /// </summary>
+        /// <inheritdoc/>
         public event EventHandler<EventArgs> Closing;
 
         /// <inheritdoc />

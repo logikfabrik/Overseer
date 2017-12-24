@@ -108,12 +108,9 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// <summary>
         /// Tries to update this instance.
         /// </summary>
-        /// <param name="projectName">The project name.</param>
-        /// <param name="status">The status.</param>
-        /// <param name="startTime">The start time.</param>
-        /// <param name="endTime">The end time.</param>
-        /// <param name="runTime">The run time.</param>
+        /// <param name="project">The project.</param>
+        /// <param name="build">The build.</param>
         /// <returns><c>true</c> if this instance was updated; otherwise, <c>false</c>.</returns>
-        bool TryUpdate(string projectName, BuildStatus? status, DateTime? startTime, DateTime? endTime, TimeSpan? runTime);
+        bool TryUpdate(IProject project, IBuild build);
     }
 }
