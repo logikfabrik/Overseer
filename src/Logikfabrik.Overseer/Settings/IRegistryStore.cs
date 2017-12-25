@@ -12,15 +12,15 @@ namespace Logikfabrik.Overseer.Settings
         /// <summary>
         /// Writes the specified key.
         /// </summary>
-        /// <param name="name">The name.</param>
-        /// <param name="value">The value.</param>
+        /// <param name="name">The key name.</param>
+        /// <param name="value">The key value.</param>
         void Write(string name, string value);
 
         /// <summary>
         /// Reads the specified key.
         /// </summary>
-        /// <param name="name">The name.</param>
-        /// <returns>The value.</returns>
+        /// <param name="name">The key name.</param>
+        /// <returns>The key value.</returns>
         string Read(string name);
     }
 }

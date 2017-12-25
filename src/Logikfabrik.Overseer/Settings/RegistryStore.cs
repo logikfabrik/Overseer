@@ -28,11 +28,7 @@ namespace Logikfabrik.Overseer.Settings
             _key = Registry.CurrentUser.CreateSubKey(path);
         }
 
-        /// <summary>
-        /// Writes the specified key.
-        /// </summary>
-        /// <param name="name">The name.</param>
-        /// <param name="value">The value.</param>
+        /// <inheritdoc />
         public void Write(string name, string value)
         {
             this.ThrowIfDisposed(_isDisposed);
@@ -43,11 +39,7 @@ namespace Logikfabrik.Overseer.Settings
             _key.SetValue(name, value);
         }
 
-        /// <summary>
-        /// Reads the specified key.
-        /// </summary>
-        /// <param name="name">The name.</param>
-        /// <returns>The value.</returns>
+        /// <inheritdoc />
         public string Read(string name)
         {
             this.ThrowIfDisposed(_isDisposed);
@@ -57,9 +49,7 @@ namespace Logikfabrik.Overseer.Settings
             return _key.GetValue(name) as string;
         }
 
-        /// <summary>
-        /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
-        /// </summary>
+        /// <inheritdoc />
         public void Dispose()
         {
             Dispose(true);
@@ -77,13 +67,10 @@ namespace Logikfabrik.Overseer.Settings
                 return;
             }
 
-            if (disposing)
+            if (disposing && _key != null)
             {
-                if (_key != null)
-                {
-                    _key.Dispose();
-                    _key = null;
-                }
+                _key.Dispose();
+                _key = null;
             }
 
             _isDisposed = true;

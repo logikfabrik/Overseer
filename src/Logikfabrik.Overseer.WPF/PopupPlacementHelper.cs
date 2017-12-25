@@ -19,6 +19,11 @@ namespace Logikfabrik.Overseer.WPF
         private DateTime?[,] _grid;
         private Point _offset;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PopupPlacementHelper" /> class.
+        /// </summary>
+        /// <param name="displaySetting">The display setting.</param>
+        /// <param name="popupSize">The popup size.</param>
         public PopupPlacementHelper(IDisplaySetting displaySetting, Size popupSize)
         {
             Ensure.That(displaySetting).IsNotNull();
@@ -45,7 +50,7 @@ namespace Logikfabrik.Overseer.WPF
 
             _grid[cellIndex.Item1, cellIndex.Item2] = DateTime.UtcNow;
 
-            var screenPoint = TranslateCellIndexToScreenPoint(_popupSize, _offset, cellIndex.Item1, cellIndex.Item2);
+            var screenPoint = TranslateCellIndexToScreenPoint(_grid, _popupSize, _offset, cellIndex.Item1, cellIndex.Item2);
 
             return screenPoint;
         }
@@ -53,6 +58,11 @@ namespace Logikfabrik.Overseer.WPF
         public void Release(Point screenPoint)
         {
             var cellIndex = TranslateScreenPointToCellIndex(_grid, _popupSize, _offset, screenPoint);
+
+            if (cellIndex == null)
+            {
+                return;
+            }
 
             _grid[cellIndex.Item1, cellIndex.Item2] = null;
         }
@@ -73,8 +83,16 @@ namespace Logikfabrik.Overseer.WPF
             return new Point(remainingScreenWidth, remainingScreenHeight);
         }
 
-        private static Point TranslateCellIndexToScreenPoint(Size popupSize, Point offset, int columnIndex, int rowIndex)
+        private static Point? TranslateCellIndexToScreenPoint(DateTime?[,] grid, Size popupSize, Point offset, int columnIndex, int rowIndex)
         {
+            var columnCount = grid.GetLength(0);
+            var rowCount = grid.GetLength(1);
+
+            if (columnIndex < 0 || columnIndex >= columnCount || rowIndex < 0 || rowIndex >= rowCount)
+            {
+                return null;
+            }
+
             var x = (columnIndex * popupSize.Width) + offset.X;
             var y = (rowIndex * popupSize.Height) + offset.Y;
 
@@ -88,7 +106,7 @@ namespace Logikfabrik.Overseer.WPF
 
             if (columnIndex < 0 || columnIndex >= columnCount)
             {
-                throw new IndexOutOfRangeException();
+                return null;
             }
 
             var rowCount = grid.GetLength(1);
@@ -96,7 +114,7 @@ namespace Logikfabrik.Overseer.WPF
 
             if (rowIndex < 0 || rowIndex >= rowCount)
             {
-                throw new IndexOutOfRangeException();
+                return null;
             }
 
             return new Tuple<int, int>(columnIndex, rowIndex);

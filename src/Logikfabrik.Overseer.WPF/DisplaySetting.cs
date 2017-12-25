@@ -30,6 +30,10 @@ namespace Logikfabrik.Overseer.WPF
         /// <inheritdoc/>
         public Rect WorkArea => SystemParameters.WorkArea;
 
+        /// <summary>
+        /// Raises the <see cref="DisplaySettingsChanged" /> event.
+        /// </summary>
+        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
         protected virtual void OnDisplaySettingsChanged(EventArgs e)
         {
             DisplaySettingsChanged?.Invoke(this, e);

@@ -35,12 +35,7 @@ namespace Logikfabrik.Overseer.Settings
             _resetEvent = new ManualResetEventSlim(true);
         }
 
-        /// <summary>
-        /// Reads the file text.
-        /// </summary>
-        /// <returns>
-        /// The file text.
-        /// </returns>
+        /// <inheritdoc />
         public string Read()
         {
             this.ThrowIfDisposed(_isDisposed);
@@ -57,10 +52,7 @@ namespace Logikfabrik.Overseer.Settings
             }
         }
 
-        /// <summary>
-        /// Writes the specified file text to the file.
-        /// </summary>
-        /// <param name="text">The file text.</param>
+        /// <inheritdoc />
         public void Write(string text)
         {
             this.ThrowIfDisposed(_isDisposed);
@@ -78,9 +70,7 @@ namespace Logikfabrik.Overseer.Settings
             }
         }
 
-        /// <summary>
-        /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
-        /// </summary>
+        /// <inheritdoc />
         public void Dispose()
         {
             Dispose(true);
@@ -100,11 +90,8 @@ namespace Logikfabrik.Overseer.Settings
 
             if (disposing)
             {
-                if (_resetEvent != null)
-                {
-                    _resetEvent.Dispose();
-                    _resetEvent = null;
-                }
+                _resetEvent?.Dispose();
+                _resetEvent = null;
             }
 
             _isDisposed = true;

@@ -20,7 +20,7 @@ namespace Logikfabrik.Overseer.Settings
         /// <summary>
         /// Writes the specified file text to the file.
         /// </summary>
-        /// <param name="text">The file text.</param>
+        /// <param name="text">The file text to write.</param>
         void Write(string text);
     }
 }

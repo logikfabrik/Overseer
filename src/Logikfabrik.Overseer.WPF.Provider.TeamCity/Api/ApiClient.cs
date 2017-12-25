@@ -68,11 +68,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity.Api
             }
         }
 
-        /// <summary>
-        /// Gets the projects.
-        /// </summary>
-        /// <param name="cancellationToken">A cancellation token.</param>
-        /// <returns>A task.</returns>
+        /// <inheritdoc />
         public async Task<Projects> GetProjectsAsync(CancellationToken cancellationToken)
         {
             this.ThrowIfDisposed(_isDisposed);
@@ -89,13 +85,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity.Api
             }
         }
 
-        /// <summary>
-        /// Gets the builds.
-        /// </summary>
-        /// <param name="projectId">The project identifier.</param>
-        /// <param name="count">The count.</param>
-        /// <param name="cancellationToken">The cancellation token.</param>
-        /// <returns>A task.</returns>
+        /// <inheritdoc />
         public async Task<Builds> GetBuildsAsync(string projectId, int count, CancellationToken cancellationToken)
         {
             this.ThrowIfDisposed(_isDisposed);
@@ -115,9 +105,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity.Api
             }
         }
 
-        /// <summary>
-        /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
-        /// </summary>
+        /// <inheritdoc />
         public void Dispose()
         {
             Dispose(true);
@@ -135,17 +123,15 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity.Api
                 return;
             }
 
-            if (disposing)
+            if (disposing && _httpClient != null)
             {
-                if (_httpClient != null)
+                if (_httpClient.IsValueCreated)
                 {
-                    if (_httpClient.IsValueCreated)
-                    {
-                        _httpClient.Value.Dispose();
-                    }
-
-                    _httpClient = null;
+                    _httpClient.Value.Dispose();
                 }
+
+                _httpClient = null;
+
             }
 
             _isDisposed = true;

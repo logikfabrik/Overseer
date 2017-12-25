@@ -56,14 +56,15 @@ namespace Logikfabrik.Overseer.WPF
 
             if (!point.HasValue)
             {
+                // There's no available space for this popup.
                 return;
             }
 
             viewModel.Closing += (sender, args) =>
             {
-                var model = (T)sender;
+                var vm = (T)sender;
 
-                var source = (HwndSource)PresentationSource.FromVisual(((Popup)model.GetView()).Child);
+                var source = (HwndSource)PresentationSource.FromVisual(((Popup)vm.GetView()).Child);
 
                 if (source == null)
                 {
