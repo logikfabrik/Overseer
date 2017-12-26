@@ -11,7 +11,11 @@ namespace Logikfabrik.Overseer.WPF.Test.Logging
     using WPF.Logging;
     using Xunit;
 
+#pragma warning disable S101 // Types should be named in camel case
+
+    // ReSharper disable once InconsistentNaming
     public class UILogServiceTest
+#pragma warning restore S101 // Types should be named in camel case
     {
         [Fact]
         public void CanLogInfo()

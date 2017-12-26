@@ -27,6 +27,7 @@
     <CodeAnalysisRuleSet>..\Logikfabrik.Test.ruleset</CodeAnalysisRuleSet>
     <DocumentationFile>bin\Debug\Logikfabrik.Overseer.Test.XML</DocumentationFile>
     <LangVersion>6</LangVersion>
+    <NoWarn>CS1591</NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>

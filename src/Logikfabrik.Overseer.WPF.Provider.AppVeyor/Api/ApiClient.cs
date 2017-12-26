@@ -33,11 +33,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor.Api
             _httpClient = new Lazy<HttpClient>(() => GetHttpClient(UriUtility.BaseUri, settings.Token));
         }
 
-        /// <summary>
-        /// Gets the projects.
-        /// </summary>
-        /// <param name="cancellationToken">A cancellation token.</param>
-        /// <returns>A task.</returns>
+        /// <inheritdoc/>
         public async Task<IEnumerable<Project>> GetProjectsAsync(CancellationToken cancellationToken)
         {
             this.ThrowIfDisposed(_isDisposed);
@@ -54,14 +50,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor.Api
             }
         }
 
-        /// <summary>
-        /// Gets the project history.
-        /// </summary>
-        /// <param name="accountName">The account name.</param>
-        /// <param name="projectSlug">The project slug.</param>
-        /// <param name="recordsNumber">Number of records.</param>
-        /// <param name="cancellationToken">A cancellation token.</param>
-        /// <returns>A task.</returns>
+        /// <inheritdoc/>
         public async Task<ProjectHistory> GetProjectHistoryAsync(string accountName, string projectSlug, int recordsNumber, CancellationToken cancellationToken)
         {
             this.ThrowIfDisposed(_isDisposed);
@@ -82,9 +71,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor.Api
             }
         }
 
-        /// <summary>
-        /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
-        /// </summary>
+        /// <inheritdoc/>
         public void Dispose()
         {
             Dispose(true);
@@ -102,17 +89,14 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor.Api
                 return;
             }
 
-            if (disposing)
+            if (disposing && _httpClient != null)
             {
-                if (_httpClient != null)
+                if (_httpClient.IsValueCreated)
                 {
-                    if (_httpClient.IsValueCreated)
-                    {
-                        _httpClient.Value.Dispose();
-                    }
-
-                    _httpClient = null;
+                    _httpClient.Value.Dispose();
                 }
+
+                _httpClient = null;
             }
 
             _isDisposed = true;

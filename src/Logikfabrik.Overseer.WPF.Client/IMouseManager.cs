@@ -11,6 +11,9 @@ namespace Logikfabrik.Overseer.WPF.Client
     /// </summary>
     public interface IMouseManager
     {
+        /// <summary>
+        /// Occurs when the input item starts to be processed.
+        /// </summary>
         event PreProcessInputEventHandler PreProcessInput;
     }
 }
