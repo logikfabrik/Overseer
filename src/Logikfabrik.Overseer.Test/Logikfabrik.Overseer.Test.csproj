@@ -38,6 +38,8 @@
     <WarningLevel>4</WarningLevel>
     <CodeAnalysisRuleSet>..\Logikfabrik.Test.ruleset</CodeAnalysisRuleSet>
     <DocumentationFile>bin\Release\Logikfabrik.Overseer.Test.XML</DocumentationFile>
+    <LangVersion>6</LangVersion>
+    <NoWarn>CS1591</NoWarn>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Castle.Core, Version=4.0.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">

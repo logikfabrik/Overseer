@@ -33,6 +33,7 @@
     <WarningLevel>4</WarningLevel>
     <CodeAnalysisRuleSet>..\Logikfabrik.ruleset</CodeAnalysisRuleSet>
     <DocumentationFile>bin\Release\Logikfabrik.Overseer.XML</DocumentationFile>
+    <LangVersion>6</LangVersion>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Ensure.That, Version=5.0.0.0, Culture=neutral, processorArchitecture=MSIL">

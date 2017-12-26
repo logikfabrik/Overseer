@@ -24,12 +24,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             _platformProvider = platformProvider;
         }
 
-        /// <summary>
-        /// Gets or sets the parent.
-        /// </summary>
-        /// <value>
-        /// The parent.
-        /// </value>
+        /// <inheritdoc />
         public object Parent
         {
             get
@@ -44,12 +39,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             }
         }
 
-        /// <summary>
-        /// Gets or sets the display name.
-        /// </summary>
-        /// <value>
-        /// The display name.
-        /// </value>
+        /// <inheritdoc />
         public string DisplayName
         {
             get
@@ -64,14 +54,10 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             }
         }
 
-        /// <summary>
-        /// Gets or sets a value indicating whether this instance should be kept alive on navigation.
-        /// </summary>
-        /// <value>
-        ///   <c>true</c> if this instance should be kept alive on navigation; otherwise, <c>false</c>.
-        /// </value>
+        /// <inheritdoc />
         public bool KeepAlive { get; set; } = false;
 
+        /// <inheritdoc/>
         public void TryClose(bool? dialogResult = null)
         {
             _platformProvider.GetViewCloseAction(this, Views.Values, dialogResult).OnUIThread();

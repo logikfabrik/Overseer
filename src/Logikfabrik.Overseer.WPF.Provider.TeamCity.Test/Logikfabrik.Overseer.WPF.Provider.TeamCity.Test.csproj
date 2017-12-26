@@ -38,6 +38,8 @@
     <WarningLevel>4</WarningLevel>
     <DocumentationFile>bin\Release\Logikfabrik.Overseer.WPF.Provider.TeamCity.Test.XML</DocumentationFile>
     <CodeAnalysisRuleSet>..\Logikfabrik.Test.ruleset</CodeAnalysisRuleSet>
+    <LangVersion>6</LangVersion>
+    <NoWarn>CS1591</NoWarn>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Castle.Core, Version=4.0.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
