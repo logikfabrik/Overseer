@@ -53,8 +53,6 @@
                    Name="Logikfabrik">
           <Directory Id="INSTALLFOLDER"
                      Name="Overseer">
-            <Directory Id="dir3EF976885ADC44579DBE3C2EE8B49489"
-                       Name="en-US" />
             <Directory Id="dirAB1506D5F38C44EB96FB28C4C896C3F1"
                        Name="sv-SE" />
             <Directory Id="dirABB20FC1974B4737A03212E90E9568BF"
@@ -222,14 +220,6 @@
               KeyPath="yes" />
       </Component>
 
-      <Component Id="cmpB936F0875267450AB9F90F12FF757F17"
-                 Guid="B936F087-5267-450A-B9F9-0F12FF757F17"
-                 Directory="dir3EF976885ADC44579DBE3C2EE8B49489">
-        <File Id="filEF1D34F9CA00436B954A8AE6F70FDACF"
-              Source="$(var.Logikfabrik.Overseer.WPF.Client.TargetDir)en-US\Logikfabrik.Overseer.WPF.resources.dll"
-              KeyPath="yes" />
-      </Component>
-
       <Component Id="cmp8B5D1D448F6945298D7D4FBBFB205EF2"
                  Guid="8B5D1D44-8F69-4529-8D7D-4FBBFB205EF2"
                  Directory="dirAB1506D5F38C44EB96FB28C4C896C3F1">
@@ -243,14 +233,6 @@
                  Directory="INSTALLFOLDER">
         <File Id="filA6154D7A50F9485B822FF4BDB8E30F7E"
               Source="$(var.Logikfabrik.Overseer.WPF.Client.TargetDir)Logikfabrik.Overseer.WPF.Provider.AppVeyor.dll"
-              KeyPath="yes" />
-      </Component>
-
-      <Component Id="cmp3EFFBACC2FE845B786DB01C09C5135B6"
-                 Guid="3EFFBACC-2FE8-45B7-86DB-01C09C5135B6"
-                 Directory="dir3EF976885ADC44579DBE3C2EE8B49489">
-        <File Id="fil0D3DD25AECD04731BAD06F404DAF05D7"
-              Source="$(var.Logikfabrik.Overseer.WPF.Client.TargetDir)en-US\Logikfabrik.Overseer.WPF.Provider.AppVeyor.resources.dll"
               KeyPath="yes" />
       </Component>
 
@@ -270,14 +252,6 @@
               KeyPath="yes" />
       </Component>
 
-      <Component Id="cmp496082EA9C444F4590FAD3E8FAE8F0C4"
-                 Guid="496082EA-9C44-4F45-90FA-D3E8FAE8F0C4"
-                 Directory="dir3EF976885ADC44579DBE3C2EE8B49489">
-        <File Id="fil7447F86DD9B94FB4A0FBB6A5E4EA1B6C"
-              Source="$(var.Logikfabrik.Overseer.WPF.Client.TargetDir)en-US\Logikfabrik.Overseer.WPF.Provider.CircleCI.resources.dll"
-              KeyPath="yes" />
-      </Component>
-
       <Component Id="cmp1B2DCAFC85A3401CA5CA02140BB25D08"
                  Guid="1B2DCAFC-85A3-401C-A5CA-02140BB25D08"
                  Directory="dirAB1506D5F38C44EB96FB28C4C896C3F1">
@@ -291,14 +265,6 @@
                  Directory="INSTALLFOLDER">
         <File Id="fil1FA4C2202E4E4C73977F879A70B7C8B5"
               Source="$(var.Logikfabrik.Overseer.WPF.Client.TargetDir)Logikfabrik.Overseer.WPF.Provider.Codeship.dll"
-              KeyPath="yes" />
-      </Component>
-
-      <Component Id="cmpEF0CA477EE724C3EB6F7D535205664FC"
-                 Guid="EF0CA477-EE72-4C3E-B6F7-D535205664FC"
-                 Directory="dir3EF976885ADC44579DBE3C2EE8B49489">
-        <File Id="filDAE15047C3CD43AD93E4C046A3F39F06"
-              Source="$(var.Logikfabrik.Overseer.WPF.Client.TargetDir)en-US\Logikfabrik.Overseer.WPF.Provider.Codeship.resources.dll"
               KeyPath="yes" />
       </Component>
 
@@ -326,14 +292,6 @@
               KeyPath="yes" />
       </Component>
 
-      <Component Id="cmp936CDE515E89437FBDD9205BE7EC7C1E"
-                 Guid="936CDE51-5E89-437F-BDD9-205BE7EC7C1E"
-                 Directory="dir3EF976885ADC44579DBE3C2EE8B49489">
-        <File Id="filE64ACBB1F07A4DD4B27ADB8B79EBC152"
-              Source="$(var.Logikfabrik.Overseer.WPF.Client.TargetDir)en-US\Logikfabrik.Overseer.WPF.Provider.TeamCity.resources.dll"
-              KeyPath="yes" />
-      </Component>
-
       <Component Id="cmpE71B7C8BE3CA4EC9A5E1C4DCD026E9AB"
                  Guid="E71B7C8B-E3CA-4EC9-A5E1-C4DCD026E9AB"
                  Directory="dirAB1506D5F38C44EB96FB28C4C896C3F1">
@@ -347,14 +305,6 @@
                  Directory="INSTALLFOLDER">
         <File Id="fil1899D5500C4547D38A50D0A66BA55ACC"
               Source="$(var.Logikfabrik.Overseer.WPF.Client.TargetDir)Logikfabrik.Overseer.WPF.Provider.VSTeamServices.dll"
-              KeyPath="yes" />
-      </Component>
-
-      <Component Id="cmpC3FC534127694E208F64F58E8899E46B"
-                 Guid="C3FC5341-2769-4E20-8F64-F58E8899E46B"
-                 Directory="dir3EF976885ADC44579DBE3C2EE8B49489">
-        <File Id="filF844C8C38212415388FCCD98F5DA7EF6"
-              Source="$(var.Logikfabrik.Overseer.WPF.Client.TargetDir)en-US\Logikfabrik.Overseer.WPF.Provider.VSTeamServices.resources.dll"
               KeyPath="yes" />
       </Component>
 
@@ -403,14 +353,6 @@
                  Directory="INSTALLFOLDER">
         <File Id="filCD9D3BF766574D3F959E9D7BC5C6613F"
               Source="$(var.Logikfabrik.Overseer.WPF.Client.TargetDir)Overseer.exe.config"
-              KeyPath="yes" />
-      </Component>
-
-      <Component Id="cmp58D8E3D9A2F548AAA4B904D9F7A6C3C4"
-                 Guid="58D8E3D9-A2F5-48AA-A4B9-04D9F7A6C3C4"
-                 Directory="dir3EF976885ADC44579DBE3C2EE8B49489">
-        <File Id="filB7F6834D9E0340DEB6F0E287CB804583"
-              Source="$(var.Logikfabrik.Overseer.WPF.Client.TargetDir)en-US\Overseer.resources.dll"
               KeyPath="yes" />
       </Component>
 
