@@ -88,9 +88,9 @@ namespace Logikfabrik.Overseer.Settings
                 return;
             }
 
-            if (disposing)
+            if (disposing && _resetEvent != null)
             {
-                _resetEvent?.Dispose();
+                _resetEvent.Dispose();
                 _resetEvent = null;
             }
 

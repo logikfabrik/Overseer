@@ -131,7 +131,6 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity.Api
                 }
 
                 _httpClient = null;
-
             }
 
             _isDisposed = true;
