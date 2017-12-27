@@ -14,7 +14,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity.Test
         [AutoData]
         public void CanGetId(string id)
         {
-            var project = new TeamCity.Api.Models.Project { Id = id };
+            var project = new Api.Models.Project { Id = id };
 
             new Project(project).Id.ShouldBe(id);
         }
@@ -23,7 +23,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity.Test
         [AutoData]
         public void CanGetName(string name)
         {
-            var project = new TeamCity.Api.Models.Project { Name = name };
+            var project = new Api.Models.Project { Name = name };
 
             new Project(project).Name.ShouldBe(name);
         }

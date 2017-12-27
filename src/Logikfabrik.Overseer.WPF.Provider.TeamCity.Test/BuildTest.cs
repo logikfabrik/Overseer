@@ -18,7 +18,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity.Test
         [AutoData]
         public void CanGetId(string id)
         {
-            var build = new Build(new TeamCity.Api.Models.Build
+            var build = new Build(new Api.Models.Build
             {
                 Id = id
             });
@@ -29,7 +29,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity.Test
         [Fact]
         public void CanGetVersion()
         {
-            var build = new Build(new TeamCity.Api.Models.Build());
+            var build = new Build(new Api.Models.Build());
 
             build.Version.ShouldBeNull();
         }
@@ -38,7 +38,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity.Test
         [AutoData]
         public void CanGetNumber(string number)
         {
-            var build = new Build(new TeamCity.Api.Models.Build
+            var build = new Build(new Api.Models.Build
             {
                 Number = number
             });
@@ -50,7 +50,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity.Test
         [AutoData]
         public void CanGetBranch(string branchName)
         {
-            var build = new Build(new TeamCity.Api.Models.Build
+            var build = new Build(new Api.Models.Build
             {
                 BranchName = branchName
             });
@@ -62,7 +62,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity.Test
         [ClassData(typeof(CanGetTimeClassData))]
         public void CanGetStartTime(DateTime? startDate)
         {
-            var build = new Build(new TeamCity.Api.Models.Build
+            var build = new Build(new Api.Models.Build
             {
                 StartDate = startDate
             });
@@ -74,7 +74,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity.Test
         [ClassData(typeof(CanGetTimeClassData))]
         public void CanGetEndTime(DateTime? finishDate)
         {
-            var build = new Build(new TeamCity.Api.Models.Build
+            var build = new Build(new Api.Models.Build
             {
                 FinishDate = finishDate
             });
@@ -84,15 +84,15 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity.Test
 
         [Theory]
         [InlineData(null, null, null)]
-        [InlineData(TeamCity.Api.Models.BuildState.Queued, null, BuildStatus.Queued)]
-        [InlineData(TeamCity.Api.Models.BuildState.Running, null, BuildStatus.InProgress)]
-        [InlineData(TeamCity.Api.Models.BuildState.Finished, null, null)]
-        [InlineData(TeamCity.Api.Models.BuildState.Finished, TeamCity.Api.Models.BuildStatus.Success, BuildStatus.Succeeded)]
-        [InlineData(TeamCity.Api.Models.BuildState.Finished, TeamCity.Api.Models.BuildStatus.Failure, BuildStatus.Failed)]
-        [InlineData(TeamCity.Api.Models.BuildState.Finished, TeamCity.Api.Models.BuildStatus.Error, BuildStatus.Failed)]
-        public void CanGetStatus(TeamCity.Api.Models.BuildState? state, TeamCity.Api.Models.BuildStatus? status, BuildStatus? expected)
+        [InlineData(Api.Models.BuildState.Queued, null, BuildStatus.Queued)]
+        [InlineData(Api.Models.BuildState.Running, null, BuildStatus.InProgress)]
+        [InlineData(Api.Models.BuildState.Finished, null, null)]
+        [InlineData(Api.Models.BuildState.Finished, Api.Models.BuildStatus.Success, BuildStatus.Succeeded)]
+        [InlineData(Api.Models.BuildState.Finished, Api.Models.BuildStatus.Failure, BuildStatus.Failed)]
+        [InlineData(Api.Models.BuildState.Finished, Api.Models.BuildStatus.Error, BuildStatus.Failed)]
+        public void CanGetStatus(Api.Models.BuildState? state, Api.Models.BuildStatus? status, BuildStatus? expected)
         {
-            var build = new Build(new TeamCity.Api.Models.Build
+            var build = new Build(new Api.Models.Build
             {
                 State = state,
                 Status = status
@@ -105,11 +105,11 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity.Test
         [AutoData]
         public void CanGetRequestedBy(string username)
         {
-            var build = new Build(new TeamCity.Api.Models.Build
+            var build = new Build(new Api.Models.Build
             {
-                Triggered = new TeamCity.Api.Models.Trigger
+                Triggered = new Api.Models.Trigger
                 {
-                    User = new TeamCity.Api.Models.User { Username = username }
+                    User = new Api.Models.User { Username = username }
                 }
             });
 
@@ -120,7 +120,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity.Test
         [AutoData]
         public void CanGetWebUrl(Uri webUrl)
         {
-            var build = new Build(new TeamCity.Api.Models.Build
+            var build = new Build(new Api.Models.Build
             {
                 WebUrl = webUrl
             });
@@ -131,9 +131,9 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity.Test
         [Fact]
         public void CanGetChanges()
         {
-            var build = new Build(new TeamCity.Api.Models.Build
+            var build = new Build(new Api.Models.Build
             {
-                LastChanges = new TeamCity.Api.Models.Changes { Change = new[] { new TeamCity.Api.Models.Change() } }
+                LastChanges = new Api.Models.Changes { Change = new[] { new Api.Models.Change() } }
             });
 
             build.Changes.Count().ShouldBe(1);
