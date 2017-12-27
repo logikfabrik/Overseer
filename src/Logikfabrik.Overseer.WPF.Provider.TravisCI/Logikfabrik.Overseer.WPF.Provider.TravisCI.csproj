@@ -88,6 +88,9 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Api\ApiClient.cs" />
+    <Compile Include="Api\IApiClient.cs" />
+    <Compile Include="Api\Models\Permissions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -120,7 +123,6 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Api\" />
     <Folder Include="Validators\" />
     <Folder Include="ViewModels\" />
     <Folder Include="Views\" />
