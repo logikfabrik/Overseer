@@ -284,6 +284,14 @@
               KeyPath="yes" />
       </Component>
 
+      <Component Id="cmp180408656BEF43A28D92D73B337B34EE"
+                 Guid="18040865-6BEF-43A2-8D92-D73B337B34EE"
+                 Directory="INSTALLFOLDER">
+        <File Id="fil8EF656B283C849D596A0C30505C29824"
+              Source="$(var.Logikfabrik.Overseer.WPF.Client.TargetDir)Logikfabrik.Overseer.WPF.Provider.TravisCI.dll"
+              KeyPath="yes" />
+      </Component>
+
       <Component Id="cmpC13D3C4D6259475BA617D147876D0786"
                  Guid="C13D3C4D-6259-475B-A617-D147876D0786"
                  Directory="INSTALLFOLDER">
