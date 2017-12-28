@@ -90,8 +90,16 @@
   <ItemGroup>
     <Compile Include="Api\ApiClient.cs" />
     <Compile Include="Api\IApiClient.cs" />
-    <Compile Include="Api\Models\Permissions.cs" />
+    <Compile Include="Api\Models\AccessToken.cs" />
+    <Compile Include="Api\Models\Authorization.cs" />
+    <Compile Include="Api\Models\Record.cs" />
+    <Compile Include="Api\Models\Accounts.cs" />
+    <Compile Include="Api\Models\Repository.cs" />
+    <Compile Include="BuildProvider.cs" />
+    <Compile Include="ConnectionSettings.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SubscriptionType.cs" />
+    <Compile Include="UriUtility.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config">

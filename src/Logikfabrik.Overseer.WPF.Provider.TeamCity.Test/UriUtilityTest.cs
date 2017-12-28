@@ -1,4 +1,4 @@
-﻿// <copyright file="BaseUriUtilityTest.cs" company="Logikfabrik">
+﻿// <copyright file="UriUtilityTest.cs" company="Logikfabrik">
 //   Copyright (c) 2016 anton(at)logikfabrik.se. Licensed under the MIT license.
 // </copyright>
 
@@ -8,18 +8,18 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity.Test
     using Shouldly;
     using Xunit;
 
-    public class BaseUriUtilityTest
+    public class UriUtilityTest
     {
         [Fact]
         public void WillThrowIfUnsupportedScheme()
         {
-            Assert.Throws<NotSupportedException>(() => BaseUriUtility.GetBaseUri("ftp://teamcity.jetbrains.com", "10.0", AuthenticationType.HttpAuth));
+            Assert.Throws<NotSupportedException>(() => UriUtility.GetBaseUri("ftp://teamcity.jetbrains.com", "10.0", AuthenticationType.HttpAuth));
         }
 
         [Fact]
         public void CanGetBaseUriForHttpAuth()
         {
-            var baseUri = BaseUriUtility.GetBaseUri("http://teamcity.jetbrains.com", "10.0", AuthenticationType.HttpAuth);
+            var baseUri = UriUtility.GetBaseUri("http://teamcity.jetbrains.com", "10.0", AuthenticationType.HttpAuth);
 
             baseUri.ToString().ShouldBe("http://teamcity.jetbrains.com/httpAuth/app/rest/10.0/");
         }
@@ -27,7 +27,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity.Test
         [Fact]
         public void CanGetBaseUriForGuestAuth()
         {
-            var baseUri = BaseUriUtility.GetBaseUri("http://teamcity.jetbrains.com", "10.0", AuthenticationType.GuestAuth);
+            var baseUri = UriUtility.GetBaseUri("http://teamcity.jetbrains.com", "10.0", AuthenticationType.GuestAuth);
 
             baseUri.ToString().ShouldBe("http://teamcity.jetbrains.com/guestAuth/app/rest/10.0/");
         }
@@ -35,7 +35,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity.Test
         [Fact]
         public void CanGetBaseUriForServerWithProtocolAndPort()
         {
-            var baseUri = BaseUriUtility.GetBaseUri("https://teamcity.jetbrains.com:80", "10.0", AuthenticationType.HttpAuth);
+            var baseUri = UriUtility.GetBaseUri("https://teamcity.jetbrains.com:80", "10.0", AuthenticationType.HttpAuth);
 
             baseUri.ToString().ShouldBe("https://teamcity.jetbrains.com:80/httpAuth/app/rest/10.0/");
         }
@@ -45,7 +45,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity.Test
         {
             Uri result;
 
-            BaseUriUtility.TryGetBaseUri("ftp://teamcity.jetbrains.com", "9.1", AuthenticationType.HttpAuth, out result).ShouldBeFalse();
+            UriUtility.TryGetBaseUri("ftp://teamcity.jetbrains.com", "9.1", AuthenticationType.HttpAuth, out result).ShouldBeFalse();
         }
 
         [Fact]
@@ -53,7 +53,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity.Test
         {
             Uri result;
 
-            BaseUriUtility.TryGetBaseUri("http://teamcity.jetbrains.com", "9.1", AuthenticationType.HttpAuth, out result).ShouldBeTrue();
+            UriUtility.TryGetBaseUri("http://teamcity.jetbrains.com", "9.1", AuthenticationType.HttpAuth, out result).ShouldBeTrue();
         }
 
         [Fact]
@@ -61,7 +61,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity.Test
         {
             Uri result;
 
-            BaseUriUtility.TryGetBaseUri(null, "10.0", AuthenticationType.HttpAuth, out result).ShouldBeFalse();
+            UriUtility.TryGetBaseUri(null, "10.0", AuthenticationType.HttpAuth, out result).ShouldBeFalse();
         }
 
         [Fact]
@@ -69,7 +69,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity.Test
         {
             Uri result;
 
-            BaseUriUtility.TryGetBaseUri("http://teamcity.jetbrains.com", null, AuthenticationType.HttpAuth, out result).ShouldBeFalse();
+            UriUtility.TryGetBaseUri("http://teamcity.jetbrains.com", null, AuthenticationType.HttpAuth, out result).ShouldBeFalse();
         }
     }
 }

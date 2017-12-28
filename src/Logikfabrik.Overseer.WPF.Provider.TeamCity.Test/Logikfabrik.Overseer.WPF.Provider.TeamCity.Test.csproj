@@ -88,7 +88,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BaseUriUtilityTest.cs" />
+    <Compile Include="UriUtilityTest.cs" />
     <Compile Include="BuildTest.cs" />
     <Compile Include="ConnectionSettingsTest.cs" />
     <Compile Include="ProjectTest.cs" />

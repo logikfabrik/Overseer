@@ -40,32 +40,21 @@ namespace Logikfabrik.Overseer.WPF.Provider.Codeship.Api
             _httpClient = new Lazy<HttpClient>(() => GetHttpClient(UriUtility.BaseUri));
         }
 
-        /// <summary>
-        /// Gets the organizations.
-        /// </summary>
-        /// <param name="cancellationToken">A cancellation token.</param>
-        /// <returns>A task.</returns>
+        /// <inheritdoc/>
         public async Task<IEnumerable<Organization>> GetOrganizationsAsync(CancellationToken cancellationToken)
         {
             this.ThrowIfDisposed(_isDisposed);
 
             cancellationToken.ThrowIfCancellationRequested();
 
-            var accessToken = await GetAccessToken(_httpClient.Value, _username, _password, cancellationToken).ConfigureAwait(false);
+            var accessToken = await GetAccessTokenAsync(_httpClient.Value, _username, _password, cancellationToken).ConfigureAwait(false);
 
             _httpClient.Value.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", accessToken.Token);
 
             return accessToken.Organizations;
         }
 
-        /// <summary>
-        /// Gets the projects.
-        /// </summary>
-        /// <param name="organizationId">The organization identifier.</param>
-        /// <param name="perPage">Projects per page.</param>
-        /// <param name="page">The current page.</param>
-        /// <param name="cancellationToken">A cancellation token.</param>
-        /// <returns>A task.</returns>
+        /// <inheritdoc/>
         public async Task<Projects> GetProjectsAsync(Guid organizationId, int perPage, int page, CancellationToken cancellationToken)
         {
             this.ThrowIfDisposed(_isDisposed);
@@ -80,14 +69,14 @@ namespace Logikfabrik.Overseer.WPF.Provider.Codeship.Api
 
             if (!HasAccessToken(_httpClient.Value))
             {
-                await SetAccessToken(_httpClient.Value, _username, _password, cancellationToken).ConfigureAwait(false);
+                await SetAccessTokenAsync(_httpClient.Value, _username, _password, cancellationToken).ConfigureAwait(false);
             }
 
             using (var response = await _httpClient.Value.GetAsync(url, cancellationToken).ConfigureAwait(false))
             {
                 if (response.StatusCode == HttpStatusCode.Unauthorized)
                 {
-                    await SetAccessToken(_httpClient.Value, _username, _password, cancellationToken).ConfigureAwait(false);
+                    await SetAccessTokenAsync(_httpClient.Value, _username, _password, cancellationToken).ConfigureAwait(false);
 
                     // TODO: Handle infinite loops.
                     return await GetProjectsAsync(organizationId, perPage, page, cancellationToken).ConfigureAwait(false);
@@ -99,15 +88,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.Codeship.Api
             }
         }
 
-        /// <summary>
-        /// Gets the builds.
-        /// </summary>
-        /// <param name="organizationId">The organization identifier.</param>
-        /// <param name="projectId">The project identifier.</param>
-        /// <param name="perPage">Projects per page.</param>
-        /// <param name="page">The current page.</param>
-        /// <param name="cancellationToken">A cancellation token.</param>
-        /// <returns>A task.</returns>
+        /// <inheritdoc/>
         public async Task<Builds> GetBuildsAsync(Guid organizationId, Guid projectId, int perPage, int page, CancellationToken cancellationToken)
         {
             this.ThrowIfDisposed(_isDisposed);
@@ -123,14 +104,14 @@ namespace Logikfabrik.Overseer.WPF.Provider.Codeship.Api
 
             if (!HasAccessToken(_httpClient.Value))
             {
-                await SetAccessToken(_httpClient.Value, _username, _password, cancellationToken).ConfigureAwait(false);
+                await SetAccessTokenAsync(_httpClient.Value, _username, _password, cancellationToken).ConfigureAwait(false);
             }
 
             using (var response = await _httpClient.Value.GetAsync(url, cancellationToken).ConfigureAwait(false))
             {
                 if (response.StatusCode == HttpStatusCode.Unauthorized)
                 {
-                    await SetAccessToken(_httpClient.Value, _username, _password, cancellationToken).ConfigureAwait(false);
+                    await SetAccessTokenAsync(_httpClient.Value, _username, _password, cancellationToken).ConfigureAwait(false);
 
                     // TODO: Handle infinite loops.
                     return await GetBuildsAsync(organizationId, projectId, perPage, page, cancellationToken).ConfigureAwait(false);
@@ -142,9 +123,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.Codeship.Api
             }
         }
 
-        /// <summary>
-        /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
-        /// </summary>
+        /// <inheritdoc/>
         public void Dispose()
         {
             Dispose(true);
@@ -188,16 +167,16 @@ namespace Logikfabrik.Overseer.WPF.Provider.Codeship.Api
             return client.DefaultRequestHeaders.Authorization != null;
         }
 
-        private static async Task SetAccessToken(HttpClient client, string username, string password, CancellationToken cancellationToken)
+        private static async Task SetAccessTokenAsync(HttpClient client, string username, string password, CancellationToken cancellationToken)
         {
             cancellationToken.ThrowIfCancellationRequested();
 
-            var accessToken = await GetAccessToken(client, username, password, cancellationToken).ConfigureAwait(false);
+            var accessToken = await GetAccessTokenAsync(client, username, password, cancellationToken).ConfigureAwait(false);
 
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", accessToken.Token);
         }
 
-        private static async Task<AccessToken> GetAccessToken(HttpClient httpClient, string username, string password, CancellationToken cancellationToken)
+        private static async Task<AccessToken> GetAccessTokenAsync(HttpClient httpClient, string username, string password, CancellationToken cancellationToken)
         {
             cancellationToken.ThrowIfCancellationRequested();
 
