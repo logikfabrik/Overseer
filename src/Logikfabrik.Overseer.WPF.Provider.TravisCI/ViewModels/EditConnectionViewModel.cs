@@ -49,7 +49,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.TravisCI.ViewModels
             var settings = connectionSettingsFactory.Create();
 
             settings.Name = currentSettings.Name;
-            settings.GitHubToken = currentSettings.GitHubToken;
+            settings.Token = currentSettings.Token;
             settings.Url = currentSettings.Url;
             settings.BuildsPerProject = currentSettings.BuildsPerProject;
             settings.IsDirty = false;

@@ -4,10 +4,14 @@
 
 namespace Logikfabrik.Overseer.WPF.Provider.TravisCI.Api
 {
+    using System.Threading;
+    using System.Threading.Tasks;
+
     /// <summary>
     /// The <see cref="IApiClient" /> interface.
     /// </summary>
     public interface IApiClient
     {
+        Task<Models.Repositories> GetRepositoriesAsync(int limit, int offset, CancellationToken cancellationToken);
     }
 }

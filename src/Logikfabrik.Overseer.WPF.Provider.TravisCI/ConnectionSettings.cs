@@ -14,30 +14,30 @@ namespace Logikfabrik.Overseer.WPF.Provider.TravisCI
     [XmlType("TravisCI")]
     public class ConnectionSettings : Settings.ConnectionSettings
     {
-        private string _gitHubToken;
+        private string _token;
         private string _url;
 
         /// <inheritdoc/>
         public override Type ProviderType { get; } = typeof(BuildProvider);
 
         /// <summary>
-        /// Gets or sets the GitHub token.
+        /// Gets or sets the token.
         /// </summary>
         /// <value>
-        /// The GitHub token.
+        /// The token.
         /// </value>
-        public string GitHubToken
+        public string Token
         {
             get
             {
-                return _gitHubToken;
+                return _token;
             }
 
             set
             {
                 Ensure.That(value).IsNotNullOrWhiteSpace();
 
-                _gitHubToken = value;
+                _token = value;
             }
         }
 

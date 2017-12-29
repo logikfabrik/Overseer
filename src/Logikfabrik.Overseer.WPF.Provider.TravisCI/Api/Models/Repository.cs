@@ -15,7 +15,15 @@ namespace Logikfabrik.Overseer.WPF.Provider.TravisCI.Api.Models
         /// <value>
         /// The identifier.
         /// </value>
-        public string Id { get; set; }
+        public int Id { get; set; }
+
+        /// <summary>
+        /// Gets or sets the name.
+        /// </summary>
+        /// <value>
+        /// The name.
+        /// </value>
+        public string Name { get; set; }
 
         /// <summary>
         /// Gets or sets the slug.
@@ -33,12 +41,8 @@ namespace Logikfabrik.Overseer.WPF.Provider.TravisCI.Api.Models
         /// </value>
         public string Description { get; set; }
 
-        public string last_build_id { get; set; }
-        public string last_build_number { get; set; }
-        public string last_build_state { get; set; }
-        public string last_build_duration { get; set; }
-        public string last_build_started_at { get; set; }
-        public string last_build_finished_at { get; set; }
-        public bool active { get; set; }
+        public bool Active { get; set; }
+
+        public bool Private { get; set; }
     }
 }

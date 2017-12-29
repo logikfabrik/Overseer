@@ -2,6 +2,8 @@
 //   Copyright (c) 2016 anton(at)logikfabrik.se. Licensed under the MIT license.
 // </copyright>
 
+using System.Linq;
+
 namespace Logikfabrik.Overseer.WPF.Provider.TravisCI
 {
     using System;
@@ -31,15 +33,17 @@ namespace Logikfabrik.Overseer.WPF.Provider.TravisCI
         }
 
         /// <inheritdoc/>
-        public override Task<IEnumerable<IProject>> GetProjectsAsync(CancellationToken cancellationToken)
+        public override async Task<IEnumerable<IProject>> GetProjectsAsync(CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            var repositories = await _apiClient.GetRepositoriesAsync(100, 0, cancellationToken).ConfigureAwait(false);
+
+            return repositories.Records.Select(repository => new Project(repository));
         }
 
         /// <inheritdoc/>
-        public override Task<IEnumerable<IBuild>> GetBuildsAsync(string projectId, CancellationToken cancellationToken)
+        public override async Task<IEnumerable<IBuild>> GetBuildsAsync(string projectId, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            return new IBuild[] {};
         }
     }
 }

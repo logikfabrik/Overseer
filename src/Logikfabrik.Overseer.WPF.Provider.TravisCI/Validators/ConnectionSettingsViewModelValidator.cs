@@ -18,9 +18,9 @@ namespace Logikfabrik.Overseer.WPF.Provider.TravisCI.Validators
         /// </summary>
         public ConnectionSettingsViewModelValidator()
         {
-            RuleFor(viewModel => viewModel.GitHubToken)
+            RuleFor(viewModel => viewModel.Token)
                 .NotEmpty()
-                .WithMessage(viewModel => Properties.Resources.ConnectionSettings_Validation_GitHubToken);
+                .WithMessage(viewModel => Properties.Resources.ConnectionSettings_Validation_Token);
 
             RuleFor(viewModel => viewModel.Url)
                 .NotEmpty()

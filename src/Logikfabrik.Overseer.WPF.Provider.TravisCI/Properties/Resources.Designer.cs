@@ -61,11 +61,20 @@ namespace Logikfabrik.Overseer.WPF.Provider.TravisCI.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to GitHub token.
+        ///   Looks up a localized string similar to Name.
         /// </summary>
-        public static string ConnectionSettings_Setting_Label_GitHubToken {
+        public static string ConnectionSettings_Setting_Label_Name {
             get {
-                return ResourceManager.GetString("ConnectionSettings_Setting_Label_GitHubToken", resourceCulture);
+                return ResourceManager.GetString("ConnectionSettings_Setting_Label_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Token.
+        /// </summary>
+        public static string ConnectionSettings_Setting_Label_Token {
+            get {
+                return ResourceManager.GetString("ConnectionSettings_Setting_Label_Token", resourceCulture);
             }
         }
         
@@ -79,11 +88,11 @@ namespace Logikfabrik.Overseer.WPF.Provider.TravisCI.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to GitHub token is missing.
+        ///   Looks up a localized string similar to Token is missing.
         /// </summary>
-        public static string ConnectionSettings_Validation_GitHubToken {
+        public static string ConnectionSettings_Validation_Token {
             get {
-                return ResourceManager.GetString("ConnectionSettings_Validation_GitHubToken", resourceCulture);
+                return ResourceManager.GetString("ConnectionSettings_Validation_Token", resourceCulture);
             }
         }
         

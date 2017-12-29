@@ -14,7 +14,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.TravisCI.ViewModels
     /// </summary>
     public class ConnectionSettingsViewModel : ConnectionSettingsViewModel<ConnectionSettings>
     {
-        private string _gitHubToken;
+        private string _token;
         private string _url;
 
         /// <summary>
@@ -27,22 +27,22 @@ namespace Logikfabrik.Overseer.WPF.Provider.TravisCI.ViewModels
         }
 
         /// <summary>
-        /// Gets or sets the GitHub token.
+        /// Gets or sets the token.
         /// </summary>
         /// <value>
-        /// The username.
+        /// The token.
         /// </value>
-        public string GitHubToken
+        public string Token
         {
             get
             {
-                return _gitHubToken;
+                return _token;
             }
 
             set
             {
-                _gitHubToken = value;
-                NotifyOfPropertyChange(() => GitHubToken);
+                _token = value;
+                NotifyOfPropertyChange(() => Token);
                 NotifyOfPropertyChange(() => IsValid);
 
                 IsDirty = true;
@@ -80,7 +80,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.TravisCI.ViewModels
             return new ConnectionSettings
             {
                 Name = Name,
-                GitHubToken = GitHubToken,
+                Token = Token,
                 Url = Url,
                 TrackedProjects = projects.Select(project => project.Id).ToArray(),
                 BuildsPerProject = BuildsPerProject
@@ -91,7 +91,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.TravisCI.ViewModels
         public override void UpdateSettings(ConnectionSettings current)
         {
             current.Name = Name;
-            current.GitHubToken = GitHubToken;
+            current.Token = Token;
             current.Url = Url;
             current.TrackedProjects = TrackedProjects.Projects.Where(project => project.Track).Select(project => project.Id).ToArray();
             current.BuildsPerProject = BuildsPerProject;
