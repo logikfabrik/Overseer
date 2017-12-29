@@ -31,13 +31,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.Codeship
             _apiClient = apiClient;
         }
 
-        /// <summary>
-        /// Gets the projects.
-        /// </summary>
-        /// <param name="cancellationToken">A cancellation token.</param>
-        /// <returns>
-        /// A task.
-        /// </returns>
+        /// <inheritdoc/>
         public override async Task<IEnumerable<IProject>> GetProjectsAsync(CancellationToken cancellationToken)
         {
             var organizations = await _apiClient.GetOrganizationsAsync(cancellationToken).ConfigureAwait(false);
@@ -64,14 +58,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.Codeship
             return projects.Select(project => new Project(project)).ToArray();
         }
 
-        /// <summary>
-        /// Gets the builds for the project with the specified project identifier.
-        /// </summary>
-        /// <param name="projectId">The project identifier.</param>
-        /// <param name="cancellationToken">A cancellation token.</param>
-        /// <returns>
-        /// A task.
-        /// </returns>
+        /// <inheritdoc/>
         public override async Task<IEnumerable<IBuild>> GetBuildsAsync(string projectId, CancellationToken cancellationToken)
         {
             Ensure.That(projectId).IsNotNullOrWhiteSpace();

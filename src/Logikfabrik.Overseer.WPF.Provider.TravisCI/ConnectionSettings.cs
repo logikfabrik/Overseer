@@ -15,7 +15,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.TravisCI
     public class ConnectionSettings : Settings.ConnectionSettings
     {
         private string _gitHubToken;
-        private string _enterpriseUrl;
+        private string _url;
 
         /// <inheritdoc/>
         public override Type ProviderType { get; } = typeof(BuildProvider);
@@ -42,31 +42,23 @@ namespace Logikfabrik.Overseer.WPF.Provider.TravisCI
         }
 
         /// <summary>
-        /// Gets or sets the subscription type.
+        /// Gets or sets the URL.
         /// </summary>
         /// <value>
-        /// The subscription type.
+        /// The URL.
         /// </value>
-        public SubscriptionType SubscriptionType { get; set; }
-
-        /// <summary>
-        /// Gets or sets the enterprise URL.
-        /// </summary>
-        /// <value>
-        /// The enterprise URL.
-        /// </value>
-        public string EnterpriseUrl
+        public string Url
         {
             get
             {
-                return _enterpriseUrl;
+                return _url;
             }
 
             set
             {
                 Ensure.That(value).IsNotNullOrWhiteSpace();
 
-                _enterpriseUrl = value;
+                _url = value;
             }
         }
     }

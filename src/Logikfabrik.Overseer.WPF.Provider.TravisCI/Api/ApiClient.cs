@@ -68,9 +68,38 @@ namespace Logikfabrik.Overseer.WPF.Provider.TravisCI.Api
 
         public async Task<object> GetRepositoriesAsync(string gitHubLogin, CancellationToken cancellationToken)
         {
+            this.ThrowIfDisposed(_isDisposed);
+
+            Ensure.That(gitHubLogin).IsNotNullOrWhiteSpace();
+
+            cancellationToken.ThrowIfCancellationRequested();
+
             var url = $"repos?member={gitHubLogin}";
 
-            throw new NotImplementedException();
+            if (!HasAccessToken(_httpClient.Value))
+            {
+                await SetAccessTokenAsync(_httpClient.Value, _gitHubToken, cancellationToken).ConfigureAwait(false);
+            }
+
+            using (var response = await _httpClient.Value.GetAsync(url, cancellationToken).ConfigureAwait(false))
+            {
+                if (response.StatusCode == System.Net.HttpStatusCode.Unauthorized)
+                {
+                    await SetAccessTokenAsync(_httpClient.Value, _gitHubToken, cancellationToken).ConfigureAwait(false);
+
+                    // TODO: Handle infinite loops.
+                    return await GetRepositoriesAsync(gitHubLogin, cancellationToken).ConfigureAwait(false);
+                }
+
+                response.ThrowIfUnsuccessful();
+
+                return await response.Content.ReadAsAsync<Accounts>(cancellationToken).ConfigureAwait(false);
+            }
+
+
+            
+
+            
         }
 
         public async Task<object> GetBuildsAsync(string repositoryId, CancellationToken cancellationToken)
