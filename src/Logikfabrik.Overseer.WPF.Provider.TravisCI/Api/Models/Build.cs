@@ -2,10 +2,9 @@
 //   Copyright (c) 2016 anton(at)logikfabrik.se. Licensed under the MIT license.
 // </copyright>
 
-using System;
-
 namespace Logikfabrik.Overseer.WPF.Provider.TravisCI.Api.Models
 {
+    using System;
     using System.Collections.Generic;
     using Newtonsoft.Json;
 
@@ -53,7 +52,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.TravisCI.Api.Models
         /// <value>
         /// The duration.
         /// </value>
-        public int Duration { get; set; }
+        public int? Duration { get; set; }
 
         /// <summary>
         /// Gets or sets the event type.

@@ -31,7 +31,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity
             Status = GetStatus(build);
             RequestedBy = GetRequestedBy(build);
             WebUrl = build.WebUrl;
-            Changes = build.LastChanges?.Change.Select(change => new Change(change.Version, change.Date?.ToUniversalTime(), change.Username, change.Comment?.Trim())).ToArray() ?? new IChange[] { };
+            Changes = GetChanges(build);
         }
 
         /// <inheritdoc />
@@ -96,6 +96,11 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity
                 default:
                     return null;
             }
+        }
+
+        private static IEnumerable<IChange> GetChanges(Api.Models.Build build)
+        {
+            return build.LastChanges?.Change.Select(change => new Change(change.Version, change.Date?.ToUniversalTime(), change.Username, change.Comment?.Trim())).ToArray() ?? new IChange[] { };
         }
     }
 }

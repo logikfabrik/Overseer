@@ -65,15 +65,23 @@ namespace Logikfabrik.Overseer.WPF.Provider.TravisCI
 
         private static string GetRequestedBy(Api.Models.Build build)
         {
-            // TODO: This check!
-            return null;
+            return build.CreatedBy?.Login;
         }
 
         private static BuildStatus? GetStatus(Api.Models.Build build)
         {
-            // TODO: This status check.
             switch (build.State)
             {
+                case "created":
+                    return BuildStatus.Queued;
+
+                case "booting":
+                case "started":
+                    return BuildStatus.InProgress;
+
+                case "passed":
+                    return BuildStatus.Succeeded;
+
                 case "failed":
                     return BuildStatus.Failed;
 
@@ -88,12 +96,12 @@ namespace Logikfabrik.Overseer.WPF.Provider.TravisCI
 
             if (commit == null)
             {
-                return new IChange[] {};
+                return new IChange[] { };
             }
 
             return new[]
             {
-                new Change(commit.Sha, commit.CommittedAt, commit.Committer?.Name, commit.Message)
+                new Change(commit.Sha, commit.CommittedAt.ToUniversalTime(), commit.Committer?.Name, commit.Message)
             };
         }
     }

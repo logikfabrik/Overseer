@@ -9,5 +9,20 @@ namespace Logikfabrik.Overseer.WPF.Provider.TravisCI.Api.Models
     /// </summary>
     public class Owner
     {
+        /// <summary>
+        /// Gets or sets the identifier.
+        /// </summary>
+        /// <value>
+        /// The identifier.
+        /// </value>
+        public int Id { get; set; }
+
+        /// <summary>
+        /// Gets or sets the user or organization GitHub login.
+        /// </summary>
+        /// <value>
+        /// The user or organization GitHub login.
+        /// </value>
+        public string Login { get; set; }
     }
 }

@@ -2,10 +2,9 @@
 //   Copyright (c) 2016 anton(at)logikfabrik.se. Licensed under the MIT license.
 // </copyright>
 
-using System;
-
 namespace Logikfabrik.Overseer.WPF.Provider.TravisCI.Api.Models
 {
+    using System;
     using Newtonsoft.Json;
 
     /// <summary>
@@ -29,7 +28,14 @@ namespace Logikfabrik.Overseer.WPF.Provider.TravisCI.Api.Models
         /// </value>
         public string Sha { get; set; }
 
-        public string Ref { get; set; }
+        /// <summary>
+        /// Gets or sets the reference.
+        /// </summary>
+        /// <value>
+        /// The reference.
+        /// </value>
+        [JsonProperty(PropertyName = "ref")]
+        public string Reference { get; set; }
 
         /// <summary>
         /// Gets or sets the message.
