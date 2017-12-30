@@ -2,14 +2,10 @@
 //   Copyright (c) 2016 anton(at)logikfabrik.se. Licensed under the MIT license.
 // </copyright>
 
-using System.Collections.Generic;
-using System.Text;
-
 namespace Logikfabrik.Overseer.WPF.Provider.TravisCI.Api
 {
     using System;
     using System.Net.Http;
-    using System.Net.Http.Formatting;
     using System.Net.Http.Headers;
     using System.Threading;
     using System.Threading.Tasks;
@@ -32,10 +28,11 @@ namespace Logikfabrik.Overseer.WPF.Provider.TravisCI.Api
         public ApiClient(ConnectionSettings settings)
         {
             Ensure.That(settings).IsNotNull();
-            
+
             _httpClient = new Lazy<HttpClient>(() => GetHttpClient(new Uri(settings.Url), settings.Token));
         }
 
+        /// <inheritdoc/>
         public async Task<Repositories> GetRepositoriesAsync(int limit, int offset, CancellationToken cancellationToken)
         {
             this.ThrowIfDisposed(_isDisposed);
@@ -50,14 +47,30 @@ namespace Logikfabrik.Overseer.WPF.Provider.TravisCI.Api
             using (var response = await _httpClient.Value.GetAsync(url, cancellationToken).ConfigureAwait(false))
             {
                 response.ThrowIfUnsuccessful();
-                
+
                 return await response.Content.ReadAsAsync<Repositories>(cancellationToken).ConfigureAwait(false);
             }
         }
 
-        public async Task<object> GetBuildsAsync(string repositoryId, CancellationToken cancellationToken)
+        /// <inheritdoc/>
+        public async Task<Builds> GetBuildsAsync(string repositoryId, int limit, int offset, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            this.ThrowIfDisposed(_isDisposed);
+
+            Ensure.That(repositoryId).IsNotNullOrWhiteSpace();
+            Ensure.That(limit).IsInRange(1, int.MaxValue);
+            Ensure.That(offset).IsInRange(0, int.MaxValue);
+
+            cancellationToken.ThrowIfCancellationRequested();
+
+            var url = $"repo/{repositoryId}/builds?limit={limit}&offset={offset}&sort_by=started_at&include=build.commit";
+
+            using (var response = await _httpClient.Value.GetAsync(url, cancellationToken).ConfigureAwait(false))
+            {
+                response.ThrowIfUnsuccessful();
+
+                return await response.Content.ReadAsAsync<Builds>(cancellationToken).ConfigureAwait(false);
+            }
         }
 
         /// <inheritdoc />
@@ -109,8 +122,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.TravisCI.Api
             // TODO: Get product name and version.
             client.DefaultRequestHeaders.UserAgent.Add(new ProductInfoHeaderValue("Overseer", "1.0.0"));
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-            //client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/vnd.travis-ci.2+json"));
-            client.DefaultRequestHeaders.Add("Travis-API-Version", new []{"3"});
+            client.DefaultRequestHeaders.Add("Travis-API-Version", new[] { "3" });
         }
 
         private static void SetAuthRequestHeaders(HttpClient client, string token)

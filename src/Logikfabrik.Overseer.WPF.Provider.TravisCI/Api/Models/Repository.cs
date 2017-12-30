@@ -4,6 +4,8 @@
 
 namespace Logikfabrik.Overseer.WPF.Provider.TravisCI.Api.Models
 {
+    using Newtonsoft.Json;
+
     /// <summary>
     /// The <see cref="Repository" /> class.
     /// </summary>
@@ -41,8 +43,45 @@ namespace Logikfabrik.Overseer.WPF.Provider.TravisCI.Api.Models
         /// </value>
         public string Description { get; set; }
 
+        /// <summary>
+        /// Gets or sets the GitHub language.
+        /// </summary>
+        /// <value>
+        /// The GitHub language.
+        /// </value>
+        [JsonProperty(PropertyName = "github_language")]
+        public string GitHubLanguage { get; set; }
+
         public bool Active { get; set; }
 
         public bool Private { get; set; }
+
+        /// <summary>
+        /// Gets or sets the owner.
+        /// </summary>
+        /// <value>
+        /// The owner.
+        /// </value>
+        public Owner Owner { get; set; }
+
+        /// <summary>
+        /// Gets or sets the default branch.
+        /// </summary>
+        /// <value>
+        /// The default branch.
+        /// </value>
+        [JsonProperty(PropertyName = "default_branch")]
+        public Branch DefaultBranch { get; set; }
+
+        public bool Starred { get; set; }
+
+        /// <summary>
+        /// Gets or sets the current build.
+        /// </summary>
+        /// <value>
+        /// The current build.
+        /// </value>
+        [JsonProperty(PropertyName = "current_build")]
+        public Build CurrentBuild { get; set; }
     }
 }

@@ -2,11 +2,10 @@
 //   Copyright (c) 2016 anton(at)logikfabrik.se. Licensed under the MIT license.
 // </copyright>
 
-namespace Logikfabrik.Overseer.WPF.Provider.TeamCity
+namespace Logikfabrik.Overseer.WPF.Provider.TravisCI
 {
     using System;
     using System.Collections.Generic;
-    using System.Linq;
     using EnsureThat;
 
     /// <summary>
@@ -22,16 +21,16 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity
         {
             Ensure.That(build).IsNotNull();
 
-            Id = build.Id;
+            Id = build.Id.ToString();
             Number = build.Number;
             Version = null;
-            Branch = build.BranchName;
-            StartTime = build.StartDate?.ToUniversalTime();
-            EndTime = build.FinishDate?.ToUniversalTime();
+            Branch = build.Branch?.Name;
+            StartTime = build.StartedAt?.ToUniversalTime();
+            EndTime = build.FinishedAt?.ToUniversalTime();
             Status = GetStatus(build);
             RequestedBy = GetRequestedBy(build);
-            WebUrl = build.WebUrl;
-            Changes = build.LastChanges?.Change.Select(change => new Change(change.Version, change.Date?.ToUniversalTime(), change.Username, change.Comment?.Trim())).ToArray() ?? new IChange[] { };
+            //WebUrl = build.WebUrl;
+            Changes = GetChanges(build);
         }
 
         /// <inheritdoc />
@@ -66,36 +65,36 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity
 
         private static string GetRequestedBy(Api.Models.Build build)
         {
-            return build.Triggered?.User?.Username;
+            // TODO: This check!
+            return null;
         }
 
         private static BuildStatus? GetStatus(Api.Models.Build build)
         {
+            // TODO: This status check.
             switch (build.State)
             {
-                case Api.Models.BuildState.Queued:
-                    return BuildStatus.Queued;
-
-                case Api.Models.BuildState.Running:
-                    return BuildStatus.InProgress;
-
-                case Api.Models.BuildState.Finished:
-                    switch (build.Status)
-                    {
-                        case Api.Models.BuildStatus.Success:
-                            return BuildStatus.Succeeded;
-
-                        case Api.Models.BuildStatus.Failure:
-                        case Api.Models.BuildStatus.Error:
-                            return BuildStatus.Failed;
-
-                        default:
-                            return null;
-                    }
+                case "failed":
+                    return BuildStatus.Failed;
 
                 default:
                     return null;
             }
+        }
+
+        private static IEnumerable<IChange> GetChanges(Api.Models.Build build)
+        {
+            var commit = build.Commit;
+
+            if (commit == null)
+            {
+                return new IChange[] {};
+            }
+
+            return new[]
+            {
+                new Change(commit.Sha, commit.CommittedAt, commit.Committer?.Name, commit.Message)
+            };
         }
     }
 }

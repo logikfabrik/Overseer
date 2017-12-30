@@ -1,4 +1,4 @@
-﻿// <copyright file="Repositories.cs" company="Logikfabrik">
+﻿// <copyright file="Builds.cs" company="Logikfabrik">
 //   Copyright (c) 2016 anton(at)logikfabrik.se. Licensed under the MIT license.
 // </copyright>
 
@@ -8,9 +8,9 @@ namespace Logikfabrik.Overseer.WPF.Provider.TravisCI.Api.Models
     using Newtonsoft.Json;
 
     /// <summary>
-    /// The <see cref="Repositories" /> class.
+    /// The <see cref="Builds" /> class.
     /// </summary>
-    public class Repositories
+    public class Builds
     {
         /// <summary>
         /// Gets or sets the records.
@@ -18,7 +18,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.TravisCI.Api.Models
         /// <value>
         /// The records.
         /// </value>
-        [JsonProperty(PropertyName = "repositories")]
-        public IEnumerable<Repository> Records { get; set; }
+        [JsonProperty(PropertyName = "builds")]
+        public IEnumerable<Build> Records { get; set; }
     }
 }

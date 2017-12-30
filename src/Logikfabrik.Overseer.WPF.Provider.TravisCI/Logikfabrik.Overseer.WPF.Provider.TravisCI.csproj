@@ -93,8 +93,17 @@
   <ItemGroup>
     <Compile Include="Api\ApiClient.cs" />
     <Compile Include="Api\IApiClient.cs" />
+    <Compile Include="Api\Models\Branch.cs" />
+    <Compile Include="Api\Models\Build.cs" />
+    <Compile Include="Api\Models\Builds.cs" />
+    <Compile Include="Api\Models\Commit.cs" />
+    <Compile Include="Api\Models\Job.cs" />
+    <Compile Include="Api\Models\Owner.cs" />
     <Compile Include="Api\Models\Repositories.cs" />
     <Compile Include="Api\Models\Repository.cs" />
+    <Compile Include="Api\Models\Stage.cs" />
+    <Compile Include="Api\Models\User.cs" />
+    <Compile Include="Build.cs" />
     <Compile Include="BuildProvider.cs" />
     <Compile Include="ConnectionSettings.cs" />
     <Compile Include="Module.cs" />

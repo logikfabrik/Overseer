@@ -13,5 +13,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.TravisCI.Api
     public interface IApiClient
     {
         Task<Models.Repositories> GetRepositoriesAsync(int limit, int offset, CancellationToken cancellationToken);
+
+        Task<Models.Builds> GetBuildsAsync(string repositoryId, int limit, int offset, CancellationToken cancellationToken);
     }
 }
