@@ -44,9 +44,21 @@ namespace Logikfabrik.Overseer.WPF.Provider.TravisCI.Api.Models
         /// </value>
         public string State { get; set; }
 
+        /// <summary>
+        /// Gets or sets the started at time.
+        /// </summary>
+        /// <value>
+        /// The started at time.
+        /// </value>
         [JsonProperty(PropertyName = "started_at")]
         public DateTime? StartedAt { get; set; }
 
+        /// <summary>
+        /// Gets or sets the finished at time.
+        /// </summary>
+        /// <value>
+        /// The finished at time.
+        /// </value>
         [JsonProperty(PropertyName = "finished_at")]
         public DateTime? FinishedAt { get; set; }
     }

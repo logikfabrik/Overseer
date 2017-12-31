@@ -81,12 +81,30 @@ namespace Logikfabrik.Overseer.WPF.Provider.TravisCI.Api.Models
         [JsonProperty(PropertyName = "pull_request_number")]
         public int? PullRequestNumber { get; set; }
 
+        /// <summary>
+        /// Gets or sets the started at time.
+        /// </summary>
+        /// <value>
+        /// The started at time.
+        /// </value>
         [JsonProperty(PropertyName = "started_at")]
         public DateTime? StartedAt { get; set; }
 
+        /// <summary>
+        /// Gets or sets the finished at time.
+        /// </summary>
+        /// <value>
+        /// The finished at time.
+        /// </value>
         [JsonProperty(PropertyName = "finished_at")]
         public DateTime? FinishedAt { get; set; }
 
+        /// <summary>
+        /// Gets or sets the updated at time.
+        /// </summary>
+        /// <value>
+        /// The updated at time.
+        /// </value>
         [JsonProperty(PropertyName = "updated_at")]
         public DateTime? UpdatedAt { get; set; }
 
@@ -138,6 +156,12 @@ namespace Logikfabrik.Overseer.WPF.Provider.TravisCI.Api.Models
         /// </value>
         public IEnumerable<Stage> Stages { get; set; }
 
+        /// <summary>
+        /// Gets or sets the name of whoever created the build.
+        /// </summary>
+        /// <value>
+        /// The name of whoever created the build.
+        /// </value>
         [JsonProperty(PropertyName = "created_by")]
         public Owner CreatedBy { get; set; }
     }

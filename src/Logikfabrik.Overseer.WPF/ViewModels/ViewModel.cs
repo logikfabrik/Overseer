@@ -17,6 +17,10 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         private object _parent;
         private string _displayName;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ViewModel" /> class.
+        /// </summary>
+        /// <param name="platformProvider">The platform provider.</param>
         protected ViewModel(IPlatformProvider platformProvider)
         {
             Ensure.That(platformProvider).IsNotNull();

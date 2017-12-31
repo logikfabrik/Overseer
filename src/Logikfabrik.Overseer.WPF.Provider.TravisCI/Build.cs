@@ -29,7 +29,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.TravisCI
             EndTime = build.FinishedAt?.ToUniversalTime();
             Status = GetStatus(build);
             RequestedBy = GetRequestedBy(build);
-            //WebUrl = build.WebUrl;
+            WebUrl = null;
             Changes = GetChanges(build);
         }
 

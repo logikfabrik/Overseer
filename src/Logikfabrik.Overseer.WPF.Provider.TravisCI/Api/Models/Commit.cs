@@ -45,9 +45,21 @@ namespace Logikfabrik.Overseer.WPF.Provider.TravisCI.Api.Models
         /// </value>
         public string Message { get; set; }
 
+        /// <summary>
+        /// Gets or sets the GitHub compare URL.
+        /// </summary>
+        /// <value>
+        /// The GitHub compare URL.
+        /// </value>
         [JsonProperty(PropertyName = "compare_url")]
         public string CompareUrl { get; set; }
 
+        /// <summary>
+        /// Gets or sets the committed at time.
+        /// </summary>
+        /// <value>
+        /// The committed at time.
+        /// </value>
         [JsonProperty(PropertyName = "committed_at")]
         public DateTime CommittedAt { get; set; }
 
