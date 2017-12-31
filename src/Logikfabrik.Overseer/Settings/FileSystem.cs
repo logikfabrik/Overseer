@@ -9,6 +9,7 @@ namespace Logikfabrik.Overseer.Settings
     /// <summary>
     /// The <see cref="FileSystem" /> class.
     /// </summary>
+    // ReSharper disable once InheritdocConsiderUsage
     public class FileSystem : IFileSystem
     {
         /// <inheritdoc />

@@ -12,7 +12,7 @@ namespace Logikfabrik.Overseer.Extensions
     public static class DisposableExtensions
     {
         /// <summary>
-        /// Throws if disposed.
+        /// Throws <see cref="ObjectDisposedException" /> if disposed.
         /// </summary>
         /// <param name="disposable">The disposable.</param>
         /// <param name="isDisposed">Whether this <see cref="IDisposable" /> is disposed.</param>

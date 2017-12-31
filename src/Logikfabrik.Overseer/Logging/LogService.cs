@@ -12,6 +12,7 @@ namespace Logikfabrik.Overseer.Logging
     /// <summary>
     /// The <see cref="LogService" /> class.
     /// </summary>
+    // ReSharper disable once InheritdocConsiderUsage
     public class LogService : ILogService
     {
         private readonly ILogger _logger;
@@ -27,11 +28,7 @@ namespace Logikfabrik.Overseer.Logging
             _logger = logger;
         }
 
-        /// <summary>
-        /// Logs the specified entry.
-        /// </summary>
-        /// <param name="type">The logging type.</param>
-        /// <param name="entry">The entry.</param>
+        /// <inheritdoc/>
         public void Log(Type type, LogEntry entry)
         {
             Ensure.That(type).IsNotNull();

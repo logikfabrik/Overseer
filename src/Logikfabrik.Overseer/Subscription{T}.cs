@@ -12,6 +12,7 @@ namespace Logikfabrik.Overseer
     /// The <see cref="Subscription{T}" /> class.
     /// </summary>
     /// <typeparam name="T">The notification type.</typeparam>
+    // ReSharper disable once InheritdocConsiderUsage
     internal class Subscription<T> : IDisposable
     {
         private HashSet<IObserver<T>> _observers;
@@ -32,9 +33,7 @@ namespace Logikfabrik.Overseer
             _observer = observer;
         }
 
-        /// <summary>
-        /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
-        /// </summary>
+        /// <inheritdoc/>
         public void Dispose()
         {
             Dispose(true);

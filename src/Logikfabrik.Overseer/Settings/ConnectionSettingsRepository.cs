@@ -13,6 +13,7 @@ namespace Logikfabrik.Overseer.Settings
     /// <summary>
     /// The <see cref="ConnectionSettingsRepository" /> class.
     /// </summary>
+    // ReSharper disable once InheritdocConsiderUsage
     public class ConnectionSettingsRepository : IConnectionSettingsRepository, IDisposable
     {
         private readonly IConnectionSettingsStore _settingsStore;
@@ -33,10 +34,7 @@ namespace Logikfabrik.Overseer.Settings
             _settings = _settingsStore.Load().ToDictionary(settings => settings.Id, settings => settings);
         }
 
-        /// <summary>
-        /// Adds the specified settings.
-        /// </summary>
-        /// <param name="settings">The settings.</param>
+        /// <inheritdoc/>
         public void Add(ConnectionSettings settings)
         {
             this.ThrowIfDisposed(_isDisposed);
@@ -53,10 +51,7 @@ namespace Logikfabrik.Overseer.Settings
             Next(NotificationType.Added, clone.Clone());
         }
 
-        /// <summary>
-        /// Updates the specified settings.
-        /// </summary>
-        /// <param name="settings">The settings.</param>
+        /// <inheritdoc/>
         public void Update(ConnectionSettings settings)
         {
             this.ThrowIfDisposed(_isDisposed);
@@ -73,10 +68,7 @@ namespace Logikfabrik.Overseer.Settings
             Next(NotificationType.Updated, clone.Clone());
         }
 
-        /// <summary>
-        /// Removes the settings with the specified identifier.
-        /// </summary>
-        /// <param name="id">The identifier.</param>
+        /// <inheritdoc/>
         public void Remove(Guid id)
         {
             this.ThrowIfDisposed(_isDisposed);
@@ -93,22 +85,14 @@ namespace Logikfabrik.Overseer.Settings
             Next(NotificationType.Removed, clone);
         }
 
-        /// <summary>
-        /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
-        /// </summary>
+        /// <inheritdoc/>
         public void Dispose()
         {
             Dispose(true);
             GC.SuppressFinalize(this);
         }
 
-        /// <summary>
-        /// Gets the settings with the specified identifier.
-        /// </summary>
-        /// <param name="id">The identifier.</param>
-        /// <returns>
-        /// The settings with the specified identifier.
-        /// </returns>
+        /// <inheritdoc/>
         public ConnectionSettings Get(Guid id)
         {
             this.ThrowIfDisposed(_isDisposed);
@@ -120,13 +104,7 @@ namespace Logikfabrik.Overseer.Settings
             return _settings.TryGetValue(id, out settings) ? settings.Clone() : null;
         }
 
-        /// <summary>
-        /// Notifies the provider that an observer is to receive notifications.
-        /// </summary>
-        /// <param name="observer">The object that is to receive notifications.</param>
-        /// <returns>
-        /// A reference to an interface that allows observers to stop receiving notifications before the provider has finished sending them.
-        /// </returns>
+        /// <inheritdoc />
         public IDisposable Subscribe(IObserver<Notification<ConnectionSettings>[]> observer)
         {
             this.ThrowIfDisposed(_isDisposed);

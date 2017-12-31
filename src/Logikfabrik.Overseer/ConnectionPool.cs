@@ -14,6 +14,7 @@ namespace Logikfabrik.Overseer
     /// <summary>
     /// The <see cref="ConnectionPool" /> class.
     /// </summary>
+    // ReSharper disable once InheritdocConsiderUsage
     public class ConnectionPool : IConnectionPool, IDisposable
     {
         private readonly IBuildProviderStrategy _buildProviderStrategy;
@@ -46,10 +47,7 @@ namespace Logikfabrik.Overseer
         /// </value>
         internal IEnumerable<Connection> CurrentConnections => _connections.Values;
 
-        /// <summary>
-        /// Provides the observer with new data.
-        /// </summary>
-        /// <param name="value">The current notification information.</param>
+        /// <inheritdoc/>
         public void OnNext(Notification<ConnectionSettings>[] value)
         {
             if (_isDisposed)
@@ -84,39 +82,26 @@ namespace Logikfabrik.Overseer
             }
         }
 
-        /// <summary>
-        /// Notifies the observer that the provider has experienced an error condition.
-        /// </summary>
-        /// <param name="error">An object that provides additional information about the error.</param>
+        /// <inheritdoc/>
         public void OnError(Exception error)
         {
             // Do nothing, even if disposed (pattern practice).
         }
 
-        /// <summary>
-        /// Notifies the observer that the provider has finished sending push-based notifications.
-        /// </summary>
+        /// <inheritdoc/>
         public void OnCompleted()
         {
             // Do nothing, even if disposed (pattern practice).
         }
 
-        /// <summary>
-        /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
-        /// </summary>
+        /// <inheritdoc/>
         public void Dispose()
         {
             Dispose(true);
             GC.SuppressFinalize(this);
         }
 
-        /// <summary>
-        /// Notifies the provider that an observer is to receive notifications.
-        /// </summary>
-        /// <param name="observer">The object that is to receive notifications.</param>
-        /// <returns>
-        /// A reference to an interface that allows observers to stop receiving notifications before the provider has finished sending them.
-        /// </returns>
+        /// <inheritdoc/>
         public IDisposable Subscribe(IObserver<Notification<IConnection>[]> observer)
         {
             this.ThrowIfDisposed(_isDisposed);

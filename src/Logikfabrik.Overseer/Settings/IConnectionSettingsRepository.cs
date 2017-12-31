@@ -9,6 +9,7 @@ namespace Logikfabrik.Overseer.Settings
     /// <summary>
     /// The <see cref="IConnectionSettingsRepository" /> interface.
     /// </summary>
+    // ReSharper disable once InheritdocConsiderUsage
     public interface IConnectionSettingsRepository : IObservable<Notification<ConnectionSettings>[]>
     {
         /// <summary>

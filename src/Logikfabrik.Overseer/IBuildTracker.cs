@@ -9,6 +9,7 @@ namespace Logikfabrik.Overseer
     /// <summary>
     /// The <see cref="IBuildTracker" /> interface.
     /// </summary>
+    // ReSharper disable once InheritdocConsiderUsage
     public interface IBuildTracker : IObserver<Notification<IConnection>[]>
     {
         /// <summary>

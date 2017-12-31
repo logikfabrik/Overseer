@@ -16,6 +16,7 @@ namespace Logikfabrik.Overseer
     /// </summary>
     /// <typeparam name="T1">The <see cref="ConnectionSettings" /> type.</typeparam>
     /// <typeparam name="T2">The <see cref="BuildProvider{T1}" /> type.</typeparam>
+    // ReSharper disable once InheritdocConsiderUsage
     public class BuildProviderFactory<T1, T2> : IBuildProviderFactory
         where T1 : ConnectionSettings
         where T2 : BuildProvider<T1>
@@ -34,21 +35,10 @@ namespace Logikfabrik.Overseer
             _resolutionRoot = resolutionRoot;
         }
 
-        /// <summary>
-        /// Gets the type this factory applies to.
-        /// </summary>
-        /// <value>
-        /// The type this factory applies to.
-        /// </value>
+        /// <inheritdoc/>
         public Type AppliesTo { get; }
 
-        /// <summary>
-        /// Creates a <see cref="IBuildProvider" />.
-        /// </summary>
-        /// <param name="settings">The settings.</param>
-        /// <returns>
-        /// A <see cref="IBuildProvider" />.
-        /// </returns>
+        /// <inheritdoc/>
         public IBuildProvider Create(ConnectionSettings settings)
         {
             Ensure.That(settings).IsNotNull();

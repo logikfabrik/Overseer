@@ -13,6 +13,7 @@ namespace Logikfabrik.Overseer
     /// <summary>
     /// The <see cref="BuildProviderStrategy" /> class.
     /// </summary>
+    // ReSharper disable once InheritdocConsiderUsage
     public class BuildProviderStrategy : IBuildProviderStrategy
     {
         private readonly Lazy<IEnumerable<IBuildProviderFactory>> _factories;
@@ -28,13 +29,7 @@ namespace Logikfabrik.Overseer
             _factories = factories;
         }
 
-        /// <summary>
-        /// Creates a build provider.
-        /// </summary>
-        /// <param name="settings">The settings.</param>
-        /// <returns>
-        /// A build provider.
-        /// </returns>
+        /// <inheritdoc/>
         public IBuildProvider Create(ConnectionSettings settings)
         {
             Ensure.That(settings).IsNotNull();

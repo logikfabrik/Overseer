@@ -10,6 +10,7 @@ namespace Logikfabrik.Overseer
     /// <summary>
     /// The <see cref="Change" /> class.
     /// </summary>
+    // ReSharper disable once InheritdocConsiderUsage
     public class Change : IChange
     {
         /// <summary>
@@ -30,44 +31,19 @@ namespace Logikfabrik.Overseer
             Comment = comment;
         }
 
-        /// <summary>
-        /// Gets the identifier.
-        /// </summary>
-        /// <value>
-        /// The identifier.
-        /// </value>
+        /// <inheritdoc/>
         public string Id { get; }
 
-        /// <summary>
-        /// Gets the short identifier.
-        /// </summary>
-        /// <value>
-        /// The short identifier.
-        /// </value>
+        /// <inheritdoc/>
         public string ShortId { get; }
 
-        /// <summary>
-        /// Gets the changed date.
-        /// </summary>
-        /// <value>
-        /// The changed date.
-        /// </value>
+        /// <inheritdoc/>
         public DateTime? Changed { get; }
 
-        /// <summary>
-        /// Gets the name of whoever made the change.
-        /// </summary>
-        /// <value>
-        /// The name of whoever made the change.
-        /// </value>
+        /// <inheritdoc/>
         public string ChangedBy { get; }
 
-        /// <summary>
-        /// Gets the comment.
-        /// </summary>
-        /// <value>
-        /// The comment.
-        /// </value>
+        /// <inheritdoc/>
         public string Comment { get; }
 
         private static string GetShortId(string id)

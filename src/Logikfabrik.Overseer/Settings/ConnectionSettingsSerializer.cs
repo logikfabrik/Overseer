@@ -12,6 +12,7 @@ namespace Logikfabrik.Overseer.Settings
     /// <summary>
     /// The <see cref="ConnectionSettingsSerializer" /> class.
     /// </summary>
+    // ReSharper disable once InheritdocConsiderUsage
     public class ConnectionSettingsSerializer : IConnectionSettingsSerializer
     {
         private readonly Type[] _supportedTypes;
@@ -27,13 +28,7 @@ namespace Logikfabrik.Overseer.Settings
             _supportedTypes = supportedTypes;
         }
 
-        /// <summary>
-        /// Deserializes the specified settings.
-        /// </summary>
-        /// <param name="settings">The settings.</param>
-        /// <returns>
-        /// The deserialized settings.
-        /// </returns>
+        /// <inheritdoc/>
         public ConnectionSettings[] Deserialize(string settings)
         {
             Ensure.That(settings).IsNotNullOrWhiteSpace();
@@ -46,13 +41,7 @@ namespace Logikfabrik.Overseer.Settings
             }
         }
 
-        /// <summary>
-        /// Serializes the specified settings.
-        /// </summary>
-        /// <param name="settings">The settings.</param>
-        /// <returns>
-        /// The serialized settings.
-        /// </returns>
+        /// <inheritdoc/>
         public string Serialize(ConnectionSettings[] settings)
         {
             Ensure.That(settings).IsNotNull();

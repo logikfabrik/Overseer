@@ -10,6 +10,7 @@ namespace Logikfabrik.Overseer
     /// <summary>
     /// The <see cref="IConnectionPool" /> class.
     /// </summary>
+    // ReSharper disable once InheritdocConsiderUsage
     public interface IConnectionPool : IObserver<Notification<ConnectionSettings>[]>, IObservable<Notification<IConnection>[]>
     {
     }

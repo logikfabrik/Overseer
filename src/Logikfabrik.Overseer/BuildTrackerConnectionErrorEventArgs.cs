@@ -9,12 +9,14 @@ namespace Logikfabrik.Overseer
     /// <summary>
     /// The <see cref="BuildTrackerConnectionErrorEventArgs" /> class.
     /// </summary>
+    // ReSharper disable once InheritdocConsiderUsage
     public class BuildTrackerConnectionErrorEventArgs : BuildTrackerConnectionEventArgs
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="BuildTrackerConnectionErrorEventArgs" /> class.
         /// </summary>
         /// <param name="settingsId">The settings identifier.</param>
+        // ReSharper disable once InheritdocConsiderUsage
         public BuildTrackerConnectionErrorEventArgs(Guid settingsId)
             : base(settingsId)
         {

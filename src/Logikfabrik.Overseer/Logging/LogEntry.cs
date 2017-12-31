@@ -12,7 +12,7 @@ namespace Logikfabrik.Overseer.Logging
     public class LogEntry
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="LogEntry"/> class.
+        /// Initializes a new instance of the <see cref="LogEntry" /> class.
         /// </summary>
         /// <param name="type">The type.</param>
         /// <param name="messageTemplate">The message template.</param>
@@ -23,7 +23,7 @@ namespace Logikfabrik.Overseer.Logging
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="LogEntry"/> class.
+        /// Initializes a new instance of the <see cref="LogEntry" /> class.
         /// </summary>
         /// <param name="type">The type.</param>
         /// <param name="messageTemplate">The message template.</param>

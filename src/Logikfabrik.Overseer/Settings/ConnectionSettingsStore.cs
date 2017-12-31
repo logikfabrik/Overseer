@@ -9,6 +9,7 @@ namespace Logikfabrik.Overseer.Settings
     /// <summary>
     /// The <see cref="ConnectionSettingsStore" /> class.
     /// </summary>
+    // ReSharper disable once InheritdocConsiderUsage
     public class ConnectionSettingsStore : IConnectionSettingsStore
     {
         private readonly IConnectionSettingsSerializer _serializer;
@@ -32,12 +33,7 @@ namespace Logikfabrik.Overseer.Settings
             _fileStore = fileStore;
         }
 
-        /// <summary>
-        /// Loads the settings.
-        /// </summary>
-        /// <returns>
-        /// The settings.
-        /// </returns>
+        /// <inheritdoc />
         public ConnectionSettings[] Load()
         {
             var xml = _fileStore.Read();
@@ -47,10 +43,7 @@ namespace Logikfabrik.Overseer.Settings
                 : _serializer.Deserialize(_encrypter.Decrypt(xml));
         }
 
-        /// <summary>
-        /// Saves the specified settings.
-        /// </summary>
-        /// <param name="settings">The settings.</param>
+        /// <inheritdoc />
         public void Save(ConnectionSettings[] settings)
         {
             Ensure.That(settings).IsNotNull();

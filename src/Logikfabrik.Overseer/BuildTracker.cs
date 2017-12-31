@@ -16,6 +16,7 @@ namespace Logikfabrik.Overseer
     /// <summary>
     /// The <see cref="BuildTracker" /> class.
     /// </summary>
+    // ReSharper disable once InheritdocConsiderUsage
     public class BuildTracker : IBuildTracker, IDisposable
     {
         private readonly IAppSettingsFactory _appSettingsFactory;
@@ -43,30 +44,19 @@ namespace Logikfabrik.Overseer
             _subscription = connectionPool.Subscribe(this);
         }
 
-        /// <summary>
-        /// Occurs if there is an connection error.
-        /// </summary>
+        /// <inheritdoc/>
         public event EventHandler<BuildTrackerConnectionErrorEventArgs> ConnectionError;
 
-        /// <summary>
-        /// Occurs when connection progress changes.
-        /// </summary>
+        /// <inheritdoc/>
         public event EventHandler<BuildTrackerConnectionProgressEventArgs> ConnectionProgressChanged;
 
-        /// <summary>
-        /// Occurs if there is an project error.
-        /// </summary>
+        /// <inheritdoc/>
         public event EventHandler<BuildTrackerProjectErrorEventArgs> ProjectError;
 
-        /// <summary>
-        /// Occurs when project progress changes.
-        /// </summary>
+        /// <inheritdoc/>
         public event EventHandler<BuildTrackerProjectProgressEventArgs> ProjectProgressChanged;
 
-        /// <summary>
-        /// Provides the observer with new data.
-        /// </summary>
-        /// <param name="value">The current notification information.</param>
+        /// <inheritdoc/>
         public void OnNext(Notification<IConnection>[] value)
         {
             if (_isDisposed)
@@ -111,26 +101,19 @@ namespace Logikfabrik.Overseer
                 TaskScheduler.Current);
         }
 
-        /// <summary>
-        /// Notifies the observer that the provider has experienced an error condition.
-        /// </summary>
-        /// <param name="error">An object that provides additional information about the error.</param>
+        /// <inheritdoc/>
         public void OnError(Exception error)
         {
             // Do nothing, even if disposed (pattern practice).
         }
 
-        /// <summary>
-        /// Notifies the observer that the provider has finished sending push-based notifications.
-        /// </summary>
+        /// <inheritdoc/>
         public void OnCompleted()
         {
             // Do nothing, even if disposed (pattern practice).
         }
 
-        /// <summary>
-        /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
-        /// </summary>
+        /// <inheritdoc/>
         public void Dispose()
         {
             Dispose(true);
@@ -151,7 +134,7 @@ namespace Logikfabrik.Overseer
         }
 
         /// <summary>
-        /// Gets the projects.
+        /// Gets the projects for the specified connection.
         /// </summary>
         /// <param name="connection">The connection.</param>
         /// <param name="cancellationToken">A cancellation token.</param>
@@ -187,7 +170,7 @@ namespace Logikfabrik.Overseer
         }
 
         /// <summary>
-        /// Gets the builds for the specified project.
+        /// Gets the builds for the specified connection and project.
         /// </summary>
         /// <param name="connection">The connection.</param>
         /// <param name="project">The project.</param>

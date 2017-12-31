@@ -9,25 +9,16 @@ namespace Logikfabrik.Overseer.Settings
     /// <summary>
     /// The <see cref="DataProtector" /> class.
     /// </summary>
+    // ReSharper disable once InheritdocConsiderUsage
     public class DataProtector : IDataProtector
     {
-        /// <summary>
-        /// Protects the specified user data.
-        /// </summary>
-        /// <param name="userData">The user data.</param>
-        /// <param name="entropy">The entropy.</param>
-        /// <returns>The protected user data.</returns>
+        /// <inheritdoc/>
         public byte[] Protect(byte[] userData, byte[] entropy)
         {
             return ProtectedData.Protect(userData, entropy, DataProtectionScope.CurrentUser);
         }
 
-        /// <summary>
-        /// Unprotects the specified user data.
-        /// </summary>
-        /// <param name="userData">The user data.</param>
-        /// <param name="entropy">The entropy.</param>
-        /// <returns>The unprotected user data.</returns>
+        /// <inheritdoc/>
         public byte[] Unprotect(byte[] userData, byte[] entropy)
         {
             return ProtectedData.Unprotect(userData, entropy, DataProtectionScope.CurrentUser);

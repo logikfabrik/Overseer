@@ -14,6 +14,7 @@ namespace Logikfabrik.Overseer
     /// The <see cref="BuildProvider{T}" /> class. The base class for build providers.
     /// </summary>
     /// <typeparam name="T">The <see cref="ConnectionSettings" /> type.</typeparam>
+    // ReSharper disable once InheritdocConsiderUsage
     public abstract class BuildProvider<T> : IBuildProvider
         where T : ConnectionSettings
     {
@@ -36,12 +37,7 @@ namespace Logikfabrik.Overseer
         /// </value>
         public T Settings { get; }
 
-        /// <summary>
-        /// Gets the settings.
-        /// </summary>
-        /// <value>
-        /// The settings.
-        /// </value>
+        /// <inheritdoc/>
         ConnectionSettings IBuildProvider.Settings => Settings;
 
         /// <summary>
@@ -63,26 +59,13 @@ namespace Logikfabrik.Overseer
         /// </returns>
         public abstract Task<IEnumerable<IBuild>> GetBuildsAsync(string projectId, CancellationToken cancellationToken);
 
-        /// <summary>
-        /// Gets the projects.
-        /// </summary>
-        /// <param name="cancellationToken">A cancellation token.</param>
-        /// <returns>
-        /// A task.
-        /// </returns>
+        /// <inheritdoc/>
         Task<IEnumerable<IProject>> IBuildProvider.GetProjectsAsync(CancellationToken cancellationToken)
         {
             return GetProjectsAsync(cancellationToken);
         }
 
-        /// <summary>
-        /// Gets the builds for the project with the specified project identifier.
-        /// </summary>
-        /// <param name="projectId">The project identifier.</param>
-        /// <param name="cancellationToken">A cancellation token.</param>
-        /// <returns>
-        /// A task.
-        /// </returns>
+        /// <inheritdoc/>
         Task<IEnumerable<IBuild>> IBuildProvider.GetBuildsAsync(string projectId, CancellationToken cancellationToken)
         {
             return GetBuildsAsync(projectId, cancellationToken);

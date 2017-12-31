@@ -9,6 +9,7 @@ namespace Logikfabrik.Overseer
     /// <summary>
     /// The <see cref="AppSettings" /> class.
     /// </summary>
+    // ReSharper disable once InheritdocConsiderUsage
     public class AppSettings : ApplicationSettingsBase
     {
         /// <summary>

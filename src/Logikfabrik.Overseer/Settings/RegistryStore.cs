@@ -12,6 +12,7 @@ namespace Logikfabrik.Overseer.Settings
     /// <summary>
     /// The <see cref="RegistryStore" /> class.
     /// </summary>
+    // ReSharper disable once InheritdocConsiderUsage
     public class RegistryStore : IRegistryStore, IDisposable
     {
         private RegistryKey _key;

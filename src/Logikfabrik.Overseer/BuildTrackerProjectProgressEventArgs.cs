@@ -11,6 +11,7 @@ namespace Logikfabrik.Overseer
     /// <summary>
     /// The <see cref="BuildTrackerProjectProgressEventArgs" /> class.
     /// </summary>
+    // ReSharper disable once InheritdocConsiderUsage
     public class BuildTrackerProjectProgressEventArgs : BuildTrackerProjectEventArgs
     {
         /// <summary>
@@ -19,6 +20,7 @@ namespace Logikfabrik.Overseer
         /// <param name="settingsId">The settings identifier.</param>
         /// <param name="project">The project.</param>
         /// <param name="builds">The builds.</param>
+        // ReSharper disable once InheritdocConsiderUsage
         public BuildTrackerProjectProgressEventArgs(Guid settingsId, IProject project, IEnumerable<IBuild> builds)
             : base(settingsId, project)
         {

@@ -13,12 +13,15 @@ namespace Logikfabrik.Overseer.Extensions
     /// The <see cref="HttpException" /> class.
     /// </summary>
     [Serializable]
+
+    // ReSharper disable once InheritdocConsiderUsage
     public class HttpException : HttpRequestException
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="HttpException" /> class.
         /// </summary>
         /// <param name="statusCode">The status code.</param>
+        // ReSharper disable once InheritdocConsiderUsage
         public HttpException(HttpStatusCode statusCode)
         {
             StatusCode = statusCode;

@@ -12,7 +12,7 @@ namespace Logikfabrik.Overseer.Extensions
     public static class HttpResponseMessageExtensions
     {
         /// <summary>
-        /// Throws if unsuccessful.
+        /// Throws <see cref="HttpException" /> if unsuccessful.
         /// </summary>
         /// <param name="httpResponseMessage">The HTTP response message.</param>
         public static void ThrowIfUnsuccessful(this HttpResponseMessage httpResponseMessage)

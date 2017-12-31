@@ -13,6 +13,7 @@ namespace Logikfabrik.Overseer.Settings
     /// <summary>
     /// The <see cref="FileStore" /> class.
     /// </summary>
+    // ReSharper disable once InheritdocConsiderUsage
     public class FileStore : IFileStore, IDisposable
     {
         private readonly IFileSystem _fileSystem;

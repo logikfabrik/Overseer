@@ -15,6 +15,7 @@ namespace Logikfabrik.Overseer.Settings
     /// <summary>
     /// The <see cref="XmlEncrypter" /> class.
     /// </summary>
+    // ReSharper disable once InheritdocConsiderUsage
     public class XmlEncrypter : IXmlEncrypter
     {
         /// <summary>
@@ -41,19 +42,10 @@ namespace Logikfabrik.Overseer.Settings
             HasPassPhrase = ReadPassPhraseHash().Any();
         }
 
-        /// <summary>
-        /// Gets a value indicating whether this instance has a pass phrase.
-        /// </summary>
-        /// <value>
-        ///   <c>true</c> if this instance has a pass phrase; otherwise, <c>false</c>.
-        /// </value>
+        /// <inheritdoc/>
         public bool HasPassPhrase { get; private set; }
 
-        /// <summary>
-        /// Sets the pass phrase.
-        /// </summary>
-        /// <param name="passPhrase">The pass phrase.</param>
-        /// <param name="salt">The salt.</param>
+        /// <inheritdoc/>
         public void SetPassPhrase(string passPhrase, byte[] salt)
         {
             Ensure.That(passPhrase).IsNotNullOrWhiteSpace();
@@ -67,14 +59,7 @@ namespace Logikfabrik.Overseer.Settings
             HasPassPhrase = true;
         }
 
-        /// <summary>
-        /// Encrypts the specified XML.
-        /// </summary>
-        /// <param name="xml">The XML.</param>
-        /// <param name="tagNames">The tag names of elements to encrypt.</param>
-        /// <returns>
-        /// The encrypted XML.
-        /// </returns>
+        /// <inheritdoc/>
         public XmlDocument Encrypt(XmlDocument xml, string[] tagNames)
         {
             Ensure.That(xml).IsNotNull();
@@ -86,14 +71,7 @@ namespace Logikfabrik.Overseer.Settings
             }
         }
 
-        /// <summary>
-        /// Decrypts the specified XML.
-        /// </summary>
-        /// <param name="xml">The XML.</param>
-        /// <param name="tagNames">The tag names of elements to decrypt.</param>
-        /// <returns>
-        /// The decrypted XML.
-        /// </returns>
+        /// <inheritdoc/>
         public XmlDocument Decrypt(XmlDocument xml, string[] tagNames)
         {
             Ensure.That(xml).IsNotNull();

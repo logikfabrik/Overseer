@@ -10,6 +10,7 @@ namespace Logikfabrik.Overseer.Settings
     /// <summary>
     /// The <see cref="ConnectionSettingsEncrypter" /> class.
     /// </summary>
+    // ReSharper disable once InheritdocConsiderUsage
     public class ConnectionSettingsEncrypter : XmlEncrypter, IConnectionSettingsEncrypter
     {
         private static readonly byte[] Salt = { 155, 21, 6, 136, 63, 13, 179, 145, 46, 160, 245, 8, 208, 8, 50, 31 };
@@ -19,16 +20,13 @@ namespace Logikfabrik.Overseer.Settings
         /// </summary>
         /// <param name="dataProtector">The data protector.</param>
         /// <param name="registryStore">The registry store.</param>
+        // ReSharper disable once InheritdocConsiderUsage
         public ConnectionSettingsEncrypter(IDataProtector dataProtector, IRegistryStore registryStore)
             : base(dataProtector, registryStore)
         {
         }
 
-        /// <summary>
-        /// Encrypts the specified XML.
-        /// </summary>
-        /// <param name="xml">The XML.</param>
-        /// <returns>The encrypted XML.</returns>
+        /// <inheritdoc/>
         public string Encrypt(string xml)
         {
             Ensure.That(xml).IsNotNullOrWhiteSpace();
@@ -40,11 +38,7 @@ namespace Logikfabrik.Overseer.Settings
             return Encrypt(xmlDocument, new[] { "Password", "Token" }).OuterXml;
         }
 
-        /// <summary>
-        /// Decrypts the specified XML.
-        /// </summary>
-        /// <param name="xml">The XML.</param>
-        /// <returns>The decrypted XML.</returns>
+        /// <inheritdoc/>
         public string Decrypt(string xml)
         {
             Ensure.That(xml).IsNotNullOrWhiteSpace();
@@ -56,10 +50,7 @@ namespace Logikfabrik.Overseer.Settings
             return Decrypt(xmlDocument, new[] { "EncryptedData" }).OuterXml;
         }
 
-        /// <summary>
-        /// Sets the pass phrase.
-        /// </summary>
-        /// <param name="passPhrase">The pass phrase.</param>
+        /// <inheritdoc/>
         public void SetPassPhrase(string passPhrase)
         {
             Ensure.That(passPhrase).IsNotNull();

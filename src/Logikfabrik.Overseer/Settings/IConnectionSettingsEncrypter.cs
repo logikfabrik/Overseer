@@ -7,6 +7,7 @@ namespace Logikfabrik.Overseer.Settings
     /// <summary>
     /// The <see cref="IConnectionSettingsEncrypter" /> interface.
     /// </summary>
+    // ReSharper disable once InheritdocConsiderUsage
     public interface IConnectionSettingsEncrypter : IXmlEncrypter
     {
         /// <summary>

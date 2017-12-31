@@ -10,6 +10,7 @@ namespace Logikfabrik.Overseer
     /// <summary>
     /// The <see cref="BuildTrackerProjectEventArgs" /> class.
     /// </summary>
+    // ReSharper disable once InheritdocConsiderUsage
     public abstract class BuildTrackerProjectEventArgs : EventArgs
     {
         /// <summary>
@@ -17,6 +18,7 @@ namespace Logikfabrik.Overseer
         /// </summary>
         /// <param name="settingsId">The settings identifier.</param>
         /// <param name="project">The project.</param>
+        // ReSharper disable once InheritdocConsiderUsage
         protected BuildTrackerProjectEventArgs(Guid settingsId, IProject project)
         {
             Ensure.That(settingsId).IsNotEmpty();

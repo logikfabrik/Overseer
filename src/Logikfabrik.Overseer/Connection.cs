@@ -15,6 +15,7 @@ namespace Logikfabrik.Overseer
     /// <summary>
     /// The <see cref="Connection" /> class.
     /// </summary>
+    // ReSharper disable once InheritdocConsiderUsage
     public class Connection : IDisposable, IConnection
     {
         private readonly IBuildProviderStrategy _buildProviderStrategy;
@@ -35,21 +36,10 @@ namespace Logikfabrik.Overseer
             Settings = settings.Clone();
         }
 
-        /// <summary>
-        /// Gets the settings.
-        /// </summary>
-        /// <value>
-        /// The settings.
-        /// </value>
+        /// <inheritdoc/>
         public ConnectionSettings Settings { get; }
 
-        /// <summary>
-        /// Gets the projects.
-        /// </summary>
-        /// <param name="cancellationToken">A cancellation token.</param>
-        /// <returns>
-        /// A task.
-        /// </returns>
+        /// <inheritdoc/>
         public async Task<IEnumerable<IProject>> GetProjectsAsync(CancellationToken cancellationToken)
         {
             this.ThrowIfDisposed(_isDisposed);
@@ -57,14 +47,7 @@ namespace Logikfabrik.Overseer
             return await GetProvider().GetProjectsAsync(cancellationToken).ConfigureAwait(false);
         }
 
-        /// <summary>
-        /// Gets the builds for the specified project.
-        /// </summary>
-        /// <param name="project">The project.</param>
-        /// <param name="cancellationToken">A cancellation token.</param>
-        /// <returns>
-        /// A task.
-        /// </returns>
+        /// <inheritdoc/>
         public async Task<IEnumerable<IBuild>> GetBuildsAsync(IProject project, CancellationToken cancellationToken)
         {
             this.ThrowIfDisposed(_isDisposed);
@@ -74,9 +57,7 @@ namespace Logikfabrik.Overseer
             return await GetProvider().GetBuildsAsync(project.Id, cancellationToken).ConfigureAwait(false);
         }
 
-        /// <summary>
-        /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
-        /// </summary>
+        /// <inheritdoc/>
         public void Dispose()
         {
             Dispose(true);
