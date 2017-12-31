@@ -36,10 +36,10 @@ namespace Logikfabrik.Overseer
             Settings = settings.Clone();
         }
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public ConnectionSettings Settings { get; }
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public async Task<IEnumerable<IProject>> GetProjectsAsync(CancellationToken cancellationToken)
         {
             this.ThrowIfDisposed(_isDisposed);
@@ -47,7 +47,7 @@ namespace Logikfabrik.Overseer
             return await GetProvider().GetProjectsAsync(cancellationToken).ConfigureAwait(false);
         }
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public async Task<IEnumerable<IBuild>> GetBuildsAsync(IProject project, CancellationToken cancellationToken)
         {
             this.ThrowIfDisposed(_isDisposed);
@@ -57,7 +57,7 @@ namespace Logikfabrik.Overseer
             return await GetProvider().GetBuildsAsync(project.Id, cancellationToken).ConfigureAwait(false);
         }
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public void Dispose()
         {
             Dispose(true);

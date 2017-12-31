@@ -10,6 +10,7 @@ namespace Logikfabrik.Overseer.WPF
     /// <summary>
     /// The <see cref="INotification" /> interface.
     /// </summary>
+    // ReSharper disable once InheritdocConsiderUsage
     public interface INotification : IViewAware
     {
         /// <summary>

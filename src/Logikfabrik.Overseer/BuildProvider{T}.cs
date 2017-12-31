@@ -37,7 +37,7 @@ namespace Logikfabrik.Overseer
         /// </value>
         public T Settings { get; }
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         ConnectionSettings IBuildProvider.Settings => Settings;
 
         /// <summary>
@@ -59,13 +59,13 @@ namespace Logikfabrik.Overseer
         /// </returns>
         public abstract Task<IEnumerable<IBuild>> GetBuildsAsync(string projectId, CancellationToken cancellationToken);
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         Task<IEnumerable<IProject>> IBuildProvider.GetProjectsAsync(CancellationToken cancellationToken)
         {
             return GetProjectsAsync(cancellationToken);
         }
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         Task<IEnumerable<IBuild>> IBuildProvider.GetBuildsAsync(string projectId, CancellationToken cancellationToken)
         {
             return GetBuildsAsync(projectId, cancellationToken);

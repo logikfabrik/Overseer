@@ -33,7 +33,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor.Api
             _httpClient = new Lazy<HttpClient>(() => GetHttpClient(UriUtility.BaseUri, settings.Token));
         }
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public async Task<IEnumerable<Project>> GetProjectsAsync(CancellationToken cancellationToken)
         {
             this.ThrowIfDisposed(_isDisposed);
@@ -50,7 +50,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor.Api
             }
         }
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public async Task<ProjectHistory> GetProjectHistoryAsync(string accountName, string projectSlug, int recordsNumber, CancellationToken cancellationToken)
         {
             this.ThrowIfDisposed(_isDisposed);
@@ -71,7 +71,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor.Api
             }
         }
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public void Dispose()
         {
             Dispose(true);

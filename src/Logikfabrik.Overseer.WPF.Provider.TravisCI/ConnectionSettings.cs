@@ -17,7 +17,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.TravisCI
         private string _token;
         private string _url;
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public override Type ProviderType { get; } = typeof(BuildProvider);
 
         /// <summary>

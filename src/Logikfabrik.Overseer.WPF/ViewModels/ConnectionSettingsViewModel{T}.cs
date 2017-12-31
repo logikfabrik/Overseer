@@ -14,6 +14,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     /// The <see cref="ConnectionSettingsViewModel{T}" /> class.
     /// </summary>
     /// <typeparam name="T">The <see cref="ConnectionSettings" /> type.</typeparam>
+    // ReSharper disable once InheritdocConsiderUsage
     public abstract class ConnectionSettingsViewModel<T> : PropertyChangedBase, IDataErrorInfo
         where T : ConnectionSettings
     {
@@ -25,6 +26,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// <summary>
         /// Initializes a new instance of the <see cref="ConnectionSettingsViewModel{T}" /> class.
         /// </summary>
+        // ReSharper disable once InheritdocConsiderUsage
         protected ConnectionSettingsViewModel()
         {
             _isDirty = true;
@@ -120,9 +122,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// </value>
         public bool IsValid => Validator.Validate(this).IsValid;
 
-        /// <summary>
-        /// Gets an error message indicating what is wrong with this object.
-        /// </summary>
+        /// <inheritdoc />
         public string Error => null;
 
         /// <summary>
@@ -130,13 +130,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// </summary>
         protected IValidator Validator { private get; set; }
 
-        /// <summary>
-        /// Gets the error message for the property with the specified name.
-        /// </summary>
-        /// <param name="name">The property name.</param>
-        /// <returns>
-        /// The error message, if any.
-        /// </returns>
+        /// <inheritdoc />
         public string this[string name]
         {
             get

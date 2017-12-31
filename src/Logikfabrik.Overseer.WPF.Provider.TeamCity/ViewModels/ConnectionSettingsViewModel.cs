@@ -167,7 +167,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity.ViewModels
         /// </value>
         public bool ShowUsernameAndPassword => AuthenticationType == AuthenticationType.HttpAuth;
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public override ConnectionSettings GetSettings()
         {
             var projects = TrackedProjects?.Projects?.Where(project => project.Track).ToArray() ?? new TrackedProjectViewModel[] { };
@@ -185,7 +185,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity.ViewModels
             };
         }
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public override void UpdateSettings(ConnectionSettings current)
         {
             current.Name = Name;

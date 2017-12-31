@@ -9,12 +9,14 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     /// <summary>
     /// The <see cref="DashboardViewModel" /> class.
     /// </summary>
+    // ReSharper disable once InheritdocConsiderUsage
     public class DashboardViewModel : ViewModel
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="DashboardViewModel" /> class.
         /// </summary>
         /// <param name="platformProvider">The platform provider.</param>
+        // ReSharper disable once InheritdocConsiderUsage
         public DashboardViewModel(IPlatformProvider platformProvider)
             : base(platformProvider)
         {

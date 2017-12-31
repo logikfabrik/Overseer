@@ -16,15 +16,16 @@ namespace Logikfabrik.Overseer.WPF.Converters
     /// <remarks>
     /// Based on SO https://stackoverflow.com/a/8326207, answered by Town, https://stackoverflow.com/users/54975/town.
     /// </remarks>
+    // ReSharper disable once InheritdocConsiderUsage
     public class ValueConverterGroup : List<IValueConverter>, IValueConverter
     {
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             return this.Aggregate(value, (current, converter) => converter.Convert(current, targetType, parameter, culture));
         }
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             throw new NotSupportedException();

@@ -24,10 +24,10 @@ namespace Logikfabrik.Overseer.WPF.Provider.Codeship
             Name = GetName(project.Name);
         }
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public string Id { get; }
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public string Name { get; }
 
         private static string GetName(string name)

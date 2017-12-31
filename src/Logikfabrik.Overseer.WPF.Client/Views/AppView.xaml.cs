@@ -52,7 +52,7 @@ namespace Logikfabrik.Overseer.WPF.Client.Views
             }
         }
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         protected override void OnStateChanged(EventArgs e)
         {
             base.OnStateChanged(e);
@@ -63,7 +63,7 @@ namespace Logikfabrik.Overseer.WPF.Client.Views
             }
         }
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         protected override void OnClosed(EventArgs e)
         {
             base.OnClosed(e);

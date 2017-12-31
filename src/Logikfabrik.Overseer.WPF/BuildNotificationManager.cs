@@ -16,6 +16,7 @@ namespace Logikfabrik.Overseer.WPF
     /// <summary>
     /// The <see cref="BuildNotificationManager" /> class.
     /// </summary>
+    // ReSharper disable once InheritdocConsiderUsage
     public class BuildNotificationManager : NotificationManager<BuildNotificationViewModel>, IBuildNotificationManager
     {
         private readonly IBuildNotificationViewModelFactory _buildNotificationFactory;
@@ -29,6 +30,7 @@ namespace Logikfabrik.Overseer.WPF
         /// <param name="windowManager">The window manager.</param>
         /// <param name="displaySetting">The display setting.</param>
         /// <param name="buildNotificationFactory">The build notification factory.</param>
+        // ReSharper disable once InheritdocConsiderUsage
         public BuildNotificationManager(IWindowManager windowManager, IDisplaySetting displaySetting, IBuildNotificationViewModelFactory buildNotificationFactory)
             : base(windowManager, displaySetting)
         {
@@ -37,7 +39,7 @@ namespace Logikfabrik.Overseer.WPF
             _buildNotificationFactory = buildNotificationFactory;
         }
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public void ShowNotification(IProject project, IBuild build)
         {
             Ensure.That(project).IsNotNull();

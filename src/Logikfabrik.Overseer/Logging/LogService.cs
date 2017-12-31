@@ -28,7 +28,7 @@ namespace Logikfabrik.Overseer.Logging
             _logger = logger;
         }
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public void Log(Type type, LogEntry entry)
         {
             Ensure.That(type).IsNotNull();

@@ -11,6 +11,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     /// <summary>
     /// The <see cref="BuildProvidersViewModel" /> class.
     /// </summary>
+    // ReSharper disable once InheritdocConsiderUsage
     public class BuildProvidersViewModel : ViewModel
     {
         /// <summary>
@@ -18,6 +19,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// </summary>
         /// <param name="platformProvider">The platform provider.</param>
         /// <param name="providers">The providers.</param>
+        // ReSharper disable once InheritdocConsiderUsage
         public BuildProvidersViewModel(IPlatformProvider platformProvider, IEnumerable<IBuildProviderViewModel> providers)
             : base(platformProvider)
         {

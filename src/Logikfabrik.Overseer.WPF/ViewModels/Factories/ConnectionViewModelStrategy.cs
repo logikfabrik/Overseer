@@ -13,6 +13,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels.Factories
     /// <summary>
     /// The <see cref="ConnectionViewModelStrategy" /> class.
     /// </summary>
+    // ReSharper disable once InheritdocConsiderUsage
     public class ConnectionViewModelStrategy : IConnectionViewModelStrategy
     {
         private readonly Lazy<IEnumerable<IConnectionViewModelFactory>> _factories;
@@ -28,13 +29,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels.Factories
             _factories = factories;
         }
 
-        /// <summary>
-        /// Creates a view model.
-        /// </summary>
-        /// <param name="settings">The settings.</param>
-        /// <returns>
-        /// A view model.
-        /// </returns>
+        /// <inheritdoc />
         public IConnectionViewModel Create(ConnectionSettings settings)
         {
             Ensure.That(settings).IsNotNull();

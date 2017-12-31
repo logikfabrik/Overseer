@@ -47,7 +47,7 @@ namespace Logikfabrik.Overseer
         /// </value>
         internal IEnumerable<Connection> CurrentConnections => _connections.Values;
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public void OnNext(Notification<ConnectionSettings>[] value)
         {
             if (_isDisposed)
@@ -82,26 +82,26 @@ namespace Logikfabrik.Overseer
             }
         }
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public void OnError(Exception error)
         {
             // Do nothing, even if disposed (pattern practice).
         }
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public void OnCompleted()
         {
             // Do nothing, even if disposed (pattern practice).
         }
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public void Dispose()
         {
             Dispose(true);
             GC.SuppressFinalize(this);
         }
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public IDisposable Subscribe(IObserver<Notification<IConnection>[]> observer)
         {
             this.ThrowIfDisposed(_isDisposed);

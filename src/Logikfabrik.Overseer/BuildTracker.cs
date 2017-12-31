@@ -44,19 +44,19 @@ namespace Logikfabrik.Overseer
             _subscription = connectionPool.Subscribe(this);
         }
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public event EventHandler<BuildTrackerConnectionErrorEventArgs> ConnectionError;
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public event EventHandler<BuildTrackerConnectionProgressEventArgs> ConnectionProgressChanged;
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public event EventHandler<BuildTrackerProjectErrorEventArgs> ProjectError;
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public event EventHandler<BuildTrackerProjectProgressEventArgs> ProjectProgressChanged;
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public void OnNext(Notification<IConnection>[] value)
         {
             if (_isDisposed)
@@ -101,19 +101,19 @@ namespace Logikfabrik.Overseer
                 TaskScheduler.Current);
         }
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public void OnError(Exception error)
         {
             // Do nothing, even if disposed (pattern practice).
         }
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public void OnCompleted()
         {
             // Do nothing, even if disposed (pattern practice).
         }
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public void Dispose()
         {
             Dispose(true);

@@ -25,7 +25,7 @@ namespace Logikfabrik.Overseer.WPF.Client
             _inputManager = inputManager;
         }
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public event PreProcessInputEventHandler PreProcessInput
         {
             add

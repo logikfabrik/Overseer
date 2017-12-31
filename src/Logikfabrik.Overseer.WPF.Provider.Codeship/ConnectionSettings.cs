@@ -17,7 +17,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.Codeship
         private string _username;
         private string _password;
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public override Type ProviderType { get; } = typeof(BuildProvider);
 
         /// <summary>

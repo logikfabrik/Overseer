@@ -13,8 +13,20 @@ namespace Logikfabrik.Overseer.WPF.Localization
     /// </summary>
     public static class SupportedCultures
     {
+        /// <summary>
+        /// Gets the culture names.
+        /// </summary>
+        /// <value>
+        /// The culture names.
+        /// </value>
         public static IEnumerable<string> CultureNames => new[] { "en-US", "sv-SE" };
 
+        /// <summary>
+        /// Gets the cultures.
+        /// </summary>
+        /// <value>
+        /// The cultures.
+        /// </value>
         public static IEnumerable<CultureInfo> Cultures => CultureNames.Select(CultureInfo.GetCultureInfo);
     }
 }

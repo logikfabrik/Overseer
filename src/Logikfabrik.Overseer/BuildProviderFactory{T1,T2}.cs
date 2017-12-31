@@ -35,10 +35,10 @@ namespace Logikfabrik.Overseer
             _resolutionRoot = resolutionRoot;
         }
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public Type AppliesTo { get; }
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public IBuildProvider Create(ConnectionSettings settings)
         {
             Ensure.That(settings).IsNotNull();

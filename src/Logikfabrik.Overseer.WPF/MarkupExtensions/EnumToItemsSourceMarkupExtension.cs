@@ -17,6 +17,7 @@ namespace Logikfabrik.Overseer.WPF.MarkupExtensions
     /// <remarks>
     /// Based on SO https://stackoverflow.com/a/20919656, answered by Rohit Vats, https://stackoverflow.com/users/632337/rohit-vats.
     /// </remarks>
+    // ReSharper disable once InheritdocConsiderUsage
     public class EnumToItemsSourceMarkupExtension : MarkupExtension
     {
         private readonly Type _enumType;
@@ -25,6 +26,7 @@ namespace Logikfabrik.Overseer.WPF.MarkupExtensions
         /// Initializes a new instance of the <see cref="EnumToItemsSourceMarkupExtension" /> class.
         /// </summary>
         /// <param name="enumType">The type.</param>
+        // ReSharper disable once InheritdocConsiderUsage
         public EnumToItemsSourceMarkupExtension(Type enumType)
         {
             Ensure.That(enumType).IsNotNull();
@@ -33,7 +35,7 @@ namespace Logikfabrik.Overseer.WPF.MarkupExtensions
             _enumType = enumType;
         }
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public override object ProvideValue(IServiceProvider serviceProvider)
         {
             Func<object, string> getDescription = value =>

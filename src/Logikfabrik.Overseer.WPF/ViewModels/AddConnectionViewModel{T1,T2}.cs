@@ -21,6 +21,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     /// </summary>
     /// <typeparam name="T1">The <see cref="ConnectionSettings" /> type.</typeparam>
     /// <typeparam name="T2">The <see cref="ConnectionSettingsViewModel{T}" /> type.</typeparam>
+    // ReSharper disable once InheritdocConsiderUsage
     public class AddConnectionViewModel<T1, T2> : ViewModel
         where T1 : ConnectionSettings
         where T2 : ConnectionSettingsViewModel<T1>, new()
@@ -46,6 +47,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// <param name="trackedProjectFactory">The tracked project factory.</param>
         /// <param name="trackedProjectsFactory">The tracked projects factory.</param>
         /// <param name="connectionSettingsFactory">The settings factory.</param>
+        // ReSharper disable once InheritdocConsiderUsage
         public AddConnectionViewModel(
             IPlatformProvider platformProvider,
             IEventAggregator eventAggregator,
@@ -157,6 +159,12 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// </value>
         public bool IsValidAndHasConnected => Settings.IsValid && HasConnected;
 
+        /// <summary>
+        /// Gets a value indicating whether the settings for this instance are valid, but have not been used to successfully connect.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if the settings for this instance are valid, but have not been used to successfully connect; otherwise, <c>false</c>.
+        /// </value>
         public bool IsValidAndHasNotConnected => Settings.IsValid && !HasConnected;
 
         /// <summary>

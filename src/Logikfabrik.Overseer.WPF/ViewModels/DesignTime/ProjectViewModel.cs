@@ -11,51 +11,52 @@ namespace Logikfabrik.Overseer.WPF.ViewModels.DesignTime
     /// <summary>
     /// The <see cref="ProjectViewModel" /> class.
     /// </summary>
+    // ReSharper disable once InheritdocConsiderUsage
     public class ProjectViewModel : IProjectViewModel
     {
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public string Id { get; } = "1234";
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public string Name { get; } = "Overseer";
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public ICollectionView OrderedBuilds { get; } = new CollectionView(new[] { new BuildViewModel(), new BuildViewModel(), new BuildViewModel() });
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public IBuildViewModel LatestBuild => new BuildViewModel();
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public int QueuedBuilds => 3;
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public bool HasBuilds { get; } = true;
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public bool HasNoBuilds { get; } = false;
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public bool HasLatestBuild { get; } = true;
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public bool HasQueuedBuilds => true;
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public bool IsBusy { get; } = false;
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public bool IsViewable { get; } = true;
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public bool IsErrored { get; } = false;
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public void View()
         {
             throw new NotImplementedException();
         }
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public bool TryUpdate(string name)
         {
             throw new NotImplementedException();

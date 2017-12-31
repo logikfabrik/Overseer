@@ -9,54 +9,25 @@ namespace Logikfabrik.Overseer.WPF.ViewModels.DesignTime
     /// <summary>
     /// The <see cref="ChangeViewModel" /> class.
     /// </summary>
+    // ReSharper disable once InheritdocConsiderUsage
     public class ChangeViewModel : IChangeViewModel
     {
-        /// <summary>
-        /// Gets the identifier.
-        /// </summary>
-        /// <value>
-        /// The identifier.
-        /// </value>
+        /// <inheritdoc />
         public string Id { get; } = "2fd4e1c67a2d28fced849ee1bb76e7391b93eb12";
 
-        /// <summary>
-        /// Gets the identifier or short identifier.
-        /// </summary>
-        /// <value>
-        /// The identifier or short identifier.
-        /// </value>
+        /// <inheritdoc />
         public string IdOrShortId { get; } = "2fd4e1c6";
 
-        /// <summary>
-        /// Gets the changed date.
-        /// </summary>
-        /// <value>
-        /// The changed date.
-        /// </value>
+        /// <inheritdoc />
         public DateTime? Changed { get; } = DateTime.UtcNow;
 
-        /// <summary>
-        /// Gets the name of whoever made the change.
-        /// </summary>
-        /// <value>
-        /// The name of whoever made the change.
-        /// </value>
+        /// <inheritdoc />
         public string ChangedBy { get; } = "John Doe";
 
-        /// <summary>
-        /// Gets the comment.
-        /// </summary>
-        /// <value>
-        /// The comment.
-        /// </value>
+        /// <inheritdoc />
         public string Comment { get; } = "Minor change to the build definition";
 
-        /// <summary>
-        /// Gets a value indicating whether to show the comment.
-        /// </summary>
-        /// <value>
-        ///   <c>true</c> if the comment should be shown; otherwise, <c>false</c>.
-        /// </value>
+        /// <inheritdoc />
         public bool ShowComment { get; } = true;
     }
 }

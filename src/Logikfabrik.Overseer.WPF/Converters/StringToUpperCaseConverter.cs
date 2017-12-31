@@ -14,9 +14,10 @@ namespace Logikfabrik.Overseer.WPF.Converters
     /// <remarks>
     /// Based on SO https://stackoverflow.com/a/24956232, answered by kidshaw, https://stackoverflow.com/users/3836669/kidshaw.
     /// </remarks>
+    // ReSharper disable once InheritdocConsiderUsage
     public class StringToUpperCaseConverter : IValueConverter
     {
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             var v = value as string;
@@ -24,7 +25,7 @@ namespace Logikfabrik.Overseer.WPF.Converters
             return v?.ToUpper(culture);
         }
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             throw new NotSupportedException();

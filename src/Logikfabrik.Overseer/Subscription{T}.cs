@@ -33,7 +33,7 @@ namespace Logikfabrik.Overseer
             _observer = observer;
         }
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public void Dispose()
         {
             Dispose(true);

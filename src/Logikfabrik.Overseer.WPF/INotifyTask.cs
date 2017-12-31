@@ -11,6 +11,7 @@ namespace Logikfabrik.Overseer.WPF
     /// <summary>
     /// The <see cref="INotifyTask" /> interface.
     /// </summary>
+    // ReSharper disable once InheritdocConsiderUsage
     public interface INotifyTask : INotifyPropertyChangedEx
     {
         /// <summary>

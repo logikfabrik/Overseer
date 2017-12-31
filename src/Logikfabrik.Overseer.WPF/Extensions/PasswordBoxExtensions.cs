@@ -21,6 +21,11 @@ namespace Logikfabrik.Overseer.WPF.Extensions
         /// </summary>
         public static readonly DependencyProperty BoundPasswordProperty = DependencyProperty.RegisterAttached("BoundPassword", typeof(string), typeof(PasswordBoxExtensions), new FrameworkPropertyMetadata(string.Empty, OnBoundPasswordChanged));
 
+        /// <summary>
+        /// Gets the bound password.
+        /// </summary>
+        /// <param name="obj">The object.</param>
+        /// <returns>The bound password.</returns>
         public static string GetBoundPassword(DependencyObject obj)
         {
             var passwordBox = obj as PasswordBox;
@@ -35,6 +40,11 @@ namespace Logikfabrik.Overseer.WPF.Extensions
             return (string)obj.GetValue(BoundPasswordProperty);
         }
 
+        /// <summary>
+        /// Sets the bound password.
+        /// </summary>
+        /// <param name="obj">The object.</param>
+        /// <param name="value">The value.</param>
         public static void SetBoundPassword(DependencyObject obj, string value)
         {
             if (value == GetBoundPassword(obj))

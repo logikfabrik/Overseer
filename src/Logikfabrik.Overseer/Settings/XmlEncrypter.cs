@@ -42,10 +42,10 @@ namespace Logikfabrik.Overseer.Settings
             HasPassPhrase = ReadPassPhraseHash().Any();
         }
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public bool HasPassPhrase { get; private set; }
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public void SetPassPhrase(string passPhrase, byte[] salt)
         {
             Ensure.That(passPhrase).IsNotNullOrWhiteSpace();
@@ -59,7 +59,7 @@ namespace Logikfabrik.Overseer.Settings
             HasPassPhrase = true;
         }
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public XmlDocument Encrypt(XmlDocument xml, string[] tagNames)
         {
             Ensure.That(xml).IsNotNull();
@@ -71,7 +71,7 @@ namespace Logikfabrik.Overseer.Settings
             }
         }
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public XmlDocument Decrypt(XmlDocument xml, string[] tagNames)
         {
             Ensure.That(xml).IsNotNull();

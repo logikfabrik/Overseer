@@ -28,7 +28,7 @@ namespace Logikfabrik.Overseer.Settings
             _supportedTypes = supportedTypes;
         }
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public ConnectionSettings[] Deserialize(string settings)
         {
             Ensure.That(settings).IsNotNullOrWhiteSpace();
@@ -41,7 +41,7 @@ namespace Logikfabrik.Overseer.Settings
             }
         }
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public string Serialize(ConnectionSettings[] settings)
         {
             Ensure.That(settings).IsNotNull();

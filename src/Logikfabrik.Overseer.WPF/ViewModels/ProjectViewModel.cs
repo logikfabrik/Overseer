@@ -158,7 +158,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             }
         }
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public void View()
         {
             var message = new NavigationMessage(this);
@@ -166,7 +166,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             _eventAggregator.PublishOnUIThread(message);
         }
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public bool TryUpdate(string name)
         {
             if (Name == name)

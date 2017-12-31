@@ -23,10 +23,10 @@ namespace Logikfabrik.Overseer.WPF.Provider.TravisCI
             Name = repository.Name;
         }
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public string Id { get; }
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public string Name { get; }
     }
 }

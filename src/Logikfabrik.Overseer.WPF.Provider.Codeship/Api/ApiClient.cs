@@ -40,7 +40,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.Codeship.Api
             _httpClient = new Lazy<HttpClient>(() => GetHttpClient(UriUtility.BaseUri));
         }
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public async Task<IEnumerable<Organization>> GetOrganizationsAsync(CancellationToken cancellationToken)
         {
             this.ThrowIfDisposed(_isDisposed);
@@ -54,7 +54,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.Codeship.Api
             return accessToken.Organizations;
         }
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public async Task<Projects> GetProjectsAsync(Guid organizationId, int perPage, int page, CancellationToken cancellationToken)
         {
             this.ThrowIfDisposed(_isDisposed);
@@ -88,7 +88,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.Codeship.Api
             }
         }
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public async Task<Builds> GetBuildsAsync(Guid organizationId, Guid projectId, int perPage, int page, CancellationToken cancellationToken)
         {
             this.ThrowIfDisposed(_isDisposed);
@@ -123,7 +123,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.Codeship.Api
             }
         }
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public void Dispose()
         {
             Dispose(true);

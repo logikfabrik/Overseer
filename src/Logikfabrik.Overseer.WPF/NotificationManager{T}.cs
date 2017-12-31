@@ -48,6 +48,10 @@ namespace Logikfabrik.Overseer.WPF
             });
         }
 
+        /// <summary>
+        /// Shows the notification.
+        /// </summary>
+        /// <param name="viewModel">The view model.</param>
         protected void ShowNotification(T viewModel)
         {
             Ensure.That(viewModel).IsNotNull();

@@ -15,6 +15,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     /// <summary>
     /// The <see cref="BuildNotificationViewModel" /> class.
     /// </summary>
+    // ReSharper disable once InheritdocConsiderUsage
     public class BuildNotificationViewModel : ViewAware, IBuildNotificationViewModel, INotification
     {
         private readonly IApp _application;
@@ -27,6 +28,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// <param name="buildViewModelFactory">The build view model factory.</param>
         /// <param name="project">The project.</param>
         /// <param name="build">The build.</param>
+        // ReSharper disable once InheritdocConsiderUsage
         public BuildNotificationViewModel(IApp application, IBuildViewModelFactory buildViewModelFactory, IProject project, IBuild build)
         {
             Ensure.That(application).IsNotNull();
@@ -40,7 +42,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             StartClosing();
         }
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public event EventHandler<EventArgs> Closing;
 
         /// <inheritdoc />

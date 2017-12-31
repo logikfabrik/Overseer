@@ -29,7 +29,7 @@ namespace Logikfabrik.Overseer
             _factories = factories;
         }
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public IBuildProvider Create(ConnectionSettings settings)
         {
             Ensure.That(settings).IsNotNull();

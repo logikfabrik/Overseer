@@ -10,6 +10,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     /// <summary>
     /// The <see cref="ConnectionsViewModel" /> class.
     /// </summary>
+    // ReSharper disable once InheritdocConsiderUsage
     public class ConnectionsViewModel : ViewModel
     {
         /// <summary>
@@ -17,6 +18,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// </summary>
         /// <param name="platformProvider">The platform provider.</param>
         /// <param name="connectionsListViewModel">The connections list view model.</param>
+        // ReSharper disable once InheritdocConsiderUsage
         public ConnectionsViewModel(IPlatformProvider platformProvider, ConnectionsListViewModel connectionsListViewModel)
             : base(platformProvider)
         {

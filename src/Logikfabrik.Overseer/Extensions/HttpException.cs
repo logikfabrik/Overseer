@@ -35,7 +35,7 @@ namespace Logikfabrik.Overseer.Extensions
         /// </value>
         public HttpStatusCode StatusCode { get; }
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public override void GetObjectData(SerializationInfo info, StreamingContext context)
         {
             base.GetObjectData(info, context);

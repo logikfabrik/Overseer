@@ -26,7 +26,7 @@ namespace Logikfabrik.Overseer.Settings
         {
         }
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public string Encrypt(string xml)
         {
             Ensure.That(xml).IsNotNullOrWhiteSpace();
@@ -38,7 +38,7 @@ namespace Logikfabrik.Overseer.Settings
             return Encrypt(xmlDocument, new[] { "Password", "Token" }).OuterXml;
         }
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public string Decrypt(string xml)
         {
             Ensure.That(xml).IsNotNullOrWhiteSpace();
@@ -50,7 +50,7 @@ namespace Logikfabrik.Overseer.Settings
             return Decrypt(xmlDocument, new[] { "EncryptedData" }).OuterXml;
         }
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public void SetPassPhrase(string passPhrase)
         {
             Ensure.That(passPhrase).IsNotNull();

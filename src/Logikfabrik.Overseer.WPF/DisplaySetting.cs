@@ -11,6 +11,7 @@ namespace Logikfabrik.Overseer.WPF
     /// <summary>
     /// The <see cref="DisplaySetting" /> class.
     /// </summary>
+    // ReSharper disable once InheritdocConsiderUsage
     public class DisplaySetting : IDisplaySetting
     {
         /// <summary>
@@ -24,10 +25,10 @@ namespace Logikfabrik.Overseer.WPF
             };
         }
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public event EventHandler DisplaySettingsChanged;
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public Rect WorkArea => SystemParameters.WorkArea;
 
         /// <summary>

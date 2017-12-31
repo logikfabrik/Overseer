@@ -10,6 +10,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels.DesignTime
     /// <summary>
     /// The <see cref="BuildViewModel" /> class.
     /// </summary>
+    // ReSharper disable once InheritdocConsiderUsage
     public class BuildViewModel : IBuildViewModel
     {
         /// <inheritdoc />

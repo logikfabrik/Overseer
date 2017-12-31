@@ -13,7 +13,7 @@ namespace Logikfabrik.Overseer.WPF.Validators
     /// </summary>
     /// <typeparam name="T1">The <see cref="ConnectionSettingsViewModel{T}" /> type.</typeparam>
     /// <typeparam name="T2">The <see cref="ConnectionSettings" /> type.</typeparam>
-    /// <seealso cref="FluentValidation.AbstractValidator{T1}" />
+    // ReSharper disable once InheritdocConsiderUsage
     public abstract class ConnectionSettingsViewModelValidator<T1, T2> : AbstractValidator<T1>
         where T1 : ConnectionSettingsViewModel<T2>
         where T2 : ConnectionSettings

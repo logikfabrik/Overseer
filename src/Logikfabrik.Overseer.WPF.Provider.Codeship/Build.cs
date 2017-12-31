@@ -33,34 +33,34 @@ namespace Logikfabrik.Overseer.WPF.Provider.Codeship
             Changes = GetChanges(build);
         }
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public string Id { get; }
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public string Version { get; }
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public string Number { get; }
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public string Branch { get; }
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public DateTime? StartTime { get; }
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public DateTime? EndTime { get; }
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public BuildStatus? Status { get; }
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public string RequestedBy { get; }
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public Uri WebUrl { get; }
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public IEnumerable<IChange> Changes { get; }
 
         private static BuildStatus? GetStatus(Api.Models.Build build)

@@ -31,7 +31,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.Codeship
             _apiClient = apiClient;
         }
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public override async Task<IEnumerable<IProject>> GetProjectsAsync(CancellationToken cancellationToken)
         {
             var organizations = await _apiClient.GetOrganizationsAsync(cancellationToken).ConfigureAwait(false);
@@ -58,7 +58,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.Codeship
             return projects.Select(project => new Project(project)).ToArray();
         }
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public override async Task<IEnumerable<IBuild>> GetBuildsAsync(string projectId, CancellationToken cancellationToken)
         {
             Ensure.That(projectId).IsNotNullOrWhiteSpace();

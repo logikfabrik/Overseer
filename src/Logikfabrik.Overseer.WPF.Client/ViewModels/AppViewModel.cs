@@ -81,7 +81,7 @@ namespace Logikfabrik.Overseer.WPF.Client.ViewModels
             _navigator.Navigate(message);
         }
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public void Dispose()
         {
             if (_isDisposed)
@@ -96,7 +96,7 @@ namespace Logikfabrik.Overseer.WPF.Client.ViewModels
             _isDisposed = true;
         }
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         protected override void ChangeActiveItem(IViewModel newItem, bool closePrevious)
         {
             base.ChangeActiveItem(newItem, closePrevious);

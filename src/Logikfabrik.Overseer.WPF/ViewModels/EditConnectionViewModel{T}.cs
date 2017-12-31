@@ -19,6 +19,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     /// The <see cref="EditConnectionViewModel{T}" /> class. Base class for view models for editing connections.
     /// </summary>
     /// <typeparam name="T">The <see cref="ConnectionSettings" /> type.</typeparam>
+    // ReSharper disable once InheritdocConsiderUsage
     public abstract class EditConnectionViewModel<T> : ViewModel
         where T : ConnectionSettings
     {
@@ -42,6 +43,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// <param name="trackedProjectFactory">The tracked project factory.</param>
         /// <param name="trackedProjectsFactory">The tracked projects factory.</param>
         /// <param name="currentSettings">The current settings.</param>
+        // ReSharper disable once InheritdocConsiderUsage
         protected EditConnectionViewModel(
             IPlatformProvider platformProvider,
             ILogService logService,
@@ -146,6 +148,12 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// </value>
         public bool IsValidAndHasConnected => Settings.IsValid && HasConnected;
 
+        /// <summary>
+        /// Gets a value indicating whether the settings for this instance are valid, but have not been used to successfully connect.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if the settings for this instance are valid, but have not been used to successfully connect; otherwise, <c>false</c>.
+        /// </value>
         public bool IsValidAndHasNotConnected => Settings.IsValid && !HasConnected;
 
         /// <summary>

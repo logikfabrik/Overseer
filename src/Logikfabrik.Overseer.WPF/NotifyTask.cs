@@ -12,6 +12,7 @@ namespace Logikfabrik.Overseer.WPF
     /// <summary>
     /// The <see cref="NotifyTask" /> class.
     /// </summary>
+    // ReSharper disable once InheritdocConsiderUsage
     public class NotifyTask : PropertyChangedBase, INotifyTask
     {
         private readonly Task _task;
@@ -19,6 +20,7 @@ namespace Logikfabrik.Overseer.WPF
         /// <summary>
         /// Initializes a new instance of the <see cref="NotifyTask" /> class.
         /// </summary>
+        // ReSharper disable once InheritdocConsiderUsage
         public NotifyTask()
         {
         }
@@ -27,6 +29,7 @@ namespace Logikfabrik.Overseer.WPF
         /// Initializes a new instance of the <see cref="NotifyTask" /> class.
         /// </summary>
         /// <param name="task">The task.</param>
+        // ReSharper disable once InheritdocConsiderUsage
         public NotifyTask(Task task)
         {
             Ensure.That(task).IsNotNull();

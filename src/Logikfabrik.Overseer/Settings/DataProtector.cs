@@ -12,13 +12,13 @@ namespace Logikfabrik.Overseer.Settings
     // ReSharper disable once InheritdocConsiderUsage
     public class DataProtector : IDataProtector
     {
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public byte[] Protect(byte[] userData, byte[] entropy)
         {
             return ProtectedData.Protect(userData, entropy, DataProtectionScope.CurrentUser);
         }
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public byte[] Unprotect(byte[] userData, byte[] entropy)
         {
             return ProtectedData.Unprotect(userData, entropy, DataProtectionScope.CurrentUser);

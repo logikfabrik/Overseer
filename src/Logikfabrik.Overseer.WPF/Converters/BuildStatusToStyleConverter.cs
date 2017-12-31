@@ -14,9 +14,10 @@ namespace Logikfabrik.Overseer.WPF.Converters
     /// <summary>
     /// The <see cref="BuildStatusToStyleConverter" /> class.
     /// </summary>
+    // ReSharper disable once InheritdocConsiderUsage
     public class BuildStatusToStyleConverter : IMultiValueConverter
     {
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
             var element = (FrameworkElement)values[0];
@@ -35,7 +36,7 @@ namespace Logikfabrik.Overseer.WPF.Converters
             return resource as Style;
         }
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
         {
             throw new NotSupportedException();

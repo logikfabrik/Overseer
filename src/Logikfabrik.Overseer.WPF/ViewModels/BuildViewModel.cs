@@ -16,6 +16,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     /// <summary>
     /// The <see cref="BuildViewModel" /> class.
     /// </summary>
+    // ReSharper disable once InheritdocConsiderUsage
     public class BuildViewModel : PropertyChangedBase, IBuildViewModel
     {
         private readonly Uri _webUrl;
@@ -31,6 +32,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// <param name="changeFactory">The change factory.</param>
         /// <param name="project">The project.</param>
         /// <param name="build">The build.</param>
+        // ReSharper disable once InheritdocConsiderUsage
         public BuildViewModel(IChangeViewModelFactory changeFactory, IProject project, IBuild build)
         {
             Ensure.That(changeFactory).IsNotNull();

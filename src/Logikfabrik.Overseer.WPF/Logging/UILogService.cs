@@ -14,6 +14,7 @@ namespace Logikfabrik.Overseer.WPF.Logging
 #pragma warning disable S101 // Types should be named in camel case
 
     // ReSharper disable once InconsistentNaming
+    // ReSharper disable once InheritdocConsiderUsage
     public class UILogService : IUILogService
 #pragma warning restore S101 // Types should be named in camel case
     {
@@ -34,30 +35,19 @@ namespace Logikfabrik.Overseer.WPF.Logging
             _type = type;
         }
 
-        /// <summary>
-        /// Logs the specified information entry.
-        /// </summary>
-        /// <param name="format">The format.</param>
-        /// <param name="args">The arguments.</param>
+        /// <inheritdoc />
         public void Info(string format, params object[] args)
         {
             _logService.Log(_type, new LogEntry(LogEntryType.Information, format, args));
         }
 
-        /// <summary>
-        /// Logs the specified warning entry.
-        /// </summary>
-        /// <param name="format">The format.</param>
-        /// <param name="args">The arguments.</param>
+        /// <inheritdoc />
         public void Warn(string format, params object[] args)
         {
             _logService.Log(_type, new LogEntry(LogEntryType.Warning, format, args));
         }
 
-        /// <summary>
-        /// Logs the specified error entry.
-        /// </summary>
-        /// <param name="exception">The exception.</param>
+        /// <inheritdoc />
         public void Error(Exception exception)
         {
             _logService.Log(_type, new LogEntry(LogEntryType.Error, null, exception));

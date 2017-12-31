@@ -27,6 +27,7 @@ namespace Logikfabrik.Overseer.WPF.Navigation
         /// Initializes a new instance of the <see cref="NavigationMessage" /> class.
         /// </summary>
         /// <param name="item">The item to navigate to.</param>
+        // ReSharper disable once InheritdocConsiderUsage
         public NavigationMessage(object item)
             : this(item.GetType())
         {

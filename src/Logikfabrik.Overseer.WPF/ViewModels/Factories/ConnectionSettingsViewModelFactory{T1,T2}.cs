@@ -11,16 +11,12 @@ namespace Logikfabrik.Overseer.WPF.ViewModels.Factories
     /// </summary>
     /// <typeparam name="T1">The <see cref="ConnectionSettings" /> type.</typeparam>
     /// <typeparam name="T2">The <see cref="ConnectionSettingsViewModel{T}" /> type.</typeparam>
+    // ReSharper disable once InheritdocConsiderUsage
     public class ConnectionSettingsViewModelFactory<T1, T2> : IConnectionSettingsViewModelFactory<T1, T2>
         where T1 : ConnectionSettings
         where T2 : ConnectionSettingsViewModel<T1>, new()
     {
-        /// <summary>
-        /// Creates a view model.
-        /// </summary>
-        /// <returns>
-        /// A view model.
-        /// </returns>
+        /// <inheritdoc />
         public T2 Create()
         {
             return new T2();

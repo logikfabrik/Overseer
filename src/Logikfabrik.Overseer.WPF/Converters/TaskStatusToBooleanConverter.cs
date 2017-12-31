@@ -13,6 +13,7 @@ namespace Logikfabrik.Overseer.WPF.Converters
     /// <summary>
     /// The <see cref="TaskStatusToBooleanConverter" /> class.
     /// </summary>
+    // ReSharper disable once InheritdocConsiderUsage
     public class TaskStatusToBooleanConverter : IValueConverter
     {
         /// <summary>
@@ -23,7 +24,7 @@ namespace Logikfabrik.Overseer.WPF.Converters
         /// </value>
         public TaskStatus[] TrueFor { get; set; }
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             var v = value as TaskStatus?;
@@ -36,7 +37,7 @@ namespace Logikfabrik.Overseer.WPF.Converters
             return TrueFor.Contains(v.Value);
         }
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             throw new NotSupportedException();

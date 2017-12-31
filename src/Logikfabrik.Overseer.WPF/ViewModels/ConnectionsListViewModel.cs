@@ -16,6 +16,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     /// <summary>
     /// The <see cref="ConnectionsListViewModel" /> class.
     /// </summary>
+    // ReSharper disable once InheritdocConsiderUsage
     public class ConnectionsListViewModel : PropertyChangedBase, IObserver<Notification<ConnectionSettings>[]>, IDisposable
     {
         private readonly IApp _application;
@@ -32,6 +33,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// <param name="eventAggregator">The event aggregator.</param>
         /// <param name="connectionViewModelStrategy">The connection view model strategy.</param>
         /// <param name="connectionSettingsRepository">The connection settings repository.</param>
+        // ReSharper disable once InheritdocConsiderUsage
         public ConnectionsListViewModel(
             IApp application,
             IEventAggregator eventAggregator,
@@ -74,10 +76,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// </value>
         public bool HasNoConnections => !_connections.Any();
 
-        /// <summary>
-        /// Provides the observer with new data.
-        /// </summary>
-        /// <param name="value">The current notification information.</param>
+        /// <inheritdoc />
         public void OnNext(Notification<ConnectionSettings>[] value)
         {
             if (_isDisposed)
@@ -127,26 +126,19 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             _eventAggregator.PublishOnUIThread(message);
         }
 
-        /// <summary>
-        /// Notifies the observer that the provider has experienced an error condition.
-        /// </summary>
-        /// <param name="error">An object that provides additional information about the error.</param>
+        /// <inheritdoc />
         public void OnError(Exception error)
         {
             // Do nothing, even if disposed (pattern practice).
         }
 
-        /// <summary>
-        /// Notifies the observer that the provider has finished sending push-based notifications.
-        /// </summary>
+        /// <inheritdoc />
         public void OnCompleted()
         {
             // Do nothing, even if disposed (pattern practice).
         }
 
-        /// <summary>
-        /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
-        /// </summary>
+        /// <inheritdoc />
         public void Dispose()
         {
             Dispose(true);

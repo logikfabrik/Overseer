@@ -61,7 +61,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// <inheritdoc />
         public bool KeepAlive { get; set; } = false;
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public void TryClose(bool? dialogResult = null)
         {
             _platformProvider.GetViewCloseAction(this, Views.Values, dialogResult).OnUIThread();

@@ -12,9 +12,10 @@ namespace Logikfabrik.Overseer.WPF.Converters
     /// <summary>
     /// The <see cref="EditConnectionViewExceptionToLocalizedStringConverter" /> class.
     /// </summary>
+    // ReSharper disable once InheritdocConsiderUsage
     public class EditConnectionViewExceptionToLocalizedStringConverter : IValueConverter
     {
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             var v = value as Exception;
@@ -22,7 +23,7 @@ namespace Logikfabrik.Overseer.WPF.Converters
             return EditConnectionViewErrorLocalizer.Localize(v);
         }
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             throw new NotSupportedException();

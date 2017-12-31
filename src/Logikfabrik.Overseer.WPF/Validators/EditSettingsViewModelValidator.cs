@@ -12,6 +12,7 @@ namespace Logikfabrik.Overseer.WPF.Validators
     /// <summary>
     /// The <see cref="EditSettingsViewModelValidator" /> class. Validator for application wide settings.
     /// </summary>
+    // ReSharper disable once InheritdocConsiderUsage
     public class EditSettingsViewModelValidator : AbstractValidator<EditSettingsViewModel>
     {
         /// <summary>

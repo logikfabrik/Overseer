@@ -31,19 +31,19 @@ namespace Logikfabrik.Overseer
             Comment = comment;
         }
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public string Id { get; }
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public string ShortId { get; }
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public DateTime? Changed { get; }
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public string ChangedBy { get; }
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public string Comment { get; }
 
         private static string GetShortId(string id)

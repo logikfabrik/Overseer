@@ -11,48 +11,49 @@ namespace Logikfabrik.Overseer.WPF.ViewModels.DesignTime
     /// <summary>
     /// The <see cref="ConnectionViewModel" /> class.
     /// </summary>
+    // ReSharper disable once InheritdocConsiderUsage
     public class ConnectionViewModel : IConnectionViewModel
     {
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public Guid SettingsId { get; } = Guid.NewGuid();
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public string SettingsName { get; set; } = "My Connection";
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public bool IsBusy { get; } = false;
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public bool IsViewable { get; } = true;
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public bool IsEditable { get; } = true;
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public bool IsErrored { get; } = false;
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public ICollectionView FilteredProjects { get; } = new CollectionView(new[] { new ProjectViewModel(), new ProjectViewModel(), new ProjectViewModel() });
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public string Filter { get; set; }
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public bool HasProjects { get; } = true;
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public bool HasNoProjects { get; } = false;
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public string DisplayName { get; set; }
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public object Parent { get; set; }
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public bool KeepAlive { get; set; }
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public void Edit()
         {
             throw new NotImplementedException();

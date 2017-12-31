@@ -34,7 +34,7 @@ namespace Logikfabrik.Overseer.Settings
             _settings = _settingsStore.Load().ToDictionary(settings => settings.Id, settings => settings);
         }
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public void Add(ConnectionSettings settings)
         {
             this.ThrowIfDisposed(_isDisposed);
@@ -51,7 +51,7 @@ namespace Logikfabrik.Overseer.Settings
             Next(NotificationType.Added, clone.Clone());
         }
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public void Update(ConnectionSettings settings)
         {
             this.ThrowIfDisposed(_isDisposed);
@@ -68,7 +68,7 @@ namespace Logikfabrik.Overseer.Settings
             Next(NotificationType.Updated, clone.Clone());
         }
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public void Remove(Guid id)
         {
             this.ThrowIfDisposed(_isDisposed);
@@ -85,14 +85,14 @@ namespace Logikfabrik.Overseer.Settings
             Next(NotificationType.Removed, clone);
         }
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public void Dispose()
         {
             Dispose(true);
             GC.SuppressFinalize(this);
         }
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public ConnectionSettings Get(Guid id)
         {
             this.ThrowIfDisposed(_isDisposed);

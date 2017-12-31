@@ -21,6 +21,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     /// The <see cref="ConnectionViewModel{T}" /> class. Base view model for CI connections.
     /// </summary>
     /// <typeparam name="T">The <see cref="ConnectionSettings" /> type.</typeparam>
+    // ReSharper disable once InheritdocConsiderUsage
     public class ConnectionViewModel<T> : ViewModel, IConnectionViewModel
         where T : ConnectionSettings
     {
@@ -50,6 +51,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// <param name="removeConnectionFactory">The remove connection factory.</param>
         /// <param name="editConnectionFactory">The edit connection factory.</param>
         /// <param name="settings">The settings.</param>
+        // ReSharper disable once InheritdocConsiderUsage
         public ConnectionViewModel(
             IApp application,
             IPlatformProvider platformProvider,
@@ -100,10 +102,10 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             FilteredProjects = _filteredProjects.View;
         }
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public Guid SettingsId => Settings.Id;
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public string SettingsName
         {
             get
@@ -118,7 +120,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             }
         }
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public bool IsBusy
         {
             get
@@ -135,13 +137,13 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             }
         }
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public bool IsViewable => !IsErrored && !IsBusy && HasProjects;
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public bool IsEditable => IsErrored || !IsBusy;
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public bool IsErrored
         {
             get
@@ -158,10 +160,10 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             }
         }
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public ICollectionView FilteredProjects { get; }
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public string Filter
         {
             get
@@ -180,10 +182,10 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             }
         }
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public bool HasProjects => !IsBusy && _projects.Any();
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public bool HasNoProjects => !IsBusy && !_projects.Any();
 
         /// <summary>
@@ -194,7 +196,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// </value>
         protected T Settings { get; }
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public void Edit()
         {
             var item = _editConnectionFactory.Create(Settings);
@@ -204,7 +206,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             _eventAggregator.PublishOnUIThread(message);
         }
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public void Remove()
         {
             var item = _removeConnectionFactory.Create(this);
@@ -214,7 +216,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             _eventAggregator.PublishOnUIThread(message);
         }
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public void View()
         {
             var message = new NavigationMessage(this);

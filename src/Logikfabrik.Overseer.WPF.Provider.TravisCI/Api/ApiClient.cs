@@ -32,7 +32,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.TravisCI.Api
             _httpClient = new Lazy<HttpClient>(() => GetHttpClient(new Uri(settings.Url), settings.Token));
         }
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public async Task<Repositories> GetRepositoriesAsync(int limit, int offset, CancellationToken cancellationToken)
         {
             this.ThrowIfDisposed(_isDisposed);
@@ -52,7 +52,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.TravisCI.Api
             }
         }
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public async Task<Builds> GetBuildsAsync(string repositoryId, int limit, int offset, CancellationToken cancellationToken)
         {
             this.ThrowIfDisposed(_isDisposed);

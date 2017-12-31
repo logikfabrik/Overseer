@@ -14,6 +14,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     /// </summary>
     /// <typeparam name="T1">The <see cref="ConnectionSettings" /> type.</typeparam>
     /// <typeparam name="T2">The <see cref="ConnectionSettingsViewModel{T}" /> type.</typeparam>
+    // ReSharper disable once InheritdocConsiderUsage
     public class BuildProviderViewModel<T1, T2> : PropertyChangedBase, IBuildProviderViewModel
         where T1 : ConnectionSettings
         where T2 : ConnectionSettingsViewModel<T1>, new()
@@ -25,6 +26,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// </summary>
         /// <param name="eventAggregator">The event aggregator.</param>
         /// <param name="providerName">The provider name.</param>
+        // ReSharper disable once InheritdocConsiderUsage
         public BuildProviderViewModel(IEventAggregator eventAggregator, string providerName)
         {
             Ensure.That(eventAggregator).IsNotNull();

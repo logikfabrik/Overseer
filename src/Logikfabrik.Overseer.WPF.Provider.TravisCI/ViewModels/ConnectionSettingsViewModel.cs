@@ -72,7 +72,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.TravisCI.ViewModels
             }
         }
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public override ConnectionSettings GetSettings()
         {
             var projects = TrackedProjects?.Projects?.Where(project => project.Track).ToArray() ?? new TrackedProjectViewModel[] { };
@@ -87,7 +87,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.TravisCI.ViewModels
             };
         }
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public override void UpdateSettings(ConnectionSettings current)
         {
             current.Name = Name;

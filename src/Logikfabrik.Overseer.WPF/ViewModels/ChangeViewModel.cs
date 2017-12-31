@@ -11,12 +11,14 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     /// <summary>
     /// The <see cref="ChangeViewModel" /> class.
     /// </summary>
+    // ReSharper disable once InheritdocConsiderUsage
     public class ChangeViewModel : PropertyChangedBase, IChangeViewModel
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ChangeViewModel" /> class.
         /// </summary>
         /// <param name="change">The change.</param>
+        // ReSharper disable once InheritdocConsiderUsage
         public ChangeViewModel(IChange change)
         {
             Ensure.That(change).IsNotNull();
@@ -29,22 +31,22 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             ShowComment = !string.IsNullOrWhiteSpace(change.Comment);
         }
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public string Id { get; }
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public string IdOrShortId { get; }
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public DateTime? Changed { get; }
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public string ChangedBy { get; }
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public string Comment { get; }
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public bool ShowComment { get; }
     }
 }

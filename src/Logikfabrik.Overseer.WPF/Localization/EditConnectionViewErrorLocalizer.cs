@@ -29,22 +29,21 @@ namespace Logikfabrik.Overseer.WPF.Localization
 
             var httpException = innerException as HttpException;
 
-            if (httpException != null)
+            if (httpException == null)
             {
-                if ((int)httpException.StatusCode >= 400 && (int)httpException.StatusCode <= 499)
-                {
-                    return Properties.Resources.EditConnection_Error_HTTP4xx;
-                }
-
-                if ((int)httpException.StatusCode >= 500 && (int)httpException.StatusCode <= 599)
-                {
-                    return Properties.Resources.EditConnection_Error_HTTP5xx;
-                }
+                return innerException is SocketException
+                    ? Properties.Resources.EditConnection_Error_Network
+                    : Properties.Resources.EditConnection_Error_Standard;
             }
 
-            if (innerException is SocketException)
+            if ((int)httpException.StatusCode >= 400 && (int)httpException.StatusCode <= 499)
             {
-                return Properties.Resources.EditConnection_Error_Network;
+                return Properties.Resources.EditConnection_Error_HTTP4xx;
+            }
+
+            if ((int)httpException.StatusCode >= 500 && (int)httpException.StatusCode <= 599)
+            {
+                return Properties.Resources.EditConnection_Error_HTTP5xx;
             }
 
             return Properties.Resources.EditConnection_Error_Standard;
