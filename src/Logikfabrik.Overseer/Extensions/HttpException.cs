@@ -15,7 +15,7 @@ namespace Logikfabrik.Overseer.Extensions
     [Serializable]
 
     // ReSharper disable once InheritdocConsiderUsage
-    public class HttpException : HttpRequestException
+    public sealed class HttpException : HttpRequestException
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="HttpException" /> class.

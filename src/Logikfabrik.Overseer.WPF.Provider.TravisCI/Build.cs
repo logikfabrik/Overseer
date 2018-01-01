@@ -71,6 +71,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.TravisCI
 
         private static BuildStatus? GetStatus(Api.Models.Build build)
         {
+            // TODO: Create enumeration.
             switch (build.State)
             {
                 case "created":
@@ -84,6 +85,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.TravisCI
                     return BuildStatus.Succeeded;
 
                 case "failed":
+                case "errored":
                     return BuildStatus.Failed;
 
                 default:
