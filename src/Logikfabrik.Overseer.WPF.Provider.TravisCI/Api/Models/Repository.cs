@@ -52,8 +52,20 @@ namespace Logikfabrik.Overseer.WPF.Provider.TravisCI.Api.Models
         [JsonProperty(PropertyName = "github_language")]
         public string GitHubLanguage { get; set; }
 
+        /// <summary>
+        /// Gets or sets a value indicating whether this <see cref="Repository" /> is active.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if active; otherwise, <c>false</c>.
+        /// </value>
         public bool Active { get; set; }
 
+        /// <summary>
+        /// Gets or sets a value indicating whether this <see cref="Repository" /> is private.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if private; otherwise, <c>false</c>.
+        /// </value>
         public bool Private { get; set; }
 
         /// <summary>
@@ -73,6 +85,12 @@ namespace Logikfabrik.Overseer.WPF.Provider.TravisCI.Api.Models
         [JsonProperty(PropertyName = "default_branch")]
         public Branch DefaultBranch { get; set; }
 
+        /// <summary>
+        /// Gets or sets a value indicating whether this <see cref="Repository" /> is starred.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if starred; otherwise, <c>false</c>.
+        /// </value>
         public bool Starred { get; set; }
 
         /// <summary>

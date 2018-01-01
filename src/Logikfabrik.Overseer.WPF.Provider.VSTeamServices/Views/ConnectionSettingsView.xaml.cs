@@ -7,11 +7,13 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices.Views
     /// <summary>
     /// The <see cref="ConnectionSettingsView" /> class.
     /// </summary>
+    // ReSharper disable once InheritdocConsiderUsage
     public partial class ConnectionSettingsView
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ConnectionSettingsView" /> class.
         /// </summary>
+        // ReSharper disable once InheritdocConsiderUsage
         public ConnectionSettingsView()
         {
             InitializeComponent();

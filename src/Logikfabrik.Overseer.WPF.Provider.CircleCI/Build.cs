@@ -11,6 +11,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.CircleCI
     /// <summary>
     /// The <see cref="Build" /> class.
     /// </summary>
+    // ReSharper disable once InheritdocConsiderUsage
     public class Build : IBuild
     {
         /// <summary>
@@ -36,84 +37,34 @@ namespace Logikfabrik.Overseer.WPF.Provider.CircleCI
             };
         }
 
-        /// <summary>
-        /// Gets the identifier.
-        /// </summary>
-        /// <value>
-        /// The identifier.
-        /// </value>
+        /// <inheritdoc />
         public string Id { get; }
 
-        /// <summary>
-        /// Gets the version.
-        /// </summary>
-        /// <value>
-        /// The version.
-        /// </value>
+        /// <inheritdoc />
         public string Version { get; }
 
-        /// <summary>
-        /// Gets the number.
-        /// </summary>
-        /// <value>
-        /// The number.
-        /// </value>
+        /// <inheritdoc />
         public string Number { get; }
 
-        /// <summary>
-        /// Gets the branch.
-        /// </summary>
-        /// <value>
-        /// The branch.
-        /// </value>
+        /// <inheritdoc />
         public string Branch { get; }
 
-        /// <summary>
-        /// Gets the start time.
-        /// </summary>
-        /// <value>
-        /// The start time.
-        /// </value>
+        /// <inheritdoc />
         public DateTime? StartTime { get; }
 
-        /// <summary>
-        /// Gets the end time.
-        /// </summary>
-        /// <value>
-        /// The end time.
-        /// </value>
+        /// <inheritdoc />
         public DateTime? EndTime { get; }
 
-        /// <summary>
-        /// Gets the status.
-        /// </summary>
-        /// <value>
-        /// The status.
-        /// </value>
+        /// <inheritdoc />
         public BuildStatus? Status { get; }
 
-        /// <summary>
-        /// Gets the name of whoever requested the build.
-        /// </summary>
-        /// <value>
-        /// The name of whoever requested the build.
-        /// </value>
+        /// <inheritdoc />
         public string RequestedBy { get; }
 
-        /// <summary>
-        /// Gets the web URL.
-        /// </summary>
-        /// <value>
-        /// The web URL.
-        /// </value>
+        /// <inheritdoc />
         public Uri WebUrl { get; }
 
-        /// <summary>
-        /// Gets the changes.
-        /// </summary>
-        /// <value>
-        /// The changes.
-        /// </value>
+        /// <inheritdoc />
         public IEnumerable<IChange> Changes { get; }
 
         private static BuildStatus? GetStatus(Api.Models.Build build)

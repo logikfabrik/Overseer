@@ -9,6 +9,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.TravisCI
     /// <summary>
     /// The <see cref="Project" /> class.
     /// </summary>
+    // ReSharper disable once InheritdocConsiderUsage
     public class Project : IProject
     {
         /// <summary>

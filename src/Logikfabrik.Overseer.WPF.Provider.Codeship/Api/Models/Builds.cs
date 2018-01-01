@@ -10,6 +10,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.Codeship.Api.Models
     /// <summary>
     /// The <see cref="Builds" /> class.
     /// </summary>
+    // ReSharper disable once InheritdocConsiderUsage
     public class Builds : IPageable
     {
         /// <summary>
@@ -21,29 +22,14 @@ namespace Logikfabrik.Overseer.WPF.Provider.Codeship.Api.Models
         [JsonProperty(PropertyName = "builds")]
         public IEnumerable<Build> Items { get; set; }
 
-        /// <summary>
-        /// Gets or sets the total items.
-        /// </summary>
-        /// <value>
-        /// The total items.
-        /// </value>
+        /// <inheritdoc />
         public int Total { get; set; }
 
-        /// <summary>
-        /// Gets or sets the items per page.
-        /// </summary>
-        /// <value>
-        /// The items per page.
-        /// </value>
+        /// <inheritdoc />
         [JsonProperty(PropertyName = "per_page")]
         public int PerPage { get; set; }
 
-        /// <summary>
-        /// Gets or sets the page.
-        /// </summary>
-        /// <value>
-        /// The page.
-        /// </value>
+        /// <inheritdoc />
         public int Page { get; set; }
     }
 }

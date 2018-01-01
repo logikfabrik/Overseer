@@ -11,6 +11,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.Codeship.ViewModels
     /// <summary>
     /// The <see cref="ConnectionSettingsViewModel" /> class.
     /// </summary>
+    // ReSharper disable once InheritdocConsiderUsage
     public class ConnectionSettingsViewModel : ConnectionSettingsViewModel<ConnectionSettings>
     {
         private string _username;
@@ -19,6 +20,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.Codeship.ViewModels
         /// <summary>
         /// Initializes a new instance of the <see cref="ConnectionSettingsViewModel" /> class.
         /// </summary>
+        // ReSharper disable once InheritdocConsiderUsage
         public ConnectionSettingsViewModel()
         {
             Validator = new ConnectionSettingsViewModelValidator();
@@ -70,10 +72,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.Codeship.ViewModels
             }
         }
 
-        /// <summary>
-        /// Gets the settings.
-        /// </summary>
-        /// <returns>The settings.</returns>
+        /// <inheritdoc />
         public override ConnectionSettings GetSettings()
         {
             var projects = TrackedProjects?.Projects?.Where(project => project.Track).ToArray() ?? new TrackedProjectViewModel[] { };
@@ -88,10 +87,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.Codeship.ViewModels
             };
         }
 
-        /// <summary>
-        /// Updates the settings.
-        /// </summary>
-        /// <param name="current">The current settings.</param>
+        /// <inheritdoc />
         public override void UpdateSettings(ConnectionSettings current)
         {
             current.Name = Name;

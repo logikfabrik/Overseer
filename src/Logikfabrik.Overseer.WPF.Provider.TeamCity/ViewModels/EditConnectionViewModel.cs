@@ -13,6 +13,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity.ViewModels
     /// <summary>
     /// The <see cref="EditConnectionViewModel" /> class.
     /// </summary>
+    // ReSharper disable once InheritdocConsiderUsage
     public class EditConnectionViewModel : WPF.ViewModels.EditConnectionViewModel<TeamCity.ConnectionSettings>
     {
         /// <summary>
@@ -26,6 +27,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity.ViewModels
         /// <param name="trackedProjectFactory">The tracked project factory.</param>
         /// <param name="trackedProjectsFactory">The tracked projects factory.</param>
         /// <param name="currentSettings">The current settings.</param>
+        // ReSharper disable once InheritdocConsiderUsage
         public EditConnectionViewModel(
             IPlatformProvider platformProvider,
             ILogService logService,

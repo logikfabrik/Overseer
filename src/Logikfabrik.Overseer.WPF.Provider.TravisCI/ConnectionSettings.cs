@@ -12,6 +12,8 @@ namespace Logikfabrik.Overseer.WPF.Provider.TravisCI
     /// The <see cref="ConnectionSettings" /> class.
     /// </summary>
     [XmlType("TravisCI")]
+
+    // ReSharper disable once InheritdocConsiderUsage
     public class ConnectionSettings : Settings.ConnectionSettings
     {
         private string _token;

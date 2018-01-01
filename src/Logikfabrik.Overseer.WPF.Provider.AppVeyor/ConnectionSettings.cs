@@ -12,6 +12,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor
     /// The <see cref="ConnectionSettings" /> class.
     /// </summary>
     [XmlType("AppVeyor")]
+
     // ReSharper disable once InheritdocConsiderUsage
     public class ConnectionSettings : Settings.ConnectionSettings
     {

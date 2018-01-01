@@ -21,6 +21,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.CircleCI.Api
     /// <summary>
     /// The <see cref="ApiClient" /> class.
     /// </summary>
+    // ReSharper disable once InheritdocConsiderUsage
     public class ApiClient : IApiClient, IDisposable
     {
         private readonly JsonMediaTypeFormatter _mediaTypeFormatter;
@@ -54,11 +55,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.CircleCI.Api
             _httpClient = new Lazy<HttpClient>(() => GetHttpClient(baseUri, settings.Token));
         }
 
-        /// <summary>
-        /// Gets the projects.
-        /// </summary>
-        /// <param name="cancellationToken">A cancellation token.</param>
-        /// <returns>A task.</returns>
+        /// <inheritdoc />
         public async Task<IEnumerable<Project>> GetProjectsAsync(CancellationToken cancellationToken)
         {
             this.ThrowIfDisposed(_isDisposed);
@@ -75,16 +72,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.CircleCI.Api
             }
         }
 
-        /// <summary>
-        /// Gets the build types.
-        /// </summary>
-        /// <param name="projectVcsType">The project VCS type.</param>
-        /// <param name="projectUsername">The project username.</param>
-        /// <param name="projectName">The project name.</param>
-        /// <param name="offset">The offset count.</param>
-        /// <param name="limit">The limit count.</param>
-        /// <param name="cancellationToken">A cancellation token.</param>
-        /// <returns>A task.</returns>
+        /// <inheritdoc />
         public async Task<IEnumerable<Build>> GetBuildsAsync(string projectVcsType, string projectUsername, string projectName, int offset, int limit, CancellationToken cancellationToken)
         {
             this.ThrowIfDisposed(_isDisposed);
@@ -107,9 +95,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.CircleCI.Api
             }
         }
 
-        /// <summary>
-        /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
-        /// </summary>
+        /// <inheritdoc />
         public void Dispose()
         {
             Dispose(true);

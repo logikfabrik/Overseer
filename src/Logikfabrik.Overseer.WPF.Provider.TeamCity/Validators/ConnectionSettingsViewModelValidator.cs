@@ -11,11 +11,13 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity.Validators
     /// <summary>
     /// The <see cref="ConnectionSettingsViewModelValidator" /> class.
     /// </summary>
+    // ReSharper disable once InheritdocConsiderUsage
     public class ConnectionSettingsViewModelValidator : WPF.Validators.ConnectionSettingsViewModelValidator<ConnectionSettingsViewModel, ConnectionSettings>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ConnectionSettingsViewModelValidator" /> class.
         /// </summary>
+        // ReSharper disable once InheritdocConsiderUsage
         public ConnectionSettingsViewModelValidator()
         {
             RuleFor(viewModel => viewModel.Url)

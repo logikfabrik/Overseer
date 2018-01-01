@@ -16,6 +16,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.TravisCI.Api
     /// <summary>
     /// The <see cref="ApiClient" /> class.
     /// </summary>
+    // ReSharper disable once InheritdocConsiderUsage
     public class ApiClient : IApiClient, IDisposable
     {
         private Lazy<HttpClient> _httpClient;

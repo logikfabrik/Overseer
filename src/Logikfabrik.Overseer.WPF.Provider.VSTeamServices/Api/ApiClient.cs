@@ -17,6 +17,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices.Api
     /// <summary>
     /// The <see cref="ApiClient" /> class.
     /// </summary>
+    // ReSharper disable once InheritdocConsiderUsage
     public class ApiClient : IApiClient, IDisposable
     {
         private Lazy<HttpClient> _httpClient;
@@ -35,13 +36,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices.Api
             _httpClient = new Lazy<HttpClient>(() => GetHttpClient(baseUri, settings.Token));
         }
 
-        /// <summary>
-        /// Gets the projects.
-        /// </summary>
-        /// <param name="skip">The skip count.</param>
-        /// <param name="take">The take count.</param>
-        /// <param name="cancellationToken">A cancellation token.</param>
-        /// <returns>A task.</returns>
+        /// <inheritdoc />
         public async Task<Projects> GetProjectsAsync(int skip, int take, CancellationToken cancellationToken)
         {
             this.ThrowIfDisposed(_isDisposed);
@@ -61,14 +56,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices.Api
             }
         }
 
-        /// <summary>
-        /// Gets the builds.
-        /// </summary>
-        /// <param name="projectId">The project identifier.</param>
-        /// <param name="skip">The skip count.</param>
-        /// <param name="take">The take count.</param>
-        /// <param name="cancellationToken">A cancellation token.</param>
-        /// <returns>A task.</returns>
+        /// <inheritdoc />
         public async Task<Builds> GetBuildsAsync(string projectId, int skip, int take, CancellationToken cancellationToken)
         {
             this.ThrowIfDisposed(_isDisposed);
@@ -89,13 +77,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices.Api
             }
         }
 
-        /// <summary>
-        /// Gets the changes.
-        /// </summary>
-        /// <param name="projectId">The project identifier.</param>
-        /// <param name="buildId">The build identifier.</param>
-        /// <param name="cancellationToken">A cancellation token.</param>
-        /// <returns>A task.</returns>
+        /// <inheritdoc />
         public async Task<Changes> GetChangesAsync(string projectId, string buildId, CancellationToken cancellationToken)
         {
             this.ThrowIfDisposed(_isDisposed);
@@ -115,9 +97,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices.Api
             }
         }
 
-        /// <summary>
-        /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
-        /// </summary>
+        /// <inheritdoc />
         public void Dispose()
         {
             Dispose(true);

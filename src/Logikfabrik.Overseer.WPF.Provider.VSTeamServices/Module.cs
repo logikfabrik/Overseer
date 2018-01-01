@@ -11,11 +11,10 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices
     /// <summary>
     /// The <see cref="Module" /> class.
     /// </summary>
+    // ReSharper disable once InheritdocConsiderUsage
     public class Module : NinjectModule
     {
-        /// <summary>
-        /// Loads the module into the kernel.
-        /// </summary>
+        /// <inheritdoc />
         public override void Load()
         {
             Bind<Api.IApiClient>().To<Api.ApiClient>();

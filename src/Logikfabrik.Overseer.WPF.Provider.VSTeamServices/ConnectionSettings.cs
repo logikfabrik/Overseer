@@ -12,18 +12,15 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices
     /// The <see cref="ConnectionSettings" /> class.
     /// </summary>
     [XmlType("VSTeamServices")]
+
+    // ReSharper disable once InheritdocConsiderUsage
     public class ConnectionSettings : Settings.ConnectionSettings
     {
         private string _version;
         private string _token;
         private string _url;
 
-        /// <summary>
-        /// Gets the provider type.
-        /// </summary>
-        /// <value>
-        /// The provider type.
-        /// </value>
+        /// <inheritdoc />
         public override Type ProviderType { get; } = typeof(BuildProvider);
 
         /// <summary>

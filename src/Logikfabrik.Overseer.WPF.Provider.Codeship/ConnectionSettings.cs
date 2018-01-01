@@ -12,6 +12,8 @@ namespace Logikfabrik.Overseer.WPF.Provider.Codeship
     /// The <see cref="ConnectionSettings" /> class.
     /// </summary>
     [XmlType("Codeship")]
+
+    // ReSharper disable once InheritdocConsiderUsage
     public class ConnectionSettings : Settings.ConnectionSettings
     {
         private string _username;

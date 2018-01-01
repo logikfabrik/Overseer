@@ -13,6 +13,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.TravisCI
     /// <summary>
     /// The <see cref="BuildProvider" /> class.
     /// </summary>
+    // ReSharper disable once InheritdocConsiderUsage
     public class BuildProvider : BuildProvider<ConnectionSettings>
     {
         private readonly Api.IApiClient _apiClient;
@@ -22,6 +23,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.TravisCI
         /// </summary>
         /// <param name="settings">The settings.</param>
         /// <param name="apiClient">The API client.</param>
+        // ReSharper disable once InheritdocConsiderUsage
         public BuildProvider(ConnectionSettings settings, Api.IApiClient apiClient)
             : base(settings)
         {

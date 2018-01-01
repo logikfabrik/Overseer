@@ -21,6 +21,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity.Api
     /// <summary>
     /// The <see cref="ApiClient" /> class.
     /// </summary>
+    // ReSharper disable once InheritdocConsiderUsage
     public class ApiClient : IApiClient, IDisposable
     {
         private readonly JsonMediaTypeFormatter _mediaTypeFormatter;

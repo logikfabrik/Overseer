@@ -9,12 +9,14 @@ namespace Logikfabrik.Overseer.WPF.Provider.TravisCI.ViewModels
     /// <summary>
     /// The <see cref="BuildProviderViewModel" /> class.
     /// </summary>
+    // ReSharper disable once InheritdocConsiderUsage
     public class BuildProviderViewModel : WPF.ViewModels.BuildProviderViewModel<ConnectionSettings, ConnectionSettingsViewModel>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="BuildProviderViewModel" /> class.
         /// </summary>
         /// <param name="eventAggregator">The event aggregator.</param>
+        // ReSharper disable once InheritdocConsiderUsage
         public BuildProviderViewModel(IEventAggregator eventAggregator)
             : base(eventAggregator, "Travis CI")
         {

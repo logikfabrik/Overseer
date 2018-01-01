@@ -11,6 +11,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.Codeship
     /// <summary>
     /// The <see cref="Build" /> class.
     /// </summary>
+    // ReSharper disable once InheritdocConsiderUsage
     public class Build : IBuild
     {
         /// <summary>

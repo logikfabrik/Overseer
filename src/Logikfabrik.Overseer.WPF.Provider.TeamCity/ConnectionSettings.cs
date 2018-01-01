@@ -12,17 +12,14 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity
     /// The <see cref="ConnectionSettings" /> class.
     /// </summary>
     [XmlType("TeamCity")]
+
+    // ReSharper disable once InheritdocConsiderUsage
     public class ConnectionSettings : Settings.ConnectionSettings
     {
         private string _url;
         private string _version;
 
-        /// <summary>
-        /// Gets the provider type.
-        /// </summary>
-        /// <value>
-        /// The provider type.
-        /// </value>
+        /// <inheritdoc />
         public override Type ProviderType { get; } = typeof(BuildProvider);
 
         /// <summary>

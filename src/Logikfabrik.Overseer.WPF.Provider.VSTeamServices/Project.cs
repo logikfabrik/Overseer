@@ -9,6 +9,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices
     /// <summary>
     /// The <see cref="Project" /> class.
     /// </summary>
+    // ReSharper disable once InheritdocConsiderUsage
     public class Project : IProject
     {
         /// <summary>
@@ -23,20 +24,10 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices
             Name = project.Name;
         }
 
-        /// <summary>
-        /// Gets the identifier.
-        /// </summary>
-        /// <value>
-        /// The identifier.
-        /// </value>
+        /// <inheritdoc />
         public string Id { get; }
 
-        /// <summary>
-        /// Gets the name.
-        /// </summary>
-        /// <value>
-        /// The name.
-        /// </value>
+        /// <inheritdoc />
         public string Name { get; }
     }
 }

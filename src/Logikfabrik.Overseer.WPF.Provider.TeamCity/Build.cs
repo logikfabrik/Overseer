@@ -12,6 +12,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity
     /// <summary>
     /// The <see cref="Build" /> class.
     /// </summary>
+    // ReSharper disable once InheritdocConsiderUsage
     public class Build : IBuild
     {
         /// <summary>
