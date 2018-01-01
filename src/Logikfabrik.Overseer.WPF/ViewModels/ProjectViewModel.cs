@@ -18,6 +18,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     /// <summary>
     /// The <see cref="ProjectViewModel" /> class. View model for CI projects.
     /// </summary>
+    // ReSharper disable once InheritdocConsiderUsage
     public class ProjectViewModel : ViewModel, IProjectViewModel
     {
         private readonly IApp _application;
@@ -35,17 +36,18 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// <summary>
         /// Initializes a new instance of the <see cref="ProjectViewModel" /> class.
         /// </summary>
-        /// <param name="application">The application.</param>
         /// <param name="platformProvider">The platform provider.</param>
+        /// <param name="application">The application.</param>
         /// <param name="eventAggregator">The event aggregator.</param>
         /// <param name="buildTracker">The build tracker.</param>
         /// <param name="buildFactory">The build factory.</param>
         /// <param name="settingsId">The settings identifier.</param>
         /// <param name="projectId">The project identifier.</param>
         /// <param name="projectName">The project name.</param>
+        // ReSharper disable once InheritdocConsiderUsage
         public ProjectViewModel(
-            IApp application,
             IPlatformProvider platformProvider,
+            IApp application,
             IEventAggregator eventAggregator,
             IBuildTracker buildTracker,
             IBuildViewModelFactory buildFactory,

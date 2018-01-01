@@ -7,6 +7,7 @@ namespace Logikfabrik.Overseer.WPF.Client
     /// <summary>
     /// The <see cref="App" /> class.
     /// </summary>
+    // ReSharper disable once InheritdocConsiderUsage
     public partial class App : IApp
     {
     }

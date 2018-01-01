@@ -7,11 +7,13 @@ namespace Logikfabrik.Overseer.WPF.Client.Views
     /// <summary>
     /// The <see cref="BuildNotificationView" /> class.
     /// </summary>
+    // ReSharper disable once InheritdocConsiderUsage
     public partial class BuildNotificationView
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="BuildNotificationView" /> class.
         /// </summary>
+        // ReSharper disable once InheritdocConsiderUsage
         public BuildNotificationView()
         {
             InitializeComponent();

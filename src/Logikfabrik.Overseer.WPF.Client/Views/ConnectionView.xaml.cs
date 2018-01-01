@@ -7,11 +7,13 @@ namespace Logikfabrik.Overseer.WPF.Client.Views
     /// <summary>
     /// The <see cref="ConnectionView" /> class.
     /// </summary>
+    // ReSharper disable once InheritdocConsiderUsage
     public partial class ConnectionView
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ConnectionView" /> class.
         /// </summary>
+        // ReSharper disable once InheritdocConsiderUsage
         public ConnectionView()
         {
             InitializeComponent();

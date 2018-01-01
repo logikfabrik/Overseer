@@ -10,6 +10,7 @@ namespace Logikfabrik.Overseer.WPF.Client
     /// <summary>
     /// The <see cref="MouseManager" /> class.
     /// </summary>
+    // ReSharper disable once InheritdocConsiderUsage
     public class MouseManager : IMouseManager
     {
         private readonly InputManager _inputManager;

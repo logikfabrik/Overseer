@@ -14,6 +14,7 @@ namespace Logikfabrik.Overseer.WPF.Client.ViewModels
     /// <summary>
     /// The <see cref="MenuViewModel" /> class.
     /// </summary>
+    // ReSharper disable once InheritdocConsiderUsage
     public class MenuViewModel : PropertyChangedBase, IDisposable
     {
         private readonly IEventAggregator _eventAggregator;
@@ -27,6 +28,7 @@ namespace Logikfabrik.Overseer.WPF.Client.ViewModels
         /// <param name="eventAggregator">The event aggregator.</param>
         /// <param name="mouseManager">The mouse manager.</param>
         /// <param name="connectionsListViewModel">The connections list view model.</param>
+        // ReSharper disable once InheritdocConsiderUsage
         public MenuViewModel(IEventAggregator eventAggregator, IMouseManager mouseManager, ConnectionsListViewModel connectionsListViewModel)
         {
             Ensure.That(eventAggregator).IsNotNull();
@@ -125,9 +127,7 @@ namespace Logikfabrik.Overseer.WPF.Client.ViewModels
             GoTo(typeof(AboutViewModel));
         }
 
-        /// <summary>
-        /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
-        /// </summary>
+        /// <inheritdoc />
         public void Dispose()
         {
             Dispose(true);

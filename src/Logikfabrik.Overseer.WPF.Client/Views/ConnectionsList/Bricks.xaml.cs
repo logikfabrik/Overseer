@@ -7,11 +7,13 @@ namespace Logikfabrik.Overseer.WPF.Client.Views.ConnectionsList
     /// <summary>
     /// The <see cref="Bricks" /> class.
     /// </summary>
+    // ReSharper disable once InheritdocConsiderUsage
     public partial class Bricks
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Bricks" /> class.
         /// </summary>
+        // ReSharper disable once InheritdocConsiderUsage
         public Bricks()
         {
             InitializeComponent();

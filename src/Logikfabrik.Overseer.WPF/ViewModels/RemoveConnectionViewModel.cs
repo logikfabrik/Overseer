@@ -12,6 +12,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     /// <summary>
     /// The <see cref="RemoveConnectionViewModel" /> class.
     /// </summary>
+    // ReSharper disable once InheritdocConsiderUsage
     public class RemoveConnectionViewModel : ViewModel
     {
         private readonly IEventAggregator _eventAggregator;
@@ -25,6 +26,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// <param name="eventAggregator">The event aggregator.</param>
         /// <param name="settingsRepository">The settings repository.</param>
         /// <param name="connectionViewModel">The connection view model.</param>
+        // ReSharper disable once InheritdocConsiderUsage
         public RemoveConnectionViewModel(IPlatformProvider platformProvider, IEventAggregator eventAggregator, IConnectionSettingsRepository settingsRepository, IConnectionViewModel connectionViewModel)
             : base(platformProvider)
         {

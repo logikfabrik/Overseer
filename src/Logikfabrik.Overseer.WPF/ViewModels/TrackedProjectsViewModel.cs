@@ -15,6 +15,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     /// <summary>
     /// The <see cref="TrackedProjectsViewModel" /> class.
     /// </summary>
+    // ReSharper disable once InheritdocConsiderUsage
     public class TrackedProjectsViewModel : PropertyChangedBase
     {
         // ReSharper disable once PrivateFieldCanBeConvertedToLocalVariable
@@ -27,6 +28,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// Initializes a new instance of the <see cref="TrackedProjectsViewModel" /> class.
         /// </summary>
         /// <param name="projects">The projects.</param>
+        // ReSharper disable once InheritdocConsiderUsage
         public TrackedProjectsViewModel(IEnumerable<TrackedProjectViewModel> projects)
         {
             Ensure.That(projects).IsNotNull();

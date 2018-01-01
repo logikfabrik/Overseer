@@ -10,6 +10,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     /// <summary>
     /// The <see cref="IConnectionViewModel" /> interface.
     /// </summary>
+    // ReSharper disable once InheritdocConsiderUsage
     public interface IConnectionViewModel : IViewModel
     {
         /// <summary>

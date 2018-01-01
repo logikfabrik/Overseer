@@ -12,6 +12,8 @@ namespace Logikfabrik.Overseer.WPF.Client.Views.UserControls
     /// The <see cref="ValueControl" /> class.
     /// </summary>
 #pragma warning disable S110 // Inheritance tree of classes should not be too deep
+
+    // ReSharper disable once InheritdocConsiderUsage
     public partial class ValueControl : INotifyPropertyChanged
 #pragma warning restore S110 // Inheritance tree of classes should not be too deep
     {
@@ -28,14 +30,13 @@ namespace Logikfabrik.Overseer.WPF.Client.Views.UserControls
         /// <summary>
         /// Initializes a new instance of the <see cref="ValueControl" /> class.
         /// </summary>
+        // ReSharper disable once InheritdocConsiderUsage
         public ValueControl()
         {
             InitializeComponent();
         }
 
-        /// <summary>
-        /// Occurs when a property value changes.
-        /// </summary>
+        /// <inheritdoc />
         public event PropertyChangedEventHandler PropertyChanged;
 
         /// <summary>

@@ -10,6 +10,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     /// <summary>
     /// The <see cref="ViewModel" /> class. Base class for view models intended to be accessed using a <see cref="Conductor{IViewModel}.Collection.OneActive" /> implementation.
     /// </summary>
+    // ReSharper disable once InheritdocConsiderUsage
     public abstract class ViewModel : ViewAware, IViewModel
     {
         private readonly IPlatformProvider _platformProvider;
@@ -21,6 +22,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// Initializes a new instance of the <see cref="ViewModel" /> class.
         /// </summary>
         /// <param name="platformProvider">The platform provider.</param>
+        // ReSharper disable once InheritdocConsiderUsage
         protected ViewModel(IPlatformProvider platformProvider)
         {
             Ensure.That(platformProvider).IsNotNull();

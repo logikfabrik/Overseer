@@ -12,16 +12,12 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor
     /// The <see cref="ConnectionSettings" /> class.
     /// </summary>
     [XmlType("AppVeyor")]
+    // ReSharper disable once InheritdocConsiderUsage
     public class ConnectionSettings : Settings.ConnectionSettings
     {
         private string _token;
 
-        /// <summary>
-        /// Gets the provider type.
-        /// </summary>
-        /// <value>
-        /// The provider type.
-        /// </value>
+        /// <inheritdoc />
         public override Type ProviderType { get; } = typeof(BuildProvider);
 
         /// <summary>

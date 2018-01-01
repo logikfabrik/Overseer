@@ -7,11 +7,13 @@ namespace Logikfabrik.Overseer.WPF.Client.Views
     /// <summary>
     /// The <see cref="TrackedProjectsView" /> class.
     /// </summary>
+    // ReSharper disable once InheritdocConsiderUsage
     public partial class TrackedProjectsView
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="TrackedProjectsView" /> class.
         /// </summary>
+        // ReSharper disable once InheritdocConsiderUsage
         public TrackedProjectsView()
         {
             InitializeComponent();

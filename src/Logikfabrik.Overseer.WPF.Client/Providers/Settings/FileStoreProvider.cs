@@ -13,6 +13,7 @@ namespace Logikfabrik.Overseer.WPF.Client.Providers.Settings
     /// <summary>
     /// The <see cref="FileStoreProvider" /> class.
     /// </summary>
+    // ReSharper disable once InheritdocConsiderUsage
     public class FileStoreProvider : Provider<IFileStore>
     {
         private readonly IFileSystem _fileSystem;
@@ -28,13 +29,7 @@ namespace Logikfabrik.Overseer.WPF.Client.Providers.Settings
             _fileSystem = fileSystem;
         }
 
-        /// <summary>
-        /// Creates an instance within the specified context.
-        /// </summary>
-        /// <param name="context">The context.</param>
-        /// <returns>
-        /// The created instance.
-        /// </returns>
+        /// <inheritdoc />
         protected override IFileStore CreateInstance(IContext context)
         {
             var path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Overseer", "Providers.xml");

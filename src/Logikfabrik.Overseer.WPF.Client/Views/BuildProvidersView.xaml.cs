@@ -7,11 +7,13 @@ namespace Logikfabrik.Overseer.WPF.Client.Views
     /// <summary>
     /// The <see cref="BuildProvidersView" /> class.
     /// </summary>
+    // ReSharper disable once InheritdocConsiderUsage
     public partial class BuildProvidersView
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="BuildProvidersView" /> class.
         /// </summary>
+        // ReSharper disable once InheritdocConsiderUsage
         public BuildProvidersView()
         {
             InitializeComponent();

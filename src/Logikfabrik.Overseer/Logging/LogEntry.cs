@@ -17,6 +17,7 @@ namespace Logikfabrik.Overseer.Logging
         /// <param name="type">The type.</param>
         /// <param name="messageTemplate">The message template.</param>
         /// <param name="args">The arguments.</param>
+        // ReSharper disable once InheritdocConsiderUsage
         public LogEntry(LogEntryType type, string messageTemplate, params object[] args)
             : this(type, messageTemplate, null, args)
         {

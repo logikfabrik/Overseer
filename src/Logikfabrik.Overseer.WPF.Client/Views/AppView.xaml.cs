@@ -13,6 +13,8 @@ namespace Logikfabrik.Overseer.WPF.Client.Views
     /// The <see cref="AppView" /> class.
     /// </summary>
 #pragma warning disable S110 // Inheritance tree of classes should not be too deep
+
+    // ReSharper disable once InheritdocConsiderUsage
     public partial class AppView
 #pragma warning restore S110 // Inheritance tree of classes should not be too deep
     {
@@ -23,6 +25,7 @@ namespace Logikfabrik.Overseer.WPF.Client.Views
         /// Initializes a new instance of the <see cref="AppView" /> class.
         /// </summary>
         /// <param name="application">The application.</param>
+        // ReSharper disable once InheritdocConsiderUsage
         public AppView(IApp application)
         {
             Ensure.That(application).IsNotNull();

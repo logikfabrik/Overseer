@@ -13,6 +13,7 @@ namespace Logikfabrik.Overseer.WPF.Client.Providers.Settings
     /// <summary>
     /// The <see cref="ConnectionSettingsSerializerProvider" /> class.
     /// </summary>
+    // ReSharper disable once InheritdocConsiderUsage
     public class ConnectionSettingsSerializerProvider : Provider<IConnectionSettingsSerializer>
     {
         private readonly AppDomain _appDomain;
@@ -28,13 +29,7 @@ namespace Logikfabrik.Overseer.WPF.Client.Providers.Settings
             _appDomain = appDomain;
         }
 
-        /// <summary>
-        /// Creates an instance within the specified context.
-        /// </summary>
-        /// <param name="context">The context.</param>
-        /// <returns>
-        /// The created instance.
-        /// </returns>
+        /// <inheritdoc />
         protected override IConnectionSettingsSerializer CreateInstance(IContext context)
         {
             var supportedTypes =

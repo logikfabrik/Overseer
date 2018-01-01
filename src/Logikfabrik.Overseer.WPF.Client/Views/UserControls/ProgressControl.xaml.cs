@@ -14,6 +14,8 @@ namespace Logikfabrik.Overseer.WPF.Client.Views.UserControls
 #pragma warning disable S110 // Inheritance tree of classes should not be too deep
     [TemplatePart(Name = "PART_Track", Type = typeof(FrameworkElement))]
     [TemplatePart(Name = "PART_Indicator", Type = typeof(FrameworkElement))]
+
+    // ReSharper disable once InheritdocConsiderUsage
     public partial class ProgressControl
 #pragma warning restore S110 // Inheritance tree of classes should not be too deep
     {
@@ -36,6 +38,7 @@ namespace Logikfabrik.Overseer.WPF.Client.Views.UserControls
         /// <summary>
         /// Initializes a new instance of the <see cref="ProgressControl" /> class.
         /// </summary>
+        // ReSharper disable once InheritdocConsiderUsage
         public ProgressControl()
         {
             InitializeComponent();
@@ -95,9 +98,7 @@ namespace Logikfabrik.Overseer.WPF.Client.Views.UserControls
             }
         }
 
-        /// <summary>
-        /// When overridden in a derived class, is invoked whenever application code or internal processes call <see cref="FrameworkElement.ApplyTemplate" />.
-        /// </summary>
+        /// <inheritdoc />
         public override void OnApplyTemplate()
         {
             base.OnApplyTemplate();

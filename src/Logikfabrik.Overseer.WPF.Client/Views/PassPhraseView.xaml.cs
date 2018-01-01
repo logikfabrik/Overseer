@@ -11,11 +11,13 @@ namespace Logikfabrik.Overseer.WPF.Client.Views
     /// <summary>
     /// The <see cref="PassPhraseView" /> class.
     /// </summary>
+    // ReSharper disable once InheritdocConsiderUsage
     public partial class PassPhraseView
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="PassPhraseView" /> class.
         /// </summary>
+        // ReSharper disable once InheritdocConsiderUsage
         public PassPhraseView()
         {
             InitializeComponent();

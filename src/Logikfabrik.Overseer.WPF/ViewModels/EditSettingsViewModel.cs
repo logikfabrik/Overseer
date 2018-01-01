@@ -14,6 +14,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     /// <summary>
     /// The <see cref="EditSettingsViewModel" /> class. View model for editing application wide settings.
     /// </summary>
+    // ReSharper disable once InheritdocConsiderUsage
     public class EditSettingsViewModel : ViewModel, IDataErrorInfo
     {
         private readonly IApp _application;
@@ -25,10 +26,11 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// <summary>
         /// Initializes a new instance of the <see cref="EditSettingsViewModel" /> class.
         /// </summary>
-        /// <param name="application">The application.</param>
         /// <param name="platformProvider">The platform provider.</param>
+        /// <param name="application">The application.</param>
         /// <param name="appSettingsFactory">The app settings factory.</param>
-        public EditSettingsViewModel(IApp application, IPlatformProvider platformProvider, IAppSettingsFactory appSettingsFactory)
+        // ReSharper disable once InheritdocConsiderUsage
+        public EditSettingsViewModel(IPlatformProvider platformProvider, IApp application, IAppSettingsFactory appSettingsFactory)
             : base(platformProvider)
         {
             Ensure.That(application).IsNotNull();
@@ -95,18 +97,10 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// </value>
         public bool IsValid => _validator.Validate(this).IsValid;
 
-        /// <summary>
-        /// Gets an error message indicating what is wrong with this object.
-        /// </summary>
+        /// <inheritdoc />
         public string Error => null;
 
-        /// <summary>
-        /// Gets the error message for the property with the specified name.
-        /// </summary>
-        /// <param name="name">The property name.</param>
-        /// <returns>
-        /// The error message, if any.
-        /// </returns>
+        /// <inheritdoc />
         public string this[string name]
         {
             get

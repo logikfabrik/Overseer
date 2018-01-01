@@ -43,8 +43,8 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// <summary>
         /// Initializes a new instance of the <see cref="ConnectionViewModel{T}" /> class.
         /// </summary>
-        /// <param name="application">The application.</param>
         /// <param name="platformProvider">The platform provider.</param>
+        /// <param name="application">The application.</param>
         /// <param name="eventAggregator">The event aggregator.</param>
         /// <param name="buildTracker">The build tracker.</param>
         /// <param name="projectFactory">The project factory.</param>
@@ -53,8 +53,8 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// <param name="settings">The settings.</param>
         // ReSharper disable once InheritdocConsiderUsage
         public ConnectionViewModel(
-            IApp application,
             IPlatformProvider platformProvider,
+            IApp application,
             IEventAggregator eventAggregator,
             IBuildTracker buildTracker,
             IProjectViewModelFactory projectFactory,

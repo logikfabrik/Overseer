@@ -7,11 +7,13 @@ namespace Logikfabrik.Overseer.WPF.Client.Views.Build
     /// <summary>
     /// The <see cref="Base" /> class.
     /// </summary>
+    // ReSharper disable once InheritdocConsiderUsage
     public partial class Base
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Base" /> class.
         /// </summary>
+        // ReSharper disable once InheritdocConsiderUsage
         public Base()
         {
             InitializeComponent();

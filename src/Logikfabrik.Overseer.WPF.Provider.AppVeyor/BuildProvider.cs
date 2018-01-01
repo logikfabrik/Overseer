@@ -13,6 +13,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor
     /// <summary>
     /// The <see cref="BuildProvider" /> class.
     /// </summary>
+    // ReSharper disable once InheritdocConsiderUsage
     public class BuildProvider : BuildProvider<ConnectionSettings>
     {
         private readonly Api.IApiClient _apiClient;
@@ -22,6 +23,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor
         /// </summary>
         /// <param name="settings">The settings.</param>
         /// <param name="apiClient">The API client.</param>
+        // ReSharper disable once InheritdocConsiderUsage
         public BuildProvider(ConnectionSettings settings, Api.IApiClient apiClient)
             : base(settings)
         {
@@ -30,13 +32,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor
             _apiClient = apiClient;
         }
 
-        /// <summary>
-        /// Gets the projects.
-        /// </summary>
-        /// <param name="cancellationToken">A cancellation token.</param>
-        /// <returns>
-        /// A task.
-        /// </returns>
+        /// <inheritdoc />
         public override async Task<IEnumerable<IProject>> GetProjectsAsync(CancellationToken cancellationToken)
         {
             var projects = await _apiClient.GetProjectsAsync(cancellationToken).ConfigureAwait(false);
@@ -44,14 +40,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor
             return projects.Select(project => new Project(project)).ToArray();
         }
 
-        /// <summary>
-        /// Gets the builds for the project with the specified project identifier.
-        /// </summary>
-        /// <param name="projectId">The project identifier.</param>
-        /// <param name="cancellationToken">A cancellation token.</param>
-        /// <returns>
-        /// A task.
-        /// </returns>
+        /// <inheritdoc />
         public override async Task<IEnumerable<IBuild>> GetBuildsAsync(string projectId, CancellationToken cancellationToken)
         {
             Ensure.That(projectId).IsNotNullOrWhiteSpace();

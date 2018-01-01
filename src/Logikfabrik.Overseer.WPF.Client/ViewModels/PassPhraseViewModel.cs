@@ -15,6 +15,7 @@ namespace Logikfabrik.Overseer.WPF.Client.ViewModels
     /// <summary>
     /// The <see cref="PassPhraseViewModel" /> class. View model for setting pass phrase.
     /// </summary>
+    // ReSharper disable once InheritdocConsiderUsage
     public class PassPhraseViewModel : ViewAware, IClose, IHaveDisplayName, IDataErrorInfo
     {
         private readonly IConnectionSettingsEncrypter _encrypter;
@@ -25,6 +26,7 @@ namespace Logikfabrik.Overseer.WPF.Client.ViewModels
         /// Initializes a new instance of the <see cref="PassPhraseViewModel" /> class.
         /// </summary>
         /// <param name="encrypter">The encrypter.</param>
+        // ReSharper disable once InheritdocConsiderUsage
         public PassPhraseViewModel(IConnectionSettingsEncrypter encrypter)
         {
             Ensure.That(encrypter).IsNotNull();
@@ -33,12 +35,7 @@ namespace Logikfabrik.Overseer.WPF.Client.ViewModels
             _validator = new PassPhraseViewModelValidator();
         }
 
-        /// <summary>
-        /// Gets or sets the display name.
-        /// </summary>
-        /// <value>
-        /// The display name.
-        /// </value>
+        /// <inheritdoc />
         public string DisplayName { get; set; } = Properties.Resources.PassPhrase_View;
 
         /// <summary>
@@ -70,18 +67,10 @@ namespace Logikfabrik.Overseer.WPF.Client.ViewModels
         /// </value>
         public bool IsValid => _validator.Validate(this).IsValid;
 
-        /// <summary>
-        /// Gets an error message indicating what is wrong with this object.
-        /// </summary>
+        /// <inheritdoc />
         public string Error => null;
 
-        /// <summary>
-        /// Gets the error message for the property with the specified name.
-        /// </summary>
-        /// <param name="name">The property name.</param>
-        /// <returns>
-        /// The error message, if any.
-        /// </returns>
+        /// <inheritdoc />
         public string this[string name]
         {
             get
@@ -119,6 +108,7 @@ namespace Logikfabrik.Overseer.WPF.Client.ViewModels
             callback(_encrypter.HasPassPhrase);
         }
 
+        /// <inheritdoc />
         public void TryClose(bool? dialogResult = null)
         {
             PlatformProvider.Current.GetViewCloseAction(this, Views.Values, dialogResult).OnUIThread();

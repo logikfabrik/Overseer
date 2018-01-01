@@ -10,6 +10,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     /// <summary>
     /// The <see cref="TrackedProjectViewModel" /> class.
     /// </summary>
+    // ReSharper disable once InheritdocConsiderUsage
     public class TrackedProjectViewModel : PropertyChangedBase
     {
         private bool _track;
@@ -20,6 +21,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// <param name="projectId">The project identifier.</param>
         /// <param name="projectName">The project name.</param>
         /// <param name="track">Whether this project should be tracked.</param>
+        // ReSharper disable once InheritdocConsiderUsage
         public TrackedProjectViewModel(string projectId, string projectName, bool track)
         {
             Ensure.That(projectId).IsNotNullOrWhiteSpace();

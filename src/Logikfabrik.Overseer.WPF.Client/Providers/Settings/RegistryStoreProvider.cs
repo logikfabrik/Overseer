@@ -10,15 +10,10 @@ namespace Logikfabrik.Overseer.WPF.Client.Providers.Settings
     /// <summary>
     /// The <see cref="RegistryStoreProvider" /> class.
     /// </summary>
+    // ReSharper disable once InheritdocConsiderUsage
     public class RegistryStoreProvider : Provider<RegistryStore>
     {
-        /// <summary>
-        /// Creates an instance within the specified context.
-        /// </summary>
-        /// <param name="context">The context.</param>
-        /// <returns>
-        /// The created instance.
-        /// </returns>
+        /// <inheritdoc />
         protected override RegistryStore CreateInstance(IContext context)
         {
             return new RegistryStore("SOFTWARE\\Overseer");

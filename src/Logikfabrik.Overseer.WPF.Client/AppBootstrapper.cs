@@ -18,6 +18,7 @@ namespace Logikfabrik.Overseer.WPF.Client
     /// <summary>
     /// The <see cref="AppBootstrapper" /> class.
     /// </summary>
+    // ReSharper disable once InheritdocConsiderUsage
     public class AppBootstrapper : BootstrapperBase, IDisposable
     {
         private IKernel _kernel;
@@ -27,6 +28,7 @@ namespace Logikfabrik.Overseer.WPF.Client
         /// <summary>
         /// Initializes a new instance of the <see cref="AppBootstrapper" /> class.
         /// </summary>
+        // ReSharper disable once InheritdocConsiderUsage
         public AppBootstrapper()
         {
             _kernel = new StandardKernel();
@@ -35,20 +37,14 @@ namespace Logikfabrik.Overseer.WPF.Client
             Initialize();
         }
 
-        /// <summary>
-        /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
-        /// </summary>
+        /// <inheritdoc />
         public void Dispose()
         {
             Dispose(true);
             GC.SuppressFinalize(this);
         }
 
-        /// <summary>
-        /// Called on app start.
-        /// </summary>
-        /// <param name="sender">The sender.</param>
-        /// <param name="e">The event arguments.</param>
+        /// <inheritdoc />
         protected override void OnStartup(object sender, StartupEventArgs e)
         {
             base.OnStartup(sender, e);
@@ -75,9 +71,7 @@ namespace Logikfabrik.Overseer.WPF.Client
             DisplayRootViewFor<AppViewModel>();
         }
 
-        /// <summary>
-        /// Configure the container.
-        /// </summary>
+        /// <inheritdoc />
         protected override void Configure()
         {
             base.Configure();
@@ -103,42 +97,25 @@ namespace Logikfabrik.Overseer.WPF.Client
             BuildNotificationConfigurator.Configure(_kernel.Get<IBuildTracker>(), _kernel.Get<IBuildNotificationManager>());
         }
 
-        /// <summary>
-        /// Gets the instance of the specified service.
-        /// </summary>
-        /// <param name="service">The service.</param>
-        /// <param name="key">The key.</param>
-        /// <returns>The instance of the specified service.</returns>
+        /// <inheritdoc />
         protected override object GetInstance(Type service, string key)
         {
             return string.IsNullOrEmpty(key) ? _kernel.Get(service) : _kernel.Get(service, key);
         }
 
-        /// <summary>
-        /// Gets all instances of the specified service.
-        /// </summary>
-        /// <param name="service">The service.</param>
-        /// <returns>All instances of the specified service type.</returns>
+        /// <inheritdoc />
         protected override IEnumerable<object> GetAllInstances(Type service)
         {
             return _kernel.GetAll(service);
         }
 
-        /// <summary>
-        /// Builds the specified instance up.
-        /// </summary>
-        /// <param name="instance">The instance to build up.</param>
+        /// <inheritdoc />
         protected override void BuildUp(object instance)
         {
             _kernel.Inject(instance);
         }
 
-        /// <summary>
-        /// Select assemblies to load and to inspect for views.
-        /// </summary>
-        /// <returns>
-        /// Assemblies to load and to inspect.
-        /// </returns>
+        /// <inheritdoc />
         protected override IEnumerable<Assembly> SelectAssemblies()
         {
             return Execute.InDesignMode ? base.SelectAssemblies() : _catalog.Assemblies;

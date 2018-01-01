@@ -11,12 +11,14 @@ namespace Logikfabrik.Overseer.WPF.Client.ViewModels
     /// <summary>
     /// The <see cref="AboutViewModel" /> class.
     /// </summary>
+    // ReSharper disable once InheritdocConsiderUsage
     public class AboutViewModel : ViewModel
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="AboutViewModel" /> class.
         /// </summary>
         /// <param name="platformProvider">The platform provider.</param>
+        // ReSharper disable once InheritdocConsiderUsage
         public AboutViewModel(IPlatformProvider platformProvider)
             : base(platformProvider)
         {

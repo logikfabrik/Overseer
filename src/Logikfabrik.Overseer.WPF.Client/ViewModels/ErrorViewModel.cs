@@ -11,6 +11,7 @@ namespace Logikfabrik.Overseer.WPF.Client.ViewModels
     /// <summary>
     /// The <see cref="MenuViewModel" /> class.
     /// </summary>
+    // ReSharper disable once InheritdocConsiderUsage
     public class ErrorViewModel : PropertyChangedBase
     {
         private string _message;
@@ -20,6 +21,7 @@ namespace Logikfabrik.Overseer.WPF.Client.ViewModels
         /// Initializes a new instance of the <see cref="ErrorViewModel" /> class.
         /// </summary>
         /// <param name="application">The application.</param>
+        // ReSharper disable once InheritdocConsiderUsage
         public ErrorViewModel(IApp application)
         {
             Ensure.That(application).IsNotNull();

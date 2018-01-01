@@ -10,15 +10,10 @@ namespace Logikfabrik.Overseer.WPF.Client.Providers
     /// <summary>
     /// The <see cref="InputManagerProvider" /> class.
     /// </summary>
+    // ReSharper disable once InheritdocConsiderUsage
     public class InputManagerProvider : Provider<InputManager>
     {
-        /// <summary>
-        /// Creates an instance within the specified context.
-        /// </summary>
-        /// <param name="context">The context.</param>
-        /// <returns>
-        /// The created instance.
-        /// </returns>
+        /// <inheritdoc />
         protected override InputManager CreateInstance(IContext context)
         {
             return InputManager.Current;

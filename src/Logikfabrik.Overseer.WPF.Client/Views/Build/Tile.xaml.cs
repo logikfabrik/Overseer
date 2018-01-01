@@ -7,11 +7,13 @@ namespace Logikfabrik.Overseer.WPF.Client.Views.Build
     /// <summary>
     /// The <see cref="Tile" /> class.
     /// </summary>
+    // ReSharper disable once InheritdocConsiderUsage
     public partial class Tile
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Tile" /> class.
         /// </summary>
+        // ReSharper disable once InheritdocConsiderUsage
         public Tile()
         {
             InitializeComponent();

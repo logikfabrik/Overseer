@@ -11,11 +11,13 @@ namespace Logikfabrik.Overseer.WPF.Client.Views
     /// <summary>
     /// The <see cref="AppWindow" /> class.
     /// </summary>
+    // ReSharper disable once InheritdocConsiderUsage
     public abstract class AppWindow : Window
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="AppWindow" /> class.
         /// </summary>
+        // ReSharper disable once InheritdocConsiderUsage
         protected AppWindow()
         {
             WeakEventManager<AppWindow, EventArgs>.AddHandler(this, nameof(SourceInitialized), (sender, e) =>

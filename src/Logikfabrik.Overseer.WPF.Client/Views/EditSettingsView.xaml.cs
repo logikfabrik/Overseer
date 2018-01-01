@@ -7,11 +7,13 @@ namespace Logikfabrik.Overseer.WPF.Client.Views
     /// <summary>
     /// The <see cref="EditSettingsView" /> class.
     /// </summary>
+    // ReSharper disable once InheritdocConsiderUsage
     public partial class EditSettingsView
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="EditSettingsView" /> class.
         /// </summary>
+        // ReSharper disable once InheritdocConsiderUsage
         public EditSettingsView()
         {
             InitializeComponent();

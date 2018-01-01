@@ -7,11 +7,13 @@ namespace Logikfabrik.Overseer.WPF.Client.Views
     /// <summary>
     /// The <see cref="DashboardView" /> class.
     /// </summary>
+    // ReSharper disable once InheritdocConsiderUsage
     public partial class DashboardView
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="DashboardView" /> class.
         /// </summary>
+        // ReSharper disable once InheritdocConsiderUsage
         public DashboardView()
         {
             InitializeComponent();

@@ -15,6 +15,8 @@ namespace Logikfabrik.Overseer.WPF.Client.ViewModels
     /// The <see cref="AppViewModel" /> class.
     /// </summary>
 #pragma warning disable S110 // Inheritance tree of classes should not be too deep
+
+    // ReSharper disable once InheritdocConsiderUsage
     public sealed class AppViewModel : Conductor<IViewModel>.Collection.OneActive, IHandle<NavigationMessage>, IDisposable
 #pragma warning restore S110 // Inheritance tree of classes should not be too deep
     {
@@ -29,6 +31,7 @@ namespace Logikfabrik.Overseer.WPF.Client.ViewModels
         /// <param name="menuViewModel">The menu view model.</param>
         /// <param name="errorViewModel">The error view model.</param>
         /// <param name="connectionsViewModel">The connections view model.</param>
+        // ReSharper disable once InheritdocConsiderUsage
         public AppViewModel(IEventAggregator eventAggregator, MenuViewModel menuViewModel, ErrorViewModel errorViewModel, ConnectionsViewModel connectionsViewModel)
         {
             Ensure.That(eventAggregator).IsNotNull();

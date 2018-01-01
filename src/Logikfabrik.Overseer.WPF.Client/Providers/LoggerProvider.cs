@@ -10,15 +10,10 @@ namespace Logikfabrik.Overseer.WPF.Client.Providers
     /// <summary>
     /// The <see cref="LoggerProvider" /> class.
     /// </summary>
+    // ReSharper disable once InheritdocConsiderUsage
     public class LoggerProvider : Provider<ILogger>
     {
-        /// <summary>
-        /// Creates an instance within the specified context.
-        /// </summary>
-        /// <param name="context">The context.</param>
-        /// <returns>
-        /// The created instance.
-        /// </returns>
+        /// <inheritdoc />
         protected override ILogger CreateInstance(IContext context)
         {
             return new LoggerConfiguration()
