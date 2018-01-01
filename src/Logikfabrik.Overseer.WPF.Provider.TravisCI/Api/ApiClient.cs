@@ -92,17 +92,14 @@ namespace Logikfabrik.Overseer.WPF.Provider.TravisCI.Api
                 return;
             }
 
-            if (disposing)
+            if (disposing && _httpClient != null)
             {
-                if (_httpClient != null)
+                if (_httpClient.IsValueCreated)
                 {
-                    if (_httpClient.IsValueCreated)
-                    {
-                        _httpClient.Value.Dispose();
-                    }
-
-                    _httpClient = null;
+                    _httpClient.Value.Dispose();
                 }
+
+                _httpClient = null;
             }
 
             _isDisposed = true;

@@ -142,7 +142,10 @@ namespace Logikfabrik.Overseer.Settings
                 {
                     _observers.Clear();
                     _observers = null;
+                }
 
+                if (_settings != null)
+                {
                     _settings.Clear();
                     _settings = null;
                 }

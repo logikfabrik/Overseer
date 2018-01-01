@@ -44,6 +44,8 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// <param name="settingsId">The settings identifier.</param>
         /// <param name="projectId">The project identifier.</param>
         /// <param name="projectName">The project name.</param>
+#pragma warning disable S107 // Methods should not have too many parameters
+
         // ReSharper disable once InheritdocConsiderUsage
         public ProjectViewModel(
             IPlatformProvider platformProvider,
@@ -56,6 +58,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             string projectName)
             : base(platformProvider)
         {
+#pragma warning restore S107 // Methods should not have too many parameters
             Ensure.That(application).IsNotNull();
             Ensure.That(eventAggregator).IsNotNull();
             Ensure.That(buildTracker).IsNotNull();

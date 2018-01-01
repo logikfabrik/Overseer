@@ -27,6 +27,8 @@ namespace Logikfabrik.Overseer.WPF.Provider.CircleCI.ViewModels
         /// <param name="trackedProjectFactory">The tracked project factory.</param>
         /// <param name="trackedProjectsFactory">The tracked projects factory.</param>
         /// <param name="currentSettings">The current settings.</param>
+#pragma warning disable S107 // Methods should not have too many parameters
+
         // ReSharper disable once InheritdocConsiderUsage
         public EditConnectionViewModel(
             IPlatformProvider platformProvider,
@@ -46,6 +48,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.CircleCI.ViewModels
                   trackedProjectsFactory,
                   currentSettings)
         {
+#pragma warning restore S107 // Methods should not have too many parameters
             Ensure.That(connectionSettingsFactory).IsNotNull();
 
             var settings = connectionSettingsFactory.Create();

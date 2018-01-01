@@ -80,9 +80,9 @@ namespace Logikfabrik.Overseer.WPF.Client
             {
                 KernelConfigurator.Configure(_kernel, _catalog.Modules);
 
-#pragma warning disable S2696
+#pragma warning disable S2696 // Instance members should not write to "static" fields
                 LogManager.GetLog = type => _kernel.Get<IUILogService>(new ConstructorArgument("type", type));
-#pragma warning restore S2696
+#pragma warning restore S2696 // Instance members should not write to "static" fields
             }
 
             ViewLocator.AddNamespaceMapping("*", "Logikfabrik.Overseer.WPF.Client.Views");

@@ -130,11 +130,11 @@ namespace Logikfabrik.Overseer.Settings
             return passPhraseHash;
         }
 
-#pragma warning disable S3242
+#pragma warning disable S3242 // Method parameters should be declared with base types
 
         // ReSharper disable once SuggestBaseTypeForParameter
         private static XmlDocument Encrypt(XmlDocument xml, IEnumerable<string> tagNames, Rijndael algorithm)
-#pragma warning restore S3242
+#pragma warning restore S3242 // Method parameters should be declared with base types
         {
             foreach (var tagName in tagNames)
             {

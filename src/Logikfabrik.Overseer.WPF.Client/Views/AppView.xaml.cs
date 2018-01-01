@@ -34,7 +34,9 @@ namespace Logikfabrik.Overseer.WPF.Client.Views
 
             _application = application;
 
+#pragma warning disable S1075 // URIs should not be hardcoded
             var stream = System.Windows.Application.GetResourceStream(new Uri("pack://application:,,,/Overseer.ico"))?.Stream;
+#pragma warning restore S1075 // URIs should not be hardcoded
 
             if (stream == null)
             {
