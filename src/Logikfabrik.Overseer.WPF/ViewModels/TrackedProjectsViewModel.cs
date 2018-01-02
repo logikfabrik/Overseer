@@ -116,6 +116,14 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             ToggleTracking(false);
         }
 
+        /// <summary>
+        /// Clears the filter.
+        /// </summary>
+        public void ClearFilter()
+        {
+            Filter = string.Empty;
+        }
+
         private void ToggleTracking(bool track)
         {
             var projects = FilteredProjects

@@ -2,6 +2,7 @@
     x:Class="Logikfabrik.Overseer.WPF.Client.Views.TrackedProjectsView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:cal="http://www.caliburnproject.org"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:p="clr-namespace:Logikfabrik.Overseer.WPF.Client.Properties"
@@ -41,8 +42,11 @@
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
-                    <!-- ReSharper disable once InconsistentNaming -->
-                    <ToggleButton x:Name="PART_Filter" Grid.Column="0">
+                    <!--  ReSharper disable once InconsistentNaming  -->
+                    <ToggleButton
+                        x:Name="PART_Filter"
+                        Grid.Column="0"
+                        cal:Message.Attach="ClearFilter">
                         <Viewbox>
                             <Canvas>
                                 <Path Data="M10,1C5.092,1,2,2.512,2,4.001v2c0,0.918,6,6,6,6v6c-0.001,0.684,1,1,2,1s2.001-0.316,2-1v-6c0,0,6-5.082,6-6v-2  C18,2.512,14.908,1,10,1z M10,6.123C6.409,6.122,3.862,4.79,3.862,4.292C3.86,3.797,6.41,2.461,10,2.463  c3.59-0.002,6.14,1.334,6.138,1.828C16.138,4.79,13.591,6.122,10,6.123z" />

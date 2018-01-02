@@ -107,5 +107,10 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// Views this instance.
         /// </summary>
         void View();
+
+        /// <summary>
+        /// Clears the filter.
+        /// </summary>
+        void ClearFilter();
     }
 }

@@ -61,6 +61,7 @@
                         <ToggleButton
                             x:Name="PART_Filter"
                             Grid.Column="0"
+                            cal:Message.Attach="ClearFilter"
                             IsEnabled="{Binding HasProjects}">
                             <Viewbox>
                                 <Canvas>

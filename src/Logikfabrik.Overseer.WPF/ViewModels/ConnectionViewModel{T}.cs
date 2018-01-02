@@ -224,6 +224,12 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             _eventAggregator.PublishOnUIThread(message);
         }
 
+        /// <inheritdoc />
+        public void ClearFilter()
+        {
+            Filter = string.Empty;
+        }
+
         private void BuildTrackerConnectionError(object sender, BuildTrackerConnectionErrorEventArgs e)
         {
             if (ShouldExitHandler(e))

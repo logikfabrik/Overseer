@@ -72,6 +72,12 @@ namespace Logikfabrik.Overseer.WPF.ViewModels.DesignTime
         }
 
         /// <inheritdoc />
+        public void ClearFilter()
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <inheritdoc />
         public void TryClose(bool? dialogResult = null)
         {
             throw new NotImplementedException();
