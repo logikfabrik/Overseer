@@ -35,8 +35,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.TravisCI
         /// <inheritdoc />
         public override async Task<IEnumerable<IProject>> GetProjectsAsync(CancellationToken cancellationToken)
         {
-            // TODO: Find max limit. Add paging if needed.
-            var repositories = await _apiClient.GetRepositoriesAsync(100, 0, cancellationToken).ConfigureAwait(false);
+            var repositories = await _apiClient.GetRepositoriesAsync(int.MaxValue, 0, cancellationToken).ConfigureAwait(false);
 
             return repositories.Records.Select(repository => new Project(repository));
         }
@@ -44,8 +43,9 @@ namespace Logikfabrik.Overseer.WPF.Provider.TravisCI
         /// <inheritdoc />
         public override async Task<IEnumerable<IBuild>> GetBuildsAsync(string projectId, CancellationToken cancellationToken)
         {
-            // TODO: Find max limit. Add paging if needed.
-            var builds = await _apiClient.GetBuildsAsync(projectId, 100, 0, cancellationToken).ConfigureAwait(false);
+            Ensure.That(projectId).IsNotNullOrWhiteSpace();
+
+            var builds = await _apiClient.GetBuildsAsync(projectId, int.MaxValue, 0, cancellationToken).ConfigureAwait(false);
 
             return builds.Records.Select(build => new Build(build));
         }
