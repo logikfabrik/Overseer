@@ -18,8 +18,11 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     // ReSharper disable once InheritdocConsiderUsage
     public class TrackedProjectsViewModel : PropertyChangedBase
     {
+#pragma warning disable S1450 // Private fields only used as local variables in methods should become local variables
+
         // ReSharper disable once PrivateFieldCanBeConvertedToLocalVariable
         private readonly CollectionViewSource _filteredProjects;
+#pragma warning restore S1450 // Private fields only used as local variables in methods should become local variables
         private readonly SuffixTrie<TrackedProjectViewModel> _trie;
         private string _filter;
         private IEnumerable<TrackedProjectViewModel> _matches;

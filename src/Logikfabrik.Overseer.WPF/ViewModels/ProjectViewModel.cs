@@ -26,8 +26,11 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         private readonly IBuildViewModelFactory _buildFactory;
         private readonly Guid _settingsId;
 
+#pragma warning disable S1450 // Private fields only used as local variables in methods should become local variables
+
         // ReSharper disable once PrivateFieldCanBeConvertedToLocalVariable
         private readonly CollectionViewSource _orderedBuilds;
+#pragma warning restore S1450 // Private fields only used as local variables in methods should become local variables
         private readonly BindableCollection<IBuildViewModel> _builds;
         private string _name;
         private bool _isBusy;
