@@ -94,6 +94,7 @@
     <Compile Include="ConnectionPoolTest.cs" />
     <Compile Include="Extensions\DisposableExtensionsTest.cs" />
     <Compile Include="Extensions\ExceptionExtensionsTest.cs" />
+    <Compile Include="Extensions\HttpExceptionTest.cs" />
     <Compile Include="Extensions\HttpResponseMessageExtensionsTest.cs" />
     <Compile Include="Logging\LogServiceTest.cs" />
     <Compile Include="NotificationTest.cs" />

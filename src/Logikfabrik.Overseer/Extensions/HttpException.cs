@@ -6,8 +6,9 @@ namespace Logikfabrik.Overseer.Extensions
 {
     using System;
     using System.Net;
-    using System.Net.Http;
     using System.Runtime.Serialization;
+    using System.Security.Permissions;
+    using EnsureThat;
 
     /// <summary>
     /// The <see cref="HttpException" /> class.
@@ -15,7 +16,7 @@ namespace Logikfabrik.Overseer.Extensions
     [Serializable]
 
     // ReSharper disable once InheritdocConsiderUsage
-    public sealed class HttpException : HttpRequestException
+    public class HttpException : Exception
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="HttpException" /> class.
@@ -25,6 +26,19 @@ namespace Logikfabrik.Overseer.Extensions
         public HttpException(HttpStatusCode statusCode)
         {
             StatusCode = statusCode;
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="HttpException"/> class.
+        /// </summary>
+        /// <param name="info">The <see cref="SerializationInfo" /> that holds the serialized object data about the exception being thrown.</param>
+        /// <param name="context">The <see cref="StreamingContext" /> that contains contextual information about the source or destination.</param>
+        // ReSharper disable once InheritdocConsiderUsage
+        [SecurityPermission(SecurityAction.Demand, SerializationFormatter = true)]
+        protected HttpException(SerializationInfo info, StreamingContext context)
+            : base(info, context)
+        {
+            StatusCode = (HttpStatusCode)info.GetValue(nameof(StatusCode), typeof(HttpStatusCode));
         }
 
         /// <summary>
@@ -38,9 +52,11 @@ namespace Logikfabrik.Overseer.Extensions
         /// <inheritdoc />
         public override void GetObjectData(SerializationInfo info, StreamingContext context)
         {
-            base.GetObjectData(info, context);
+            Ensure.That(info).IsNotNull();
 
             info.AddValue(nameof(StatusCode), StatusCode);
+
+            base.GetObjectData(info, context);
         }
     }
 }
