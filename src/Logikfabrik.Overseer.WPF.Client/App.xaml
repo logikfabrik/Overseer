@@ -36,13 +36,16 @@
                 <ResourceDictionary Source="pack://application:,,,/Logikfabrik.Overseer.WPF;component/Styles/Controls/Viewbox.xaml" />
 
                 <!--  Styles  -->
-                <ResourceDictionary Source="pack://application:,,,/Logikfabrik.Overseer.WPF;component/Styles/Styles/View.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/Logikfabrik.Overseer.WPF;component/Styles/Views.xaml" />
 
                 <!--  Local brushes  -->
                 <ResourceDictionary Source="Styles/Brushes.xaml" />
 
                 <!--  Local icons  -->
                 <ResourceDictionary Source="Styles/Icons.xaml" />
+
+                <!--  Local styles  -->
+                <ResourceDictionary Source="Styles/Views.xaml" />
 
                 <ResourceDictionary>
                     <client:AppBootstrapper x:Key="Bootstrapper" />
