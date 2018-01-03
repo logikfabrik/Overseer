@@ -15,28 +15,9 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type v:MenuView}">
-                        <ControlTemplate.Resources>
-                            <Style BasedOn="{StaticResource {x:Type Button}}" TargetType="{x:Type Button}">
-                                <Style.Resources>
-                                    <Style TargetType="{x:Type Viewbox}">
-                                        <Setter Property="Margin" Value="0,0,10,0" />
-                                    </Style>
-                                    <Style TargetType="{x:Type StackPanel}">
-                                        <Setter Property="Orientation" Value="Horizontal" />
-                                    </Style>
-                                </Style.Resources>
-                                <Setter Property="HorizontalContentAlignment" Value="Stretch" />
-                            </Style>
-                        </ControlTemplate.Resources>
                         <Grid>
-                            <StackPanel
-                                x:Name="PART_Panel"
-                                Width="250"
-                                Margin="-250,0,0,0"
-                                HorizontalAlignment="Left"
-                                Background="{StaticResource Panel.Background}"
-                                Effect="{StaticResource DropShadowEffect}">
-                                <Button cal:Message.Attach="GoToDashboard">
+                            <StackPanel x:Name="PART_Panel" Style="{StaticResource app-menu__menu}">
+                                <Button cal:Message.Attach="GoToDashboard" Style="{StaticResource app-menu__menu-item}">
                                     <StackPanel>
                                         <Viewbox>
                                             <Canvas>
@@ -47,7 +28,7 @@
                                     </StackPanel>
                                 </Button>
                                 <Separator />
-                                <Grid>
+                                <Grid Style="{StaticResource app-menu-connections}">
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="Auto" />
                                         <RowDefinition Height="Auto" />
@@ -56,13 +37,16 @@
                                         Grid.Row="1"
                                         cal:View.Context="Bricks"
                                         cal:View.Model="{Binding ConnectionsList, Mode=OneTime}"
-                                        Focusable="False" />
-                                    <Grid Grid.Row="0" Effect="{StaticResource DropShadowEffect}">
+                                        Style="{StaticResource app-menu-connections__bricks}" />
+                                    <Grid Grid.Row="0" Style="{StaticResource app-menu-connections__menu}">
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="*" />
                                             <ColumnDefinition Width="Auto" />
                                         </Grid.ColumnDefinitions>
-                                        <Button Grid.Column="0" cal:Message.Attach="GoToConnections">
+                                        <Button
+                                            Grid.Column="0"
+                                            cal:Message.Attach="GoToConnections"
+                                            Style="{StaticResource app-menu-connections__menu-item}">
                                             <StackPanel>
                                                 <Viewbox>
                                                     <Canvas>
@@ -72,8 +56,11 @@
                                                 <TextBlock Text="{x:Static p:Resources.Menu_MenuItem_Label_GoToConnections}" />
                                             </StackPanel>
                                         </Button>
-                                        <Button Grid.Column="1" cal:Message.Attach="GoToAddConnection">
-                                            <Viewbox Margin="0">
+                                        <Button
+                                            Grid.Column="1"
+                                            cal:Message.Attach="GoToAddConnection"
+                                            Style="{StaticResource app-menu-connections__menu-item}">
+                                            <Viewbox>
                                                 <Canvas>
                                                     <Path Data="M 5.4,4 H 3.6 C 3.048,4 3,4.447 3,5 3,5.553 3.048,6 3.6,6 H 5.4 C 5.952,6 6,5.553 6,5 6,4.447 5.952,4 5.4,4 Z m 0,10 H 3.6 C 3.048,14 3,14.447 3,15 c 0,0.553 0.048,1 0.6,1 H 5.4 C 5.952,16 6,15.553 6,15 6,14.447 5.952,14 5.4,14 Z m 0,-5 H 3.6 C 3.048,9 3,9.447 3,10 c 0,0.553 0.048,1 0.6,1 H 5.4 C 5.952,11 6,10.553 6,10 6,9.447 5.952,9 5.4,9 Z m 11.8,3e-7 h -3.4 v -3.4 c 0,-0.6 -0.4,-0.6 -1,-0.6 -0.6,0 -0.982361,2.593e-4 -1,0.6 v 3.4 H 8.4 c -0.6,0 -0.6,0.4 -0.6,0.9999997 0,0.6 0,1 0.6,1 h 3.4 v 3.4 c 0,0.6 0.4,0.6 1,0.6 0.6,0 1.017639,-2.59e-4 1,-0.6 V 11 h 3.4 c 0.6,0 0.6,-0.4 0.6,-1 0,-0.5999997 0,-0.9999997 -0.6,-0.9999997 z" />
                                                 </Canvas>
@@ -82,7 +69,7 @@
                                     </Grid>
                                 </Grid>
                                 <Separator />
-                                <Button cal:Message.Attach="GoToSettings">
+                                <Button cal:Message.Attach="GoToSettings" Style="{StaticResource app-menu__menu-item}">
                                     <StackPanel>
                                         <Viewbox>
                                             <Canvas>
@@ -93,7 +80,7 @@
                                     </StackPanel>
                                 </Button>
                                 <Separator />
-                                <Button cal:Message.Attach="GoToAbout">
+                                <Button cal:Message.Attach="GoToAbout" Style="{StaticResource app-menu__menu-item}">
                                     <StackPanel>
                                         <Viewbox>
                                             <Canvas>

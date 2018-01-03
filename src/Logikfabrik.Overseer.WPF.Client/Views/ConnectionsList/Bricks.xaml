@@ -7,30 +7,16 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     d:DesignHeight="300"
     d:DesignWidth="300"
+    Style="{StaticResource connections-bricks}"
     mc:Ignorable="d">
-    <UserControl.Resources>
-        <Style BasedOn="{StaticResource {x:Type Button}}" TargetType="{x:Type Button}">
-            <Style.Resources>
-                <Style TargetType="{x:Type Viewbox}">
-                    <Setter Property="Margin" Value="0,0,10,0" />
-                </Style>
-                <Style TargetType="{x:Type StackPanel}">
-                    <Setter Property="Orientation" Value="Horizontal" />
-                </Style>
-            </Style.Resources>
-            <Setter Property="HorizontalContentAlignment" Value="Stretch" />
-            <Setter Property="Background" Value="#5a5a5a" />
-            <Setter Property="BorderBrush" Value="#5a5a5a" />
-        </Style>
-    </UserControl.Resources>
-    <Border MaxHeight="300">
+    <Border Style="{StaticResource connections-bricks__list}">
         <ItemsControl ItemsSource="{Binding Connections, Mode=OneWay}">
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
                     <ContentControl
                         cal:View.Context="Brick"
                         cal:View.Model="{Binding}"
-                        Focusable="False" />
+                        Style="{StaticResource connections-bricks__list-items}" />
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
             <ItemsControl.Template>

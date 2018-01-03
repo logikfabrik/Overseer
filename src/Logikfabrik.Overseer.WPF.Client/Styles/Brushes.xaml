@@ -17,4 +17,9 @@
 
     <SolidColorBrush x:Key="ProgressControl.Background" Color="{StaticResource Color.LightGrey}" />
     <SolidColorBrush x:Key="ProgressControl.Foreground" Color="{StaticResource Color.Yellow}" />
+
+    <Color x:Key="Color.AltGrey">#5A5A5A</Color>
+
+    <SolidColorBrush x:Key="Brush.AltGrey" Color="{StaticResource Color.AltGrey}" />
+
 </ResourceDictionary>

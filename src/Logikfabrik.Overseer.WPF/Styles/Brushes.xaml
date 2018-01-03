@@ -28,7 +28,6 @@
     <SolidColorBrush x:Key="Brush.Yellow" Color="{StaticResource Color.Yellow}" />
     <SolidColorBrush x:Key="Brush.LightGrey" Color="{StaticResource Color.LightGrey}" />
 
-
     <SolidColorBrush x:Key="Control.Focus" Color="{StaticResource Color.Yellow}" />
     <SolidColorBrush x:Key="Control.Error" Color="#FF3300" />
 
