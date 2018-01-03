@@ -17,6 +17,27 @@
         <Setter Property="HorizontalAlignment" Value="Left" />
     </Style>
 
+    <Style
+        x:Key="app__bar-name"
+        BasedOn="{StaticResource {x:Type TextBlock}}"
+        TargetType="{x:Type TextBlock}">
+        <Setter Property="HorizontalAlignment" Value="Center" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+    </Style>
+
+    <Style
+        x:Key="app__bar-menu"
+        BasedOn="{StaticResource {x:Type Button}}"
+        TargetType="{x:Type Button}">
+        <Setter Property="Padding" Value="10,10,10,10" />
+        <Setter Property="HorizontalAlignment" Value="Left" />
+    </Style>
+
+    <Style x:Key="app__bar" TargetType="{x:Type Grid}">
+        <Setter Property="Background" Value="{StaticResource Panel.Background}" />
+        <Setter Property="Effect" Value="{StaticResource DropShadowEffect}" />
+    </Style>
+
     <Style x:Key="app__panel" TargetType="{x:Type Grid}">
         <Setter Property="Background" Value="{StaticResource Window.Background}" />
     </Style>
@@ -44,21 +65,15 @@
                                 <RowDefinition Height="*" />
                             </Grid.RowDefinitions>
                             <ContentControl Grid.Row="1" cal:View.Model="{Binding ActiveItem, Mode=OneWay}" />
-                            <Grid
-                                Grid.Row="0"
-                                Background="{StaticResource Panel.Background}"
-                                Effect="{StaticResource DropShadowEffect}">
-                                <Button HorizontalAlignment="Left" cal:Message.Attach="Menu.Open">
+                            <Grid Grid.Row="0" Style="{StaticResource app__bar}">
+                                <Button cal:Message.Attach="Menu.Open" Style="{StaticResource app__bar-menu}">
                                     <Viewbox>
                                         <Canvas>
                                             <Path Data="M16.4,9H3.6C3.048,9,3,9.447,3,10c0,0.553,0.048,1,0.6,1H16.4c0.552,0,0.6-0.447,0.6-1C17,9.447,16.952,9,16.4,9z M16.4,13  H3.6C3.048,13,3,13.447,3,14c0,0.553,0.048,1,0.6,1H16.4c0.552,0,0.6-0.447,0.6-1C17,13.447,16.952,13,16.4,13z M3.6,7H16.4  C16.952,7,17,6.553,17,6c0-0.553-0.048-1-0.6-1H3.6C3.048,5,3,5.447,3,6C3,6.553,3.048,7,3.6,7z" />
                                         </Canvas>
                                     </Viewbox>
                                 </Button>
-                                <TextBlock
-                                    x:Name="ViewDisplayName"
-                                    HorizontalAlignment="Center"
-                                    VerticalAlignment="Center" />
+                                <TextBlock Style="{StaticResource app__bar-name}" Text="{Binding BarName, Mode=OneWay}" />
                             </Grid>
                         </Grid>
                         <ContentControl cal:View.Model="{Binding Menu, Mode=OneTime}" Style="{StaticResource app__menu}" />

@@ -2,7 +2,5 @@
     x:Class="Logikfabrik.Overseer.WPF.Client.Views.AppView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:cal="http://www.caliburnproject.org"
     xmlns:views="clr-namespace:Logikfabrik.Overseer.WPF.Client.Views"
-    cal:Message.Attach="[Event MouseUp] = [Action Menu.Close]"
     Style="{StaticResource app}" />

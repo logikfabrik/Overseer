@@ -53,12 +53,12 @@ namespace Logikfabrik.Overseer.WPF.Client.ViewModels
         }
 
         /// <summary>
-        /// Gets the view display name.
+        /// Gets the bar name.
         /// </summary>
         /// <value>
-        /// The view display name.
+        /// The bar name.
         /// </value>
-        public string ViewDisplayName => ActiveItem?.DisplayName;
+        public string BarName => ActiveItem?.DisplayName;
 
         /// <summary>
         /// Gets the menu.
@@ -104,7 +104,7 @@ namespace Logikfabrik.Overseer.WPF.Client.ViewModels
         {
             base.ChangeActiveItem(newItem, closePrevious);
 
-            NotifyOfPropertyChange(() => ViewDisplayName);
+            NotifyOfPropertyChange(() => BarName);
         }
     }
 }
