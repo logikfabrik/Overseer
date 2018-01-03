@@ -10,67 +10,6 @@
 
     <!--  END app-bar  -->
 
-    <!--  BEGIN app-menu  -->
-
-    <Style x:Key="app-menu" TargetType="{x:Type UserControl}" />
-
-    <Style x:Key="app-menu__menu" TargetType="{x:Type StackPanel}">
-
-        <Setter Property="Width" Value="250" />
-        <Setter Property="Margin" Value="-250,0,0,0" />
-        <Setter Property="HorizontalAlignment" Value="Left" />
-        <Setter Property="Background" Value="{StaticResource Panel.Background}" />
-        <Setter Property="Effect" Value="{StaticResource DropShadowEffect}" />
-
-    </Style>
-
-    <Style
-        x:Key="app-menu__menu-item"
-        BasedOn="{StaticResource {x:Type Button}}"
-        TargetType="{x:Type Button}">
-
-        <Style.Resources>
-            <Style TargetType="{x:Type Viewbox}">
-
-                <Setter Property="Margin" Value="0,0,10,0" />
-
-            </Style>
-            <Style TargetType="{x:Type StackPanel}">
-
-                <Setter Property="Orientation" Value="Horizontal" />
-
-            </Style>
-        </Style.Resources>
-
-        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
-
-    </Style>
-
-    <!--  END app-menu  -->
-
-    <!--  BEGIN app-menu-connections  -->
-
-    <Style x:Key="app-menu-connections" TargetType="{x:Type Grid}" />
-
-    <Style x:Key="app-menu-connections__menu" TargetType="{x:Type Grid}">
-
-        <Setter Property="Effect" Value="{StaticResource DropShadowEffect}" />
-
-    </Style>
-
-    <Style
-        x:Key="app-menu-connections__menu-item"
-        BasedOn="{StaticResource app-menu__menu-item}"
-        TargetType="{x:Type Button}" />
-
-    <Style x:Key="app-menu-connections__bricks" TargetType="{x:Type ContentControl}">
-
-        <Setter Property="Focusable" Value="False" />
-
-    </Style>
-
-    <!--  END app-menu-connections  -->
-
     <!--  BEGIN connections-bricks  -->
 
     <Style x:Key="connections-bricks" TargetType="{x:Type UserControl}" />

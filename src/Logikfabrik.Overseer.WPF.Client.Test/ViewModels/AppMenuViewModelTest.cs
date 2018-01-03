@@ -1,4 +1,4 @@
-﻿// <copyright file="MenuViewModelTest.cs" company="Logikfabrik">
+﻿// <copyright file="AppMenuViewModelTest.cs" company="Logikfabrik">
 //   Copyright (c) 2016 anton(at)logikfabrik.se. Licensed under the MIT license.
 // </copyright>
 
@@ -13,7 +13,7 @@ namespace Logikfabrik.Overseer.WPF.Client.Test.ViewModels
     using WPF.ViewModels;
     using Xunit;
 
-    public class MenuViewModelTest
+    public class AppMenuViewModelTest
     {
         [Fact]
         public void CanOpen()
@@ -22,7 +22,7 @@ namespace Logikfabrik.Overseer.WPF.Client.Test.ViewModels
 
             mocker.Use(mocker.CreateInstance<ConnectionsListViewModel>());
 
-            var model = mocker.CreateInstance<MenuViewModel>();
+            var model = mocker.CreateInstance<AppMenuViewModel>();
 
             model.Open();
 
@@ -36,7 +36,7 @@ namespace Logikfabrik.Overseer.WPF.Client.Test.ViewModels
 
             mocker.Use(mocker.CreateInstance<ConnectionsListViewModel>());
 
-            var model = mocker.CreateInstance<MenuViewModel>();
+            var model = mocker.CreateInstance<AppMenuViewModel>();
 
             model.Close();
 
@@ -52,7 +52,7 @@ namespace Logikfabrik.Overseer.WPF.Client.Test.ViewModels
 
             mocker.Use(mocker.CreateInstance<ConnectionsListViewModel>());
 
-            var model = mocker.CreateInstance<MenuViewModel>();
+            var model = mocker.CreateInstance<AppMenuViewModel>();
 
             model.IsExpanded = isExpanded;
 
@@ -66,7 +66,7 @@ namespace Logikfabrik.Overseer.WPF.Client.Test.ViewModels
 
             mocker.Use(mocker.CreateInstance<ConnectionsListViewModel>());
 
-            var model = mocker.CreateInstance<MenuViewModel>();
+            var model = mocker.CreateInstance<AppMenuViewModel>();
 
             model.GoToDashboard();
 
@@ -82,7 +82,7 @@ namespace Logikfabrik.Overseer.WPF.Client.Test.ViewModels
 
             mocker.Use(mocker.CreateInstance<ConnectionsListViewModel>());
 
-            var model = mocker.CreateInstance<MenuViewModel>();
+            var model = mocker.CreateInstance<AppMenuViewModel>();
 
             model.GoToConnections();
 
@@ -98,7 +98,7 @@ namespace Logikfabrik.Overseer.WPF.Client.Test.ViewModels
 
             mocker.Use(mocker.CreateInstance<ConnectionsListViewModel>());
 
-            var model = mocker.CreateInstance<MenuViewModel>();
+            var model = mocker.CreateInstance<AppMenuViewModel>();
 
             model.GoToAddConnection();
 
@@ -114,7 +114,7 @@ namespace Logikfabrik.Overseer.WPF.Client.Test.ViewModels
 
             mocker.Use(mocker.CreateInstance<ConnectionsListViewModel>());
 
-            var model = mocker.CreateInstance<MenuViewModel>();
+            var model = mocker.CreateInstance<AppMenuViewModel>();
 
             model.GoToSettings();
 
@@ -130,7 +130,7 @@ namespace Logikfabrik.Overseer.WPF.Client.Test.ViewModels
 
             mocker.Use(mocker.CreateInstance<ConnectionsListViewModel>());
 
-            var model = mocker.CreateInstance<MenuViewModel>();
+            var model = mocker.CreateInstance<AppMenuViewModel>();
 
             model.GoToAbout();
 

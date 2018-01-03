@@ -46,6 +46,7 @@
 
                 <!--  Local styles  -->
                 <ResourceDictionary Source="Styles/Views.xaml" />
+                <ResourceDictionary Source="Styles/AppMenu.xaml" />
 
                 <ResourceDictionary>
                     <client:AppBootstrapper x:Key="Bootstrapper" />

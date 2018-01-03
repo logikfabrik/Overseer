@@ -9,7 +9,7 @@ namespace Logikfabrik.Overseer.WPF.Client.ViewModels
     using Localization;
 
     /// <summary>
-    /// The <see cref="MenuViewModel" /> class.
+    /// The <see cref="AppMenuViewModel" /> class.
     /// </summary>
     // ReSharper disable once InheritdocConsiderUsage
     public class ErrorViewModel : PropertyChangedBase

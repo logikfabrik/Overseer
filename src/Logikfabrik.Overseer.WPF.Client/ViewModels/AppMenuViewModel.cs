@@ -1,4 +1,4 @@
-﻿// <copyright file="MenuViewModel.cs" company="Logikfabrik">
+﻿// <copyright file="AppMenuViewModel.cs" company="Logikfabrik">
 //   Copyright (c) 2016 anton(at)logikfabrik.se. Licensed under the MIT license.
 // </copyright>
 
@@ -12,10 +12,10 @@ namespace Logikfabrik.Overseer.WPF.Client.ViewModels
     using WPF.ViewModels;
 
     /// <summary>
-    /// The <see cref="MenuViewModel" /> class.
+    /// The <see cref="AppMenuViewModel" /> class.
     /// </summary>
     // ReSharper disable once InheritdocConsiderUsage
-    public class MenuViewModel : PropertyChangedBase, IDisposable
+    public class AppMenuViewModel : PropertyChangedBase, IDisposable
     {
         private readonly IEventAggregator _eventAggregator;
         private readonly IMouseManager _mouseManager;
@@ -23,13 +23,13 @@ namespace Logikfabrik.Overseer.WPF.Client.ViewModels
         private bool _isDisposed;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="MenuViewModel" /> class.
+        /// Initializes a new instance of the <see cref="AppMenuViewModel" /> class.
         /// </summary>
         /// <param name="eventAggregator">The event aggregator.</param>
         /// <param name="mouseManager">The mouse manager.</param>
         /// <param name="connectionsListViewModel">The connections list view model.</param>
         // ReSharper disable once InheritdocConsiderUsage
-        public MenuViewModel(IEventAggregator eventAggregator, IMouseManager mouseManager, ConnectionsListViewModel connectionsListViewModel)
+        public AppMenuViewModel(IEventAggregator eventAggregator, IMouseManager mouseManager, ConnectionsListViewModel connectionsListViewModel)
         {
             Ensure.That(eventAggregator).IsNotNull();
             Ensure.That(mouseManager).IsNotNull();
