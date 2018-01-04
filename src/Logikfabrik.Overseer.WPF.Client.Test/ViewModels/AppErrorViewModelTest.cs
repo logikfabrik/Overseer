@@ -1,4 +1,4 @@
-﻿// <copyright file="ErrorViewModelTest.cs" company="Logikfabrik">
+﻿// <copyright file="AppErrorViewModelTest.cs" company="Logikfabrik">
 //   Copyright (c) 2016 anton(at)logikfabrik.se. Licensed under the MIT license.
 // </copyright>
 
@@ -10,7 +10,7 @@ namespace Logikfabrik.Overseer.WPF.Client.Test.ViewModels
     using Shouldly;
     using Xunit;
 
-    public class ErrorViewModelTest
+    public class AppErrorViewModelTest
     {
         [Theory]
         [AutoData]
@@ -18,7 +18,7 @@ namespace Logikfabrik.Overseer.WPF.Client.Test.ViewModels
         {
             var mocker = new AutoMocker();
 
-            var model = mocker.CreateInstance<ErrorViewModel>();
+            var model = mocker.CreateInstance<AppErrorViewModel>();
 
             model.Message = message;
 
@@ -32,7 +32,7 @@ namespace Logikfabrik.Overseer.WPF.Client.Test.ViewModels
         {
             var mocker = new AutoMocker();
 
-            var model = mocker.CreateInstance<ErrorViewModel>();
+            var model = mocker.CreateInstance<AppErrorViewModel>();
 
             model.IsExpanded = isExpanded;
 
@@ -44,7 +44,7 @@ namespace Logikfabrik.Overseer.WPF.Client.Test.ViewModels
         {
             var mocker = new AutoMocker();
 
-            var model = mocker.CreateInstance<ErrorViewModel>();
+            var model = mocker.CreateInstance<AppErrorViewModel>();
 
             model.Close();
 

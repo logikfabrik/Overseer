@@ -32,7 +32,7 @@ namespace Logikfabrik.Overseer.WPF.Client.ViewModels
         /// <param name="errorViewModel">The error view model.</param>
         /// <param name="connectionsViewModel">The connections view model.</param>
         // ReSharper disable once InheritdocConsiderUsage
-        public AppViewModel(IEventAggregator eventAggregator, AppMenuViewModel menuViewModel, ErrorViewModel errorViewModel, ConnectionsViewModel connectionsViewModel)
+        public AppViewModel(IEventAggregator eventAggregator, AppMenuViewModel menuViewModel, AppErrorViewModel errorViewModel, ConnectionsViewModel connectionsViewModel)
         {
             Ensure.That(eventAggregator).IsNotNull();
             Ensure.That(menuViewModel).IsNotNull();
@@ -74,7 +74,7 @@ namespace Logikfabrik.Overseer.WPF.Client.ViewModels
         /// <value>
         /// The error.
         /// </value>
-        public ErrorViewModel Error { get; }
+        public AppErrorViewModel Error { get; }
 
         /// <inheritdoc />
         public void Handle(NavigationMessage message)

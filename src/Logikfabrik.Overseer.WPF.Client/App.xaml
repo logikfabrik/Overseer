@@ -49,6 +49,7 @@
                 <ResourceDictionary Source="Styles/Views.xaml" />
 
                 <ResourceDictionary Source="Styles/App.xaml" />
+                <ResourceDictionary Source="Styles/AppError.xaml" />
                 <ResourceDictionary Source="Styles/AppMenu.xaml" />
 
                 <ResourceDictionary>

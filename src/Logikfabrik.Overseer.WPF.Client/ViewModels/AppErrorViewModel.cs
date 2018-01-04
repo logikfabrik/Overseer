@@ -1,4 +1,4 @@
-﻿// <copyright file="ErrorViewModel.cs" company="Logikfabrik">
+﻿// <copyright file="AppErrorViewModel.cs" company="Logikfabrik">
 //   Copyright (c) 2016 anton(at)logikfabrik.se. Licensed under the MIT license.
 // </copyright>
 
@@ -12,17 +12,17 @@ namespace Logikfabrik.Overseer.WPF.Client.ViewModels
     /// The <see cref="AppMenuViewModel" /> class.
     /// </summary>
     // ReSharper disable once InheritdocConsiderUsage
-    public class ErrorViewModel : PropertyChangedBase
+    public class AppErrorViewModel : PropertyChangedBase
     {
         private string _message;
         private bool _isExpanded;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ErrorViewModel" /> class.
+        /// Initializes a new instance of the <see cref="AppErrorViewModel" /> class.
         /// </summary>
         /// <param name="application">The application.</param>
         // ReSharper disable once InheritdocConsiderUsage
-        public ErrorViewModel(IApp application)
+        public AppErrorViewModel(IApp application)
         {
             Ensure.That(application).IsNotNull();
 
