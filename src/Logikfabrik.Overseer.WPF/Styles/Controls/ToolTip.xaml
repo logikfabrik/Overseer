@@ -3,7 +3,7 @@
         <ResourceDictionary Source="../Brushes.xaml" />
         <ResourceDictionary Source="../Resources/Effects.xaml" />
     </ResourceDictionary.MergedDictionaries>
-    <Style BasedOn="{StaticResource {x:Type ToolTip}}" TargetType="{x:Type ToolTip}">
+    <Style TargetType="{x:Type ToolTip}">
         <Setter Property="Background" Value="{StaticResource ToolTip.Background}" />
         <Setter Property="TextElement.Foreground" Value="{StaticResource Window.Foreground}" />
         <Setter Property="BorderThickness" Value="0" />
