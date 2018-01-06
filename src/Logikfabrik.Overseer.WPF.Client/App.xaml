@@ -46,9 +46,11 @@
                 <!--  Local styles  -->
                 <ResourceDictionary Source="Styles/Views.xaml" />
 
+                <ResourceDictionary Source="Styles/About.xaml" />
                 <ResourceDictionary Source="Styles/App.xaml" />
                 <ResourceDictionary Source="Styles/AppError.xaml" />
                 <ResourceDictionary Source="Styles/AppMenu.xaml" />
+                <ResourceDictionary Source="Styles/PassPhrase.xaml" />
 
                 <ResourceDictionary>
                     <client:AppBootstrapper x:Key="Bootstrapper" />

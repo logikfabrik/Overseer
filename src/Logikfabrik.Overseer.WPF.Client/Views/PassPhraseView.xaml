@@ -2,33 +2,5 @@
     x:Class="Logikfabrik.Overseer.WPF.Client.Views.PassPhraseView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:p="clr-namespace:Logikfabrik.Overseer.WPF.Client.Properties"
     xmlns:views="clr-namespace:Logikfabrik.Overseer.WPF.Client.Views"
-    d:DesignHeight="300"
-    d:DesignWidth="300"
-    Icon="..\Overseer.ico"
-    Style="{StaticResource WindowDefaultStyle}"
-    mc:Ignorable="d">
-    <ScrollViewer>
-        <StackPanel>
-            <StackPanel Margin="10">
-                <TextBlock FontSize="24" Text="Pass phrase" />
-            </StackPanel>
-            <StackPanel Style="{StaticResource Common.Setting.Panel}">
-                <TextBlock Style="{StaticResource Common.Setting.Label}" Text="Pass phrase" />
-                <TextBlock Style="{StaticResource Common.Setting.Description}" Text="A passphrase is similar to a password in usage, but is generally longer" />
-                <TextBox Text="{Binding PassPhrase, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" />
-            </StackPanel>
-            <WrapPanel Style="{StaticResource Common.Footer}">
-                <Button
-                    x:Name="Save"
-                    Content="{x:Static p:Resources.PassPhrase_Button_Save}"
-                    IsDefault="True"
-                    IsEnabled="{Binding IsValid, Mode=OneWay}" />
-            </WrapPanel>
-        </StackPanel>
-    </ScrollViewer>
-</views:AppWindow>
-
+    Style="{StaticResource PassPhrase}" />

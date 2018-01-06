@@ -1,0 +1,83 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:ex="clr-namespace:Logikfabrik.Overseer.WPF.Extensions;assembly=Logikfabrik.Overseer.WPF"
+    xmlns:p="clr-namespace:Logikfabrik.Overseer.WPF.Client.Properties">
+    <Style x:Key="About" TargetType="{x:Type UserControl}">
+        <Style.Resources>
+            <Style BasedOn="{StaticResource {x:Type Hyperlink}}" TargetType="{x:Type Hyperlink}">
+                <Setter Property="ex:HyperlinkExtensions.IsExternal" Value="True" />
+            </Style>
+        </Style.Resources>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Border Grid.Row="0" Style="{StaticResource Common.Header.Panel}">
+                            <TextBlock Text="{Binding Source={x:Static p:Resources.About_View}, Converter={StaticResource StringToUpperCaseConverter}}" />
+                        </Border>
+                        <ScrollViewer Grid.Row="1">
+                            <StackPanel>
+                                <StackPanel Style="{StaticResource Common.Setting.Panel}">
+                                    <TextBlock Style="{StaticResource Common.Setting.Label}" Text="{Binding Source={x:Static p:Resources.About_Setting_Label_Version}, Converter={StaticResource StringToUpperCaseConverter}}" />
+                                    <TextBlock Style="{StaticResource Common.Setting.Value}" Text="{Binding Version, Mode=OneTime}" />
+                                </StackPanel>
+                                <StackPanel Style="{StaticResource Common.Section.Panel}">
+                                    <TextBlock>
+                                        Overseer is a Windows task bar app for build notifications.
+                                    </TextBlock>
+                                    <TextBlock>
+                                        Overseer is Open Source (MIT), and you're welcome to contribute!
+                                        Get involved and help out on<Hyperlink NavigateUri="https://github.com/logikfabrik/overseer">GitHub</Hyperlink>
+                                        .</TextBlock>
+                                </StackPanel>
+                                <StackPanel Style="{StaticResource Common.Section.Panel}">
+                                    <TextBlock Style="{StaticResource Common.Section.Header}" Text="{Binding Source={x:Static p:Resources.About_Setting_Label_Attribution}, Converter={StaticResource StringToUpperCaseConverter}}" />
+                                    <TextBlock>
+                                        <Hyperlink NavigateUri="https://github.com/Caliburn-Micro/Caliburn.Micro">Caliburn.Micro</Hyperlink>
+                                        <LineBreak />
+                                        <Hyperlink NavigateUri="https://github.com/castleproject/Core">Castle.Core</Hyperlink>
+                                        <LineBreak />
+                                        <Hyperlink NavigateUri="https://github.com/danielwertheim/Ensure.That">Ensure.That</Hyperlink>
+                                        <LineBreak />
+                                        <Hyperlink NavigateUri="http://www.entypo.com">Entypo</Hyperlink>
+                                        <LineBreak />
+                                        <Hyperlink NavigateUri="https://github.com/JeremySkinner/FluentValidation">FluentValidation</Hyperlink>
+                                        <LineBreak />
+                                        <Hyperlink NavigateUri="https://github.com/Humanizr/Humanizer">Humanizer</Hyperlink>
+                                        <LineBreak />
+                                        <Hyperlink NavigateUri="https://github.com/JamesNK/Newtonsoft.Json">Newtonsoft.Json</Hyperlink>
+                                        <LineBreak />
+                                        <Hyperlink NavigateUri="https://github.com/ninject/Ninject">Ninject</Hyperlink>
+                                        <LineBreak />
+                                        <Hyperlink NavigateUri="https://github.com/serilog/serilog">Serilog</Hyperlink>
+                                        <LineBreak />
+                                        <Hyperlink NavigateUri="https://github.com/gmamaladze/trienet">TrieNet</Hyperlink>
+                                        <LineBreak />
+                                        <Hyperlink NavigateUri="https://github.com/AutoFixture/AutoFixture">AutoFixture</Hyperlink>
+                                        <LineBreak />
+                                        <Hyperlink NavigateUri="https://github.com/moq/moq">Moq</Hyperlink>
+                                        <LineBreak />
+                                        <Hyperlink NavigateUri="https://github.com/tkellogg/Moq.AutoMocker">Moq.AutoMocker</Hyperlink>
+                                        <LineBreak />
+                                        <Hyperlink NavigateUri="https://github.com/shouldly/shouldly">Shouldly</Hyperlink>
+                                        <LineBreak />
+                                        <Hyperlink NavigateUri="https://github.com/DotNetAnalyzers/StyleCopAnalyzers">StyleCop.Analyzers</Hyperlink>
+                                        <LineBreak />
+                                        <Hyperlink NavigateUri="https://github.com/wixtoolset/wix3">WiX</Hyperlink>
+                                        <LineBreak />
+                                        <Hyperlink NavigateUri="https://github.com/xunit/xunit">xUnit</Hyperlink>
+                                    </TextBlock>
+                                </StackPanel>
+                            </StackPanel>
+                        </ScrollViewer>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>
