@@ -6,10 +6,9 @@
         x:Key="PassPhrase"
         BasedOn="{StaticResource {x:Type Window}}"
         TargetType="{x:Type Window}">
-        <Setter Property="Width" Value="380" />
-        <Setter Property="MinWidth" Value="300" />
-        <Setter Property="Height" Value="650" />
-        <Setter Property="MinHeight" Value="550" />
+        <Setter Property="Width" Value="680" />
+        <Setter Property="ResizeMode" Value="NoResize" />
+        <Setter Property="Height" Value="550" />
         <Setter Property="TextOptions.TextFormattingMode" Value="Display" />
         <Setter Property="UseLayoutRounding" Value="True" />
         <Setter Property="TextElement.Foreground" Value="{StaticResource Window.Foreground}" />
@@ -22,8 +21,24 @@
                             <ScrollViewer>
                                 <StackPanel>
                                     <StackPanel Margin="10">
-                                        <TextBlock FontSize="24" Text="Pass phrase" />
+                                        <TextBlock
+                                            FontSize="24"
+                                            Text="Welcome to Overseer"
+                                            TextAlignment="Center"
+                                            TextWrapping="Wrap" />
+                                        <TextBlock
+                                            Margin="5,25,5,25"
+                                            FontSize="18"
+                                            TextAlignment="Center"
+                                            TextWrapping="Wrap">
+                                            You're on your way!<LineBreak />
+                                            Overseer will soon be ready!</TextBlock>
+                                        <TextBlock TextWrapping="Wrap">
+                                            <Run FontWeight="Bold">Just one thing before we can get started.</Run>
+                                            <Run>Overseer will help you keep track of your CI/DI builds, using your CI/DI settings. Your CI/DI settings will be encrypted and saved to your harddrive. And for that we need a pass phrase.</Run>
+                                        </TextBlock>
                                     </StackPanel>
+
                                     <StackPanel Style="{StaticResource Common.Setting.Panel}">
                                         <TextBlock Style="{StaticResource Common.Setting.Label}" Text="Pass phrase" />
                                         <TextBlock Style="{StaticResource Common.Setting.Description}" Text="A passphrase is similar to a password in usage, but is generally longer" />

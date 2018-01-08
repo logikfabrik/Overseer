@@ -368,6 +368,24 @@ namespace Logikfabrik.Overseer.WPF.Client.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Passphrase is too short.
+        /// </summary>
+        public static string PassphraseWizardStep_Validation_Passphrase_MinimumLength {
+            get {
+                return ResourceManager.GetString("PassphraseWizardStep_Validation_Passphrase_MinimumLength", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Passphrase is missing.
+        /// </summary>
+        public static string PassphraseWizardStep_Validation_Passphrase_NotEmpty {
+            get {
+                return ResourceManager.GetString("PassphraseWizardStep_Validation_Passphrase_NotEmpty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Latest build.
         /// </summary>
         public static string Project_Tile_Label_LatestBuild {

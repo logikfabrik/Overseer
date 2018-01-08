@@ -140,17 +140,27 @@
     <Compile Include="Providers\Settings\ConnectionSettingsSerializerProvider.cs" />
     <Compile Include="Providers\Settings\FileStoreProvider.cs" />
     <Compile Include="Providers\Settings\RegistryStoreProvider.cs" />
+    <Compile Include="Validators\PassPhraseWizardStepViewModelValidator.cs" />
     <Compile Include="Validators\PassPhraseViewModelValidator.cs" />
     <Compile Include="ViewModels\AboutViewModel.cs" />
     <Compile Include="ViewModels\AppErrorViewModel.cs" />
     <Compile Include="ViewModels\AppMenuViewModel.cs" />
     <Compile Include="ViewModels\AppViewModel.cs" />
+    <Compile Include="ViewModels\BuildProvidersWizardStepViewModel.cs" />
+    <Compile Include="ViewModels\Conductor{T}.cs" />
+    <Compile Include="ViewModels\IWizardStepViewModel.cs" />
     <Compile Include="ViewModels\PassPhraseViewModel.cs" />
+    <Compile Include="ViewModels\PassPhraseWizardStepViewModel.cs" />
+    <Compile Include="ViewModels\StartWizardViewModel.cs" />
+    <Compile Include="ViewModels\WelcomeWizardStepViewModel.cs" />
     <Compile Include="Views\AboutView.xaml.cs">
       <DependentUpon>AboutView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\AddConnectionView.xaml.cs">
       <DependentUpon>AddConnectionView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\BuildProvidersWizardStepView.xaml.cs">
+      <DependentUpon>BuildProvidersWizardStepView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ConnectionsList\Bricks.xaml.cs">
       <DependentUpon>Bricks.xaml</DependentUpon>
@@ -163,6 +173,12 @@
     </Compile>
     <Compile Include="Views\AppErrorView.xaml.cs">
       <DependentUpon>AppErrorView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PassPhraseWizardStepView.xaml.cs">
+      <DependentUpon>PassPhraseWizardStepView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\StartWizardView.xaml.cs">
+      <DependentUpon>StartWizardView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\UserControls\ProgressControl.xaml.cs">
       <DependentUpon>ProgressControl.xaml</DependentUpon>
@@ -231,6 +247,9 @@
       <DependentUpon>RemoveConnectionView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\AppWindow.cs" />
+    <Compile Include="Views\WelcomeWizardStepView.xaml.cs">
+      <DependentUpon>WelcomeWizardStepView.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -266,6 +285,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Styles\BuildProvidersWizardStep.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Styles\Icons.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -274,7 +297,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Styles\PassPhraseWizardStep.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Styles\StartWizard.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Styles\Views.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Styles\WelcomeWizardStep.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -285,6 +320,10 @@
     <Page Include="Views\AddConnectionView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\BuildProvidersWizardStepView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\ConnectionsList\Bricks.xaml">
       <SubType>Designer</SubType>
@@ -299,6 +338,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\AppErrorView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\PassPhraseWizardStepView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\StartWizardView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -387,6 +434,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\RemoveConnectionView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\WelcomeWizardStepView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

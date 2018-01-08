@@ -49,26 +49,28 @@ namespace Logikfabrik.Overseer.WPF.Client
         {
             base.OnStartup(sender, e);
 
-            bool? dialogResult = true;
+            //bool? dialogResult = true;
 
-            var viewModel = _kernel.Get<PassPhraseViewModel>();
+            //var viewModel = _kernel.Get<PassPhraseViewModel>();
 
-            viewModel.CanClose(canClose =>
-            {
-                if (!canClose)
-                {
-                    dialogResult = _kernel.Get<IWindowManager>().ShowDialog(viewModel);
-                }
-            });
+            //viewModel.CanClose(canClose =>
+            //{
+            //    if (!canClose)
+            //    {
+            //        dialogResult = _kernel.Get<IWindowManager>().ShowDialog(viewModel);
+            //    }
+            //});
 
-            if (dialogResult == null || !dialogResult.Value)
-            {
-                _kernel.Get<IApp>().Shutdown();
+            //if (dialogResult == null || !dialogResult.Value)
+            //{
+            //    _kernel.Get<IApp>().Shutdown();
 
-                return;
-            }
+            //    return;
+            //}
 
-            DisplayRootViewFor<AppViewModel>();
+            //DisplayRootViewFor<AppViewModel>();
+
+            DisplayRootViewFor<StartWizardViewModel>();
         }
 
         /// <inheritdoc />

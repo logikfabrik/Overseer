@@ -36,6 +36,7 @@
 
                 <!--  Styles  -->
                 <ResourceDictionary Source="pack://application:,,,/Logikfabrik.Overseer.WPF;component/Styles/Views.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/Logikfabrik.Overseer.WPF;component/Styles/BuildProvider.xaml" />
 
                 <!--  Local brushes  -->
                 <ResourceDictionary Source="Styles/Brushes.xaml" />
@@ -51,6 +52,10 @@
                 <ResourceDictionary Source="Styles/AppError.xaml" />
                 <ResourceDictionary Source="Styles/AppMenu.xaml" />
                 <ResourceDictionary Source="Styles/PassPhrase.xaml" />
+                <ResourceDictionary Source="Styles/StartWizard.xaml" />
+                <ResourceDictionary Source="Styles/WelcomeWizardStep.xaml" />
+                <ResourceDictionary Source="Styles/PassPhraseWizardStep.xaml" />
+                <ResourceDictionary Source="Styles/BuildProvidersWizardStep.xaml" />
 
                 <ResourceDictionary>
                     <client:AppBootstrapper x:Key="Bootstrapper" />

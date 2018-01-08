@@ -1,0 +1,107 @@
+﻿// <copyright file="PassPhraseWizardStepViewModel.cs" company="Logikfabrik">
+//   Copyright (c) 2016 anton(at)logikfabrik.se. Licensed under the MIT license.
+// </copyright>
+
+namespace Logikfabrik.Overseer.WPF.Client.ViewModels
+{
+    using System.ComponentModel;
+    using System.Linq;
+    using Caliburn.Micro;
+    using EnsureThat;
+    using Navigation;
+    using Settings;
+    using Validators;
+
+    /// <summary>
+    /// The <see cref="PassPhraseWizardStepViewModel" /> class.
+    /// </summary>
+    // ReSharper disable once InheritdocConsiderUsage
+    public class PassPhraseWizardStepViewModel : PropertyChangedBase, IWizardStepViewModel, IDataErrorInfo
+    {
+        private readonly IEventAggregator _eventAggregator;
+        private readonly IConnectionSettingsEncrypter _encrypter;
+        private readonly PassPhraseWizardStepViewModelValidator _validator;
+        private string _passPhrase;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PassPhraseWizardStepViewModel" /> class.
+        /// </summary>
+        /// <param name="eventAggregator">The event aggregator.</param>
+        /// <param name="encrypter">The encrypter.</param>
+        // ReSharper disable once InheritdocConsiderUsage
+        public PassPhraseWizardStepViewModel(IEventAggregator eventAggregator, IConnectionSettingsEncrypter encrypter)
+        {
+            Ensure.That(eventAggregator).IsNotNull();
+            Ensure.That(encrypter).IsNotNull();
+
+            _eventAggregator = eventAggregator;
+            _encrypter = encrypter;
+            _validator = new PassPhraseWizardStepViewModelValidator();
+        }
+
+        /// <summary>
+        /// Gets or sets the pass phrase.
+        /// </summary>
+        /// <value>
+        /// The pass phrase.
+        /// </value>
+        public string PassPhrase
+        {
+            get
+            {
+                return _passPhrase;
+            }
+
+            set
+            {
+                _passPhrase = value;
+                NotifyOfPropertyChange(() => PassPhrase);
+                NotifyOfPropertyChange(() => IsValid);
+            }
+        }
+
+        /// <summary>
+        /// Gets a value indicating whether this instance is valid.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if this instance is valid; otherwise, <c>false</c>.
+        /// </value>
+        public bool IsValid => _validator.Validate(this).IsValid;
+
+        /// <inheritdoc />
+        public string Error => null;
+
+        /// <inheritdoc />
+        public string this[string name]
+        {
+            get
+            {
+                var result = _validator.Validate(this);
+
+                if (result.IsValid)
+                {
+                    return null;
+                }
+
+                var error = result.Errors.FirstOrDefault(e => e.PropertyName == name);
+
+                return error?.ErrorMessage;
+            }
+        }
+
+        public void Next()
+        {
+            if (!IsValid)
+            {
+                return;
+            }
+
+            // TODO: Uncomment when done!
+            //_encrypter.SetPassPhrase(_passPhrase);
+
+            var message = new NavigationMessage(typeof(BuildProvidersWizardStepViewModel));
+
+            _eventAggregator.PublishOnUIThread(message);
+        }
+    }
+}
