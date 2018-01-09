@@ -141,7 +141,6 @@
     <Compile Include="Providers\Settings\FileStoreProvider.cs" />
     <Compile Include="Providers\Settings\RegistryStoreProvider.cs" />
     <Compile Include="Validators\PassPhraseWizardStepViewModelValidator.cs" />
-    <Compile Include="Validators\PassPhraseViewModelValidator.cs" />
     <Compile Include="ViewModels\AboutViewModel.cs" />
     <Compile Include="ViewModels\AppErrorViewModel.cs" />
     <Compile Include="ViewModels\AppMenuViewModel.cs" />

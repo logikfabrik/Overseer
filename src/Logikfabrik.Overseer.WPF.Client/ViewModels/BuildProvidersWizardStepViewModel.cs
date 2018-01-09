@@ -2,6 +2,8 @@
 //   Copyright (c) 2016 anton(at)logikfabrik.se. Licensed under the MIT license.
 // </copyright>
 
+using System.Linq;
+
 namespace Logikfabrik.Overseer.WPF.Client.ViewModels
 {
     using System.Collections.Generic;
@@ -28,7 +30,10 @@ namespace Logikfabrik.Overseer.WPF.Client.ViewModels
         {
             Ensure.That(providers).IsNotNull();
 
-            Providers = providers;
+            var p = providers.ToArray();
+
+            Providers = p;
+            Provider = p.FirstOrDefault();
         }
 
         /// <summary>

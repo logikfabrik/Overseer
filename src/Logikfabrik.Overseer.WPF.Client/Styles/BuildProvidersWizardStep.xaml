@@ -23,21 +23,21 @@
                                 You can add connections later
                             </TextBlock>
                         </StackPanel>
-                        <StackPanel
+                        <Grid
+                            Width="450"
+                            Margin="0,24,0,0"
                             HorizontalAlignment="Center"
-                            VerticalAlignment="Center"
-                            Orientation="Horizontal">
-                            <!--  ReSharper disable once Xaml.BindingWithoutContextNotResolved  -->
-                            <ComboBox ItemsSource="{Binding Providers, Mode=OneWay}" SelectedValue="{Binding Provider, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
-                                <ComboBox.ItemTemplate>
-                                    <DataTemplate>
-                                        <!--  ReSharper disable once Xaml.BindingWithContextNotResolved  -->
-                                        <TextBlock Text="{Binding ProviderName, Mode=OneWay}" />
-                                    </DataTemplate>
-                                </ComboBox.ItemTemplate>
-                            </ComboBox>
-                            <Button cal:Message.Attach="AddConnection">Add...</Button>
-                        </StackPanel>
+                            VerticalAlignment="Center">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <ComboBox
+                                DisplayMemberPath="ProviderName"
+                                ItemsSource="{Binding Providers, Mode=OneWay}"
+                                SelectedValue="{Binding Provider, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                            <Button Grid.Column="1" cal:Message.Attach="AddConnection">Add...</Button>
+                        </Grid>
                         <WrapPanel
                             Margin="0,0,0,96"
                             HorizontalAlignment="Center"

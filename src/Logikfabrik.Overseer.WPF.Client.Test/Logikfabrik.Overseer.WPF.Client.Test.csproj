@@ -106,7 +106,6 @@
     <Compile Include="ViewModels\AboutViewModelTest.cs" />
     <Compile Include="ViewModels\AppErrorViewModelTest.cs" />
     <Compile Include="ViewModels\AppMenuViewModelTest.cs" />
-    <Compile Include="ViewModels\PassPhraseViewModelTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config">
