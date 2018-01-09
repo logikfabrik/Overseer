@@ -6,27 +6,32 @@ namespace Logikfabrik.Overseer.WPF.Client.ViewModels
 {
     using Caliburn.Micro;
     using EnsureThat;
+    using Logikfabrik.Overseer.WPF.ViewModels;
     using Navigation;
 
     /// <summary>
     /// The <see cref="WelcomeWizardStepViewModel" /> class.
     /// </summary>
-    public class WelcomeWizardStepViewModel : IWizardStepViewModel
+    // ReSharper disable once InheritdocConsiderUsage
+    public class WelcomeWizardStepViewModel : ViewModel
     {
         private readonly IEventAggregator _eventAggregator;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="WelcomeWizardStepViewModel" /> class.
         /// </summary>
+        /// <param name="platformProvider">The platform provider.</param>
         /// <param name="eventAggregator">The event aggregator.</param>
-        public WelcomeWizardStepViewModel(IEventAggregator eventAggregator)
+        // ReSharper disable once InheritdocConsiderUsage
+        public WelcomeWizardStepViewModel(IPlatformProvider platformProvider, IEventAggregator eventAggregator) 
+            : base(platformProvider)
         {
             Ensure.That(eventAggregator).IsNotNull();
 
             _eventAggregator = eventAggregator;
         }
 
-        public void Next()
+        public void NextStep()
         {
             var message = new NavigationMessage(typeof(PassPhraseWizardStepViewModel));
 

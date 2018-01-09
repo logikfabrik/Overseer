@@ -5,15 +5,26 @@
 namespace Logikfabrik.Overseer.WPF.Client.ViewModels
 {
     using System.Collections.Generic;
+    using Caliburn.Micro;
     using EnsureThat;
     using WPF.ViewModels;
 
     /// <summary>
     /// The <see cref="BuildProvidersWizardStepViewModel" /> class.
     /// </summary>
-    public class BuildProvidersWizardStepViewModel : IWizardStepViewModel
+    // ReSharper disable once InheritdocConsiderUsage
+    public class BuildProvidersWizardStepViewModel : ViewModel
     {
-        public BuildProvidersWizardStepViewModel(IEnumerable<IBuildProviderViewModel> providers)
+        private IBuildProviderViewModel _provider;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="BuildProvidersWizardStepViewModel" /> class.
+        /// </summary>
+        /// <param name="platformProvider">The platform provider.</param>
+        /// <param name="providers">The providers.</param>
+        // ReSharper disable once InheritdocConsiderUsage
+        public BuildProvidersWizardStepViewModel(IPlatformProvider platformProvider, IEnumerable<IBuildProviderViewModel> providers) 
+            : base(platformProvider)
         {
             Ensure.That(providers).IsNotNull();
 
@@ -27,5 +38,35 @@ namespace Logikfabrik.Overseer.WPF.Client.ViewModels
         /// The providers.
         /// </value>
         public IEnumerable<IBuildProviderViewModel> Providers { get; }
+
+        /// <summary>
+        /// Gets or sets the provider.
+        /// </summary>
+        /// <value>
+        /// The provider.
+        /// </value>
+        public IBuildProviderViewModel Provider
+        {
+            get
+            {
+                return _provider;
+            }
+
+            set
+            {
+                _provider = value;
+                NotifyOfPropertyChange(() => Provider);
+            }
+        }
+
+        public void AddConnection()
+        {
+            _provider?.AddConnection();
+        }
+
+        public void SkipStep()
+        {
+            (Parent as IClose)?.TryClose(true);
+        }
     }
 }

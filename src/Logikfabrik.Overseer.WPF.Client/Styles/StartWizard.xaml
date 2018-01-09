@@ -9,7 +9,6 @@
         <Setter Property="Width" Value="680" />
         <Setter Property="ResizeMode" Value="NoResize" />
         <Setter Property="Height" Value="550" />
-        <!--<Setter Property="TextOptions.TextFormattingMode" Value="Display" />-->
         <Setter Property="UseLayoutRounding" Value="True" />
         <Setter Property="TextElement.Foreground" Value="{StaticResource Window.Foreground}" />
         <Setter Property="Icon" Value="../Overseer.ico" />

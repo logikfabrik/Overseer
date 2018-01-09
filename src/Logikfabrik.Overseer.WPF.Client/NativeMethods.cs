@@ -25,12 +25,6 @@ namespace Logikfabrik.Overseer.WPF.Client
         public const int WS_MAXIMIZEBOX = 0x10000;
 
         /// <summary>
-        /// The minimize box index.
-        /// </summary>
-        // ReSharper disable once InconsistentNaming
-        public const int WS_MINIMIZEBOX = 0x20000;
-
-        /// <summary>
         /// Gets information about the specified window.
         /// </summary>
         /// <param name="hWnd">The window.</param>

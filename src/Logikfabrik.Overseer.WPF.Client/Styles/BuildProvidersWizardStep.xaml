@@ -7,26 +7,6 @@
             <Style BasedOn="{StaticResource {x:Type TextBlock}}" TargetType="{x:Type TextBlock}">
                 <Setter Property="TextAlignment" Value="Center" />
             </Style>
-            <Style TargetType="{x:Type UserControl}">
-                <Style.Resources>
-                    <Style BasedOn="{StaticResource {x:Type Button}}" TargetType="{x:Type Button}">
-                        <Style.Resources>
-                            <Style TargetType="{x:Type Viewbox}">
-                                <Setter Property="Width" Value="50" />
-                                <Setter Property="Height" Value="50" />
-                            </Style>
-                            <Style BasedOn="{StaticResource {x:Type TextBlock}}" TargetType="{x:Type TextBlock}">
-                                <Setter Property="TextWrapping" Value="Wrap" />
-                                <Setter Property="VerticalAlignment" Value="Bottom" />
-                                <Setter Property="TextAlignment" Value="Center" />
-                            </Style>
-                        </Style.Resources>
-                        <Setter Property="VerticalContentAlignment" Value="Stretch" />
-                    </Style>
-                </Style.Resources>
-                <Setter Property="Width" Value="100" />
-                <Setter Property="Height" Value="100" />
-            </Style>
         </Style.Resources>
         <Setter Property="Template">
             <Setter.Value>
@@ -43,33 +23,26 @@
                                 You can add connections later
                             </TextBlock>
                         </StackPanel>
-
-                        <ItemsControl ItemsSource="{Binding Providers, Mode=OneWay}">
-                            <ItemsControl.ItemContainerStyle>
-                                <Style>
-                                    <!--  ReSharper disable once Xaml.RedundantPropertyTypeQualifier  -->
-                                    <Setter Property="FrameworkElement.Margin" Value="10,10,0,0" />
-                                </Style>
-                            </ItemsControl.ItemContainerStyle>
-                            <ItemsControl.Template>
-                                <ControlTemplate>
-                                    <ScrollViewer>
-                                        <ItemsPresenter Margin="0,0,10,10" />
-                                    </ScrollViewer>
-                                </ControlTemplate>
-                            </ItemsControl.Template>
-                            <ItemsControl.ItemsPanel>
-                                <ItemsPanelTemplate>
-                                    <WrapPanel />
-                                </ItemsPanelTemplate>
-                            </ItemsControl.ItemsPanel>
-                        </ItemsControl>
-
+                        <StackPanel
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Orientation="Horizontal">
+                            <!--  ReSharper disable once Xaml.BindingWithoutContextNotResolved  -->
+                            <ComboBox ItemsSource="{Binding Providers, Mode=OneWay}" SelectedValue="{Binding Provider, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <!--  ReSharper disable once Xaml.BindingWithContextNotResolved  -->
+                                        <TextBlock Text="{Binding ProviderName, Mode=OneWay}" />
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
+                            </ComboBox>
+                            <Button cal:Message.Attach="AddConnection">Add...</Button>
+                        </StackPanel>
                         <WrapPanel
                             Margin="0,0,0,96"
                             HorizontalAlignment="Center"
                             VerticalAlignment="Bottom">
-                            <Button cal:Message.Attach="Next" IsDefault="True">
+                            <Button cal:Message.Attach="SkipStep" IsDefault="True">
                                 Skip
                             </Button>
                         </WrapPanel>

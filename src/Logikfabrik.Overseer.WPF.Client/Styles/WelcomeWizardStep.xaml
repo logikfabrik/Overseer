@@ -27,7 +27,7 @@
                             Margin="0,0,0,96"
                             HorizontalAlignment="Center"
                             VerticalAlignment="Bottom">
-                            <Button cal:Message.Attach="Next" IsDefault="True">
+                            <Button cal:Message.Attach="NextStep" IsDefault="True">
                                 Get started
                             </Button>
                         </WrapPanel>

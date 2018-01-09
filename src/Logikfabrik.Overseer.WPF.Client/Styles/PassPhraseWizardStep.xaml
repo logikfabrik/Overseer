@@ -34,7 +34,7 @@
                             HorizontalAlignment="Center"
                             VerticalAlignment="Bottom">
                             <Button
-                                cal:Message.Attach="Next"
+                                cal:Message.Attach="NextStep"
                                 IsDefault="True"
                                 IsEnabled="{Binding IsValid}">
                                 Next

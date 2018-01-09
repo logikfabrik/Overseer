@@ -4,10 +4,6 @@
 
 namespace Logikfabrik.Overseer.WPF.Client.Views
 {
-    using System;
-    using System.Windows;
-    using System.Windows.Interop;
-
     /// <summary>
     /// The <see cref="StartWizardView" /> class.
     /// </summary>
@@ -21,25 +17,6 @@ namespace Logikfabrik.Overseer.WPF.Client.Views
         public StartWizardView()
         {
             InitializeComponent();
-
-            WeakEventManager<AppWindow, EventArgs>.AddHandler(this, nameof(SourceInitialized), (sender, e) =>
-            {
-                var hWnd = new WindowInteropHelper(this).Handle;
-
-                if (hWnd == IntPtr.Zero)
-                {
-                    return;
-                }
-
-                DisableMinimizeButton(hWnd);
-            });
-        }
-
-        private static void DisableMinimizeButton(IntPtr hWnd)
-        {
-            var currentStyle = NativeMethods.GetWindowLong(hWnd, NativeMethods.GWL_STYLE);
-
-            NativeMethods.SetWindowLong(hWnd, NativeMethods.GWL_STYLE, currentStyle & ~NativeMethods.WS_MINIMIZEBOX);
         }
     }
 }

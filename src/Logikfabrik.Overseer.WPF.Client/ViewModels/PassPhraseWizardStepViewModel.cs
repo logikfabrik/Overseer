@@ -11,12 +11,13 @@ namespace Logikfabrik.Overseer.WPF.Client.ViewModels
     using Navigation;
     using Settings;
     using Validators;
+    using WPF.ViewModels;
 
     /// <summary>
     /// The <see cref="PassPhraseWizardStepViewModel" /> class.
     /// </summary>
     // ReSharper disable once InheritdocConsiderUsage
-    public class PassPhraseWizardStepViewModel : PropertyChangedBase, IWizardStepViewModel, IDataErrorInfo
+    public class PassPhraseWizardStepViewModel : ViewModel, IDataErrorInfo
     {
         private readonly IEventAggregator _eventAggregator;
         private readonly IConnectionSettingsEncrypter _encrypter;
@@ -26,10 +27,12 @@ namespace Logikfabrik.Overseer.WPF.Client.ViewModels
         /// <summary>
         /// Initializes a new instance of the <see cref="PassPhraseWizardStepViewModel" /> class.
         /// </summary>
+        /// <param name="platformProvider">The platform provider.</param>
         /// <param name="eventAggregator">The event aggregator.</param>
         /// <param name="encrypter">The encrypter.</param>
         // ReSharper disable once InheritdocConsiderUsage
-        public PassPhraseWizardStepViewModel(IEventAggregator eventAggregator, IConnectionSettingsEncrypter encrypter)
+        public PassPhraseWizardStepViewModel(IPlatformProvider platformProvider, IEventAggregator eventAggregator, IConnectionSettingsEncrypter encrypter) 
+            : base(platformProvider)
         {
             Ensure.That(eventAggregator).IsNotNull();
             Ensure.That(encrypter).IsNotNull();
@@ -89,7 +92,7 @@ namespace Logikfabrik.Overseer.WPF.Client.ViewModels
             }
         }
 
-        public void Next()
+        public void NextStep()
         {
             if (!IsValid)
             {
@@ -97,7 +100,7 @@ namespace Logikfabrik.Overseer.WPF.Client.ViewModels
             }
 
             // TODO: Uncomment when done!
-            //_encrypter.SetPassPhrase(_passPhrase);
+            _encrypter.SetPassPhrase(_passPhrase);
 
             var message = new NavigationMessage(typeof(BuildProvidersWizardStepViewModel));
 

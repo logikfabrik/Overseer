@@ -6,9 +6,10 @@
     <Style BasedOn="{StaticResource {x:Type Button}}" TargetType="{x:Type Button}">
         <Style.Resources>
             <!--  Change path fill on mouse over  -->
-            <Style TargetType="{x:Type Path}">
+            <!--  Moved to BuildProvider.xaml  -->
+            <!--<Style TargetType="{x:Type Path}">
                 <Setter Property="Fill" Value="{Binding (TextElement.Foreground), RelativeSource={RelativeSource AncestorType={x:Type Button}}}" />
-            </Style>
+            </Style>-->
             <!--  Do not change tool tip text block foreground on mouse over  -->
             <Style BasedOn="{StaticResource {x:Type ToolTip}}" TargetType="{x:Type ToolTip}">
                 <Style.Resources>

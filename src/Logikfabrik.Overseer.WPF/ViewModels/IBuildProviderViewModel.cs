@@ -9,5 +9,6 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     /// </summary>
     public interface IBuildProviderViewModel
     {
+        void AddConnection();
     }
 }

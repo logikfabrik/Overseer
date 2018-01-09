@@ -3,46 +3,6 @@
         <ResourceDictionary Source="Brushes.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
-    <Style
-        x:Key="WindowDefaultStyle"
-        BasedOn="{StaticResource {x:Type Window}}"
-        TargetType="{x:Type Window}">
-        <Setter Property="Width" Value="380" />
-        <Setter Property="MinWidth" Value="300" />
-        <Setter Property="Height" Value="650" />
-        <Setter Property="MinHeight" Value="550" />
-        <Setter Property="Background" Value="{StaticResource Window.Background}" />
-        <Setter Property="TextOptions.TextFormattingMode" Value="Display" />
-        <Setter Property="UseLayoutRounding" Value="True" />
-        <Setter Property="TextElement.Foreground" Value="{StaticResource Window.Foreground}" />
-    </Style>
-
-    <Style
-        x:Key="BuildProviderView"
-        BasedOn="{StaticResource {x:Type UserControl}}"
-        TargetType="{x:Type UserControl}">
-        <Style.Resources>
-            <Style BasedOn="{StaticResource {x:Type Button}}" TargetType="{x:Type Button}">
-                <Style.Resources>
-                    <Style TargetType="{x:Type Viewbox}">
-                        <Setter Property="Width" Value="50" />
-                        <Setter Property="Height" Value="50" />
-                    </Style>
-                    <Style BasedOn="{StaticResource {x:Type TextBlock}}" TargetType="{x:Type TextBlock}">
-                        <Setter Property="TextWrapping" Value="Wrap" />
-                        <Setter Property="VerticalAlignment" Value="Bottom" />
-                        <Setter Property="TextAlignment" Value="Center" />
-                    </Style>
-                </Style.Resources>
-                <Setter Property="VerticalContentAlignment" Value="Stretch" />
-            </Style>
-        </Style.Resources>
-        <Setter Property="Width" Value="200" />
-        <Setter Property="Height" Value="200" />
-    </Style>
-
-
-
     <!--  BEGIN Build.Base  -->
 
     <!--  BEGIN Build.Base.Header  -->

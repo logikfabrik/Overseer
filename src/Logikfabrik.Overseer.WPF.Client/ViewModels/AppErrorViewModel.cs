@@ -76,9 +76,9 @@ namespace Logikfabrik.Overseer.WPF.Client.ViewModels
         }
 
         /// <summary>
-        /// Closes this instance.
+        /// Collapses this instance.
         /// </summary>
-        public void Close()
+        public void Collapse()
         {
             IsExpanded = false;
         }

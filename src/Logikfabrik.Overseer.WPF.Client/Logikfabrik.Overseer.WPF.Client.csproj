@@ -148,8 +148,6 @@
     <Compile Include="ViewModels\AppViewModel.cs" />
     <Compile Include="ViewModels\BuildProvidersWizardStepViewModel.cs" />
     <Compile Include="ViewModels\Conductor{T}.cs" />
-    <Compile Include="ViewModels\IWizardStepViewModel.cs" />
-    <Compile Include="ViewModels\PassPhraseViewModel.cs" />
     <Compile Include="ViewModels\PassPhraseWizardStepViewModel.cs" />
     <Compile Include="ViewModels\StartWizardViewModel.cs" />
     <Compile Include="ViewModels\WelcomeWizardStepViewModel.cs" />
@@ -222,9 +220,6 @@
     <Compile Include="Views\EditSettingsView.xaml.cs">
       <DependentUpon>EditSettingsView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\PassPhraseView.xaml.cs">
-      <DependentUpon>PassPhraseView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\TrackedProjectsView.xaml.cs">
       <DependentUpon>TrackedProjectsView.xaml</DependentUpon>
     </Compile>
@@ -290,10 +285,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Styles\Icons.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Styles\PassPhrase.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -402,10 +393,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\EditSettingsView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\PassPhraseView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -46,7 +46,7 @@ namespace Logikfabrik.Overseer.WPF.Client.Test.ViewModels
 
             var model = mocker.CreateInstance<AppErrorViewModel>();
 
-            model.Close();
+            model.Collapse();
 
             model.IsExpanded.ShouldBeFalse();
         }
