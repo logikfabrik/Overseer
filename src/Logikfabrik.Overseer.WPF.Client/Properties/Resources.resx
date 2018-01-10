@@ -211,12 +211,6 @@ Please try again.</value>
   <data name="Menu_MenuItem_Label_GoToSettings" xml:space="preserve">
     <value>Settings</value>
   </data>
-  <data name="PassPhrase_Button_Save" xml:space="preserve">
-    <value>OK</value>
-  </data>
-  <data name="PassPhrase_View" xml:space="preserve">
-    <value>Pass phrase</value>
-  </data>
   <data name="Project_Tile_Label_LatestBuild" xml:space="preserve">
     <value>Latest build</value>
   </data>
@@ -249,5 +243,23 @@ Please try again.</value>
   </data>
   <data name="PassphraseWizardStep_Validation_Passphrase_NotEmpty" xml:space="preserve">
     <value>Passphrase is missing</value>
+  </data>
+  <data name="PassphraseWizardStep_Button_NextStep" xml:space="preserve">
+    <value>Next</value>
+  </data>
+  <data name="PassphraseWizardStep_Heading" xml:space="preserve">
+    <value>Let's start with a passphrase</value>
+  </data>
+  <data name="PassphraseWizardStep_Text" xml:space="preserve">
+    <value>I'll use it to encrypt your settings</value>
+  </data>
+  <data name="StartWizardStep_Button_NextStep" xml:space="preserve">
+    <value>Get started</value>
+  </data>
+  <data name="StartWizardStep_Heading" xml:space="preserve">
+    <value>Hi, I'm Overseer</value>
+  </data>
+  <data name="StartWizardStep_Text" xml:space="preserve">
+    <value>I'll help track your builds</value>
   </data>
 </root>

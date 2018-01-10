@@ -25,7 +25,8 @@ namespace Logikfabrik.Overseer.WPF.Client
         public const int WS_MAXIMIZEBOX = 0x10000;
 
         public const uint MF_BYCOMMAND = 0x00000000;
-        public const uint MF_GRAYED = 0x00000001;
+
+        public const uint MF_GREYED = 0x00000001;
 
         public const uint SC_CLOSE = 0xF060;
 
@@ -52,9 +53,24 @@ namespace Logikfabrik.Overseer.WPF.Client
         [DllImport("user32.dll")]
         public static extern int SetWindowLong(IntPtr hWnd, int nIndex, int dwNewLong);
 
+        /// <summary>
+        /// Enables, disables, or greys the specified menu item.
+        /// </summary>
+        /// <param name="hMenu">The menu.</param>
+        /// <param name="uIDEnableItem">The menu item to enable, disable or grey.</param>
+        /// <param name="uEnable">To enable, disable, or grey the menu item.</param>
+        /// <returns></returns>
         [DllImport("user32.dll")]
+
+        // ReSharper disable once InconsistentNaming
         public static extern bool EnableMenuItem(IntPtr hMenu, uint uIDEnableItem, uint uEnable);
 
+        /// <summary>
+        /// Gets the system menu.
+        /// </summary>
+        /// <param name="hWnd">The window.</param>
+        /// <param name="bRevert">The action to be taken.</param>
+        /// <returns>The system menu.</returns>
         [DllImport("user32.dll")]
         public static extern IntPtr GetSystemMenu(IntPtr hWnd, bool bRevert);
     }

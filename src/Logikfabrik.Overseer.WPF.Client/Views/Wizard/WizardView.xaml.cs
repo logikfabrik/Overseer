@@ -41,7 +41,7 @@ namespace Logikfabrik.Overseer.WPF.Client.Views.Wizard
 
             if (hMenu != IntPtr.Zero)
             {
-                NativeMethods.EnableMenuItem(hMenu, NativeMethods.SC_CLOSE, NativeMethods.MF_BYCOMMAND | NativeMethods.MF_GRAYED);
+                NativeMethods.EnableMenuItem(hMenu, NativeMethods.SC_CLOSE, NativeMethods.MF_BYCOMMAND | NativeMethods.MF_GREYED);
             }
         }
     }

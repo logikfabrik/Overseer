@@ -21,7 +21,7 @@ namespace Logikfabrik.Overseer.Settings
         /// <summary>
         /// The key name.
         /// </summary>
-        public const string KeyName = "PassPhrase";
+        public const string KeyName = "Passphrase";
 
         private readonly IDataProtector _dataProtector;
         private readonly IRegistryStore _registryStore;
@@ -39,14 +39,14 @@ namespace Logikfabrik.Overseer.Settings
             _dataProtector = dataProtector;
             _registryStore = registryStore;
 
-            HasPassPhrase = ReadPassPhraseHash().Any();
+            HasPassphrase = ReadPassphraseHash().Any();
         }
 
         /// <inheritdoc />
-        public bool HasPassPhrase { get; private set; }
+        public bool HasPassphrase { get; private set; }
 
         /// <inheritdoc />
-        public void SetPassPhrase(string passPhrase, byte[] salt)
+        public void SetPassphrase(string passPhrase, byte[] salt)
         {
             Ensure.That(passPhrase).IsNotNullOrWhiteSpace();
             Ensure.That(salt).IsNotNull();
@@ -54,9 +54,9 @@ namespace Logikfabrik.Overseer.Settings
 
             var passPhraseHash = HashUtility.GetHash(passPhrase, salt, 32);
 
-            WritePassPhraseHash(passPhraseHash);
+            WritePassphraseHash(passPhraseHash);
 
-            HasPassPhrase = true;
+            HasPassphrase = true;
         }
 
         /// <inheritdoc />
@@ -87,7 +87,7 @@ namespace Logikfabrik.Overseer.Settings
         /// Writes the pass phrase hash.
         /// </summary>
         /// <param name="passPhraseHash">The pass phrase hash.</param>
-        internal void WritePassPhraseHash(byte[] passPhraseHash)
+        internal void WritePassphraseHash(byte[] passPhraseHash)
         {
             var entropy = HashUtility.GetSalt(16);
 
@@ -107,7 +107,7 @@ namespace Logikfabrik.Overseer.Settings
         /// Reads the pass phrase hash.
         /// </summary>
         /// <returns>The pass phrase hash.</returns>
-        internal byte[] ReadPassPhraseHash()
+        internal byte[] ReadPassphraseHash()
         {
             var registryValue = _registryStore.Read(KeyName);
 
@@ -223,7 +223,7 @@ namespace Logikfabrik.Overseer.Settings
 
         private Rijndael GetAlgorithm()
         {
-            return GetAlgorithm(ReadPassPhraseHash());
+            return GetAlgorithm(ReadPassphraseHash());
         }
     }
 }

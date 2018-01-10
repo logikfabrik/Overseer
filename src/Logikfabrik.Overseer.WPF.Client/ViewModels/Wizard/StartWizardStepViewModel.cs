@@ -33,7 +33,7 @@ namespace Logikfabrik.Overseer.WPF.Client.ViewModels.Wizard
 
         public void NextStep()
         {
-            var message = new NavigationMessage(typeof(PassPhraseWizardStepViewModel));
+            var message = new NavigationMessage(typeof(PassphraseWizardStepViewModel));
 
             _eventAggregator.PublishOnUIThread(message);
         }

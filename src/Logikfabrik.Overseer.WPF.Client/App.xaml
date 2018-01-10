@@ -53,7 +53,7 @@
                 <ResourceDictionary Source="Styles/Views/AppMenu.xaml" />
                 <ResourceDictionary Source="Styles/Views/Wizard/Wizard.xaml" />
                 <ResourceDictionary Source="Styles/Views/Wizard/StartWizardStep.xaml" />
-                <ResourceDictionary Source="Styles/Views/Wizard/PassPhraseWizardStep.xaml" />
+                <ResourceDictionary Source="Styles/Views/Wizard/PassphraseWizardStep.xaml" />
                 <ResourceDictionary Source="Styles/Views/Wizard/BuildProvidersWizardStep.xaml" />
                 <ResourceDictionary Source="Styles/Views/Wizard/FinishWizardStep.xaml" />
 

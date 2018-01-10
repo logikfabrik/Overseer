@@ -1,29 +1,27 @@
-﻿// <copyright file="PassPhraseWizardStepViewModelValidator.cs" company="Logikfabrik">
+﻿// <copyright file="PassphraseWizardStepViewModelValidator.cs" company="Logikfabrik">
 //   Copyright (c) 2016 anton(at)logikfabrik.se. Licensed under the MIT license.
 // </copyright>
-
-using Logikfabrik.Overseer.WPF.Client.Properties;
-using Logikfabrik.Overseer.WPF.Client.ViewModels.Wizard;
 
 namespace Logikfabrik.Overseer.WPF.Client.Validators
 {
     using FluentValidation;
-    using ViewModels;
+    using Properties;
+    using ViewModels.Wizard;
 
     /// <summary>
-    /// The <see cref="PassPhraseWizardStepViewModelValidator" /> class.
+    /// The <see cref="PassphraseWizardStepViewModelValidator" /> class.
     /// </summary>
     // ReSharper disable once InheritdocConsiderUsage
-    public class PassPhraseWizardStepViewModelValidator : AbstractValidator<PassPhraseWizardStepViewModel>
+    public class PassphraseWizardStepViewModelValidator : AbstractValidator<PassphraseWizardStepViewModel>
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="PassPhraseWizardStepViewModelValidator" /> class.
+        /// Initializes a new instance of the <see cref="PassphraseWizardStepViewModelValidator" /> class.
         /// </summary>
-        public PassPhraseWizardStepViewModelValidator()
+        public PassphraseWizardStepViewModelValidator()
         {
             CascadeMode = CascadeMode.StopOnFirstFailure;
 
-            RuleFor(viewModel => viewModel.PassPhrase)
+            RuleFor(viewModel => viewModel.Passphrase)
                 .NotEmpty().WithLocalizedMessage(
                     typeof(Resources),
                     nameof(Resources.PassphraseWizardStep_Validation_Passphrase_NotEmpty))

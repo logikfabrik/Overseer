@@ -17,7 +17,7 @@ namespace Logikfabrik.Overseer.Settings
         /// <value>
         ///   <c>true</c> if this instance has a pass phrase; otherwise, <c>false</c>.
         /// </value>
-        bool HasPassPhrase { get; }
+        bool HasPassphrase { get; }
 
         /// <summary>
         /// Encrypts the specified XML.
@@ -40,6 +40,6 @@ namespace Logikfabrik.Overseer.Settings
         /// </summary>
         /// <param name="passPhrase">The pass phrase.</param>
         /// <param name="salt">The salt.</param>
-        void SetPassPhrase(string passPhrase, byte[] salt);
+        void SetPassphrase(string passPhrase, byte[] salt);
     }
 }

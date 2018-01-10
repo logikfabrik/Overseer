@@ -1,4 +1,4 @@
-﻿// <copyright file="PassPhraseWizardStepViewModel.cs" company="Logikfabrik">
+﻿// <copyright file="PassphraseWizardStepViewModel.cs" company="Logikfabrik">
 //   Copyright (c) 2016 anton(at)logikfabrik.se. Licensed under the MIT license.
 // </copyright>
 
@@ -14,24 +14,24 @@ using Logikfabrik.Overseer.WPF.ViewModels;
 namespace Logikfabrik.Overseer.WPF.Client.ViewModels.Wizard
 {
     /// <summary>
-    /// The <see cref="PassPhraseWizardStepViewModel" /> class.
+    /// The <see cref="PassphraseWizardStepViewModel" /> class.
     /// </summary>
     // ReSharper disable once InheritdocConsiderUsage
-    public class PassPhraseWizardStepViewModel : ViewModel, IDataErrorInfo
+    public class PassphraseWizardStepViewModel : ViewModel, IDataErrorInfo
     {
         private readonly IEventAggregator _eventAggregator;
         private readonly IConnectionSettingsEncrypter _encrypter;
-        private readonly PassPhraseWizardStepViewModelValidator _validator;
-        private string _passPhrase;
+        private readonly PassphraseWizardStepViewModelValidator _validator;
+        private string _passphrase;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="PassPhraseWizardStepViewModel" /> class.
+        /// Initializes a new instance of the <see cref="PassphraseWizardStepViewModel" /> class.
         /// </summary>
         /// <param name="platformProvider">The platform provider.</param>
         /// <param name="eventAggregator">The event aggregator.</param>
         /// <param name="encrypter">The encrypter.</param>
         // ReSharper disable once InheritdocConsiderUsage
-        public PassPhraseWizardStepViewModel(IPlatformProvider platformProvider, IEventAggregator eventAggregator, IConnectionSettingsEncrypter encrypter) 
+        public PassphraseWizardStepViewModel(IPlatformProvider platformProvider, IEventAggregator eventAggregator, IConnectionSettingsEncrypter encrypter) 
             : base(platformProvider)
         {
             Ensure.That(eventAggregator).IsNotNull();
@@ -39,26 +39,26 @@ namespace Logikfabrik.Overseer.WPF.Client.ViewModels.Wizard
 
             _eventAggregator = eventAggregator;
             _encrypter = encrypter;
-            _validator = new PassPhraseWizardStepViewModelValidator();
+            _validator = new PassphraseWizardStepViewModelValidator();
         }
 
         /// <summary>
-        /// Gets or sets the pass phrase.
+        /// Gets or sets the passphrase.
         /// </summary>
         /// <value>
-        /// The pass phrase.
+        /// The passphrase.
         /// </value>
-        public string PassPhrase
+        public string Passphrase
         {
             get
             {
-                return _passPhrase;
+                return _passphrase;
             }
 
             set
             {
-                _passPhrase = value;
-                NotifyOfPropertyChange(() => PassPhrase);
+                _passphrase = value;
+                NotifyOfPropertyChange(() => Passphrase);
                 NotifyOfPropertyChange(() => IsValid);
             }
         }
@@ -99,8 +99,7 @@ namespace Logikfabrik.Overseer.WPF.Client.ViewModels.Wizard
                 return;
             }
 
-            // TODO: Uncomment when done!
-            _encrypter.SetPassPhrase(_passPhrase);
+            _encrypter.SetPassphrase(_passphrase);
 
             var message = new NavigationMessage(typeof(BuildProvidersWizardStepViewModel));
 

@@ -28,6 +28,6 @@ namespace Logikfabrik.Overseer.Settings
         /// Sets the pass phrase.
         /// </summary>
         /// <param name="passPhrase">The pass phrase.</param>
-        void SetPassPhrase(string passPhrase);
+        void SetPassphrase(string passPhrase);
     }
 }

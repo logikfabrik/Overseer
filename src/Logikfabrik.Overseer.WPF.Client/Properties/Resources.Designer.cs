@@ -350,20 +350,29 @@ namespace Logikfabrik.Overseer.WPF.Client.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to OK.
+        ///   Looks up a localized string similar to Next.
         /// </summary>
-        public static string PassPhrase_Button_Save {
+        public static string PassphraseWizardStep_Button_NextStep {
             get {
-                return ResourceManager.GetString("PassPhrase_Button_Save", resourceCulture);
+                return ResourceManager.GetString("PassphraseWizardStep_Button_NextStep", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Pass phrase.
+        ///   Looks up a localized string similar to Let&apos;s start with a passphrase.
         /// </summary>
-        public static string PassPhrase_View {
+        public static string PassphraseWizardStep_Heading {
             get {
-                return ResourceManager.GetString("PassPhrase_View", resourceCulture);
+                return ResourceManager.GetString("PassphraseWizardStep_Heading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to I&apos;ll use it to encrypt your settings.
+        /// </summary>
+        public static string PassphraseWizardStep_Text {
+            get {
+                return ResourceManager.GetString("PassphraseWizardStep_Text", resourceCulture);
             }
         }
         
@@ -427,6 +436,33 @@ namespace Logikfabrik.Overseer.WPF.Client.Properties {
         public static string RemoveConnection_Button_Remove {
             get {
                 return ResourceManager.GetString("RemoveConnection_Button_Remove", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Get started.
+        /// </summary>
+        public static string StartWizardStep_Button_NextStep {
+            get {
+                return ResourceManager.GetString("StartWizardStep_Button_NextStep", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hi, I&apos;m Overseer.
+        /// </summary>
+        public static string StartWizardStep_Heading {
+            get {
+                return ResourceManager.GetString("StartWizardStep_Heading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to I&apos;ll help track your builds.
+        /// </summary>
+        public static string StartWizardStep_Text {
+            get {
+                return ResourceManager.GetString("StartWizardStep_Text", resourceCulture);
             }
         }
         

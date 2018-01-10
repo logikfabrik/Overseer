@@ -1,8 +1,9 @@
 ﻿<ResourceDictionary
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:cal="http://www.caliburnproject.org">
-    <Style x:Key="Views.Wizard.PassPhraseWizardStep" TargetType="{x:Type UserControl}">
+    xmlns:cal="http://www.caliburnproject.org"
+    xmlns:p="clr-namespace:Logikfabrik.Overseer.WPF.Client.Properties">
+    <Style x:Key="Views.Wizard.PassphraseWizardStep" TargetType="{x:Type UserControl}">
         <Style.Resources>
             <Style BasedOn="{StaticResource {x:Type TextBlock}}" TargetType="{x:Type TextBlock}">
                 <Setter Property="TextAlignment" Value="Center" />
@@ -16,19 +17,15 @@
                             Margin="0,96,0,0"
                             HorizontalAlignment="Center"
                             VerticalAlignment="Top">
-                            <TextBlock FontSize="24">
-                                Let's start with a passphrase
-                            </TextBlock>
-                            <TextBlock FontSize="18">
-                                I'll use it to encrypt your settings
-                            </TextBlock>
+                            <TextBlock FontSize="24" Text="{x:Static p:Resources.PassphraseWizardStep_Heading}" />
+                            <TextBlock FontSize="18" Text="{x:Static p:Resources.PassphraseWizardStep_Text}" />
                         </StackPanel>
                         <Grid
                             Width="450"
                             Margin="0,24,0,0"
                             HorizontalAlignment="Center"
                             VerticalAlignment="Center">
-                            <TextBox Text="{Binding PassPhrase, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" />
+                            <TextBox Text="{Binding Passphrase, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" />
                         </Grid>
                         <WrapPanel
                             Margin="0,0,0,96"
@@ -36,10 +33,9 @@
                             VerticalAlignment="Bottom">
                             <Button
                                 cal:Message.Attach="NextStep"
+                                Content="{x:Static p:Resources.PassphraseWizardStep_Button_NextStep}"
                                 IsDefault="True"
-                                IsEnabled="{Binding IsValid}">
-                                Next
-                            </Button>
+                                IsEnabled="{Binding IsValid}" />
                         </WrapPanel>
                     </Grid>
                 </ControlTemplate>

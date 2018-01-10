@@ -18,7 +18,7 @@ namespace Logikfabrik.Overseer.Test.Settings
         [Theory]
         [InlineAutoData(16)]
         [InlineAutoData(32)]
-        public void CanSetPassPhrase(int size, string passPhrase)
+        public void CanSetPassphrase(int size, string passPhrase)
         {
             var mocker = new AutoMocker();
 
@@ -32,14 +32,14 @@ namespace Logikfabrik.Overseer.Test.Settings
 
             var registryStoreMock = mocker.GetMock<IRegistryStore>();
 
-            xmlEncrypter.SetPassPhrase(passPhrase, salt);
+            xmlEncrypter.SetPassphrase(passPhrase, salt);
 
             registryStoreMock.Verify(m => m.Write(XmlEncrypter.KeyName, It.IsAny<string>()), Times.Once);
         }
 
         [Theory]
         [AutoData]
-        public void CanWritePassPhraseHash(string passPhrase)
+        public void CanWritePassphraseHash(string passPhrase)
         {
             var mocker = new AutoMocker();
 
@@ -53,14 +53,14 @@ namespace Logikfabrik.Overseer.Test.Settings
 
             var registryStoreMock = mocker.GetMock<IRegistryStore>();
 
-            xmlEncrypter.WritePassPhraseHash(passPhraseHash);
+            xmlEncrypter.WritePassphraseHash(passPhraseHash);
 
             registryStoreMock.Verify(m => m.Write(XmlEncrypter.KeyName, It.IsAny<string>()), Times.Once);
         }
 
         [Theory]
         [AutoData]
-        public void CanReadPassPhraseHash(string passPhrase)
+        public void CanReadPassphraseHash(string passPhrase)
         {
             var mocker = new AutoMocker();
 
@@ -74,7 +74,7 @@ namespace Logikfabrik.Overseer.Test.Settings
 
             registryStoreMock.Setup(m => m.Read(XmlEncrypter.KeyName)).Returns(Convert.ToBase64String(HashUtility.GetHash(passPhrase, HashUtility.GetSalt(16), 32)));
 
-            var passPhraseHash = xmlEncrypter.ReadPassPhraseHash();
+            var passPhraseHash = xmlEncrypter.ReadPassphraseHash();
 
             passPhraseHash.ShouldNotBeEmpty();
         }

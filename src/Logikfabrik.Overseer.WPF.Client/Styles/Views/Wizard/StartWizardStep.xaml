@@ -1,7 +1,8 @@
 ﻿<ResourceDictionary
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:cal="http://www.caliburnproject.org">
+    xmlns:cal="http://www.caliburnproject.org"
+    xmlns:p="clr-namespace:Logikfabrik.Overseer.WPF.Client.Properties">
     <Style x:Key="Views.Wizard.StartWizardStep" TargetType="{x:Type UserControl}">
         <Style.Resources>
             <Style BasedOn="{StaticResource {x:Type TextBlock}}" TargetType="{x:Type TextBlock}">
@@ -16,20 +17,17 @@
                             Margin="0,96,0,0"
                             HorizontalAlignment="Center"
                             VerticalAlignment="Top">
-                            <TextBlock FontSize="48">
-                                Hi, I'm Overseer
-                            </TextBlock>
-                            <TextBlock FontSize="18">
-                                I'll help track your builds
-                            </TextBlock>
+                            <TextBlock FontSize="48" Text="{x:Static p:Resources.StartWizardStep_Heading}" />
+                            <TextBlock FontSize="18" Text="{x:Static p:Resources.StartWizardStep_Text}" />
                         </StackPanel>
                         <WrapPanel
                             Margin="0,0,0,96"
                             HorizontalAlignment="Center"
                             VerticalAlignment="Bottom">
-                            <Button cal:Message.Attach="NextStep" IsDefault="True">
-                                Get started
-                            </Button>
+                            <Button
+                                cal:Message.Attach="NextStep"
+                                Content="{x:Static p:Resources.StartWizardStep_Button_NextStep}"
+                                IsDefault="True" />
                         </WrapPanel>
                     </Grid>
                 </ControlTemplate>

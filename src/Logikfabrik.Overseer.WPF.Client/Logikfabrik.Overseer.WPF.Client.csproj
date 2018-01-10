@@ -140,7 +140,7 @@
     <Compile Include="Providers\Settings\ConnectionSettingsSerializerProvider.cs" />
     <Compile Include="Providers\Settings\FileStoreProvider.cs" />
     <Compile Include="Providers\Settings\RegistryStoreProvider.cs" />
-    <Compile Include="Validators\PassPhraseWizardStepViewModelValidator.cs" />
+    <Compile Include="Validators\PassphraseWizardStepViewModelValidator.cs" />
     <Compile Include="ViewModels\AboutViewModel.cs" />
     <Compile Include="ViewModels\AppErrorViewModel.cs" />
     <Compile Include="ViewModels\AppMenuViewModel.cs" />
@@ -148,7 +148,7 @@
     <Compile Include="ViewModels\Wizard\BuildProvidersWizardStepViewModel.cs" />
     <Compile Include="ViewModels\Conductor{T}.cs" />
     <Compile Include="ViewModels\Wizard\FinishWizardStepViewModel.cs" />
-    <Compile Include="ViewModels\Wizard\PassPhraseWizardStepViewModel.cs" />
+    <Compile Include="ViewModels\Wizard\PassphraseWizardStepViewModel.cs" />
     <Compile Include="ViewModels\Wizard\WizardViewModel.cs" />
     <Compile Include="ViewModels\Wizard\StartWizardStepViewModel.cs" />
     <Compile Include="Views\AboutView.xaml.cs">
@@ -175,8 +175,8 @@
     <Compile Include="Views\Wizard\FinishWizardStepView.xaml.cs">
       <DependentUpon>FinishWizardStepView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Wizard\PassPhraseWizardStepView.xaml.cs">
-      <DependentUpon>PassPhraseWizardStepView.xaml</DependentUpon>
+    <Compile Include="Views\Wizard\PassphraseWizardStepView.xaml.cs">
+      <DependentUpon>PassphraseWizardStepView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Wizard\WizardView.xaml.cs">
       <DependentUpon>WizardView.xaml</DependentUpon>
@@ -295,7 +295,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Styles\Views\Wizard\PassPhraseWizardStep.xaml">
+    <Page Include="Styles\Views\Wizard\PassphraseWizardStep.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -343,7 +343,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Wizard\PassPhraseWizardStepView.xaml">
+    <Page Include="Views\Wizard\PassphraseWizardStepView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

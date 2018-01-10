@@ -43,7 +43,7 @@ namespace Logikfabrik.Overseer.WPF.Client.ViewModels.Wizard
 
         public override void CanClose(Action<bool> callback)
         {
-            callback(_encrypter.HasPassPhrase);
+            callback(_encrypter.HasPassphrase);
         }
     }
 }
