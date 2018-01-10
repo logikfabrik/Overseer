@@ -1,20 +1,20 @@
-﻿// <copyright file="WizardView.xaml.cs" company="Logikfabrik">
+﻿// <copyright file="StartWizardStepView.xaml.cs" company="Logikfabrik">
 //   Copyright (c) 2016 anton(at)logikfabrik.se. Licensed under the MIT license.
 // </copyright>
 
-namespace Logikfabrik.Overseer.WPF.Client.Views
+namespace Logikfabrik.Overseer.WPF.Client.Views.Wizard
 {
     /// <summary>
-    /// The <see cref="WizardView" /> class.
+    /// The <see cref="StartWizardStepView" /> class.
     /// </summary>
     // ReSharper disable once InheritdocConsiderUsage
-    public partial class WizardView
+    public partial class StartWizardStepView
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="WizardView" /> class.
+        /// Initializes a new instance of the <see cref="StartWizardStepView" /> class.
         /// </summary>
         // ReSharper disable once InheritdocConsiderUsage
-        public WizardView()
+        public StartWizardStepView()
         {
             InitializeComponent();
         }

@@ -1,5 +1,5 @@
 ﻿<views:AppWindow
-    x:Class="Logikfabrik.Overseer.WPF.Client.Views.WizardView"
+    x:Class="Logikfabrik.Overseer.WPF.Client.Views.Wizard.WizardView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:views="clr-namespace:Logikfabrik.Overseer.WPF.Client.Views"

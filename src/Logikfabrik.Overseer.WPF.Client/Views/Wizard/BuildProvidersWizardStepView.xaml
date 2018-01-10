@@ -1,5 +1,5 @@
 ﻿<UserControl
-    x:Class="Logikfabrik.Overseer.WPF.Client.Views.BuildProvidersWizardStepView"
+    x:Class="Logikfabrik.Overseer.WPF.Client.Views.Wizard.BuildProvidersWizardStepView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     Style="{StaticResource Views.Wizard.BuildProvidersWizardStep}" />

@@ -24,6 +24,11 @@ namespace Logikfabrik.Overseer.WPF.Client
         // ReSharper disable once InconsistentNaming
         public const int WS_MAXIMIZEBOX = 0x10000;
 
+        public const uint MF_BYCOMMAND = 0x00000000;
+        public const uint MF_GRAYED = 0x00000001;
+
+        public const uint SC_CLOSE = 0xF060;
+
         /// <summary>
         /// Gets information about the specified window.
         /// </summary>
@@ -46,5 +51,11 @@ namespace Logikfabrik.Overseer.WPF.Client
         /// </returns>
         [DllImport("user32.dll")]
         public static extern int SetWindowLong(IntPtr hWnd, int nIndex, int dwNewLong);
+
+        [DllImport("user32.dll")]
+        public static extern bool EnableMenuItem(IntPtr hMenu, uint uIDEnableItem, uint uEnable);
+
+        [DllImport("user32.dll")]
+        public static extern IntPtr GetSystemMenu(IntPtr hWnd, bool bRevert);
     }
 }
