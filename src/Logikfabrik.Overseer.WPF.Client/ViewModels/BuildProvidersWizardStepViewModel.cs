@@ -3,6 +3,7 @@
 // </copyright>
 
 using System.Linq;
+using Logikfabrik.Overseer.WPF.Navigation;
 
 namespace Logikfabrik.Overseer.WPF.Client.ViewModels
 {
@@ -17,6 +18,7 @@ namespace Logikfabrik.Overseer.WPF.Client.ViewModels
     // ReSharper disable once InheritdocConsiderUsage
     public class BuildProvidersWizardStepViewModel : ViewModel
     {
+        private readonly IEventAggregator _eventAggregator;
         private IBuildProviderViewModel _provider;
 
         /// <summary>
@@ -25,10 +27,13 @@ namespace Logikfabrik.Overseer.WPF.Client.ViewModels
         /// <param name="platformProvider">The platform provider.</param>
         /// <param name="providers">The providers.</param>
         // ReSharper disable once InheritdocConsiderUsage
-        public BuildProvidersWizardStepViewModel(IPlatformProvider platformProvider, IEnumerable<IBuildProviderViewModel> providers) 
+        public BuildProvidersWizardStepViewModel(IPlatformProvider platformProvider, IEventAggregator eventAggregator, IEnumerable<IBuildProviderViewModel> providers) 
             : base(platformProvider)
         {
+            Ensure.That(eventAggregator).IsNotNull();
             Ensure.That(providers).IsNotNull();
+
+            _eventAggregator = eventAggregator;
 
             var p = providers.ToArray();
 
@@ -71,7 +76,9 @@ namespace Logikfabrik.Overseer.WPF.Client.ViewModels
 
         public void SkipStep()
         {
-            (Parent as IClose)?.TryClose(true);
+            var message = new NavigationMessage(typeof(FinishWizardStepViewModel));
+
+            _eventAggregator.PublishOnUIThread(message);
         }
     }
 }

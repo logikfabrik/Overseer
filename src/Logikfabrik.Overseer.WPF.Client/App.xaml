@@ -52,7 +52,8 @@
                 <ResourceDictionary Source="Styles/AppError.xaml" />
                 <ResourceDictionary Source="Styles/AppMenu.xaml" />
                 <ResourceDictionary Source="Styles/StartWizard.xaml" />
-                <ResourceDictionary Source="Styles/WelcomeWizardStep.xaml" />
+                <ResourceDictionary Source="Styles/StartWizardStep.xaml" />
+                <ResourceDictionary Source="Styles/FinishWizardStep.xaml" />
                 <ResourceDictionary Source="Styles/PassPhraseWizardStep.xaml" />
                 <ResourceDictionary Source="Styles/BuildProvidersWizardStep.xaml" />
 

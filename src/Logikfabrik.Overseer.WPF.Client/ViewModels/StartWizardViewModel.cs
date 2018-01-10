@@ -28,7 +28,7 @@ namespace Logikfabrik.Overseer.WPF.Client.ViewModels
         /// <param name="encrypter"></param>
         /// <param name="welcomeWizardStepViewModel">The welcome wizard step view model.</param>
         // ReSharper disable once InheritdocConsiderUsage
-        public StartWizardViewModel(IEventAggregator eventAggregator, IConnectionSettingsEncrypter encrypter, WelcomeWizardStepViewModel welcomeWizardStepViewModel)
+        public StartWizardViewModel(IEventAggregator eventAggregator, IConnectionSettingsEncrypter encrypter, StartWizardStepViewModel welcomeWizardStepViewModel)
             : base(eventAggregator)
         {
             Ensure.That(encrypter).IsNotNull();

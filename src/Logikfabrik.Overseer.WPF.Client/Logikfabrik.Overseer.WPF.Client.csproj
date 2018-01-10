@@ -147,9 +147,10 @@
     <Compile Include="ViewModels\AppViewModel.cs" />
     <Compile Include="ViewModels\BuildProvidersWizardStepViewModel.cs" />
     <Compile Include="ViewModels\Conductor{T}.cs" />
+    <Compile Include="ViewModels\FinishWizardStepViewModel.cs" />
     <Compile Include="ViewModels\PassPhraseWizardStepViewModel.cs" />
     <Compile Include="ViewModels\StartWizardViewModel.cs" />
-    <Compile Include="ViewModels\WelcomeWizardStepViewModel.cs" />
+    <Compile Include="ViewModels\StartWizardStepViewModel.cs" />
     <Compile Include="Views\AboutView.xaml.cs">
       <DependentUpon>AboutView.xaml</DependentUpon>
     </Compile>
@@ -170,6 +171,9 @@
     </Compile>
     <Compile Include="Views\AppErrorView.xaml.cs">
       <DependentUpon>AppErrorView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\FinishWizardStepView.xaml.cs">
+      <DependentUpon>FinishWizardStepView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\PassPhraseWizardStepView.xaml.cs">
       <DependentUpon>PassPhraseWizardStepView.xaml</DependentUpon>
@@ -241,8 +245,8 @@
       <DependentUpon>RemoveConnectionView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\AppWindow.cs" />
-    <Compile Include="Views\WelcomeWizardStepView.xaml.cs">
-      <DependentUpon>WelcomeWizardStepView.xaml</DependentUpon>
+    <Compile Include="Views\StartWizardStepView.xaml.cs">
+      <DependentUpon>StartWizardStepView.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -283,6 +287,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Styles\FinishWizardStep.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Styles\Icons.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -299,7 +307,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Styles\WelcomeWizardStep.xaml">
+    <Page Include="Styles\StartWizardStep.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -328,6 +336,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\AppErrorView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\FinishWizardStepView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -423,7 +435,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\WelcomeWizardStepView.xaml">
+    <Page Include="Views\StartWizardStepView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
