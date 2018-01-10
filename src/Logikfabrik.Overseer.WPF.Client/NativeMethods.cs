@@ -24,10 +24,13 @@ namespace Logikfabrik.Overseer.WPF.Client
         // ReSharper disable once InconsistentNaming
         public const int WS_MAXIMIZEBOX = 0x10000;
 
+        // ReSharper disable once InconsistentNaming
         public const uint MF_BYCOMMAND = 0x00000000;
 
+        // ReSharper disable once InconsistentNaming
         public const uint MF_GREYED = 0x00000001;
 
+        // ReSharper disable once InconsistentNaming
         public const uint SC_CLOSE = 0xF060;
 
         /// <summary>

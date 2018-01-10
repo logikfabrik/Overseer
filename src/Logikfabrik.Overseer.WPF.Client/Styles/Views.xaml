@@ -1,14 +1,6 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
-    <!--  BEGIN app-bar  -->
 
-    <Style x:Key="app-bar" TargetType="{x:Type Grid}" />
-
-    <Style x:Key="app-bar__menu" TargetType="{x:Type Button}" />
-
-    <Style x:Key="app-bar__name" TargetType="{x:Type Button}" />
-
-    <!--  END app-bar  -->
 
     <!--  BEGIN connections-bricks  -->
 

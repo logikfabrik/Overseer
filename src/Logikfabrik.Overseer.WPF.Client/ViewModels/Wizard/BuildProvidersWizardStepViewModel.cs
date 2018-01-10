@@ -2,15 +2,15 @@
 //   Copyright (c) 2016 anton(at)logikfabrik.se. Licensed under the MIT license.
 // </copyright>
 
-using System.Collections.Generic;
-using System.Linq;
-using Caliburn.Micro;
-using EnsureThat;
-using Logikfabrik.Overseer.WPF.Navigation;
-using Logikfabrik.Overseer.WPF.ViewModels;
-
 namespace Logikfabrik.Overseer.WPF.Client.ViewModels.Wizard
 {
+    using System.Collections.Generic;
+    using System.Linq;
+    using Caliburn.Micro;
+    using EnsureThat;
+    using Navigation;
+    using WPF.ViewModels;
+
     /// <summary>
     /// The <see cref="BuildProvidersWizardStepViewModel" /> class.
     /// </summary>
@@ -24,20 +24,21 @@ namespace Logikfabrik.Overseer.WPF.Client.ViewModels.Wizard
         /// Initializes a new instance of the <see cref="BuildProvidersWizardStepViewModel" /> class.
         /// </summary>
         /// <param name="platformProvider">The platform provider.</param>
-        /// <param name="providers">The providers.</param>
+        /// <param name="eventAggregator">The event aggregator.</param>
+        /// <param name="providerViewModels">The provider view models.</param>
         // ReSharper disable once InheritdocConsiderUsage
-        public BuildProvidersWizardStepViewModel(IPlatformProvider platformProvider, IEventAggregator eventAggregator, IEnumerable<IBuildProviderViewModel> providers) 
+        public BuildProvidersWizardStepViewModel(IPlatformProvider platformProvider, IEventAggregator eventAggregator, IEnumerable<IBuildProviderViewModel> providerViewModels)
             : base(platformProvider)
         {
             Ensure.That(eventAggregator).IsNotNull();
-            Ensure.That(providers).IsNotNull();
+            Ensure.That(providerViewModels).IsNotNull();
 
             _eventAggregator = eventAggregator;
 
-            var p = providers.ToArray();
+            var providers = providerViewModels.ToArray();
 
-            Providers = p;
-            Provider = p.FirstOrDefault();
+            Providers = providers;
+            Provider = providers.FirstOrDefault();
         }
 
         /// <summary>
