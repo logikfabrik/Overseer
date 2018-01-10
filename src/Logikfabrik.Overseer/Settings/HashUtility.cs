@@ -34,18 +34,18 @@ namespace Logikfabrik.Overseer.Settings
         /// <summary>
         /// Gets a hash.
         /// </summary>
-        /// <param name="passPhrase">The pass phrase.</param>
+        /// <param name="passphrase">The passphrase.</param>
         /// <param name="salt">The salt.</param>
         /// <param name="size">The size.</param>
         /// <returns>A hash.</returns>
-        public static byte[] GetHash(string passPhrase, byte[] salt, int size)
+        public static byte[] GetHash(string passphrase, byte[] salt, int size)
         {
-            Ensure.That(passPhrase).IsNotNullOrWhiteSpace();
+            Ensure.That(passphrase).IsNotNullOrWhiteSpace();
             Ensure.That(salt).IsNotNull();
             Ensure.That(size % 16).Is(0);
 
             // ReSharper disable once ArgumentsStyleLiteral
-            var rfc2898DeriveBytes = new Rfc2898DeriveBytes(passPhrase, salt, iterations: 10000);
+            var rfc2898DeriveBytes = new Rfc2898DeriveBytes(passphrase, salt, iterations: 10000);
 
             return rfc2898DeriveBytes.GetBytes(size);
         }

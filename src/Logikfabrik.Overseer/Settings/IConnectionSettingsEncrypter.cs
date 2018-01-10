@@ -25,9 +25,9 @@ namespace Logikfabrik.Overseer.Settings
         string Decrypt(string xml);
 
         /// <summary>
-        /// Sets the pass phrase.
+        /// Sets the passphrase.
         /// </summary>
-        /// <param name="passPhrase">The pass phrase.</param>
-        void SetPassphrase(string passPhrase);
+        /// <param name="passphrase">The passphrase.</param>
+        void SetPassphrase(string passphrase);
     }
 }

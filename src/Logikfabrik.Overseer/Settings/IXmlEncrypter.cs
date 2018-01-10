@@ -12,10 +12,10 @@ namespace Logikfabrik.Overseer.Settings
     public interface IXmlEncrypter
     {
         /// <summary>
-        /// Gets a value indicating whether this instance has a pass phrase.
+        /// Gets a value indicating whether this instance has a passphrase.
         /// </summary>
         /// <value>
-        ///   <c>true</c> if this instance has a pass phrase; otherwise, <c>false</c>.
+        ///   <c>true</c> if this instance has a passphrase; otherwise, <c>false</c>.
         /// </value>
         bool HasPassphrase { get; }
 
@@ -36,10 +36,10 @@ namespace Logikfabrik.Overseer.Settings
         XmlDocument Decrypt(XmlDocument xml, string[] tagNames);
 
         /// <summary>
-        /// Sets the pass phrase.
+        /// Sets the passphrase.
         /// </summary>
-        /// <param name="passPhrase">The pass phrase.</param>
+        /// <param name="passphrase">The passphrase.</param>
         /// <param name="salt">The salt.</param>
-        void SetPassphrase(string passPhrase, byte[] salt);
+        void SetPassphrase(string passphrase, byte[] salt);
     }
 }

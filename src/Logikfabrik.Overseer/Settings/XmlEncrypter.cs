@@ -46,15 +46,15 @@ namespace Logikfabrik.Overseer.Settings
         public bool HasPassphrase { get; private set; }
 
         /// <inheritdoc />
-        public void SetPassphrase(string passPhrase, byte[] salt)
+        public void SetPassphrase(string passphrase, byte[] salt)
         {
-            Ensure.That(passPhrase).IsNotNullOrWhiteSpace();
+            Ensure.That(passphrase).IsNotNullOrWhiteSpace();
             Ensure.That(salt).IsNotNull();
             Ensure.That(salt.Length % 16).Is(0);
 
-            var passPhraseHash = HashUtility.GetHash(passPhrase, salt, 32);
+            var passphraseHash = HashUtility.GetHash(passphrase, salt, 32);
 
-            WritePassphraseHash(passPhraseHash);
+            WritePassphraseHash(passphraseHash);
 
             HasPassphrase = true;
         }
@@ -84,14 +84,14 @@ namespace Logikfabrik.Overseer.Settings
         }
 
         /// <summary>
-        /// Writes the pass phrase hash.
+        /// Writes the passphrase hash.
         /// </summary>
-        /// <param name="passPhraseHash">The pass phrase hash.</param>
-        internal void WritePassphraseHash(byte[] passPhraseHash)
+        /// <param name="passphraseHash">The passphrase hash.</param>
+        internal void WritePassphraseHash(byte[] passphraseHash)
         {
             var entropy = HashUtility.GetSalt(16);
 
-            var cipherValue = _dataProtector.Protect(passPhraseHash, entropy);
+            var cipherValue = _dataProtector.Protect(passphraseHash, entropy);
 
             var registryValueBytes = new byte[16 + cipherValue.Length];
 
@@ -104,9 +104,9 @@ namespace Logikfabrik.Overseer.Settings
         }
 
         /// <summary>
-        /// Reads the pass phrase hash.
+        /// Reads the passphrase hash.
         /// </summary>
-        /// <returns>The pass phrase hash.</returns>
+        /// <returns>The passphrase hash.</returns>
         internal byte[] ReadPassphraseHash()
         {
             var registryValue = _registryStore.Read(KeyName);
@@ -125,9 +125,9 @@ namespace Logikfabrik.Overseer.Settings
             Array.Copy(registryValueBytes, 0, entropy, 0, 16);
             Array.Copy(registryValueBytes, 16, cipherValue, 0, cipherValue.Length);
 
-            var passPhraseHash = _dataProtector.Unprotect(cipherValue, entropy);
+            var passphraseHash = _dataProtector.Unprotect(cipherValue, entropy);
 
-            return passPhraseHash;
+            return passphraseHash;
         }
 
 #pragma warning disable S3242 // Method parameters should be declared with base types
@@ -190,13 +190,13 @@ namespace Logikfabrik.Overseer.Settings
             return xml;
         }
 
-        private static Rijndael GetAlgorithm(byte[] passPhraseHash)
+        private static Rijndael GetAlgorithm(byte[] passphraseHash)
         {
             var key = new byte[16];
             var iv = new byte[16];
 
-            Array.Copy(passPhraseHash, 0, key, 0, 16);
-            Array.Copy(passPhraseHash, 0, iv, 0, 16); // TODO: Generate/save/load IV seperate from pass phrase (key).
+            Array.Copy(passphraseHash, 0, key, 0, 16);
+            Array.Copy(passphraseHash, 0, iv, 0, 16); // TODO: Generate/save/load IV seperate from passphrase (key).
 
             var algorithm = Rijndael.Create();
 

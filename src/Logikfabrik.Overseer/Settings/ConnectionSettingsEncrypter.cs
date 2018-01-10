@@ -51,11 +51,11 @@ namespace Logikfabrik.Overseer.Settings
         }
 
         /// <inheritdoc />
-        public void SetPassphrase(string passPhrase)
+        public void SetPassphrase(string passphrase)
         {
-            Ensure.That(passPhrase).IsNotNull();
+            Ensure.That(passphrase).IsNotNull();
 
-            SetPassphrase(passPhrase, Salt);
+            SetPassphrase(passphrase, Salt);
         }
     }
 }
