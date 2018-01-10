@@ -47,17 +47,19 @@
                 <!--  Local styles  -->
                 <ResourceDictionary Source="Styles/Views.xaml" />
 
+                <ResourceDictionary Source="Styles/Views/Wizard/BuildProvidersWizardStep.xaml" />
+                <ResourceDictionary Source="Styles/Views/Wizard/FinishWizardStep.xaml" />
+                <ResourceDictionary Source="Styles/Views/Wizard/PassphraseWizardStep.xaml" />
+                <ResourceDictionary Source="Styles/Views/Wizard/StartWizardStep.xaml" />
+                <ResourceDictionary Source="Styles/Views/Wizard/Wizard.xaml" />
                 <ResourceDictionary Source="Styles/Views/About.xaml" />
+                <ResourceDictionary Source="Styles/Views/AddConnection.xaml" />
                 <ResourceDictionary Source="Styles/Views/App.xaml" />
                 <ResourceDictionary Source="Styles/Views/AppError.xaml" />
                 <ResourceDictionary Source="Styles/Views/AppMenu.xaml" />
+                <ResourceDictionary Source="Styles/Views/Dashboard.xaml" />
+                <ResourceDictionary Source="Styles/Views/TrackedProject.xaml" />
                 <ResourceDictionary Source="Styles/Views/TrackedProjects.xaml" />
-                <ResourceDictionary Source="Styles/Views/AddConnection.xaml" />
-                <ResourceDictionary Source="Styles/Views/Wizard/Wizard.xaml" />
-                <ResourceDictionary Source="Styles/Views/Wizard/StartWizardStep.xaml" />
-                <ResourceDictionary Source="Styles/Views/Wizard/PassphraseWizardStep.xaml" />
-                <ResourceDictionary Source="Styles/Views/Wizard/BuildProvidersWizardStep.xaml" />
-                <ResourceDictionary Source="Styles/Views/Wizard/FinishWizardStep.xaml" />
 
                 <ResourceDictionary>
                     <client:AppBootstrapper x:Key="Bootstrapper" />
