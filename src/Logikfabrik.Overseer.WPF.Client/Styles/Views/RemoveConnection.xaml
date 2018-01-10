@@ -1,0 +1,31 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:cal="http://www.caliburnproject.org"
+    xmlns:p="clr-namespace:Logikfabrik.Overseer.WPF.Client.Properties">
+    <Style x:Key="Views.RemoveConnection" TargetType="{x:Type UserControl}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate>
+                    <ScrollViewer>
+                        <StackPanel>
+                            <StackPanel Style="{StaticResource Common.Section.Panel}">
+                                <TextBlock Text="Are you sure you want to remove the connection?" TextWrapping="Wrap" />
+                            </StackPanel>
+                            <WrapPanel Style="{StaticResource Common.Footer}">
+                                <Button
+                                    cal:Message.Attach="Remove"
+                                    Content="{x:Static p:Resources.RemoveConnection_Button_Remove}"
+                                    IsDefault="True" />
+                                <Button
+                                    cal:Message.Attach="TryClose(null)"
+                                    Content="{x:Static p:Resources.RemoveConnection_Button_Cancel}"
+                                    IsCancel="True" />
+                            </WrapPanel>
+                        </StackPanel>
+                    </ScrollViewer>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

@@ -58,6 +58,7 @@
                 <ResourceDictionary Source="Styles/Views/AppError.xaml" />
                 <ResourceDictionary Source="Styles/Views/AppMenu.xaml" />
                 <ResourceDictionary Source="Styles/Views/Dashboard.xaml" />
+                <ResourceDictionary Source="Styles/Views/RemoveConnection.xaml" />
                 <ResourceDictionary Source="Styles/Views/TrackedProject.xaml" />
                 <ResourceDictionary Source="Styles/Views/TrackedProjects.xaml" />
 
