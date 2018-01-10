@@ -21,7 +21,7 @@ namespace Logikfabrik.Overseer.Settings
         /// <summary>
         /// The key name.
         /// </summary>
-        public const string KeyName = "Passphrase";
+        public const string KeyName = "PassPhrase";
 
         private readonly IDataProtector _dataProtector;
         private readonly IRegistryStore _registryStore;

@@ -51,6 +51,8 @@
                 <ResourceDictionary Source="Styles/Views/App.xaml" />
                 <ResourceDictionary Source="Styles/Views/AppError.xaml" />
                 <ResourceDictionary Source="Styles/Views/AppMenu.xaml" />
+                <ResourceDictionary Source="Styles/Views/TrackedProjects.xaml" />
+                <ResourceDictionary Source="Styles/Views/AddConnection.xaml" />
                 <ResourceDictionary Source="Styles/Views/Wizard/Wizard.xaml" />
                 <ResourceDictionary Source="Styles/Views/Wizard/StartWizardStep.xaml" />
                 <ResourceDictionary Source="Styles/Views/Wizard/PassphraseWizardStep.xaml" />
