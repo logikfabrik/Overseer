@@ -1,8 +1,8 @@
-﻿namespace Logikfabrik.Overseer.WPF.Client.ViewModels
-{
-    using Caliburn.Micro;
-    using WPF.ViewModels;
+﻿using Caliburn.Micro;
+using Logikfabrik.Overseer.WPF.ViewModels;
 
+namespace Logikfabrik.Overseer.WPF.Client.ViewModels.Wizard
+{
     public class FinishWizardStepViewModel : ViewModel
     {
         /// <summary>

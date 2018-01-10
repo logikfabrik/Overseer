@@ -3,7 +3,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:cal="http://www.caliburnproject.org">
     <Style
-        x:Key="StartWizard"
+        x:Key="Views.Wizard.Wizard"
         BasedOn="{StaticResource {x:Type Window}}"
         TargetType="{x:Type Window}">
         <Setter Property="Width" Value="680" />
@@ -11,7 +11,7 @@
         <Setter Property="Height" Value="550" />
         <Setter Property="UseLayoutRounding" Value="True" />
         <Setter Property="TextElement.Foreground" Value="{StaticResource Window.Foreground}" />
-        <Setter Property="Icon" Value="../Overseer.ico" />
+        <Setter Property="Icon" Value="../../../Overseer.ico" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate>

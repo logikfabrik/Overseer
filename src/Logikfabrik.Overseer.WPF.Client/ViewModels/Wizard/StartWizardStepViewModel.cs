@@ -2,13 +2,13 @@
 //   Copyright (c) 2016 anton(at)logikfabrik.se. Licensed under the MIT license.
 // </copyright>
 
-namespace Logikfabrik.Overseer.WPF.Client.ViewModels
-{
-    using Caliburn.Micro;
-    using EnsureThat;
-    using Navigation;
-    using WPF.ViewModels;
+using Caliburn.Micro;
+using EnsureThat;
+using Logikfabrik.Overseer.WPF.Navigation;
+using Logikfabrik.Overseer.WPF.ViewModels;
 
+namespace Logikfabrik.Overseer.WPF.Client.ViewModels.Wizard
+{
     /// <summary>
     /// The <see cref="StartWizardStepViewModel" /> class.
     /// </summary>

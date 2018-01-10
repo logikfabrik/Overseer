@@ -3,6 +3,7 @@
 // </copyright>
 
 using Logikfabrik.Overseer.WPF.Client.Properties;
+using Logikfabrik.Overseer.WPF.Client.ViewModels.Wizard;
 
 namespace Logikfabrik.Overseer.WPF.Client.Validators
 {

@@ -145,12 +145,12 @@
     <Compile Include="ViewModels\AppErrorViewModel.cs" />
     <Compile Include="ViewModels\AppMenuViewModel.cs" />
     <Compile Include="ViewModels\AppViewModel.cs" />
-    <Compile Include="ViewModels\BuildProvidersWizardStepViewModel.cs" />
+    <Compile Include="ViewModels\Wizard\BuildProvidersWizardStepViewModel.cs" />
     <Compile Include="ViewModels\Conductor{T}.cs" />
-    <Compile Include="ViewModels\FinishWizardStepViewModel.cs" />
-    <Compile Include="ViewModels\PassPhraseWizardStepViewModel.cs" />
-    <Compile Include="ViewModels\StartWizardViewModel.cs" />
-    <Compile Include="ViewModels\StartWizardStepViewModel.cs" />
+    <Compile Include="ViewModels\Wizard\FinishWizardStepViewModel.cs" />
+    <Compile Include="ViewModels\Wizard\PassPhraseWizardStepViewModel.cs" />
+    <Compile Include="ViewModels\Wizard\WizardViewModel.cs" />
+    <Compile Include="ViewModels\Wizard\StartWizardStepViewModel.cs" />
     <Compile Include="Views\AboutView.xaml.cs">
       <DependentUpon>AboutView.xaml</DependentUpon>
     </Compile>
@@ -178,8 +178,8 @@
     <Compile Include="Views\PassPhraseWizardStepView.xaml.cs">
       <DependentUpon>PassPhraseWizardStepView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\StartWizardView.xaml.cs">
-      <DependentUpon>StartWizardView.xaml</DependentUpon>
+    <Compile Include="Views\WizardView.xaml.cs">
+      <DependentUpon>WizardView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\UserControls\ProgressControl.xaml.cs">
       <DependentUpon>ProgressControl.xaml</DependentUpon>
@@ -263,19 +263,19 @@
     <AdditionalFiles Include="stylecop.json" />
   </ItemGroup>
   <ItemGroup>
-    <Page Include="Styles\About.xaml">
+    <Page Include="Styles\Views\About.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Styles\App.xaml">
+    <Page Include="Styles\Views\App.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Styles\AppError.xaml">
+    <Page Include="Styles\Views\AppError.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Styles\AppMenu.xaml">
+    <Page Include="Styles\Views\AppMenu.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -283,11 +283,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Styles\BuildProvidersWizardStep.xaml">
+    <Page Include="Styles\Views\Wizard\BuildProvidersWizardStep.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Styles\FinishWizardStep.xaml">
+    <Page Include="Styles\Views\Wizard\FinishWizardStep.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -295,11 +295,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Styles\PassPhraseWizardStep.xaml">
+    <Page Include="Styles\Views\Wizard\PassPhraseWizardStep.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Styles\StartWizard.xaml">
+    <Page Include="Styles\Views\Wizard\Wizard.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -307,7 +307,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Styles\StartWizardStep.xaml">
+    <Page Include="Styles\Views\Wizard\StartWizardStep.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -347,7 +347,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\StartWizardView.xaml">
+    <Page Include="Views\WizardView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

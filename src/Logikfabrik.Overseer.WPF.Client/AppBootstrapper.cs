@@ -2,6 +2,8 @@
 //   Copyright (c) 2016 anton(at)logikfabrik.se. Licensed under the MIT license.
 // </copyright>
 
+using Logikfabrik.Overseer.WPF.Client.ViewModels.Wizard;
+
 namespace Logikfabrik.Overseer.WPF.Client
 {
     using System;
@@ -51,7 +53,7 @@ namespace Logikfabrik.Overseer.WPF.Client
 
             bool? dialogResult = true;
 
-            var viewModel = _kernel.Get<StartWizardViewModel>();
+            var viewModel = _kernel.Get<WizardViewModel>();
 
             viewModel.CanClose(canClose =>
             {

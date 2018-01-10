@@ -2,4 +2,4 @@
     x:Class="Logikfabrik.Overseer.WPF.Client.Views.AboutView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    Style="{StaticResource About}" />
+    Style="{StaticResource Views.About}" />

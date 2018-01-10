@@ -47,15 +47,15 @@
                 <!--  Local styles  -->
                 <ResourceDictionary Source="Styles/Views.xaml" />
 
-                <ResourceDictionary Source="Styles/About.xaml" />
-                <ResourceDictionary Source="Styles/App.xaml" />
-                <ResourceDictionary Source="Styles/AppError.xaml" />
-                <ResourceDictionary Source="Styles/AppMenu.xaml" />
-                <ResourceDictionary Source="Styles/StartWizard.xaml" />
-                <ResourceDictionary Source="Styles/StartWizardStep.xaml" />
-                <ResourceDictionary Source="Styles/FinishWizardStep.xaml" />
-                <ResourceDictionary Source="Styles/PassPhraseWizardStep.xaml" />
-                <ResourceDictionary Source="Styles/BuildProvidersWizardStep.xaml" />
+                <ResourceDictionary Source="Styles/Views/About.xaml" />
+                <ResourceDictionary Source="Styles/Views/App.xaml" />
+                <ResourceDictionary Source="Styles/Views/AppError.xaml" />
+                <ResourceDictionary Source="Styles/Views/AppMenu.xaml" />
+                <ResourceDictionary Source="Styles/Views/Wizard/Wizard.xaml" />
+                <ResourceDictionary Source="Styles/Views/Wizard/StartWizardStep.xaml" />
+                <ResourceDictionary Source="Styles/Views/Wizard/PassPhraseWizardStep.xaml" />
+                <ResourceDictionary Source="Styles/Views/Wizard/BuildProvidersWizardStep.xaml" />
+                <ResourceDictionary Source="Styles/Views/Wizard/FinishWizardStep.xaml" />
 
                 <ResourceDictionary>
                     <client:AppBootstrapper x:Key="Bootstrapper" />

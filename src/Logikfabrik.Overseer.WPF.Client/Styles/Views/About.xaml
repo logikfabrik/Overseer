@@ -3,7 +3,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:ex="clr-namespace:Logikfabrik.Overseer.WPF.Extensions;assembly=Logikfabrik.Overseer.WPF"
     xmlns:p="clr-namespace:Logikfabrik.Overseer.WPF.Client.Properties">
-    <Style x:Key="About" TargetType="{x:Type UserControl}">
+    <Style x:Key="Views.About" TargetType="{x:Type UserControl}">
         <Style.Resources>
             <Style BasedOn="{StaticResource {x:Type Hyperlink}}" TargetType="{x:Type Hyperlink}">
                 <Setter Property="ex:HyperlinkExtensions.IsExternal" Value="True" />
