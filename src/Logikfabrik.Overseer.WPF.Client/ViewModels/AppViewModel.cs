@@ -14,7 +14,7 @@ namespace Logikfabrik.Overseer.WPF.Client.ViewModels
 #pragma warning disable S110 // Inheritance tree of classes should not be too deep
 
     // ReSharper disable once InheritdocConsiderUsage
-    public sealed class AppViewModel : Conductor<IViewModel>
+    public sealed class AppViewModel : Conductor
 #pragma warning restore S110 // Inheritance tree of classes should not be too deep
     {
         /// <summary>

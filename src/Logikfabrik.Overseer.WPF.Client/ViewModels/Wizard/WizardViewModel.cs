@@ -1,49 +1,49 @@
-﻿// <copyright file="StartWizardViewModel.cs" company="Logikfabrik">
+﻿// <copyright file="WizardViewModel.cs" company="Logikfabrik">
 //   Copyright (c) 2016 anton(at)logikfabrik.se. Licensed under the MIT license.
 // </copyright>
 
-using System;
-using Caliburn.Micro;
-using EnsureThat;
-using Logikfabrik.Overseer.Settings;
-using Logikfabrik.Overseer.WPF.ViewModels;
-
 namespace Logikfabrik.Overseer.WPF.Client.ViewModels.Wizard
 {
+    using System;
+    using Caliburn.Micro;
+    using EnsureThat;
+    using Settings;
+
     /// <summary>
     /// The <see cref="WizardViewModel" /> class.
     /// </summary>
 #pragma warning disable S110 // Inheritance tree of classes should not be too deep
 
     // ReSharper disable once InheritdocConsiderUsage
-    public sealed class WizardViewModel : Conductor<IViewModel>
+    public sealed class WizardViewModel : Conductor
 #pragma warning restore S110 // Inheritance tree of classes should not be too deep
     {
-        private readonly IConnectionSettingsEncrypter _encrypter;
+        private readonly IConnectionSettingsEncrypter _connectionSettingsEncrypter;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="WizardViewModel" /> class.
         /// </summary>
         /// <param name="eventAggregator">The event aggregator.</param>
-        /// <param name="encrypter"></param>
+        /// <param name="connectionSettingsEncrypter">The connection settings encrypter.</param>
         /// <param name="welcomeWizardStepViewModel">The welcome wizard step view model.</param>
         // ReSharper disable once InheritdocConsiderUsage
-        public WizardViewModel(IEventAggregator eventAggregator, IConnectionSettingsEncrypter encrypter, StartWizardStepViewModel welcomeWizardStepViewModel)
+        public WizardViewModel(IEventAggregator eventAggregator, IConnectionSettingsEncrypter connectionSettingsEncrypter, StartWizardStepViewModel welcomeWizardStepViewModel)
             : base(eventAggregator)
         {
-            Ensure.That(encrypter).IsNotNull();
+            Ensure.That(connectionSettingsEncrypter).IsNotNull();
             Ensure.That(welcomeWizardStepViewModel).IsNotNull();
 
-            _encrypter = encrypter;
+            _connectionSettingsEncrypter = connectionSettingsEncrypter;
 
             DisplayName = "Welcome";
 
             ActivateItem(welcomeWizardStepViewModel);
         }
 
+        /// <inheritdoc />
         public override void CanClose(Action<bool> callback)
         {
-            callback(_encrypter.HasPassphrase);
+            callback(_connectionSettingsEncrypter.HasPassphrase);
         }
     }
 }

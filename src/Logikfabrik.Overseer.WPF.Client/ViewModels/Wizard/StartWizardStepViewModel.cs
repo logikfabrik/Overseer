@@ -2,13 +2,13 @@
 //   Copyright (c) 2016 anton(at)logikfabrik.se. Licensed under the MIT license.
 // </copyright>
 
-using Caliburn.Micro;
-using EnsureThat;
-using Logikfabrik.Overseer.WPF.Navigation;
-using Logikfabrik.Overseer.WPF.ViewModels;
-
 namespace Logikfabrik.Overseer.WPF.Client.ViewModels.Wizard
 {
+    using Caliburn.Micro;
+    using EnsureThat;
+    using Navigation;
+    using WPF.ViewModels;
+
     /// <summary>
     /// The <see cref="StartWizardStepViewModel" /> class.
     /// </summary>
@@ -23,7 +23,7 @@ namespace Logikfabrik.Overseer.WPF.Client.ViewModels.Wizard
         /// <param name="platformProvider">The platform provider.</param>
         /// <param name="eventAggregator">The event aggregator.</param>
         // ReSharper disable once InheritdocConsiderUsage
-        public StartWizardStepViewModel(IPlatformProvider platformProvider, IEventAggregator eventAggregator) 
+        public StartWizardStepViewModel(IPlatformProvider platformProvider, IEventAggregator eventAggregator)
             : base(platformProvider)
         {
             Ensure.That(eventAggregator).IsNotNull();

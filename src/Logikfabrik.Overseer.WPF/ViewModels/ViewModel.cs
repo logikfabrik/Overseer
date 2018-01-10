@@ -30,7 +30,6 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             _platformProvider = platformProvider;
         }
 
-        // TODO: Is this used? Can it be removed?
         /// <inheritdoc />
         public object Parent
         {

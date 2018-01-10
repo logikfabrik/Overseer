@@ -1,4 +1,4 @@
-﻿// <copyright file="Conductor{T}.cs" company="Logikfabrik">
+﻿// <copyright file="Conductor.cs" company="Logikfabrik">
 //   Copyright (c) 2016 anton(at)logikfabrik.se. Licensed under the MIT license.
 // </copyright>
 
@@ -9,21 +9,20 @@ namespace Logikfabrik.Overseer.WPF.Client.ViewModels
     using EnsureThat;
     using Navigation;
     using Overseer.Extensions;
+    using WPF.ViewModels;
 
     /// <summary>
-    /// The <see cref="Conductor{T}" /> class.
+    /// The <see cref="Conductor" /> class.
     /// </summary>
-    /// <typeparam name="T"></typeparam>
     // ReSharper disable once InheritdocConsiderUsage
-    public abstract class Conductor<T> : Caliburn.Micro.Conductor<T>.Collection.OneActive, IHandle<NavigationMessage>, IDisposable
-        where T : class
+    public abstract class Conductor : Conductor<IViewModel>.Collection.OneActive, IHandle<NavigationMessage>, IDisposable
     {
         private IEventAggregator _eventAggregator;
-        private Navigator<T> _navigator;
+        private Navigator<IViewModel> _navigator;
         private bool _isDisposed;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Conductor{T}" /> class.
+        /// Initializes a new instance of the <see cref="Conductor" /> class.
         /// </summary>
         /// <param name="eventAggregator">The event aggregator.</param>
         // ReSharper disable once InheritdocConsiderUsage
@@ -34,7 +33,7 @@ namespace Logikfabrik.Overseer.WPF.Client.ViewModels
             _eventAggregator = eventAggregator;
             _eventAggregator.Subscribe(this);
 
-            _navigator = new Navigator<T>(this);
+            _navigator = new Navigator<IViewModel>(this);
         }
 
         /// <inheritdoc />

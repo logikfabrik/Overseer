@@ -2,17 +2,17 @@
 //   Copyright (c) 2016 anton(at)logikfabrik.se. Licensed under the MIT license.
 // </copyright>
 
-using System.ComponentModel;
-using System.Linq;
-using Caliburn.Micro;
-using EnsureThat;
-using Logikfabrik.Overseer.Settings;
-using Logikfabrik.Overseer.WPF.Client.Validators;
-using Logikfabrik.Overseer.WPF.Navigation;
-using Logikfabrik.Overseer.WPF.ViewModels;
-
 namespace Logikfabrik.Overseer.WPF.Client.ViewModels.Wizard
 {
+    using System.ComponentModel;
+    using System.Linq;
+    using Caliburn.Micro;
+    using EnsureThat;
+    using Navigation;
+    using Settings;
+    using Validators;
+    using WPF.ViewModels;
+
     /// <summary>
     /// The <see cref="PassphraseWizardStepViewModel" /> class.
     /// </summary>
@@ -31,7 +31,7 @@ namespace Logikfabrik.Overseer.WPF.Client.ViewModels.Wizard
         /// <param name="eventAggregator">The event aggregator.</param>
         /// <param name="encrypter">The encrypter.</param>
         // ReSharper disable once InheritdocConsiderUsage
-        public PassphraseWizardStepViewModel(IPlatformProvider platformProvider, IEventAggregator eventAggregator, IConnectionSettingsEncrypter encrypter) 
+        public PassphraseWizardStepViewModel(IPlatformProvider platformProvider, IEventAggregator eventAggregator, IConnectionSettingsEncrypter encrypter)
             : base(platformProvider)
         {
             Ensure.That(eventAggregator).IsNotNull();

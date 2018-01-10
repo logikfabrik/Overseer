@@ -146,7 +146,7 @@
     <Compile Include="ViewModels\AppMenuViewModel.cs" />
     <Compile Include="ViewModels\AppViewModel.cs" />
     <Compile Include="ViewModels\Wizard\BuildProvidersWizardStepViewModel.cs" />
-    <Compile Include="ViewModels\Conductor{T}.cs" />
+    <Compile Include="ViewModels\Conductor.cs" />
     <Compile Include="ViewModels\Wizard\FinishWizardStepViewModel.cs" />
     <Compile Include="ViewModels\Wizard\PassphraseWizardStepViewModel.cs" />
     <Compile Include="ViewModels\Wizard\WizardViewModel.cs" />
