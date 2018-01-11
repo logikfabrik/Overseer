@@ -2,13 +2,13 @@
 //   Copyright (c) 2016 anton(at)logikfabrik.se. Licensed under the MIT license.
 // </copyright>
 
-using System;
-using Caliburn.Micro;
-using EnsureThat;
-using Logikfabrik.Overseer.Settings;
-
 namespace Logikfabrik.Overseer.WPF.Client.ViewModels
 {
+    using System;
+    using Caliburn.Micro;
+    using EnsureThat;
+    using Settings;
+
     /// <summary>
     /// The <see cref="WizardViewModel" /> class.
     /// </summary>

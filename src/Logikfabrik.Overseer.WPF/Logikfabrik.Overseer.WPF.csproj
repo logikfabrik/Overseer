@@ -145,7 +145,7 @@
     <Compile Include="ViewModels\EditConnectionSettingsViewModel{T}.cs">
       <SonarQubeExclude>true</SonarQubeExclude>
     </Compile>
-    <Compile Include="ViewModels\DesignTime\ConnectionViewModel.cs" />
+    <Compile Include="ViewModels\DesignTime\ViewConnectionViewModel.cs" />
     <Compile Include="ViewModels\DesignTime\ProjectViewModel.cs" />
     <Compile Include="ViewModels\Factories\IViewNotificationViewModelFactory.cs" />
     <Compile Include="ViewModels\Factories\ViewConnectionViewModelFactory{T1,T2}.cs">

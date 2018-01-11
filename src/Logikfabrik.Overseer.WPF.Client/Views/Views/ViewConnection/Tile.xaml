@@ -10,7 +10,7 @@
     Width="200"
     Height="200"
     cal:Bind.AtDesignTime="True"
-    d:DataContext="{d:DesignInstance d:Type=vm:ConnectionViewModel,
+    d:DataContext="{d:DesignInstance d:Type=vm:ViewConnectionViewModel,
                                      d:IsDesignTimeCreatable=True}"
     mc:Ignorable="d">
     <Grid Effect="{StaticResource DropShadowEffect}" IsEnabled="{Binding IsEditable}">

@@ -8,7 +8,7 @@
     xmlns:p="clr-namespace:Logikfabrik.Overseer.WPF.Client.Properties"
     xmlns:vm="clr-namespace:Logikfabrik.Overseer.WPF.ViewModels.DesignTime;assembly=Logikfabrik.Overseer.WPF"
     cal:Bind.AtDesignTime="True"
-    d:DataContext="{d:DesignInstance d:Type=vm:ConnectionViewModel,
+    d:DataContext="{d:DesignInstance d:Type=vm:ViewConnectionViewModel,
                                      d:IsDesignTimeCreatable=True}"
     d:DesignHeight="300"
     d:DesignWidth="300"

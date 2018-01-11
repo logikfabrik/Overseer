@@ -1,14 +1,14 @@
-﻿// <copyright file="StartWizardStepViewModel.cs" company="Logikfabrik">
+﻿// <copyright file="WizardStartViewModel.cs" company="Logikfabrik">
 //   Copyright (c) 2016 anton(at)logikfabrik.se. Licensed under the MIT license.
 // </copyright>
 
-using Caliburn.Micro;
-using EnsureThat;
-using Logikfabrik.Overseer.WPF.Navigation;
-using Logikfabrik.Overseer.WPF.ViewModels;
-
 namespace Logikfabrik.Overseer.WPF.Client.ViewModels
 {
+    using Caliburn.Micro;
+    using EnsureThat;
+    using Navigation;
+    using WPF.ViewModels;
+
     /// <summary>
     /// The <see cref="WizardStartViewModel" /> class.
     /// </summary>

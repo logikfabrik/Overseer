@@ -1,12 +1,12 @@
-﻿// <copyright file="FinishWizardStepViewModel.cs" company="Logikfabrik">
+﻿// <copyright file="WizardFinishViewModel.cs" company="Logikfabrik">
 //   Copyright (c) 2016 anton(at)logikfabrik.se. Licensed under the MIT license.
 // </copyright>
 
-using Caliburn.Micro;
-using Logikfabrik.Overseer.WPF.ViewModels;
-
 namespace Logikfabrik.Overseer.WPF.Client.ViewModels
 {
+    using Caliburn.Micro;
+    using WPF.ViewModels;
+
     /// <summary>
     /// The <see cref="WizardFinishViewModel" /> class.
     /// </summary>

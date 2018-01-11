@@ -1,4 +1,4 @@
-﻿// <copyright file="ConnectionSettingsViewModelValidator.cs" company="Logikfabrik">
+﻿// <copyright file="EditConnectionSettingsViewModelValidator.cs" company="Logikfabrik">
 //   Copyright (c) 2016 anton(at)logikfabrik.se. Licensed under the MIT license.
 // </copyright>
 

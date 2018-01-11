@@ -2,12 +2,12 @@
 //   Copyright (c) 2016 anton(at)logikfabrik.se. Licensed under the MIT license.
 // </copyright>
 
-using System;
-using System.Windows;
-using System.Windows.Media.Animation;
-
 namespace Logikfabrik.Overseer.WPF.Client.UserControls
 {
+    using System;
+    using System.Windows;
+    using System.Windows.Media.Animation;
+
     /// <summary>
     /// The <see cref="ProgressControl" /> class.
     /// </summary>

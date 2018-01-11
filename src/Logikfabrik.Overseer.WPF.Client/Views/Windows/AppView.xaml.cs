@@ -2,13 +2,13 @@
 //   Copyright (c) 2016 anton(at)logikfabrik.se. Licensed under the MIT license.
 // </copyright>
 
-using System;
-using System.Windows;
-using System.Windows.Forms;
-using EnsureThat;
-
 namespace Logikfabrik.Overseer.WPF.Client.Views.Windows
 {
+    using System;
+    using System.Windows;
+    using System.Windows.Forms;
+    using EnsureThat;
+
     /// <summary>
     /// The <see cref="AppView" /> class.
     /// </summary>

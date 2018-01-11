@@ -1,18 +1,18 @@
-﻿// <copyright file="PassphraseWizardStepViewModel.cs" company="Logikfabrik">
+﻿// <copyright file="WizardEditPassphraseViewModel.cs" company="Logikfabrik">
 //   Copyright (c) 2016 anton(at)logikfabrik.se. Licensed under the MIT license.
 // </copyright>
 
-using System.ComponentModel;
-using System.Linq;
-using Caliburn.Micro;
-using EnsureThat;
-using Logikfabrik.Overseer.Settings;
-using Logikfabrik.Overseer.WPF.Client.Validators;
-using Logikfabrik.Overseer.WPF.Navigation;
-using Logikfabrik.Overseer.WPF.ViewModels;
-
 namespace Logikfabrik.Overseer.WPF.Client.ViewModels
 {
+    using System.ComponentModel;
+    using System.Linq;
+    using Caliburn.Micro;
+    using EnsureThat;
+    using Navigation;
+    using Settings;
+    using Validators;
+    using WPF.ViewModels;
+
     /// <summary>
     /// The <see cref="WizardEditPassphraseViewModel" /> class.
     /// </summary>

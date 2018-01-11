@@ -2,12 +2,12 @@
 //   Copyright (c) 2016 anton(at)logikfabrik.se. Licensed under the MIT license.
 // </copyright>
 
-using System;
-using System.Windows;
-using System.Windows.Interop;
-
 namespace Logikfabrik.Overseer.WPF.Client.Views.Windows
 {
+    using System;
+    using System.Windows;
+    using System.Windows.Interop;
+
     /// <summary>
     /// The <see cref="WizardView" /> class.
     /// </summary>
