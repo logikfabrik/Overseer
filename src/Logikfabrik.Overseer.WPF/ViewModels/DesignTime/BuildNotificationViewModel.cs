@@ -11,10 +11,10 @@ namespace Logikfabrik.Overseer.WPF.ViewModels.DesignTime
     /// The <see cref="BuildNotificationViewModel" /> class.
     /// </summary>
     // ReSharper disable once InheritdocConsiderUsage
-    public class BuildNotificationViewModel : IBuildNotificationViewModel
+    public class BuildNotificationViewModel : IViewNotificationViewModel
     {
         /// <inheritdoc />
-        public IBuildViewModel Build { get; set; } = new BuildViewModel();
+        public IViewBuildViewModel Build { get; set; } = new BuildViewModel();
 
         /// <inheritdoc />
         public void KeepOpen()

@@ -10,7 +10,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.AppVeyor.ViewModels
     /// The <see cref="BuildProviderViewModel" /> class.
     /// </summary>
     // ReSharper disable once InheritdocConsiderUsage
-    public class BuildProviderViewModel : WPF.ViewModels.BuildProviderViewModel<ConnectionSettings, ConnectionSettingsViewModel>
+    public class BuildProviderViewModel : WPF.ViewModels.BuildProviderViewModel<ConnectionSettings, EditConnectionSettingsViewModel>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="BuildProviderViewModel" /> class.

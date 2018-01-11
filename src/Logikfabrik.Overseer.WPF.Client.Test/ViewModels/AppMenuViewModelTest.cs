@@ -20,7 +20,7 @@ namespace Logikfabrik.Overseer.WPF.Client.Test.ViewModels
         {
             var mocker = new AutoMocker();
 
-            mocker.Use(mocker.CreateInstance<ConnectionsListViewModel>());
+            mocker.Use(mocker.CreateInstance<ConnectionsViewModel>());
 
             var model = mocker.CreateInstance<AppMenuViewModel>();
 
@@ -34,7 +34,7 @@ namespace Logikfabrik.Overseer.WPF.Client.Test.ViewModels
         {
             var mocker = new AutoMocker();
 
-            mocker.Use(mocker.CreateInstance<ConnectionsListViewModel>());
+            mocker.Use(mocker.CreateInstance<ConnectionsViewModel>());
 
             var model = mocker.CreateInstance<AppMenuViewModel>();
 
@@ -50,7 +50,7 @@ namespace Logikfabrik.Overseer.WPF.Client.Test.ViewModels
         {
             var mocker = new AutoMocker();
 
-            mocker.Use(mocker.CreateInstance<ConnectionsListViewModel>());
+            mocker.Use(mocker.CreateInstance<ConnectionsViewModel>());
 
             var model = mocker.CreateInstance<AppMenuViewModel>();
 
@@ -64,7 +64,7 @@ namespace Logikfabrik.Overseer.WPF.Client.Test.ViewModels
         {
             var mocker = new AutoMocker();
 
-            mocker.Use(mocker.CreateInstance<ConnectionsListViewModel>());
+            mocker.Use(mocker.CreateInstance<ConnectionsViewModel>());
 
             var model = mocker.CreateInstance<AppMenuViewModel>();
 
@@ -72,7 +72,7 @@ namespace Logikfabrik.Overseer.WPF.Client.Test.ViewModels
 
             var eventAggregatorMock = mocker.GetMock<IEventAggregator>();
 
-            eventAggregatorMock.Verify(m => m.Publish(It.Is<NavigationMessage>(message => message.ItemType == typeof(DashboardViewModel)), It.IsAny<System.Action<System.Action>>()), Times.Once);
+            eventAggregatorMock.Verify(m => m.Publish(It.Is<NavigationMessage>(message => message.ItemType == typeof(ViewDashboardViewModel)), It.IsAny<System.Action<System.Action>>()), Times.Once);
         }
 
         [Fact]
@@ -80,7 +80,7 @@ namespace Logikfabrik.Overseer.WPF.Client.Test.ViewModels
         {
             var mocker = new AutoMocker();
 
-            mocker.Use(mocker.CreateInstance<ConnectionsListViewModel>());
+            mocker.Use(mocker.CreateInstance<ConnectionsViewModel>());
 
             var model = mocker.CreateInstance<AppMenuViewModel>();
 
@@ -88,7 +88,7 @@ namespace Logikfabrik.Overseer.WPF.Client.Test.ViewModels
 
             var eventAggregatorMock = mocker.GetMock<IEventAggregator>();
 
-            eventAggregatorMock.Verify(m => m.Publish(It.Is<NavigationMessage>(message => message.ItemType == typeof(ConnectionsViewModel)), It.IsAny<System.Action<System.Action>>()), Times.Once);
+            eventAggregatorMock.Verify(m => m.Publish(It.Is<NavigationMessage>(message => message.ItemType == typeof(ViewConnectionsViewModel)), It.IsAny<System.Action<System.Action>>()), Times.Once);
         }
 
         [Fact]
@@ -96,7 +96,7 @@ namespace Logikfabrik.Overseer.WPF.Client.Test.ViewModels
         {
             var mocker = new AutoMocker();
 
-            mocker.Use(mocker.CreateInstance<ConnectionsListViewModel>());
+            mocker.Use(mocker.CreateInstance<ConnectionsViewModel>());
 
             var model = mocker.CreateInstance<AppMenuViewModel>();
 
@@ -104,7 +104,7 @@ namespace Logikfabrik.Overseer.WPF.Client.Test.ViewModels
 
             var eventAggregatorMock = mocker.GetMock<IEventAggregator>();
 
-            eventAggregatorMock.Verify(m => m.Publish(It.Is<NavigationMessage>(message => message.ItemType == typeof(BuildProvidersViewModel)), It.IsAny<System.Action<System.Action>>()), Times.Once);
+            eventAggregatorMock.Verify(m => m.Publish(It.Is<NavigationMessage>(message => message.ItemType == typeof(NewConnectionViewModel)), It.IsAny<System.Action<System.Action>>()), Times.Once);
         }
 
         [Fact]
@@ -112,7 +112,7 @@ namespace Logikfabrik.Overseer.WPF.Client.Test.ViewModels
         {
             var mocker = new AutoMocker();
 
-            mocker.Use(mocker.CreateInstance<ConnectionsListViewModel>());
+            mocker.Use(mocker.CreateInstance<ConnectionsViewModel>());
 
             var model = mocker.CreateInstance<AppMenuViewModel>();
 
@@ -128,7 +128,7 @@ namespace Logikfabrik.Overseer.WPF.Client.Test.ViewModels
         {
             var mocker = new AutoMocker();
 
-            mocker.Use(mocker.CreateInstance<ConnectionsListViewModel>());
+            mocker.Use(mocker.CreateInstance<ConnectionsViewModel>());
 
             var model = mocker.CreateInstance<AppMenuViewModel>();
 
@@ -136,7 +136,7 @@ namespace Logikfabrik.Overseer.WPF.Client.Test.ViewModels
 
             var eventAggregatorMock = mocker.GetMock<IEventAggregator>();
 
-            eventAggregatorMock.Verify(m => m.Publish(It.Is<NavigationMessage>(message => message.ItemType == typeof(AboutViewModel)), It.IsAny<System.Action<System.Action>>()), Times.Once);
+            eventAggregatorMock.Verify(m => m.Publish(It.Is<NavigationMessage>(message => message.ItemType == typeof(ViewAboutViewModel)), It.IsAny<System.Action<System.Action>>()), Times.Once);
         }
     }
 }

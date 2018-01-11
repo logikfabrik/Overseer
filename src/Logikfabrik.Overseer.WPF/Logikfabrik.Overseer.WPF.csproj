@@ -136,68 +136,66 @@
       <SonarQubeExclude>true</SonarQubeExclude>
     </Compile>
     <Compile Include="Validators\EditSettingsViewModelValidator.cs" />
-    <Compile Include="ViewModels\ConnectionsListViewModel.cs" />
-    <Compile Include="ViewModels\DashboardViewModel.cs" />
+    <Compile Include="ViewModels\ConnectionsViewModel.cs" />
+    <Compile Include="ViewModels\Factories\EditConnectionSettingsViewModelFactory{T1,T2}.cs" />
+    <Compile Include="ViewModels\ViewDashboardViewModel.cs" />
     <Compile Include="ViewModels\DesignTime\BuildNotificationViewModel.cs" />
     <Compile Include="ViewModels\DesignTime\BuildViewModel.cs" />
     <Compile Include="ViewModels\DesignTime\ChangeViewModel.cs" />
-    <Compile Include="ViewModels\ConnectionSettingsViewModel{T}.cs">
+    <Compile Include="ViewModels\EditConnectionSettingsViewModel{T}.cs">
       <SonarQubeExclude>true</SonarQubeExclude>
     </Compile>
     <Compile Include="ViewModels\DesignTime\ConnectionViewModel.cs" />
     <Compile Include="ViewModels\DesignTime\ProjectViewModel.cs" />
-    <Compile Include="ViewModels\Factories\IBuildNotificationViewModelFactory.cs" />
-    <Compile Include="ViewModels\Factories\ConnectionSettingsViewModelFactory{T1,T2}.cs">
+    <Compile Include="ViewModels\Factories\IViewNotificationViewModelFactory.cs" />
+    <Compile Include="ViewModels\Factories\ViewConnectionViewModelFactory{T1,T2}.cs">
       <SonarQubeExclude>true</SonarQubeExclude>
     </Compile>
-    <Compile Include="ViewModels\Factories\ConnectionViewModelFactory{T1,T2}.cs">
+    <Compile Include="ViewModels\Factories\ViewConnectionViewModelStrategy.cs" />
+    <Compile Include="ViewModels\Factories\IViewBuildViewModelFactory.cs" />
+    <Compile Include="ViewModels\Factories\IViewChangeViewModelFactory.cs" />
+    <Compile Include="ViewModels\Factories\IEditConnectionSettingsViewModelFactory{T1,T2}.cs">
       <SonarQubeExclude>true</SonarQubeExclude>
     </Compile>
-    <Compile Include="ViewModels\Factories\ConnectionViewModelStrategy.cs" />
-    <Compile Include="ViewModels\Factories\IBuildViewModelFactory.cs" />
-    <Compile Include="ViewModels\Factories\IChangeViewModelFactory.cs" />
-    <Compile Include="ViewModels\Factories\IConnectionSettingsViewModelFactory{T1,T2}.cs">
-      <SonarQubeExclude>true</SonarQubeExclude>
-    </Compile>
-    <Compile Include="ViewModels\Factories\IConnectionViewModelFactory.cs" />
-    <Compile Include="ViewModels\Factories\IConnectionViewModelStrategy.cs" />
+    <Compile Include="ViewModels\Factories\IViewConnectionViewModelFactory.cs" />
+    <Compile Include="ViewModels\Factories\IViewConnectionViewModelStrategy.cs" />
     <Compile Include="ViewModels\Factories\IEditConnectionViewModelFactory{T}.cs">
       <SonarQubeExclude>true</SonarQubeExclude>
     </Compile>
-    <Compile Include="ViewModels\Factories\ITrackedProjectsViewModelFactory.cs" />
-    <Compile Include="ViewModels\Factories\ITrackedProjectViewModelFactory.cs" />
-    <Compile Include="ViewModels\Factories\IProjectViewModelFactory.cs" />
+    <Compile Include="ViewModels\Factories\IEditTrackedProjectsViewModelFactory.cs" />
+    <Compile Include="ViewModels\Factories\IEditTrackedProjectViewModelFactory.cs" />
+    <Compile Include="ViewModels\Factories\IViewProjectViewModelFactory.cs" />
     <Compile Include="ViewModels\Factories\IRemoveConnectionViewModelFactory.cs" />
-    <Compile Include="ViewModels\IBuildNotificationViewModel.cs" />
+    <Compile Include="ViewModels\IViewNotificationViewModel.cs" />
     <Compile Include="ViewModels\IBuildProviderViewModel.cs" />
-    <Compile Include="ViewModels\IBuildViewModel.cs" />
-    <Compile Include="ViewModels\IChangeViewModel.cs" />
-    <Compile Include="ViewModels\IConnectionViewModel.cs" />
+    <Compile Include="ViewModels\IViewBuildViewModel.cs" />
+    <Compile Include="ViewModels\IViewChangeViewModel.cs" />
+    <Compile Include="ViewModels\IViewConnectionViewModel.cs" />
     <Compile Include="INotification.cs" />
-    <Compile Include="ViewModels\IProjectViewModel.cs" />
+    <Compile Include="ViewModels\IViewProjectViewModel.cs" />
     <Compile Include="ViewModels\IViewModel.cs" />
-    <Compile Include="ViewModels\TrackedProjectsViewModel.cs" />
-    <Compile Include="ViewModels\TrackedProjectViewModel.cs" />
+    <Compile Include="ViewModels\EditTrackedProjectsViewModel.cs" />
+    <Compile Include="ViewModels\EditTrackedProjectViewModel.cs" />
     <Compile Include="ViewModels\RemoveConnectionViewModel.cs" />
     <Compile Include="ViewModels\ViewModel.cs" />
     <Compile Include="ViewModels\AddConnectionViewModel{T1,T2}.cs">
       <SonarQubeExclude>true</SonarQubeExclude>
     </Compile>
-    <Compile Include="ViewModels\BuildNotificationViewModel.cs" />
+    <Compile Include="ViewModels\ViewNotificationViewModel.cs" />
     <Compile Include="ViewModels\BuildProviderViewModel{T1,T2}.cs">
       <SonarQubeExclude>true</SonarQubeExclude>
     </Compile>
-    <Compile Include="ViewModels\BuildViewModel.cs" />
-    <Compile Include="ViewModels\ChangeViewModel.cs" />
-    <Compile Include="ViewModels\ConnectionsViewModel.cs" />
+    <Compile Include="ViewModels\ViewBuildViewModel.cs" />
+    <Compile Include="ViewModels\ViewChangeViewModel.cs" />
+    <Compile Include="ViewModels\ViewConnectionsViewModel.cs" />
     <Compile Include="ViewModels\ViewConnectionViewModel{T}.cs">
       <SonarQubeExclude>true</SonarQubeExclude>
     </Compile>
     <Compile Include="ViewModels\EditConnectionViewModel{T}.cs">
       <SonarQubeExclude>true</SonarQubeExclude>
     </Compile>
-    <Compile Include="ViewModels\ProjectViewModel.cs" />
-    <Compile Include="ViewModels\BuildProvidersViewModel.cs" />
+    <Compile Include="ViewModels\ViewProjectViewModel.cs" />
+    <Compile Include="ViewModels\NewConnectionViewModel.cs" />
     <Compile Include="ViewModels\EditSettingsViewModel.cs" />
     <None Include="packages.config">
       <SubType>Designer</SubType>

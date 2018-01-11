@@ -22,21 +22,21 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     /// </summary>
     /// <typeparam name="T">The <see cref="ConnectionSettings" /> type.</typeparam>
     // ReSharper disable once InheritdocConsiderUsage
-    public class ViewConnectionViewModel<T> : ViewModel, IConnectionViewModel
+    public class ViewConnectionViewModel<T> : ViewModel, IViewConnectionViewModel
         where T : ConnectionSettings
     {
         private readonly IApp _application;
         private readonly IEventAggregator _eventAggregator;
-        private readonly IProjectViewModelFactory _projectFactory;
+        private readonly IViewProjectViewModelFactory _projectFactory;
         private readonly IRemoveConnectionViewModelFactory _removeConnectionFactory;
         private readonly IEditConnectionViewModelFactory<T> _editConnectionFactory;
 
         // ReSharper disable once PrivateFieldCanBeConvertedToLocalVariable
         private readonly CollectionViewSource _filteredProjects;
-        private readonly BindableCollection<IProjectViewModel> _projects;
-        private SuffixTrie<IProjectViewModel> _trie;
+        private readonly BindableCollection<IViewProjectViewModel> _projects;
+        private SuffixTrie<IViewProjectViewModel> _trie;
         private string _filter;
-        private IEnumerable<IProjectViewModel> _matches;
+        private IEnumerable<IViewProjectViewModel> _matches;
         private bool _isBusy;
         private bool _isErrored;
 
@@ -57,7 +57,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             IApp application,
             IEventAggregator eventAggregator,
             IBuildTracker buildTracker,
-            IProjectViewModelFactory projectFactory,
+            IViewProjectViewModelFactory projectFactory,
             IRemoveConnectionViewModelFactory removeConnectionFactory,
             IEditConnectionViewModelFactory<T> editConnectionFactory,
             T settings)
@@ -85,7 +85,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             WeakEventManager<IBuildTracker, BuildTrackerConnectionErrorEventArgs>.AddHandler(buildTracker, nameof(buildTracker.ConnectionError), BuildTrackerConnectionError);
             WeakEventManager<IBuildTracker, BuildTrackerConnectionProgressEventArgs>.AddHandler(buildTracker, nameof(buildTracker.ConnectionProgressChanged), BuildTrackerConnectionProgressChanged);
 
-            _projects = new BindableCollection<IProjectViewModel>();
+            _projects = new BindableCollection<IViewProjectViewModel>();
 
             _filteredProjects = new CollectionViewSource
             {
@@ -94,7 +94,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
 
             _filteredProjects.Filter += (sender, e) =>
             {
-                var project = (IProjectViewModel)e.Item;
+                var project = (IViewProjectViewModel)e.Item;
 
                 e.Accepted = _matches?.Contains(project) ?? true;
             };
@@ -282,7 +282,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
                 });
             }
 
-            _trie = new SuffixTrie<IProjectViewModel>(3);
+            _trie = new SuffixTrie<IViewProjectViewModel>(3);
 
             foreach (var project in _projects)
             {

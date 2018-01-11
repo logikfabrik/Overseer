@@ -17,7 +17,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     {
         private readonly IEventAggregator _eventAggregator;
         private readonly IConnectionSettingsRepository _settingsRepository;
-        private readonly IConnectionViewModel _connectionViewModel;
+        private readonly IViewConnectionViewModel _connectionViewModel;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="RemoveConnectionViewModel" /> class.
@@ -27,7 +27,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// <param name="settingsRepository">The settings repository.</param>
         /// <param name="connectionViewModel">The connection view model.</param>
         // ReSharper disable once InheritdocConsiderUsage
-        public RemoveConnectionViewModel(IPlatformProvider platformProvider, IEventAggregator eventAggregator, IConnectionSettingsRepository settingsRepository, IConnectionViewModel connectionViewModel)
+        public RemoveConnectionViewModel(IPlatformProvider platformProvider, IEventAggregator eventAggregator, IConnectionSettingsRepository settingsRepository, IViewConnectionViewModel connectionViewModel)
             : base(platformProvider)
         {
             Ensure.That(eventAggregator).IsNotNull();
@@ -51,7 +51,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
 
             _settingsRepository.Remove(settingsId);
 
-            var message = new NavigationMessage(typeof(ConnectionsViewModel));
+            var message = new NavigationMessage(typeof(ViewConnectionsViewModel));
 
             _eventAggregator.PublishOnUIThread(message);
         }

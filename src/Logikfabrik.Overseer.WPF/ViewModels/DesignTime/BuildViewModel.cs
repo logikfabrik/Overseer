@@ -11,7 +11,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels.DesignTime
     /// The <see cref="BuildViewModel" /> class.
     /// </summary>
     // ReSharper disable once InheritdocConsiderUsage
-    public class BuildViewModel : IBuildViewModel
+    public class BuildViewModel : IViewBuildViewModel
     {
         /// <inheritdoc />
         public string Id { get; } = "1234";
@@ -41,7 +41,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels.DesignTime
         public DateTime? EndTime { get; } = DateTime.UtcNow;
 
         /// <inheritdoc />
-        public IEnumerable<IChangeViewModel> Changes { get; } = new[] { new ChangeViewModel(), new ChangeViewModel(), new ChangeViewModel() };
+        public IEnumerable<IViewChangeViewModel> Changes { get; } = new[] { new ChangeViewModel(), new ChangeViewModel(), new ChangeViewModel() };
 
         /// <inheritdoc />
         public bool IsViewable { get; } = true;

@@ -86,6 +86,7 @@ namespace Logikfabrik.Overseer.WPF.Client
             }
 
             ViewLocator.AddNamespaceMapping("*", "Logikfabrik.Overseer.WPF.Client.Views");
+            ViewLocator.AddNamespaceMapping("*", "Logikfabrik.Overseer.WPF.Client.Views.Dialogs");
             ViewLocator.AddNamespaceMapping("*", "Logikfabrik.Overseer.WPF.Client.Views.Pages");
             ViewLocator.AddNamespaceMapping("*", "Logikfabrik.Overseer.WPF.Client.Views.Views");
             ViewLocator.AddNamespaceMapping("*", "Logikfabrik.Overseer.WPF.Client.Views.Windows");

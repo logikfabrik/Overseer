@@ -13,11 +13,11 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     /// The <see cref="BuildProviderViewModel{T1,T2}" /> class.
     /// </summary>
     /// <typeparam name="T1">The <see cref="ConnectionSettings" /> type.</typeparam>
-    /// <typeparam name="T2">The <see cref="ConnectionSettingsViewModel{T}" /> type.</typeparam>
+    /// <typeparam name="T2">The <see cref="EditConnectionSettingsViewModel{T}" /> type.</typeparam>
     // ReSharper disable once InheritdocConsiderUsage
     public class BuildProviderViewModel<T1, T2> : PropertyChangedBase, IBuildProviderViewModel
         where T1 : ConnectionSettings
-        where T2 : ConnectionSettingsViewModel<T1>, new()
+        where T2 : EditConnectionSettingsViewModel<T1>, new()
     {
         private readonly IEventAggregator _eventAggregator;
 

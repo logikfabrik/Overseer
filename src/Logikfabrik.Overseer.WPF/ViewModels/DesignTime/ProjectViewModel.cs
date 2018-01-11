@@ -12,7 +12,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels.DesignTime
     /// The <see cref="ProjectViewModel" /> class.
     /// </summary>
     // ReSharper disable once InheritdocConsiderUsage
-    public class ProjectViewModel : IProjectViewModel
+    public class ProjectViewModel : IViewProjectViewModel
     {
         /// <inheritdoc />
         public string Id { get; } = "1234";
@@ -24,7 +24,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels.DesignTime
         public ICollectionView OrderedBuilds { get; } = new CollectionView(new[] { new BuildViewModel(), new BuildViewModel(), new BuildViewModel() });
 
         /// <inheritdoc />
-        public IBuildViewModel LatestBuild => new BuildViewModel();
+        public IViewBuildViewModel LatestBuild => new BuildViewModel();
 
         /// <inheritdoc />
         public int QueuedBuilds => 3;

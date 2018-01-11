@@ -20,21 +20,21 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     /// The <see cref="AddConnectionViewModel{T1,T2}" /> class.
     /// </summary>
     /// <typeparam name="T1">The <see cref="ConnectionSettings" /> type.</typeparam>
-    /// <typeparam name="T2">The <see cref="ConnectionSettingsViewModel{T}" /> type.</typeparam>
+    /// <typeparam name="T2">The <see cref="EditConnectionSettingsViewModel{T}" /> type.</typeparam>
     // ReSharper disable once InheritdocConsiderUsage
     public class AddConnectionViewModel<T1, T2> : ViewModel
         where T1 : ConnectionSettings
-        where T2 : ConnectionSettingsViewModel<T1>, new()
+        where T2 : EditConnectionSettingsViewModel<T1>, new()
     {
         private readonly IEventAggregator _eventAggregator;
         private readonly ILogService _logService;
-        private readonly IConnectionSettingsRepository _settingsRepository;
+        private readonly IConnectionSettingsRepository _connectionSettingsRepository;
         private readonly IBuildProviderStrategy _buildProviderStrategy;
-        private readonly ITrackedProjectViewModelFactory _trackedProjectFactory;
-        private readonly ITrackedProjectsViewModelFactory _trackedProjectsFactory;
+        private readonly IEditTrackedProjectViewModelFactory _editTrackedProjectViewModelFactory;
+        private readonly IEditTrackedProjectsViewModelFactory _editTrackedProjectsViewModelFactory;
         private INotifyTask _connectionTask;
         private bool _hasConnected;
-        private ConnectionSettingsViewModel<T1> _settings;
+        private EditConnectionSettingsViewModel<T1> _settings;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="AddConnectionViewModel{T1,T2}" /> class.
@@ -42,41 +42,41 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// <param name="platformProvider">The platform provider.</param>
         /// <param name="eventAggregator">The event aggregator.</param>
         /// <param name="logService">The log service.</param>
-        /// <param name="settingsRepository">The settings repository.</param>
+        /// <param name="connectionSettingsRepository">The connection settings repository.</param>
         /// <param name="buildProviderStrategy">The build provider strategy.</param>
-        /// <param name="trackedProjectFactory">The tracked project factory.</param>
-        /// <param name="trackedProjectsFactory">The tracked projects factory.</param>
-        /// <param name="connectionSettingsFactory">The settings factory.</param>
+        /// <param name="editTrackedProjectViewModelFactory">The edit tracked project view model factory.</param>
+        /// <param name="editTrackedProjectsViewModelFactory">The edit tracked projects view model factory.</param>
+        /// <param name="editConnectionSettingsFactory">The edit connection settings factory.</param>
         // ReSharper disable once InheritdocConsiderUsage
         public AddConnectionViewModel(
             IPlatformProvider platformProvider,
             IEventAggregator eventAggregator,
             ILogService logService,
-            IConnectionSettingsRepository settingsRepository,
+            IConnectionSettingsRepository connectionSettingsRepository,
             IBuildProviderStrategy buildProviderStrategy,
-            ITrackedProjectViewModelFactory trackedProjectFactory,
-            ITrackedProjectsViewModelFactory trackedProjectsFactory,
-            IConnectionSettingsViewModelFactory<T1, T2> connectionSettingsFactory)
+            IEditTrackedProjectViewModelFactory editTrackedProjectViewModelFactory,
+            IEditTrackedProjectsViewModelFactory editTrackedProjectsViewModelFactory,
+            IEditConnectionSettingsViewModelFactory<T1, T2> editConnectionSettingsFactory)
             : base(platformProvider)
         {
             Ensure.That(eventAggregator).IsNotNull();
             Ensure.That(logService).IsNotNull();
-            Ensure.That(settingsRepository).IsNotNull();
+            Ensure.That(connectionSettingsRepository).IsNotNull();
             Ensure.That(buildProviderStrategy).IsNotNull();
-            Ensure.That(trackedProjectFactory).IsNotNull();
-            Ensure.That(trackedProjectsFactory).IsNotNull();
-            Ensure.That(connectionSettingsFactory).IsNotNull();
+            Ensure.That(editTrackedProjectViewModelFactory).IsNotNull();
+            Ensure.That(editTrackedProjectsViewModelFactory).IsNotNull();
+            Ensure.That(editConnectionSettingsFactory).IsNotNull();
 
             _eventAggregator = eventAggregator;
             _logService = logService;
-            _settingsRepository = settingsRepository;
+            _connectionSettingsRepository = connectionSettingsRepository;
             _buildProviderStrategy = buildProviderStrategy;
-            _trackedProjectFactory = trackedProjectFactory;
-            _trackedProjectsFactory = trackedProjectsFactory;
+            _editTrackedProjectViewModelFactory = editTrackedProjectViewModelFactory;
+            _editTrackedProjectsViewModelFactory = editTrackedProjectsViewModelFactory;
 
             _connectionTask = new NotifyTask();
 
-            Settings = connectionSettingsFactory.Create();
+            Settings = editConnectionSettingsFactory.Create();
             Settings.BuildsPerProject = 5;
             DisplayName = Properties.Resources.AddConnection_View;
         }
@@ -107,7 +107,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// <value>
         /// The settings.
         /// </value>
-        public ConnectionSettingsViewModel<T1> Settings
+        public EditConnectionSettingsViewModel<T1> Settings
         {
             get
             {
@@ -190,9 +190,9 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
                 return;
             }
 
-            _settingsRepository.Add(Settings.GetSettings());
+            _connectionSettingsRepository.Add(Settings.GetSettings());
 
-            var message = new NavigationMessage(typeof(ConnectionsViewModel));
+            var message = new NavigationMessage(typeof(ViewConnectionsViewModel));
 
             _eventAggregator.PublishOnUIThread(message);
         }
@@ -208,7 +208,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
                 var projects = await provider.GetProjectsAsync(CancellationToken.None).ConfigureAwait(false);
 
                 Settings.IsDirty = false;
-                Settings.TrackedProjects = _trackedProjectsFactory.Create(projects.OrderBy(project => project.Name).Select(project => _trackedProjectFactory.Create(project.Id, project.Name, true)).ToArray());
+                Settings.TrackedProjects = _editTrackedProjectsViewModelFactory.Create(projects.OrderBy(project => project.Name).Select(project => _editTrackedProjectViewModelFactory.Create(project.Id, project.Name, true)).ToArray());
 
                 HasConnected = true;
             }

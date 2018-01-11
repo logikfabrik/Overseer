@@ -67,16 +67,16 @@ namespace Logikfabrik.Overseer.WPF.Client
             // WPF setup.
             kernel.Bind<IUILogService>().To<UILogService>();
             kernel.Bind<IDisplaySetting>().To<DisplaySetting>();
-            kernel.Bind<IBuildNotificationViewModelFactory>().ToFactory();
+            kernel.Bind<IViewNotificationViewModelFactory>().ToFactory();
             kernel.Bind<IBuildNotificationManager>().To<BuildNotificationManager>().InSingletonScope();
-            kernel.Bind<ITrackedProjectViewModelFactory>().ToFactory();
-            kernel.Bind<ITrackedProjectsViewModelFactory>().ToFactory();
-            kernel.Bind<IChangeViewModelFactory>().ToFactory();
-            kernel.Bind<IBuildViewModelFactory>().ToFactory();
-            kernel.Bind<IProjectViewModelFactory>().ToFactory();
+            kernel.Bind<IEditTrackedProjectViewModelFactory>().ToFactory();
+            kernel.Bind<IEditTrackedProjectsViewModelFactory>().ToFactory();
+            kernel.Bind<IViewChangeViewModelFactory>().ToFactory();
+            kernel.Bind<IViewBuildViewModelFactory>().ToFactory();
+            kernel.Bind<IViewProjectViewModelFactory>().ToFactory();
             kernel.Bind<IRemoveConnectionViewModelFactory>().ToFactory();
-            kernel.Bind<IConnectionViewModelStrategy>().To<ConnectionViewModelStrategy>();
-            kernel.Bind<ConnectionsListViewModel>().ToSelf().InSingletonScope();
+            kernel.Bind<IViewConnectionViewModelStrategy>().To<ViewConnectionViewModelStrategy>();
+            kernel.Bind<ConnectionsViewModel>().ToSelf().InSingletonScope();
 
             // WPF client setup.
             kernel.Bind<IMouseManager>().To<MouseManager>();

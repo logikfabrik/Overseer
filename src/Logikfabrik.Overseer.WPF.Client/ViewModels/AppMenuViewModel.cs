@@ -29,7 +29,7 @@ namespace Logikfabrik.Overseer.WPF.Client.ViewModels
         /// <param name="mouseManager">The mouse manager.</param>
         /// <param name="connectionsListViewModel">The connections list view model.</param>
         // ReSharper disable once InheritdocConsiderUsage
-        public AppMenuViewModel(IEventAggregator eventAggregator, IMouseManager mouseManager, ConnectionsListViewModel connectionsListViewModel)
+        public AppMenuViewModel(IEventAggregator eventAggregator, IMouseManager mouseManager, ConnectionsViewModel connectionsListViewModel)
         {
             Ensure.That(eventAggregator).IsNotNull();
             Ensure.That(mouseManager).IsNotNull();
@@ -49,7 +49,7 @@ namespace Logikfabrik.Overseer.WPF.Client.ViewModels
         /// <value>
         /// The connections list.
         /// </value>
-        public ConnectionsListViewModel ConnectionsList { get; }
+        public ConnectionsViewModel ConnectionsList { get; }
 
         /// <summary>
         /// Gets or sets a value indicating whether this instance is expanded.
@@ -92,7 +92,7 @@ namespace Logikfabrik.Overseer.WPF.Client.ViewModels
         /// </summary>
         public void GoToDashboard()
         {
-            GoTo(typeof(DashboardViewModel));
+            GoTo(typeof(ViewDashboardViewModel));
         }
 
         /// <summary>
@@ -100,7 +100,7 @@ namespace Logikfabrik.Overseer.WPF.Client.ViewModels
         /// </summary>
         public void GoToConnections()
         {
-            GoTo(typeof(ConnectionsViewModel));
+            GoTo(typeof(ViewConnectionsViewModel));
         }
 
         /// <summary>
@@ -108,7 +108,7 @@ namespace Logikfabrik.Overseer.WPF.Client.ViewModels
         /// </summary>
         public void GoToAddConnection()
         {
-            GoTo(typeof(BuildProvidersViewModel));
+            GoTo(typeof(NewConnectionViewModel));
         }
 
         /// <summary>
@@ -124,7 +124,7 @@ namespace Logikfabrik.Overseer.WPF.Client.ViewModels
         /// </summary>
         public void GoToAbout()
         {
-            GoTo(typeof(AboutViewModel));
+            GoTo(typeof(ViewAboutViewModel));
         }
 
         /// <inheritdoc />

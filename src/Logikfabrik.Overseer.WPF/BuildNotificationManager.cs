@@ -17,9 +17,9 @@ namespace Logikfabrik.Overseer.WPF
     /// The <see cref="BuildNotificationManager" /> class.
     /// </summary>
     // ReSharper disable once InheritdocConsiderUsage
-    public class BuildNotificationManager : NotificationManager<BuildNotificationViewModel>, IBuildNotificationManager
+    public class BuildNotificationManager : NotificationManager<ViewNotificationViewModel>, IBuildNotificationManager
     {
-        private readonly IBuildNotificationViewModelFactory _buildNotificationFactory;
+        private readonly IViewNotificationViewModelFactory _buildNotificationFactory;
         private readonly Lazy<DateTime> _appStartTime = new Lazy<DateTime>(() => Process.GetCurrentProcess().StartTime.ToUniversalTime());
         private readonly HashSet<string> _finishedBuilds = new HashSet<string>();
         private readonly HashSet<string> _buildsInProgress = new HashSet<string>();
@@ -31,7 +31,7 @@ namespace Logikfabrik.Overseer.WPF
         /// <param name="displaySetting">The display setting.</param>
         /// <param name="buildNotificationFactory">The build notification factory.</param>
         // ReSharper disable once InheritdocConsiderUsage
-        public BuildNotificationManager(IWindowManager windowManager, IDisplaySetting displaySetting, IBuildNotificationViewModelFactory buildNotificationFactory)
+        public BuildNotificationManager(IWindowManager windowManager, IDisplaySetting displaySetting, IViewNotificationViewModelFactory buildNotificationFactory)
             : base(windowManager, displaySetting)
         {
             Ensure.That(buildNotificationFactory).IsNotNull();

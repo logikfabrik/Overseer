@@ -16,7 +16,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     using Settings;
 
     /// <summary>
-    /// The <see cref="EditConnectionViewModel{T}" /> class. Base class for view models for editing connections.
+    /// The <see cref="EditConnectionViewModel{T}" /> class.
     /// </summary>
     /// <typeparam name="T">The <see cref="ConnectionSettings" /> type.</typeparam>
     // ReSharper disable once InheritdocConsiderUsage
@@ -24,48 +24,48 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         where T : ConnectionSettings
     {
         private readonly ILogService _logService;
-        private readonly IConnectionSettingsRepository _settingsRepository;
+        private readonly IConnectionSettingsRepository _connectionSettingsRepository;
         private readonly IBuildProviderStrategy _buildProviderStrategy;
-        private readonly ITrackedProjectViewModelFactory _trackedProjectFactory;
-        private readonly ITrackedProjectsViewModelFactory _trackedProjectsFactory;
+        private readonly IEditTrackedProjectViewModelFactory _editTrackedProjectViewModelFactory;
+        private readonly IEditTrackedProjectsViewModelFactory _editTrackedProjectsViewModelFactory;
         private readonly T _currentSettings;
         private INotifyTask _connectionTask;
         private bool _hasConnected;
-        private ConnectionSettingsViewModel<T> _settings;
+        private EditConnectionSettingsViewModel<T> _settings;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="EditConnectionViewModel{T}" /> class.
         /// </summary>
         /// <param name="platformProvider">The platform provider.</param>
         /// <param name="logService">The log service.</param>
-        /// <param name="settingsRepository">The settings repository.</param>
+        /// <param name="connectionSettingsRepository">The connection settings repository.</param>
         /// <param name="buildProviderStrategy">The build provider strategy.</param>
-        /// <param name="trackedProjectFactory">The tracked project factory.</param>
-        /// <param name="trackedProjectsFactory">The tracked projects factory.</param>
+        /// <param name="editTrackedProjectViewModelFactory">The edit tracked project view model factory.</param>
+        /// <param name="editTrackedProjectsViewModelFactory">The edit tracked projects view model factory.</param>
         /// <param name="currentSettings">The current settings.</param>
         // ReSharper disable once InheritdocConsiderUsage
         protected EditConnectionViewModel(
             IPlatformProvider platformProvider,
             ILogService logService,
-            IConnectionSettingsRepository settingsRepository,
+            IConnectionSettingsRepository connectionSettingsRepository,
             IBuildProviderStrategy buildProviderStrategy,
-            ITrackedProjectViewModelFactory trackedProjectFactory,
-            ITrackedProjectsViewModelFactory trackedProjectsFactory,
+            IEditTrackedProjectViewModelFactory editTrackedProjectViewModelFactory,
+            IEditTrackedProjectsViewModelFactory editTrackedProjectsViewModelFactory,
             T currentSettings)
             : base(platformProvider)
         {
             Ensure.That(logService).IsNotNull();
-            Ensure.That(settingsRepository).IsNotNull();
+            Ensure.That(connectionSettingsRepository).IsNotNull();
             Ensure.That(buildProviderStrategy).IsNotNull();
-            Ensure.That(trackedProjectFactory).IsNotNull();
-            Ensure.That(trackedProjectsFactory).IsNotNull();
+            Ensure.That(editTrackedProjectViewModelFactory).IsNotNull();
+            Ensure.That(editTrackedProjectsViewModelFactory).IsNotNull();
             Ensure.That(currentSettings).IsNotNull();
 
             _logService = logService;
-            _settingsRepository = settingsRepository;
+            _connectionSettingsRepository = connectionSettingsRepository;
             _buildProviderStrategy = buildProviderStrategy;
-            _trackedProjectFactory = trackedProjectFactory;
-            _trackedProjectsFactory = trackedProjectsFactory;
+            _editTrackedProjectViewModelFactory = editTrackedProjectViewModelFactory;
+            _editTrackedProjectsViewModelFactory = editTrackedProjectsViewModelFactory;
             _currentSettings = currentSettings;
             DisplayName = Properties.Resources.EditConnection_View;
         }
@@ -96,7 +96,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// <value>
         /// The settings.
         /// </value>
-        public ConnectionSettingsViewModel<T> Settings
+        public EditConnectionSettingsViewModel<T> Settings
         {
             get
             {
@@ -181,7 +181,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
 
             Settings.UpdateSettings(_currentSettings);
 
-            _settingsRepository.Update(_currentSettings);
+            _connectionSettingsRepository.Update(_currentSettings);
 
             TryClose();
         }
@@ -195,7 +195,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
                 var projects = await provider.GetProjectsAsync(CancellationToken.None).ConfigureAwait(false);
 
                 Settings.IsDirty = false;
-                Settings.TrackedProjects = _trackedProjectsFactory.Create(projects.OrderBy(project => project.Name).Select(project => _trackedProjectFactory.Create(project.Id, project.Name, _currentSettings.TrackedProjects.Contains(project.Id))).ToArray());
+                Settings.TrackedProjects = _editTrackedProjectsViewModelFactory.Create(projects.OrderBy(project => project.Name).Select(project => _editTrackedProjectViewModelFactory.Create(project.Id, project.Name, _currentSettings.TrackedProjects.Contains(project.Id))).ToArray());
 
                 HasConnected = true;
             }

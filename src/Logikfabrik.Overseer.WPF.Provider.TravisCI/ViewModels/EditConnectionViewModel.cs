@@ -21,11 +21,11 @@ namespace Logikfabrik.Overseer.WPF.Provider.TravisCI.ViewModels
         /// </summary>
         /// <param name="platformProvider">The platform provider.</param>
         /// <param name="logService">The log service.</param>
-        /// <param name="settingsRepository">The build provider settings repository.</param>
-        /// <param name="connectionSettingsFactory">The connection settings factory.</param>
+        /// <param name="connectionSettingsRepository">The build provider settings repository.</param>
+        /// <param name="editConnectionSettingsFactory">The connection settings factory.</param>
         /// <param name="buildProviderStrategy">The build provider strategy.</param>
-        /// <param name="trackedProjectFactory">The tracked project factory.</param>
-        /// <param name="trackedProjectsFactory">The tracked projects factory.</param>
+        /// <param name="editTrackedProjectViewModelFactory">The tracked project factory.</param>
+        /// <param name="editTrackedProjectsViewModelFactory">The tracked projects factory.</param>
         /// <param name="currentSettings">The current settings.</param>
 #pragma warning disable S107 // Methods should not have too many parameters
 
@@ -33,25 +33,25 @@ namespace Logikfabrik.Overseer.WPF.Provider.TravisCI.ViewModels
         public EditConnectionViewModel(
             IPlatformProvider platformProvider,
             ILogService logService,
-            IConnectionSettingsRepository settingsRepository,
-            IConnectionSettingsViewModelFactory<TravisCI.ConnectionSettings, ConnectionSettingsViewModel> connectionSettingsFactory,
+            IConnectionSettingsRepository connectionSettingsRepository,
+            IEditConnectionSettingsViewModelFactory<TravisCI.ConnectionSettings, EditConnectionSettingsViewModel> editConnectionSettingsFactory,
             IBuildProviderStrategy buildProviderStrategy,
-            ITrackedProjectViewModelFactory trackedProjectFactory,
-            ITrackedProjectsViewModelFactory trackedProjectsFactory,
+            IEditTrackedProjectViewModelFactory editTrackedProjectViewModelFactory,
+            IEditTrackedProjectsViewModelFactory editTrackedProjectsViewModelFactory,
             TravisCI.ConnectionSettings currentSettings)
             : base(
                   platformProvider,
                   logService,
-                  settingsRepository,
+                  connectionSettingsRepository,
                   buildProviderStrategy,
-                  trackedProjectFactory,
-                  trackedProjectsFactory,
+                  editTrackedProjectViewModelFactory,
+                  editTrackedProjectsViewModelFactory,
                   currentSettings)
         {
 #pragma warning restore S107 // Methods should not have too many parameters
-            Ensure.That(connectionSettingsFactory).IsNotNull();
+            Ensure.That(editConnectionSettingsFactory).IsNotNull();
 
-            var settings = connectionSettingsFactory.Create();
+            var settings = editConnectionSettingsFactory.Create();
 
             settings.Name = currentSettings.Name;
             settings.Token = currentSettings.Token;

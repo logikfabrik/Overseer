@@ -12,14 +12,14 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     using Validators;
 
     /// <summary>
-    /// The <see cref="EditSettingsViewModel" /> class. View model for editing application wide settings.
+    /// The <see cref="EditSettingsViewModel" /> class.
     /// </summary>
     // ReSharper disable once InheritdocConsiderUsage
     public class EditSettingsViewModel : ViewModel, IDataErrorInfo
     {
         private readonly IApp _application;
         private readonly EditSettingsViewModelValidator _validator;
-        private readonly AppSettings _appSettings;
+        private readonly AppSettings _applicationSettings;
         private int _interval;
         private string _cultureName;
 
@@ -28,22 +28,22 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// </summary>
         /// <param name="platformProvider">The platform provider.</param>
         /// <param name="application">The application.</param>
-        /// <param name="appSettingsFactory">The app settings factory.</param>
+        /// <param name="applicationSettingsFactory">The application settings factory.</param>
         // ReSharper disable once InheritdocConsiderUsage
-        public EditSettingsViewModel(IPlatformProvider platformProvider, IApp application, IAppSettingsFactory appSettingsFactory)
+        public EditSettingsViewModel(IPlatformProvider platformProvider, IApp application, IAppSettingsFactory applicationSettingsFactory)
             : base(platformProvider)
         {
             Ensure.That(application).IsNotNull();
-            Ensure.That(appSettingsFactory).IsNotNull();
+            Ensure.That(applicationSettingsFactory).IsNotNull();
 
             _application = application;
             _validator = new EditSettingsViewModelValidator();
 
-            var appSettings = appSettingsFactory.Create();
+            var applicationSettings = applicationSettingsFactory.Create();
 
-            _appSettings = appSettings;
-            _interval = appSettings.Interval;
-            _cultureName = appSettings.CultureName;
+            _applicationSettings = applicationSettings;
+            _interval = applicationSettings.Interval;
+            _cultureName = applicationSettings.CultureName;
             DisplayName = Properties.Resources.EditSettings_View;
         }
 
@@ -128,12 +128,12 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
                 return;
             }
 
-            var restart = _appSettings.CultureName != CultureName;
+            var restart = _applicationSettings.CultureName != CultureName;
 
-            _appSettings.Interval = _interval;
-            _appSettings.CultureName = _cultureName;
+            _applicationSettings.Interval = _interval;
+            _applicationSettings.CultureName = _cultureName;
 
-            _appSettings.Save();
+            _applicationSettings.Save();
 
             if (restart)
             {

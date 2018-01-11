@@ -10,7 +10,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels.DesignTime
     /// The <see cref="ChangeViewModel" /> class.
     /// </summary>
     // ReSharper disable once InheritdocConsiderUsage
-    public class ChangeViewModel : IChangeViewModel
+    public class ChangeViewModel : IViewChangeViewModel
     {
         /// <inheritdoc />
         public string Id { get; } = "2fd4e1c67a2d28fced849ee1bb76e7391b93eb12";

@@ -115,15 +115,15 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="UriUtility.cs" />
-    <Compile Include="Validators\ConnectionSettingsViewModelValidator.cs" />
+    <Compile Include="Validators\EditConnectionSettingsViewModelValidator.cs" />
     <Compile Include="ViewModels\BuildProviderViewModel.cs" />
-    <Compile Include="ViewModels\ConnectionSettingsViewModel.cs" />
+    <Compile Include="ViewModels\EditConnectionSettingsViewModel.cs" />
     <Compile Include="ViewModels\EditConnectionViewModel.cs" />
     <Compile Include="Views\BuildProviderView.xaml.cs">
       <DependentUpon>BuildProviderView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\ConnectionSettingsView.xaml.cs">
-      <DependentUpon>ConnectionSettingsView.xaml</DependentUpon>
+    <Compile Include="Views\EditConnectionSettingsView.xaml.cs">
+      <DependentUpon>EditConnectionSettingsView.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -154,7 +154,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\ConnectionSettingsView.xaml">
+    <Page Include="Views\EditConnectionSettingsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

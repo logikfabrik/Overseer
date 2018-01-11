@@ -16,7 +16,7 @@ namespace Logikfabrik.Overseer.WPF.Client.Test.ViewModels
         {
             var mocker = new AutoMocker();
 
-            var model = mocker.CreateInstance<AboutViewModel>();
+            var model = mocker.CreateInstance<ViewAboutViewModel>();
 
             model.Version.ShouldNotBeNull();
         }

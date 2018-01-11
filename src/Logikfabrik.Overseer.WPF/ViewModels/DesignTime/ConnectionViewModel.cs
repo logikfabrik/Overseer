@@ -12,7 +12,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels.DesignTime
     /// The <see cref="ConnectionViewModel" /> class.
     /// </summary>
     // ReSharper disable once InheritdocConsiderUsage
-    public class ConnectionViewModel : IConnectionViewModel
+    public class ConnectionViewModel : IViewConnectionViewModel
     {
         /// <inheritdoc />
         public Guid SettingsId { get; } = Guid.NewGuid();

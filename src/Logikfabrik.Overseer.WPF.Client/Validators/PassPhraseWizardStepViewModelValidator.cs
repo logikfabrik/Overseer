@@ -13,7 +13,7 @@ namespace Logikfabrik.Overseer.WPF.Client.Validators
     /// The <see cref="PassphraseWizardStepViewModelValidator" /> class.
     /// </summary>
     // ReSharper disable once InheritdocConsiderUsage
-    public class PassphraseWizardStepViewModelValidator : AbstractValidator<PassphraseWizardStepViewModel>
+    public class PassphraseWizardStepViewModelValidator : AbstractValidator<WizardEditPassphraseViewModel>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="PassphraseWizardStepViewModelValidator" /> class.
