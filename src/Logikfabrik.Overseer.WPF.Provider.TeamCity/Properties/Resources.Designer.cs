@@ -63,72 +63,72 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Authentication type.
         /// </summary>
-        public static string ConnectionSettings_Setting_Label_AuthenticationType {
+        public static string EditConnectionSettings_Setting_Label_AuthenticationType {
             get {
-                return ResourceManager.GetString("ConnectionSettings_Setting_Label_AuthenticationType", resourceCulture);
+                return ResourceManager.GetString("EditConnectionSettings_Setting_Label_AuthenticationType", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Name.
         /// </summary>
-        public static string ConnectionSettings_Setting_Label_Name {
+        public static string EditConnectionSettings_Setting_Label_Name {
             get {
-                return ResourceManager.GetString("ConnectionSettings_Setting_Label_Name", resourceCulture);
+                return ResourceManager.GetString("EditConnectionSettings_Setting_Label_Name", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Password.
         /// </summary>
-        public static string ConnectionSettings_Setting_Label_Password {
+        public static string EditConnectionSettings_Setting_Label_Password {
             get {
-                return ResourceManager.GetString("ConnectionSettings_Setting_Label_Password", resourceCulture);
+                return ResourceManager.GetString("EditConnectionSettings_Setting_Label_Password", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to URL.
         /// </summary>
-        public static string ConnectionSettings_Setting_Label_Url {
+        public static string EditConnectionSettings_Setting_Label_Url {
             get {
-                return ResourceManager.GetString("ConnectionSettings_Setting_Label_Url", resourceCulture);
+                return ResourceManager.GetString("EditConnectionSettings_Setting_Label_Url", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Username.
         /// </summary>
-        public static string ConnectionSettings_Setting_Label_Username {
+        public static string EditConnectionSettings_Setting_Label_Username {
             get {
-                return ResourceManager.GetString("ConnectionSettings_Setting_Label_Username", resourceCulture);
+                return ResourceManager.GetString("EditConnectionSettings_Setting_Label_Username", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Password is missing.
         /// </summary>
-        public static string ConnectionSettings_Validation_Password {
+        public static string EditConnectionSettings_Validation_Password {
             get {
-                return ResourceManager.GetString("ConnectionSettings_Validation_Password", resourceCulture);
+                return ResourceManager.GetString("EditConnectionSettings_Validation_Password", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to URL is missing.
         /// </summary>
-        public static string ConnectionSettings_Validation_Url {
+        public static string EditConnectionSettings_Validation_Url {
             get {
-                return ResourceManager.GetString("ConnectionSettings_Validation_Url", resourceCulture);
+                return ResourceManager.GetString("EditConnectionSettings_Validation_Url", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Username is missing.
         /// </summary>
-        public static string ConnectionSettings_Validation_Username {
+        public static string EditConnectionSettings_Validation_Username {
             get {
-                return ResourceManager.GetString("ConnectionSettings_Validation_Username", resourceCulture);
+                return ResourceManager.GetString("EditConnectionSettings_Validation_Username", resourceCulture);
             }
         }
     }

@@ -11,15 +11,15 @@
     mc:Ignorable="d">
     <StackPanel>
         <StackPanel Style="{StaticResource Common.Setting.Panel}">
-            <TextBlock Style="{StaticResource Common.Setting.Label}" Text="{Binding Source={x:Static p:Resources.ConnectionSettings_Setting_Label_Name}, Converter={StaticResource StringToUpperCaseConverter}}" />
+            <TextBlock Style="{StaticResource Common.Setting.Label}" Text="{Binding Source={x:Static p:Resources.EditConnectionSettings_Setting_Label_Name}, Converter={StaticResource StringToUpperCaseConverter}}" />
             <TextBox Text="{Binding Name, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" />
         </StackPanel>
         <StackPanel Style="{StaticResource Common.Setting.Panel}">
-            <TextBlock Style="{StaticResource Common.Setting.Label}" Text="{Binding Source={x:Static p:Resources.ConnectionSettings_Setting_Label_Username}, Converter={StaticResource StringToUpperCaseConverter}}" />
+            <TextBlock Style="{StaticResource Common.Setting.Label}" Text="{Binding Source={x:Static p:Resources.EditConnectionSettings_Setting_Label_Username}, Converter={StaticResource StringToUpperCaseConverter}}" />
             <TextBox Text="{Binding Username, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" />
         </StackPanel>
         <StackPanel Style="{StaticResource Common.Setting.Panel}">
-            <TextBlock Style="{StaticResource Common.Setting.Label}" Text="{Binding Source={x:Static p:Resources.ConnectionSettings_Setting_Label_Password}, Converter={StaticResource StringToUpperCaseConverter}}" />
+            <TextBlock Style="{StaticResource Common.Setting.Label}" Text="{Binding Source={x:Static p:Resources.EditConnectionSettings_Setting_Label_Password}, Converter={StaticResource StringToUpperCaseConverter}}" />
             <PasswordBox ex:PasswordBoxExtensions.BoundPassword="{Binding Password, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" />
         </StackPanel>
     </StackPanel>

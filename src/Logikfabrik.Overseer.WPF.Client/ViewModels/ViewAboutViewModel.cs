@@ -23,7 +23,7 @@ namespace Logikfabrik.Overseer.WPF.Client.ViewModels
             : base(platformProvider)
         {
             Version = GetType().Assembly.GetCustomAttribute<AssemblyInformationalVersionAttribute>()?.InformationalVersion;
-            DisplayName = Properties.Resources.About_View;
+            DisplayName = Properties.Resources.ViewAbout_View;
         }
 
         /// <summary>

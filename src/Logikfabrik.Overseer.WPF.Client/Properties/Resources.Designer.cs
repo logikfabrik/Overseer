@@ -61,33 +61,6 @@ namespace Logikfabrik.Overseer.WPF.Client.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Attribution.
-        /// </summary>
-        public static string About_Setting_Label_Attribution {
-            get {
-                return ResourceManager.GetString("About_Setting_Label_Attribution", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Version.
-        /// </summary>
-        public static string About_Setting_Label_Version {
-            get {
-                return ResourceManager.GetString("About_Setting_Label_Version", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to About.
-        /// </summary>
-        public static string About_View {
-            get {
-                return ResourceManager.GetString("About_View", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to OK.
         /// </summary>
         public static string AddConnection_Button_Add {
@@ -134,83 +107,20 @@ namespace Logikfabrik.Overseer.WPF.Client.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Edit.
-        /// </summary>
-        public static string Connection_Button_Edit {
-            get {
-                return ResourceManager.GetString("Connection_Button_Edit", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Filter.
-        /// </summary>
-        public static string Connection_Button_Filter {
-            get {
-                return ResourceManager.GetString("Connection_Button_Filter", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Remove.
-        /// </summary>
-        public static string Connection_Button_Remove {
-            get {
-                return ResourceManager.GetString("Connection_Button_Remove", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to There are no projects for this connection.
-        /// </summary>
-        public static string Connection_Message_NoProjects {
-            get {
-                return ResourceManager.GetString("Connection_Message_NoProjects", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Number of builds to get from the CI/DI service per project.
-        /// </summary>
-        public static string ConnectionSettings_Setting_Description_BuildsPerProject {
-            get {
-                return ResourceManager.GetString("ConnectionSettings_Setting_Description_BuildsPerProject", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Builds per project.
-        /// </summary>
-        public static string ConnectionSettings_Setting_Label_BuildsPerProject {
-            get {
-                return ResourceManager.GetString("ConnectionSettings_Setting_Label_BuildsPerProject", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Projects.
-        /// </summary>
-        public static string ConnectionSettings_Setting_Label_TrackedProjects {
-            get {
-                return ResourceManager.GetString("ConnectionSettings_Setting_Label_TrackedProjects", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Add connection.
         /// </summary>
-        public static string ConnectionsList_Tile_Button_Add {
+        public static string Connections_Tile_Button_Add {
             get {
-                return ResourceManager.GetString("ConnectionsList_Tile_Button_Add", resourceCulture);
+                return ResourceManager.GetString("Connections_Tile_Button_Add", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to You have no connections. Get started by adding one..
         /// </summary>
-        public static string ConnectionsList_Tile_Message_NoConnections {
+        public static string Connections_Tile_Message_NoConnections {
             get {
-                return ResourceManager.GetString("ConnectionsList_Tile_Message_NoConnections", resourceCulture);
+                return ResourceManager.GetString("Connections_Tile_Message_NoConnections", resourceCulture);
             }
         }
         
@@ -247,6 +157,33 @@ namespace Logikfabrik.Overseer.WPF.Client.Properties {
         public static string EditConnection_View {
             get {
                 return ResourceManager.GetString("EditConnection_View", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Number of builds to get from the CI/DI service per project.
+        /// </summary>
+        public static string EditConnectionSettings_Setting_Description_BuildsPerProject {
+            get {
+                return ResourceManager.GetString("EditConnectionSettings_Setting_Description_BuildsPerProject", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Builds per project.
+        /// </summary>
+        public static string EditConnectionSettings_Setting_Label_BuildsPerProject {
+            get {
+                return ResourceManager.GetString("EditConnectionSettings_Setting_Label_BuildsPerProject", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Projects.
+        /// </summary>
+        public static string EditConnectionSettings_Setting_Label_TrackedProjects {
+            get {
+                return ResourceManager.GetString("EditConnectionSettings_Setting_Label_TrackedProjects", resourceCulture);
             }
         }
         
@@ -314,6 +251,33 @@ namespace Logikfabrik.Overseer.WPF.Client.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Deselect all.
+        /// </summary>
+        public static string EditTrackedProjects_Button_DeselectAll {
+            get {
+                return ResourceManager.GetString("EditTrackedProjects_Button_DeselectAll", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Filter.
+        /// </summary>
+        public static string EditTrackedProjects_Button_Filter {
+            get {
+                return ResourceManager.GetString("EditTrackedProjects_Button_Filter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select all.
+        /// </summary>
+        public static string EditTrackedProjects_Button_SelectAll {
+            get {
+                return ResourceManager.GetString("EditTrackedProjects_Button_SelectAll", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to About.
         /// </summary>
         public static string Menu_MenuItem_Label_GoToAbout {
@@ -350,78 +314,6 @@ namespace Logikfabrik.Overseer.WPF.Client.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Next.
-        /// </summary>
-        public static string PassphraseWizardStep_Button_NextStep {
-            get {
-                return ResourceManager.GetString("PassphraseWizardStep_Button_NextStep", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Let&apos;s start with a passphrase.
-        /// </summary>
-        public static string PassphraseWizardStep_Heading {
-            get {
-                return ResourceManager.GetString("PassphraseWizardStep_Heading", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to I&apos;ll use it to encrypt your settings.
-        /// </summary>
-        public static string PassphraseWizardStep_Text {
-            get {
-                return ResourceManager.GetString("PassphraseWizardStep_Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Passphrase is too short.
-        /// </summary>
-        public static string PassphraseWizardStep_Validation_Passphrase_MinimumLength {
-            get {
-                return ResourceManager.GetString("PassphraseWizardStep_Validation_Passphrase_MinimumLength", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Passphrase is missing.
-        /// </summary>
-        public static string PassphraseWizardStep_Validation_Passphrase_NotEmpty {
-            get {
-                return ResourceManager.GetString("PassphraseWizardStep_Validation_Passphrase_NotEmpty", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Latest build.
-        /// </summary>
-        public static string Project_Tile_Label_LatestBuild {
-            get {
-                return ResourceManager.GetString("Project_Tile_Label_LatestBuild", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Queued builds.
-        /// </summary>
-        public static string Project_Tile_Label_QueuedBuilds {
-            get {
-                return ResourceManager.GetString("Project_Tile_Label_QueuedBuilds", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to There are no builds for this project.
-        /// </summary>
-        public static string Project_Tile_Message_NoBuilds {
-            get {
-                return ResourceManager.GetString("Project_Tile_Message_NoBuilds", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Cancel.
         /// </summary>
         public static string RemoveConnection_Button_Cancel {
@@ -440,56 +332,164 @@ namespace Logikfabrik.Overseer.WPF.Client.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Get started.
+        ///   Looks up a localized string similar to Attribution.
         /// </summary>
-        public static string StartWizardStep_Button_NextStep {
+        public static string ViewAbout_Setting_Label_Attribution {
             get {
-                return ResourceManager.GetString("StartWizardStep_Button_NextStep", resourceCulture);
+                return ResourceManager.GetString("ViewAbout_Setting_Label_Attribution", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Hi, I&apos;m Overseer.
+        ///   Looks up a localized string similar to Version.
         /// </summary>
-        public static string StartWizardStep_Heading {
+        public static string ViewAbout_Setting_Label_Version {
             get {
-                return ResourceManager.GetString("StartWizardStep_Heading", resourceCulture);
+                return ResourceManager.GetString("ViewAbout_Setting_Label_Version", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to I&apos;ll help track your builds.
+        ///   Looks up a localized string similar to About.
         /// </summary>
-        public static string StartWizardStep_Text {
+        public static string ViewAbout_View {
             get {
-                return ResourceManager.GetString("StartWizardStep_Text", resourceCulture);
+                return ResourceManager.GetString("ViewAbout_View", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Deselect all.
+        ///   Looks up a localized string similar to Edit.
         /// </summary>
-        public static string TrackedProjects_Button_DeselectAll {
+        public static string ViewConnection_Button_Edit {
             get {
-                return ResourceManager.GetString("TrackedProjects_Button_DeselectAll", resourceCulture);
+                return ResourceManager.GetString("ViewConnection_Button_Edit", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Filter.
         /// </summary>
-        public static string TrackedProjects_Button_Filter {
+        public static string ViewConnection_Button_Filter {
             get {
-                return ResourceManager.GetString("TrackedProjects_Button_Filter", resourceCulture);
+                return ResourceManager.GetString("ViewConnection_Button_Filter", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Select all.
+        ///   Looks up a localized string similar to Remove.
         /// </summary>
-        public static string TrackedProjects_Button_SelectAll {
+        public static string ViewConnection_Button_Remove {
             get {
-                return ResourceManager.GetString("TrackedProjects_Button_SelectAll", resourceCulture);
+                return ResourceManager.GetString("ViewConnection_Button_Remove", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to There are no projects for this connection.
+        /// </summary>
+        public static string ViewConnection_Message_NoProjects {
+            get {
+                return ResourceManager.GetString("ViewConnection_Message_NoProjects", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Latest build.
+        /// </summary>
+        public static string ViewProject_Tile_Label_LatestBuild {
+            get {
+                return ResourceManager.GetString("ViewProject_Tile_Label_LatestBuild", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Queued builds.
+        /// </summary>
+        public static string ViewProject_Tile_Label_QueuedBuilds {
+            get {
+                return ResourceManager.GetString("ViewProject_Tile_Label_QueuedBuilds", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to There are no builds for this project.
+        /// </summary>
+        public static string ViewProject_Tile_Message_NoBuilds {
+            get {
+                return ResourceManager.GetString("ViewProject_Tile_Message_NoBuilds", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Next.
+        /// </summary>
+        public static string WizardEditPassphrase_Button_NextStep {
+            get {
+                return ResourceManager.GetString("WizardEditPassphrase_Button_NextStep", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Let&apos;s start with a passphrase.
+        /// </summary>
+        public static string WizardEditPassphrase_Heading {
+            get {
+                return ResourceManager.GetString("WizardEditPassphrase_Heading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to I&apos;ll use it to encrypt your settings.
+        /// </summary>
+        public static string WizardEditPassphrase_Text {
+            get {
+                return ResourceManager.GetString("WizardEditPassphrase_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Passphrase is too short.
+        /// </summary>
+        public static string WizardEditPassphrase_Validation_Passphrase_MinimumLength {
+            get {
+                return ResourceManager.GetString("WizardEditPassphrase_Validation_Passphrase_MinimumLength", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Passphrase is missing.
+        /// </summary>
+        public static string WizardEditPassphrase_Validation_Passphrase_NotEmpty {
+            get {
+                return ResourceManager.GetString("WizardEditPassphrase_Validation_Passphrase_NotEmpty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Get started.
+        /// </summary>
+        public static string WizardStart_Button_NextStep {
+            get {
+                return ResourceManager.GetString("WizardStart_Button_NextStep", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hi, I&apos;m Overseer.
+        /// </summary>
+        public static string WizardStart_Heading {
+            get {
+                return ResourceManager.GetString("WizardStart_Heading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to I&apos;ll help track your builds.
+        /// </summary>
+        public static string WizardStart_Text {
+            get {
+                return ResourceManager.GetString("WizardStart_Text", resourceCulture);
             }
         }
     }

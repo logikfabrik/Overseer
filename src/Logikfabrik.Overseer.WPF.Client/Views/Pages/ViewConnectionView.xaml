@@ -98,7 +98,7 @@
             </Border>
         </Grid>
         <StackPanel Style="{DynamicResource Common.Empty.Section.Panel}" Visibility="{Binding HasNoProjects, Converter={StaticResource BooleanToVisibilityConverter}}">
-            <TextBlock Style="{DynamicResource Common.Empty.Section.Header}" Text="{Binding Source={x:Static p:Resources.Connection_Message_NoProjects}}" />
+            <TextBlock Style="{DynamicResource Common.Empty.Section.Header}" Text="{Binding Source={x:Static p:Resources.ViewConnection_Message_NoProjects}}" />
         </StackPanel>
     </Grid>
 </UserControl>

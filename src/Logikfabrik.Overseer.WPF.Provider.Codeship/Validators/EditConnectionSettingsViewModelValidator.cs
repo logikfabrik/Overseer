@@ -21,11 +21,11 @@ namespace Logikfabrik.Overseer.WPF.Provider.Codeship.Validators
         {
             RuleFor(viewModel => viewModel.Username)
                 .NotEmpty()
-                .WithMessage(viewModel => Properties.Resources.ConnectionSettings_Validation_Username);
+                .WithMessage(viewModel => Properties.Resources.EditConnectionSettings_Validation_Username);
 
             RuleFor(viewModel => viewModel.Password)
                 .NotEmpty()
-                .WithMessage(viewModel => Properties.Resources.ConnectionSettings_Validation_Password);
+                .WithMessage(viewModel => Properties.Resources.EditConnectionSettings_Validation_Password);
         }
     }
 }

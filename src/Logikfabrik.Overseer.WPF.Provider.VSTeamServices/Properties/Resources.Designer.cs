@@ -63,54 +63,54 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices.Properties {
         /// <summary>
         ///   Looks up a localized string similar to You create your token at.
         /// </summary>
-        public static string ConnectionSettings_Setting_Description_Token {
+        public static string EditConnectionSettings_Setting_Description_Token {
             get {
-                return ResourceManager.GetString("ConnectionSettings_Setting_Description_Token", resourceCulture);
+                return ResourceManager.GetString("EditConnectionSettings_Setting_Description_Token", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Name.
         /// </summary>
-        public static string ConnectionSettings_Setting_Label_Name {
+        public static string EditConnectionSettings_Setting_Label_Name {
             get {
-                return ResourceManager.GetString("ConnectionSettings_Setting_Label_Name", resourceCulture);
+                return ResourceManager.GetString("EditConnectionSettings_Setting_Label_Name", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Token.
         /// </summary>
-        public static string ConnectionSettings_Setting_Label_Token {
+        public static string EditConnectionSettings_Setting_Label_Token {
             get {
-                return ResourceManager.GetString("ConnectionSettings_Setting_Label_Token", resourceCulture);
+                return ResourceManager.GetString("EditConnectionSettings_Setting_Label_Token", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to URL.
         /// </summary>
-        public static string ConnectionSettings_Setting_Label_Url {
+        public static string EditConnectionSettings_Setting_Label_Url {
             get {
-                return ResourceManager.GetString("ConnectionSettings_Setting_Label_Url", resourceCulture);
+                return ResourceManager.GetString("EditConnectionSettings_Setting_Label_Url", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Token is missing.
         /// </summary>
-        public static string ConnectionSettings_Validation_Token {
+        public static string EditConnectionSettings_Validation_Token {
             get {
-                return ResourceManager.GetString("ConnectionSettings_Validation_Token", resourceCulture);
+                return ResourceManager.GetString("EditConnectionSettings_Validation_Token", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to URL is missing.
         /// </summary>
-        public static string ConnectionSettings_Validation_Url {
+        public static string EditConnectionSettings_Validation_Url {
             get {
-                return ResourceManager.GetString("ConnectionSettings_Validation_Url", resourceCulture);
+                return ResourceManager.GetString("EditConnectionSettings_Validation_Url", resourceCulture);
             }
         }
     }

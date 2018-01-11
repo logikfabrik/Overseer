@@ -117,13 +117,13 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="About_Setting_Label_Attribution" xml:space="preserve">
+  <data name="ViewAbout_Setting_Label_Attribution" xml:space="preserve">
     <value>Attribution</value>
   </data>
-  <data name="About_Setting_Label_Version" xml:space="preserve">
+  <data name="ViewAbout_Setting_Label_Version" xml:space="preserve">
     <value>Version</value>
   </data>
-  <data name="About_View" xml:space="preserve">
+  <data name="ViewAbout_View" xml:space="preserve">
     <value>About</value>
   </data>
   <data name="AddConnection_Button_Add" xml:space="preserve">
@@ -142,28 +142,28 @@
     <value>Sorry, there seems to be a problem!
 Please try again.</value>
   </data>
-  <data name="ConnectionSettings_Setting_Description_BuildsPerProject" xml:space="preserve">
+  <data name="EditConnectionSettings_Setting_Description_BuildsPerProject" xml:space="preserve">
     <value>Number of builds to get from the CI/DI service per project</value>
   </data>
-  <data name="ConnectionSettings_Setting_Label_BuildsPerProject" xml:space="preserve">
+  <data name="EditConnectionSettings_Setting_Label_BuildsPerProject" xml:space="preserve">
     <value>Builds per project</value>
   </data>
-  <data name="ConnectionSettings_Setting_Label_TrackedProjects" xml:space="preserve">
+  <data name="EditConnectionSettings_Setting_Label_TrackedProjects" xml:space="preserve">
     <value>Projects</value>
   </data>
-  <data name="ConnectionsList_Tile_Message_NoConnections" xml:space="preserve">
+  <data name="Connections_Tile_Message_NoConnections" xml:space="preserve">
     <value>You have no connections. Get started by adding one.</value>
   </data>
-  <data name="Connection_Button_Edit" xml:space="preserve">
+  <data name="ViewConnection_Button_Edit" xml:space="preserve">
     <value>Edit</value>
   </data>
-  <data name="Connection_Button_Filter" xml:space="preserve">
+  <data name="ViewConnection_Button_Filter" xml:space="preserve">
     <value>Filter</value>
   </data>
-  <data name="Connection_Button_Remove" xml:space="preserve">
+  <data name="ViewConnection_Button_Remove" xml:space="preserve">
     <value>Remove</value>
   </data>
-  <data name="Connection_Message_NoProjects" xml:space="preserve">
+  <data name="ViewConnection_Message_NoProjects" xml:space="preserve">
     <value>There are no projects for this connection</value>
   </data>
   <data name="EditConnection_Button_Cancel" xml:space="preserve">
@@ -211,13 +211,13 @@ Please try again.</value>
   <data name="Menu_MenuItem_Label_GoToSettings" xml:space="preserve">
     <value>Settings</value>
   </data>
-  <data name="Project_Tile_Label_LatestBuild" xml:space="preserve">
+  <data name="ViewProject_Tile_Label_LatestBuild" xml:space="preserve">
     <value>Latest build</value>
   </data>
-  <data name="Project_Tile_Label_QueuedBuilds" xml:space="preserve">
+  <data name="ViewProject_Tile_Label_QueuedBuilds" xml:space="preserve">
     <value>Queued builds</value>
   </data>
-  <data name="Project_Tile_Message_NoBuilds" xml:space="preserve">
+  <data name="ViewProject_Tile_Message_NoBuilds" xml:space="preserve">
     <value>There are no builds for this project</value>
   </data>
   <data name="RemoveConnection_Button_Cancel" xml:space="preserve">
@@ -226,40 +226,40 @@ Please try again.</value>
   <data name="RemoveConnection_Button_Remove" xml:space="preserve">
     <value>OK</value>
   </data>
-  <data name="TrackedProjects_Button_DeselectAll" xml:space="preserve">
+  <data name="EditTrackedProjects_Button_DeselectAll" xml:space="preserve">
     <value>Deselect all</value>
   </data>
-  <data name="TrackedProjects_Button_Filter" xml:space="preserve">
+  <data name="EditTrackedProjects_Button_Filter" xml:space="preserve">
     <value>Filter</value>
   </data>
-  <data name="TrackedProjects_Button_SelectAll" xml:space="preserve">
+  <data name="EditTrackedProjects_Button_SelectAll" xml:space="preserve">
     <value>Select all</value>
   </data>
-  <data name="ConnectionsList_Tile_Button_Add" xml:space="preserve">
+  <data name="Connections_Tile_Button_Add" xml:space="preserve">
     <value>Add connection</value>
   </data>
-  <data name="PassphraseWizardStep_Validation_Passphrase_MinimumLength" xml:space="preserve">
+  <data name="WizardEditPassphrase_Validation_Passphrase_MinimumLength" xml:space="preserve">
     <value>Passphrase is too short</value>
   </data>
-  <data name="PassphraseWizardStep_Validation_Passphrase_NotEmpty" xml:space="preserve">
+  <data name="WizardEditPassphrase_Validation_Passphrase_NotEmpty" xml:space="preserve">
     <value>Passphrase is missing</value>
   </data>
-  <data name="PassphraseWizardStep_Button_NextStep" xml:space="preserve">
+  <data name="WizardEditPassphrase_Button_NextStep" xml:space="preserve">
     <value>Next</value>
   </data>
-  <data name="PassphraseWizardStep_Heading" xml:space="preserve">
+  <data name="WizardEditPassphrase_Heading" xml:space="preserve">
     <value>Let's start with a passphrase</value>
   </data>
-  <data name="PassphraseWizardStep_Text" xml:space="preserve">
+  <data name="WizardEditPassphrase_Text" xml:space="preserve">
     <value>I'll use it to encrypt your settings</value>
   </data>
-  <data name="StartWizardStep_Button_NextStep" xml:space="preserve">
+  <data name="WizardStart_Button_NextStep" xml:space="preserve">
     <value>Get started</value>
   </data>
-  <data name="StartWizardStep_Heading" xml:space="preserve">
+  <data name="WizardStart_Heading" xml:space="preserve">
     <value>Hi, I'm Overseer</value>
   </data>
-  <data name="StartWizardStep_Text" xml:space="preserve">
+  <data name="WizardStart_Text" xml:space="preserve">
     <value>I'll help track your builds</value>
   </data>
 </root>

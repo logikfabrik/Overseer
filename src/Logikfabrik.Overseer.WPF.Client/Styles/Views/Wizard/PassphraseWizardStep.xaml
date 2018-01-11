@@ -17,8 +17,8 @@
                             Margin="0,96,0,0"
                             HorizontalAlignment="Center"
                             VerticalAlignment="Top">
-                            <TextBlock FontSize="24" Text="{x:Static p:Resources.PassphraseWizardStep_Heading}" />
-                            <TextBlock FontSize="18" Text="{x:Static p:Resources.PassphraseWizardStep_Text}" />
+                            <TextBlock FontSize="24" Text="{x:Static p:Resources.WizardEditPassphrase_Heading}" />
+                            <TextBlock FontSize="18" Text="{x:Static p:Resources.WizardEditPassphrase_Text}" />
                         </StackPanel>
                         <Grid
                             Width="450"
@@ -33,7 +33,7 @@
                             VerticalAlignment="Bottom">
                             <Button
                                 cal:Message.Attach="NextStep"
-                                Content="{x:Static p:Resources.PassphraseWizardStep_Button_NextStep}"
+                                Content="{x:Static p:Resources.WizardEditPassphrase_Button_NextStep}"
                                 IsDefault="True"
                                 IsEnabled="{Binding IsValid}" />
                         </WrapPanel>

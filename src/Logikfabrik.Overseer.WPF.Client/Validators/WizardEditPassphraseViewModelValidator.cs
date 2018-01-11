@@ -24,10 +24,10 @@ namespace Logikfabrik.Overseer.WPF.Client.Validators
             RuleFor(viewModel => viewModel.Passphrase)
                 .NotEmpty().WithLocalizedMessage(
                     typeof(Resources),
-                    nameof(Resources.PassphraseWizardStep_Validation_Passphrase_NotEmpty))
+                    nameof(Resources.WizardEditPassphrase_Validation_Passphrase_NotEmpty))
                 .MinimumLength(8).WithLocalizedMessage(
                     typeof(Resources),
-                    nameof(Resources.PassphraseWizardStep_Validation_Passphrase_MinimumLength));
+                    nameof(Resources.WizardEditPassphrase_Validation_Passphrase_MinimumLength));
         }
     }
 }

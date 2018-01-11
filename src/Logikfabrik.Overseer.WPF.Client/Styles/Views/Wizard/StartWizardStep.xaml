@@ -17,8 +17,8 @@
                             Margin="0,96,0,0"
                             HorizontalAlignment="Center"
                             VerticalAlignment="Top">
-                            <TextBlock FontSize="48" Text="{x:Static p:Resources.StartWizardStep_Heading}" />
-                            <TextBlock FontSize="18" Text="{x:Static p:Resources.StartWizardStep_Text}" />
+                            <TextBlock FontSize="48" Text="{x:Static p:Resources.WizardStart_Heading}" />
+                            <TextBlock FontSize="18" Text="{x:Static p:Resources.WizardStart_Text}" />
                         </StackPanel>
                         <WrapPanel
                             Margin="0,0,0,96"
@@ -26,7 +26,7 @@
                             VerticalAlignment="Bottom">
                             <Button
                                 cal:Message.Attach="NextStep"
-                                Content="{x:Static p:Resources.StartWizardStep_Button_NextStep}"
+                                Content="{x:Static p:Resources.WizardStart_Button_NextStep}"
                                 IsDefault="True" />
                         </WrapPanel>
                     </Grid>

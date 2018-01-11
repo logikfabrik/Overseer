@@ -54,11 +54,11 @@
                                     <Button
                                         x:Name="TrackAll"
                                         Grid.Column="1"
-                                        Content="{x:Static p:Resources.TrackedProjects_Button_SelectAll}" />
+                                        Content="{x:Static p:Resources.EditTrackedProjects_Button_SelectAll}" />
                                     <Button
                                         x:Name="TrackNone"
                                         Grid.Column="2"
-                                        Content="{x:Static p:Resources.TrackedProjects_Button_DeselectAll}" />
+                                        Content="{x:Static p:Resources.EditTrackedProjects_Button_DeselectAll}" />
                                 </Grid>
                                 <TextBox
                                     Style="{StaticResource Common.Filter}"

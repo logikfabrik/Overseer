@@ -117,13 +117,13 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="About_Setting_Label_Attribution" xml:space="preserve">
+  <data name="ViewAbout_Setting_Label_Attribution" xml:space="preserve">
     <value>Erkännande</value>
   </data>
-  <data name="About_Setting_Label_Version" xml:space="preserve">
+  <data name="ViewAbout_Setting_Label_Version" xml:space="preserve">
     <value>Version</value>
   </data>
-  <data name="About_View" xml:space="preserve">
+  <data name="ViewAbout_View" xml:space="preserve">
     <value>Om</value>
   </data>
   <data name="AddConnection_Button_Add" xml:space="preserve">
@@ -142,28 +142,28 @@
     <value>Tyvärr, det verkar vara ett problem!
 Vänligen försök igen.</value>
   </data>
-  <data name="ConnectionSettings_Setting_Description_BuildsPerProject" xml:space="preserve">
+  <data name="EditConnectionSettings_Setting_Description_BuildsPerProject" xml:space="preserve">
     <value>Antal byggen att hämta från CI/DI-tjänsten per projekt</value>
   </data>
-  <data name="ConnectionSettings_Setting_Label_BuildsPerProject" xml:space="preserve">
+  <data name="EditConnectionSettings_Setting_Label_BuildsPerProject" xml:space="preserve">
     <value>Byggen per projekt</value>
   </data>
-  <data name="ConnectionSettings_Setting_Label_TrackedProjects" xml:space="preserve">
+  <data name="EditConnectionSettings_Setting_Label_TrackedProjects" xml:space="preserve">
     <value>Projekt</value>
   </data>
-  <data name="ConnectionsList_Tile_Message_NoConnections" xml:space="preserve">
+  <data name="Connections_Tile_Message_NoConnections" xml:space="preserve">
     <value>Du har inga anslutningar. Kom igång genom att lägga till en.</value>
   </data>
-  <data name="Connection_Button_Edit" xml:space="preserve">
+  <data name="ViewConnection_Button_Edit" xml:space="preserve">
     <value>Redigera</value>
   </data>
-  <data name="Connection_Button_Filter" xml:space="preserve">
+  <data name="ViewConnection_Button_Filter" xml:space="preserve">
     <value>Filtrera</value>
   </data>
-  <data name="Connection_Button_Remove" xml:space="preserve">
+  <data name="ViewConnection_Button_Remove" xml:space="preserve">
     <value>Ta bort</value>
   </data>
-  <data name="Connection_Message_NoProjects" xml:space="preserve">
+  <data name="ViewConnection_Message_NoProjects" xml:space="preserve">
     <value>Det finns inga projekt för denna anslutning</value>
   </data>
   <data name="EditConnection_Button_Cancel" xml:space="preserve">
@@ -211,13 +211,13 @@ Vänligen försök igen.</value>
   <data name="Menu_MenuItem_Label_GoToSettings" xml:space="preserve">
     <value>Inställningar</value>
   </data>
-  <data name="Project_Tile_Label_LatestBuild" xml:space="preserve">
+  <data name="ViewProject_Tile_Label_LatestBuild" xml:space="preserve">
     <value>Senaste bygget</value>
   </data>
-  <data name="Project_Tile_Label_QueuedBuilds" xml:space="preserve">
+  <data name="ViewProject_Tile_Label_QueuedBuilds" xml:space="preserve">
     <value>Köade byggen</value>
   </data>
-  <data name="Project_Tile_Message_NoBuilds" xml:space="preserve">
+  <data name="ViewProject_Tile_Message_NoBuilds" xml:space="preserve">
     <value>Det finns inga byggen för detta projekt</value>
   </data>
   <data name="RemoveConnection_Button_Cancel" xml:space="preserve">
@@ -226,40 +226,40 @@ Vänligen försök igen.</value>
   <data name="RemoveConnection_Button_Remove" xml:space="preserve">
     <value>OK</value>
   </data>
-  <data name="TrackedProjects_Button_DeselectAll" xml:space="preserve">
+  <data name="EditTrackedProjects_Button_DeselectAll" xml:space="preserve">
     <value>Välj bort alla</value>
   </data>
-  <data name="TrackedProjects_Button_Filter" xml:space="preserve">
+  <data name="EditTrackedProjects_Button_Filter" xml:space="preserve">
     <value>Filtrera</value>
   </data>
-  <data name="TrackedProjects_Button_SelectAll" xml:space="preserve">
+  <data name="EditTrackedProjects_Button_SelectAll" xml:space="preserve">
     <value>Välj alla</value>
   </data>
-  <data name="ConnectionsList_Tile_Button_Add" xml:space="preserve">
+  <data name="Connections_Tile_Button_Add" xml:space="preserve">
     <value>Lägg till anslutning</value>
   </data>
-  <data name="PassphraseWizardStep_Button_NextStep" xml:space="preserve">
+  <data name="WizardEditPassphrase_Button_NextStep" xml:space="preserve">
     <value>Nästa</value>
   </data>
-  <data name="PassphraseWizardStep_Heading" xml:space="preserve">
+  <data name="WizardEditPassphrase_Heading" xml:space="preserve">
     <value>Låt oss börja med en lösenfras</value>
   </data>
-  <data name="PassphraseWizardStep_Text" xml:space="preserve">
+  <data name="WizardEditPassphrase_Text" xml:space="preserve">
     <value>Jag kommer att använa den för att kryptera dina inställningar</value>
   </data>
-  <data name="PassphraseWizardStep_Validation_Passphrase_MinimumLength" xml:space="preserve">
+  <data name="WizardEditPassphrase_Validation_Passphrase_MinimumLength" xml:space="preserve">
     <value>Lösenfras är för kort</value>
   </data>
-  <data name="PassphraseWizardStep_Validation_Passphrase_NotEmpty" xml:space="preserve">
+  <data name="WizardEditPassphrase_Validation_Passphrase_NotEmpty" xml:space="preserve">
     <value>Lösenfras saknas</value>
   </data>
-  <data name="StartWizardStep_Button_NextStep" xml:space="preserve">
+  <data name="WizardStart_Button_NextStep" xml:space="preserve">
     <value>Kom igång</value>
   </data>
-  <data name="StartWizardStep_Heading" xml:space="preserve">
+  <data name="WizardStart_Heading" xml:space="preserve">
     <value>Hej, jag är Overseer</value>
   </data>
-  <data name="StartWizardStep_Text" xml:space="preserve">
+  <data name="WizardStart_Text" xml:space="preserve">
     <value>Jag hjälper till att spåra dina byggen</value>
   </data>
 </root>
