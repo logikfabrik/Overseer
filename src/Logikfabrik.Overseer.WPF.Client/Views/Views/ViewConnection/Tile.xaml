@@ -5,8 +5,8 @@
     xmlns:cal="http://www.caliburnproject.org"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:uc="clr-namespace:Logikfabrik.Overseer.WPF.Client.Views.UserControls"
     xmlns:vm="clr-namespace:Logikfabrik.Overseer.WPF.ViewModels.DesignTime;assembly=Logikfabrik.Overseer.WPF"
+    xmlns:userControls="clr-namespace:Logikfabrik.Overseer.WPF.Client.UserControls"
     Width="200"
     Height="200"
     cal:Bind.AtDesignTime="True"
@@ -23,7 +23,7 @@
             Grid.ColumnSpan="2"
             Content="{Binding SettingsName}"
             IsEnabled="{Binding IsViewable}" />
-        <uc:ProgressControl
+        <userControls:ProgressControl
             Grid.Column="0"
             Grid.ColumnSpan="2"
             VerticalAlignment="Top"

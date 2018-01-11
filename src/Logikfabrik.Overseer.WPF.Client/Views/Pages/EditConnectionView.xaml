@@ -6,7 +6,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:p="clr-namespace:Logikfabrik.Overseer.WPF.Client.Properties"
-    xmlns:uc="clr-namespace:Logikfabrik.Overseer.WPF.Client.Views.UserControls"
+    xmlns:userControls="clr-namespace:Logikfabrik.Overseer.WPF.Client.UserControls"
     d:DesignHeight="300"
     d:DesignWidth="300"
     mc:Ignorable="d">
@@ -31,7 +31,7 @@
                             x:Name="TryConnect"
                             Content="{x:Static p:Resources.EditConnection_Button_TryConnect}"
                             IsEnabled="{Binding IsValidAndHasNotConnected, Mode=OneWay}" />
-                        <uc:ProgressControl
+                        <userControls:ProgressControl
                             VerticalAlignment="Top"
                             IsErrored="{Binding ConnectionTask.Status, Converter={StaticResource TaskStatusFaultedToBooleanConverter}}"
                             IsInProgress="{Binding ConnectionTask.Status, Converter={StaticResource TaskStatusRunningToBooleanConverter}}" />

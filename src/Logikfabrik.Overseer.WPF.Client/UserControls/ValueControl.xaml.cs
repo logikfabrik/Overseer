@@ -2,12 +2,12 @@
 //   Copyright (c) 2016 anton(at)logikfabrik.se. Licensed under the MIT license.
 // </copyright>
 
-namespace Logikfabrik.Overseer.WPF.Client.Views.UserControls
-{
-    using System.ComponentModel;
-    using System.Windows;
-    using System.Windows.Media;
+using System.ComponentModel;
+using System.Windows;
+using System.Windows.Media;
 
+namespace Logikfabrik.Overseer.WPF.Client.UserControls
+{
     /// <summary>
     /// The <see cref="ValueControl" /> class.
     /// </summary>

@@ -181,10 +181,10 @@
     <Compile Include="Views\Windows\WizardView.xaml.cs">
       <DependentUpon>WizardView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\UserControls\ProgressControl.xaml.cs">
+    <Compile Include="UserControls\ProgressControl.xaml.cs">
       <DependentUpon>ProgressControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\UserControls\ValueControl.xaml.cs">
+    <Compile Include="UserControls\ValueControl.xaml.cs">
       <DependentUpon>ValueControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Pages\ViewDashboardView.xaml.cs">
@@ -371,11 +371,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\UserControls\ProgressControl.xaml">
+    <Page Include="UserControls\ProgressControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\UserControls\ValueControl.xaml">
+    <Page Include="UserControls\ValueControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

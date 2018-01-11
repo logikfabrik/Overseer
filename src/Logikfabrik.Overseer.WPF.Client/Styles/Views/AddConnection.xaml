@@ -3,7 +3,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:cal="http://www.caliburnproject.org"
     xmlns:p="clr-namespace:Logikfabrik.Overseer.WPF.Client.Properties"
-    xmlns:uc="clr-namespace:Logikfabrik.Overseer.WPF.Client.Views.UserControls">
+    xmlns:userControls="clr-namespace:Logikfabrik.Overseer.WPF.Client.UserControls">
     <Style x:Key="Views.AddConnection" TargetType="{x:Type UserControl}">
         <Setter Property="Template">
             <Setter.Value>
@@ -29,7 +29,7 @@
                                             cal:Message.Attach="TryConnect"
                                             Content="{x:Static p:Resources.AddConnection_Button_TryConnect}"
                                             IsEnabled="{Binding IsValidAndHasNotConnected, Mode=OneWay}" />
-                                        <uc:ProgressControl
+                                        <userControls:ProgressControl
                                             VerticalAlignment="Top"
                                             IsErrored="{Binding ConnectionTask.Status, Converter={StaticResource TaskStatusFaultedToBooleanConverter}}"
                                             IsInProgress="{Binding ConnectionTask.Status, Converter={StaticResource TaskStatusRunningToBooleanConverter}}" />
