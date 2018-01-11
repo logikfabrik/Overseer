@@ -1,0 +1,55 @@
+﻿<UserControl
+    x:Class="Logikfabrik.Overseer.WPF.Client.Views.Views.ConnectionsList.Tiles"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:cal="http://www.caliburnproject.org"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:p="clr-namespace:Logikfabrik.Overseer.WPF.Client.Properties"
+    d:DesignHeight="300"
+    d:DesignWidth="300"
+    mc:Ignorable="d">
+    <Grid>
+        <ItemsControl ItemsSource="{Binding Connections, Mode=OneWay}" Visibility="{Binding HasConnections, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <ItemsControl.ItemContainerStyle>
+                <Style>
+                    <!--  ReSharper disable once Xaml.RedundantPropertyTypeQualifier  -->
+                    <Setter Property="FrameworkElement.Margin" Value="10,10,0,0" />
+                </Style>
+            </ItemsControl.ItemContainerStyle>
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <ContentControl
+                        cal:View.Context="Tile"
+                        cal:View.Model="{Binding}"
+                        Focusable="False" />
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+            <ItemsControl.Template>
+                <ControlTemplate>
+                    <ScrollViewer>
+                        <ItemsPresenter Margin="0,0,10,10" />
+                    </ScrollViewer>
+                </ControlTemplate>
+            </ItemsControl.Template>
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel />
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+        </ItemsControl>
+        <StackPanel Style="{StaticResource Common.Empty.Section.Panel}" Visibility="{Binding HasNoConnections, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <TextBlock Style="{StaticResource Common.Empty.Section.Header}" Text="{Binding Source={x:Static p:Resources.ConnectionsList_Tile_Message_NoConnections}}" />
+            <Button x:Name="Add">
+                <StackPanel>
+                    <Viewbox>
+                        <Canvas>
+                            <Path Data="M 5.4,4 H 3.6 C 3.048,4 3,4.447 3,5 3,5.553 3.048,6 3.6,6 H 5.4 C 5.952,6 6,5.553 6,5 6,4.447 5.952,4 5.4,4 Z m 0,10 H 3.6 C 3.048,14 3,14.447 3,15 c 0,0.553 0.048,1 0.6,1 H 5.4 C 5.952,16 6,15.553 6,15 6,14.447 5.952,14 5.4,14 Z m 0,-5 H 3.6 C 3.048,9 3,9.447 3,10 c 0,0.553 0.048,1 0.6,1 H 5.4 C 5.952,11 6,10.553 6,10 6,9.447 5.952,9 5.4,9 Z m 11.8,3e-7 h -3.4 v -3.4 c 0,-0.6 -0.4,-0.6 -1,-0.6 -0.6,0 -0.982361,2.593e-4 -1,0.6 v 3.4 H 8.4 c -0.6,0 -0.6,0.4 -0.6,0.9999997 0,0.6 0,1 0.6,1 h 3.4 v 3.4 c 0,0.6 0.4,0.6 1,0.6 0.6,0 1.017639,-2.59e-4 1,-0.6 V 11 h 3.4 c 0.6,0 0.6,-0.4 0.6,-1 0,-0.5999997 0,-0.9999997 -0.6,-0.9999997 z" />
+                        </Canvas>
+                    </Viewbox>
+                    <TextBlock Text="{x:Static p:Resources.ConnectionsList_Tile_Button_Add}" />
+                </StackPanel>
+            </Button>
+        </StackPanel>
+    </Grid>
+</UserControl>

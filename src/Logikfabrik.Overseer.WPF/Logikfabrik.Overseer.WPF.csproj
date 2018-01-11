@@ -190,7 +190,7 @@
     <Compile Include="ViewModels\BuildViewModel.cs" />
     <Compile Include="ViewModels\ChangeViewModel.cs" />
     <Compile Include="ViewModels\ConnectionsViewModel.cs" />
-    <Compile Include="ViewModels\ConnectionViewModel{T}.cs">
+    <Compile Include="ViewModels\ViewConnectionViewModel{T}.cs">
       <SonarQubeExclude>true</SonarQubeExclude>
     </Compile>
     <Compile Include="ViewModels\EditConnectionViewModel{T}.cs">

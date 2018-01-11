@@ -145,40 +145,40 @@
     <Compile Include="ViewModels\AppErrorViewModel.cs" />
     <Compile Include="ViewModels\AppMenuViewModel.cs" />
     <Compile Include="ViewModels\AppViewModel.cs" />
-    <Compile Include="ViewModels\Wizard\BuildProvidersWizardStepViewModel.cs" />
+    <Compile Include="ViewModels\BuildProvidersWizardStepViewModel.cs" />
     <Compile Include="ViewModels\Conductor.cs" />
-    <Compile Include="ViewModels\Wizard\FinishWizardStepViewModel.cs" />
-    <Compile Include="ViewModels\Wizard\PassphraseWizardStepViewModel.cs" />
-    <Compile Include="ViewModels\Wizard\WizardViewModel.cs" />
-    <Compile Include="ViewModels\Wizard\StartWizardStepViewModel.cs" />
-    <Compile Include="Views\AboutView.xaml.cs">
+    <Compile Include="ViewModels\FinishWizardStepViewModel.cs" />
+    <Compile Include="ViewModels\PassphraseWizardStepViewModel.cs" />
+    <Compile Include="ViewModels\WizardViewModel.cs" />
+    <Compile Include="ViewModels\StartWizardStepViewModel.cs" />
+    <Compile Include="Views\Pages\AboutView.xaml.cs">
       <DependentUpon>AboutView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\AddConnectionView.xaml.cs">
+    <Compile Include="Views\Pages\AddConnectionView.xaml.cs">
       <DependentUpon>AddConnectionView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Wizard\BuildProvidersWizardStepView.xaml.cs">
+    <Compile Include="Views\Pages\BuildProvidersWizardStepView.xaml.cs">
       <DependentUpon>BuildProvidersWizardStepView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\ConnectionsList\Bricks.xaml.cs">
+    <Compile Include="Views\Views\ConnectionsList\Bricks.xaml.cs">
       <DependentUpon>Bricks.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\ConnectionsList\Tiles.xaml.cs">
+    <Compile Include="Views\Views\ConnectionsList\Tiles.xaml.cs">
       <DependentUpon>Tiles.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Connection\Brick.xaml.cs">
+    <Compile Include="Views\Views\Connection\Brick.xaml.cs">
       <DependentUpon>Brick.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\AppErrorView.xaml.cs">
+    <Compile Include="Views\Views\AppErrorView.xaml.cs">
       <DependentUpon>AppErrorView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Wizard\FinishWizardStepView.xaml.cs">
+    <Compile Include="Views\Pages\FinishWizardStepView.xaml.cs">
       <DependentUpon>FinishWizardStepView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Wizard\PassphraseWizardStepView.xaml.cs">
+    <Compile Include="Views\Pages\PassphraseWizardStepView.xaml.cs">
       <DependentUpon>PassphraseWizardStepView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Wizard\WizardView.xaml.cs">
+    <Compile Include="Views\Windows\WizardView.xaml.cs">
       <DependentUpon>WizardView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\UserControls\ProgressControl.xaml.cs">
@@ -187,65 +187,65 @@
     <Compile Include="Views\UserControls\ValueControl.xaml.cs">
       <DependentUpon>ValueControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\DashboardView.xaml.cs">
+    <Compile Include="Views\Pages\DashboardView.xaml.cs">
       <DependentUpon>DashboardView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\AppMenuView.xaml.cs">
+    <Compile Include="Views\Views\AppMenuView.xaml.cs">
       <DependentUpon>AppMenuView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\AppView.xaml.cs">
+    <Compile Include="Views\Windows\AppView.xaml.cs">
       <DependentUpon>AppView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\BuildNotificationView.xaml.cs">
+    <Compile Include="Views\Views\BuildNotificationView.xaml.cs">
       <DependentUpon>BuildNotificationView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\BuildProvidersView.xaml.cs">
+    <Compile Include="Views\Pages\BuildProvidersView.xaml.cs">
       <DependentUpon>BuildProvidersView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\BuildView.xaml.cs">
+    <Compile Include="Views\Views\BuildView.xaml.cs">
       <DependentUpon>BuildView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Build\Base.xaml.cs">
+    <Compile Include="Views\Views\Build\Base.xaml.cs">
       <DependentUpon>Base.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Build\Tile.xaml.cs">
+    <Compile Include="Views\Views\Build\Tile.xaml.cs">
       <DependentUpon>Tile.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\ChangeView.xaml.cs">
+    <Compile Include="Views\Views\ChangeView.xaml.cs">
       <DependentUpon>ChangeView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Connection\Tile.xaml.cs">
+    <Compile Include="Views\Views\Connection\Tile.xaml.cs">
       <DependentUpon>Tile.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\EditConnectionView.xaml.cs">
+    <Compile Include="Views\Pages\EditConnectionView.xaml.cs">
       <DependentUpon>EditConnectionView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\EditSettingsView.xaml.cs">
+    <Compile Include="Views\Pages\EditSettingsView.xaml.cs">
       <DependentUpon>EditSettingsView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\TrackedProjectsView.xaml.cs">
+    <Compile Include="Views\Views\TrackedProjectsView.xaml.cs">
       <DependentUpon>TrackedProjectsView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\TrackedProjectView.xaml.cs">
+    <Compile Include="Views\Views\TrackedProjectView.xaml.cs">
       <DependentUpon>TrackedProjectView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\ProjectView.xaml.cs">
+    <Compile Include="Views\Pages\ProjectView.xaml.cs">
       <DependentUpon>ProjectView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\ConnectionsView.xaml.cs">
+    <Compile Include="Views\Pages\ConnectionsView.xaml.cs">
       <DependentUpon>ConnectionsView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\ConnectionView.xaml.cs">
+    <Compile Include="Views\Pages\ConnectionView.xaml.cs">
       <DependentUpon>ConnectionView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Project\Tile.xaml.cs">
+    <Compile Include="Views\Views\Project\Tile.xaml.cs">
       <DependentUpon>Tile.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\RemoveConnectionView.xaml.cs">
+    <Compile Include="Views\Pages\RemoveConnectionView.xaml.cs">
       <DependentUpon>RemoveConnectionView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\AppWindow.cs" />
-    <Compile Include="Views\Wizard\StartWizardStepView.xaml.cs">
+    <Compile Include="Views\Pages\StartWizardStepView.xaml.cs">
       <DependentUpon>StartWizardStepView.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
@@ -331,43 +331,43 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\AboutView.xaml">
+    <Page Include="Views\Pages\AboutView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\AddConnectionView.xaml">
+    <Page Include="Views\Pages\AddConnectionView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\Wizard\BuildProvidersWizardStepView.xaml">
+    <Page Include="Views\Pages\BuildProvidersWizardStepView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\ConnectionsList\Bricks.xaml">
+    <Page Include="Views\Views\ConnectionsList\Bricks.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\ConnectionsList\Tiles.xaml">
+    <Page Include="Views\Views\ConnectionsList\Tiles.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Connection\Brick.xaml">
+    <Page Include="Views\Views\Connection\Brick.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\AppErrorView.xaml">
+    <Page Include="Views\Views\AppErrorView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Wizard\FinishWizardStepView.xaml">
+    <Page Include="Views\Pages\FinishWizardStepView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Wizard\PassphraseWizardStepView.xaml">
+    <Page Include="Views\Pages\PassphraseWizardStepView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Wizard\WizardView.xaml">
+    <Page Include="Views\Windows\WizardView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -379,83 +379,83 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\DashboardView.xaml">
+    <Page Include="Views\Pages\DashboardView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\AppMenuView.xaml">
+    <Page Include="Views\Views\AppMenuView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\AppView.xaml">
+    <Page Include="Views\Windows\AppView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\BuildNotificationView.xaml">
+    <Page Include="Views\Views\BuildNotificationView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\BuildProvidersView.xaml">
+    <Page Include="Views\Pages\BuildProvidersView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\BuildView.xaml">
+    <Page Include="Views\Views\BuildView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Build\Base.xaml">
+    <Page Include="Views\Views\Build\Base.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Build\Tile.xaml">
+    <Page Include="Views\Views\Build\Tile.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\ChangeView.xaml">
+    <Page Include="Views\Views\ChangeView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Connection\Tile.xaml">
+    <Page Include="Views\Views\Connection\Tile.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\EditConnectionView.xaml">
+    <Page Include="Views\Pages\EditConnectionView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\EditSettingsView.xaml">
+    <Page Include="Views\Pages\EditSettingsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\TrackedProjectsView.xaml">
+    <Page Include="Views\Views\TrackedProjectsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\TrackedProjectView.xaml">
+    <Page Include="Views\Views\TrackedProjectView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\ProjectView.xaml">
+    <Page Include="Views\Pages\ProjectView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\ConnectionsView.xaml">
+    <Page Include="Views\Pages\ConnectionsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\ConnectionView.xaml">
+    <Page Include="Views\Pages\ConnectionView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Project\Tile.xaml">
+    <Page Include="Views\Views\Project\Tile.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\RemoveConnectionView.xaml">
+    <Page Include="Views\Pages\RemoveConnectionView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Wizard\StartWizardStepView.xaml">
+    <Page Include="Views\Pages\StartWizardStepView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -515,6 +515,7 @@
   <ItemGroup>
     <Resource Include="Overseer.ico" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

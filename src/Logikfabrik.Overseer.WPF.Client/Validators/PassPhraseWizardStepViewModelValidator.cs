@@ -2,11 +2,12 @@
 //   Copyright (c) 2016 anton(at)logikfabrik.se. Licensed under the MIT license.
 // </copyright>
 
+using Logikfabrik.Overseer.WPF.Client.ViewModels;
+
 namespace Logikfabrik.Overseer.WPF.Client.Validators
 {
     using FluentValidation;
     using Properties;
-    using ViewModels.Wizard;
 
     /// <summary>
     /// The <see cref="PassphraseWizardStepViewModelValidator" /> class.

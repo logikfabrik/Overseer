@@ -14,7 +14,6 @@ namespace Logikfabrik.Overseer.WPF.Client
     using Ninject.Parameters;
     using Overseer.Logging;
     using ViewModels;
-    using ViewModels.Wizard;
 
     /// <summary>
     /// The <see cref="AppBootstrapper" /> class.
@@ -87,6 +86,9 @@ namespace Logikfabrik.Overseer.WPF.Client
             }
 
             ViewLocator.AddNamespaceMapping("*", "Logikfabrik.Overseer.WPF.Client.Views");
+            ViewLocator.AddNamespaceMapping("*", "Logikfabrik.Overseer.WPF.Client.Views.Pages");
+            ViewLocator.AddNamespaceMapping("*", "Logikfabrik.Overseer.WPF.Client.Views.Views");
+            ViewLocator.AddNamespaceMapping("*", "Logikfabrik.Overseer.WPF.Client.Views.Windows");
 
             _catalog = null;
 
