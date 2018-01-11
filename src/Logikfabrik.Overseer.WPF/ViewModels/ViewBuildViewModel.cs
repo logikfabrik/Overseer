@@ -29,13 +29,13 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// <summary>
         /// Initializes a new instance of the <see cref="ViewBuildViewModel" /> class.
         /// </summary>
-        /// <param name="changeFactory">The change factory.</param>
+        /// <param name="viewChangeViewModelFactory">The view change view model factory.</param>
         /// <param name="project">The project.</param>
         /// <param name="build">The build.</param>
         // ReSharper disable once InheritdocConsiderUsage
-        public ViewBuildViewModel(IViewChangeViewModelFactory changeFactory, IProject project, IBuild build)
+        public ViewBuildViewModel(IViewChangeViewModelFactory viewChangeViewModelFactory, IProject project, IBuild build)
         {
-            Ensure.That(changeFactory).IsNotNull();
+            Ensure.That(viewChangeViewModelFactory).IsNotNull();
             Ensure.That(project).IsNotNull();
             Ensure.That(build).IsNotNull();
 
@@ -44,7 +44,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             VersionNumber = build.VersionNumber();
             _webUrl = build.WebUrl;
             RequestedBy = build.RequestedBy;
-            Changes = build.Changes.Select(changeFactory.Create).ToArray();
+            Changes = build.Changes.Select(viewChangeViewModelFactory.Create).ToArray();
 
             TryUpdate(project, build);
         }

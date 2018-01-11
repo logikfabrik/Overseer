@@ -10,6 +10,6 @@
     mc:Ignorable="d">
     <ContentControl
         cal:View.Context="Tiles"
-        cal:View.Model="{Binding ConnectionsList, Mode=OneTime}"
+        cal:View.Model="{Binding Connections, Mode=OneTime}"
         Focusable="False" />
 </UserControl>

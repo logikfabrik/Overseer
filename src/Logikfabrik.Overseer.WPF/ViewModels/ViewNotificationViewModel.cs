@@ -25,19 +25,19 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// Initializes a new instance of the <see cref="ViewNotificationViewModel" /> class.
         /// </summary>
         /// <param name="application">The application.</param>
-        /// <param name="buildViewModelFactory">The build view model factory.</param>
+        /// <param name="viewBuildViewModelFactory">The view build view model factory.</param>
         /// <param name="project">The project.</param>
         /// <param name="build">The build.</param>
         // ReSharper disable once InheritdocConsiderUsage
-        public ViewNotificationViewModel(IApp application, IViewBuildViewModelFactory buildViewModelFactory, IProject project, IBuild build)
+        public ViewNotificationViewModel(IApp application, IViewBuildViewModelFactory viewBuildViewModelFactory, IProject project, IBuild build)
         {
             Ensure.That(application).IsNotNull();
-            Ensure.That(buildViewModelFactory).IsNotNull();
+            Ensure.That(viewBuildViewModelFactory).IsNotNull();
             Ensure.That(project).IsNotNull();
             Ensure.That(build).IsNotNull();
 
             _application = application;
-            Build = buildViewModelFactory.Create(project, build);
+            Build = viewBuildViewModelFactory.Create(project, build);
 
             StartClosing();
         }

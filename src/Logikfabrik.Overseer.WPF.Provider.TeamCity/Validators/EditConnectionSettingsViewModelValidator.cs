@@ -12,7 +12,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity.Validators
     /// The <see cref="EditConnectionSettingsViewModelValidator" /> class.
     /// </summary>
     // ReSharper disable once InheritdocConsiderUsage
-    public class EditConnectionSettingsViewModelValidator : WPF.Validators.ConnectionSettingsViewModelValidator<EditConnectionSettingsViewModel, ConnectionSettings>
+    public class EditConnectionSettingsViewModelValidator : WPF.Validators.EditConnectionSettingsViewModelValidator<EditConnectionSettingsViewModel, ConnectionSettings>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="EditConnectionSettingsViewModelValidator" /> class.

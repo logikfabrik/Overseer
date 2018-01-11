@@ -23,7 +23,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     {
         private readonly IApp _application;
         private readonly IEventAggregator _eventAggregator;
-        private readonly IViewBuildViewModelFactory _buildFactory;
+        private readonly IViewBuildViewModelFactory _viewBuildViewModelFactory;
         private readonly Guid _settingsId;
 
 #pragma warning disable S1450 // Private fields only used as local variables in methods should become local variables
@@ -43,7 +43,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// <param name="application">The application.</param>
         /// <param name="eventAggregator">The event aggregator.</param>
         /// <param name="buildTracker">The build tracker.</param>
-        /// <param name="buildFactory">The build factory.</param>
+        /// <param name="viewBuildViewModelFactory">The view build view model factory.</param>
         /// <param name="settingsId">The settings identifier.</param>
         /// <param name="projectId">The project identifier.</param>
         /// <param name="projectName">The project name.</param>
@@ -55,7 +55,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             IApp application,
             IEventAggregator eventAggregator,
             IBuildTracker buildTracker,
-            IViewBuildViewModelFactory buildFactory,
+            IViewBuildViewModelFactory viewBuildViewModelFactory,
             Guid settingsId,
             string projectId,
             string projectName)
@@ -65,19 +65,19 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             Ensure.That(application).IsNotNull();
             Ensure.That(eventAggregator).IsNotNull();
             Ensure.That(buildTracker).IsNotNull();
-            Ensure.That(buildFactory).IsNotNull();
+            Ensure.That(viewBuildViewModelFactory).IsNotNull();
             Ensure.That(settingsId).IsNotEmpty();
             Ensure.That(projectId).IsNotNullOrWhiteSpace();
 
             _application = application;
             _eventAggregator = eventAggregator;
-            _buildFactory = buildFactory;
+            _viewBuildViewModelFactory = viewBuildViewModelFactory;
             _settingsId = settingsId;
             Id = projectId;
             _name = projectName;
             _isBusy = true;
             _isErrored = false;
-            DisplayName = Properties.Resources.Project_View;
+            DisplayName = Properties.Resources.ViewProject_View;
 
             WeakEventManager<IBuildTracker, BuildTrackerProjectErrorEventArgs>.AddHandler(buildTracker, nameof(buildTracker.ProjectError), BuildTrackerProjectError);
             WeakEventManager<IBuildTracker, BuildTrackerProjectProgressEventArgs>.AddHandler(buildTracker, nameof(buildTracker.ProjectProgressChanged), BuildTrackerProjectProgressChanged);
@@ -217,7 +217,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
                 {
                     _application.Dispatcher.Invoke(() =>
                     {
-                        var buildToAdd = _buildFactory.Create(e.Project, build);
+                        var buildToAdd = _viewBuildViewModelFactory.Create(e.Project, build);
 
                         var time = new Tuple<DateTime, DateTime>(buildToAdd.EndTime ?? DateTime.MaxValue, buildToAdd.StartTime ?? DateTime.MaxValue);
 

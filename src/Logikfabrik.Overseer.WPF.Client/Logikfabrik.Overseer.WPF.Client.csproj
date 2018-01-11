@@ -140,7 +140,7 @@
     <Compile Include="Providers\Settings\ConnectionSettingsSerializerProvider.cs" />
     <Compile Include="Providers\Settings\FileStoreProvider.cs" />
     <Compile Include="Providers\Settings\RegistryStoreProvider.cs" />
-    <Compile Include="Validators\PassphraseWizardStepViewModelValidator.cs" />
+    <Compile Include="Validators\WizardEditPassphraseViewModelValidator.cs" />
     <Compile Include="ViewModels\ViewAboutViewModel.cs" />
     <Compile Include="ViewModels\AppErrorViewModel.cs" />
     <Compile Include="ViewModels\AppMenuViewModel.cs" />

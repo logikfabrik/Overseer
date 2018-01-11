@@ -18,15 +18,15 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// Initializes a new instance of the <see cref="NewConnectionViewModel" /> class.
         /// </summary>
         /// <param name="platformProvider">The platform provider.</param>
-        /// <param name="providers">The providers.</param>
+        /// <param name="buildProviderViewModels">The buiild provider view models.</param>
         // ReSharper disable once InheritdocConsiderUsage
-        public NewConnectionViewModel(IPlatformProvider platformProvider, IEnumerable<IBuildProviderViewModel> providers)
+        public NewConnectionViewModel(IPlatformProvider platformProvider, IEnumerable<IBuildProviderViewModel> buildProviderViewModels)
             : base(platformProvider)
         {
-            Ensure.That(providers).IsNotNull();
+            Ensure.That(buildProviderViewModels).IsNotNull();
 
-            Providers = providers;
-            DisplayName = Properties.Resources.BuildProviders_View;
+            Providers = buildProviderViewModels;
+            DisplayName = Properties.Resources.NewConnection_View;
         }
 
         /// <summary>

@@ -132,7 +132,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="Validators\ConnectionSettingsViewModelValidator{T1,T2}.cs">
+    <Compile Include="Validators\EditConnectionSettingsViewModelValidator{T1,T2}.cs">
       <SonarQubeExclude>true</SonarQubeExclude>
     </Compile>
     <Compile Include="Validators\EditSettingsViewModelValidator.cs" />
@@ -303,6 +303,7 @@
     <EmbeddedResource Include="Properties\Resources.sv-SE.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.sv-SE.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

@@ -21,7 +21,7 @@ namespace Logikfabrik.Overseer.WPF.Client.ViewModels
     {
         private readonly IEventAggregator _eventAggregator;
         private readonly IConnectionSettingsEncrypter _encrypter;
-        private readonly PassphraseWizardStepViewModelValidator _validator;
+        private readonly WizardEditPassphraseViewModelValidator _validator;
         private string _passphrase;
 
         /// <summary>
@@ -39,7 +39,7 @@ namespace Logikfabrik.Overseer.WPF.Client.ViewModels
 
             _eventAggregator = eventAggregator;
             _encrypter = encrypter;
-            _validator = new PassphraseWizardStepViewModelValidator();
+            _validator = new WizardEditPassphraseViewModelValidator();
         }
 
         /// <summary>

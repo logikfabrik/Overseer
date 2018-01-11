@@ -17,24 +17,24 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// Initializes a new instance of the <see cref="ViewConnectionsViewModel" /> class.
         /// </summary>
         /// <param name="platformProvider">The platform provider.</param>
-        /// <param name="connectionsListViewModel">The connections list view model.</param>
+        /// <param name="connectionsViewModel">The connections list view model.</param>
         // ReSharper disable once InheritdocConsiderUsage
-        public ViewConnectionsViewModel(IPlatformProvider platformProvider, ConnectionsViewModel connectionsListViewModel)
+        public ViewConnectionsViewModel(IPlatformProvider platformProvider, ConnectionsViewModel connectionsViewModel)
             : base(platformProvider)
         {
-            Ensure.That(connectionsListViewModel).IsNotNull();
+            Ensure.That(connectionsViewModel).IsNotNull();
 
-            ConnectionsList = connectionsListViewModel;
-            DisplayName = Properties.Resources.Connections_View;
+            Connections = connectionsViewModel;
+            DisplayName = Properties.Resources.ViewConnections_View;
             KeepAlive = true; // TODO: Why do we need this?
         }
 
         /// <summary>
-        /// Gets the connections list.
+        /// Gets the connections.
         /// </summary>
         /// <value>
-        /// The connections list.
+        /// The connections.
         /// </value>
-        public ConnectionsViewModel ConnectionsList { get; }
+        public ConnectionsViewModel Connections { get; }
     }
 }

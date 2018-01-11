@@ -1,4 +1,4 @@
-﻿// <copyright file="PassphraseWizardStepViewModelValidator.cs" company="Logikfabrik">
+﻿// <copyright file="WizardEditPassphraseViewModelValidator.cs" company="Logikfabrik">
 //   Copyright (c) 2016 anton(at)logikfabrik.se. Licensed under the MIT license.
 // </copyright>
 
@@ -9,15 +9,15 @@ namespace Logikfabrik.Overseer.WPF.Client.Validators
     using ViewModels;
 
     /// <summary>
-    /// The <see cref="PassphraseWizardStepViewModelValidator" /> class.
+    /// The <see cref="WizardEditPassphraseViewModelValidator" /> class.
     /// </summary>
     // ReSharper disable once InheritdocConsiderUsage
-    public class PassphraseWizardStepViewModelValidator : AbstractValidator<WizardEditPassphraseViewModel>
+    public class WizardEditPassphraseViewModelValidator : AbstractValidator<WizardEditPassphraseViewModel>
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="PassphraseWizardStepViewModelValidator" /> class.
+        /// Initializes a new instance of the <see cref="WizardEditPassphraseViewModelValidator" /> class.
         /// </summary>
-        public PassphraseWizardStepViewModelValidator()
+        public WizardEditPassphraseViewModelValidator()
         {
             CascadeMode = CascadeMode.StopOnFirstFailure;
 

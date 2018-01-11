@@ -16,27 +16,27 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     public class RemoveConnectionViewModel : ViewModel
     {
         private readonly IEventAggregator _eventAggregator;
-        private readonly IConnectionSettingsRepository _settingsRepository;
-        private readonly IViewConnectionViewModel _connectionViewModel;
+        private readonly IConnectionSettingsRepository _connectionSettingsRepository;
+        private readonly IViewConnectionViewModel _viewConnectionViewModel;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="RemoveConnectionViewModel" /> class.
         /// </summary>
         /// <param name="platformProvider">The platform provider.</param>
         /// <param name="eventAggregator">The event aggregator.</param>
-        /// <param name="settingsRepository">The settings repository.</param>
-        /// <param name="connectionViewModel">The connection view model.</param>
+        /// <param name="connectionSettingsRepository">The connection settings repository.</param>
+        /// <param name="viewConnectionViewModel">The view connection view model.</param>
         // ReSharper disable once InheritdocConsiderUsage
-        public RemoveConnectionViewModel(IPlatformProvider platformProvider, IEventAggregator eventAggregator, IConnectionSettingsRepository settingsRepository, IViewConnectionViewModel connectionViewModel)
+        public RemoveConnectionViewModel(IPlatformProvider platformProvider, IEventAggregator eventAggregator, IConnectionSettingsRepository connectionSettingsRepository, IViewConnectionViewModel viewConnectionViewModel)
             : base(platformProvider)
         {
             Ensure.That(eventAggregator).IsNotNull();
-            Ensure.That(settingsRepository).IsNotNull();
-            Ensure.That(connectionViewModel).IsNotNull();
+            Ensure.That(connectionSettingsRepository).IsNotNull();
+            Ensure.That(viewConnectionViewModel).IsNotNull();
 
             _eventAggregator = eventAggregator;
-            _settingsRepository = settingsRepository;
-            _connectionViewModel = connectionViewModel;
+            _connectionSettingsRepository = connectionSettingsRepository;
+            _viewConnectionViewModel = viewConnectionViewModel;
             DisplayName = Properties.Resources.RemoveConnection_View;
         }
 
@@ -45,11 +45,11 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// </summary>
         public void Remove()
         {
-            var settingsId = _connectionViewModel.SettingsId;
+            var settingsId = _viewConnectionViewModel.SettingsId;
 
-            _connectionViewModel.TryClose();
+            _viewConnectionViewModel.TryClose();
 
-            _settingsRepository.Remove(settingsId);
+            _connectionSettingsRepository.Remove(settingsId);
 
             var message = new NavigationMessage(typeof(ViewConnectionsViewModel));
 

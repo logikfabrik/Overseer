@@ -27,9 +27,9 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     {
         private readonly IApp _application;
         private readonly IEventAggregator _eventAggregator;
-        private readonly IViewProjectViewModelFactory _projectFactory;
-        private readonly IRemoveConnectionViewModelFactory _removeConnectionFactory;
-        private readonly IEditConnectionViewModelFactory<T> _editConnectionFactory;
+        private readonly IViewProjectViewModelFactory _viewProjectViewModelFactory;
+        private readonly IRemoveConnectionViewModelFactory _removeConnectionViewModelFactory;
+        private readonly IEditConnectionViewModelFactory<T> _editConnectionViewModelFactory;
 
         // ReSharper disable once PrivateFieldCanBeConvertedToLocalVariable
         private readonly CollectionViewSource _filteredProjects;
@@ -47,9 +47,9 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// <param name="application">The application.</param>
         /// <param name="eventAggregator">The event aggregator.</param>
         /// <param name="buildTracker">The build tracker.</param>
-        /// <param name="projectFactory">The project factory.</param>
-        /// <param name="removeConnectionFactory">The remove connection factory.</param>
-        /// <param name="editConnectionFactory">The edit connection factory.</param>
+        /// <param name="viewProjectViewModelFactory">The view project view model factory.</param>
+        /// <param name="removeConnectionViewModelFactory">The remove connection view model factory.</param>
+        /// <param name="editConnectionViewModelFactory">The edit connection view model factory.</param>
         /// <param name="settings">The settings.</param>
         // ReSharper disable once InheritdocConsiderUsage
         public ViewConnectionViewModel(
@@ -57,29 +57,29 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             IApp application,
             IEventAggregator eventAggregator,
             IBuildTracker buildTracker,
-            IViewProjectViewModelFactory projectFactory,
-            IRemoveConnectionViewModelFactory removeConnectionFactory,
-            IEditConnectionViewModelFactory<T> editConnectionFactory,
+            IViewProjectViewModelFactory viewProjectViewModelFactory,
+            IRemoveConnectionViewModelFactory removeConnectionViewModelFactory,
+            IEditConnectionViewModelFactory<T> editConnectionViewModelFactory,
             T settings)
             : base(platformProvider)
         {
             Ensure.That(application).IsNotNull();
             Ensure.That(eventAggregator).IsNotNull();
             Ensure.That(buildTracker).IsNotNull();
-            Ensure.That(projectFactory).IsNotNull();
-            Ensure.That(removeConnectionFactory).IsNotNull();
-            Ensure.That(editConnectionFactory).IsNotNull();
+            Ensure.That(viewProjectViewModelFactory).IsNotNull();
+            Ensure.That(removeConnectionViewModelFactory).IsNotNull();
+            Ensure.That(editConnectionViewModelFactory).IsNotNull();
             Ensure.That(settings).IsNotNull();
 
             _application = application;
             _eventAggregator = eventAggregator;
-            _projectFactory = projectFactory;
-            _removeConnectionFactory = removeConnectionFactory;
-            _editConnectionFactory = editConnectionFactory;
+            _viewProjectViewModelFactory = viewProjectViewModelFactory;
+            _removeConnectionViewModelFactory = removeConnectionViewModelFactory;
+            _editConnectionViewModelFactory = editConnectionViewModelFactory;
             Settings = settings;
             _isBusy = true;
             _isErrored = false;
-            DisplayName = Properties.Resources.Connection_View;
+            DisplayName = Properties.Resources.ViewConnection_View;
             KeepAlive = true;
 
             WeakEventManager<IBuildTracker, BuildTrackerConnectionErrorEventArgs>.AddHandler(buildTracker, nameof(buildTracker.ConnectionError), BuildTrackerConnectionError);
@@ -199,7 +199,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// <inheritdoc />
         public void Edit()
         {
-            var item = _editConnectionFactory.Create(Settings);
+            var item = _editConnectionViewModelFactory.Create(Settings);
 
             var message = new NavigationMessage(item);
 
@@ -209,7 +209,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// <inheritdoc />
         public void Remove()
         {
-            var item = _removeConnectionFactory.Create(this);
+            var item = _removeConnectionViewModelFactory.Create(this);
 
             var message = new NavigationMessage(item);
 
@@ -260,7 +260,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
                 {
                     _application.Dispatcher.Invoke(() =>
                     {
-                        var projectToAdd = _projectFactory.Create(SettingsId, project.Id, project.Name);
+                        var projectToAdd = _viewProjectViewModelFactory.Create(SettingsId, project.Id, project.Name);
 
                         var names = _projects.Select(p => p.Name).Concat(new[] { projectToAdd.Name }).OrderBy(name => name).ToArray();
 

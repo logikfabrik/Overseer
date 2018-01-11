@@ -12,10 +12,10 @@ namespace Logikfabrik.Overseer.WPF.ViewModels.Factories
         /// <summary>
         /// Creates a view model.
         /// </summary>
-        /// <param name="connectionViewModel">The connection view model.</param>
+        /// <param name="viewConnectionViewModel">The view connection view model.</param>
         /// <returns>
         /// A view model.
         /// </returns>
-        RemoveConnectionViewModel Create(IViewConnectionViewModel connectionViewModel);
+        RemoveConnectionViewModel Create(IViewConnectionViewModel viewConnectionViewModel);
     }
 }

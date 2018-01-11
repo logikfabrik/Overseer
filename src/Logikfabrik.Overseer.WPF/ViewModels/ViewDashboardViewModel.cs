@@ -20,7 +20,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         public ViewDashboardViewModel(IPlatformProvider platformProvider)
             : base(platformProvider)
         {
-            DisplayName = Properties.Resources.Dashboard_View;
+            DisplayName = Properties.Resources.ViewDashboard_View;
         }
     }
 }

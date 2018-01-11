@@ -110,60 +110,6 @@ namespace Logikfabrik.Overseer.WPF.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Select CI/CD service.
-        /// </summary>
-        public static string BuildProviders_View {
-            get {
-                return ResourceManager.GetString("BuildProviders_View", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Connection.
-        /// </summary>
-        public static string Connection_View {
-            get {
-                return ResourceManager.GetString("Connection_View", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Connections.
-        /// </summary>
-        public static string Connections_View {
-            get {
-                return ResourceManager.GetString("Connections_View", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to We have to get at least 1 build per project.
-        /// </summary>
-        public static string ConnectionSettings_Validation_BuildsPerProject {
-            get {
-                return ResourceManager.GetString("ConnectionSettings_Validation_BuildsPerProject", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Name is missing.
-        /// </summary>
-        public static string ConnectionSettings_Validation_Name {
-            get {
-                return ResourceManager.GetString("ConnectionSettings_Validation_Name", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Dashboard.
-        /// </summary>
-        public static string Dashboard_View {
-            get {
-                return ResourceManager.GetString("Dashboard_View", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Sorry, there seems to be a problem!
         ///We couldn&apos;t connect to the CI/CD service. Please check your settings and try again..
         /// </summary>
@@ -213,6 +159,33 @@ namespace Logikfabrik.Overseer.WPF.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Build per project must be 1 to 10.
+        /// </summary>
+        public static string EditConnectionSettings_Validation_BuildsPerProject_InclusiveBetween {
+            get {
+                return ResourceManager.GetString("EditConnectionSettings_Validation_BuildsPerProject_InclusiveBetween", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to We have to get at least 1 build per project.
+        /// </summary>
+        public static string EditConnectionSettings_Validation_BuildsPerProject_NotEmpty {
+            get {
+                return ResourceManager.GetString("EditConnectionSettings_Validation_BuildsPerProject_NotEmpty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name is missing.
+        /// </summary>
+        public static string EditConnectionSettings_Validation_Name_NotEmpty {
+            get {
+                return ResourceManager.GetString("EditConnectionSettings_Validation_Name_NotEmpty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Language is missing.
         /// </summary>
         public static string EditSettings_Validation_CultureName {
@@ -240,11 +213,11 @@ namespace Logikfabrik.Overseer.WPF.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Project.
+        ///   Looks up a localized string similar to Select CI/CD service.
         /// </summary>
-        public static string Project_View {
+        public static string NewConnection_View {
             get {
-                return ResourceManager.GetString("Project_View", resourceCulture);
+                return ResourceManager.GetString("NewConnection_View", resourceCulture);
             }
         }
         
@@ -254,6 +227,42 @@ namespace Logikfabrik.Overseer.WPF.Properties {
         public static string RemoveConnection_View {
             get {
                 return ResourceManager.GetString("RemoveConnection_View", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Connection.
+        /// </summary>
+        public static string ViewConnection_View {
+            get {
+                return ResourceManager.GetString("ViewConnection_View", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Connections.
+        /// </summary>
+        public static string ViewConnections_View {
+            get {
+                return ResourceManager.GetString("ViewConnections_View", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dashboard.
+        /// </summary>
+        public static string ViewDashboard_View {
+            get {
+                return ResourceManager.GetString("ViewDashboard_View", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Project.
+        /// </summary>
+        public static string ViewProject_View {
+            get {
+                return ResourceManager.GetString("ViewProject_View", resourceCulture);
             }
         }
     }
