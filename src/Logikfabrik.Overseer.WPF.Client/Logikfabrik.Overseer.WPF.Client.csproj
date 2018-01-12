@@ -263,6 +263,10 @@
     <AdditionalFiles Include="stylecop.json" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Styles\Views\Dialogs\ViewNotification.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Styles\Views\Pages\ViewAbout.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -516,7 +520,6 @@
     <Resource Include="Overseer.ico" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Styles\Views\Dialogs\" />
     <Folder Include="Styles\Views\Wizard\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

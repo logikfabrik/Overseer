@@ -53,7 +53,7 @@
 
 
 
-
+                <ResourceDictionary Source="Styles/Views/Dialogs/ViewNotification.xaml" />
 
                 <ResourceDictionary Source="Styles/Views/Pages/AddConnection.xaml" />
                 <ResourceDictionary Source="Styles/Views/Pages/RemoveConnection.xaml" />
