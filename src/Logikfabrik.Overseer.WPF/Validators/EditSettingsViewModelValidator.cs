@@ -23,13 +23,15 @@ namespace Logikfabrik.Overseer.WPF.Validators
             CascadeMode = CascadeMode.StopOnFirstFailure;
 
             RuleFor(viewModel => viewModel.Interval)
+                .NotEmpty()
+                .WithMessage(Properties.Resources.EditSettings_Validation_Interval_NotEmpty)
                 .InclusiveBetween(10, 86400)
-                .WithMessage(viewModel => Properties.Resources.EditSettings_Validation_Interval);
+                .WithMessage(Properties.Resources.EditSettings_Validation_Interval_InclusiveBetween);
 
             RuleFor(viewModel => viewModel.CultureName)
                 .NotEmpty()
                 .Must(cultureName => SupportedCultures.CultureNames.Contains(cultureName))
-                .WithMessage(viewModel => Properties.Resources.EditSettings_Validation_CultureName);
+                .WithMessage(Properties.Resources.EditSettings_Validation_CultureName);
         }
     }
 }

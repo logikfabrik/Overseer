@@ -22,7 +22,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.TravisCI.Validators
         {
             RuleFor(viewModel => viewModel.Token)
                 .NotEmpty()
-                .WithMessage(viewModel => Properties.Resources.EditConnectionSettings_Validation_Token);
+                .WithMessage(Properties.Resources.EditConnectionSettings_Validation_Token);
 
             RuleFor(viewModel => viewModel.Url)
                 .NotEmpty()
@@ -32,7 +32,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.TravisCI.Validators
 
                     return Uri.TryCreate(url, UriKind.Absolute, out result) && (result.Scheme == Uri.UriSchemeHttp || result.Scheme == Uri.UriSchemeHttps);
                 })
-                .WithMessage(viewModel => Properties.Resources.EditConnectionSettings_Validation_Url);
+                .WithMessage(Properties.Resources.EditConnectionSettings_Validation_Url);
         }
     }
 }

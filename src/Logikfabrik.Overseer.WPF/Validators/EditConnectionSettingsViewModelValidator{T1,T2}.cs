@@ -27,13 +27,13 @@ namespace Logikfabrik.Overseer.WPF.Validators
 
             RuleFor(viewModel => viewModel.Name)
                 .NotEmpty()
-                .WithMessage(viewModel => Properties.Resources.EditConnectionSettings_Validation_Name_NotEmpty);
+                .WithMessage(Properties.Resources.EditConnectionSettings_Validation_Name_NotEmpty);
 
             RuleFor(viewModel => viewModel.BuildsPerProject)
                 .NotEmpty()
-                .WithMessage(viewModel => Properties.Resources.EditConnectionSettings_Validation_BuildsPerProject_NotEmpty)
+                .WithMessage(Properties.Resources.EditConnectionSettings_Validation_BuildsPerProject_NotEmpty)
                 .InclusiveBetween(1, 10)
-                .WithMessage(viewModel => Properties.Resources.EditConnectionSettings_Validation_BuildsPerProject_InclusiveBetween);
+                .WithMessage(Properties.Resources.EditConnectionSettings_Validation_BuildsPerProject_InclusiveBetween);
         }
     }
 }

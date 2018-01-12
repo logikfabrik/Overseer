@@ -176,7 +176,7 @@ We couldn't connect to the CI/CD service. Please try again.</value>
   <data name="EditSettings_Validation_CultureName" xml:space="preserve">
     <value>Language is missing</value>
   </data>
-  <data name="EditSettings_Validation_Interval" xml:space="preserve">
+  <data name="EditSettings_Validation_Interval_InclusiveBetween" xml:space="preserve">
     <value>Interval can be between 10 and 86400 (24 hours)</value>
   </data>
   <data name="EditSettings_View" xml:space="preserve">
@@ -189,6 +189,9 @@ We couldn't connect to the CI/CD service. Please try again.</value>
     <value>Remove connection</value>
   </data>
   <data name="EditConnectionSettings_Validation_BuildsPerProject_InclusiveBetween" xml:space="preserve">
-    <value>Build per project must be 1 to 10</value>
+    <value>Builds per project can be between 1 and 10</value>
+  </data>
+  <data name="EditSettings_Validation_Interval_NotEmpty" xml:space="preserve">
+    <value>Interval is missing</value>
   </data>
 </root>

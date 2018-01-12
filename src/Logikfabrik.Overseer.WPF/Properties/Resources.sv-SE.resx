@@ -176,7 +176,7 @@ Vi kunde inte ansluta till CI/CD-tjänsten. Vänligen försök igen.</value>
   <data name="EditSettings_Validation_CultureName" xml:space="preserve">
     <value>Språk saknas</value>
   </data>
-  <data name="EditSettings_Validation_Interval" xml:space="preserve">
+  <data name="EditSettings_Validation_Interval_InclusiveBetween" xml:space="preserve">
     <value>Intervall kan vara mellan 10 och 86400 (24 timmar)</value>
   </data>
   <data name="EditSettings_View" xml:space="preserve">
@@ -190,5 +190,8 @@ Vi kunde inte ansluta till CI/CD-tjänsten. Vänligen försök igen.</value>
   </data>
   <data name="EditConnectionSettings_Validation_BuildsPerProject_InclusiveBetween" xml:space="preserve">
     <value>Build per project must be 1 to 10</value>
+  </data>
+  <data name="EditSettings_Validation_Interval_NotEmpty" xml:space="preserve">
+    <value>Intervall saknas</value>
   </data>
 </root>

@@ -159,7 +159,7 @@ namespace Logikfabrik.Overseer.WPF.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Build per project must be 1 to 10.
+        ///   Looks up a localized string similar to Builds per project can be between 1 and 10.
         /// </summary>
         public static string EditConnectionSettings_Validation_BuildsPerProject_InclusiveBetween {
             get {
@@ -197,9 +197,18 @@ namespace Logikfabrik.Overseer.WPF.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Interval can be between 10 and 86400 (24 hours).
         /// </summary>
-        public static string EditSettings_Validation_Interval {
+        public static string EditSettings_Validation_Interval_InclusiveBetween {
             get {
-                return ResourceManager.GetString("EditSettings_Validation_Interval", resourceCulture);
+                return ResourceManager.GetString("EditSettings_Validation_Interval_InclusiveBetween", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Interval is missing.
+        /// </summary>
+        public static string EditSettings_Validation_Interval_NotEmpty {
+            get {
+                return ResourceManager.GetString("EditSettings_Validation_Interval_NotEmpty", resourceCulture);
             }
         }
         

@@ -21,7 +21,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.CircleCI.Validators
         {
             RuleFor(viewModel => viewModel.Token)
                 .NotEmpty()
-                .WithMessage(viewModel => Properties.Resources.EditConnectionSettings_Validation_Token);
+                .WithMessage(Properties.Resources.EditConnectionSettings_Validation_Token);
         }
     }
 }

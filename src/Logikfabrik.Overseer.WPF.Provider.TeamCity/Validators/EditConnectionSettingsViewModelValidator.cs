@@ -28,17 +28,17 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity.Validators
 
                     return Uri.TryCreate(url, UriKind.Absolute, out result) && (result.Scheme == Uri.UriSchemeHttp || result.Scheme == Uri.UriSchemeHttps);
                 })
-                .WithMessage(viewModel => Properties.Resources.EditConnectionSettings_Validation_Url);
+                .WithMessage(Properties.Resources.EditConnectionSettings_Validation_Url);
 
             RuleFor(viewModel => viewModel.Username)
                 .NotEmpty()
                 .When(viewModel => viewModel.AuthenticationType == AuthenticationType.HttpAuth)
-                .WithMessage(viewModel => Properties.Resources.EditConnectionSettings_Validation_Username);
+                .WithMessage(Properties.Resources.EditConnectionSettings_Validation_Username);
 
             RuleFor(viewModel => viewModel.Password)
                 .NotEmpty()
                 .When(viewModel => viewModel.AuthenticationType == AuthenticationType.HttpAuth)
-                .WithMessage(viewModel => Properties.Resources.EditConnectionSettings_Validation_Password);
+                .WithMessage(Properties.Resources.EditConnectionSettings_Validation_Password);
         }
     }
 }

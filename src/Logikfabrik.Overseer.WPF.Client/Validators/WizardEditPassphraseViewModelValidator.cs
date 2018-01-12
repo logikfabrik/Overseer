@@ -22,12 +22,10 @@ namespace Logikfabrik.Overseer.WPF.Client.Validators
             CascadeMode = CascadeMode.StopOnFirstFailure;
 
             RuleFor(viewModel => viewModel.Passphrase)
-                .NotEmpty().WithLocalizedMessage(
-                    typeof(Resources),
-                    nameof(Resources.WizardEditPassphrase_Validation_Passphrase_NotEmpty))
-                .MinimumLength(8).WithLocalizedMessage(
-                    typeof(Resources),
-                    nameof(Resources.WizardEditPassphrase_Validation_Passphrase_MinimumLength));
+                .NotEmpty()
+                .WithMessage(Resources.WizardEditPassphrase_Validation_Passphrase_NotEmpty)
+                .MinimumLength(8)
+                .WithMessage(Resources.WizardEditPassphrase_Validation_Passphrase_MinimumLength);
         }
     }
 }
