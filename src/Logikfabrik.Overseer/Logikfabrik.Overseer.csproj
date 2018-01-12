@@ -78,7 +78,9 @@
     <Compile Include="Extensions\HttpException.cs" />
     <Compile Include="Extensions\HttpResponseMessageExtensions.cs" />
     <Compile Include="IConnection.cs" />
-    <Compile Include="Notification{T}.cs" />
+    <Compile Include="Notification{T}.cs">
+      <SonarQubeExclude>true</SonarQubeExclude>
+    </Compile>
     <Compile Include="NotificationType.cs" />
     <Compile Include="Extensions\BuildExtensions.cs" />
     <Compile Include="Extensions\BuildStatusExtensions.cs" />
@@ -109,11 +111,15 @@
     <Compile Include="Settings\XmlEncrypter.cs" />
     <Compile Include="Settings\IXmlEncrypter.cs" />
     <Compile Include="Settings\RegistryStore.cs" />
-    <Compile Include="Subscription{T}.cs" />
+    <Compile Include="Subscription{T}.cs">
+      <SonarQubeExclude>true</SonarQubeExclude>
+    </Compile>
     <Compile Include="Settings\ConnectionSettingsSerializer.cs" />
     <Compile Include="Settings\ConnectionSettingsStore.cs" />
     <Compile Include="BuildStatus.cs" />
-    <Compile Include="BuildProvider{T}.cs" />
+    <Compile Include="BuildProvider{T}.cs">
+      <SonarQubeExclude>true</SonarQubeExclude>
+    </Compile>
     <Compile Include="IBuild.cs" />
     <Compile Include="Settings\FileStore.cs" />
     <Compile Include="Settings\IConnectionSettingsRepository.cs" />

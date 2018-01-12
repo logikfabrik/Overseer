@@ -137,7 +137,9 @@
     </Compile>
     <Compile Include="Validators\EditSettingsViewModelValidator.cs" />
     <Compile Include="ViewModels\ConnectionsViewModel.cs" />
-    <Compile Include="ViewModels\Factories\EditConnectionSettingsViewModelFactory{T1,T2}.cs" />
+    <Compile Include="ViewModels\Factories\EditConnectionSettingsViewModelFactory{T1,T2}.cs">
+      <SonarQubeExclude>true</SonarQubeExclude>
+    </Compile>
     <Compile Include="ViewModels\ViewDashboardViewModel.cs" />
     <Compile Include="ViewModels\DesignTime\BuildNotificationViewModel.cs" />
     <Compile Include="ViewModels\DesignTime\BuildViewModel.cs" />
