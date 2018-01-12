@@ -56,7 +56,12 @@
                 <ResourceDictionary Source="Styles/Views/Dialogs/ViewNotification.xaml" />
 
                 <ResourceDictionary Source="Styles/Views/Pages/AddConnection.xaml" />
+                <ResourceDictionary Source="Styles/Views/Pages/EditConnection.xaml" />
+                <ResourceDictionary Source="Styles/Views/Pages/EditSettings.xaml" />
+                <ResourceDictionary Source="Styles/Views/Pages/NewConnection.xaml" />
                 <ResourceDictionary Source="Styles/Views/Pages/RemoveConnection.xaml" />
+                <ResourceDictionary Source="Styles/Views/Pages/ViewConnection.xaml" />
+                <ResourceDictionary Source="Styles/Views/Pages/ViewConnections.xaml" />
                 <ResourceDictionary Source="Styles/Views/Pages/ViewAbout.xaml" />
                 <ResourceDictionary Source="Styles/Views/Pages/ViewDashboard.xaml" />
                 <ResourceDictionary Source="Styles/Views/Pages/WizardEditPassphrase.xaml" />

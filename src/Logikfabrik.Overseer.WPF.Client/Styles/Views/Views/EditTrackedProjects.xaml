@@ -52,12 +52,12 @@
                                         </Viewbox>
                                     </ToggleButton>
                                     <Button
-                                        x:Name="TrackAll"
                                         Grid.Column="1"
+                                        cal:Message.Attach="TrackAll"
                                         Content="{x:Static p:Resources.EditTrackedProjects_Button_SelectAll}" />
                                     <Button
-                                        x:Name="TrackNone"
                                         Grid.Column="2"
+                                        cal:Message.Attach="TrackNone"
                                         Content="{x:Static p:Resources.EditTrackedProjects_Button_DeselectAll}" />
                                 </Grid>
                                 <TextBox

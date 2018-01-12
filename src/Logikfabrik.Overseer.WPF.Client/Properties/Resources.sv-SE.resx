@@ -188,7 +188,7 @@ Vänligen försök igen.</value>
     <value>Byte av språk kommer att starta om programmet</value>
   </data>
   <data name="EditSettings_Setting_Description_Interval" xml:space="preserve">
-    <value>Antal sekunder mellan uppdateringar av byggen</value>
+    <value>Tid (s) mellan uppdateringar</value>
   </data>
   <data name="EditSettings_Setting_Label_CultureName" xml:space="preserve">
     <value>Språk</value>

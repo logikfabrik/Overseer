@@ -215,7 +215,7 @@ namespace Logikfabrik.Overseer.WPF.Client.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Number of seconds between build updates.
+        ///   Looks up a localized string similar to Time (s) between updates.
         /// </summary>
         public static string EditSettings_Setting_Description_Interval {
             get {
