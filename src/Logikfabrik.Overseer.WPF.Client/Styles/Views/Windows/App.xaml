@@ -3,7 +3,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:cal="http://www.caliburnproject.org">
     <Style
-        x:Key="Views.App"
+        x:Key="Views.Windows.App"
         BasedOn="{StaticResource {x:Type Window}}"
         TargetType="{x:Type Window}">
         <Setter Property="Width" Value="380" />
@@ -12,7 +12,7 @@
         <Setter Property="MinHeight" Value="550" />
         <Setter Property="UseLayoutRounding" Value="True" />
         <Setter Property="TextElement.Foreground" Value="{StaticResource Window.Foreground}" />
-        <Setter Property="Icon" Value="../../Overseer.ico" />
+        <Setter Property="Icon" Value="../../../Overseer.ico" />
         <Setter Property="cal:Message.Attach" Value="[Event MouseUp] = [Action Menu.Close]" />
         <Setter Property="Template">
             <Setter.Value>

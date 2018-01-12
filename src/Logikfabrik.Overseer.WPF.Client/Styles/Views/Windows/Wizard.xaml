@@ -3,7 +3,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:cal="http://www.caliburnproject.org">
     <Style
-        x:Key="Views.Wizard.Wizard"
+        x:Key="Views.Windows.Wizard"
         BasedOn="{StaticResource {x:Type Window}}"
         TargetType="{x:Type Window}">
         <Setter Property="Width" Value="680" />

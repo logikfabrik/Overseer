@@ -4,7 +4,7 @@
     xmlns:cal="http://www.caliburnproject.org"
     xmlns:p="clr-namespace:Logikfabrik.Overseer.WPF.Client.Properties"
     xmlns:userControls="clr-namespace:Logikfabrik.Overseer.WPF.Client.UserControls">
-    <Style x:Key="Views.AddConnection" TargetType="{x:Type UserControl}">
+    <Style x:Key="Views.Pages.AddConnection" TargetType="{x:Type UserControl}">
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate>

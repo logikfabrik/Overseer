@@ -263,23 +263,23 @@
     <AdditionalFiles Include="stylecop.json" />
   </ItemGroup>
   <ItemGroup>
-    <Page Include="Styles\Views\About.xaml">
+    <Page Include="Styles\Views\Pages\ViewAbout.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Styles\Views\AddConnection.xaml">
+    <Page Include="Styles\Views\Pages\AddConnection.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Styles\Views\App.xaml">
+    <Page Include="Styles\Views\Windows\App.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Styles\Views\AppError.xaml">
+    <Page Include="Styles\Views\Views\AppError.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Styles\Views\AppMenu.xaml">
+    <Page Include="Styles\Views\Views\AppMenu.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -287,23 +287,23 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Styles\Views\Dashboard.xaml">
+    <Page Include="Styles\Views\Pages\ViewDashboard.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Styles\Views\TrackedProject.xaml">
+    <Page Include="Styles\Views\Views\EditTrackedProject.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Styles\Views\TrackedProjects.xaml">
+    <Page Include="Styles\Views\Views\EditTrackedProjects.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Styles\Views\Wizard\BuildProvidersWizardStep.xaml">
+    <Page Include="Styles\Views\Pages\WizardNewConnection.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Styles\Views\Wizard\FinishWizardStep.xaml">
+    <Page Include="Styles\Views\Pages\WizardFinish.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -311,15 +311,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Styles\Views\Wizard\PassphraseWizardStep.xaml">
+    <Page Include="Styles\Views\Pages\WizardEditPassphrase.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Styles\Views\RemoveConnection.xaml">
+    <Page Include="Styles\Views\Pages\RemoveConnection.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Styles\Views\Wizard\Wizard.xaml">
+    <Page Include="Styles\Views\Windows\Wizard.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -327,7 +327,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Styles\Views\Wizard\StartWizardStep.xaml">
+    <Page Include="Styles\Views\Pages\WizardStart.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -515,7 +515,10 @@
   <ItemGroup>
     <Resource Include="Overseer.ico" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Styles\Views\Dialogs\" />
+    <Folder Include="Styles\Views\Wizard\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

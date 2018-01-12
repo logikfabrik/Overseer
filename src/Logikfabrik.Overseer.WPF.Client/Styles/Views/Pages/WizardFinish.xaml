@@ -1,9 +1,8 @@
 ﻿<ResourceDictionary
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:cal="http://www.caliburnproject.org"
-    xmlns:p="clr-namespace:Logikfabrik.Overseer.WPF.Client.Properties">
-    <Style x:Key="Views.Wizard.StartWizardStep" TargetType="{x:Type UserControl}">
+    xmlns:cal="http://www.caliburnproject.org">
+    <Style x:Key="Views.Pages.WizardFinish" TargetType="{x:Type UserControl}">
         <Style.Resources>
             <Style BasedOn="{StaticResource {x:Type TextBlock}}" TargetType="{x:Type TextBlock}">
                 <Setter Property="TextAlignment" Value="Center" />
@@ -17,17 +16,18 @@
                             Margin="0,96,0,0"
                             HorizontalAlignment="Center"
                             VerticalAlignment="Top">
-                            <TextBlock FontSize="48" Text="{x:Static p:Resources.WizardStart_Heading}" />
-                            <TextBlock FontSize="18" Text="{x:Static p:Resources.WizardStart_Text}" />
+                            <TextBlock FontSize="48">
+                                I'm ready
+                            </TextBlock>
+                            <TextBlock FontSize="18" />
                         </StackPanel>
                         <WrapPanel
                             Margin="0,0,0,96"
                             HorizontalAlignment="Center"
                             VerticalAlignment="Bottom">
-                            <Button
-                                cal:Message.Attach="NextStep"
-                                Content="{x:Static p:Resources.WizardStart_Button_NextStep}"
-                                IsDefault="True" />
+                            <Button cal:Message.Attach="Finish" IsDefault="True">
+                                Finish
+                            </Button>
                         </WrapPanel>
                     </Grid>
                 </ControlTemplate>
