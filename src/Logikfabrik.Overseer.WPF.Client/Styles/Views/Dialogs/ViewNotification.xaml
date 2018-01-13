@@ -22,7 +22,7 @@
                                             <ColumnDefinition Width="Auto" />
                                         </Grid.ColumnDefinitions>
                                         <ContentControl
-                                            cal:View.Context="Base"
+                                            cal:View.Context="Tile"
                                             cal:View.Model="{Binding Build, Mode=OneWay}"
                                             Focusable="False" />
                                         <Button

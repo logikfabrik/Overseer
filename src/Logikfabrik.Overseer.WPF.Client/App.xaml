@@ -45,14 +45,6 @@
                 <ResourceDictionary Source="Styles/Icons.xaml" />
 
                 <!--  Local styles  -->
-                <ResourceDictionary Source="Styles/Views.xaml" />
-
-
-
-
-
-
-
                 <ResourceDictionary Source="Styles/Views/Dialogs/ViewNotification.xaml" />
 
                 <ResourceDictionary Source="Styles/Views/Pages/AddConnection.xaml" />
@@ -64,15 +56,23 @@
                 <ResourceDictionary Source="Styles/Views/Pages/ViewConnections.xaml" />
                 <ResourceDictionary Source="Styles/Views/Pages/ViewAbout.xaml" />
                 <ResourceDictionary Source="Styles/Views/Pages/ViewDashboard.xaml" />
+                <ResourceDictionary Source="Styles/Views/Pages/ViewProject.xaml" />
                 <ResourceDictionary Source="Styles/Views/Pages/WizardEditPassphrase.xaml" />
                 <ResourceDictionary Source="Styles/Views/Pages/WizardFinish.xaml" />
                 <ResourceDictionary Source="Styles/Views/Pages/WizardNewConnection.xaml" />
                 <ResourceDictionary Source="Styles/Views/Pages/WizardStart.xaml" />
-
+                <ResourceDictionary Source="Styles/Views/Views/Connections/Bricks.xaml" />
+                <ResourceDictionary Source="Styles/Views/Views/Connections/Tiles.xaml" />
+                <ResourceDictionary Source="Styles/Views/Views/ViewBuild/Tile.xaml" />
+                <ResourceDictionary Source="Styles/Views/Views/ViewConnection/Brick.xaml" />
+                <ResourceDictionary Source="Styles/Views/Views/ViewConnection/Tile.xaml" />
+                <ResourceDictionary Source="Styles/Views/Views/ViewProject/Tile.xaml" />
                 <ResourceDictionary Source="Styles/Views/Views/AppError.xaml" />
                 <ResourceDictionary Source="Styles/Views/Views/AppMenu.xaml" />
                 <ResourceDictionary Source="Styles/Views/Views/EditTrackedProject.xaml" />
                 <ResourceDictionary Source="Styles/Views/Views/EditTrackedProjects.xaml" />
+                <ResourceDictionary Source="Styles/Views/Views/ViewBuild.xaml" />
+                <ResourceDictionary Source="Styles/Views/Views/ViewChange.xaml" />
 
                 <ResourceDictionary Source="Styles/Views/Windows/App.xaml" />
                 <ResourceDictionary Source="Styles/Views/Windows/Wizard.xaml" />
