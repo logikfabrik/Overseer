@@ -13,24 +13,29 @@
             <Setter.Value>
                 <ControlTemplate>
                     <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="5*" />
+                            <RowDefinition Height="2*" />
+                            <RowDefinition Height="5*" />
+                        </Grid.RowDefinitions>
                         <StackPanel
-                            Margin="0,96,0,0"
+                            Grid.Row="0"
                             HorizontalAlignment="Center"
-                            VerticalAlignment="Top">
+                            VerticalAlignment="Center">
                             <TextBlock FontSize="24" Text="{x:Static p:Resources.WizardEditPassphrase_Heading}" />
                             <TextBlock FontSize="18" Text="{x:Static p:Resources.WizardEditPassphrase_Text}" />
                         </StackPanel>
                         <Grid
+                            Grid.Row="1"
                             Width="450"
-                            Margin="0,24,0,0"
                             HorizontalAlignment="Center"
                             VerticalAlignment="Center">
                             <TextBox Text="{Binding Passphrase, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" />
                         </Grid>
                         <WrapPanel
-                            Margin="0,0,0,96"
+                            Grid.Row="2"
                             HorizontalAlignment="Center"
-                            VerticalAlignment="Bottom">
+                            VerticalAlignment="Center">
                             <Button
                                 cal:Message.Attach="NextStep"
                                 Content="{x:Static p:Resources.WizardEditPassphrase_Button_NextStep}"

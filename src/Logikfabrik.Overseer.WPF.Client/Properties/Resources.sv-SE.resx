@@ -245,7 +245,7 @@ Vänligen försök igen.</value>
     <value>Låt oss börja med en lösenfras</value>
   </data>
   <data name="WizardEditPassphrase_Text" xml:space="preserve">
-    <value>Jag kommer att använa den för att kryptera dina inställningar</value>
+    <value>Jag kommer att använda den för att kryptera dina inställningar</value>
   </data>
   <data name="WizardEditPassphrase_Validation_Passphrase_MinimumLength" xml:space="preserve">
     <value>Lösenfras är för kort</value>
@@ -261,5 +261,14 @@ Vänligen försök igen.</value>
   </data>
   <data name="WizardStart_Text" xml:space="preserve">
     <value>Jag hjälper till att spåra dina byggen</value>
+  </data>
+  <data name="WizardFinish_Button_Finish" xml:space="preserve">
+    <value>Avsluta</value>
+  </data>
+  <data name="WizardFinish_Heading" xml:space="preserve">
+    <value>Jag är redo</value>
+  </data>
+  <data name="WizardFinish_Text" xml:space="preserve">
+    <value />
   </data>
 </root>

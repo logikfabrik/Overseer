@@ -1,7 +1,8 @@
 ﻿<ResourceDictionary
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:cal="http://www.caliburnproject.org">
+    xmlns:cal="http://www.caliburnproject.org"
+    xmlns:p="clr-namespace:Logikfabrik.Overseer.WPF.Client.Properties">
     <Style x:Key="Views.Pages.WizardFinish" TargetType="{x:Type UserControl}">
         <Style.Resources>
             <Style BasedOn="{StaticResource {x:Type TextBlock}}" TargetType="{x:Type TextBlock}">
@@ -12,22 +13,25 @@
             <Setter.Value>
                 <ControlTemplate>
                     <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="7*" />
+                            <RowDefinition Height="5*" />
+                        </Grid.RowDefinitions>
                         <StackPanel
-                            Margin="0,96,0,0"
+                            Grid.Row="0"
                             HorizontalAlignment="Center"
-                            VerticalAlignment="Top">
-                            <TextBlock FontSize="48">
-                                I'm ready
-                            </TextBlock>
-                            <TextBlock FontSize="18" />
+                            VerticalAlignment="Center">
+                            <TextBlock FontSize="48" Text="{x:Static p:Resources.WizardFinish_Heading}" />
+                            <TextBlock FontSize="18" Text="{x:Static p:Resources.WizardFinish_Text}" />
                         </StackPanel>
                         <WrapPanel
-                            Margin="0,0,0,96"
+                            Grid.Row="1"
                             HorizontalAlignment="Center"
-                            VerticalAlignment="Bottom">
-                            <Button cal:Message.Attach="Finish" IsDefault="True">
-                                Finish
-                            </Button>
+                            VerticalAlignment="Center">
+                            <Button
+                                cal:Message.Attach="Finish"
+                                Content="{x:Static p:Resources.WizardFinish_Button_Finish}"
+                                IsDefault="True" />
                         </WrapPanel>
                     </Grid>
                 </ControlTemplate>

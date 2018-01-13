@@ -13,17 +13,21 @@
             <Setter.Value>
                 <ControlTemplate>
                     <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="7*" />
+                            <RowDefinition Height="5*" />
+                        </Grid.RowDefinitions>
                         <StackPanel
-                            Margin="0,96,0,0"
+                            Grid.Row="0"
                             HorizontalAlignment="Center"
-                            VerticalAlignment="Top">
+                            VerticalAlignment="Center">
                             <TextBlock FontSize="48" Text="{x:Static p:Resources.WizardStart_Heading}" />
                             <TextBlock FontSize="18" Text="{x:Static p:Resources.WizardStart_Text}" />
                         </StackPanel>
                         <WrapPanel
-                            Margin="0,0,0,96"
+                            Grid.Row="1"
                             HorizontalAlignment="Center"
-                            VerticalAlignment="Bottom">
+                            VerticalAlignment="Center">
                             <Button
                                 cal:Message.Attach="NextStep"
                                 Content="{x:Static p:Resources.WizardStart_Button_NextStep}"

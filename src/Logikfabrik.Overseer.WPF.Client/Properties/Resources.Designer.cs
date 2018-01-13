@@ -467,6 +467,33 @@ namespace Logikfabrik.Overseer.WPF.Client.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Finish.
+        /// </summary>
+        public static string WizardFinish_Button_Finish {
+            get {
+                return ResourceManager.GetString("WizardFinish_Button_Finish", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to I&apos;m ready.
+        /// </summary>
+        public static string WizardFinish_Heading {
+            get {
+                return ResourceManager.GetString("WizardFinish_Heading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string WizardFinish_Text {
+            get {
+                return ResourceManager.GetString("WizardFinish_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Get started.
         /// </summary>
         public static string WizardStart_Button_NextStep {

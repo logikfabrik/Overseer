@@ -262,4 +262,13 @@ Please try again.</value>
   <data name="WizardStart_Text" xml:space="preserve">
     <value>I'll help track your builds</value>
   </data>
+  <data name="WizardFinish_Button_Finish" xml:space="preserve">
+    <value>Finish</value>
+  </data>
+  <data name="WizardFinish_Heading" xml:space="preserve">
+    <value>I'm ready</value>
+  </data>
+  <data name="WizardFinish_Text" xml:space="preserve">
+    <value />
+  </data>
 </root>
