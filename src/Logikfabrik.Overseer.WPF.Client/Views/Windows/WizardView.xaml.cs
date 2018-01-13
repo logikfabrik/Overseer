@@ -37,7 +37,7 @@ namespace Logikfabrik.Overseer.WPF.Client.Views.Windows
 
         private static void DisableCloseButton(IntPtr hWnd)
         {
-            IntPtr hMenu = NativeMethods.GetSystemMenu(hWnd, false);
+            var hMenu = NativeMethods.GetSystemMenu(hWnd, false);
 
             if (hMenu != IntPtr.Zero)
             {

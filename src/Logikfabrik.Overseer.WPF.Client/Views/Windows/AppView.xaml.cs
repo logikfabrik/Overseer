@@ -24,6 +24,14 @@ namespace Logikfabrik.Overseer.WPF.Client.Views.Windows
         /// <summary>
         /// Initializes a new instance of the <see cref="AppView" /> class.
         /// </summary>
+        // ReSharper disable once InheritdocConsiderUsage
+        public AppView()
+        {
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AppView" /> class.
+        /// </summary>
         /// <param name="application">The application.</param>
         // ReSharper disable once InheritdocConsiderUsage
         public AppView(IApp application)
