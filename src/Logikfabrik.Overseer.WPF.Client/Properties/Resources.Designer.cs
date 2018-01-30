@@ -97,16 +97,6 @@ namespace Logikfabrik.Overseer.WPF.Client.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sorry, there seems to be a problem!
-        ///Please try again..
-        /// </summary>
-        public static string App_Error_Standard {
-            get {
-                return ResourceManager.GetString("App_Error_Standard", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Add connection.
         /// </summary>
         public static string Connections_Tile_Button_Add {
@@ -350,15 +340,6 @@ namespace Logikfabrik.Overseer.WPF.Client.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to About.
-        /// </summary>
-        public static string ViewAbout_View {
-            get {
-                return ResourceManager.GetString("ViewAbout_View", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Edit.
         /// </summary>
         public static string ViewConnection_Button_Edit {
@@ -445,24 +426,6 @@ namespace Logikfabrik.Overseer.WPF.Client.Properties {
         public static string WizardEditPassphrase_Text {
             get {
                 return ResourceManager.GetString("WizardEditPassphrase_Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Passphrase is too short.
-        /// </summary>
-        public static string WizardEditPassphrase_Validation_Passphrase_MinimumLength {
-            get {
-                return ResourceManager.GetString("WizardEditPassphrase_Validation_Passphrase_MinimumLength", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Passphrase is missing.
-        /// </summary>
-        public static string WizardEditPassphrase_Validation_Passphrase_NotEmpty {
-            get {
-                return ResourceManager.GetString("WizardEditPassphrase_Validation_Passphrase_NotEmpty", resourceCulture);
             }
         }
         

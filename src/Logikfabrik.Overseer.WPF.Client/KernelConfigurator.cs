@@ -12,6 +12,7 @@ namespace Logikfabrik.Overseer.WPF.Client
     using Caliburn.Micro;
     using EnsureThat;
     using Logging;
+    using Navigation.Factories;
     using Ninject;
     using Ninject.Extensions.Factory;
     using Overseer.Logging;
@@ -19,8 +20,8 @@ namespace Logikfabrik.Overseer.WPF.Client
     using Providers.Settings;
     using Serilog;
     using Settings;
-    using WPF.ViewModels;
-    using WPF.ViewModels.Factories;
+    using ViewModels;
+    using ViewModels.Factories;
 
     /// <summary>
     /// The <see cref="KernelConfigurator" /> class.
@@ -64,9 +65,21 @@ namespace Logikfabrik.Overseer.WPF.Client
             kernel.Bind<IEventAggregator>().To<EventAggregator>().InSingletonScope();
             kernel.Bind<IPlatformProvider>().ToConstant(PlatformProvider.Current);
 
-            // WPF setup.
+            // App setup.
+            kernel.Bind<INavigationMessageFactory<EditSettingsViewModel>>().ToFactory();
+            kernel.Bind<INavigationMessageFactory<NewConnectionViewModel>>().ToFactory();
+            kernel.Bind<INavigationMessageFactory<RemoveConnectionViewModel>>().ToFactory();
+            kernel.Bind<INavigationMessageFactory<ViewDashboardViewModel>>().ToFactory();
+            kernel.Bind<INavigationMessageFactory<ViewConnectionsViewModel>>().ToFactory();
+            kernel.Bind<INavigationMessageFactory<ViewProjectViewModel>>().ToFactory();
+            kernel.Bind<INavigationMessageFactory<ViewAboutViewModel>>().ToFactory();
+            kernel.Bind<INavigationMessageFactory<WizardEditPassphraseViewModel>>().ToFactory();
+            kernel.Bind<INavigationMessageFactory<WizardFinishViewModel>>().ToFactory();
+            kernel.Bind<INavigationMessageFactory<WizardNewConnectionViewModel>>().ToFactory();
+
             kernel.Bind<IUILogService>().To<UILogService>();
             kernel.Bind<IDisplaySetting>().To<DisplaySetting>();
+
             kernel.Bind<IViewNotificationViewModelFactory>().ToFactory();
             kernel.Bind<IBuildNotificationManager>().To<BuildNotificationManager>().InSingletonScope();
             kernel.Bind<IEditTrackedProjectViewModelFactory>().ToFactory();

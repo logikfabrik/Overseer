@@ -194,4 +194,17 @@ We couldn't connect to the CI/CD service. Please try again.</value>
   <data name="EditSettings_Validation_Interval_NotEmpty" xml:space="preserve">
     <value>Interval is missing</value>
   </data>
+  <data name="App_Error_Standard" xml:space="preserve">
+    <value>Sorry, there seems to be a problem!
+Please try again.</value>
+  </data>
+  <data name="ViewAbout_View" xml:space="preserve">
+    <value>About</value>
+  </data>
+  <data name="WizardEditPassphrase_Validation_Passphrase_MinimumLength" xml:space="preserve">
+    <value>Passphrase is too short</value>
+  </data>
+  <data name="WizardEditPassphrase_Validation_Passphrase_NotEmpty" xml:space="preserve">
+    <value>Passphrase is missing</value>
+  </data>
 </root>

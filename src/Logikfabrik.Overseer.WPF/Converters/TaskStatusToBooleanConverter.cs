@@ -22,7 +22,7 @@ namespace Logikfabrik.Overseer.WPF.Converters
         /// <value>
         /// The <see cref="TaskStatus" /> which evaluates to <c>true</c>.
         /// </value>
-        public TaskStatus[] TrueFor { get; set; }
+        public TaskStatus[] TrueFor { get; set; } = { };
 
         /// <inheritdoc />
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)

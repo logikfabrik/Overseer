@@ -6,7 +6,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
 {
     using Caliburn.Micro;
     using EnsureThat;
-    using Navigation;
+    using Navigation.Factories;
     using Settings;
 
     /// <summary>
@@ -17,6 +17,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     {
         private readonly IEventAggregator _eventAggregator;
         private readonly IConnectionSettingsRepository _connectionSettingsRepository;
+        private readonly INavigationMessageFactory<ViewConnectionsViewModel> _navigationMessageFactory;
         private readonly IViewConnectionViewModel _viewConnectionViewModel;
 
         /// <summary>
@@ -25,17 +26,20 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// <param name="platformProvider">The platform provider.</param>
         /// <param name="eventAggregator">The event aggregator.</param>
         /// <param name="connectionSettingsRepository">The connection settings repository.</param>
+        /// <param name="navigationMessageFactory">The navigation message factory.</param>
         /// <param name="viewConnectionViewModel">The view connection view model.</param>
         // ReSharper disable once InheritdocConsiderUsage
-        public RemoveConnectionViewModel(IPlatformProvider platformProvider, IEventAggregator eventAggregator, IConnectionSettingsRepository connectionSettingsRepository, IViewConnectionViewModel viewConnectionViewModel)
+        public RemoveConnectionViewModel(IPlatformProvider platformProvider, IEventAggregator eventAggregator, IConnectionSettingsRepository connectionSettingsRepository, INavigationMessageFactory<ViewConnectionsViewModel> navigationMessageFactory, IViewConnectionViewModel viewConnectionViewModel)
             : base(platformProvider)
         {
             Ensure.That(eventAggregator).IsNotNull();
             Ensure.That(connectionSettingsRepository).IsNotNull();
+            Ensure.That(navigationMessageFactory).IsNotNull();
             Ensure.That(viewConnectionViewModel).IsNotNull();
 
             _eventAggregator = eventAggregator;
             _connectionSettingsRepository = connectionSettingsRepository;
+            _navigationMessageFactory = navigationMessageFactory;
             _viewConnectionViewModel = viewConnectionViewModel;
             DisplayName = Properties.Resources.RemoveConnection_View;
         }
@@ -51,7 +55,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
 
             _connectionSettingsRepository.Remove(settingsId);
 
-            var message = new NavigationMessage(typeof(ViewConnectionsViewModel));
+            var message = _navigationMessageFactory.Create();
 
             _eventAggregator.PublishOnUIThread(message);
         }

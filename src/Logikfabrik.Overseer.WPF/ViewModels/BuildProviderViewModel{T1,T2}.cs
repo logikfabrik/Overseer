@@ -6,7 +6,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
 {
     using Caliburn.Micro;
     using EnsureThat;
-    using Navigation;
+    using Navigation.Factories;
     using Settings;
 
     /// <summary>
@@ -20,19 +20,23 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         where T2 : EditConnectionSettingsViewModel<T1>, new()
     {
         private readonly IEventAggregator _eventAggregator;
+        private readonly INavigationMessageFactory<AddConnectionViewModel<T1, T2>> _navigationMessageFactory;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="BuildProviderViewModel{T1,T2}" /> class.
         /// </summary>
         /// <param name="eventAggregator">The event aggregator.</param>
+        /// <param name="navigationMessageFactory">The navigation message factory.</param>
         /// <param name="providerName">The provider name.</param>
         // ReSharper disable once InheritdocConsiderUsage
-        public BuildProviderViewModel(IEventAggregator eventAggregator, string providerName)
+        public BuildProviderViewModel(IEventAggregator eventAggregator, INavigationMessageFactory<AddConnectionViewModel<T1, T2>> navigationMessageFactory, string providerName)
         {
             Ensure.That(eventAggregator).IsNotNull();
+            Ensure.That(navigationMessageFactory).IsNotNull();
             Ensure.That(providerName).IsNotNullOrWhiteSpace();
 
             _eventAggregator = eventAggregator;
+            _navigationMessageFactory = navigationMessageFactory;
             ProviderName = providerName;
         }
 
@@ -49,7 +53,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// </summary>
         public void AddConnection()
         {
-            var message = new NavigationMessage(typeof(AddConnectionViewModel<T1, T2>));
+            var message = _navigationMessageFactory.Create();
 
             _eventAggregator.PublishOnUIThread(message);
         }

@@ -10,7 +10,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     using Caliburn.Micro;
     using EnsureThat;
     using Factories;
-    using Navigation;
+    using Navigation.Factories;
     using Settings;
 
     /// <summary>
@@ -22,6 +22,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         private readonly IApp _application;
         private readonly IEventAggregator _eventAggregator;
         private readonly IViewConnectionViewModelStrategy _viewConnectionViewModelStrategy;
+        private readonly INavigationMessageFactory<NewConnectionViewModel> _navigationMessageFactory;
         private BindableCollection<IViewConnectionViewModel> _connections;
         private IDisposable _subscription;
         private bool _isDisposed;
@@ -33,21 +34,25 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// <param name="eventAggregator">The event aggregator.</param>
         /// <param name="viewConnectionViewModelStrategy">The view connection view model strategy.</param>
         /// <param name="connectionSettingsRepository">The connection settings repository.</param>
+        /// <param name="navigationMessageFactory">The navigation message factory.</param>
         // ReSharper disable once InheritdocConsiderUsage
         public ConnectionsViewModel(
             IApp application,
             IEventAggregator eventAggregator,
             IViewConnectionViewModelStrategy viewConnectionViewModelStrategy,
-            IConnectionSettingsRepository connectionSettingsRepository)
+            IConnectionSettingsRepository connectionSettingsRepository,
+            INavigationMessageFactory<NewConnectionViewModel> navigationMessageFactory)
         {
             Ensure.That(application).IsNotNull();
             Ensure.That(eventAggregator).IsNotNull();
             Ensure.That(viewConnectionViewModelStrategy).IsNotNull();
             Ensure.That(connectionSettingsRepository).IsNotNull();
+            Ensure.That(navigationMessageFactory).IsNotNull();
 
             _application = application;
             _eventAggregator = eventAggregator;
             _viewConnectionViewModelStrategy = viewConnectionViewModelStrategy;
+            _navigationMessageFactory = navigationMessageFactory;
             _connections = new BindableCollection<IViewConnectionViewModel>();
             _subscription = connectionSettingsRepository.Subscribe(this);
         }
@@ -117,11 +122,14 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
                     _connections.Insert(index, connectionToAdd);
                 });
             }
+
+            NotifyOfPropertyChange(() => HasConnections);
+            NotifyOfPropertyChange(() => HasNoConnections);
         }
 
         public void Add()
         {
-            var message = new NavigationMessage(typeof(NewConnectionViewModel));
+            var message = _navigationMessageFactory.Create();
 
             _eventAggregator.PublishOnUIThread(message);
         }

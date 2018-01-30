@@ -123,9 +123,6 @@
   <data name="ViewAbout_Setting_Label_Version" xml:space="preserve">
     <value>Version</value>
   </data>
-  <data name="ViewAbout_View" xml:space="preserve">
-    <value>Om</value>
-  </data>
   <data name="AddConnection_Button_Add" xml:space="preserve">
     <value>OK</value>
   </data>
@@ -137,10 +134,6 @@
   </data>
   <data name="AddConnection_View" xml:space="preserve">
     <value>Lägg till anslutning</value>
-  </data>
-  <data name="App_Error_Standard" xml:space="preserve">
-    <value>Tyvärr, det verkar vara ett problem!
-Vänligen försök igen.</value>
   </data>
   <data name="EditConnectionSettings_Setting_Description_BuildsPerProject" xml:space="preserve">
     <value>Antal byggen att hämta från CI/DI-tjänsten per projekt</value>
@@ -246,12 +239,6 @@ Vänligen försök igen.</value>
   </data>
   <data name="WizardEditPassphrase_Text" xml:space="preserve">
     <value>Jag kommer att använda den för att kryptera dina inställningar</value>
-  </data>
-  <data name="WizardEditPassphrase_Validation_Passphrase_MinimumLength" xml:space="preserve">
-    <value>Lösenfras är för kort</value>
-  </data>
-  <data name="WizardEditPassphrase_Validation_Passphrase_NotEmpty" xml:space="preserve">
-    <value>Lösenfras saknas</value>
   </data>
   <data name="WizardStart_Button_NextStep" xml:space="preserve">
     <value>Kom igång</value>

@@ -119,11 +119,8 @@
     <Compile Include="ConventionConfigurator.cs" />
     <Compile Include="DataBindingActionConfigurator.cs" />
     <Compile Include="ErrorLogHandlerConfigurator.cs" />
-    <Compile Include="IMouseManager.cs" />
     <Compile Include="KernelConfigurator.cs" />
     <Compile Include="DataBindingLanguageConfigurator.cs" />
-    <Compile Include="Localization\AppViewErrorLocalizer.cs" />
-    <Compile Include="MouseManager.cs" />
     <Compile Include="NativeMethods.cs" />
     <Compile Include="Properties\Resources.sv-SE.Designer.cs">
       <DependentUpon>Resources.sv-SE.resx</DependentUpon>
@@ -140,17 +137,6 @@
     <Compile Include="Providers\Settings\ConnectionSettingsSerializerProvider.cs" />
     <Compile Include="Providers\Settings\FileStoreProvider.cs" />
     <Compile Include="Providers\Settings\RegistryStoreProvider.cs" />
-    <Compile Include="Validators\WizardEditPassphraseViewModelValidator.cs" />
-    <Compile Include="ViewModels\ViewAboutViewModel.cs" />
-    <Compile Include="ViewModels\AppErrorViewModel.cs" />
-    <Compile Include="ViewModels\AppMenuViewModel.cs" />
-    <Compile Include="ViewModels\AppViewModel.cs" />
-    <Compile Include="ViewModels\WizardNewConnectionViewModel.cs" />
-    <Compile Include="ViewModels\Conductor.cs" />
-    <Compile Include="ViewModels\WizardFinishViewModel.cs" />
-    <Compile Include="ViewModels\WizardEditPassphraseViewModel.cs" />
-    <Compile Include="ViewModels\WizardViewModel.cs" />
-    <Compile Include="ViewModels\WizardStartViewModel.cs" />
     <Compile Include="Views\Pages\ViewAboutView.xaml.cs">
       <DependentUpon>ViewAboutView.xaml</DependentUpon>
     </Compile>
@@ -160,11 +146,17 @@
     <Compile Include="Views\Pages\WizardNewConnectionView.xaml.cs">
       <DependentUpon>WizardNewConnectionView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Views\AddConnection\Wizard.xaml.cs">
+      <DependentUpon>Wizard.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Views\Connections\Bricks.xaml.cs">
       <DependentUpon>Bricks.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Views\Connections\Tiles.xaml.cs">
       <DependentUpon>Tiles.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Views\Connections\WizardBricks.xaml.cs">
+      <DependentUpon>WizardBricks.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Views\ViewConnection\Brick.xaml.cs">
       <DependentUpon>Brick.xaml</DependentUpon>
@@ -177,6 +169,9 @@
     </Compile>
     <Compile Include="Views\Pages\WizardEditPassphraseView.xaml.cs">
       <DependentUpon>WizardEditPassphraseView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Views\ViewConnection\WizardBrick.xaml.cs">
+      <DependentUpon>WizardBrick.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Windows\WizardView.xaml.cs">
       <DependentUpon>WizardView.xaml</DependentUpon>
@@ -296,11 +291,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Styles\Views\Views\AddConnection\Wizard.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Styles\Views\Views\Connections\Bricks.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Styles\Views\Views\Connections\Tiles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Styles\Views\Views\Connections\WizardBricks.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -321,6 +324,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Styles\Views\Views\ViewConnection\Tile.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Styles\Views\Views\ViewConnection\WizardBrick.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -396,11 +403,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\Views\AddConnection\Wizard.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Views\Connections\Bricks.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Views\Connections\Tiles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Views\Connections\WizardBricks.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -417,6 +432,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Pages\WizardEditPassphraseView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Views\ViewConnection\WizardBrick.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

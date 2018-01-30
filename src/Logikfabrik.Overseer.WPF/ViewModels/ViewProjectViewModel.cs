@@ -12,7 +12,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     using Caliburn.Micro;
     using EnsureThat;
     using Factories;
-    using Navigation;
+    using Navigation.Factories;
     using Overseer.Extensions;
 
     /// <summary>
@@ -24,6 +24,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         private readonly IApp _application;
         private readonly IEventAggregator _eventAggregator;
         private readonly IViewBuildViewModelFactory _viewBuildViewModelFactory;
+        private readonly INavigationMessageFactory<ViewProjectViewModel> _navigationMessageFactory;
         private readonly Guid _settingsId;
 
 #pragma warning disable S1450 // Private fields only used as local variables in methods should become local variables
@@ -44,6 +45,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// <param name="eventAggregator">The event aggregator.</param>
         /// <param name="buildTracker">The build tracker.</param>
         /// <param name="viewBuildViewModelFactory">The view build view model factory.</param>
+        /// <param name="navigationMessageFactory">The navigation message factory.</param>
         /// <param name="settingsId">The settings identifier.</param>
         /// <param name="projectId">The project identifier.</param>
         /// <param name="projectName">The project name.</param>
@@ -56,6 +58,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             IEventAggregator eventAggregator,
             IBuildTracker buildTracker,
             IViewBuildViewModelFactory viewBuildViewModelFactory,
+            INavigationMessageFactory<ViewProjectViewModel> navigationMessageFactory,
             Guid settingsId,
             string projectId,
             string projectName)
@@ -66,12 +69,14 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             Ensure.That(eventAggregator).IsNotNull();
             Ensure.That(buildTracker).IsNotNull();
             Ensure.That(viewBuildViewModelFactory).IsNotNull();
+            Ensure.That(navigationMessageFactory).IsNotNull();
             Ensure.That(settingsId).IsNotEmpty();
             Ensure.That(projectId).IsNotNullOrWhiteSpace();
 
             _application = application;
             _eventAggregator = eventAggregator;
             _viewBuildViewModelFactory = viewBuildViewModelFactory;
+            _navigationMessageFactory = navigationMessageFactory;
             _settingsId = settingsId;
             Id = projectId;
             _name = projectName;
@@ -169,7 +174,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// <inheritdoc />
         public void View()
         {
-            var message = new NavigationMessage(this);
+            var message = _navigationMessageFactory.Create(this);
 
             _eventAggregator.PublishOnUIThread(message);
         }

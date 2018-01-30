@@ -17,6 +17,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
 
         private object _parent;
         private string _displayName;
+        private string _context;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ViewModel" /> class.
@@ -62,6 +63,21 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
 
         /// <inheritdoc />
         public bool KeepAlive { get; set; } = false;
+
+        /// <inheritdoc />
+        public string Context
+        {
+            get
+            {
+                return _context;
+            }
+
+            set
+            {
+                _context = value;
+                NotifyOfPropertyChange(() => Context);
+            }
+        }
 
         /// <inheritdoc />
         public void TryClose(bool? dialogResult = null)

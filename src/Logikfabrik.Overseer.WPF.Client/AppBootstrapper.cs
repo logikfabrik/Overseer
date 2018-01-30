@@ -85,11 +85,11 @@ namespace Logikfabrik.Overseer.WPF.Client
 #pragma warning restore S2696 // Instance members should not write to "static" fields
             }
 
-            ViewLocator.AddNamespaceMapping("*", "Logikfabrik.Overseer.WPF.Client.Views");
-            ViewLocator.AddNamespaceMapping("*", "Logikfabrik.Overseer.WPF.Client.Views.Dialogs");
-            ViewLocator.AddNamespaceMapping("*", "Logikfabrik.Overseer.WPF.Client.Views.Pages");
-            ViewLocator.AddNamespaceMapping("*", "Logikfabrik.Overseer.WPF.Client.Views.Views");
-            ViewLocator.AddNamespaceMapping("*", "Logikfabrik.Overseer.WPF.Client.Views.Windows");
+            ViewLocator.AddNamespaceMapping("*.ViewModels.*", "Logikfabrik.Overseer.WPF.Client.Views");
+            ViewLocator.AddNamespaceMapping("*.ViewModels.*", "Logikfabrik.Overseer.WPF.Client.Views.Dialogs");
+            ViewLocator.AddNamespaceMapping("*.ViewModels.*", "Logikfabrik.Overseer.WPF.Client.Views.Pages");
+            ViewLocator.AddNamespaceMapping("*.ViewModels.*", "Logikfabrik.Overseer.WPF.Client.Views.Views");
+            ViewLocator.AddNamespaceMapping("*.ViewModels.*", "Logikfabrik.Overseer.WPF.Client.Views.Windows");
 
             _catalog = null;
 

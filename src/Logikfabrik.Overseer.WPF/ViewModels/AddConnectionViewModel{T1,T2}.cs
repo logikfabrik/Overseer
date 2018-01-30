@@ -12,7 +12,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     using Caliburn.Micro;
     using EnsureThat;
     using Factories;
-    using Navigation;
+    using Navigation.Factories;
     using Overseer.Logging;
     using Settings;
 
@@ -32,6 +32,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         private readonly IBuildProviderStrategy _buildProviderStrategy;
         private readonly IEditTrackedProjectViewModelFactory _editTrackedProjectViewModelFactory;
         private readonly IEditTrackedProjectsViewModelFactory _editTrackedProjectsViewModelFactory;
+        private readonly INavigationMessageFactory<ViewConnectionsViewModel> _viewConnectionsNavigationMessageFactory;
         private INotifyTask _connectionTask;
         private bool _hasConnected;
         private EditConnectionSettingsViewModel<T1> _settings;
@@ -47,6 +48,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// <param name="editTrackedProjectViewModelFactory">The edit tracked project view model factory.</param>
         /// <param name="editTrackedProjectsViewModelFactory">The edit tracked projects view model factory.</param>
         /// <param name="editConnectionSettingsFactory">The edit connection settings factory.</param>
+        /// <param name="viewConnectionsNavigationMessageFactory">The view connections navigation message factory.</param>
         // ReSharper disable once InheritdocConsiderUsage
         public AddConnectionViewModel(
             IPlatformProvider platformProvider,
@@ -56,7 +58,8 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             IBuildProviderStrategy buildProviderStrategy,
             IEditTrackedProjectViewModelFactory editTrackedProjectViewModelFactory,
             IEditTrackedProjectsViewModelFactory editTrackedProjectsViewModelFactory,
-            IEditConnectionSettingsViewModelFactory<T1, T2> editConnectionSettingsFactory)
+            IEditConnectionSettingsViewModelFactory<T1, T2> editConnectionSettingsFactory,
+            INavigationMessageFactory<ViewConnectionsViewModel> viewConnectionsNavigationMessageFactory)
             : base(platformProvider)
         {
             Ensure.That(eventAggregator).IsNotNull();
@@ -66,6 +69,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             Ensure.That(editTrackedProjectViewModelFactory).IsNotNull();
             Ensure.That(editTrackedProjectsViewModelFactory).IsNotNull();
             Ensure.That(editConnectionSettingsFactory).IsNotNull();
+            Ensure.That(viewConnectionsNavigationMessageFactory).IsNotNull();
 
             _eventAggregator = eventAggregator;
             _logService = logService;
@@ -73,6 +77,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             _buildProviderStrategy = buildProviderStrategy;
             _editTrackedProjectViewModelFactory = editTrackedProjectViewModelFactory;
             _editTrackedProjectsViewModelFactory = editTrackedProjectsViewModelFactory;
+            _viewConnectionsNavigationMessageFactory = viewConnectionsNavigationMessageFactory;
 
             _connectionTask = new NotifyTask();
 
@@ -192,9 +197,14 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
 
             _connectionSettingsRepository.Add(Settings.GetSettings());
 
-            var message = new NavigationMessage(typeof(ViewConnectionsViewModel));
+            if (string.IsNullOrWhiteSpace(Context))
+            {
+                var message = _viewConnectionsNavigationMessageFactory.Create();
 
-            _eventAggregator.PublishOnUIThread(message);
+                _eventAggregator.PublishOnUIThread(message);
+            }
+
+            TryClose();
         }
 
         private async Task Connect()

@@ -100,17 +100,26 @@
     <Compile Include="IApp.cs" />
     <Compile Include="IBuildNotificationManager.cs" />
     <Compile Include="IDisplaySetting.cs" />
+    <Compile Include="IMouseManager.cs" />
     <Compile Include="INotifyTask.cs" />
     <Compile Include="LanguageConfigurator.cs" />
     <Compile Include="Localization\AddConnectionViewErrorLocalizer.cs" />
+    <Compile Include="Localization\AppViewErrorLocalizer.cs" />
     <Compile Include="Localization\EditConnectionViewErrorLocalizer.cs" />
     <Compile Include="Localization\SupportedCultures.cs" />
     <Compile Include="Logging\IUILogService.cs" />
     <Compile Include="Logging\UILogService.cs" />
     <Compile Include="MarkupExtensions\EnumToItemsSourceMarkupExtension.cs" />
+    <Compile Include="MouseManager.cs" />
     <Compile Include="NativeMethods.cs" />
-    <Compile Include="Navigation\INavigable.cs" />
-    <Compile Include="Navigation\NavigationMessage.cs" />
+    <Compile Include="Navigation\Factories\INavigationMessageFactory{T}.cs">
+      <SonarQubeExclude>true</SonarQubeExclude>
+    </Compile>
+    <Compile Include="Navigation\IKeepAlive.cs" />
+    <Compile Include="Navigation\INavigationMessage.cs">
+      <SonarQubeExclude>true</SonarQubeExclude>
+    </Compile>
+    <Compile Include="Navigation\NavigationMessage{T}.cs" />
     <Compile Include="Navigation\Navigator{T}.cs">
       <SonarQubeExclude>true</SonarQubeExclude>
     </Compile>
@@ -136,19 +145,22 @@
       <SonarQubeExclude>true</SonarQubeExclude>
     </Compile>
     <Compile Include="Validators\EditSettingsViewModelValidator.cs" />
+    <Compile Include="Validators\WizardEditPassphraseViewModelValidator.cs" />
+    <Compile Include="ViewModels\AppErrorViewModel.cs" />
+    <Compile Include="ViewModels\AppMenuViewModel.cs" />
+    <Compile Include="ViewModels\AppViewModel.cs" />
+    <Compile Include="ViewModels\Conductor{T1,T2}.cs" />
     <Compile Include="ViewModels\ConnectionsViewModel.cs" />
     <Compile Include="ViewModels\Factories\EditConnectionSettingsViewModelFactory{T1,T2}.cs">
       <SonarQubeExclude>true</SonarQubeExclude>
     </Compile>
+    <Compile Include="ViewModels\IContextAware.cs" />
+    <Compile Include="ViewModels\IWizardViewModel.cs" />
+    <Compile Include="ViewModels\ViewAboutViewModel.cs" />
     <Compile Include="ViewModels\ViewDashboardViewModel.cs" />
-    <Compile Include="ViewModels\DesignTime\BuildNotificationViewModel.cs" />
-    <Compile Include="ViewModels\DesignTime\BuildViewModel.cs" />
-    <Compile Include="ViewModels\DesignTime\ChangeViewModel.cs" />
     <Compile Include="ViewModels\EditConnectionSettingsViewModel{T}.cs">
       <SonarQubeExclude>true</SonarQubeExclude>
     </Compile>
-    <Compile Include="ViewModels\DesignTime\ViewConnectionViewModel.cs" />
-    <Compile Include="ViewModels\DesignTime\ProjectViewModel.cs" />
     <Compile Include="ViewModels\Factories\IViewNotificationViewModelFactory.cs" />
     <Compile Include="ViewModels\Factories\ViewConnectionViewModelFactory{T1,T2}.cs">
       <SonarQubeExclude>true</SonarQubeExclude>
@@ -199,6 +211,11 @@
     <Compile Include="ViewModels\ViewProjectViewModel.cs" />
     <Compile Include="ViewModels\NewConnectionViewModel.cs" />
     <Compile Include="ViewModels\EditSettingsViewModel.cs" />
+    <Compile Include="ViewModels\WizardEditPassphraseViewModel.cs" />
+    <Compile Include="ViewModels\WizardFinishViewModel.cs" />
+    <Compile Include="ViewModels\WizardNewConnectionViewModel.cs" />
+    <Compile Include="ViewModels\WizardStartViewModel.cs" />
+    <Compile Include="ViewModels\WizardViewModel.cs" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
@@ -212,7 +229,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Page Include="Styles\BuildProvider.xaml">
+    <Page Include="Styles\Views\Views\BuildProvider.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

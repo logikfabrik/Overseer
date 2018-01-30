@@ -15,7 +15,7 @@
                                 <RowDefinition Height="Auto" />
                             </Grid.RowDefinitions>
                             <Border Grid.Row="0" Style="{StaticResource Common.Header.Panel}">
-                                <TextBlock Text="{Binding Path=SettingsName, Converter={StaticResource StringToUpperCaseConverter}}" />
+                                <TextBlock Text="{Binding SettingsName, Converter={StaticResource StringToUpperCaseConverter}}" />
                             </Border>
                             <ItemsControl
                                 Grid.Row="1"

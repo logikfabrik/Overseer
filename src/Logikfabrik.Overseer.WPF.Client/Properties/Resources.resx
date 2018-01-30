@@ -123,9 +123,6 @@
   <data name="ViewAbout_Setting_Label_Version" xml:space="preserve">
     <value>Version</value>
   </data>
-  <data name="ViewAbout_View" xml:space="preserve">
-    <value>About</value>
-  </data>
   <data name="AddConnection_Button_Add" xml:space="preserve">
     <value>OK</value>
   </data>
@@ -137,10 +134,6 @@
   </data>
   <data name="AddConnection_View" xml:space="preserve">
     <value>Add connection</value>
-  </data>
-  <data name="App_Error_Standard" xml:space="preserve">
-    <value>Sorry, there seems to be a problem!
-Please try again.</value>
   </data>
   <data name="EditConnectionSettings_Setting_Description_BuildsPerProject" xml:space="preserve">
     <value>Number of builds to get from the CI/DI service per project</value>
@@ -237,12 +230,6 @@ Please try again.</value>
   </data>
   <data name="Connections_Tile_Button_Add" xml:space="preserve">
     <value>Add connection</value>
-  </data>
-  <data name="WizardEditPassphrase_Validation_Passphrase_MinimumLength" xml:space="preserve">
-    <value>Passphrase is too short</value>
-  </data>
-  <data name="WizardEditPassphrase_Validation_Passphrase_NotEmpty" xml:space="preserve">
-    <value>Passphrase is missing</value>
   </data>
   <data name="WizardEditPassphrase_Button_NextStep" xml:space="preserve">
     <value>Next</value>

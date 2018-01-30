@@ -14,7 +14,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     using EnsureThat;
     using Factories;
     using Gma.DataStructures.StringSearch;
-    using Navigation;
+    using Navigation.Factories;
     using Settings;
 
     /// <summary>
@@ -30,6 +30,9 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         private readonly IViewProjectViewModelFactory _viewProjectViewModelFactory;
         private readonly IRemoveConnectionViewModelFactory _removeConnectionViewModelFactory;
         private readonly IEditConnectionViewModelFactory<T> _editConnectionViewModelFactory;
+        private readonly INavigationMessageFactory<EditConnectionViewModel<T>> _editConnectionViewModelNavigationMessageFactory;
+        private readonly INavigationMessageFactory<RemoveConnectionViewModel> _removeConnectionViewModelNavigationMessageFactory;
+        private readonly INavigationMessageFactory<ViewConnectionViewModel<T>> _viewConnectionViewModelNavigationMessageFactory;
 
         // ReSharper disable once PrivateFieldCanBeConvertedToLocalVariable
         private readonly CollectionViewSource _filteredProjects;
@@ -50,6 +53,9 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// <param name="viewProjectViewModelFactory">The view project view model factory.</param>
         /// <param name="removeConnectionViewModelFactory">The remove connection view model factory.</param>
         /// <param name="editConnectionViewModelFactory">The edit connection view model factory.</param>
+        /// <param name="viewConnectionViewModelNavigationMessageFactory"></param>
+        /// <param name="editConnectionViewModelNavigationMessageFactory"></param>
+        /// <param name="removeConnectionViewModelNavigationMessageFactory"></param>
         /// <param name="settings">The settings.</param>
         // ReSharper disable once InheritdocConsiderUsage
         public ViewConnectionViewModel(
@@ -60,6 +66,9 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             IViewProjectViewModelFactory viewProjectViewModelFactory,
             IRemoveConnectionViewModelFactory removeConnectionViewModelFactory,
             IEditConnectionViewModelFactory<T> editConnectionViewModelFactory,
+            INavigationMessageFactory<EditConnectionViewModel<T>> editConnectionViewModelNavigationMessageFactory,
+            INavigationMessageFactory<RemoveConnectionViewModel> removeConnectionViewModelNavigationMessageFactory,
+            INavigationMessageFactory<ViewConnectionViewModel<T>> viewConnectionViewModelNavigationMessageFactory,
             T settings)
             : base(platformProvider)
         {
@@ -69,6 +78,9 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             Ensure.That(viewProjectViewModelFactory).IsNotNull();
             Ensure.That(removeConnectionViewModelFactory).IsNotNull();
             Ensure.That(editConnectionViewModelFactory).IsNotNull();
+            Ensure.That(editConnectionViewModelNavigationMessageFactory).IsNotNull();
+            Ensure.That(removeConnectionViewModelNavigationMessageFactory).IsNotNull();
+            Ensure.That(viewConnectionViewModelNavigationMessageFactory).IsNotNull();
             Ensure.That(settings).IsNotNull();
 
             _application = application;
@@ -76,6 +88,9 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             _viewProjectViewModelFactory = viewProjectViewModelFactory;
             _removeConnectionViewModelFactory = removeConnectionViewModelFactory;
             _editConnectionViewModelFactory = editConnectionViewModelFactory;
+            _editConnectionViewModelNavigationMessageFactory = editConnectionViewModelNavigationMessageFactory;
+            _removeConnectionViewModelNavigationMessageFactory = removeConnectionViewModelNavigationMessageFactory;
+            _viewConnectionViewModelNavigationMessageFactory = viewConnectionViewModelNavigationMessageFactory;
             Settings = settings;
             _isBusy = true;
             _isErrored = false;
@@ -201,7 +216,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         {
             var item = _editConnectionViewModelFactory.Create(Settings);
 
-            var message = new NavigationMessage(item);
+            var message = _editConnectionViewModelNavigationMessageFactory.Create(item);
 
             _eventAggregator.PublishOnUIThread(message);
         }
@@ -211,7 +226,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         {
             var item = _removeConnectionViewModelFactory.Create(this);
 
-            var message = new NavigationMessage(item);
+            var message = _removeConnectionViewModelNavigationMessageFactory.Create(item);
 
             _eventAggregator.PublishOnUIThread(message);
         }
@@ -219,7 +234,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// <inheritdoc />
         public void View()
         {
-            var message = new NavigationMessage(this);
+            var message = _viewConnectionViewModelNavigationMessageFactory.Create(this);
 
             _eventAggregator.PublishOnUIThread(message);
         }

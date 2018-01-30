@@ -1,0 +1,60 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:cal="http://www.caliburnproject.org"
+    xmlns:p="clr-namespace:Logikfabrik.Overseer.WPF.Client.Properties"
+    xmlns:userControls="clr-namespace:Logikfabrik.Overseer.WPF.Client.UserControls">
+    <Style x:Key="Views.Views.AddConnection.Wizard" TargetType="{x:Type UserControl}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate>
+                    <Grid>
+                        <StackPanel>
+                            <ContentControl
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Stretch"
+                                cal:View.Model="{Binding Settings, Mode=OneWay}"
+                                Focusable="False" />
+                            <StackPanel Style="{StaticResource Common.Section.Panel}">
+                                <Grid>
+                                    <Button
+                                        cal:Message.Attach="TryConnect"
+                                        Content="{x:Static p:Resources.AddConnection_Button_TryConnect}"
+                                        IsEnabled="{Binding IsValidAndHasNotConnected, Mode=OneWay}" />
+                                    <userControls:ProgressControl
+                                        VerticalAlignment="Top"
+                                        IsErrored="{Binding ConnectionTask.Status, Converter={StaticResource TaskStatusFaultedToBooleanConverter}}"
+                                        IsInProgress="{Binding ConnectionTask.Status, Converter={StaticResource TaskStatusRunningToBooleanConverter}}" />
+                                </Grid>
+                                <TextBlock Text="{Binding ConnectionTask.Exception, Converter={StaticResource AddConnectionViewExceptionToLocalizedStringConverter}}" Visibility="{Binding ConnectionTask.Status, Converter={StaticResource TaskStatusFaultedToVisibilityConverter}}" />
+                            </StackPanel>
+                            <StackPanel Style="{StaticResource Common.Setting.Panel}" Visibility="{Binding HasConnected, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                <TextBlock Style="{StaticResource Common.Setting.Label}" Text="{Binding Source={x:Static p:Resources.EditConnectionSettings_Setting_Label_TrackedProjects}, Converter={StaticResource StringToUpperCaseConverter}}" />
+                                <ContentControl
+                                    MaxHeight="304"
+                                    cal:View.Model="{Binding Settings.TrackedProjects, Mode=OneWay}"
+                                    Focusable="False" />
+                            </StackPanel>
+                            <StackPanel Style="{StaticResource Common.Setting.Panel}">
+                                <TextBlock Style="{StaticResource Common.Setting.Label}" Text="{Binding Source={x:Static p:Resources.EditConnectionSettings_Setting_Label_BuildsPerProject}, Converter={StaticResource StringToUpperCaseConverter}}" />
+                                <TextBlock Style="{StaticResource Common.Setting.Description}" Text="{x:Static p:Resources.EditConnectionSettings_Setting_Description_BuildsPerProject}" />
+                                <TextBox Text="{Binding Settings.BuildsPerProject, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" />
+                            </StackPanel>
+                            <WrapPanel Style="{StaticResource Common.Footer}">
+                                <Button
+                                    cal:Message.Attach="Add"
+                                    Content="{x:Static p:Resources.AddConnection_Button_Add}"
+                                    IsDefault="True"
+                                    IsEnabled="{Binding IsValidAndHasConnected, Mode=OneWay}" />
+                                <Button
+                                    cal:Message.Attach="TryClose(null)"
+                                    Content="{x:Static p:Resources.AddConnection_Button_Cancel}"
+                                    IsCancel="True" />
+                            </WrapPanel>
+                        </StackPanel>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

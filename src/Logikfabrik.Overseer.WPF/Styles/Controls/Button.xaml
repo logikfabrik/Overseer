@@ -3,7 +3,7 @@
         <ResourceDictionary Source="../Resources/FocusVisuals.xaml" />
         <ResourceDictionary Source="../Brushes.xaml" />
     </ResourceDictionary.MergedDictionaries>
-    <Style BasedOn="{StaticResource {x:Type Button}}" TargetType="{x:Type Button}">
+    <Style TargetType="{x:Type Button}">
         <Style.Resources>
             <!--  Change path fill on mouse over  -->
             <!--  Moved to BuildProvider.xaml  -->

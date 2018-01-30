@@ -194,4 +194,17 @@ Vi kunde inte ansluta till CI/CD-tjänsten. Vänligen försök igen.</value>
   <data name="EditSettings_Validation_Interval_NotEmpty" xml:space="preserve">
     <value>Intervall saknas</value>
   </data>
+  <data name="App_Error_Standard" xml:space="preserve">
+    <value>Tyvärr, det verkar vara ett problem!
+Vänligen försök igen.</value>
+  </data>
+  <data name="ViewAbout_View" xml:space="preserve">
+    <value>Om</value>
+  </data>
+  <data name="WizardEditPassphrase_Validation_Passphrase_MinimumLength" xml:space="preserve">
+    <value>Lösenfras är för kort</value>
+  </data>
+  <data name="WizardEditPassphrase_Validation_Passphrase_NotEmpty" xml:space="preserve">
+    <value>Lösenfras saknas</value>
+  </data>
 </root>

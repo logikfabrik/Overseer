@@ -125,10 +125,10 @@
     <Compile Include="ViewModels\BuildProviderViewModel.cs" />
     <Compile Include="ViewModels\EditConnectionSettingsViewModel.cs" />
     <Compile Include="ViewModels\EditConnectionViewModel.cs" />
-    <Compile Include="Views\BuildProviderView.xaml.cs">
+    <Compile Include="Views\Views\BuildProviderView.xaml.cs">
       <DependentUpon>BuildProviderView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\EditConnectionSettingsView.xaml.cs">
+    <Compile Include="Views\Views\EditConnectionSettingsView.xaml.cs">
       <DependentUpon>EditConnectionSettingsView.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
@@ -174,11 +174,11 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <Page Include="Views\BuildProviderView.xaml">
+    <Page Include="Views\Views\BuildProviderView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\EditConnectionSettingsView.xaml">
+    <Page Include="Views\Views\EditConnectionSettingsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

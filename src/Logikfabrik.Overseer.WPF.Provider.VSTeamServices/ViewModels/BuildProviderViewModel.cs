@@ -5,6 +5,7 @@
 namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices.ViewModels
 {
     using Caliburn.Micro;
+    using Navigation.Factories;
 
     /// <summary>
     /// The <see cref="BuildProviderViewModel" /> class.
@@ -16,9 +17,10 @@ namespace Logikfabrik.Overseer.WPF.Provider.VSTeamServices.ViewModels
         /// Initializes a new instance of the <see cref="BuildProviderViewModel" /> class.
         /// </summary>
         /// <param name="eventAggregator">The event aggregator.</param>
+        /// <param name="navigationMessageFactory">The navigation message factory.</param>
         // ReSharper disable once InheritdocConsiderUsage
-        public BuildProviderViewModel(IEventAggregator eventAggregator)
-            : base(eventAggregator, "Visual Studio Team Services")
+        public BuildProviderViewModel(IEventAggregator eventAggregator, INavigationMessageFactory<WPF.ViewModels.AddConnectionViewModel<ConnectionSettings, EditConnectionSettingsViewModel>> navigationMessageFactory)
+            : base(eventAggregator, navigationMessageFactory, "Visual Studio Team Services")
         {
         }
     }

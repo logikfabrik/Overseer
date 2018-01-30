@@ -11,7 +11,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     /// The <see cref="IViewModel" /> interface.
     /// </summary>
     // ReSharper disable once InheritdocConsiderUsage
-    public interface IViewModel : IClose, IHaveDisplayName, IChild, INavigable
+    public interface IViewModel : IClose, IHaveDisplayName, IChild, IKeepAlive, IContextAware, IViewAware
     {
     }
 }

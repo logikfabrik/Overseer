@@ -32,7 +32,7 @@ namespace Logikfabrik.Overseer.WPF.Navigation
         /// Navigates the specified message.
         /// </summary>
         /// <param name="message">The message.</param>
-        public void Navigate(NavigationMessage message)
+        public void Navigate(INavigationMessage message)
         {
             Ensure.That(message).IsNotNull();
 
@@ -44,14 +44,14 @@ namespace Logikfabrik.Overseer.WPF.Navigation
         /// </summary>
         /// <param name="item">The item.</param>
         /// <returns><c>true</c> if the specified item can be closed; otherwise, <c>false</c>.</returns>
-        protected virtual bool CanCloseItem(T item)
+        private static bool CanCloseItem(T item)
         {
-            var navigable = item as INavigable;
+            var navigable = item as IKeepAlive;
 
             return navigable == null || !navigable.KeepAlive;
         }
 
-        private void NavigateTo(NavigationMessage message)
+        private void NavigateTo(INavigationMessage message)
         {
             var activeItem = _conductor.ActiveItem;
 
@@ -60,18 +60,13 @@ namespace Logikfabrik.Overseer.WPF.Navigation
                 CloseItem(activeItem);
             }
 
-            if (message.Item != null)
-            {
-                ActivateItem(message.Item as T);
-            }
-            else
-            {
-                var item = IoC.GetInstance(message.ItemType, null) as T;
-
-                ActivateItem(item);
-            }
+            ActivateItem(message.Item as T);
         }
 
+        /// <summary>
+        /// Closes the specified item, if possible.
+        /// </summary>
+        /// <param name="item">The item to close.</param>
         private void CloseItem(T item)
         {
             if (item == null)
