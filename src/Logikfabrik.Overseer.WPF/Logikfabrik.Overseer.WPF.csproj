@@ -119,7 +119,9 @@
     <Compile Include="Navigation\INavigationMessage.cs">
       <SonarQubeExclude>true</SonarQubeExclude>
     </Compile>
-    <Compile Include="Navigation\NavigationMessage{T}.cs" />
+    <Compile Include="Navigation\NavigationMessage{T}.cs">
+      <SonarQubeExclude>true</SonarQubeExclude>
+    </Compile>
     <Compile Include="Navigation\Navigator{T}.cs">
       <SonarQubeExclude>true</SonarQubeExclude>
     </Compile>
@@ -149,7 +151,9 @@
     <Compile Include="ViewModels\AppErrorViewModel.cs" />
     <Compile Include="ViewModels\AppMenuViewModel.cs" />
     <Compile Include="ViewModels\AppViewModel.cs" />
-    <Compile Include="ViewModels\Conductor{T1,T2}.cs" />
+    <Compile Include="ViewModels\Conductor{T1,T2}.cs">
+      <SonarQubeExclude>true</SonarQubeExclude>
+    </Compile>
     <Compile Include="ViewModels\ConnectionsViewModel.cs" />
     <Compile Include="ViewModels\Factories\EditConnectionSettingsViewModelFactory{T1,T2}.cs">
       <SonarQubeExclude>true</SonarQubeExclude>
