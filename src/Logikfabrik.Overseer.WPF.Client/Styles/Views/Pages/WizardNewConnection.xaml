@@ -29,7 +29,7 @@
                                 You can add connections later
                             </TextBlock>
                         </StackPanel>
-                        <StackPanel Grid.Row="1">
+                        <StackPanel Grid.Row="1" Visibility="{Binding IsNotAddingConnection, Converter={StaticResource BooleanToVisibilityConverter}}">
                             <Grid
                                 Width="450"
                                 HorizontalAlignment="Center"
@@ -45,9 +45,8 @@
                                     SelectedValue="{Binding Provider, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                                 <Button Grid.Column="1" cal:Message.Attach="AddConnection">Add</Button>
                             </Grid>
-
                         </StackPanel>
-                        <ScrollViewer Grid.Row="2">
+                        <ScrollViewer Grid.Row="2" Visibility="{Binding IsAddingConnection, Converter={StaticResource BooleanToVisibilityConverter}}">
                             <ContentControl
                                 cal:View.Context="Wizard"
                                 cal:View.Model="{Binding ActiveItem, Mode=OneWay}"

@@ -74,6 +74,10 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             }
         }
 
+        public bool IsAddingConnection => ActiveItem != null;
+
+        public bool IsNotAddingConnection => ActiveItem == null;
+
         /// <summary>
         /// Gets the connections.
         /// </summary>
@@ -92,6 +96,24 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             var message = _navigationMessageFactory.Create();
 
             _eventAggregator.PublishOnUIThread(message);
+        }
+
+        /// <inheritdoc/>
+        public override void ActivateItem(IViewModel item)
+        {
+            base.ActivateItem(item);
+
+            NotifyOfPropertyChange(() => IsAddingConnection);
+            NotifyOfPropertyChange(() => IsNotAddingConnection);
+        }
+
+        /// <inheritdoc/>
+        public override void DeactivateItem(IViewModel item, bool close)
+        {
+            base.DeactivateItem(item, close);
+
+            NotifyOfPropertyChange(() => IsAddingConnection);
+            NotifyOfPropertyChange(() => IsNotAddingConnection);
         }
     }
 }
