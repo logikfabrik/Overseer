@@ -55,7 +55,7 @@ namespace Logikfabrik.Overseer.WPF.Extensions
             obj.SetValue(BoundPasswordProperty, value);
         }
 
-        private static void OnBoundPasswordChanged(object sender, DependencyPropertyChangedEventArgs arg)
+        private static void OnBoundPasswordChanged(DependencyObject sender, DependencyPropertyChangedEventArgs arg)
         {
             var passwordBox = sender as PasswordBox;
 

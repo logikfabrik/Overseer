@@ -97,6 +97,7 @@
     <Compile Include="Extensions\AppExtensions.cs" />
     <Compile Include="Extensions\HyperlinkExtensions.cs" />
     <Compile Include="Extensions\PasswordBoxExtensions.cs" />
+    <Compile Include="Behaviors\ScrollToTopBehavior.cs" />
     <Compile Include="IApp.cs" />
     <Compile Include="IBuildNotificationManager.cs" />
     <Compile Include="IDisplaySetting.cs" />
@@ -333,6 +334,7 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
