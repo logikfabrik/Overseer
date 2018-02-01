@@ -348,4 +348,16 @@ Please try again.</value>
   <data name="WizardStart_Text" xml:space="preserve">
     <value>I'll help track your builds</value>
   </data>
+  <data name="WizardNewConnection_Button_NextStep" xml:space="preserve">
+    <value>Next</value>
+  </data>
+  <data name="WizardNewConnection_Button_SkipStep" xml:space="preserve">
+    <value>Skip</value>
+  </data>
+  <data name="WizardNewConnection_Heading" xml:space="preserve">
+    <value>And finally, add connections</value>
+  </data>
+  <data name="WizardNewConnection_Text" xml:space="preserve">
+    <value>You can also add connections later</value>
+  </data>
 </root>

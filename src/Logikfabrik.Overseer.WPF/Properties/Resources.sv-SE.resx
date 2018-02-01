@@ -207,11 +207,9 @@ Vänligen försök igen.</value>
   <data name="WizardEditPassphrase_Validation_Passphrase_NotEmpty" xml:space="preserve">
     <value>Lösenfras saknas</value>
   </data>
-  <!-- ReSharper disable OverriddenWithSameValue -->
   <data name="AddConnection_Button_Add" xml:space="preserve">
     <value>OK</value>
   </data>
-  <!-- ReSharper restore OverriddenWithSameValue -->
   <data name="AddConnection_Button_Cancel" xml:space="preserve">
     <value>Avbryt</value>
   </data>
@@ -239,11 +237,9 @@ Vänligen försök igen.</value>
   <data name="EditConnection_Button_Cancel" xml:space="preserve">
     <value>Avbryt</value>
   </data>
-  <!-- ReSharper disable OverriddenWithSameValue -->
   <data name="EditConnection_Button_Edit" xml:space="preserve">
     <value>OK</value>
   </data>
-  <!-- ReSharper restore OverriddenWithSameValue -->
   <data name="EditConnection_Button_TryConnect" xml:space="preserve">
     <value>Prova att ansluta</value>
   </data>
@@ -253,11 +249,9 @@ Vänligen försök igen.</value>
   <data name="EditSettings_Button_Cancel" xml:space="preserve">
     <value>Avbryt</value>
   </data>
-  <!-- ReSharper disable OverriddenWithSameValue -->
   <data name="EditSettings_Button_Save" xml:space="preserve">
     <value>OK</value>
   </data>
-  <!-- ReSharper restore OverriddenWithSameValue -->
   <data name="EditSettings_Setting_Description_CultureName" xml:space="preserve">
     <value>Byte av språk kommer att starta om programmet</value>
   </data>
@@ -297,19 +291,15 @@ Vänligen försök igen.</value>
   <data name="RemoveConnection_Button_Cancel" xml:space="preserve">
     <value>Avbryt</value>
   </data>
-  <!-- ReSharper disable OverriddenWithSameValue -->
   <data name="RemoveConnection_Button_Remove" xml:space="preserve">
     <value>OK</value>
   </data>
-  <!-- ReSharper restore OverriddenWithSameValue -->
   <data name="ViewAbout_Setting_Label_Attribution" xml:space="preserve">
     <value>Erkännande</value>
   </data>
-  <!-- ReSharper disable OverriddenWithSameValue -->
   <data name="ViewAbout_Setting_Label_Version" xml:space="preserve">
     <value>Version</value>
   </data>
-  <!-- ReSharper restore OverriddenWithSameValue -->
   <data name="ViewConnection_Button_Edit" xml:space="preserve">
     <value>Redigera</value>
   </data>
@@ -357,5 +347,17 @@ Vänligen försök igen.</value>
   </data>
   <data name="WizardStart_Text" xml:space="preserve">
     <value>Jag hjälper till att spåra dina byggen</value>
+  </data>
+  <data name="WizardNewConnection_Heading" xml:space="preserve">
+    <value>Och slutligen, lägg till anslutningar</value>
+  </data>
+  <data name="WizardNewConnection_Text" xml:space="preserve">
+    <value>Du kan även lägga till anslutningar senare</value>
+  </data>
+  <data name="WizardNewConnection_Button_NextStep" xml:space="preserve">
+    <value>Nästa</value>
+  </data>
+  <data name="WizardNewConnection_Button_SkipStep" xml:space="preserve">
+    <value>Hoppa över</value>
   </data>
 </root>

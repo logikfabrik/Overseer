@@ -126,11 +126,9 @@
   <data name="EditConnectionSettings_Setting_Label_Token" xml:space="preserve">
     <value>Bevis</value>
   </data>
-  <!-- ReSharper disable OverriddenWithSameValue -->
   <data name="EditConnectionSettings_Setting_Label_Url" xml:space="preserve">
     <value>URL</value>
   </data>
-  <!-- ReSharper restore OverriddenWithSameValue -->
   <data name="EditConnectionSettings_Validation_Token" xml:space="preserve">
     <value>Bevis saknas</value>
   </data>

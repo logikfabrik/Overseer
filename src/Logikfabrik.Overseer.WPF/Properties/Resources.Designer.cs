@@ -709,6 +709,42 @@ namespace Logikfabrik.Overseer.WPF.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Next.
+        /// </summary>
+        public static string WizardNewConnection_Button_NextStep {
+            get {
+                return ResourceManager.GetString("WizardNewConnection_Button_NextStep", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Skip.
+        /// </summary>
+        public static string WizardNewConnection_Button_SkipStep {
+            get {
+                return ResourceManager.GetString("WizardNewConnection_Button_SkipStep", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to And finally, add connections.
+        /// </summary>
+        public static string WizardNewConnection_Heading {
+            get {
+                return ResourceManager.GetString("WizardNewConnection_Heading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You can also add connections later.
+        /// </summary>
+        public static string WizardNewConnection_Text {
+            get {
+                return ResourceManager.GetString("WizardNewConnection_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Get started.
         /// </summary>
         public static string WizardStart_Button_NextStep {

@@ -3,7 +3,8 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:b="clr-namespace:Logikfabrik.Overseer.WPF.Behaviors;assembly=Logikfabrik.Overseer.WPF"
     xmlns:cal="http://www.caliburnproject.org"
-    xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity">
+    xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+    xmlns:p="clr-namespace:Logikfabrik.Overseer.WPF.Properties;assembly=Logikfabrik.Overseer.WPF">
     <Style x:Key="Views.Pages.WizardNewConnection" TargetType="{x:Type UserControl}">
         <Style.Resources>
             <Style BasedOn="{StaticResource {x:Type TextBlock}}" TargetType="{x:Type TextBlock}">
@@ -23,12 +24,8 @@
                             Grid.Row="0"
                             HorizontalAlignment="Center"
                             VerticalAlignment="Center">
-                            <TextBlock FontSize="24">
-                                And finally, add a connection
-                            </TextBlock>
-                            <TextBlock FontSize="18">
-                                You can add connections later
-                            </TextBlock>
+                            <TextBlock FontSize="24" Text="{x:Static p:Resources.WizardNewConnection_Heading}" />
+                            <TextBlock FontSize="18" Text="{x:Static p:Resources.WizardNewConnection_Text}" />
                         </StackPanel>
                         <Grid
                             Grid.Row="1"
@@ -71,16 +68,14 @@
                             VerticalAlignment="Center">
                             <Button
                                 cal:Message.Attach="NextStep"
+                                Content="{x:Static p:Resources.WizardNewConnection_Button_SkipStep}"
                                 IsDefault="True"
-                                Visibility="{Binding Connections.HasNoConnections, Converter={StaticResource BooleanToVisibilityConverter}}">
-                                Skip
-                            </Button>
+                                Visibility="{Binding Connections.HasNoConnections, Converter={StaticResource BooleanToVisibilityConverter}}" />
                             <Button
                                 cal:Message.Attach="NextStep"
+                                Content="{x:Static p:Resources.WizardNewConnection_Button_NextStep}"
                                 IsDefault="True"
-                                Visibility="{Binding Connections.HasConnections, Converter={StaticResource BooleanToVisibilityConverter}}">
-                                Next
-                            </Button>
+                                Visibility="{Binding Connections.HasConnections, Converter={StaticResource BooleanToVisibilityConverter}}" />
                             <ContentControl
                                 cal:View.Context="WizardBricks"
                                 cal:View.Model="{Binding Connections, Mode=OneWay}"
