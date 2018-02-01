@@ -26,8 +26,13 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// <param name="eventAggregator">The event aggregator.</param>
         /// <param name="navigationMessageFactory">The navigation message factory.</param>
         /// <param name="providerViewModels">The provider view models.</param>
+        /// <param name="connectionsViewModel">The connections view model.</param>
         // ReSharper disable once InheritdocConsiderUsage
-        public WizardNewConnectionViewModel(IEventAggregator eventAggregator, INavigationMessageFactory<WizardFinishViewModel> navigationMessageFactory, IEnumerable<IBuildProviderViewModel> providerViewModels, ConnectionsViewModel connectionsViewModel)
+        public WizardNewConnectionViewModel(
+            IEventAggregator eventAggregator,
+            INavigationMessageFactory<WizardFinishViewModel> navigationMessageFactory,
+            IEnumerable<IBuildProviderViewModel> providerViewModels,
+            ConnectionsViewModel connectionsViewModel)
             : base(eventAggregator)
         {
             Ensure.That(eventAggregator).IsNotNull();

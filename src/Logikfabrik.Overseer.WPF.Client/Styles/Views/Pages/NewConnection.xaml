@@ -6,9 +6,8 @@
                     <ItemsControl ItemsSource="{Binding Providers, Mode=OneWay}">
                         <ItemsControl.ItemContainerStyle>
                             <Style>
+                                <!--  ReSharper disable once Xaml.RedundantPropertyTypeQualifier  -->
                                 <Setter Property="FrameworkElement.Margin" Value="10,10,0,0" />
-                                <Setter Property="FrameworkElement.Width" Value="200" />
-                                <Setter Property="FrameworkElement.Height" Value="200" />
                             </Style>
                         </ItemsControl.ItemContainerStyle>
                         <ItemsControl.Template>

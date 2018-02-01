@@ -11,7 +11,11 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate>
-                    <Button VerticalContentAlignment="Stretch" cal:Message.Attach="AddConnection">
+                    <Button
+                        Width="200"
+                        Height="200"
+                        VerticalContentAlignment="Stretch"
+                        cal:Message.Attach="AddConnection">
                         <Grid>
                             <Viewbox Width="60" Height="60">
                                 <ContentPresenter Content="{TemplateBinding Property=ContentControl.Content}" />

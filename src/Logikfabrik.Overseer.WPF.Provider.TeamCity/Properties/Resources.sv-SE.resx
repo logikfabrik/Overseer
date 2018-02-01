@@ -126,9 +126,11 @@
   <data name="EditConnectionSettings_Setting_Label_Password" xml:space="preserve">
     <value>Lösenord</value>
   </data>
+  <!-- ReSharper disable OverriddenWithSameValue -->
   <data name="EditConnectionSettings_Setting_Label_Url" xml:space="preserve">
     <value>URL</value>
   </data>
+  <!-- ReSharper restore OverriddenWithSameValue -->
   <data name="EditConnectionSettings_Setting_Label_Username" xml:space="preserve">
     <value>Användarnamn</value>
   </data>
