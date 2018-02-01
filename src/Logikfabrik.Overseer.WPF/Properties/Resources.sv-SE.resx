@@ -207,4 +207,145 @@ Vänligen försök igen.</value>
   <data name="WizardEditPassphrase_Validation_Passphrase_NotEmpty" xml:space="preserve">
     <value>Lösenfras saknas</value>
   </data>
+  <data name="AddConnection_Button_Add" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="AddConnection_Button_Cancel" xml:space="preserve">
+    <value>Avbryt</value>
+  </data>
+  <data name="AddConnection_Button_TryConnect" xml:space="preserve">
+    <value>Prova att ansluta</value>
+  </data>
+  <data name="AddConnection_View1" xml:space="preserve">
+    <value>Lägg till anslutning</value>
+  </data>
+  <data name="Connections_Tile_Button_Add" xml:space="preserve">
+    <value>Lägg till anslutning</value>
+  </data>
+  <data name="Connections_Tile_Message_NoConnections" xml:space="preserve">
+    <value>Du har inga anslutningar. Kom igång genom att lägga till en.</value>
+  </data>
+  <data name="EditConnectionSettings_Setting_Description_BuildsPerProject" xml:space="preserve">
+    <value>Antal byggen att hämta från CI/DI-tjänsten per projekt</value>
+  </data>
+  <data name="EditConnectionSettings_Setting_Label_BuildsPerProject" xml:space="preserve">
+    <value>Byggen per projekt</value>
+  </data>
+  <data name="EditConnectionSettings_Setting_Label_TrackedProjects" xml:space="preserve">
+    <value>Projekt</value>
+  </data>
+  <data name="EditConnection_Button_Cancel" xml:space="preserve">
+    <value>Avbryt</value>
+  </data>
+  <data name="EditConnection_Button_Edit" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="EditConnection_Button_TryConnect" xml:space="preserve">
+    <value>Prova att ansluta</value>
+  </data>
+  <data name="EditConnection_View1" xml:space="preserve">
+    <value>Redigera anslutning</value>
+  </data>
+  <data name="EditSettings_Button_Cancel" xml:space="preserve">
+    <value>Avbryt</value>
+  </data>
+  <data name="EditSettings_Button_Save" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="EditSettings_Setting_Description_CultureName" xml:space="preserve">
+    <value>Byte av språk kommer att starta om programmet</value>
+  </data>
+  <data name="EditSettings_Setting_Description_Interval" xml:space="preserve">
+    <value>Tid (s) mellan uppdateringar</value>
+  </data>
+  <data name="EditSettings_Setting_Label_CultureName" xml:space="preserve">
+    <value>Språk</value>
+  </data>
+  <data name="EditSettings_Setting_Label_Interval" xml:space="preserve">
+    <value>Intervall</value>
+  </data>
+  <data name="EditSettings_View1" xml:space="preserve">
+    <value>Redigera inställningar</value>
+  </data>
+  <data name="EditTrackedProjects_Button_DeselectAll" xml:space="preserve">
+    <value>Välj bort alla</value>
+  </data>
+  <data name="EditTrackedProjects_Button_Filter" xml:space="preserve">
+    <value>Filtrera</value>
+  </data>
+  <data name="EditTrackedProjects_Button_SelectAll" xml:space="preserve">
+    <value>Välj alla</value>
+  </data>
+  <data name="Menu_MenuItem_Label_GoToAbout" xml:space="preserve">
+    <value>Om</value>
+  </data>
+  <data name="Menu_MenuItem_Label_GoToConnections" xml:space="preserve">
+    <value>Anslutningar</value>
+  </data>
+  <data name="Menu_MenuItem_Label_GoToDashboard" xml:space="preserve">
+    <value>Instrumentbräda</value>
+  </data>
+  <data name="Menu_MenuItem_Label_GoToSettings" xml:space="preserve">
+    <value>Inställningar</value>
+  </data>
+  <data name="RemoveConnection_Button_Cancel" xml:space="preserve">
+    <value>Avbryt</value>
+  </data>
+  <data name="RemoveConnection_Button_Remove" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="ViewAbout_Setting_Label_Attribution" xml:space="preserve">
+    <value>Erkännande</value>
+  </data>
+  <data name="ViewAbout_Setting_Label_Version" xml:space="preserve">
+    <value>Version</value>
+  </data>
+  <data name="ViewConnection_Button_Edit" xml:space="preserve">
+    <value>Redigera</value>
+  </data>
+  <data name="ViewConnection_Button_Filter" xml:space="preserve">
+    <value>Filtrera</value>
+  </data>
+  <data name="ViewConnection_Button_Remove" xml:space="preserve">
+    <value>Ta bort</value>
+  </data>
+  <data name="ViewConnection_Message_NoProjects" xml:space="preserve">
+    <value>Det finns inga projekt för denna anslutning</value>
+  </data>
+  <data name="ViewProject_Tile_Label_LatestBuild" xml:space="preserve">
+    <value>Senaste bygget</value>
+  </data>
+  <data name="ViewProject_Tile_Label_QueuedBuilds" xml:space="preserve">
+    <value>Köade byggen</value>
+  </data>
+  <data name="ViewProject_Tile_Message_NoBuilds" xml:space="preserve">
+    <value>Det finns inga byggen för detta projekt</value>
+  </data>
+  <data name="WizardEditPassphrase_Button_NextStep" xml:space="preserve">
+    <value>Nästa</value>
+  </data>
+  <data name="WizardEditPassphrase_Heading" xml:space="preserve">
+    <value>Låt oss börja med en lösenfras</value>
+  </data>
+  <data name="WizardEditPassphrase_Text" xml:space="preserve">
+    <value>Jag kommer att använda den för att kryptera dina inställningar</value>
+  </data>
+  <data name="WizardFinish_Button_Finish" xml:space="preserve">
+    <value>Avsluta</value>
+  </data>
+  <data name="WizardFinish_Heading" xml:space="preserve">
+    <value>Jag är redo</value>
+  </data>
+  <data name="WizardFinish_Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="WizardStart_Button_NextStep" xml:space="preserve">
+    <value>Kom igång</value>
+  </data>
+  <data name="WizardStart_Heading" xml:space="preserve">
+    <value>Hej, jag är Overseer</value>
+  </data>
+  <data name="WizardStart_Text" xml:space="preserve">
+    <value>Jag hjälper till att spåra dina byggen</value>
+  </data>
 </root>

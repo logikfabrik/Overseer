@@ -207,4 +207,145 @@ Please try again.</value>
   <data name="WizardEditPassphrase_Validation_Passphrase_NotEmpty" xml:space="preserve">
     <value>Passphrase is missing</value>
   </data>
+  <data name="AddConnection_Button_Add" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="AddConnection_Button_Cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="AddConnection_Button_TryConnect" xml:space="preserve">
+    <value>Try to connect</value>
+  </data>
+  <data name="AddConnection_View1" xml:space="preserve">
+    <value>Add connection</value>
+  </data>
+  <data name="Connections_Tile_Button_Add" xml:space="preserve">
+    <value>Add connection</value>
+  </data>
+  <data name="Connections_Tile_Message_NoConnections" xml:space="preserve">
+    <value>You have no connections. Get started by adding one.</value>
+  </data>
+  <data name="EditConnectionSettings_Setting_Description_BuildsPerProject" xml:space="preserve">
+    <value>Number of builds to get from the CI/DI service per project</value>
+  </data>
+  <data name="EditConnectionSettings_Setting_Label_BuildsPerProject" xml:space="preserve">
+    <value>Builds per project</value>
+  </data>
+  <data name="EditConnectionSettings_Setting_Label_TrackedProjects" xml:space="preserve">
+    <value>Projects</value>
+  </data>
+  <data name="EditConnection_Button_Cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="EditConnection_Button_Edit" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="EditConnection_Button_TryConnect" xml:space="preserve">
+    <value>Try to connect</value>
+  </data>
+  <data name="EditConnection_View1" xml:space="preserve">
+    <value>Edit connection</value>
+  </data>
+  <data name="EditSettings_Button_Cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="EditSettings_Button_Save" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="EditSettings_Setting_Description_CultureName" xml:space="preserve">
+    <value>Changing language will restart the program</value>
+  </data>
+  <data name="EditSettings_Setting_Description_Interval" xml:space="preserve">
+    <value>Time (s) between updates</value>
+  </data>
+  <data name="EditSettings_Setting_Label_CultureName" xml:space="preserve">
+    <value>Language</value>
+  </data>
+  <data name="EditSettings_Setting_Label_Interval" xml:space="preserve">
+    <value>Interval</value>
+  </data>
+  <data name="EditSettings_View1" xml:space="preserve">
+    <value>Edit settings</value>
+  </data>
+  <data name="EditTrackedProjects_Button_DeselectAll" xml:space="preserve">
+    <value>Deselect all</value>
+  </data>
+  <data name="EditTrackedProjects_Button_Filter" xml:space="preserve">
+    <value>Filter</value>
+  </data>
+  <data name="EditTrackedProjects_Button_SelectAll" xml:space="preserve">
+    <value>Select all</value>
+  </data>
+  <data name="Menu_MenuItem_Label_GoToAbout" xml:space="preserve">
+    <value>About</value>
+  </data>
+  <data name="Menu_MenuItem_Label_GoToConnections" xml:space="preserve">
+    <value>Connections</value>
+  </data>
+  <data name="Menu_MenuItem_Label_GoToDashboard" xml:space="preserve">
+    <value>Dashboard</value>
+  </data>
+  <data name="Menu_MenuItem_Label_GoToSettings" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+  <data name="RemoveConnection_Button_Cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="RemoveConnection_Button_Remove" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="ViewAbout_Setting_Label_Attribution" xml:space="preserve">
+    <value>Attribution</value>
+  </data>
+  <data name="ViewAbout_Setting_Label_Version" xml:space="preserve">
+    <value>Version</value>
+  </data>
+  <data name="ViewConnection_Button_Edit" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="ViewConnection_Button_Filter" xml:space="preserve">
+    <value>Filter</value>
+  </data>
+  <data name="ViewConnection_Button_Remove" xml:space="preserve">
+    <value>Remove</value>
+  </data>
+  <data name="ViewConnection_Message_NoProjects" xml:space="preserve">
+    <value>There are no projects for this connection</value>
+  </data>
+  <data name="ViewProject_Tile_Label_LatestBuild" xml:space="preserve">
+    <value>Latest build</value>
+  </data>
+  <data name="ViewProject_Tile_Label_QueuedBuilds" xml:space="preserve">
+    <value>Queued builds</value>
+  </data>
+  <data name="ViewProject_Tile_Message_NoBuilds" xml:space="preserve">
+    <value>There are no builds for this project</value>
+  </data>
+  <data name="WizardEditPassphrase_Button_NextStep" xml:space="preserve">
+    <value>Next</value>
+  </data>
+  <data name="WizardEditPassphrase_Heading" xml:space="preserve">
+    <value>Let's start with a passphrase</value>
+  </data>
+  <data name="WizardEditPassphrase_Text" xml:space="preserve">
+    <value>I'll use it to encrypt your settings</value>
+  </data>
+  <data name="WizardFinish_Button_Finish" xml:space="preserve">
+    <value>Finish</value>
+  </data>
+  <data name="WizardFinish_Heading" xml:space="preserve">
+    <value>I'm ready</value>
+  </data>
+  <data name="WizardFinish_Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="WizardStart_Button_NextStep" xml:space="preserve">
+    <value>Get started</value>
+  </data>
+  <data name="WizardStart_Heading" xml:space="preserve">
+    <value>Hi, I'm Overseer</value>
+  </data>
+  <data name="WizardStart_Text" xml:space="preserve">
+    <value>I'll help track your builds</value>
+  </data>
 </root>

@@ -364,14 +364,6 @@
               KeyPath="yes" />
       </Component>
 
-      <Component Id="cmp3838291D1134479F8DE87E2ACF53270B"
-                 Guid="3838291D-1134-479F-8DE8-7E2ACF53270B"
-                 Directory="dirAB1506D5F38C44EB96FB28C4C896C3F1">
-        <File Id="filCA02272EC3D34A3F8E98397D0BE462B0"
-              Source="$(var.Logikfabrik.Overseer.WPF.Client.TargetDir)sv-SE\Overseer.resources.dll"
-              KeyPath="yes" />
-      </Component>
-
       <Component Id="cmpF869DD40B0994CDD8FF199E18D52C8D5"
                  Guid="F869DD40-B099-4CDD-8FF1-99E18D52C8D5"
                  Directory="INSTALLFOLDER">

@@ -122,16 +122,6 @@
     <Compile Include="KernelConfigurator.cs" />
     <Compile Include="DataBindingLanguageConfigurator.cs" />
     <Compile Include="NativeMethods.cs" />
-    <Compile Include="Properties\Resources.sv-SE.Designer.cs">
-      <DependentUpon>Resources.sv-SE.resx</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
     <Compile Include="Providers\InputManagerProvider.cs" />
     <Compile Include="Providers\LoggerProvider.cs" />
     <Compile Include="Providers\Settings\ConnectionSettingsSerializerProvider.cs" />
@@ -569,16 +559,6 @@
   <ItemGroup>
     <Analyzer Include="..\packages\StyleCop.Analyzers.1.0.2\analyzers\dotnet\cs\StyleCop.Analyzers.CodeFixes.dll" />
     <Analyzer Include="..\packages\StyleCop.Analyzers.1.0.2\analyzers\dotnet\cs\StyleCop.Analyzers.dll" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Properties\Resources.sv-SE.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.sv-SE.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Overseer.ico" />
