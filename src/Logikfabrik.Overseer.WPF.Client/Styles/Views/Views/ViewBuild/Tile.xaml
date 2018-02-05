@@ -55,7 +55,7 @@
                         </Border.Style>
                         <StackPanel>
                             <Border Style="{StaticResource Views.Views.ViewBuild.Tile.Header.Panel}">
-                                <TextBlock Text="{Binding Name, Mode=OneWay}" />
+                                <TextBlock Style="{StaticResource Views.Views.ViewBuild.Tile.Header.Header}" Text="{Binding Name, Mode=OneWay}" />
                             </Border>
                             <WrapPanel>
                                 <userControls:ValueControl
