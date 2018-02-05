@@ -30,7 +30,7 @@
                 <ResourceDictionary Source="pack://application:,,,/Logikfabrik.Overseer.WPF;component/Styles/Controls/Viewbox.xaml" />
 
                 <!--  Styles  -->
-                <ResourceDictionary Source="pack://application:,,,/Logikfabrik.Overseer.WPF;component/Styles/Views.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/Logikfabrik.Overseer.WPF;component/Styles/Views/Shared/Shared.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/Logikfabrik.Overseer.WPF;component/Styles/Views/Views/BuildProvider.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>

@@ -35,7 +35,7 @@
                 <ResourceDictionary Source="pack://application:,,,/Logikfabrik.Overseer.WPF;component/Styles/Controls/Viewbox.xaml" />
 
                 <!--  Styles  -->
-                <ResourceDictionary Source="pack://application:,,,/Logikfabrik.Overseer.WPF;component/Styles/Views.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/Logikfabrik.Overseer.WPF;component/Styles/Views/Shared/Shared.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/Logikfabrik.Overseer.WPF;component/Styles/Views/Views/BuildProvider.xaml" />
 
                 <!--  Local brushes  -->
@@ -64,10 +64,18 @@
                 <ResourceDictionary Source="Styles/Views/Views/Connections/Bricks.xaml" />
                 <ResourceDictionary Source="Styles/Views/Views/Connections/Tiles.xaml" />
                 <ResourceDictionary Source="Styles/Views/Views/Connections/WizardBricks.xaml" />
+                <ResourceDictionary Source="Styles/Views/Views/ViewBuild/Tile/Header/Header.xaml" />
+                <ResourceDictionary Source="Styles/Views/Views/ViewBuild/Tile/Header/Panel.xaml" />
                 <ResourceDictionary Source="Styles/Views/Views/ViewBuild/Tile.xaml" />
                 <ResourceDictionary Source="Styles/Views/Views/ViewConnection/Brick.xaml" />
                 <ResourceDictionary Source="Styles/Views/Views/ViewConnection/Tile.xaml" />
                 <ResourceDictionary Source="Styles/Views/Views/ViewConnection/WizardBrick.xaml" />
+                <ResourceDictionary Source="Styles/Views/Views/ViewProject/Tile/Header/Header.xaml" />
+                <ResourceDictionary Source="Styles/Views/Views/ViewProject/Tile/Header/Panel.xaml" />
+                <ResourceDictionary Source="Styles/Views/Views/ViewProject/Tile/LatestBuild/Header.xaml" />
+                <ResourceDictionary Source="Styles/Views/Views/ViewProject/Tile/LatestBuild/Panel.xaml" />
+                <ResourceDictionary Source="Styles/Views/Views/ViewProject/Tile/QueuedBuilds/Header.xaml" />
+                <ResourceDictionary Source="Styles/Views/Views/ViewProject/Tile/QueuedBuilds/Panel.xaml" />
                 <ResourceDictionary Source="Styles/Views/Views/ViewProject/Tile.xaml" />
                 <ResourceDictionary Source="Styles/Views/Views/AppError.xaml" />
                 <ResourceDictionary Source="Styles/Views/Views/AppMenu.xaml" />

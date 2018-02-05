@@ -1,0 +1,17 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="Filter/TextBox.xaml" />
+        <ResourceDictionary Source="Footer/Panel.xaml" />
+        <ResourceDictionary Source="Header/Header.xaml" />
+        <ResourceDictionary Source="Header/Panel.xaml" />
+        <ResourceDictionary Source="Menu/Panel.xaml" />
+        <ResourceDictionary Source="Section/Empty/Header.xaml" />
+        <ResourceDictionary Source="Section/Empty/Panel.xaml" />
+        <ResourceDictionary Source="Section/Header.xaml" />
+        <ResourceDictionary Source="Section/Panel.xaml" />
+        <ResourceDictionary Source="Setting/Description.xaml" />
+        <ResourceDictionary Source="Setting/Label.xaml" />
+        <ResourceDictionary Source="Setting/Panel.xaml" />
+        <ResourceDictionary Source="Setting/Value.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+</ResourceDictionary>

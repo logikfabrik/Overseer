@@ -54,7 +54,7 @@
                             </MultiBinding>
                         </Border.Style>
                         <StackPanel>
-                            <Border Style="{StaticResource Build.Base.Header.Panel}">
+                            <Border Style="{StaticResource Views.Views.ViewBuild.Tile.Header.Panel}">
                                 <TextBlock Text="{Binding Name, Mode=OneWay}" />
                             </Border>
                             <WrapPanel>

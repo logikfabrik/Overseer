@@ -17,16 +17,16 @@
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="*" />
                         </Grid.RowDefinitions>
-                        <Border Grid.Row="0" Style="{StaticResource Common.Header.Panel}">
-                            <TextBlock Text="{Binding Source={x:Static p:Resources.ViewAbout_View}, Converter={StaticResource StringToUpperCaseConverter}}" />
+                        <Border Grid.Row="0" Style="{StaticResource Views.Shared.Header.Panel}">
+                            <TextBlock Style="{StaticResource Views.Shared.Header.Header}" Text="{Binding Source={x:Static p:Resources.ViewAbout_View}, Converter={StaticResource StringToUpperCaseConverter}}" />
                         </Border>
                         <ScrollViewer Grid.Row="1">
                             <StackPanel>
-                                <StackPanel Style="{StaticResource Common.Setting.Panel}">
-                                    <TextBlock Style="{StaticResource Common.Setting.Label}" Text="{Binding Source={x:Static p:Resources.ViewAbout_Setting_Label_Version}, Converter={StaticResource StringToUpperCaseConverter}}" />
-                                    <TextBlock Style="{StaticResource Common.Setting.Value}" Text="{Binding Version, Mode=OneTime}" />
+                                <StackPanel Style="{StaticResource Views.Shared.Setting.Panel}">
+                                    <TextBlock Style="{StaticResource Views.Shared.Setting.Label}" Text="{Binding Source={x:Static p:Resources.ViewAbout_Setting_Label_Version}, Converter={StaticResource StringToUpperCaseConverter}}" />
+                                    <TextBlock Style="{StaticResource Views.Shared.Setting.Value}" Text="{Binding Version, Mode=OneTime}" />
                                 </StackPanel>
-                                <StackPanel Style="{StaticResource Common.Section.Panel}">
+                                <StackPanel Style="{StaticResource Views.Shared.Section.Panel}">
                                     <TextBlock>
                                         Overseer is a Windows task bar app for build notifications.
                                     </TextBlock>
@@ -35,8 +35,8 @@
                                         Get involved and help out on<Hyperlink NavigateUri="https://github.com/logikfabrik/overseer">GitHub</Hyperlink>
                                         .</TextBlock>
                                 </StackPanel>
-                                <StackPanel Style="{StaticResource Common.Section.Panel}">
-                                    <TextBlock Style="{StaticResource Common.Section.Header}" Text="{Binding Source={x:Static p:Resources.ViewAbout_Setting_Label_Attribution}, Converter={StaticResource StringToUpperCaseConverter}}" />
+                                <StackPanel Style="{StaticResource Views.Shared.Section.Panel}">
+                                    <TextBlock Style="{StaticResource Views.Shared.Section.Header}" Text="{Binding Source={x:Static p:Resources.ViewAbout_Setting_Label_Attribution}, Converter={StaticResource StringToUpperCaseConverter}}" />
                                     <TextBlock>
                                         <Hyperlink NavigateUri="https://github.com/Caliburn-Micro/Caliburn.Micro">Caliburn.Micro</Hyperlink>
                                         <LineBreak />

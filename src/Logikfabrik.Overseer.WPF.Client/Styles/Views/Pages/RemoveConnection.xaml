@@ -9,10 +9,10 @@
                 <ControlTemplate>
                     <ScrollViewer>
                         <StackPanel>
-                            <StackPanel Style="{StaticResource Common.Section.Panel}">
+                            <StackPanel Style="{StaticResource Views.Shared.Section.Panel}">
                                 <TextBlock Text="Are you sure you want to remove the connection?" TextWrapping="Wrap" />
                             </StackPanel>
-                            <WrapPanel Style="{StaticResource Common.Footer}">
+                            <WrapPanel Style="{StaticResource Views.Shared.Footer.Panel}">
                                 <Button
                                     cal:Message.Attach="Remove"
                                     Content="{x:Static p:Resources.RemoveConnection_Button_Remove}"

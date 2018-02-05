@@ -13,8 +13,8 @@
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="*" />
                         </Grid.RowDefinitions>
-                        <Border Grid.Row="0" Style="{StaticResource Common.Header.Panel}">
-                            <TextBlock Text="{Binding Source={x:Static p:Resources.AddConnection_View}, Converter={StaticResource StringToUpperCaseConverter}}" />
+                        <Border Grid.Row="0" Style="{StaticResource Views.Shared.Header.Panel}">
+                            <TextBlock Style="{StaticResource Views.Shared.Header.Header}" Text="{Binding Source={x:Static p:Resources.AddConnection_View}, Converter={StaticResource StringToUpperCaseConverter}}" />
                         </Border>
                         <ScrollViewer Grid.Row="1">
                             <StackPanel>
@@ -23,7 +23,7 @@
                                     VerticalAlignment="Stretch"
                                     cal:View.Model="{Binding Settings, Mode=OneWay}"
                                     Focusable="False" />
-                                <StackPanel Style="{StaticResource Common.Section.Panel}">
+                                <StackPanel Style="{StaticResource Views.Shared.Section.Panel}">
                                     <Grid>
                                         <Button
                                             cal:Message.Attach="TryConnect"
@@ -36,19 +36,19 @@
                                     </Grid>
                                     <TextBlock Text="{Binding ConnectionTask.Exception, Converter={StaticResource AddConnectionViewExceptionToLocalizedStringConverter}}" Visibility="{Binding ConnectionTask.Status, Converter={StaticResource TaskStatusFaultedToVisibilityConverter}}" />
                                 </StackPanel>
-                                <StackPanel Style="{StaticResource Common.Setting.Panel}" Visibility="{Binding HasConnected, Converter={StaticResource BooleanToVisibilityConverter}}">
-                                    <TextBlock Style="{StaticResource Common.Setting.Label}" Text="{Binding Source={x:Static p:Resources.EditConnectionSettings_Setting_Label_TrackedProjects}, Converter={StaticResource StringToUpperCaseConverter}}" />
+                                <StackPanel Style="{StaticResource Views.Shared.Setting.Panel}" Visibility="{Binding HasConnected, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                    <TextBlock Style="{StaticResource Views.Shared.Setting.Label}" Text="{Binding Source={x:Static p:Resources.EditConnectionSettings_Setting_Label_TrackedProjects}, Converter={StaticResource StringToUpperCaseConverter}}" />
                                     <ContentControl
                                         MaxHeight="304"
                                         cal:View.Model="{Binding Settings.TrackedProjects, Mode=OneWay}"
                                         Focusable="False" />
                                 </StackPanel>
-                                <StackPanel Style="{StaticResource Common.Setting.Panel}">
-                                    <TextBlock Style="{StaticResource Common.Setting.Label}" Text="{Binding Source={x:Static p:Resources.EditConnectionSettings_Setting_Label_BuildsPerProject}, Converter={StaticResource StringToUpperCaseConverter}}" />
-                                    <TextBlock Style="{StaticResource Common.Setting.Description}" Text="{x:Static p:Resources.EditConnectionSettings_Setting_Description_BuildsPerProject}" />
+                                <StackPanel Style="{StaticResource Views.Shared.Setting.Panel}">
+                                    <TextBlock Style="{StaticResource Views.Shared.Setting.Label}" Text="{Binding Source={x:Static p:Resources.EditConnectionSettings_Setting_Label_BuildsPerProject}, Converter={StaticResource StringToUpperCaseConverter}}" />
+                                    <TextBlock Style="{StaticResource Views.Shared.Setting.Description}" Text="{x:Static p:Resources.EditConnectionSettings_Setting_Description_BuildsPerProject}" />
                                     <TextBox Text="{Binding Settings.BuildsPerProject, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" />
                                 </StackPanel>
-                                <WrapPanel Style="{StaticResource Common.Footer}">
+                                <WrapPanel Style="{StaticResource Views.Shared.Footer.Panel}">
                                     <Button
                                         cal:Message.Attach="Add"
                                         Content="{x:Static p:Resources.AddConnection_Button_Add}"

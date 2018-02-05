@@ -11,13 +11,13 @@
     d:DesignWidth="300"
     mc:Ignorable="d">
     <StackPanel>
-        <StackPanel Style="{StaticResource Common.Setting.Panel}">
-            <TextBlock Style="{StaticResource Common.Setting.Label}" Text="{Binding Source={x:Static p:Resources.EditConnectionSettings_Setting_Label_Name}, Converter={StaticResource StringToUpperCaseConverter}}" />
+        <StackPanel Style="{StaticResource Views.Shared.Setting.Panel}">
+            <TextBlock Style="{StaticResource Views.Shared.Setting.Label}" Text="{Binding Source={x:Static p:Resources.EditConnectionSettings_Setting_Label_Name}, Converter={StaticResource StringToUpperCaseConverter}}" />
             <TextBox Text="{Binding Name, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" />
         </StackPanel>
-        <StackPanel Style="{StaticResource Common.Setting.Panel}">
-            <TextBlock Style="{StaticResource Common.Setting.Label}" Text="{Binding Source={x:Static p:Resources.EditConnectionSettings_Setting_Label_Token}, Converter={StaticResource StringToUpperCaseConverter}}" />
-            <TextBlock Style="{StaticResource Common.Setting.Description}">
+        <StackPanel Style="{StaticResource Views.Shared.Setting.Panel}">
+            <TextBlock Style="{StaticResource Views.Shared.Setting.Label}" Text="{Binding Source={x:Static p:Resources.EditConnectionSettings_Setting_Label_Token}, Converter={StaticResource StringToUpperCaseConverter}}" />
+            <TextBlock Style="{StaticResource Views.Shared.Setting.Description}">
                 <Run Text="{x:Static p:Resources.EditConnectionSettings_Setting_Description_Token}" />
                 <Hyperlink ex:HyperlinkExtensions.IsExternal="True" NavigateUri="{Binding Source={x:Static circleCi:UriUtility.BaseUri}}">circleci.com</Hyperlink>
             </TextBlock>

@@ -36,8 +36,8 @@
                                 </ItemsPanelTemplate>
                             </ItemsControl.ItemsPanel>
                         </ItemsControl>
-                        <StackPanel Style="{StaticResource Common.Empty.Section.Panel}" Visibility="{Binding HasNoConnections, Converter={StaticResource BooleanToVisibilityConverter}}">
-                            <TextBlock Style="{StaticResource Common.Empty.Section.Header}" Text="{Binding Source={x:Static p:Resources.Connections_Tile_Message_NoConnections}}" />
+                        <StackPanel Style="{StaticResource Views.Shared.Section.Empty.Panel}" Visibility="{Binding HasNoConnections, Converter={StaticResource BooleanToVisibilityConverter}}">
+                            <TextBlock Style="{StaticResource Views.Shared.Section.Empty.Header}" Text="{Binding Source={x:Static p:Resources.Connections_Tile_Message_NoConnections}}" />
                             <Button cal:Message.Attach="Add">
                                 <StackPanel>
                                     <Viewbox>

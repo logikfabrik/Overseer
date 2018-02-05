@@ -32,7 +32,7 @@
                                 </ItemsControl.Template>
                             </ItemsControl>
                         </Border>
-                        <Border Grid.Row="1" Style="{StaticResource Common.ContextMenu}">
+                        <Border Grid.Row="1" Style="{StaticResource Views.Shared.Menu.Panel}">
                             <StackPanel>
                                 <Grid>
                                     <Grid.ColumnDefinitions>
@@ -61,7 +61,7 @@
                                         Content="{x:Static p:Resources.EditTrackedProjects_Button_DeselectAll}" />
                                 </Grid>
                                 <TextBox
-                                    Style="{StaticResource Common.Filter}"
+                                    Style="{StaticResource Views.Shared.Filter.TextBox}"
                                     Text="{Binding Filter, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                     Visibility="{Binding ElementName=PART_Filter, Path=IsChecked, Converter={StaticResource BooleanToVisibilityConverter}}" />
                             </StackPanel>

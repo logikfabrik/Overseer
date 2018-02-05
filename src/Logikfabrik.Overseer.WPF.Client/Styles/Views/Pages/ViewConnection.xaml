@@ -14,8 +14,8 @@
                                 <RowDefinition Height="*" />
                                 <RowDefinition Height="Auto" />
                             </Grid.RowDefinitions>
-                            <Border Grid.Row="0" Style="{StaticResource Common.Header.Panel}">
-                                <TextBlock Text="{Binding SettingsName, Converter={StaticResource StringToUpperCaseConverter}}" />
+                            <Border Grid.Row="0" Style="{StaticResource Views.Shared.Header.Panel}">
+                                <TextBlock Style="{StaticResource Views.Shared.Header.Header}" Text="{Binding SettingsName, Converter={StaticResource StringToUpperCaseConverter}}" />
                             </Border>
                             <ItemsControl
                                 Grid.Row="1"
@@ -43,7 +43,7 @@
                                     </ControlTemplate>
                                 </ItemsControl.Template>
                             </ItemsControl>
-                            <Border Grid.Row="2" Style="{StaticResource Common.ContextMenu}">
+                            <Border Grid.Row="2" Style="{StaticResource Views.Shared.Menu.Panel}">
                                 <StackPanel>
                                     <Grid>
                                         <Grid.ColumnDefinitions>
@@ -85,14 +85,14 @@
                                         </Button>
                                     </Grid>
                                     <TextBox
-                                        Style="{StaticResource Common.Filter}"
+                                        Style="{StaticResource Views.Shared.Filter.TextBox}"
                                         Text="{Binding Filter, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                         Visibility="{Binding ElementName=PART_Filter, Path=IsChecked, Converter={StaticResource BooleanToVisibilityConverter}}" />
                                 </StackPanel>
                             </Border>
                         </Grid>
-                        <StackPanel Style="{DynamicResource Common.Empty.Section.Panel}" Visibility="{Binding HasNoProjects, Converter={StaticResource BooleanToVisibilityConverter}}">
-                            <TextBlock Style="{DynamicResource Common.Empty.Section.Header}" Text="{Binding Source={x:Static p:Resources.ViewConnection_Message_NoProjects}}" />
+                        <StackPanel Style="{StaticResource Views.Shared.Section.Empty.Panel}" Visibility="{Binding HasNoProjects, Converter={StaticResource BooleanToVisibilityConverter}}">
+                            <TextBlock Style="{StaticResource Views.Shared.Section.Empty.Header}" Text="{Binding Source={x:Static p:Resources.ViewConnection_Message_NoProjects}}" />
                         </StackPanel>
                     </Grid>
                 </ControlTemplate>
