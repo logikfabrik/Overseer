@@ -10,9 +10,9 @@ namespace Logikfabrik.Overseer
     public interface IAppSettingsFactory
     {
         /// <summary>
-        /// Creates an <see cref="AppSettings" /> instance.
+        /// Creates an <see cref="IAppSettings" /> instance.
         /// </summary>
-        /// <returns>An <see cref="AppSettings" /> instance.</returns>
-        AppSettings Create();
+        /// <returns>An <see cref="IAppSettings" /> instance.</returns>
+        IAppSettings Create();
     }
 }

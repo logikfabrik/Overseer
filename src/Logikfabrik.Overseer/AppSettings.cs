@@ -10,14 +10,9 @@ namespace Logikfabrik.Overseer
     /// The <see cref="AppSettings" /> class.
     /// </summary>
     // ReSharper disable once InheritdocConsiderUsage
-    public class AppSettings : ApplicationSettingsBase
+    public class AppSettings : ApplicationSettingsBase, IAppSettings
     {
-        /// <summary>
-        /// Gets or sets the interval in seconds.
-        /// </summary>
-        /// <value>
-        /// The interval in seconds.
-        /// </value>
+        /// <inheritdoc />
         [UserScopedSetting]
         public int Interval
         {
@@ -25,20 +20,10 @@ namespace Logikfabrik.Overseer
             set { this["Interval"] = value; }
         }
 
-        /// <summary>
-        /// Gets the expiration.
-        /// </summary>
-        /// <value>
-        /// The expiration.
-        /// </value>
+        /// <inheritdoc />
         public int Expiration => Interval;
 
-        /// <summary>
-        /// Gets or sets the culture name.
-        /// </summary>
-        /// <value>
-        /// The culture name.
-        /// </value>
+        /// <inheritdoc />
         [UserScopedSetting]
         public string CultureName
         {

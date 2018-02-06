@@ -19,7 +19,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     {
         private readonly IApp _application;
         private readonly EditSettingsViewModelValidator _validator;
-        private readonly AppSettings _applicationSettings;
+        private readonly IAppSettings _applicationSettings;
         private int _interval;
         private string _cultureName;
 

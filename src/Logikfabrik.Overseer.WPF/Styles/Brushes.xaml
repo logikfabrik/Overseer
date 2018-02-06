@@ -11,25 +11,18 @@
         Dark #73cb00
     -->
 
-    <Color
-        x:Key="Effect.Shadow"
-        B="34"
-        G="34"
-        R="34" />
-
     <Color x:Key="Color.Yellow">#E1FF57</Color>
-
     <Color x:Key="Color.Black">#222222</Color>
-
     <Color x:Key="Color.LightGrey">#7E7E7E</Color>
     <Color x:Key="Color.Grey">#525252</Color>
     <Color x:Key="Color.DarkGrey">#2A2A2A</Color>
+    <Color x:Key="Color.Red">#FF3300</Color>
 
     <SolidColorBrush x:Key="Brush.Yellow" Color="{StaticResource Color.Yellow}" />
     <SolidColorBrush x:Key="Brush.LightGrey" Color="{StaticResource Color.LightGrey}" />
 
     <SolidColorBrush x:Key="Control.Focus" Color="{StaticResource Color.Yellow}" />
-    <SolidColorBrush x:Key="Control.Error" Color="#FF3300" />
+    <SolidColorBrush x:Key="Control.Error" Color="{StaticResource Color.Red}" />
 
     <SolidColorBrush x:Key="Window.Background" Color="{StaticResource Color.DarkGrey}" />
     <SolidColorBrush x:Key="Window.Foreground" Color="White" />

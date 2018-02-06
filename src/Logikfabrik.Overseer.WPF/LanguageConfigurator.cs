@@ -27,7 +27,7 @@ namespace Logikfabrik.Overseer.WPF
         /// Configures language.
         /// </summary>
         /// <param name="appSettings">The application settings.</param>
-        public static void Configure(AppSettings appSettings)
+        public static void Configure(IAppSettings appSettings)
         {
             Ensure.That(appSettings).IsNotNull();
 

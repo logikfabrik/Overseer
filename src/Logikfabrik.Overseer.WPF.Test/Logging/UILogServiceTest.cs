@@ -20,33 +20,22 @@ namespace Logikfabrik.Overseer.WPF.Test.Logging
         [Fact]
         public void CanLogInfo()
         {
-            var mocker = new AutoMocker();
-
-            var uiLogService = mocker.CreateInstance<UILogService>();
-
-            var logServiceMock = mocker.GetMock<ILogService>();
-
-            uiLogService.Info(null, null);
-
-            logServiceMock.Verify(m => m.Log(It.IsAny<Type>(), It.Is<LogEntry>(entry => entry.Type == LogEntryType.Information)), Times.Once);
+            CanLog(uiLogService => uiLogService.Info(null, null), LogEntryType.Information);
         }
 
         [Fact]
         public void CanLogWarn()
         {
-            var mocker = new AutoMocker();
-
-            var uiLogService = mocker.CreateInstance<UILogService>();
-
-            var logServiceMock = mocker.GetMock<ILogService>();
-
-            uiLogService.Warn(null, null);
-
-            logServiceMock.Verify(m => m.Log(It.IsAny<Type>(), It.Is<LogEntry>(entry => entry.Type == LogEntryType.Warning)), Times.Once);
+            CanLog(uiLogService => uiLogService.Warn(null, null), LogEntryType.Warning);
         }
 
         [Fact]
         public void CanLogError()
+        {
+            CanLog(uiLogService => uiLogService.Error(null), LogEntryType.Error);
+        }
+
+        private static void CanLog(Action<IUILogService> action, LogEntryType type)
         {
             var mocker = new AutoMocker();
 
@@ -54,9 +43,9 @@ namespace Logikfabrik.Overseer.WPF.Test.Logging
 
             var logServiceMock = mocker.GetMock<ILogService>();
 
-            uiLogService.Error(null);
+            action(uiLogService);
 
-            logServiceMock.Verify(m => m.Log(It.IsAny<Type>(), It.Is<LogEntry>(entry => entry.Type == LogEntryType.Error)), Times.Once);
+            logServiceMock.Verify(m => m.Log(It.IsAny<Type>(), It.Is<LogEntry>(entry => entry.Type == type)), Times.Once);
         }
     }
 }
