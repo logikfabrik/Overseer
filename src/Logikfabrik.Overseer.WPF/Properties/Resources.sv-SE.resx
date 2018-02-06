@@ -223,7 +223,7 @@ Vänligen försök igen.</value>
     <value>Lägg till anslutning</value>
   </data>
   <data name="Connections_Tile_Message_NoConnections" xml:space="preserve">
-    <value>Du har inga anslutningar. Kom igång genom att lägga till en.</value>
+    <value>Lägg till en anslutning för att komma igång</value>
   </data>
   <data name="EditConnectionSettings_Setting_Description_BuildsPerProject" xml:space="preserve">
     <value>Antal byggen att hämta från CI/DI-tjänsten per projekt</value>

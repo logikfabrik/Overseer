@@ -19,6 +19,7 @@
                                                 <Setter Property="HorizontalContentAlignment" Value="Stretch" />
                                                 <Setter Property="Background" Value="{StaticResource Brush.AltGrey}" />
                                                 <Setter Property="BorderBrush" Value="{StaticResource Brush.AltGrey}" />
+                                                <Setter Property="Padding" Value="45,5,10,5" />
                                             </Style>
                                         </ContentControl.Resources>
                                     </ContentControl>

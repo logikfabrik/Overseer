@@ -165,7 +165,7 @@ namespace Logikfabrik.Overseer.WPF.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You have no connections. Get started by adding one..
+        ///   Looks up a localized string similar to Add a connection to get started.
         /// </summary>
         public static string Connections_Tile_Message_NoConnections {
             get {

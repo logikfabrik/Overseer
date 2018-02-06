@@ -223,7 +223,7 @@ Please try again.</value>
     <value>Add connection</value>
   </data>
   <data name="Connections_Tile_Message_NoConnections" xml:space="preserve">
-    <value>You have no connections. Get started by adding one.</value>
+    <value>Add a connection to get started</value>
   </data>
   <data name="EditConnectionSettings_Setting_Description_BuildsPerProject" xml:space="preserve">
     <value>Number of builds to get from the CI/DI service per project</value>
