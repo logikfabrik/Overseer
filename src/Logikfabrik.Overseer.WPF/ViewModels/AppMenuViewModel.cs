@@ -38,6 +38,8 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// <param name="editSettingsViewModelNavigationMessageFactory"></param>
         /// <param name="viewAboutViewModelNavigationMessageFactory"></param>
         /// <param name="connectionsListViewModel">The connections list view model.</param>
+#pragma warning disable S107 // Methods should not have too many parameters
+
         // ReSharper disable once InheritdocConsiderUsage
         public AppMenuViewModel(
             IEventAggregator eventAggregator,
@@ -49,6 +51,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             INavigationMessageFactory<ViewAboutViewModel> viewAboutViewModelNavigationMessageFactory,
             ConnectionsViewModel connectionsListViewModel)
         {
+#pragma warning restore S107 // Methods should not have too many parameters
             Ensure.That(eventAggregator).IsNotNull();
             Ensure.That(mouseManager).IsNotNull();
             Ensure.That(viewDashboardViewModelNavigationMessageFactory).IsNotNull();

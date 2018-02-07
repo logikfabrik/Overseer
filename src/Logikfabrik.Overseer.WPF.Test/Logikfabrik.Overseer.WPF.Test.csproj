@@ -109,6 +109,7 @@
     <Compile Include="ViewModels\AboutViewModelTest.cs" />
     <Compile Include="ViewModels\AppErrorViewModelTest.cs" />
     <Compile Include="ViewModels\AppMenuViewModelTest.cs" />
+    <Compile Include="ViewModels\ViewBuildViewModelTest.cs" />
     <Compile Include="ViewModels\ViewModelTest.cs" />
   </ItemGroup>
   <ItemGroup>
