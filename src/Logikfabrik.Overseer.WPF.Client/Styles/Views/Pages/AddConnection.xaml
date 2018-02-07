@@ -55,7 +55,7 @@
                                         IsDefault="True"
                                         IsEnabled="{Binding IsValidAndHasConnected, Mode=OneWay}" />
                                     <Button
-                                        cal:Message.Attach="TryClose(null)"
+                                        cal:Message.Attach="Cancel"
                                         Content="{x:Static p:Resources.AddConnection_Button_Cancel}"
                                         IsCancel="True" />
                                 </WrapPanel>

@@ -33,6 +33,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         private readonly IEditTrackedProjectViewModelFactory _editTrackedProjectViewModelFactory;
         private readonly IEditTrackedProjectsViewModelFactory _editTrackedProjectsViewModelFactory;
         private readonly INavigationMessageFactory<ViewConnectionsViewModel> _viewConnectionsNavigationMessageFactory;
+        private readonly INavigationMessageFactory<NewConnectionViewModel> _newConnectionNavigationMessageFactory;
         private INotifyTask _connectionTask;
         private bool _hasConnected;
         private EditConnectionSettingsViewModel<T1> _settings;
@@ -49,6 +50,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// <param name="editTrackedProjectsViewModelFactory">The edit tracked projects view model factory.</param>
         /// <param name="editConnectionSettingsFactory">The edit connection settings factory.</param>
         /// <param name="viewConnectionsNavigationMessageFactory">The view connections navigation message factory.</param>
+        /// <param name="newConnectionNavigationMessageFactory">The new connection navigation message factory.</param>
         // ReSharper disable once InheritdocConsiderUsage
         public AddConnectionViewModel(
             IPlatformProvider platformProvider,
@@ -59,7 +61,8 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             IEditTrackedProjectViewModelFactory editTrackedProjectViewModelFactory,
             IEditTrackedProjectsViewModelFactory editTrackedProjectsViewModelFactory,
             IEditConnectionSettingsViewModelFactory<T1, T2> editConnectionSettingsFactory,
-            INavigationMessageFactory<ViewConnectionsViewModel> viewConnectionsNavigationMessageFactory)
+            INavigationMessageFactory<ViewConnectionsViewModel> viewConnectionsNavigationMessageFactory,
+            INavigationMessageFactory<NewConnectionViewModel> newConnectionNavigationMessageFactory)
             : base(platformProvider)
         {
             Ensure.That(eventAggregator).IsNotNull();
@@ -70,6 +73,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             Ensure.That(editTrackedProjectsViewModelFactory).IsNotNull();
             Ensure.That(editConnectionSettingsFactory).IsNotNull();
             Ensure.That(viewConnectionsNavigationMessageFactory).IsNotNull();
+            Ensure.That(newConnectionNavigationMessageFactory).IsNotNull();
 
             _eventAggregator = eventAggregator;
             _logService = logService;
@@ -78,6 +82,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             _editTrackedProjectViewModelFactory = editTrackedProjectViewModelFactory;
             _editTrackedProjectsViewModelFactory = editTrackedProjectsViewModelFactory;
             _viewConnectionsNavigationMessageFactory = viewConnectionsNavigationMessageFactory;
+            _newConnectionNavigationMessageFactory = newConnectionNavigationMessageFactory;
 
             _connectionTask = new NotifyTask();
 
@@ -186,7 +191,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         }
 
         /// <summary>
-        /// Adds the connection.
+        /// Adds the connection and closes the view.
         /// </summary>
         public void Add()
         {
@@ -200,6 +205,18 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             if (string.IsNullOrWhiteSpace(Context))
             {
                 var message = _viewConnectionsNavigationMessageFactory.Create();
+
+                _eventAggregator.PublishOnUIThread(message);
+            }
+
+            TryClose();
+        }
+
+        public void Cancel()
+        {
+            if (string.IsNullOrWhiteSpace(Context))
+            {
+                var message = _newConnectionNavigationMessageFactory.Create();
 
                 _eventAggregator.PublishOnUIThread(message);
             }

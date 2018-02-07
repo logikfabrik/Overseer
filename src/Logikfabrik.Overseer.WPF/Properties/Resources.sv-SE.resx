@@ -289,10 +289,10 @@ Vänligen försök igen.</value>
     <value>Inställningar</value>
   </data>
   <data name="RemoveConnection_Button_Cancel" xml:space="preserve">
-    <value>Avbryt</value>
+    <value>Nej</value>
   </data>
   <data name="RemoveConnection_Button_Remove" xml:space="preserve">
-    <value>OK</value>
+    <value>Ja</value>
   </data>
   <data name="ViewAbout_Setting_Label_Attribution" xml:space="preserve">
     <value>Erkännande</value>
@@ -359,5 +359,8 @@ Vänligen försök igen.</value>
   </data>
   <data name="WizardNewConnection_Button_SkipStep" xml:space="preserve">
     <value>Hoppa över</value>
+  </data>
+  <data name="RemoveConnection_Text" xml:space="preserve">
+    <value>Är du säker på att du vill ta bort denna anslutning?</value>
   </data>
 </root>

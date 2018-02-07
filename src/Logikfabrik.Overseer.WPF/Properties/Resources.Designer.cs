@@ -484,7 +484,7 @@ namespace Logikfabrik.Overseer.WPF.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Cancel.
+        ///   Looks up a localized string similar to No.
         /// </summary>
         public static string RemoveConnection_Button_Cancel {
             get {
@@ -493,11 +493,20 @@ namespace Logikfabrik.Overseer.WPF.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to OK.
+        ///   Looks up a localized string similar to Yes.
         /// </summary>
         public static string RemoveConnection_Button_Remove {
             get {
                 return ResourceManager.GetString("RemoveConnection_Button_Remove", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Are you sure you want to remove this connection?.
+        /// </summary>
+        public static string RemoveConnection_Text {
+            get {
+                return ResourceManager.GetString("RemoveConnection_Text", resourceCulture);
             }
         }
         

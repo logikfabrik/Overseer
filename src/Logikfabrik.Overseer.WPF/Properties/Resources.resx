@@ -289,10 +289,10 @@ Please try again.</value>
     <value>Settings</value>
   </data>
   <data name="RemoveConnection_Button_Cancel" xml:space="preserve">
-    <value>Cancel</value>
+    <value>No</value>
   </data>
   <data name="RemoveConnection_Button_Remove" xml:space="preserve">
-    <value>OK</value>
+    <value>Yes</value>
   </data>
   <data name="ViewAbout_Setting_Label_Attribution" xml:space="preserve">
     <value>Attribution</value>
@@ -359,5 +359,8 @@ Please try again.</value>
   </data>
   <data name="WizardNewConnection_Text" xml:space="preserve">
     <value>You can also add connections later</value>
+  </data>
+  <data name="RemoveConnection_Text" xml:space="preserve">
+    <value>Are you sure you want to remove this connection?</value>
   </data>
 </root>
