@@ -56,7 +56,7 @@ namespace Logikfabrik.Overseer.WPF.Client
             kernel.Bind<IRegistryStore>().ToProvider<RegistryStoreProvider>();
             kernel.Bind<IConnectionSettingsEncrypter>().To<ConnectionSettingsEncrypter>().InSingletonScope();
             kernel.Bind<IConnectionSettingsStore>().To<ConnectionSettingsStore>();
-            kernel.Bind<IConnectionSettingsRepository>().To<ConnectionSettingsRepository>().InSingletonScope();
+            kernel.Bind<IConnectionSettingsRepository>().ToProvider<ConnectionSettingsRepositoryProvider>().InSingletonScope();
             kernel.Bind<IBuildProviderStrategy>().To<BuildProviderStrategy>();
             kernel.Bind<IConnectionPool>().To<ConnectionPool>().InSingletonScope();
             kernel.Bind<IBuildTracker>().To<BuildTracker>().InSingletonScope();

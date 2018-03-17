@@ -124,6 +124,7 @@
     <Compile Include="NativeMethods.cs" />
     <Compile Include="Providers\InputManagerProvider.cs" />
     <Compile Include="Providers\LoggerProvider.cs" />
+    <Compile Include="Providers\Settings\ConnectionSettingsRepositoryProvider.cs" />
     <Compile Include="Providers\Settings\ConnectionSettingsSerializerProvider.cs" />
     <Compile Include="Providers\Settings\FileStoreProvider.cs" />
     <Compile Include="Providers\Settings\RegistryStoreProvider.cs" />
