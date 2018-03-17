@@ -193,17 +193,15 @@ namespace Logikfabrik.Overseer.Settings
         private static Rijndael GetAlgorithm(byte[] passphraseHash)
         {
             var key = new byte[16];
-            var iv = new byte[16];
 
             Array.Copy(passphraseHash, 0, key, 0, 16);
-            Array.Copy(passphraseHash, 0, iv, 0, 16); // TODO: Generate/save/load IV seperate from passphrase (key).
 
             var algorithm = Rijndael.Create();
 
             algorithm.KeySize = 128;
             algorithm.BlockSize = 128;
             algorithm.Key = key;
-            algorithm.IV = iv;
+            algorithm.IV = HashUtility.GetSalt(16);
 
             return algorithm;
         }
