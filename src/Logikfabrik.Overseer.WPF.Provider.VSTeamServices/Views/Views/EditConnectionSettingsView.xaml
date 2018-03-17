@@ -2,8 +2,10 @@
     x:Class="Logikfabrik.Overseer.WPF.Provider.VSTeamServices.Views.Views.EditConnectionSettingsView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:b="clr-namespace:Logikfabrik.Overseer.WPF.Behaviors;assembly=Logikfabrik.Overseer.WPF"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:ex="clr-namespace:Logikfabrik.Overseer.WPF.Extensions;assembly=Logikfabrik.Overseer.WPF"
+    xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:p="clr-namespace:Logikfabrik.Overseer.WPF.Provider.VSTeamServices.Properties"
     d:DesignHeight="300"
@@ -24,7 +26,11 @@
                 <Run Text="{x:Static p:Resources.EditConnectionSettings_Setting_Description_Token}" />
                 <Hyperlink ex:HyperlinkExtensions.IsExternal="True" NavigateUri="https://www.visualstudio.com">visualstudio.com</Hyperlink>
             </TextBlock>
-            <PasswordBox ex:PasswordBoxExtensions.BoundPassword="{Binding Token, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" />
+            <PasswordBox ex:PasswordBoxExtensions.BoundPassword="{Binding Token, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}">
+                <i:Interaction.Behaviors>
+                    <b:IgnoreMouseWheelBehavior />
+                </i:Interaction.Behaviors>
+            </PasswordBox>
         </StackPanel>
     </StackPanel>
 </UserControl>

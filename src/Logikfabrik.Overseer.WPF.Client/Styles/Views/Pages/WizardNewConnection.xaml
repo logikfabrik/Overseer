@@ -46,7 +46,7 @@
                         </Grid>
                         <Border
                             Grid.Row="1"
-                            Width="450"
+                            Width="500"
                             HorizontalAlignment="Center"
                             VerticalAlignment="Center"
                             BorderBrush="Aqua"

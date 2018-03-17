@@ -84,6 +84,7 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Behaviors\IgnoreMouseWheelBehavior.cs" />
     <Compile Include="BuildMessageUtility.cs" />
     <Compile Include="BuildNotificationConfigurator.cs" />
     <Compile Include="BuildNotificationManager.cs" />
