@@ -77,6 +77,15 @@
     <Compile Include="Extensions\ExceptionExtensions.cs" />
     <Compile Include="Extensions\HttpException.cs" />
     <Compile Include="Extensions\HttpResponseMessageExtensions.cs" />
+    <Compile Include="Favorites\Favorite.cs" />
+    <Compile Include="Favorites\FavoriteIdentifier.cs" />
+    <Compile Include="Favorites\FavoritesRepository.cs" />
+    <Compile Include="Favorites\FavoritesSerializer.cs" />
+    <Compile Include="Favorites\FavoritesStore.cs" />
+    <Compile Include="Favorites\IFavoriteIdentifier.cs" />
+    <Compile Include="Favorites\IFavoritesRepository.cs" />
+    <Compile Include="Favorites\IFavoritesSerializer.cs" />
+    <Compile Include="Favorites\IFavoritesStore.cs" />
     <Compile Include="IAppSettings.cs" />
     <Compile Include="IConnection.cs" />
     <Compile Include="Notification{T}.cs">

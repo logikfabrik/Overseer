@@ -6,6 +6,8 @@ namespace Logikfabrik.Overseer.Settings
 {
     using System.IO;
 
+    // TODO: Move up one namespace.
+
     /// <summary>
     /// The <see cref="FileSystem" /> class.
     /// </summary>

@@ -33,6 +33,9 @@ namespace Logikfabrik.Overseer
         /// </value>
         int Interval { get; set; }
 
+        /// <summary>
+        /// Stores the current values of the application settings properties.
+        /// </summary>
         void Save();
     }
 }

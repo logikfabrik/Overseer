@@ -10,6 +10,8 @@ namespace Logikfabrik.Overseer.Settings
     using EnsureThat;
     using Extensions;
 
+    // TODO: Move up one namespace.
+
     /// <summary>
     /// The <see cref="FileStore" /> class.
     /// </summary>

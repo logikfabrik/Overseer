@@ -4,6 +4,8 @@
 
 namespace Logikfabrik.Overseer.Settings
 {
+    // TODO: Move up one namespace.
+
     /// <summary>
     /// The <see cref="IFileStore" /> interface.
     /// </summary>
