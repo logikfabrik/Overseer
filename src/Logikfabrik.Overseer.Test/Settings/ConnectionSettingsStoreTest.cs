@@ -4,6 +4,7 @@
 
 namespace Logikfabrik.Overseer.Test.Settings
 {
+    using IO;
     using Moq;
     using Moq.AutoMock;
     using Overseer.Settings;

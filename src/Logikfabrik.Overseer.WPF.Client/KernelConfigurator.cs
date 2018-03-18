@@ -11,6 +11,8 @@ namespace Logikfabrik.Overseer.WPF.Client
     using System.Windows.Input;
     using Caliburn.Micro;
     using EnsureThat;
+    using IO;
+    using IO.Registry;
     using Logging;
     using Navigation.Factories;
     using Ninject;
@@ -18,6 +20,7 @@ namespace Logikfabrik.Overseer.WPF.Client
     using Overseer.Logging;
     using Providers;
     using Providers.Settings;
+    using Security;
     using Serilog;
     using Settings;
     using ViewModels;

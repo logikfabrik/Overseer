@@ -2,10 +2,8 @@
 //   Copyright (c) 2016 anton(at)logikfabrik.se. Licensed under the MIT license.
 // </copyright>
 
-namespace Logikfabrik.Overseer.Settings
+namespace Logikfabrik.Overseer.IO
 {
-    // TODO: Move up one namespace.
-
     /// <summary>
     /// The <see cref="IFileStore" /> interface.
     /// </summary>

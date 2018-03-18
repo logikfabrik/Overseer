@@ -4,8 +4,8 @@
 
 namespace Logikfabrik.Overseer.Test.Settings
 {
-    using Overseer.Settings;
     using Ploeh.AutoFixture.Xunit2;
+    using Security;
     using Shouldly;
     using Xunit;
 

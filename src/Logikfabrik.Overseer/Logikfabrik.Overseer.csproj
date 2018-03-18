@@ -111,16 +111,16 @@
     <Compile Include="Settings\ConnectionSettings.cs" />
     <Compile Include="Settings\ConnectionSettingsEncrypter.cs" />
     <Compile Include="Settings\ConnectionSettingsRepository.cs" />
-    <Compile Include="Settings\DataProtector.cs" />
-    <Compile Include="Settings\FileSystem.cs" />
-    <Compile Include="Settings\HashUtility.cs" />
+    <Compile Include="Security\DataProtector.cs" />
+    <Compile Include="IO\FileSystem.cs" />
+    <Compile Include="Security\HashUtility.cs" />
     <Compile Include="Settings\IConnectionSettingsEncrypter.cs" />
-    <Compile Include="Settings\IDataProtector.cs" />
-    <Compile Include="Settings\IFileSystem.cs" />
-    <Compile Include="Settings\IRegistryStore.cs" />
-    <Compile Include="Settings\XmlEncrypter.cs" />
-    <Compile Include="Settings\IXmlEncrypter.cs" />
-    <Compile Include="Settings\RegistryStore.cs" />
+    <Compile Include="Security\IDataProtector.cs" />
+    <Compile Include="IO\IFileSystem.cs" />
+    <Compile Include="IO\Registry\IRegistryStore.cs" />
+    <Compile Include="Security\Xml\XmlEncrypter.cs" />
+    <Compile Include="Security\Xml\IXmlEncrypter.cs" />
+    <Compile Include="IO\Registry\RegistryStore.cs" />
     <Compile Include="Subscription{T}.cs">
       <SonarQubeExclude>true</SonarQubeExclude>
     </Compile>
@@ -131,13 +131,13 @@
       <SonarQubeExclude>true</SonarQubeExclude>
     </Compile>
     <Compile Include="IBuild.cs" />
-    <Compile Include="Settings\FileStore.cs" />
+    <Compile Include="IO\FileStore.cs" />
     <Compile Include="Settings\IConnectionSettingsRepository.cs" />
     <Compile Include="Settings\IConnectionSettingsSerializer.cs" />
     <Compile Include="Settings\IConnectionSettingsStore.cs" />
     <Compile Include="IProject.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Settings\IFileStore.cs" />
+    <Compile Include="IO\IFileStore.cs" />
   </ItemGroup>
   <ItemGroup>
     <AdditionalFiles Include="stylecop.json" />

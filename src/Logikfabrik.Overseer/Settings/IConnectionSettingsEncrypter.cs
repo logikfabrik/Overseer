@@ -4,6 +4,8 @@
 
 namespace Logikfabrik.Overseer.Settings
 {
+    using Security.Xml;
+
     /// <summary>
     /// The <see cref="IConnectionSettingsEncrypter" /> interface.
     /// </summary>

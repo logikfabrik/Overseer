@@ -6,10 +6,12 @@ namespace Logikfabrik.Overseer.Test.Settings
 {
     using System;
     using System.Xml;
+    using IO.Registry;
     using Moq;
     using Moq.AutoMock;
-    using Overseer.Settings;
     using Ploeh.AutoFixture.Xunit2;
+    using Security;
+    using Security.Xml;
     using Shouldly;
     using Xunit;
 

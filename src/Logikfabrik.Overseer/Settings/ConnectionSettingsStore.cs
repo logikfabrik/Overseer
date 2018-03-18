@@ -5,6 +5,7 @@
 namespace Logikfabrik.Overseer.Settings
 {
     using EnsureThat;
+    using IO;
 
     /// <summary>
     /// The <see cref="ConnectionSettingsStore" /> class.

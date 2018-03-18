@@ -4,8 +4,8 @@
 
 namespace Logikfabrik.Overseer.WPF.Client.Providers.Settings
 {
+    using IO.Registry;
     using Ninject.Activation;
-    using Overseer.Settings;
 
     /// <summary>
     /// The <see cref="RegistryStoreProvider" /> class.

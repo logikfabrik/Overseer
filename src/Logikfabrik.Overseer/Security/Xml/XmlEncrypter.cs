@@ -2,7 +2,7 @@
 //   Copyright (c) 2016 anton(at)logikfabrik.se. Licensed under the MIT license.
 // </copyright>
 
-namespace Logikfabrik.Overseer.Settings
+namespace Logikfabrik.Overseer.Security.Xml
 {
     using System;
     using System.Collections.Generic;
@@ -11,6 +11,7 @@ namespace Logikfabrik.Overseer.Settings
     using System.Security.Cryptography.Xml;
     using System.Xml;
     using EnsureThat;
+    using IO.Registry;
 
     /// <summary>
     /// The <see cref="XmlEncrypter" /> class.

@@ -5,7 +5,7 @@
 namespace Logikfabrik.Overseer.Favorites
 {
     using EnsureThat;
-    using Settings;
+    using IO;
 
     /// <summary>
     /// The <see cref="FavoritesStore" /> class.

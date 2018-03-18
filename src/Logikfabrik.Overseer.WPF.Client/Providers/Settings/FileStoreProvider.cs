@@ -7,8 +7,8 @@ namespace Logikfabrik.Overseer.WPF.Client.Providers.Settings
     using System;
     using System.IO;
     using EnsureThat;
+    using IO;
     using Ninject.Activation;
-    using Overseer.Settings;
 
     /// <summary>
     /// The <see cref="FileStoreProvider" /> class.

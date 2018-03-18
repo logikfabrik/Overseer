@@ -2,15 +2,13 @@
 //   Copyright (c) 2016 anton(at)logikfabrik.se. Licensed under the MIT license.
 // </copyright>
 
-namespace Logikfabrik.Overseer.Settings
+namespace Logikfabrik.Overseer.IO
 {
     using System;
     using System.IO;
     using System.Threading;
     using EnsureThat;
     using Extensions;
-
-    // TODO: Move up one namespace.
 
     /// <summary>
     /// The <see cref="FileStore" /> class.

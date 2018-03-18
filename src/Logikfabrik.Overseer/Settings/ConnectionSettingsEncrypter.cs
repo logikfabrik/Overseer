@@ -6,6 +6,9 @@ namespace Logikfabrik.Overseer.Settings
 {
     using System.Xml;
     using EnsureThat;
+    using IO.Registry;
+    using Security;
+    using Security.Xml;
 
     /// <summary>
     /// The <see cref="ConnectionSettingsEncrypter" /> class.
