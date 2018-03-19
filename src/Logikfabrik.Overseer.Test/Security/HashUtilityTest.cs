@@ -2,10 +2,10 @@
 //   Copyright (c) 2016 anton(at)logikfabrik.se. Licensed under the MIT license.
 // </copyright>
 
-namespace Logikfabrik.Overseer.Test.Settings
+namespace Logikfabrik.Overseer.Test.Security
 {
+    using Overseer.Security;
     using Ploeh.AutoFixture.Xunit2;
-    using Security;
     using Shouldly;
     using Xunit;
 

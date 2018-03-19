@@ -2,10 +2,10 @@
 //   Copyright (c) 2016 anton(at)logikfabrik.se. Licensed under the MIT license.
 // </copyright>
 
-namespace Logikfabrik.Overseer.Test.Settings
+namespace Logikfabrik.Overseer.Test.IO
 {
-    using IO;
     using Moq;
+    using Overseer.IO;
     using Ploeh.AutoFixture.Xunit2;
     using Shouldly;
     using Xunit;

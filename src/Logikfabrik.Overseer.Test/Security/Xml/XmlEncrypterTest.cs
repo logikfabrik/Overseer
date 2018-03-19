@@ -2,16 +2,16 @@
 //   Copyright (c) 2016 anton(at)logikfabrik.se. Licensed under the MIT license.
 // </copyright>
 
-namespace Logikfabrik.Overseer.Test.Settings
+namespace Logikfabrik.Overseer.Test.Security.Xml
 {
     using System;
     using System.Xml;
-    using IO.Registry;
     using Moq;
     using Moq.AutoMock;
+    using Overseer.IO.Registry;
+    using Overseer.Security;
+    using Overseer.Security.Xml;
     using Ploeh.AutoFixture.Xunit2;
-    using Security;
-    using Security.Xml;
     using Shouldly;
     using Xunit;
 
