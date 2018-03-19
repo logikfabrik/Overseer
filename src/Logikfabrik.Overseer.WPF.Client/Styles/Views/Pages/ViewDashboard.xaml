@@ -1,8 +1,16 @@
-﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-    <Style x:Key="Views.Pages.Dashboard" TargetType="{x:Type UserControl}">
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:cal="http://www.caliburnproject.org">
+    <Style x:Key="Views.Pages.ViewDashboard" TargetType="{x:Type UserControl}">
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate />
+                <ControlTemplate>
+                    <ContentControl
+                        cal:View.Context="Tiles"
+                        cal:View.Model="{Binding Favorites, Mode=OneTime}"
+                        Focusable="False" />
+                </ControlTemplate>
             </Setter.Value>
         </Setter>
     </Style>

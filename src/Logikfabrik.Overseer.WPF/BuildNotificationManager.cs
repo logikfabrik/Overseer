@@ -63,7 +63,7 @@ namespace Logikfabrik.Overseer.WPF
                 return false;
             }
 
-            // TODO: See FavoriteIdentifier. Should we do something similar here?
+            // TODO: Use tuple instead.
             var id = string.Concat(project.Id, build.Id);
 
             if (build.IsInProgress())

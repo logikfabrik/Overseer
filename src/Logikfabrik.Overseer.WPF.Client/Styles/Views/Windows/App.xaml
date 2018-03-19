@@ -6,6 +6,56 @@
         x:Key="Views.Windows.App"
         BasedOn="{StaticResource {x:Type Window}}"
         TargetType="{x:Type Window}">
+        <Style.Resources>
+            <DrawingImage x:Key="Button1Image">
+                <DrawingImage.Drawing>
+                    <DrawingGroup>
+                        <DrawingGroup.Children>
+                            <GeometryDrawing Brush="Red">
+                                <GeometryDrawing.Geometry>
+                                    <RectangleGeometry
+                                        RadiusX="4"
+                                        RadiusY="4"
+                                        Rect="0 0 24 24" />
+                                </GeometryDrawing.Geometry>
+                            </GeometryDrawing>
+                        </DrawingGroup.Children>
+                    </DrawingGroup>
+                </DrawingImage.Drawing>
+            </DrawingImage>
+            <DrawingImage x:Key="Button2Image">
+                <DrawingImage.Drawing>
+                    <DrawingGroup>
+                        <DrawingGroup.Children>
+                            <GeometryDrawing Brush="Green">
+                                <GeometryDrawing.Geometry>
+                                    <RectangleGeometry
+                                        RadiusX="4"
+                                        RadiusY="4"
+                                        Rect="0 0 24 24" />
+                                </GeometryDrawing.Geometry>
+                            </GeometryDrawing>
+                        </DrawingGroup.Children>
+                    </DrawingGroup>
+                </DrawingImage.Drawing>
+            </DrawingImage>
+            <DrawingImage x:Key="Button3Image">
+                <DrawingImage.Drawing>
+                    <DrawingGroup>
+                        <DrawingGroup.Children>
+                            <GeometryDrawing Brush="Blue">
+                                <GeometryDrawing.Geometry>
+                                    <RectangleGeometry
+                                        RadiusX="4"
+                                        RadiusY="4"
+                                        Rect="0 0 24 24" />
+                                </GeometryDrawing.Geometry>
+                            </GeometryDrawing>
+                        </DrawingGroup.Children>
+                    </DrawingGroup>
+                </DrawingImage.Drawing>
+            </DrawingImage>
+        </Style.Resources>
         <Setter Property="Width" Value="380" />
         <Setter Property="MinWidth" Value="300" />
         <Setter Property="Height" Value="650" />
@@ -14,6 +64,17 @@
         <Setter Property="TextElement.Foreground" Value="{StaticResource Window.Foreground}" />
         <Setter Property="Icon" Value="../../../Overseer.ico" />
         <Setter Property="cal:Message.Attach" Value="[Event MouseUp] = [Action Menu.Close]" />
+        <Setter Property="TaskbarItemInfo">
+            <Setter.Value>
+                <TaskbarItemInfo ThumbnailClipMargin="10,10,10,10">
+                    <TaskbarItemInfo.ThumbButtonInfos>
+                        <ThumbButtonInfo Description="Button 1" ImageSource="{StaticResource Button1Image}" />
+                        <ThumbButtonInfo Description="Button 2" ImageSource="{StaticResource Button2Image}" />
+                        <ThumbButtonInfo Description="Button 3" ImageSource="{StaticResource Button3Image}" />
+                    </TaskbarItemInfo.ThumbButtonInfos>
+                </TaskbarItemInfo>
+            </Setter.Value>
+        </Setter>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate>

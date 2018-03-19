@@ -107,6 +107,8 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// </value>
         bool IsErrored { get; }
 
+        EditFavoriteViewModel Favorite { get; }
+
         /// <summary>
         /// Views this instance.
         /// </summary>

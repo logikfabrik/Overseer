@@ -1,5 +1,5 @@
 ﻿<UserControl
-    x:Class="Logikfabrik.Overseer.WPF.Client.Views.Pages.ViewDashboardView"
+    x:Class="Logikfabrik.Overseer.WPF.Client.Views.Views.EditFavoriteView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    Style="{StaticResource Views.Pages.ViewDashboard}" />
+    Style="{StaticResource Views.Views.EditFavorite}" />

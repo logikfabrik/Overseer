@@ -92,7 +92,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             {
                 _application.Dispatcher.Invoke(() =>
                 {
-                    var favoriteToAdd = _viewFavoriteViewModelFactory.Create();
+                    var favoriteToAdd = _viewFavoriteViewModelFactory.Create(favorite.SettingsId, favorite.ProjectId);
 
                     _favorites.Add(favoriteToAdd);
                 });

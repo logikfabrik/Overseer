@@ -4,8 +4,6 @@
 
 namespace Logikfabrik.Overseer.IO
 {
-    // TODO: Move up one namespace.
-
     /// <summary>
     /// The <see cref="IFileSystem" /> interface.
     /// </summary>

@@ -64,12 +64,14 @@
                 <ResourceDictionary Source="Styles/Views/Views/Connections/Bricks.xaml" />
                 <ResourceDictionary Source="Styles/Views/Views/Connections/Tiles.xaml" />
                 <ResourceDictionary Source="Styles/Views/Views/Connections/WizardBricks.xaml" />
+                <ResourceDictionary Source="Styles/Views/Views/Favorites/Tiles.xaml" />
                 <ResourceDictionary Source="Styles/Views/Views/ViewBuild/Tile/Header/Header.xaml" />
                 <ResourceDictionary Source="Styles/Views/Views/ViewBuild/Tile/Header/Panel.xaml" />
                 <ResourceDictionary Source="Styles/Views/Views/ViewBuild/Tile.xaml" />
                 <ResourceDictionary Source="Styles/Views/Views/ViewConnection/Brick.xaml" />
                 <ResourceDictionary Source="Styles/Views/Views/ViewConnection/Tile.xaml" />
                 <ResourceDictionary Source="Styles/Views/Views/ViewConnection/WizardBrick.xaml" />
+                <ResourceDictionary Source="Styles/Views/Views/ViewFavorite/Tile.xaml" />
                 <ResourceDictionary Source="Styles/Views/Views/ViewProject/Tile/Header/Header.xaml" />
                 <ResourceDictionary Source="Styles/Views/Views/ViewProject/Tile/Header/Panel.xaml" />
                 <ResourceDictionary Source="Styles/Views/Views/ViewProject/Tile/LatestBuild/Header.xaml" />
@@ -79,6 +81,7 @@
                 <ResourceDictionary Source="Styles/Views/Views/ViewProject/Tile.xaml" />
                 <ResourceDictionary Source="Styles/Views/Views/AppError.xaml" />
                 <ResourceDictionary Source="Styles/Views/Views/AppMenu.xaml" />
+                <ResourceDictionary Source="Styles/Views/Views/EditFavorite.xaml" />
                 <ResourceDictionary Source="Styles/Views/Views/EditTrackedProject.xaml" />
                 <ResourceDictionary Source="Styles/Views/Views/EditTrackedProjects.xaml" />
                 <ResourceDictionary Source="Styles/Views/Views/ViewBuild.xaml" />
@@ -92,4 +95,11 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>
+    <!--
+    <JumpList.JumpList>
+        <JumpList>
+            <JumpTask Title="Add connection" />
+        </JumpList>
+    </JumpList.JumpList>
+    -->
 </Application>

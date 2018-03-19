@@ -98,6 +98,19 @@ namespace Logikfabrik.Overseer.Favorites
             return new Subscription<Notification<Favorite>[]>(_observers, observer);
         }
 
+        /// <inheritdoc />
+        public bool Exists(Guid settingsId, string projectId)
+        {
+            this.ThrowIfDisposed(_isDisposed);
+
+            Ensure.That(settingsId).IsNotEmpty();
+            Ensure.That(projectId).IsNotNullOrWhiteSpace();
+
+            var id = new Tuple<Guid, string>(settingsId, projectId);
+
+            return _favorites.ContainsKey(id);
+        }
+
         /// <summary>
         /// Releases unmanaged and managed resources.
         /// </summary>

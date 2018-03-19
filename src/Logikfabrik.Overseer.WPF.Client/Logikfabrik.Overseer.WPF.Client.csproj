@@ -150,6 +150,12 @@
     <Compile Include="Views\Views\Connections\WizardBricks.xaml.cs">
       <DependentUpon>WizardBricks.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Views\EditFavoriteView.xaml.cs">
+      <DependentUpon>EditFavoriteView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Views\Favorites\Tiles.xaml.cs">
+      <DependentUpon>Tiles.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Views\ViewConnection\Brick.xaml.cs">
       <DependentUpon>Brick.xaml</DependentUpon>
     </Compile>
@@ -164,6 +170,9 @@
     </Compile>
     <Compile Include="Views\Views\ViewConnection\WizardBrick.xaml.cs">
       <DependentUpon>WizardBrick.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Views\ViewFavorite\Tile.xaml.cs">
+      <DependentUpon>Tile.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Windows\WizardView.xaml.cs">
       <DependentUpon>WizardView.xaml</DependentUpon>
@@ -299,6 +308,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Styles\Views\Views\EditFavorite.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Styles\Views\Views\Favorites\Tiles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Styles\Views\Views\ViewBuild.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -328,6 +345,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Styles\Views\Views\ViewConnection\WizardBrick.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Styles\Views\Views\ViewFavorite\Tile.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -443,6 +464,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\Views\EditFavoriteView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Views\Favorites\Tiles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Views\ViewConnection\Brick.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -460,6 +489,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Views\ViewConnection\WizardBrick.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Views\ViewFavorite\Tile.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

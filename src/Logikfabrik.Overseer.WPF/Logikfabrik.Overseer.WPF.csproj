@@ -157,9 +157,11 @@
       <SonarQubeExclude>true</SonarQubeExclude>
     </Compile>
     <Compile Include="ViewModels\ConnectionsViewModel.cs" />
+    <Compile Include="ViewModels\EditFavoriteViewModel.cs" />
     <Compile Include="ViewModels\Factories\EditConnectionSettingsViewModelFactory{T1,T2}.cs">
       <SonarQubeExclude>true</SonarQubeExclude>
     </Compile>
+    <Compile Include="ViewModels\Factories\IEditFavoriteViewModelFactory.cs" />
     <Compile Include="ViewModels\Factories\IViewFavoriteViewModelFactory.cs" />
     <Compile Include="ViewModels\FavoritesViewModel.cs" />
     <Compile Include="ViewModels\IContextAware.cs" />

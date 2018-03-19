@@ -24,5 +24,13 @@ namespace Logikfabrik.Overseer.Favorites
         /// <param name="settingsId">The settings identifier.</param>
         /// <param name="projectId">The project identifier.</param>
         void Remove(Guid settingsId, string projectId);
+
+        /// <summary>
+        /// Determines whether a favorite for the specified settings identifier and project identifier exists.
+        /// </summary>
+        /// <param name="settingsId">The settings identifier.</param>
+        /// <param name="projectId">The project identifier.</param>
+        /// <returns><c>true</c> if a favorite exists; otherwise, <c>false</c>.</returns>
+        bool Exists(Guid settingsId, string projectId);
     }
 }

@@ -45,6 +45,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// <param name="eventAggregator">The event aggregator.</param>
         /// <param name="buildTracker">The build tracker.</param>
         /// <param name="viewBuildViewModelFactory">The view build view model factory.</param>
+        /// <param name="editFavoriteViewModelFactory">The edit favorite view model factory.</param>
         /// <param name="navigationMessageFactory">The navigation message factory.</param>
         /// <param name="settingsId">The settings identifier.</param>
         /// <param name="projectId">The project identifier.</param>
@@ -58,6 +59,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             IEventAggregator eventAggregator,
             IBuildTracker buildTracker,
             IViewBuildViewModelFactory viewBuildViewModelFactory,
+            IEditFavoriteViewModelFactory editFavoriteViewModelFactory,
             INavigationMessageFactory<ViewProjectViewModel> navigationMessageFactory,
             Guid settingsId,
             string projectId,
@@ -69,6 +71,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             Ensure.That(eventAggregator).IsNotNull();
             Ensure.That(buildTracker).IsNotNull();
             Ensure.That(viewBuildViewModelFactory).IsNotNull();
+            Ensure.That(editFavoriteViewModelFactory).IsNotNull();
             Ensure.That(navigationMessageFactory).IsNotNull();
             Ensure.That(settingsId).IsNotEmpty();
             Ensure.That(projectId).IsNotNullOrWhiteSpace();
@@ -88,6 +91,8 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             WeakEventManager<IBuildTracker, BuildTrackerProjectProgressEventArgs>.AddHandler(buildTracker, nameof(buildTracker.ProjectProgressChanged), BuildTrackerProjectProgressChanged);
 
             _builds = new BindableCollection<IViewBuildViewModel>();
+
+            Favorite = editFavoriteViewModelFactory.Create(settingsId, projectId);
 
             _orderedBuilds = new CollectionViewSource
             {
@@ -170,6 +175,9 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
                 NotifyOfPropertyChange(() => IsViewable);
             }
         }
+
+        /// <inheritdoc />
+        public EditFavoriteViewModel Favorite { get; }
 
         /// <inheritdoc />
         public void View()

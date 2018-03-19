@@ -1,0 +1,17 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:cal="http://www.caliburnproject.org">
+    <Style x:Key="Views.Views.EditFavorite" TargetType="{x:Type UserControl}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate>
+                    <StackPanel>
+                        <Button cal:Message.Attach="Remove" Visibility="{Binding IsFavorite, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}">REMOVE FAV</Button>
+                        <Button cal:Message.Attach="Add" Visibility="{Binding IsNotFavorite, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}">ADD FAV</Button>
+                    </StackPanel>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>
