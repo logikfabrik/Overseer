@@ -1,10 +1,18 @@
-﻿namespace Logikfabrik.Overseer.WPF.ViewModels
+﻿// <copyright file="EditFavoriteViewModel.cs" company="Logikfabrik">
+//   Copyright (c) 2016 anton(at)logikfabrik.se. Licensed under the MIT license.
+// </copyright>
+
+namespace Logikfabrik.Overseer.WPF.ViewModels
 {
     using System;
     using Caliburn.Micro;
     using EnsureThat;
     using Favorites;
 
+    /// <summary>
+    /// The <see cref="EditFavoriteViewModel" /> class.
+    /// </summary>
+    // ReSharper disable once InheritdocConsiderUsage
     public class EditFavoriteViewModel : PropertyChangedBase
     {
         private readonly IFavoritesRepository _favoritesRepository;
@@ -12,6 +20,13 @@
         private readonly string _projectId;
         private bool _isFavorite;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="EditFavoriteViewModel" /> class.
+        /// </summary>
+        /// <param name="favoritesRepository">The favorites repository.</param>
+        /// <param name="settingsId">The settings identifier.</param>
+        /// <param name="projectId">The project identifier.</param>
+        // ReSharper disable once InheritdocConsiderUsage
         public EditFavoriteViewModel(IFavoritesRepository favoritesRepository, Guid settingsId, string projectId)
         {
             Ensure.That(favoritesRepository).IsNotNull();
@@ -48,7 +63,7 @@
                 return;
             }
 
-            _favoritesRepository.Add(new Favorite { SettingsId = _settingsId, ProjectId = _projectId});
+            _favoritesRepository.Add(new Favorite { SettingsId = _settingsId, ProjectId = _projectId });
 
             IsFavorite = true;
         }
@@ -64,6 +79,5 @@
 
             IsFavorite = false;
         }
-
     }
 }

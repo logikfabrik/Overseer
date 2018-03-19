@@ -1,4 +1,8 @@
-﻿namespace Logikfabrik.Overseer.WPF.ViewModels.Factories
+﻿// <copyright file="IEditFavoriteViewModelFactory.cs" company="Logikfabrik">
+//   Copyright (c) 2016 anton(at)logikfabrik.se. Licensed under the MIT license.
+// </copyright>
+
+namespace Logikfabrik.Overseer.WPF.ViewModels.Factories
 {
     using System;
 
