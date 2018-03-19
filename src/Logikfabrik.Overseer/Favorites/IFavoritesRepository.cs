@@ -21,7 +21,8 @@ namespace Logikfabrik.Overseer.Favorites
         /// <summary>
         /// Removes the favorite with the specified identifier.
         /// </summary>
-        /// <param name="id">The identifier.</param>
-        void Remove(IFavoriteIdentifier id);
+        /// <param name="settingsId">The settings identifier.</param>
+        /// <param name="projectId">The project identifier.</param>
+        void Remove(Guid settingsId, string projectId);
     }
 }

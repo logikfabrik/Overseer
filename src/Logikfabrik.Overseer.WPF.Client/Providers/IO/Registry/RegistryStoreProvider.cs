@@ -2,10 +2,10 @@
 //   Copyright (c) 2016 anton(at)logikfabrik.se. Licensed under the MIT license.
 // </copyright>
 
-namespace Logikfabrik.Overseer.WPF.Client.Providers.Settings
+namespace Logikfabrik.Overseer.WPF.Client.Providers.IO.Registry
 {
-    using IO.Registry;
     using Ninject.Activation;
+    using Overseer.IO.Registry;
 
     /// <summary>
     /// The <see cref="RegistryStoreProvider" /> class.

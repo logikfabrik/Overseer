@@ -160,7 +160,10 @@
     <Compile Include="ViewModels\Factories\EditConnectionSettingsViewModelFactory{T1,T2}.cs">
       <SonarQubeExclude>true</SonarQubeExclude>
     </Compile>
+    <Compile Include="ViewModels\Factories\IViewFavoriteViewModelFactory.cs" />
+    <Compile Include="ViewModels\FavoritesViewModel.cs" />
     <Compile Include="ViewModels\IContextAware.cs" />
+    <Compile Include="ViewModels\IViewFavoriteViewModel.cs" />
     <Compile Include="ViewModels\IWizardViewModel.cs" />
     <Compile Include="ViewModels\ViewAboutViewModel.cs" />
     <Compile Include="ViewModels\ViewDashboardViewModel.cs" />
@@ -197,6 +200,7 @@
     <Compile Include="ViewModels\EditTrackedProjectsViewModel.cs" />
     <Compile Include="ViewModels\EditTrackedProjectViewModel.cs" />
     <Compile Include="ViewModels\RemoveConnectionViewModel.cs" />
+    <Compile Include="ViewModels\ViewFavoriteViewModel.cs" />
     <Compile Include="ViewModels\ViewModel.cs" />
     <Compile Include="ViewModels\AddConnectionViewModel{T1,T2}.cs">
       <SonarQubeExclude>true</SonarQubeExclude>

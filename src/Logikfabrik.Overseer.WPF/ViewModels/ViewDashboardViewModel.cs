@@ -5,6 +5,7 @@
 namespace Logikfabrik.Overseer.WPF.ViewModels
 {
     using Caliburn.Micro;
+    using EnsureThat;
 
     /// <summary>
     /// The <see cref="ViewDashboardViewModel" /> class.
@@ -16,11 +17,24 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// Initializes a new instance of the <see cref="ViewDashboardViewModel" /> class.
         /// </summary>
         /// <param name="platformProvider">The platform provider.</param>
+        /// <param name="favoritesViewModel">The favorites view model.</param>
         // ReSharper disable once InheritdocConsiderUsage
-        public ViewDashboardViewModel(IPlatformProvider platformProvider)
+        public ViewDashboardViewModel(IPlatformProvider platformProvider, FavoritesViewModel favoritesViewModel)
             : base(platformProvider)
         {
+            Ensure.That(favoritesViewModel).IsNotNull();
+
+            Favorites = favoritesViewModel;
             DisplayName = Properties.Resources.ViewDashboard_View;
+            KeepAlive = true; // TODO: Why do we need this?
         }
+
+        /// <summary>
+        /// Gets the favorites.
+        /// </summary>
+        /// <value>
+        /// The favorites.
+        /// </value>
+        public FavoritesViewModel Favorites { get; }
     }
 }

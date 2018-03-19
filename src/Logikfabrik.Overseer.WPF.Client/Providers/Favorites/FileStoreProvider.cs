@@ -2,7 +2,7 @@
 //   Copyright (c) 2016 anton(at)logikfabrik.se. Licensed under the MIT license.
 // </copyright>
 
-namespace Logikfabrik.Overseer.WPF.Client.Providers.Settings
+namespace Logikfabrik.Overseer.WPF.Client.Providers.Favorites
 {
     using System;
     using System.IO;
@@ -32,7 +32,7 @@ namespace Logikfabrik.Overseer.WPF.Client.Providers.Settings
         /// <inheritdoc />
         protected override IFileStore CreateInstance(IContext context)
         {
-            var path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Overseer", "ConnectionSettings.xml");
+            var path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Overseer", "Favorites.xml");
 
             return new FileStore(_fileSystem, path);
         }

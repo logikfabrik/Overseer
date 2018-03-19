@@ -18,7 +18,7 @@ namespace Logikfabrik.Overseer.Favorites
     {
         private readonly IFavoritesStore _favoritesStore;
         private HashSet<IObserver<Notification<Favorite>[]>> _observers;
-        private IDictionary<IFavoriteIdentifier, Favorite> _favorites;
+        private IDictionary<Tuple<Guid, string>, Favorite> _favorites;
         private bool _isDisposed;
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace Logikfabrik.Overseer.Favorites
 
             _favoritesStore = favoritesStore;
             _observers = new HashSet<IObserver<Notification<Favorite>[]>>();
-            _favorites = _favoritesStore.Load().ToDictionary(favorite => favorite.GetId(), favorite => favorite);
+            _favorites = _favoritesStore.Load().ToDictionary(favorite => new Tuple<Guid, string>(favorite.SettingsId, favorite.ProjectId), favorite => favorite);
         }
 
         /// <inheritdoc />
@@ -40,11 +40,11 @@ namespace Logikfabrik.Overseer.Favorites
             this.ThrowIfDisposed(_isDisposed);
 
             Ensure.That(favorite).IsNotNull();
-            Ensure.That(() => _favorites.ContainsKey(favorite.GetId()), nameof(favorite)).IsFalse();
+            Ensure.That(() => _favorites.ContainsKey(new Tuple<Guid, string>(favorite.SettingsId, favorite.ProjectId)), nameof(favorite)).IsFalse();
 
             var clone = favorite.Clone();
 
-            _favorites.Add(clone.GetId(), clone);
+            _favorites.Add(new Tuple<Guid, string>(clone.SettingsId, clone.ProjectId), clone);
 
             Save();
 
@@ -52,12 +52,14 @@ namespace Logikfabrik.Overseer.Favorites
         }
 
         /// <inheritdoc />
-        public void Remove(IFavoriteIdentifier id)
+        public void Remove(Guid settingsId, string projectId)
         {
             this.ThrowIfDisposed(_isDisposed);
 
-            Ensure.That(id).IsNotNull();
-            Ensure.That(() => _favorites.ContainsKey(id), nameof(id)).IsTrue();
+            Ensure.That(settingsId).IsNotEmpty();
+            Ensure.That(projectId).IsNotNullOrWhiteSpace();
+
+            var id = new Tuple<Guid, string>(settingsId, projectId);
 
             var clone = _favorites[id].Clone();
 

@@ -58,15 +58,6 @@ namespace Logikfabrik.Overseer.Favorites
         }
 
         /// <summary>
-        /// Gets the identifier.
-        /// </summary>
-        /// <returns>The identifier.</returns>
-        public IFavoriteIdentifier GetId()
-        {
-            return new FavoriteIdentifier(_settingsId, _projectId);
-        }
-
-        /// <summary>
         /// Clones this instance.
         /// </summary>
         /// <returns>

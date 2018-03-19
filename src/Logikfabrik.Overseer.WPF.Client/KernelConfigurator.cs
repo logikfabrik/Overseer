@@ -11,6 +11,7 @@ namespace Logikfabrik.Overseer.WPF.Client
     using System.Windows.Input;
     using Caliburn.Micro;
     using EnsureThat;
+    using Favorites;
     using IO;
     using IO.Registry;
     using Logging;
@@ -19,7 +20,7 @@ namespace Logikfabrik.Overseer.WPF.Client
     using Ninject.Extensions.Factory;
     using Overseer.Logging;
     using Providers;
-    using Providers.Settings;
+    using Providers.IO.Registry;
     using Security;
     using Serilog;
     using Settings;
@@ -52,14 +53,18 @@ namespace Logikfabrik.Overseer.WPF.Client
             kernel.Bind<IAppSettingsFactory>().ToFactory();
             kernel.Bind<IAppSettings>().To<AppSettings>();
             kernel.Bind<ILogService>().To<LogService>();
-            kernel.Bind<IConnectionSettingsSerializer>().ToProvider<ConnectionSettingsSerializerProvider>();
+            kernel.Bind<IFavoritesSerializer>().To<FavoritesSerializer>();
+            kernel.Bind<IConnectionSettingsSerializer>().ToProvider<Providers.Settings.ConnectionSettingsSerializerProvider>();
             kernel.Bind<IFileSystem>().To<FileSystem>();
-            kernel.Bind<IFileStore>().ToProvider<FileStoreProvider>();
+            kernel.Bind<IFileStore>().ToProvider<Providers.Favorites.FileStoreProvider>().WhenInjectedInto<FavoritesStore>();
+            kernel.Bind<IFileStore>().ToProvider<Providers.Settings.FileStoreProvider>().WhenInjectedInto<ConnectionSettingsStore>();
             kernel.Bind<IDataProtector>().To<DataProtector>();
             kernel.Bind<IRegistryStore>().ToProvider<RegistryStoreProvider>();
             kernel.Bind<IConnectionSettingsEncrypter>().To<ConnectionSettingsEncrypter>().InSingletonScope();
+            kernel.Bind<IFavoritesStore>().To<FavoritesStore>();
             kernel.Bind<IConnectionSettingsStore>().To<ConnectionSettingsStore>();
-            kernel.Bind<IConnectionSettingsRepository>().ToProvider<ConnectionSettingsRepositoryProvider>().InSingletonScope();
+            kernel.Bind<IFavoritesRepository>().To<FavoritesRepository>().InSingletonScope();
+            kernel.Bind<IConnectionSettingsRepository>().ToProvider<Providers.Settings.ConnectionSettingsRepositoryProvider>().InSingletonScope();
             kernel.Bind<IBuildProviderStrategy>().To<BuildProviderStrategy>();
             kernel.Bind<IConnectionPool>().To<ConnectionPool>().InSingletonScope();
             kernel.Bind<IBuildTracker>().To<BuildTracker>().InSingletonScope();
@@ -89,10 +94,12 @@ namespace Logikfabrik.Overseer.WPF.Client
             kernel.Bind<IEditTrackedProjectViewModelFactory>().ToFactory();
             kernel.Bind<IEditTrackedProjectsViewModelFactory>().ToFactory();
             kernel.Bind<IViewChangeViewModelFactory>().ToFactory();
+            kernel.Bind<IViewFavoriteViewModelFactory>().ToFactory();
             kernel.Bind<IViewBuildViewModelFactory>().ToFactory();
             kernel.Bind<IViewProjectViewModelFactory>().ToFactory();
             kernel.Bind<IRemoveConnectionViewModelFactory>().ToFactory();
             kernel.Bind<IViewConnectionViewModelStrategy>().To<ViewConnectionViewModelStrategy>();
+            kernel.Bind<ViewDashboardViewModel>().ToSelf().InSingletonScope();
             kernel.Bind<ConnectionsViewModel>().ToSelf().InSingletonScope();
 
             // WPF client setup.

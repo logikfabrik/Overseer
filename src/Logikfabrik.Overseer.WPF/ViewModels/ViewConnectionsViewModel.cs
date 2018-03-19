@@ -17,7 +17,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// Initializes a new instance of the <see cref="ViewConnectionsViewModel" /> class.
         /// </summary>
         /// <param name="platformProvider">The platform provider.</param>
-        /// <param name="connectionsViewModel">The connections list view model.</param>
+        /// <param name="connectionsViewModel">The connections view model.</param>
         // ReSharper disable once InheritdocConsiderUsage
         public ViewConnectionsViewModel(IPlatformProvider platformProvider, ConnectionsViewModel connectionsViewModel)
             : base(platformProvider)

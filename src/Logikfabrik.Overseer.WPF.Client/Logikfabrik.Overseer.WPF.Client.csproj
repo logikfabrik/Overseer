@@ -122,12 +122,13 @@
     <Compile Include="KernelConfigurator.cs" />
     <Compile Include="DataBindingLanguageConfigurator.cs" />
     <Compile Include="NativeMethods.cs" />
+    <Compile Include="Providers\Favorites\FileStoreProvider.cs" />
     <Compile Include="Providers\InputManagerProvider.cs" />
     <Compile Include="Providers\LoggerProvider.cs" />
     <Compile Include="Providers\Settings\ConnectionSettingsRepositoryProvider.cs" />
     <Compile Include="Providers\Settings\ConnectionSettingsSerializerProvider.cs" />
     <Compile Include="Providers\Settings\FileStoreProvider.cs" />
-    <Compile Include="Providers\Settings\RegistryStoreProvider.cs" />
+    <Compile Include="Providers\IO\Registry\RegistryStoreProvider.cs" />
     <Compile Include="Views\Pages\ViewAboutView.xaml.cs">
       <DependentUpon>ViewAboutView.xaml</DependentUpon>
     </Compile>
