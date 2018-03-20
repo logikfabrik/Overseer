@@ -1,4 +1,4 @@
-﻿// <copyright file="Conductor{T1,T2}.cs" company="Logikfabrik">
+﻿// <copyright file="Conductor{T}.cs" company="Logikfabrik">
 //   Copyright (c) 2016 anton(at)logikfabrik.se. Licensed under the MIT license.
 // </copyright>
 
@@ -11,20 +11,19 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     using Overseer.Extensions;
 
     /// <summary>
-    /// The <see cref="Conductor{T1,T2}" /> class.
+    /// The <see cref="Conductor{T}" /> class.
     /// </summary>
-    /// <typeparam name="T1"></typeparam>
-    /// <typeparam name="T2"></typeparam>
+    /// <typeparam name="T"></typeparam>
     // ReSharper disable once InheritdocConsiderUsage
-    public abstract class Conductor<T1, T2> : Conductor<T1>.Collection.OneActive, IHandle<INavigationMessage>, IDisposable
-    where T1 : class
+    public abstract class Conductor<T> : Caliburn.Micro.Conductor<T>.Collection.OneActive, IHandle<INavigationMessage>, IDisposable
+        where T : class
     {
         private IEventAggregator _eventAggregator;
-        private Navigator<T1> _navigator;
+        private Navigator<T> _navigator;
         private bool _isDisposed;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Conductor{T1,T2}" /> class.
+        /// Initializes a new instance of the <see cref="Conductor{T}" /> class.
         /// </summary>
         /// <param name="eventAggregator">The event aggregator.</param>
         // ReSharper disable once InheritdocConsiderUsage
@@ -35,7 +34,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             _eventAggregator = eventAggregator;
             _eventAggregator.Subscribe(this);
 
-            _navigator = new Navigator<T1>(this);
+            _navigator = new Navigator<T>(this);
         }
 
         /// <inheritdoc />
@@ -43,7 +42,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         {
             this.ThrowIfDisposed(_isDisposed);
 
-            if (!(message.Item is T2))
+            if (!(message.Item is T))
             {
                 return;
             }

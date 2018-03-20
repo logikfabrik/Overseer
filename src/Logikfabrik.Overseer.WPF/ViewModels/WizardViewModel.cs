@@ -15,7 +15,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
 #pragma warning disable S110 // Inheritance tree of classes should not be too deep
 
     // ReSharper disable once InheritdocConsiderUsage
-    public sealed class WizardViewModel : Conductor<IWizardViewModel, IWizardViewModel>
+    public sealed class WizardViewModel : Conductor<IWizardViewModel>
 #pragma warning restore S110 // Inheritance tree of classes should not be too deep
     {
         private readonly IConnectionSettingsEncrypter _connectionSettingsEncrypter;

@@ -14,7 +14,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     /// The <see cref="WizardNewConnectionViewModel" /> class.
     /// </summary>
     // ReSharper disable once InheritdocConsiderUsage
-    public class WizardNewConnectionViewModel : Conductor<IViewModel, IViewModel>, IWizardViewModel
+    public class WizardNewConnectionViewModel : Conductor<IViewModel>, IWizardViewModel
     {
         private readonly IEventAggregator _eventAggregator;
         private readonly INavigationMessageFactory<WizardFinishViewModel> _navigationMessageFactory;

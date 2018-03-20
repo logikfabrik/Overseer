@@ -19,10 +19,12 @@ namespace Logikfabrik.Overseer.Security.Xml
     // ReSharper disable once InheritdocConsiderUsage
     public class XmlEncrypter : IXmlEncrypter
     {
+        // TODO: Break apart into smaller classes.
+
         /// <summary>
         /// The key name.
         /// </summary>
-        public const string KeyName = "PassPhrase";
+        public const string KeyName = "Passphrase";
 
         private readonly IDataProtector _dataProtector;
         private readonly IRegistryStore _registryStore;
