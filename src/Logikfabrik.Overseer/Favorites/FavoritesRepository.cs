@@ -59,15 +59,36 @@ namespace Logikfabrik.Overseer.Favorites
             Ensure.That(settingsId).IsNotEmpty();
             Ensure.That(projectId).IsNotNullOrWhiteSpace();
 
-            var id = new Tuple<Guid, string>(settingsId, projectId);
+            var key = new Tuple<Guid, string>(settingsId, projectId);
 
-            var clone = _favorites[id].Clone();
+            var clone = _favorites[key].Clone();
 
-            _favorites.Remove(id);
+            _favorites.Remove(key);
 
             Save();
 
             Next(NotificationType.Removed, clone);
+        }
+
+        /// <inheritdoc />
+        public void Remove(Guid settingsId)
+        {
+            this.ThrowIfDisposed(_isDisposed);
+
+            Ensure.That(settingsId).IsNotEmpty();
+
+            var keys = _favorites.Keys.Where(key => key.Item1 == settingsId).ToArray();
+
+            var clones = _favorites.Where(pair => keys.Contains(pair.Key)).Select(pair => pair.Value.Clone()).ToArray();
+
+            foreach (var key in keys)
+            {
+                _favorites.Remove(key);
+            }
+
+            Save();
+
+            Next(NotificationType.Removed, clones);
         }
 
         /// <inheritdoc />
@@ -143,6 +164,16 @@ namespace Logikfabrik.Overseer.Favorites
         private void Next(NotificationType type, Favorite favorite)
         {
             var notifications = new[] { Notification<Favorite>.Create(type, favorite) };
+
+            foreach (var observer in _observers)
+            {
+                observer.OnNext(notifications);
+            }
+        }
+
+        private void Next(NotificationType type, IEnumerable<Favorite> favorites)
+        {
+            var notifications = Notification<Favorite>.Create(type, favorites);
 
             foreach (var observer in _observers)
             {

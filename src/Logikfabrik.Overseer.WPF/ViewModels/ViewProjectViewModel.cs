@@ -187,6 +187,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             _eventAggregator.PublishOnUIThread(message);
         }
 
+        // TODO: Make into void. Return bool is never used.
         /// <inheritdoc />
         public bool TryUpdate(string name)
         {

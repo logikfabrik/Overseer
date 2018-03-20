@@ -26,5 +26,29 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// The project identifier.
         /// </value>
         string ProjectId { get; }
+
+        string ProjectName { get; set; }
+
+        /// <summary>
+        /// Gets a value indicating whether this instance is busy.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if this instance is busy; otherwise, <c>false</c>.
+        /// </value>
+        bool IsBusy { get; set; }
+
+        /// <summary>
+        /// Gets a value indicating whether this instance is errored.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if this instance is errored; otherwise, <c>false</c>.
+        /// </value>
+        bool IsErrored { get; set; }
+
+        /// <summary>
+        /// Tries to update this instance.
+        /// </summary>
+        /// <param name="projectName">The project name.</param>
+        void TryUpdate(string projectName, bool isErrored);
     }
 }

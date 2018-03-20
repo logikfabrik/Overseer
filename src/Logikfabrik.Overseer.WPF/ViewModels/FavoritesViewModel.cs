@@ -7,6 +7,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Windows;
     using Caliburn.Micro;
     using EnsureThat;
     using Factories;
@@ -30,11 +31,13 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// <param name="application">The application.</param>
         /// <param name="viewFavoriteViewModelFactory">The view favorite view model factory.</param>
         /// <param name="favoritesRepository">The favorites repository.</param>
+        /// <param name="buildTracker">The build tracker.</param>
         // ReSharper disable once InheritdocConsiderUsage
         public FavoritesViewModel(
             IApp application,
             IViewFavoriteViewModelFactory viewFavoriteViewModelFactory,
-            IFavoritesRepository favoritesRepository)
+            IFavoritesRepository favoritesRepository,
+            IBuildTracker buildTracker)
         {
             Ensure.That(application).IsNotNull();
             Ensure.That(viewFavoriteViewModelFactory).IsNotNull();
@@ -44,6 +47,11 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             _viewFavoriteViewModelFactory = viewFavoriteViewModelFactory;
             _favorites = new BindableCollection<IViewFavoriteViewModel>();
             _subscription = favoritesRepository.Subscribe(this);
+
+            WeakEventManager<IBuildTracker, BuildTrackerConnectionErrorEventArgs>.AddHandler(buildTracker, nameof(buildTracker.ConnectionError), BuildTrackerConnectionError);
+            WeakEventManager<IBuildTracker, BuildTrackerConnectionProgressEventArgs>.AddHandler(buildTracker, nameof(buildTracker.ConnectionProgressChanged), BuildTrackerConnectionProgressChanged);
+            WeakEventManager<IBuildTracker, BuildTrackerProjectErrorEventArgs>.AddHandler(buildTracker, nameof(buildTracker.ProjectError), BuildTrackerProjectError);
+            WeakEventManager<IBuildTracker, BuildTrackerProjectProgressEventArgs>.AddHandler(buildTracker, nameof(buildTracker.ProjectProgressChanged), BuildTrackerProjectProgressChanged);
         }
 
         /// <summary>
@@ -151,6 +159,62 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             }
 
             _isDisposed = true;
+        }
+
+        private void BuildTrackerConnectionError(object sender, BuildTrackerConnectionErrorEventArgs e)
+        {
+            var favorites = _favorites.Where(f => f.SettingsId == e.SettingsId).ToArray();
+
+            if (!favorites.Any())
+            {
+                return;
+            }
+
+            foreach (var favorite in favorites)
+            {
+                favorite.IsBusy = false;
+                favorite.IsErrored = true;
+            }
+        }
+
+        private void BuildTrackerConnectionProgressChanged(object sender, BuildTrackerConnectionProgressEventArgs e)
+        {
+            var favorites = _favorites.Where(f => f.SettingsId == e.SettingsId).ToArray();
+
+            if (!favorites.Any())
+            {
+                return;
+            }
+
+            // TODO: Do what? Maybe remove this handler.
+        }
+
+        private void BuildTrackerProjectError(object sender, BuildTrackerProjectErrorEventArgs e)
+        {
+            var favorite = _favorites.SingleOrDefault(f => f.SettingsId == e.SettingsId && f.ProjectId == e.Project.Id);
+
+            if (favorite == null)
+            {
+                return;
+            }
+
+                favorite.IsBusy = false;
+                favorite.IsErrored = true;
+        }
+
+        private void BuildTrackerProjectProgressChanged(object sender, BuildTrackerProjectProgressEventArgs e)
+        {
+            var favorite = _favorites.SingleOrDefault(f => f.SettingsId == e.SettingsId && f.ProjectId == e.Project.Id);
+
+            if (favorite == null)
+            {
+                return;
+            }
+
+            favorite.IsBusy = false;
+            favorite.ProjectName = e.Project.Name;
+
+            // TODO: Set build stats for favorite.
         }
     }
 }

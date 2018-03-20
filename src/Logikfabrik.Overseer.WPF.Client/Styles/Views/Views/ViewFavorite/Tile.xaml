@@ -1,9 +1,18 @@
-﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:userControls="clr-namespace:Logikfabrik.Overseer.WPF.Client.UserControls">
     <Style x:Key="Views.Views.ViewFavorite.Tile" TargetType="{x:Type UserControl}">
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate>
-                    <TextBlock>FAVORITE!!</TextBlock>
+                    <Grid>
+                        <TextBlock Text="{Binding ProjectName}" />
+                        <userControls:ProgressControl
+                            VerticalAlignment="Top"
+                            IsErrored="{Binding IsErrored}"
+                            IsInProgress="{Binding IsBusy}" />
+                    </Grid>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
