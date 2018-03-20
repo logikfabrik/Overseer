@@ -4,13 +4,9 @@
 
 namespace Logikfabrik.Overseer.Test.Security.Xml
 {
-    using System;
     using System.Xml;
-    using Moq;
     using Moq.AutoMock;
-    using Overseer.IO.Registry;
     using Overseer.Passphrase;
-    using Overseer.Security;
     using Overseer.Security.Xml;
     using Ploeh.AutoFixture.Xunit2;
     using Shouldly;
@@ -32,13 +28,9 @@ namespace Logikfabrik.Overseer.Test.Security.Xml
 
             var xmlEncrypter = mocker.CreateInstance<XmlEncrypter>();
 
-            var dataProtectorMock = mocker.GetMock<IDataProtector>();
+            var passphraseRepositoryMock = mocker.GetMock<IPassphraseRepository>();
 
-            dataProtectorMock.Setup(m => m.Unprotect(It.IsAny<byte[]>(), It.IsAny<byte[]>())).Returns((byte[] encryptedData, byte[] entropy) => encryptedData);
-
-            var registryStoreMock = mocker.GetMock<IRegistryStore>();
-
-            registryStoreMock.Setup(m => m.Read(PassphraseRepository.KeyName)).Returns(Convert.ToBase64String(HashUtility.GetHash(passphrase, HashUtility.GetSalt(16), 32)));
+            passphraseRepositoryMock.Setup(m => m.ReadHash()).Returns(PassphraseUtility.GetHash(passphrase));
 
             var xmlDocument = xmlEncrypter.Decrypt(new XmlDocument(), new[] { "EncryptedData" });
 

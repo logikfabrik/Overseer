@@ -24,7 +24,7 @@ namespace Logikfabrik.Overseer.Test.Passphrase
 
             var passphraseRepository = mocker.CreateInstance<PassphraseRepository>();
 
-            var passphraseHash = HashUtility.GetHash(passphrase, HashUtility.GetSalt(16), 32);
+            var passphraseHash = PassphraseUtility.GetHash(passphrase);
 
             var dataProtectorMock = mocker.GetMock<IDataProtector>();
 
@@ -51,7 +51,7 @@ namespace Logikfabrik.Overseer.Test.Passphrase
 
             var registryStoreMock = mocker.GetMock<IRegistryStore>();
 
-            registryStoreMock.Setup(m => m.Read(PassphraseRepository.KeyName)).Returns(Convert.ToBase64String(HashUtility.GetHash(passphrase, HashUtility.GetSalt(16), 32)));
+            registryStoreMock.Setup(m => m.Read(PassphraseRepository.KeyName)).Returns(Convert.ToBase64String(PassphraseUtility.GetHash(passphrase)));
 
             var passphraseHash = passphraseRepository.ReadHash();
 

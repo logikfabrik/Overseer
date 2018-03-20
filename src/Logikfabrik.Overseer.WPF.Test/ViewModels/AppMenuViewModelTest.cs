@@ -103,6 +103,8 @@ namespace Logikfabrik.Overseer.WPF.Test.ViewModels
         {
             mocker = mocker ?? new AutoMocker();
 
+            // TODO: Break out to affected tests. Should not be in general method.
+            mocker.Use(mocker.CreateInstance<FavoritesViewModel>());
             mocker.Use(mocker.CreateInstance<ConnectionsViewModel>());
 
             var model = mocker.CreateInstance<AppMenuViewModel>();

@@ -21,8 +21,8 @@ namespace Logikfabrik.Overseer.WPF
     {
         private readonly IViewNotificationViewModelFactory _buildNotificationFactory;
         private readonly Lazy<DateTime> _appStartTime = new Lazy<DateTime>(() => Process.GetCurrentProcess().StartTime.ToUniversalTime());
-        private readonly HashSet<string> _finishedBuilds = new HashSet<string>();
-        private readonly HashSet<string> _buildsInProgress = new HashSet<string>();
+        private readonly HashSet<Tuple<string, string>> _finishedBuilds = new HashSet<Tuple<string, string>>();
+        private readonly HashSet<Tuple<string, string>> _buildsInProgress = new HashSet<Tuple<string, string>>();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="BuildNotificationManager" /> class.
@@ -63,8 +63,7 @@ namespace Logikfabrik.Overseer.WPF
                 return false;
             }
 
-            // TODO: Use tuple instead.
-            var id = string.Concat(project.Id, build.Id);
+            var id = new Tuple<string, string>(project.Id, build.Id);
 
             if (build.IsInProgress())
             {

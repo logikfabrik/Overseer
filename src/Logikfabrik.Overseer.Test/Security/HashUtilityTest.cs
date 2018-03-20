@@ -23,10 +23,10 @@ namespace Logikfabrik.Overseer.Test.Security
 
         [Theory]
         [AutoData]
-        public void CanGetHash(string passphrase)
+        public void CanGetHash(string password)
         {
             var salt = HashUtility.GetSalt(16);
-            var hash = HashUtility.GetHash(passphrase, salt, 32);
+            var hash = HashUtility.GetHash(password, salt, 32);
 
             hash.Length.ShouldBe(32);
         }

@@ -31,7 +31,10 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// <param name="viewFavoriteViewModelFactory">The view favorite view model factory.</param>
         /// <param name="favoritesRepository">The favorites repository.</param>
         // ReSharper disable once InheritdocConsiderUsage
-        public FavoritesViewModel(IApp application, IViewFavoriteViewModelFactory viewFavoriteViewModelFactory, IFavoritesRepository favoritesRepository)
+        public FavoritesViewModel(
+            IApp application,
+            IViewFavoriteViewModelFactory viewFavoriteViewModelFactory,
+            IFavoritesRepository favoritesRepository)
         {
             Ensure.That(application).IsNotNull();
             Ensure.That(viewFavoriteViewModelFactory).IsNotNull();
