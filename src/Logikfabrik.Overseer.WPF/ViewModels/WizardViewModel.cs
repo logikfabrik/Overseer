@@ -7,7 +7,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     using System;
     using Caliburn.Micro;
     using EnsureThat;
-    using Settings;
+    using Passphrase;
 
     /// <summary>
     /// The <see cref="WizardViewModel" /> class.
@@ -18,22 +18,22 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     public sealed class WizardViewModel : Conductor<IWizardViewModel>
 #pragma warning restore S110 // Inheritance tree of classes should not be too deep
     {
-        private readonly IConnectionSettingsEncrypter _connectionSettingsEncrypter;
+        private readonly IPassphraseRepository _passphraseRepository;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="WizardViewModel" /> class.
         /// </summary>
         /// <param name="eventAggregator">The event aggregator.</param>
-        /// <param name="connectionSettingsEncrypter">The connection settings encrypter.</param>
+        /// <param name="passphraseRepository">The passphrase repository.</param>
         /// <param name="welcomeWizardStepViewModel">The welcome wizard step view model.</param>
         // ReSharper disable once InheritdocConsiderUsage
-        public WizardViewModel(IEventAggregator eventAggregator, IConnectionSettingsEncrypter connectionSettingsEncrypter, WizardStartViewModel welcomeWizardStepViewModel)
+        public WizardViewModel(IEventAggregator eventAggregator, IPassphraseRepository passphraseRepository, WizardStartViewModel welcomeWizardStepViewModel)
             : base(eventAggregator)
         {
-            Ensure.That(connectionSettingsEncrypter).IsNotNull();
+            Ensure.That(passphraseRepository).IsNotNull();
             Ensure.That(welcomeWizardStepViewModel).IsNotNull();
 
-            _connectionSettingsEncrypter = connectionSettingsEncrypter;
+            _passphraseRepository = passphraseRepository;
 
             DisplayName = "Welcome";
 
@@ -43,7 +43,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// <inheritdoc />
         public override void CanClose(Action<bool> callback)
         {
-            callback(_connectionSettingsEncrypter.HasPassphrase);
+            callback(_passphraseRepository.HasHash);
         }
     }
 }

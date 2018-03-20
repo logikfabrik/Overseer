@@ -1,17 +1,17 @@
-﻿// <copyright file="RegistryStoreProvider.cs" company="Logikfabrik">
+﻿// <copyright file="PassphraseRepositoryRegistryStoreProvider.cs" company="Logikfabrik">
 //   Copyright (c) 2016 anton(at)logikfabrik.se. Licensed under the MIT license.
 // </copyright>
 
-namespace Logikfabrik.Overseer.WPF.Client.Providers.IO.Registry
+namespace Logikfabrik.Overseer.WPF.Client.Providers.Passphrase
 {
     using Ninject.Activation;
     using Overseer.IO.Registry;
 
     /// <summary>
-    /// The <see cref="RegistryStoreProvider" /> class.
+    /// The <see cref="PassphraseRepositoryRegistryStoreProvider" /> class.
     /// </summary>
     // ReSharper disable once InheritdocConsiderUsage
-    public class RegistryStoreProvider : Provider<RegistryStore>
+    public class PassphraseRepositoryRegistryStoreProvider : Provider<RegistryStore>
     {
         /// <inheritdoc />
         protected override RegistryStore CreateInstance(IContext context)

@@ -8,7 +8,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     using EnsureThat;
 
     /// <summary>
-    /// The <see cref="ViewModel" /> class. Base class for view models intended to be accessed using a <see cref="Conductor{IViewModel}.Collection.OneActive" /> implementation.
+    /// The <see cref="ViewModel" /> class. Base class for view models intended to be accessed using a <see cref="Caliburn.Micro.Conductor{IViewModel}.Collection.OneActive" /> implementation.
     /// </summary>
     // ReSharper disable once InheritdocConsiderUsage
     public abstract class ViewModel : ViewAware, IViewModel

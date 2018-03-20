@@ -106,6 +106,9 @@
     <Compile Include="Logging\LogEntry.cs" />
     <Compile Include="Logging\LogEntryType.cs" />
     <Compile Include="Logging\LogService.cs" />
+    <Compile Include="Passphrase\IPassphraseRepository.cs" />
+    <Compile Include="Passphrase\PassphraseUtility.cs" />
+    <Compile Include="Passphrase\PassphraseRepository.cs" />
     <Compile Include="Settings\ConnectionSettings.cs" />
     <Compile Include="Settings\ConnectionSettingsEncrypter.cs" />
     <Compile Include="Settings\ConnectionSettingsRepository.cs" />

@@ -2,7 +2,7 @@
 //   Copyright (c) 2016 anton(at)logikfabrik.se. Licensed under the MIT license.
 // </copyright>
 
-namespace Logikfabrik.Overseer.WPF.Client.Providers.Settings
+namespace Logikfabrik.Overseer.WPF.Client.Providers.IO
 {
     using System;
     using System.IO;
@@ -14,25 +14,29 @@ namespace Logikfabrik.Overseer.WPF.Client.Providers.Settings
     /// The <see cref="FileStoreProvider" /> class.
     /// </summary>
     // ReSharper disable once InheritdocConsiderUsage
-    public class FileStoreProvider : Provider<IFileStore>
+    public abstract class FileStoreProvider : Provider<IFileStore>
     {
         private readonly IFileSystem _fileSystem;
+        private readonly string _fileName;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="FileStoreProvider" /> class.
         /// </summary>
         /// <param name="fileSystem">The file system.</param>
-        public FileStoreProvider(IFileSystem fileSystem)
+        /// <param name="fileName">The file name.</param>
+        protected FileStoreProvider(IFileSystem fileSystem, string fileName)
         {
             Ensure.That(fileSystem).IsNotNull();
+            Ensure.That(fileName).IsNotNullOrWhiteSpace();
 
             _fileSystem = fileSystem;
+            _fileName = fileName;
         }
 
         /// <inheritdoc />
         protected override IFileStore CreateInstance(IContext context)
         {
-            var path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Overseer", "ConnectionSettings.xml");
+            var path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Overseer", _fileName);
 
             return new FileStore(_fileSystem, path);
         }

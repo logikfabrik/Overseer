@@ -6,8 +6,7 @@ namespace Logikfabrik.Overseer.Settings
 {
     using System.Xml;
     using EnsureThat;
-    using IO.Registry;
-    using Security;
+    using Passphrase;
     using Security.Xml;
 
     /// <summary>
@@ -16,16 +15,13 @@ namespace Logikfabrik.Overseer.Settings
     // ReSharper disable once InheritdocConsiderUsage
     public class ConnectionSettingsEncrypter : XmlEncrypter, IConnectionSettingsEncrypter
     {
-        private static readonly byte[] Salt = { 155, 21, 6, 136, 63, 13, 179, 145, 46, 160, 245, 8, 208, 8, 50, 31 };
-
         /// <summary>
         /// Initializes a new instance of the <see cref="ConnectionSettingsEncrypter" /> class.
         /// </summary>
-        /// <param name="dataProtector">The data protector.</param>
-        /// <param name="registryStore">The registry store.</param>
+        /// <param name="passphraseRepository">The passphrase repository.</param>
         // ReSharper disable once InheritdocConsiderUsage
-        public ConnectionSettingsEncrypter(IDataProtector dataProtector, IRegistryStore registryStore)
-            : base(dataProtector, registryStore)
+        public ConnectionSettingsEncrypter(IPassphraseRepository passphraseRepository)
+            : base(passphraseRepository)
         {
         }
 
@@ -38,7 +34,9 @@ namespace Logikfabrik.Overseer.Settings
 
             xmlDocument.LoadXml(xml);
 
-            return Encrypt(xmlDocument, new[] { "Password", "Token" }).OuterXml;
+            var tagsToEncrypt = new[] { "Password", "Token" };
+
+            return Encrypt(xmlDocument, tagsToEncrypt).OuterXml;
         }
 
         /// <inheritdoc />
@@ -50,15 +48,9 @@ namespace Logikfabrik.Overseer.Settings
 
             xmlDocument.LoadXml(xml);
 
-            return Decrypt(xmlDocument, new[] { "EncryptedData" }).OuterXml;
-        }
+            var tagsToDecrypt = new[] { "EncryptedData" };
 
-        /// <inheritdoc />
-        public void SetPassphrase(string passphrase)
-        {
-            Ensure.That(passphrase).IsNotNull();
-
-            SetPassphrase(passphrase, Salt);
+            return Decrypt(xmlDocument, tagsToDecrypt).OuterXml;
         }
     }
 }

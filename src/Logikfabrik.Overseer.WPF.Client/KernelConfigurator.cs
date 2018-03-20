@@ -19,8 +19,9 @@ namespace Logikfabrik.Overseer.WPF.Client
     using Ninject;
     using Ninject.Extensions.Factory;
     using Overseer.Logging;
+    using Passphrase;
     using Providers;
-    using Providers.IO.Registry;
+    using Providers.Passphrase;
     using Security;
     using Serilog;
     using Settings;
@@ -56,10 +57,11 @@ namespace Logikfabrik.Overseer.WPF.Client
             kernel.Bind<IFavoritesSerializer>().To<FavoritesSerializer>();
             kernel.Bind<IConnectionSettingsSerializer>().ToProvider<Providers.Settings.ConnectionSettingsSerializerProvider>();
             kernel.Bind<IFileSystem>().To<FileSystem>();
-            kernel.Bind<IFileStore>().ToProvider<Providers.Favorites.FileStoreProvider>().WhenInjectedInto<FavoritesStore>();
-            kernel.Bind<IFileStore>().ToProvider<Providers.Settings.FileStoreProvider>().WhenInjectedInto<ConnectionSettingsStore>();
+            kernel.Bind<IFileStore>().ToProvider<Providers.Favorites.FavoritesStoreFileStoreProvider>().WhenInjectedInto<FavoritesStore>();
+            kernel.Bind<IFileStore>().ToProvider<Providers.Settings.ConnectionSettingsStoreFileStoreProvider>().WhenInjectedInto<ConnectionSettingsStore>();
             kernel.Bind<IDataProtector>().To<DataProtector>();
-            kernel.Bind<IRegistryStore>().ToProvider<RegistryStoreProvider>();
+            kernel.Bind<IRegistryStore>().ToProvider<PassphraseRepositoryRegistryStoreProvider>().WhenInjectedInto<PassphraseRepository>();
+            kernel.Bind<IPassphraseRepository>().To<PassphraseRepository>();
             kernel.Bind<IConnectionSettingsEncrypter>().To<ConnectionSettingsEncrypter>().InSingletonScope();
             kernel.Bind<IFavoritesStore>().To<FavoritesStore>();
             kernel.Bind<IConnectionSettingsStore>().To<ConnectionSettingsStore>();

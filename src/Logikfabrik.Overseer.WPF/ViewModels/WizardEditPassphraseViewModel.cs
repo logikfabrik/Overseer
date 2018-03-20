@@ -9,7 +9,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     using Caliburn.Micro;
     using EnsureThat;
     using Navigation.Factories;
-    using Settings;
+    using Passphrase;
     using Validators;
 
     /// <summary>
@@ -19,7 +19,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     public class WizardEditPassphraseViewModel : PropertyChangedBase, IDataErrorInfo, IWizardViewModel
     {
         private readonly IEventAggregator _eventAggregator;
-        private readonly IConnectionSettingsEncrypter _encrypter;
+        private readonly IPassphraseRepository _passphraseRepository;
         private readonly INavigationMessageFactory<WizardNewConnectionViewModel> _navigationMessageFactory;
         private readonly WizardEditPassphraseViewModelValidator _validator;
         private string _passphrase;
@@ -28,17 +28,17 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// Initializes a new instance of the <see cref="WizardEditPassphraseViewModel" /> class.
         /// </summary>
         /// <param name="eventAggregator">The event aggregator.</param>
-        /// <param name="encrypter">The encrypter.</param>
+        /// <param name="passphraseRepository">The passphrase repository.</param>
         /// <param name="navigationMessageFactory">The navigation message factory.</param>
         // ReSharper disable once InheritdocConsiderUsage
-        public WizardEditPassphraseViewModel(IEventAggregator eventAggregator, IConnectionSettingsEncrypter encrypter, INavigationMessageFactory<WizardNewConnectionViewModel> navigationMessageFactory)
+        public WizardEditPassphraseViewModel(IEventAggregator eventAggregator, IPassphraseRepository passphraseRepository, INavigationMessageFactory<WizardNewConnectionViewModel> navigationMessageFactory)
         {
             Ensure.That(eventAggregator).IsNotNull();
-            Ensure.That(encrypter).IsNotNull();
+            Ensure.That(passphraseRepository).IsNotNull();
             Ensure.That(navigationMessageFactory).IsNotNull();
 
             _eventAggregator = eventAggregator;
-            _encrypter = encrypter;
+            _passphraseRepository = passphraseRepository;
             _navigationMessageFactory = navigationMessageFactory;
             _validator = new WizardEditPassphraseViewModelValidator();
         }
@@ -100,7 +100,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
                 return;
             }
 
-            _encrypter.SetPassphrase(_passphrase);
+            _passphraseRepository.WriteHash(PassphraseUtility.GetHash(_passphrase));
 
             var message = _navigationMessageFactory.Create();
 

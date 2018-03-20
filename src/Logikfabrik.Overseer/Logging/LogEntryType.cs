@@ -10,22 +10,22 @@ namespace Logikfabrik.Overseer.Logging
     public enum LogEntryType
     {
         /// <summary>
-        /// Type for debug entry.
+        /// Entry type for a debug entry.
         /// </summary>
         Debug = 0,
 
         /// <summary>
-        /// Type for information entry.
+        /// Entry type for a information entry.
         /// </summary>
         Information = 1,
 
         /// <summary>
-        /// Type for warning entry.
+        /// Entry type for a warning entry.
         /// </summary>
         Warning = 2,
 
         /// <summary>
-        /// Type for error entry.
+        /// Entry type for an error entry.
         /// </summary>
         Error = 3
     }

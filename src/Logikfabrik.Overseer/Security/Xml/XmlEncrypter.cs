@@ -6,12 +6,11 @@ namespace Logikfabrik.Overseer.Security.Xml
 {
     using System;
     using System.Collections.Generic;
-    using System.Linq;
     using System.Security.Cryptography;
     using System.Security.Cryptography.Xml;
     using System.Xml;
     using EnsureThat;
-    using IO.Registry;
+    using Passphrase;
 
     /// <summary>
     /// The <see cref="XmlEncrypter" /> class.
@@ -19,47 +18,17 @@ namespace Logikfabrik.Overseer.Security.Xml
     // ReSharper disable once InheritdocConsiderUsage
     public class XmlEncrypter : IXmlEncrypter
     {
-        // TODO: Break apart into smaller classes.
-
-        /// <summary>
-        /// The key name.
-        /// </summary>
-        public const string KeyName = "Passphrase";
-
-        private readonly IDataProtector _dataProtector;
-        private readonly IRegistryStore _registryStore;
+        private readonly IPassphraseRepository _passphraseRepository;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="XmlEncrypter" /> class.
         /// </summary>
-        /// <param name="dataProtector">The data protector.</param>
-        /// <param name="registryStore">The registry store.</param>
-        public XmlEncrypter(IDataProtector dataProtector, IRegistryStore registryStore)
+        /// <param name="passphraseRepository">The passphrase repository.</param>
+        public XmlEncrypter(IPassphraseRepository passphraseRepository)
         {
-            Ensure.That(dataProtector).IsNotNull();
-            Ensure.That(registryStore).IsNotNull();
+            Ensure.That(passphraseRepository).IsNotNull();
 
-            _dataProtector = dataProtector;
-            _registryStore = registryStore;
-
-            HasPassphrase = ReadPassphraseHash().Any();
-        }
-
-        /// <inheritdoc />
-        public bool HasPassphrase { get; private set; }
-
-        /// <inheritdoc />
-        public void SetPassphrase(string passphrase, byte[] salt)
-        {
-            Ensure.That(passphrase).IsNotNullOrWhiteSpace();
-            Ensure.That(salt).IsNotNull();
-            Ensure.That(salt.Length % 16).Is(0);
-
-            var passphraseHash = HashUtility.GetHash(passphrase, salt, 32);
-
-            WritePassphraseHash(passphraseHash);
-
-            HasPassphrase = true;
+            _passphraseRepository = passphraseRepository;
         }
 
         /// <inheritdoc />
@@ -84,53 +53,6 @@ namespace Logikfabrik.Overseer.Security.Xml
             {
                 return Decrypt(xml, tagNames, algorithm);
             }
-        }
-
-        /// <summary>
-        /// Writes the passphrase hash.
-        /// </summary>
-        /// <param name="passphraseHash">The passphrase hash.</param>
-        internal void WritePassphraseHash(byte[] passphraseHash)
-        {
-            var entropy = HashUtility.GetSalt(16);
-
-            var cipherValue = _dataProtector.Protect(passphraseHash, entropy);
-
-            var registryValueBytes = new byte[16 + cipherValue.Length];
-
-            Array.Copy(entropy, 0, registryValueBytes, 0, 16);
-            Array.Copy(cipherValue, 0, registryValueBytes, 16, cipherValue.Length);
-
-            var registryValue = Convert.ToBase64String(registryValueBytes);
-
-            _registryStore.Write(KeyName, registryValue);
-        }
-
-        /// <summary>
-        /// Reads the passphrase hash.
-        /// </summary>
-        /// <returns>The passphrase hash.</returns>
-        internal byte[] ReadPassphraseHash()
-        {
-            var registryValue = _registryStore.Read(KeyName);
-
-            if (registryValue == null)
-            {
-                return new byte[] { };
-            }
-
-            var registryValueBytes = Convert.FromBase64String(registryValue);
-
-            var entropy = new byte[16];
-
-            var cipherValue = new byte[registryValueBytes.Length - 16];
-
-            Array.Copy(registryValueBytes, 0, entropy, 0, 16);
-            Array.Copy(registryValueBytes, 16, cipherValue, 0, cipherValue.Length);
-
-            var passphraseHash = _dataProtector.Unprotect(cipherValue, entropy);
-
-            return passphraseHash;
         }
 
 #pragma warning disable S3242 // Method parameters should be declared with base types
@@ -224,7 +146,7 @@ namespace Logikfabrik.Overseer.Security.Xml
 
         private Rijndael GetAlgorithm()
         {
-            return GetAlgorithm(ReadPassphraseHash());
+            return GetAlgorithm(_passphraseRepository.ReadHash());
         }
     }
 }
