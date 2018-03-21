@@ -12,6 +12,7 @@ namespace Logikfabrik.Overseer
     using System.Threading.Tasks.Dataflow;
     using EnsureThat;
     using Logging;
+    using Notification;
 
     /// <summary>
     /// The <see cref="BuildTracker" /> class.
@@ -122,12 +123,12 @@ namespace Logikfabrik.Overseer
 
         internal static void UpdateConnections(IDictionary<Guid, IConnection> connections, Notification<IConnection>[] notifications)
         {
-            foreach (var connection in Notification<IConnection>.GetPayloads(notifications, NotificationType.Removed, c => connections.ContainsKey(c.Settings.Id)))
+            foreach (var connection in NotificationUtility.GetPayloads(notifications, NotificationType.Removed, c => connections.ContainsKey(c.Settings.Id)))
             {
                 connections.Remove(connection.Settings.Id);
             }
 
-            foreach (var connection in Notification<IConnection>.GetPayloads(notifications, NotificationType.Added, connection => !connections.ContainsKey(connection.Settings.Id)))
+            foreach (var connection in NotificationUtility.GetPayloads(notifications, NotificationType.Added, connection => !connections.ContainsKey(connection.Settings.Id)))
             {
                 connections.Add(connection.Settings.Id, connection);
             }

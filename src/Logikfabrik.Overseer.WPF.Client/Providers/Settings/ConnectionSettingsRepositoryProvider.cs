@@ -7,6 +7,7 @@ namespace Logikfabrik.Overseer.WPF.Client.Providers.Settings
     using System.Security.Cryptography;
     using EnsureThat;
     using Ninject.Activation;
+    using Notification;
     using Overseer.Logging;
     using Overseer.Settings;
 
@@ -17,20 +18,24 @@ namespace Logikfabrik.Overseer.WPF.Client.Providers.Settings
     public class ConnectionSettingsRepositoryProvider : Provider<IConnectionSettingsRepository>
     {
         private readonly ILogService _logService;
-        private readonly IConnectionSettingsStore _settingsStore;
+        private readonly IConnectionSettingsStore _connectionSettingsStore;
+        private readonly NotificationFactory<ConnectionSettings> _notificationFactory;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ConnectionSettingsRepositoryProvider"/> class.
         /// </summary>
         /// <param name="logService">The log service.</param>
-        /// <param name="settingsStore">The settings store.</param>
-        public ConnectionSettingsRepositoryProvider(ILogService logService, IConnectionSettingsStore settingsStore)
+        /// <param name="connectionSettingsStore">The settings store.</param>
+        /// <param name="notificationFactory">The notification factory.</param>
+        public ConnectionSettingsRepositoryProvider(ILogService logService, IConnectionSettingsStore connectionSettingsStore, NotificationFactory<ConnectionSettings> notificationFactory)
         {
             Ensure.That(logService).IsNotNull();
-            Ensure.That(settingsStore).IsNotNull();
+            Ensure.That(connectionSettingsStore).IsNotNull();
+            Ensure.That(notificationFactory).IsNotNull();
 
             _logService = logService;
-            _settingsStore = settingsStore;
+            _connectionSettingsStore = connectionSettingsStore;
+            _notificationFactory = notificationFactory;
         }
 
         /// <inheritdoc />
@@ -38,7 +43,7 @@ namespace Logikfabrik.Overseer.WPF.Client.Providers.Settings
         {
             try
             {
-                return new ConnectionSettingsRepository(_settingsStore);
+                return new ConnectionSettingsRepository(_connectionSettingsStore, _notificationFactory);
             }
             catch (CryptographicException ex)
             {

@@ -86,10 +86,14 @@
     <Compile Include="Favorites\IFavoritesStore.cs" />
     <Compile Include="IAppSettings.cs" />
     <Compile Include="IConnection.cs" />
-    <Compile Include="Notification{T}.cs">
+    <Compile Include="Notification\NotificationFactory{T}.cs">
       <SonarQubeExclude>true</SonarQubeExclude>
     </Compile>
-    <Compile Include="NotificationType.cs" />
+    <Compile Include="Notification\NotificationUtility.cs" />
+    <Compile Include="Notification\Notification{T}.cs">
+      <SonarQubeExclude>true</SonarQubeExclude>
+    </Compile>
+    <Compile Include="Notification\NotificationType.cs" />
     <Compile Include="Extensions\BuildExtensions.cs" />
     <Compile Include="Extensions\BuildStatusExtensions.cs" />
     <Compile Include="Extensions\DisposableExtensions.cs" />

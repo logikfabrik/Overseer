@@ -5,6 +5,7 @@
 namespace Logikfabrik.Overseer.Favorites
 {
     using System;
+    using Notification;
 
     /// <summary>
     /// The <see cref="IFavoritesRepository" /> interface.

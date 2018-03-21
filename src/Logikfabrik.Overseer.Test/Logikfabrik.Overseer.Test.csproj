@@ -97,7 +97,8 @@
     <Compile Include="Extensions\HttpExceptionTest.cs" />
     <Compile Include="Extensions\HttpResponseMessageExtensionsTest.cs" />
     <Compile Include="Logging\LogServiceTest.cs" />
-    <Compile Include="NotificationTest.cs" />
+    <Compile Include="Notification\NotificationFactoryTest.cs" />
+    <Compile Include="Notification\NotificationUtilityTest.cs" />
     <Compile Include="Passphrase\PassphraseRepositoryTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Settings\ConnectionSettingsA.cs" />

@@ -7,6 +7,7 @@ namespace Logikfabrik.Overseer.Test
     using System;
     using System.Linq;
     using Moq;
+    using Overseer.Notification;
     using Overseer.Settings;
     using Ploeh.AutoFixture.Xunit2;
     using Settings;
@@ -26,11 +27,11 @@ namespace Logikfabrik.Overseer.Test
                 new ConnectionSettingsB()
             });
 
-            var repository = new ConnectionSettingsRepository(settingsStoreMock.Object);
+            var repository = new ConnectionSettingsRepository(settingsStoreMock.Object, new NotificationFactory<ConnectionSettings>());
 
             var factoryMock = new Mock<IBuildProviderStrategy>();
 
-            var connectionPool = new ConnectionPool(repository, factoryMock.Object);
+            var connectionPool = new ConnectionPool(repository, factoryMock.Object, new NotificationFactory<IConnection>());
 
             connectionPool.CurrentConnections.Count().ShouldBe(2);
         }
@@ -45,11 +46,11 @@ namespace Logikfabrik.Overseer.Test
 
             settingsStoreMock.Setup(m => m.Load()).Returns(new ConnectionSettings[] { settingsBeforeUpdate });
 
-            var repository = new ConnectionSettingsRepository(settingsStoreMock.Object);
+            var repository = new ConnectionSettingsRepository(settingsStoreMock.Object, new NotificationFactory<ConnectionSettings>());
 
             var factoryMock = new Mock<IBuildProviderStrategy>();
 
-            var connectionPool = new ConnectionPool(repository, factoryMock.Object);
+            var connectionPool = new ConnectionPool(repository, factoryMock.Object, new NotificationFactory<IConnection>());
 
             var settingsToUpdate = new ConnectionSettingsA { Id = id, Name = nameAfterUpdate };
 
@@ -69,11 +70,11 @@ namespace Logikfabrik.Overseer.Test
 
             settingsStoreMock.Setup(m => m.Load()).Returns(new ConnectionSettings[] { settingsA });
 
-            var repository = new ConnectionSettingsRepository(settingsStoreMock.Object);
+            var repository = new ConnectionSettingsRepository(settingsStoreMock.Object, new NotificationFactory<ConnectionSettings>());
 
             var factoryMock = new Mock<IBuildProviderStrategy>();
 
-            var connectionPool = new ConnectionPool(repository, factoryMock.Object);
+            var connectionPool = new ConnectionPool(repository, factoryMock.Object, new NotificationFactory<IConnection>());
 
             repository.Remove(settingsA.Id);
 
@@ -87,11 +88,11 @@ namespace Logikfabrik.Overseer.Test
 
             settingsStoreMock.Setup(m => m.Load()).Returns(new ConnectionSettings[] { });
 
-            var repository = new ConnectionSettingsRepository(settingsStoreMock.Object);
+            var repository = new ConnectionSettingsRepository(settingsStoreMock.Object, new NotificationFactory<ConnectionSettings>());
 
             var factoryMock = new Mock<IBuildProviderStrategy>();
 
-            var connectionPool = new ConnectionPool(repository, factoryMock.Object);
+            var connectionPool = new ConnectionPool(repository, factoryMock.Object, new NotificationFactory<IConnection>());
 
             repository.Add(new ConnectionSettingsA());
 

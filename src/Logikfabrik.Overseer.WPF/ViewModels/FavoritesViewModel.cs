@@ -12,6 +12,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     using EnsureThat;
     using Factories;
     using Favorites;
+    using Notification;
 
     /// <summary>
     /// The <see cref="FavoritesViewModel" /> class.
@@ -89,7 +90,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
 
             var currentFavorites = Favorites.ToDictionary(favorite => new Tuple<Guid, string>(favorite.SettingsId, favorite.ProjectId), favorite => favorite);
 
-            foreach (var favorite in Notification<Favorite>.GetPayloads(value, NotificationType.Removed, f => currentFavorites.ContainsKey(new Tuple<Guid, string>(f.SettingsId, f.ProjectId))))
+            foreach (var favorite in NotificationUtility.GetPayloads(value, NotificationType.Removed, f => currentFavorites.ContainsKey(new Tuple<Guid, string>(f.SettingsId, f.ProjectId))))
             {
                 var favoriteToRemove = currentFavorites[new Tuple<Guid, string>(favorite.SettingsId, favorite.ProjectId)];
 
@@ -99,7 +100,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
                 });
             }
 
-            foreach (var favorite in Notification<Favorite>.GetPayloads(value, NotificationType.Added, f => !currentFavorites.ContainsKey(new Tuple<Guid, string>(f.SettingsId, f.ProjectId))))
+            foreach (var favorite in NotificationUtility.GetPayloads(value, NotificationType.Added, f => !currentFavorites.ContainsKey(new Tuple<Guid, string>(f.SettingsId, f.ProjectId))))
             {
                 _application.Dispatcher.Invoke(() =>
                 {

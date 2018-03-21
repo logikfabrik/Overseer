@@ -5,6 +5,7 @@
 namespace Logikfabrik.Overseer
 {
     using System;
+    using Notification;
     using Settings;
 
     /// <summary>

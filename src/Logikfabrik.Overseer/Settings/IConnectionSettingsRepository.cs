@@ -5,6 +5,7 @@
 namespace Logikfabrik.Overseer.Settings
 {
     using System;
+    using Notification;
 
     /// <summary>
     /// The <see cref="IConnectionSettingsRepository" /> interface.

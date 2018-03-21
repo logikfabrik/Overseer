@@ -48,7 +48,6 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             get
             {
                 return _projectName;
-
             }
 
             set
@@ -86,14 +85,6 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
                 _isErrored = value;
                 NotifyOfPropertyChange(() => IsErrored);
             }
-        }
-
-        /// <inheritdoc />
-        public void TryUpdate(string projectName, bool isErrored)
-        {
-            ProjectName = projectName;
-            IsErrored = isErrored;
-            IsBusy = false;
         }
     }
 }

@@ -9,6 +9,7 @@ namespace Logikfabrik.Overseer.Favorites
     using System.Linq;
     using EnsureThat;
     using Extensions;
+    using Notification;
 
     /// <summary>
     /// The <see cref="FavoritesRepository" /> class.
@@ -17,6 +18,7 @@ namespace Logikfabrik.Overseer.Favorites
     public class FavoritesRepository : IFavoritesRepository, IDisposable
     {
         private readonly IFavoritesStore _favoritesStore;
+        private readonly NotificationFactory<Favorite> _notificationFactory;
         private HashSet<IObserver<Notification<Favorite>[]>> _observers;
         private IDictionary<Tuple<Guid, string>, Favorite> _favorites;
         private bool _isDisposed;
@@ -25,11 +27,15 @@ namespace Logikfabrik.Overseer.Favorites
         /// Initializes a new instance of the <see cref="FavoritesRepository" /> class.
         /// </summary>
         /// <param name="favoritesStore">The favorites store.</param>
-        public FavoritesRepository(IFavoritesStore favoritesStore)
+        /// <param name="notificationFactory">The notification factory.</param>
+        public FavoritesRepository(IFavoritesStore favoritesStore, NotificationFactory<Favorite> notificationFactory)
         {
             Ensure.That(favoritesStore).IsNotNull();
+            Ensure.That(notificationFactory).IsNotNull();
 
             _favoritesStore = favoritesStore;
+            _notificationFactory = notificationFactory;
+
             _observers = new HashSet<IObserver<Notification<Favorite>[]>>();
             _favorites = _favoritesStore.Load().ToDictionary(favorite => new Tuple<Guid, string>(favorite.SettingsId, favorite.ProjectId), favorite => favorite);
         }
@@ -108,7 +114,7 @@ namespace Logikfabrik.Overseer.Favorites
             // ReSharper disable once InvertIf
             if (_observers.Add(observer))
             {
-                var notifications = Notification<Favorite>.Create(NotificationType.Added, _favorites.Values.Select(f => f.Clone()));
+                var notifications = _notificationFactory.Create(NotificationType.Added, _favorites.Values.Select(f => f.Clone()));
 
                 if (notifications.Any())
                 {
@@ -163,7 +169,7 @@ namespace Logikfabrik.Overseer.Favorites
 
         private void Next(NotificationType type, Favorite favorite)
         {
-            var notifications = new[] { Notification<Favorite>.Create(type, favorite) };
+            var notifications = new[] { _notificationFactory.Create(type, favorite) };
 
             foreach (var observer in _observers)
             {
@@ -173,7 +179,7 @@ namespace Logikfabrik.Overseer.Favorites
 
         private void Next(NotificationType type, IEnumerable<Favorite> favorites)
         {
-            var notifications = Notification<Favorite>.Create(type, favorites);
+            var notifications = _notificationFactory.Create(type, favorites);
 
             foreach (var observer in _observers)
             {

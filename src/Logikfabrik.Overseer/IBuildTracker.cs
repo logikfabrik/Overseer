@@ -5,6 +5,7 @@
 namespace Logikfabrik.Overseer
 {
     using System;
+    using Notification;
 
     /// <summary>
     /// The <see cref="IBuildTracker" /> interface.

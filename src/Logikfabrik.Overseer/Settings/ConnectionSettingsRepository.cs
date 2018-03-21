@@ -9,6 +9,7 @@ namespace Logikfabrik.Overseer.Settings
     using System.Linq;
     using EnsureThat;
     using Extensions;
+    using Notification;
 
     /// <summary>
     /// The <see cref="ConnectionSettingsRepository" /> class.
@@ -16,7 +17,8 @@ namespace Logikfabrik.Overseer.Settings
     // ReSharper disable once InheritdocConsiderUsage
     public class ConnectionSettingsRepository : IConnectionSettingsRepository, IDisposable
     {
-        private readonly IConnectionSettingsStore _settingsStore;
+        private readonly IConnectionSettingsStore _connectionSettingsStore;
+        private readonly NotificationFactory<ConnectionSettings> _notificationFactory;
         private HashSet<IObserver<Notification<ConnectionSettings>[]>> _observers;
         private IDictionary<Guid, ConnectionSettings> _settings;
         private bool _isDisposed;
@@ -24,14 +26,18 @@ namespace Logikfabrik.Overseer.Settings
         /// <summary>
         /// Initializes a new instance of the <see cref="ConnectionSettingsRepository" /> class.
         /// </summary>
-        /// <param name="settingsStore">The settings store.</param>
-        public ConnectionSettingsRepository(IConnectionSettingsStore settingsStore)
+        /// <param name="connectionSettingsStore">The connection settings store.</param>
+        /// <param name="notificationFactory">The notification factory.</param>
+        public ConnectionSettingsRepository(IConnectionSettingsStore connectionSettingsStore, NotificationFactory<ConnectionSettings> notificationFactory)
         {
-            Ensure.That(settingsStore).IsNotNull();
+            Ensure.That(connectionSettingsStore).IsNotNull();
+            Ensure.That(notificationFactory).IsNotNull();
 
-            _settingsStore = settingsStore;
+            _connectionSettingsStore = connectionSettingsStore;
+            _notificationFactory = notificationFactory;
+
             _observers = new HashSet<IObserver<Notification<ConnectionSettings>[]>>();
-            _settings = _settingsStore.Load().ToDictionary(settings => settings.Id, settings => settings);
+            _settings = _connectionSettingsStore.Load().ToDictionary(settings => settings.Id, settings => settings);
         }
 
         /// <inheritdoc />
@@ -114,7 +120,7 @@ namespace Logikfabrik.Overseer.Settings
             // ReSharper disable once InvertIf
             if (_observers.Add(observer))
             {
-                var notifications = Notification<ConnectionSettings>.Create(NotificationType.Added, _settings.Values.Select(s => s.Clone()));
+                var notifications = _notificationFactory.Create(NotificationType.Added, _settings.Values.Select(s => s.Clone()));
 
                 if (notifications.Any())
                 {
@@ -156,7 +162,7 @@ namespace Logikfabrik.Overseer.Settings
 
         private void Next(NotificationType type, ConnectionSettings settings)
         {
-            var notifications = new[] { Notification<ConnectionSettings>.Create(type, settings) };
+            var notifications = new[] { _notificationFactory.Create(type, settings) };
 
             foreach (var observer in _observers)
             {
@@ -166,7 +172,7 @@ namespace Logikfabrik.Overseer.Settings
 
         private void Save()
         {
-            _settingsStore.Save(_settings.Values.ToArray());
+            _connectionSettingsStore.Save(_settings.Values.ToArray());
         }
     }
 }

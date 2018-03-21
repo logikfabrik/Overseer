@@ -1,15 +1,16 @@
-﻿// <copyright file="NotificationTest.cs" company="Logikfabrik">
+﻿// <copyright file="NotificationFactoryTest.cs" company="Logikfabrik">
 //   Copyright (c) 2016 anton(at)logikfabrik.se. Licensed under the MIT license.
 // </copyright>
 
-namespace Logikfabrik.Overseer.Test
+namespace Logikfabrik.Overseer.Test.Notification
 {
     using System.Linq;
+    using Overseer.Notification;
     using Ploeh.AutoFixture.Xunit2;
     using Shouldly;
     using Xunit;
 
-    public class NotificationTest
+    public class NotificationFactoryTest
     {
         [Theory]
         [InlineAutoData(NotificationType.Added)]
@@ -17,7 +18,7 @@ namespace Logikfabrik.Overseer.Test
         [InlineAutoData(NotificationType.Removed)]
         public void CanCreate(NotificationType type, object payload)
         {
-            var notification = Notification<object>.Create(type, payload);
+            var notification = new NotificationFactory<object>().Create(type, payload);
 
             notification.ShouldNotBeNull();
         }
@@ -28,7 +29,7 @@ namespace Logikfabrik.Overseer.Test
         [InlineAutoData(NotificationType.Removed)]
         public void CanCreateMany(NotificationType type, object[] payloads)
         {
-            var notifications = Notification<object>.Create(type, payloads);
+            var notifications = new NotificationFactory<object>().Create(type, payloads);
 
             notifications.Length.ShouldBe(payloads.Length);
         }
@@ -37,9 +38,9 @@ namespace Logikfabrik.Overseer.Test
         [InlineAutoData(NotificationType.Added)]
         [InlineAutoData(NotificationType.Updated)]
         [InlineAutoData(NotificationType.Removed)]
-        public void CanGetType(NotificationType type, object payload)
+        public void CanCreateAndGetType(NotificationType type, object payload)
         {
-            var notification = Notification<object>.Create(type, payload);
+            var notification = new NotificationFactory<object>().Create(type, payload);
 
             notification.Type.ShouldBe(type);
         }
@@ -48,9 +49,9 @@ namespace Logikfabrik.Overseer.Test
         [InlineAutoData(NotificationType.Added)]
         [InlineAutoData(NotificationType.Updated)]
         [InlineAutoData(NotificationType.Removed)]
-        public void CanGetTypeForMany(NotificationType type, object[] payloads)
+        public void CanCreateAndGetTypeForMany(NotificationType type, object[] payloads)
         {
-            var notifications = Notification<object>.Create(type, payloads);
+            var notifications = new NotificationFactory<object>().Create(type, payloads);
 
             notifications.All(notification => notification.Type == type).ShouldBeTrue();
         }
@@ -59,9 +60,9 @@ namespace Logikfabrik.Overseer.Test
         [InlineAutoData(NotificationType.Added)]
         [InlineAutoData(NotificationType.Updated)]
         [InlineAutoData(NotificationType.Removed)]
-        public void CanGetPayload(NotificationType type, object payload)
+        public void CanCreateAndGetPayload(NotificationType type, object payload)
         {
-            var notification = Notification<object>.Create(type, payload);
+            var notification = new NotificationFactory<object>().Create(type, payload);
 
             notification.Payload.ShouldBe(payload);
         }
@@ -70,22 +71,11 @@ namespace Logikfabrik.Overseer.Test
         [InlineAutoData(NotificationType.Added)]
         [InlineAutoData(NotificationType.Updated)]
         [InlineAutoData(NotificationType.Removed)]
-        public void CanGetPayloadForMany(NotificationType type, object[] payloads)
+        public void CanCreateAndGetPayloadForMany(NotificationType type, object[] payloads)
         {
-            var notifications = Notification<object>.Create(type, payloads);
+            var notifications = new NotificationFactory<object>().Create(type, payloads);
 
             notifications.All(notification => payloads.Contains(notification.Payload)).ShouldBeTrue();
-        }
-
-        [Theory]
-        [InlineAutoData(NotificationType.Added)]
-        [InlineAutoData(NotificationType.Updated)]
-        [InlineAutoData(NotificationType.Removed)]
-        public void CanGetPayloads(NotificationType type, int count, object payload)
-        {
-            var notifications = Notification<object>.Create(type, Enumerable.Repeat(payload, count));
-
-            Notification<object>.GetPayloads(notifications, type, o => true).Count().ShouldBe(count);
         }
     }
 }

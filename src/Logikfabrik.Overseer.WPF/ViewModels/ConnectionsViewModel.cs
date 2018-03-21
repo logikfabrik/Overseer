@@ -11,6 +11,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     using EnsureThat;
     using Factories;
     using Navigation.Factories;
+    using Notification;
     using Settings;
 
     /// <summary>
@@ -92,7 +93,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
 
             var currentConnections = Connections.ToDictionary(connection => connection.SettingsId, connection => connection);
 
-            foreach (var settings in Notification<ConnectionSettings>.GetPayloads(value, NotificationType.Removed, s => currentConnections.ContainsKey(s.Id)))
+            foreach (var settings in NotificationUtility.GetPayloads(value, NotificationType.Removed, s => currentConnections.ContainsKey(s.Id)))
             {
                 var connectionToRemove = currentConnections[settings.Id];
 
@@ -102,14 +103,14 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
                 });
             }
 
-            foreach (var settings in Notification<ConnectionSettings>.GetPayloads(value, NotificationType.Updated, s => currentConnections.ContainsKey(s.Id)))
+            foreach (var settings in NotificationUtility.GetPayloads(value, NotificationType.Updated, s => currentConnections.ContainsKey(s.Id)))
             {
                 var connectionToUpdate = currentConnections[settings.Id];
 
                 connectionToUpdate.SettingsName = settings.Name;
             }
 
-            foreach (var settings in Notification<ConnectionSettings>.GetPayloads(value, NotificationType.Added, s => !currentConnections.ContainsKey(s.Id)))
+            foreach (var settings in NotificationUtility.GetPayloads(value, NotificationType.Added, s => !currentConnections.ContainsKey(s.Id)))
             {
                 _application.Dispatcher.Invoke(() =>
                 {
