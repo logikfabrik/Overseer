@@ -6,7 +6,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
 {
     using Caliburn.Micro;
     using EnsureThat;
-    using Navigation.Factories;
+    using Navigation;
 
     /// <summary>
     /// The <see cref="WizardStartViewModel" /> class.

@@ -8,7 +8,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     using System.Linq;
     using Caliburn.Micro;
     using EnsureThat;
-    using Navigation.Factories;
+    using Navigation;
     using Passphrase;
     using Validators;
 

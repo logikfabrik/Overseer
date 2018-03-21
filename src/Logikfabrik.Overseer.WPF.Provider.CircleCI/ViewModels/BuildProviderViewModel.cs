@@ -5,7 +5,7 @@
 namespace Logikfabrik.Overseer.WPF.Provider.CircleCI.ViewModels
 {
     using Caliburn.Micro;
-    using Navigation.Factories;
+    using Navigation;
 
     /// <summary>
     /// The <see cref="BuildProviderViewModel" /> class.

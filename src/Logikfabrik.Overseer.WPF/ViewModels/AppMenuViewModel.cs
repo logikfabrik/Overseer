@@ -9,7 +9,6 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     using Caliburn.Micro;
     using EnsureThat;
     using Navigation;
-    using Navigation.Factories;
 
     /// <summary>
     /// The <see cref="AppMenuViewModel" /> class.

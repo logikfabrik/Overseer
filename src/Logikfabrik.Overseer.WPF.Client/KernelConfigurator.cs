@@ -15,7 +15,7 @@ namespace Logikfabrik.Overseer.WPF.Client
     using IO;
     using IO.Registry;
     using Logging;
-    using Navigation.Factories;
+    using Navigation;
     using Ninject;
     using Ninject.Extensions.Factory;
     using Overseer.Logging;

@@ -10,7 +10,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     using Caliburn.Micro;
     using EnsureThat;
     using Factories;
-    using Navigation.Factories;
+    using Navigation;
     using Notification;
     using Settings;
 

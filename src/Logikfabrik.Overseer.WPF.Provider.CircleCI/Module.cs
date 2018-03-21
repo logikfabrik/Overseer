@@ -5,7 +5,7 @@
 namespace Logikfabrik.Overseer.WPF.Provider.CircleCI
 {
     using Caliburn.Micro;
-    using Navigation.Factories;
+    using Navigation;
     using Ninject.Extensions.Factory;
     using Ninject.Modules;
     using ViewModels;

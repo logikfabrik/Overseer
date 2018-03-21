@@ -14,7 +14,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     using EnsureThat;
     using Factories;
     using Gma.DataStructures.StringSearch;
-    using Navigation.Factories;
+    using Navigation;
     using Settings;
 
     /// <summary>

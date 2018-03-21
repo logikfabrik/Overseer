@@ -2,7 +2,7 @@
 //   Copyright (c) 2016 anton(at)logikfabrik.se. Licensed under the MIT license.
 // </copyright>
 
-namespace Logikfabrik.Overseer.WPF.Navigation.Factories
+namespace Logikfabrik.Overseer.WPF.Navigation
 {
     /// <summary>
     /// The <see cref="INavigationMessageFactory{T}" /> class.

@@ -10,7 +10,6 @@ namespace Logikfabrik.Overseer.WPF.Test.ViewModels
     using Moq.AutoMock;
     using Shouldly;
     using WPF.Navigation;
-    using WPF.Navigation.Factories;
     using WPF.ViewModels;
     using Xunit;
 
