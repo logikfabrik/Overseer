@@ -2,7 +2,6 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:cal="http://www.caliburnproject.org"
-    xmlns:local="clr-namespace:Logikfabrik.Overseer.WPF.Localization;assembly=Logikfabrik.Overseer.WPF"
     xmlns:p="clr-namespace:Logikfabrik.Overseer.WPF.Properties;assembly=Logikfabrik.Overseer.WPF">
     <Style x:Key="Views.Pages.EditSettings" TargetType="{x:Type UserControl}">
         <Setter Property="Template">
@@ -14,19 +13,23 @@
                             <RowDefinition Height="*" />
                         </Grid.RowDefinitions>
                         <Border Grid.Row="0" Style="{StaticResource Views.Shared.Header.Panel}">
-                            <TextBlock Style="{StaticResource Views.Shared.Header.Header}" Text="{Binding Source={x:Static p:Resources.EditSettings_View}, Converter={StaticResource StringToUpperCaseConverter}}" />
+                            <TextBlock Style="{StaticResource Views.Shared.Header.Header}" Text="{Binding Source={x:Static p:Resources.EditSettings_View}, Converter={StaticResource StringToUpperCaseConverter}, Mode=OneWay}" />
                         </Border>
                         <ScrollViewer Grid.Row="1">
                             <StackPanel>
                                 <StackPanel Style="{StaticResource Views.Shared.Setting.Panel}">
-                                    <TextBlock Style="{StaticResource Views.Shared.Setting.Label}" Text="{Binding Source={x:Static p:Resources.EditSettings_Setting_Label_Interval}, Converter={StaticResource StringToUpperCaseConverter}}" />
+                                    <TextBlock Style="{StaticResource Views.Shared.Setting.Label}" Text="{Binding Source={x:Static p:Resources.EditSettings_Setting_Label_Interval}, Converter={StaticResource StringToUpperCaseConverter}, Mode=OneWay}" />
                                     <TextBlock Style="{StaticResource Views.Shared.Setting.Description}" Text="{x:Static p:Resources.EditSettings_Setting_Description_Interval}" />
                                     <TextBox Text="{Binding Interval, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" />
                                 </StackPanel>
                                 <StackPanel Style="{StaticResource Views.Shared.Setting.Panel}">
-                                    <TextBlock Style="{StaticResource Views.Shared.Setting.Label}" Text="{Binding Source={x:Static p:Resources.EditSettings_Setting_Label_CultureName}, Converter={StaticResource StringToUpperCaseConverter}}" />
+                                    <TextBlock Style="{StaticResource Views.Shared.Setting.Label}" Text="{Binding Source={x:Static p:Resources.EditSettings_Setting_Label_CultureName}, Converter={StaticResource StringToUpperCaseConverter}, Mode=OneWay}" />
                                     <TextBlock Style="{StaticResource Views.Shared.Setting.Description}" Text="{x:Static p:Resources.EditSettings_Setting_Description_CultureName}" />
-                                    <ComboBox ItemsSource="{x:Static local:SupportedCultures.CultureNames}" SelectedValue="{Binding CultureName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                    <ComboBox
+                                        DisplayMemberPath="Item1"
+                                        ItemsSource="{Binding CultureNames, Mode=OneTime}"
+                                        SelectedValue="{Binding CultureName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                        SelectedValuePath="Item2" />
                                 </StackPanel>
                                 <WrapPanel Style="{StaticResource Views.Shared.Footer.Panel}">
                                     <Button
@@ -34,10 +37,6 @@
                                         Content="{x:Static p:Resources.EditSettings_Button_Save}"
                                         IsDefault="True"
                                         IsEnabled="{Binding IsValid, Mode=OneWay}" />
-                                    <Button
-                                        cal:Message.Attach="TryClose(null)"
-                                        Content="{x:Static p:Resources.EditSettings_Button_Cancel}"
-                                        IsCancel="True" />
                                 </WrapPanel>
                             </StackPanel>
                         </ScrollViewer>

@@ -4,11 +4,14 @@
 
 namespace Logikfabrik.Overseer.WPF.ViewModels
 {
+    using System;
+    using System.Collections.Generic;
     using System.ComponentModel;
     using System.Linq;
     using Caliburn.Micro;
     using EnsureThat;
     using Extensions;
+    using Localization;
     using Validators;
 
     /// <summary>
@@ -44,6 +47,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             _applicationSettings = applicationSettings;
             _interval = applicationSettings.Interval;
             _cultureName = applicationSettings.CultureName;
+            CultureNames = SupportedCultures.CultureNames.Select(cultureName => new Tuple<string, string>(SupportedCulturesLocalizer.Localize(cultureName), cultureName));
             DisplayName = Properties.Resources.EditSettings_View;
         }
 
@@ -88,6 +92,14 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
                 NotifyOfPropertyChange(() => IsValid);
             }
         }
+
+        /// <summary>
+        /// Gets the culture names.
+        /// </summary>
+        /// <value>
+        /// The culture names.
+        /// </value>
+        public IEnumerable<Tuple<string, string>> CultureNames { get; }
 
         /// <summary>
         /// Gets a value indicating whether this instance is valid.

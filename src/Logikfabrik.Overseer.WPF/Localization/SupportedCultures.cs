@@ -2,6 +2,8 @@
 //   Copyright (c) 2016 anton(at)logikfabrik.se. Licensed under the MIT license.
 // </copyright>
 
+using System.Security.RightsManagement;
+
 namespace Logikfabrik.Overseer.WPF.Localization
 {
     using System.Collections.Generic;
@@ -13,13 +15,16 @@ namespace Logikfabrik.Overseer.WPF.Localization
     /// </summary>
     public static class SupportedCultures
     {
+        public const string EnUs = "en-US";
+        public const string SvSe = "sv-SE";
+
         /// <summary>
         /// Gets the culture names.
         /// </summary>
         /// <value>
         /// The culture names.
         /// </value>
-        public static IEnumerable<string> CultureNames => new[] { "en-US", "sv-SE" };
+        public static IEnumerable<string> CultureNames => new[] { EnUs, SvSe };
 
         /// <summary>
         /// Gets the cultures.

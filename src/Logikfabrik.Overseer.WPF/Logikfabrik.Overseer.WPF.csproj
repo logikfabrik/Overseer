@@ -109,6 +109,7 @@
     <Compile Include="Localization\AppViewErrorLocalizer.cs" />
     <Compile Include="Localization\EditConnectionViewErrorLocalizer.cs" />
     <Compile Include="Localization\SupportedCultures.cs" />
+    <Compile Include="Localization\SupportedCulturesLocalizer.cs" />
     <Compile Include="Logging\IUILogService.cs" />
     <Compile Include="Logging\UILogService.cs" />
     <Compile Include="MarkupExtensions\EnumToItemsSourceMarkupExtension.cs" />

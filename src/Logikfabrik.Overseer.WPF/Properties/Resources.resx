@@ -246,9 +246,6 @@ Please try again.</value>
   <data name="EditConnection_View1" xml:space="preserve">
     <value>Edit connection</value>
   </data>
-  <data name="EditSettings_Button_Cancel" xml:space="preserve">
-    <value>Cancel</value>
-  </data>
   <data name="EditSettings_Button_Save" xml:space="preserve">
     <value>OK</value>
   </data>
@@ -362,5 +359,11 @@ Please try again.</value>
   </data>
   <data name="RemoveConnection_Text" xml:space="preserve">
     <value>Are you sure you want to remove this connection?</value>
+  </data>
+  <data name="SupportedCultures_enUS_Name" xml:space="preserve">
+    <value>English</value>
+  </data>
+  <data name="SupportedCultures_svSE_Name" xml:space="preserve">
+    <value>Svenska</value>
   </data>
 </root>

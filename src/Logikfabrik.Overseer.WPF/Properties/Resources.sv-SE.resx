@@ -246,9 +246,6 @@ Vänligen försök igen.</value>
   <data name="EditConnection_View1" xml:space="preserve">
     <value>Redigera anslutning</value>
   </data>
-  <data name="EditSettings_Button_Cancel" xml:space="preserve">
-    <value>Avbryt</value>
-  </data>
   <data name="EditSettings_Button_Save" xml:space="preserve">
     <value>OK</value>
   </data>
@@ -362,5 +359,11 @@ Vänligen försök igen.</value>
   </data>
   <data name="RemoveConnection_Text" xml:space="preserve">
     <value>Är du säker på att du vill ta bort denna anslutning?</value>
+  </data>
+  <data name="SupportedCultures_enUS_Name" xml:space="preserve">
+    <value>English</value>
+  </data>
+  <data name="SupportedCultures_svSE_Name" xml:space="preserve">
+    <value>Svenska</value>
   </data>
 </root>

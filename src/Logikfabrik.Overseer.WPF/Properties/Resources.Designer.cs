@@ -313,15 +313,6 @@ namespace Logikfabrik.Overseer.WPF.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Cancel.
-        /// </summary>
-        public static string EditSettings_Button_Cancel {
-            get {
-                return ResourceManager.GetString("EditSettings_Button_Cancel", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to OK.
         /// </summary>
         public static string EditSettings_Button_Save {
@@ -516,6 +507,24 @@ namespace Logikfabrik.Overseer.WPF.Properties {
         public static string RemoveConnection_View {
             get {
                 return ResourceManager.GetString("RemoveConnection_View", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to English.
+        /// </summary>
+        public static string SupportedCultures_enUS_Name {
+            get {
+                return ResourceManager.GetString("SupportedCultures_enUS_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Svenska.
+        /// </summary>
+        public static string SupportedCultures_svSE_Name {
+            get {
+                return ResourceManager.GetString("SupportedCultures_svSE_Name", resourceCulture);
             }
         }
         
