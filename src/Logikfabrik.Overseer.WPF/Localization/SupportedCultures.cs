@@ -2,8 +2,6 @@
 //   Copyright (c) 2016 anton(at)logikfabrik.se. Licensed under the MIT license.
 // </copyright>
 
-using System.Security.RightsManagement;
-
 namespace Logikfabrik.Overseer.WPF.Localization
 {
     using System.Collections.Generic;

@@ -50,7 +50,6 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             _subscription = favoritesRepository.Subscribe(this);
 
             WeakEventManager<IBuildTracker, BuildTrackerConnectionErrorEventArgs>.AddHandler(buildTracker, nameof(buildTracker.ConnectionError), BuildTrackerConnectionError);
-            WeakEventManager<IBuildTracker, BuildTrackerConnectionProgressEventArgs>.AddHandler(buildTracker, nameof(buildTracker.ConnectionProgressChanged), BuildTrackerConnectionProgressChanged);
             WeakEventManager<IBuildTracker, BuildTrackerProjectErrorEventArgs>.AddHandler(buildTracker, nameof(buildTracker.ProjectError), BuildTrackerProjectError);
             WeakEventManager<IBuildTracker, BuildTrackerProjectProgressEventArgs>.AddHandler(buildTracker, nameof(buildTracker.ProjectProgressChanged), BuildTrackerProjectProgressChanged);
         }
@@ -176,18 +175,6 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
                 favorite.IsBusy = false;
                 favorite.IsErrored = true;
             }
-        }
-
-        private void BuildTrackerConnectionProgressChanged(object sender, BuildTrackerConnectionProgressEventArgs e)
-        {
-            var favorites = _favorites.Where(f => f.SettingsId == e.SettingsId).ToArray();
-
-            if (!favorites.Any())
-            {
-                return;
-            }
-
-            // TODO: Do what? Maybe remove this handler.
         }
 
         private void BuildTrackerProjectError(object sender, BuildTrackerProjectErrorEventArgs e)
