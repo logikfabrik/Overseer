@@ -107,6 +107,7 @@
     <Compile Include="LanguageConfigurator.cs" />
     <Compile Include="Localization\AddConnectionViewErrorLocalizer.cs" />
     <Compile Include="Localization\AppViewErrorLocalizer.cs" />
+    <Compile Include="Localization\BuildStatusMessageLocalizer.cs" />
     <Compile Include="Localization\EditConnectionViewErrorLocalizer.cs" />
     <Compile Include="Localization\SupportedCultures.cs" />
     <Compile Include="Localization\SupportedCulturesLocalizer.cs" />

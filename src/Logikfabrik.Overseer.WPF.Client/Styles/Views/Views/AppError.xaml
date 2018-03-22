@@ -15,7 +15,7 @@
                             <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
                         <Border Padding="12">
-                            <TextBlock Text="{Binding Message}" />
+                            <TextBlock Text="{Binding StatusMessage}" />
                         </Border>
                         <Button
                             Grid.Column="1"

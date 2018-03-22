@@ -77,8 +77,8 @@
                             </WrapPanel>
                             <TextBlock
                                 FontSize="18"
-                                Text="{Binding Message, Mode=OneWay}"
-                                ToolTip="{Binding Message, Mode=OneWay}" />
+                                Text="{Binding StatusMessage, Mode=OneWay}"
+                                ToolTip="{Binding StatusMessage, Mode=OneWay}" />
                         </StackPanel>
                     </Border>
                 </ControlTemplate>

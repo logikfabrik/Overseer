@@ -366,4 +366,49 @@ Vänligen försök igen.</value>
   <data name="SupportedCultures_svSE_Name" xml:space="preserve">
     <value>Svenska</value>
   </data>
+  <data name="BuildMessage_Failed" xml:space="preserve">
+    <value>Misslyckad</value>
+  </data>
+  <data name="BuildMessage_FailedWithEndTime" xml:space="preserve">
+    <value>Misslyckades {0}</value>
+  </data>
+  <data name="BuildMessage_FailedWithRunTime" xml:space="preserve">
+    <value>Misslyckades {0}</value>
+  </data>
+  <data name="BuildMessage_FailedWithRunTimeAndEndTime" xml:space="preserve">
+    <value>Misslyckades efter {0}, {1}</value>
+  </data>
+  <data name="BuildMessage_InProgress" xml:space="preserve">
+    <value>Pågående</value>
+  </data>
+  <data name="BuildMessage_InProgressWithRunTime" xml:space="preserve">
+    <value>Pågående i {0}</value>
+  </data>
+  <data name="BuildMessage_Queued" xml:space="preserve">
+    <value>Köad</value>
+  </data>
+  <data name="BuildMessage_Stopped" xml:space="preserve">
+    <value>Stoppat</value>
+  </data>
+  <data name="BuildMessage_StoppedWithEndTime" xml:space="preserve">
+    <value>Stoppat {0}</value>
+  </data>
+  <data name="BuildMessage_StoppedWithRunTime" xml:space="preserve">
+    <value>Stoppades efter {0}</value>
+  </data>
+  <data name="BuildMessage_StoppedWithRunTimeAndEndTime" xml:space="preserve">
+    <value>Stoppades efter {0}, {1}</value>
+  </data>
+  <data name="BuildMessage_Succeeded" xml:space="preserve">
+    <value>Lyckades</value>
+  </data>
+  <data name="BuildMessage_SucceededWithEndTime" xml:space="preserve">
+    <value>Lyckades {0}</value>
+  </data>
+  <data name="BuildMessage_SucceededWithRunTime" xml:space="preserve">
+    <value>Lyckades efter {0}</value>
+  </data>
+  <data name="BuildMessage_SucceededWithRunTimeAndEndTime" xml:space="preserve">
+    <value>Lyckades efter {0}, {1}</value>
+  </data>
 </root>

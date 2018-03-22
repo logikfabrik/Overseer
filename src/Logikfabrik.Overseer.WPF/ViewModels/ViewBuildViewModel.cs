@@ -11,6 +11,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     using Caliburn.Micro;
     using EnsureThat;
     using Factories;
+    using Localization;
     using Overseer.Extensions;
 
     /// <summary>
@@ -21,7 +22,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     {
         private readonly Uri _webUrl;
         private string _name;
-        private string _message;
+        private string _statusMessage;
         private BuildStatus? _status;
         private DateTime? _startTime;
         private DateTime? _endTime;
@@ -77,17 +78,17 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         public string Branch { get; }
 
         /// <inheritdoc />
-        public string Message
+        public string StatusMessage
         {
             get
             {
-                return _message;
+                return _statusMessage;
             }
 
             private set
             {
-                _message = value;
-                NotifyOfPropertyChange(() => Message);
+                _statusMessage = value;
+                NotifyOfPropertyChange(() => StatusMessage);
             }
         }
 
@@ -166,11 +167,11 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
                 isUpdated = true;
             }
 
-            var message = BuildMessageUtility.GetBuildRunTimeMessage(DateTime.UtcNow, build.Status, build.EndTime, build.RunTime());
+            var statusMessage = BuildStatusMessageLocalizer.Localize(build.Status, build.RunTime(), build.EndTime);
 
-            if (Message != message)
+            if (StatusMessage != statusMessage)
             {
-                Message = message;
+                StatusMessage = statusMessage;
                 Status = build.Status;
                 EndTime = build.EndTime;
                 isUpdated = true;

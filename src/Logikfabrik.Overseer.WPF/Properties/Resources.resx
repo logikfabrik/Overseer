@@ -366,4 +366,49 @@ Please try again.</value>
   <data name="SupportedCultures_svSE_Name" xml:space="preserve">
     <value>Svenska</value>
   </data>
+  <data name="BuildMessage_InProgress" xml:space="preserve">
+    <value>In progress</value>
+  </data>
+  <data name="BuildMessage_InProgressWithRunTime" xml:space="preserve">
+    <value>In progress for {0}</value>
+  </data>
+  <data name="BuildMessage_Queued" xml:space="preserve">
+    <value>Queued</value>
+  </data>
+  <data name="BuildMessage_Failed" xml:space="preserve">
+    <value>Failed</value>
+  </data>
+  <data name="BuildMessage_FailedWithEndTime" xml:space="preserve">
+    <value>Failed {0}</value>
+  </data>
+  <data name="BuildMessage_FailedWithRunTime" xml:space="preserve">
+    <value>Failed in {0}</value>
+  </data>
+  <data name="BuildMessage_FailedWithRunTimeAndEndTime" xml:space="preserve">
+    <value>Failed in {0}, {1}</value>
+  </data>
+  <data name="BuildMessage_Stopped" xml:space="preserve">
+    <value>Stopped</value>
+  </data>
+  <data name="BuildMessage_StoppedWithEndTime" xml:space="preserve">
+    <value>Stopped {0}</value>
+  </data>
+  <data name="BuildMessage_StoppedWithRunTime" xml:space="preserve">
+    <value>Stopped in {0}</value>
+  </data>
+  <data name="BuildMessage_StoppedWithRunTimeAndEndTime" xml:space="preserve">
+    <value>Stopped in {0}, {1}</value>
+  </data>
+  <data name="BuildMessage_Succeeded" xml:space="preserve">
+    <value>Succeeded</value>
+  </data>
+  <data name="BuildMessage_SucceededWithEndTime" xml:space="preserve">
+    <value>Succeeded {0}</value>
+  </data>
+  <data name="BuildMessage_SucceededWithRunTime" xml:space="preserve">
+    <value>Succedded in {0}</value>
+  </data>
+  <data name="BuildMessage_SucceededWithRunTimeAndEndTime" xml:space="preserve">
+    <value>Succeeded in {0}, {1}</value>
+  </data>
 </root>

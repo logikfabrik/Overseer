@@ -101,6 +101,7 @@
     <Compile Include="Converters\AddConnectionViewExceptionToLocalizedStringConverterTest.cs" />
     <Compile Include="Converters\EditConnectionViewExceptionToLocalizedStringConverterTest.cs" />
     <Compile Include="Localization\AddConnectionViewErrorLocalizerTest.cs" />
+    <Compile Include="Localization\BuildStatusMessageLocalizerTest.cs" />
     <Compile Include="Localization\EditConnectionViewErrorLocalizerTest.cs" />
     <Compile Include="Logging\UILogServiceTest.cs" />
     <Compile Include="Navigation\NavigationMessageTest.cs" />

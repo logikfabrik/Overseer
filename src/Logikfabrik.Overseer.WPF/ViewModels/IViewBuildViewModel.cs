@@ -58,7 +58,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// <value>
         /// The message.
         /// </value>
-        string Message { get; }
+        string StatusMessage { get; }
 
         /// <summary>
         /// Gets the status.
