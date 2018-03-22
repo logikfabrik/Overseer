@@ -47,7 +47,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             RequestedBy = build.RequestedBy;
             Changes = build.Changes.Select(viewChangeViewModelFactory.Create).ToArray();
 
-            TryUpdate(project, build);
+            Update(project, build);
         }
 
         /// <inheritdoc />
@@ -155,16 +155,13 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         }
 
         /// <inheritdoc />
-        public bool TryUpdate(IProject project, IBuild build)
+        public void Update(IProject project, IBuild build)
         {
             var name = BuildMessageUtility.GetBuildName(project.Name, VersionNumber);
-
-            var isUpdated = false;
 
             if (Name != name)
             {
                 Name = name;
-                isUpdated = true;
             }
 
             var statusMessage = BuildStatusMessageLocalizer.Localize(build.Status, build.RunTime(), build.EndTime);
@@ -174,23 +171,14 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
                 StatusMessage = statusMessage;
                 Status = build.Status;
                 EndTime = build.EndTime;
-                isUpdated = true;
             }
 
             if (StartTime != build.StartTime)
             {
                 StartTime = build.StartTime;
-                isUpdated = true;
-            }
-
-            if (EndTime == build.EndTime)
-            {
-                return isUpdated;
             }
 
             EndTime = build.EndTime;
-
-            return true;
         }
     }
 }

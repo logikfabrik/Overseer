@@ -187,18 +187,10 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             _eventAggregator.PublishOnUIThread(message);
         }
 
-        // TODO: Make into void. Return bool is never used.
         /// <inheritdoc />
-        public bool TryUpdate(string name)
+        public void Update(string name)
         {
-            if (Name == name)
-            {
-                return false;
-            }
-
             Name = name;
-
-            return true;
         }
 
         private void BuildTrackerProjectError(object sender, BuildTrackerProjectErrorEventArgs e)
@@ -225,7 +217,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
 
                 if (buildToUpdate != null)
                 {
-                    buildToUpdate.TryUpdate(e.Project, build);
+                    buildToUpdate.Update(e.Project, build);
                 }
                 else
                 {

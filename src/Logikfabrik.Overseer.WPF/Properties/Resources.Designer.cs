@@ -158,135 +158,135 @@ namespace Logikfabrik.Overseer.WPF.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Failed.
         /// </summary>
-        public static string BuildMessage_Failed {
+        public static string BuildStatusMessage_Failed {
             get {
-                return ResourceManager.GetString("BuildMessage_Failed", resourceCulture);
+                return ResourceManager.GetString("BuildStatusMessage_Failed", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Failed {0}.
         /// </summary>
-        public static string BuildMessage_FailedWithEndTime {
+        public static string BuildStatusMessage_FailedWithEndTime {
             get {
-                return ResourceManager.GetString("BuildMessage_FailedWithEndTime", resourceCulture);
+                return ResourceManager.GetString("BuildStatusMessage_FailedWithEndTime", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Failed in {0}.
         /// </summary>
-        public static string BuildMessage_FailedWithRunTime {
+        public static string BuildStatusMessage_FailedWithRunTime {
             get {
-                return ResourceManager.GetString("BuildMessage_FailedWithRunTime", resourceCulture);
+                return ResourceManager.GetString("BuildStatusMessage_FailedWithRunTime", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Failed in {0}, {1}.
         /// </summary>
-        public static string BuildMessage_FailedWithRunTimeAndEndTime {
+        public static string BuildStatusMessage_FailedWithRunTimeAndEndTime {
             get {
-                return ResourceManager.GetString("BuildMessage_FailedWithRunTimeAndEndTime", resourceCulture);
+                return ResourceManager.GetString("BuildStatusMessage_FailedWithRunTimeAndEndTime", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to In progress.
         /// </summary>
-        public static string BuildMessage_InProgress {
+        public static string BuildStatusMessage_InProgress {
             get {
-                return ResourceManager.GetString("BuildMessage_InProgress", resourceCulture);
+                return ResourceManager.GetString("BuildStatusMessage_InProgress", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to In progress for {0}.
         /// </summary>
-        public static string BuildMessage_InProgressWithRunTime {
+        public static string BuildStatusMessage_InProgressWithRunTime {
             get {
-                return ResourceManager.GetString("BuildMessage_InProgressWithRunTime", resourceCulture);
+                return ResourceManager.GetString("BuildStatusMessage_InProgressWithRunTime", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Queued.
         /// </summary>
-        public static string BuildMessage_Queued {
+        public static string BuildStatusMessage_Queued {
             get {
-                return ResourceManager.GetString("BuildMessage_Queued", resourceCulture);
+                return ResourceManager.GetString("BuildStatusMessage_Queued", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Stopped.
         /// </summary>
-        public static string BuildMessage_Stopped {
+        public static string BuildStatusMessage_Stopped {
             get {
-                return ResourceManager.GetString("BuildMessage_Stopped", resourceCulture);
+                return ResourceManager.GetString("BuildStatusMessage_Stopped", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Stopped {0}.
         /// </summary>
-        public static string BuildMessage_StoppedWithEndTime {
+        public static string BuildStatusMessage_StoppedWithEndTime {
             get {
-                return ResourceManager.GetString("BuildMessage_StoppedWithEndTime", resourceCulture);
+                return ResourceManager.GetString("BuildStatusMessage_StoppedWithEndTime", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Stopped in {0}.
         /// </summary>
-        public static string BuildMessage_StoppedWithRunTime {
+        public static string BuildStatusMessage_StoppedWithRunTime {
             get {
-                return ResourceManager.GetString("BuildMessage_StoppedWithRunTime", resourceCulture);
+                return ResourceManager.GetString("BuildStatusMessage_StoppedWithRunTime", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Stopped in {0}, {1}.
         /// </summary>
-        public static string BuildMessage_StoppedWithRunTimeAndEndTime {
+        public static string BuildStatusMessage_StoppedWithRunTimeAndEndTime {
             get {
-                return ResourceManager.GetString("BuildMessage_StoppedWithRunTimeAndEndTime", resourceCulture);
+                return ResourceManager.GetString("BuildStatusMessage_StoppedWithRunTimeAndEndTime", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Succeeded.
         /// </summary>
-        public static string BuildMessage_Succeeded {
+        public static string BuildStatusMessage_Succeeded {
             get {
-                return ResourceManager.GetString("BuildMessage_Succeeded", resourceCulture);
+                return ResourceManager.GetString("BuildStatusMessage_Succeeded", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Succeeded {0}.
         /// </summary>
-        public static string BuildMessage_SucceededWithEndTime {
+        public static string BuildStatusMessage_SucceededWithEndTime {
             get {
-                return ResourceManager.GetString("BuildMessage_SucceededWithEndTime", resourceCulture);
+                return ResourceManager.GetString("BuildStatusMessage_SucceededWithEndTime", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Succedded in {0}.
         /// </summary>
-        public static string BuildMessage_SucceededWithRunTime {
+        public static string BuildStatusMessage_SucceededWithRunTime {
             get {
-                return ResourceManager.GetString("BuildMessage_SucceededWithRunTime", resourceCulture);
+                return ResourceManager.GetString("BuildStatusMessage_SucceededWithRunTime", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Succeeded in {0}, {1}.
         /// </summary>
-        public static string BuildMessage_SucceededWithRunTimeAndEndTime {
+        public static string BuildStatusMessage_SucceededWithRunTimeAndEndTime {
             get {
-                return ResourceManager.GetString("BuildMessage_SucceededWithRunTimeAndEndTime", resourceCulture);
+                return ResourceManager.GetString("BuildStatusMessage_SucceededWithRunTimeAndEndTime", resourceCulture);
             }
         }
         

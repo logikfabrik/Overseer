@@ -11,6 +11,8 @@ namespace Logikfabrik.Overseer.WPF
     /// </summary>
     public static class BuildMessageUtility
     {
+        // TODO: Rename class or move function elsewhere.
+
         /// <summary>
         /// Gets the build name.
         /// </summary>

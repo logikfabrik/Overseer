@@ -115,10 +115,9 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         void View();
 
         /// <summary>
-        /// Tries to update this instance.
+        /// Updates this instance.
         /// </summary>
-        /// <param name="name">The name.</param>
-        /// <returns><c>true</c> if this instance was updated; otherwise, <c>false</c>.</returns>
-        bool TryUpdate(string name);
+        /// <param name="name">The name.</param>s
+        void Update(string name);
     }
 }

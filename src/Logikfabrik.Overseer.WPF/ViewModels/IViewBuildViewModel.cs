@@ -106,11 +106,10 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         void View();
 
         /// <summary>
-        /// Tries to update this instance.
+        /// Updates this instance.
         /// </summary>
         /// <param name="project">The project.</param>
         /// <param name="build">The build.</param>
-        /// <returns><c>true</c> if this instance was updated; otherwise, <c>false</c>.</returns>
-        bool TryUpdate(IProject project, IBuild build);
+        void Update(IProject project, IBuild build);
     }
 }

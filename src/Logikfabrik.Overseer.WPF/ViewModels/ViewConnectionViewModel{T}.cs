@@ -269,7 +269,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
 
                 if (projectToUpdate != null)
                 {
-                    projectToUpdate.TryUpdate(project.Name);
+                    projectToUpdate.Update(project.Name);
                 }
                 else
                 {

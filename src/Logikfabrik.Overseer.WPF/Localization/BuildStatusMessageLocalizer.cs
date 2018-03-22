@@ -38,14 +38,14 @@ namespace Logikfabrik.Overseer.WPF.Localization
 
         private static string GetLocalizedBuildStatusMessageWhenQueued()
         {
-            return Resources.BuildMessage_Queued;
+            return Resources.BuildStatusMessage_Queued;
         }
 
         private static string GetLocalizedBuildStatusMessageWhenInProgress(TimeSpan? runTime)
         {
             return !runTime.HasValue
-                ? Resources.BuildMessage_InProgress
-                : string.Format(Resources.BuildMessage_InProgressWithRunTime, runTime.Value.Humanize());
+                ? Resources.BuildStatusMessage_InProgress
+                : string.Format(Resources.BuildStatusMessage_InProgressWithRunTime, runTime.Value.Humanize());
         }
 
         private static string GetLocalizedBuildStatusMessageWhenFinished(BuildStatus status, TimeSpan? runTime, DateTime? endTime)
@@ -59,24 +59,24 @@ namespace Logikfabrik.Overseer.WPF.Localization
             switch (status)
             {
                 case BuildStatus.Failed:
-                    message = Resources.BuildMessage_Failed;
-                    messageWithRunTime = Resources.BuildMessage_FailedWithRunTime;
-                    messageWithEndTime = Resources.BuildMessage_FailedWithEndTime;
-                    messageWithRunTimeAndEndTime = Resources.BuildMessage_FailedWithRunTimeAndEndTime;
+                    message = Resources.BuildStatusMessage_Failed;
+                    messageWithRunTime = Resources.BuildStatusMessage_FailedWithRunTime;
+                    messageWithEndTime = Resources.BuildStatusMessage_FailedWithEndTime;
+                    messageWithRunTimeAndEndTime = Resources.BuildStatusMessage_FailedWithRunTimeAndEndTime;
                     break;
 
                 case BuildStatus.Succeeded:
-                    message = Resources.BuildMessage_Succeeded;
-                    messageWithRunTime = Resources.BuildMessage_SucceededWithRunTime;
-                    messageWithEndTime = Resources.BuildMessage_SucceededWithEndTime;
-                    messageWithRunTimeAndEndTime = Resources.BuildMessage_SucceededWithRunTimeAndEndTime;
+                    message = Resources.BuildStatusMessage_Succeeded;
+                    messageWithRunTime = Resources.BuildStatusMessage_SucceededWithRunTime;
+                    messageWithEndTime = Resources.BuildStatusMessage_SucceededWithEndTime;
+                    messageWithRunTimeAndEndTime = Resources.BuildStatusMessage_SucceededWithRunTimeAndEndTime;
                     break;
 
                 case BuildStatus.Stopped:
-                    message = Resources.BuildMessage_Stopped;
-                    messageWithRunTime = Resources.BuildMessage_StoppedWithRunTime;
-                    messageWithEndTime = Resources.BuildMessage_StoppedWithEndTime;
-                    messageWithRunTimeAndEndTime = Resources.BuildMessage_StoppedWithRunTimeAndEndTime;
+                    message = Resources.BuildStatusMessage_Stopped;
+                    messageWithRunTime = Resources.BuildStatusMessage_StoppedWithRunTime;
+                    messageWithEndTime = Resources.BuildStatusMessage_StoppedWithEndTime;
+                    messageWithRunTimeAndEndTime = Resources.BuildStatusMessage_StoppedWithRunTimeAndEndTime;
                     break;
 
                 default:
