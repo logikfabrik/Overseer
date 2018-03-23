@@ -102,13 +102,17 @@ namespace Logikfabrik.Overseer.WPF.Client
             kernel.Bind<IViewProjectViewModelFactory>().ToFactory();
             kernel.Bind<IRemoveConnectionViewModelFactory>().ToFactory();
             kernel.Bind<IViewConnectionViewModelStrategy>().To<ViewConnectionViewModelStrategy>();
-            kernel.Bind<ViewDashboardViewModel>().ToSelf().InSingletonScope();
-            kernel.Bind<ConnectionsViewModel>().ToSelf().InSingletonScope();
 
             // WPF client setup.
             kernel.Bind<IMouseManager>().To<MouseManager>();
 
             kernel.Load(modules);
+
+            var favoritesViewModel = kernel.Get<FavoritesViewModel>();
+            var connectionsViewModel = kernel.Get<ConnectionsViewModel>();
+
+            kernel.Bind<FavoritesViewModel>().ToConstant(favoritesViewModel).InSingletonScope();
+            kernel.Bind<ConnectionsViewModel>().ToConstant(connectionsViewModel).InSingletonScope();
         }
     }
 }
