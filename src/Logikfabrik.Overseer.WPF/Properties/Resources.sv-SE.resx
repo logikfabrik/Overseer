@@ -291,7 +291,7 @@ Vänligen försök igen.</value>
   <data name="RemoveConnection_Button_Remove" xml:space="preserve">
     <value>Ja</value>
   </data>
-  <data name="ViewAbout_Setting_Label_Attribution" xml:space="preserve">
+  <data name="ViewAbout_Setting_Label_Acknowledgement" xml:space="preserve">
     <value>Erkännande</value>
   </data>
   <data name="ViewAbout_Setting_Label_Version" xml:space="preserve">

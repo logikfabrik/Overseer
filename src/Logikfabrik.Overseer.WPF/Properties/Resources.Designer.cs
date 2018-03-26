@@ -673,11 +673,11 @@ namespace Logikfabrik.Overseer.WPF.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Attribution.
+        ///   Looks up a localized string similar to Acknowledgement.
         /// </summary>
-        public static string ViewAbout_Setting_Label_Attribution {
+        public static string ViewAbout_Setting_Label_Acknowledgement {
             get {
-                return ResourceManager.GetString("ViewAbout_Setting_Label_Attribution", resourceCulture);
+                return ResourceManager.GetString("ViewAbout_Setting_Label_Acknowledgement", resourceCulture);
             }
         }
         

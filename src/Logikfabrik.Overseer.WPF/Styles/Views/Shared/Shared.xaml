@@ -9,6 +9,7 @@
         <ResourceDictionary Source="Section/Empty/Panel.xaml" />
         <ResourceDictionary Source="Section/Header.xaml" />
         <ResourceDictionary Source="Section/Panel.xaml" />
+        <ResourceDictionary Source="Section/Text.xaml" />
         <ResourceDictionary Source="Setting/Description.xaml" />
         <ResourceDictionary Source="Setting/Label.xaml" />
         <ResourceDictionary Source="Setting/Panel.xaml" />

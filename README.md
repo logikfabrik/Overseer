@@ -11,7 +11,7 @@ Overseer is Open Source (MIT), and you're welcome to contribute!
 
 If you have a bug report, feature request, or suggestion, please open a new issue. To submit a patch, please send a pull request.
 
-### Attribution
+### Acknowledgement
 - [Caliburn.Micro](https://github.com/Caliburn-Micro/Caliburn.Micro)
 - [Castle.Core](https://github.com/castleproject/Core)
 - [Ensure.That](https://github.com/danielwertheim/Ensure.That)
