@@ -4,6 +4,5 @@
         BasedOn="{StaticResource {x:Type TextBlock}}"
         TargetType="{x:Type TextBlock}">
         <Setter Property="FontWeight" Value="Bold" />
-        <Setter Property="TextWrapping" Value="Wrap" />
     </Style>
 </ResourceDictionary>

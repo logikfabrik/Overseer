@@ -25,7 +25,6 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         private readonly IEventAggregator _eventAggregator;
         private readonly IViewBuildViewModelFactory _viewBuildViewModelFactory;
         private readonly INavigationMessageFactory<ViewProjectViewModel> _navigationMessageFactory;
-        private readonly Guid _settingsId;
 
 #pragma warning disable S1450 // Private fields only used as local variables in methods should become local variables
 
@@ -49,10 +48,24 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// <param name="navigationMessageFactory">The navigation message factory.</param>
         /// <param name="settingsId">The settings identifier.</param>
         /// <param name="projectId">The project identifier.</param>
-        /// <param name="projectName">The project name.</param>
 #pragma warning disable S107 // Methods should not have too many parameters
 
         // ReSharper disable once InheritdocConsiderUsage
+        public ViewProjectViewModel(
+            IPlatformProvider platformProvider,
+            IApp application,
+            IEventAggregator eventAggregator,
+            IBuildTracker buildTracker,
+            IViewBuildViewModelFactory viewBuildViewModelFactory,
+            IEditFavoriteViewModelFactory editFavoriteViewModelFactory,
+            INavigationMessageFactory<ViewProjectViewModel> navigationMessageFactory,
+            Guid settingsId,
+            string projectId)
+            : this(platformProvider, application, eventAggregator, buildTracker, viewBuildViewModelFactory, editFavoriteViewModelFactory,navigationMessageFactory, settingsId, projectId, null)
+        {
+#pragma warning restore S107 // Methods should not have too many parameters
+        }
+
         public ViewProjectViewModel(
             IPlatformProvider platformProvider,
             IApp application,
@@ -80,7 +93,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             _eventAggregator = eventAggregator;
             _viewBuildViewModelFactory = viewBuildViewModelFactory;
             _navigationMessageFactory = navigationMessageFactory;
-            _settingsId = settingsId;
+            SettingsId = settingsId;
             Id = projectId;
             _name = projectName;
             _isBusy = true;
@@ -103,6 +116,9 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         }
 
         /// <inheritdoc />
+        public Guid SettingsId { get; }
+
+        /// <inheritdoc />
         public string Id { get; }
 
         /// <inheritdoc />
@@ -113,7 +129,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
                 return _name;
             }
 
-            private set
+            set
             {
                 _name = value;
                 NotifyOfPropertyChange(() => Name);
@@ -149,7 +165,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
                 return _isBusy;
             }
 
-            private set
+            set
             {
                 _isBusy = value;
                 NotifyOfPropertyChange(() => IsBusy);
@@ -168,7 +184,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
                 return _isErrored;
             }
 
-            private set
+            set
             {
                 _isErrored = value;
                 NotifyOfPropertyChange(() => IsErrored);
@@ -185,12 +201,6 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             var message = _navigationMessageFactory.Create(this);
 
             _eventAggregator.PublishOnUIThread(message);
-        }
-
-        /// <inheritdoc />
-        public void Update(string name)
-        {
-            Name = name;
         }
 
         private void BuildTrackerProjectError(object sender, BuildTrackerProjectErrorEventArgs e)
@@ -261,7 +271,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
 
         private bool ShouldExitHandler(BuildTrackerProjectEventArgs e)
         {
-            return _settingsId != e.SettingsId || Id != e.Project.Id;
+            return SettingsId != e.SettingsId || Id != e.Project.Id;
         }
     }
 }

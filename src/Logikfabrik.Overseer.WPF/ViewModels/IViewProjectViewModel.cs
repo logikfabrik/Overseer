@@ -4,6 +4,7 @@
 
 namespace Logikfabrik.Overseer.WPF.ViewModels
 {
+    using System;
     using System.ComponentModel;
 
     /// <summary>
@@ -11,6 +12,14 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     /// </summary>
     public interface IViewProjectViewModel
     {
+        /// <summary>
+        /// Gets the settings identifier.
+        /// </summary>
+        /// <value>
+        /// The settings identifier.
+        /// </value>
+        Guid SettingsId { get; }
+
         /// <summary>
         /// Gets the identifier.
         /// </summary>
@@ -20,12 +29,12 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         string Id { get; }
 
         /// <summary>
-        /// Gets the name.
+        /// Gets or sets the name.
         /// </summary>
         /// <value>
         /// The name.
         /// </value>
-        string Name { get; }
+        string Name { get; set; }
 
         /// <summary>
         /// Gets the ordered builds.
@@ -84,12 +93,12 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         bool HasQueuedBuilds { get; }
 
         /// <summary>
-        /// Gets a value indicating whether this instance is busy.
+        /// Gets or sets a value indicating whether this instance is busy.
         /// </summary>
         /// <value>
         ///   <c>true</c> if this instance is busy; otherwise, <c>false</c>.
         /// </value>
-        bool IsBusy { get; }
+        bool IsBusy { get; set; }
 
         /// <summary>
         /// Gets a value indicating whether this instance is viewable.
@@ -100,24 +109,24 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         bool IsViewable { get; }
 
         /// <summary>
-        /// Gets a value indicating whether this instance is errored.
+        /// Gets or sets a value indicating whether this instance is errored.
         /// </summary>
         /// <value>
         ///   <c>true</c> if this instance is errored; otherwise, <c>false</c>.
         /// </value>
-        bool IsErrored { get; }
+        bool IsErrored { get; set; }
 
+        /// <summary>
+        /// Gets the favorite.
+        /// </summary>
+        /// <value>
+        /// The favorite.
+        /// </value>
         EditFavoriteViewModel Favorite { get; }
 
         /// <summary>
         /// Views this instance.
         /// </summary>
         void View();
-
-        /// <summary>
-        /// Updates this instance.
-        /// </summary>
-        /// <param name="name">The name.</param>s
-        void Update(string name);
     }
 }

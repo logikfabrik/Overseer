@@ -96,7 +96,6 @@ namespace Logikfabrik.Overseer.WPF.Client
             kernel.Bind<IEditTrackedProjectViewModelFactory>().ToFactory();
             kernel.Bind<IEditTrackedProjectsViewModelFactory>().ToFactory();
             kernel.Bind<IViewChangeViewModelFactory>().ToFactory();
-            kernel.Bind<IViewFavoriteViewModelFactory>().ToFactory();
             kernel.Bind<IEditFavoriteViewModelFactory>().ToFactory();
             kernel.Bind<IViewBuildViewModelFactory>().ToFactory();
             kernel.Bind<IViewProjectViewModelFactory>().ToFactory();

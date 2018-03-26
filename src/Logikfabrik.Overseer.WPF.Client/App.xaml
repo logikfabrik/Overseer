@@ -71,7 +71,6 @@
                 <ResourceDictionary Source="Styles/Views/Views/ViewConnection/Brick.xaml" />
                 <ResourceDictionary Source="Styles/Views/Views/ViewConnection/Tile.xaml" />
                 <ResourceDictionary Source="Styles/Views/Views/ViewConnection/WizardBrick.xaml" />
-                <ResourceDictionary Source="Styles/Views/Views/ViewFavorite/Tile.xaml" />
                 <ResourceDictionary Source="Styles/Views/Views/ViewProject/Tile/Header/Header.xaml" />
                 <ResourceDictionary Source="Styles/Views/Views/ViewProject/Tile/Header/Panel.xaml" />
                 <ResourceDictionary Source="Styles/Views/Views/ViewProject/Tile/LatestBuild/Header.xaml" />

@@ -23,8 +23,7 @@
                             <TextBlock
                                 VerticalAlignment="Bottom"
                                 Text="{Binding ProviderName, Mode=OneTime}"
-                                TextAlignment="Center"
-                                TextWrapping="Wrap" />
+                                TextAlignment="Center" />
                         </Grid>
                     </Button>
                 </ControlTemplate>

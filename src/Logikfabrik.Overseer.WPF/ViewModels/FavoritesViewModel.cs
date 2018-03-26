@@ -10,8 +10,8 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     using System.Windows;
     using Caliburn.Micro;
     using EnsureThat;
-    using Factories;
     using Favorites;
+    using Factories;
     using Notification;
 
     /// <summary>
@@ -21,8 +21,8 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     public class FavoritesViewModel : PropertyChangedBase, IObserver<Notification<Favorite>[]>, IDisposable
     {
         private readonly IApp _application;
-        private readonly IViewFavoriteViewModelFactory _viewFavoriteViewModelFactory;
-        private BindableCollection<IViewFavoriteViewModel> _favorites;
+        private readonly IViewProjectViewModelFactory _viewProjectViewModelFactory;
+        private BindableCollection<IViewProjectViewModel> _favorites;
         private IDisposable _subscription;
         private bool _isDisposed;
 
@@ -30,23 +30,23 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// Initializes a new instance of the <see cref="FavoritesViewModel" /> class.
         /// </summary>
         /// <param name="application">The application.</param>
-        /// <param name="viewFavoriteViewModelFactory">The view favorite view model factory.</param>
         /// <param name="favoritesRepository">The favorites repository.</param>
+        /// <param name="viewProjectViewModelFactory"></param>
         /// <param name="buildTracker">The build tracker.</param>
         // ReSharper disable once InheritdocConsiderUsage
         public FavoritesViewModel(
             IApp application,
-            IViewFavoriteViewModelFactory viewFavoriteViewModelFactory,
             IFavoritesRepository favoritesRepository,
+            IViewProjectViewModelFactory viewProjectViewModelFactory,
             IBuildTracker buildTracker)
         {
             Ensure.That(application).IsNotNull();
-            Ensure.That(viewFavoriteViewModelFactory).IsNotNull();
             Ensure.That(favoritesRepository).IsNotNull();
+            Ensure.That(viewProjectViewModelFactory).IsNotNull();
 
             _application = application;
-            _viewFavoriteViewModelFactory = viewFavoriteViewModelFactory;
-            _favorites = new BindableCollection<IViewFavoriteViewModel>();
+            _viewProjectViewModelFactory = viewProjectViewModelFactory;
+            _favorites = new BindableCollection<IViewProjectViewModel>();
             _subscription = favoritesRepository.Subscribe(this);
 
             WeakEventManager<IBuildTracker, BuildTrackerConnectionErrorEventArgs>.AddHandler(buildTracker, nameof(buildTracker.ConnectionError), BuildTrackerConnectionError);
@@ -60,7 +60,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// <value>
         /// The favorites.
         /// </value>
-        public IEnumerable<IViewFavoriteViewModel> Favorites => _favorites;
+        public IEnumerable<IViewProjectViewModel> Favorites => _favorites;
 
         /// <summary>
         /// Gets a value indicating whether this instance has favorites.
@@ -87,7 +87,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
                 return;
             }
 
-            var currentFavorites = Favorites.ToDictionary(favorite => new Tuple<Guid, string>(favorite.SettingsId, favorite.ProjectId), favorite => favorite);
+            var currentFavorites = Favorites.ToDictionary(favorite => new Tuple<Guid, string>(favorite.SettingsId, favorite.Id), favorite => favorite);
 
             foreach (var favorite in NotificationUtility.GetPayloads(value, NotificationType.Removed, f => currentFavorites.ContainsKey(new Tuple<Guid, string>(f.SettingsId, f.ProjectId))))
             {
@@ -103,7 +103,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             {
                 _application.Dispatcher.Invoke(() =>
                 {
-                    var favoriteToAdd = _viewFavoriteViewModelFactory.Create(favorite.SettingsId, favorite.ProjectId);
+                    var favoriteToAdd = _viewProjectViewModelFactory.Create(favorite.SettingsId, favorite.ProjectId);
 
                     _favorites.Add(favoriteToAdd);
                 });
@@ -179,7 +179,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
 
         private void BuildTrackerProjectError(object sender, BuildTrackerProjectErrorEventArgs e)
         {
-            var favorite = _favorites.SingleOrDefault(f => f.SettingsId == e.SettingsId && f.ProjectId == e.Project.Id);
+            var favorite = _favorites.SingleOrDefault(f => f.SettingsId == e.SettingsId && f.Id == e.Project.Id);
 
             if (favorite == null)
             {
@@ -192,7 +192,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
 
         private void BuildTrackerProjectProgressChanged(object sender, BuildTrackerProjectProgressEventArgs e)
         {
-            var favorite = _favorites.SingleOrDefault(f => f.SettingsId == e.SettingsId && f.ProjectId == e.Project.Id);
+            var favorite = _favorites.SingleOrDefault(f => f.SettingsId == e.SettingsId && f.Id == e.Project.Id);
 
             if (favorite == null)
             {
@@ -200,7 +200,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             }
 
             favorite.IsBusy = false;
-            favorite.ProjectName = e.Project.Name;
+            favorite.Name = e.Project.Name;
 
             // TODO: Set build stats for favorite.
         }

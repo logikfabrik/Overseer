@@ -4,7 +4,6 @@
         BasedOn="{StaticResource {x:Type TextBlock}}"
         TargetType="{x:Type TextBlock}">
         <Setter Property="FontSize" Value="18" />
-        <Setter Property="TextWrapping" Value="Wrap" />
         <Setter Property="TextAlignment" Value="Center" />
         <Setter Property="Margin" Value="5,100,5,25" />
     </Style>

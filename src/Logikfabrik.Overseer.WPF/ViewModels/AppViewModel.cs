@@ -22,21 +22,21 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// <param name="eventAggregator">The event aggregator.</param>
         /// <param name="menuViewModel">The menu view model.</param>
         /// <param name="errorViewModel">The error view model.</param>
-        /// <param name="connectionsViewModel">The connections view model.</param>
+        /// <param name="viewDashboardViewModel">The view dashboard view model.</param>
         // ReSharper disable once InheritdocConsiderUsage
-        public AppViewModel(IEventAggregator eventAggregator, AppMenuViewModel menuViewModel, AppErrorViewModel errorViewModel, ViewConnectionsViewModel connectionsViewModel)
+        public AppViewModel(IEventAggregator eventAggregator, AppMenuViewModel menuViewModel, AppErrorViewModel errorViewModel, ViewDashboardViewModel viewDashboardViewModel)
             : base(eventAggregator)
         {
             Ensure.That(menuViewModel).IsNotNull();
             Ensure.That(errorViewModel).IsNotNull();
-            Ensure.That(connectionsViewModel).IsNotNull();
+            Ensure.That(viewDashboardViewModel).IsNotNull();
 
             Menu = menuViewModel;
             Error = errorViewModel;
 
             DisplayName = "Overseer";
 
-            ActivateItem(connectionsViewModel);
+            ActivateItem(viewDashboardViewModel);
         }
 
         /// <summary>

@@ -172,9 +172,6 @@
     <Compile Include="Views\Views\ViewConnection\WizardBrick.xaml.cs">
       <DependentUpon>WizardBrick.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Views\ViewFavorite\Tile.xaml.cs">
-      <DependentUpon>Tile.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\Windows\WizardView.xaml.cs">
       <DependentUpon>WizardView.xaml</DependentUpon>
     </Compile>
@@ -349,10 +346,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Styles\Views\Views\ViewFavorite\Tile.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Styles\Views\Views\ViewProject\Tile.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -490,10 +483,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Views\ViewConnection\WizardBrick.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\Views\ViewFavorite\Tile.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
