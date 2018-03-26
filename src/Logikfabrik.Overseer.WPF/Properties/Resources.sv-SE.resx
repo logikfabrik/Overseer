@@ -219,11 +219,11 @@ Vänligen försök igen.</value>
   <data name="AddConnection_View1" xml:space="preserve">
     <value>Lägg till anslutning</value>
   </data>
-  <data name="Connections_Tile_Button_Add" xml:space="preserve">
+  <data name="Connections_Tiles_Button_Add" xml:space="preserve">
     <value>Lägg till anslutning</value>
   </data>
-  <data name="Connections_Tile_Message_NoConnections" xml:space="preserve">
-    <value>Lägg till en anslutning för att komma igång</value>
+  <data name="Connections_Tiles_Message_NoConnections" xml:space="preserve">
+    <value>Det finns inget här</value>
   </data>
   <data name="EditConnectionSettings_Setting_Description_BuildsPerProject" xml:space="preserve">
     <value>Antal byggen att hämta från CI/DI-tjänsten per projekt</value>
@@ -410,5 +410,8 @@ Vänligen försök igen.</value>
   </data>
   <data name="BuildStatusMessage_SucceededWithRunTimeAndEndTime" xml:space="preserve">
     <value>Lyckades efter {0}, {1}</value>
+  </data>
+  <data name="Favorites_Tiles_Message_NoFavorites" xml:space="preserve">
+    <value>Det finns inget här</value>
   </data>
 </root>

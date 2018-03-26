@@ -11,10 +11,8 @@
                         <ItemsControl ItemsSource="{Binding Favorites, Mode=OneWay}" Visibility="{Binding HasFavorites, Converter={StaticResource BooleanToVisibilityConverter}}">
                             <ItemsControl.ItemContainerStyle>
                                 <Style>
-                                    <!--  ReSharper disable once Xaml.RedundantPropertyTypeQualifier  -->
                                     <Setter Property="FrameworkElement.Margin" Value="10,10,0,0" />
                                     <Setter Property="FrameworkElement.Width" Value="200" />
-                                    <!--<Setter Property="FrameworkElement.Height" Value="200" />-->
                                 </Style>
                             </ItemsControl.ItemContainerStyle>
                             <ItemsControl.ItemTemplate>
@@ -39,11 +37,7 @@
                             </ItemsControl.ItemsPanel>
                         </ItemsControl>
                         <StackPanel Style="{StaticResource Views.Shared.Section.Empty.Panel}" Visibility="{Binding HasNoFavorites, Converter={StaticResource BooleanToVisibilityConverter}}">
-                            <TextBlock Style="{StaticResource Views.Shared.Section.Empty.Header}" Text="{Binding Source={x:Static p:Resources.Connections_Tile_Message_NoConnections}}" />
-                            <Button
-                                cal:Message.Attach="Add"
-                                Content="{x:Static p:Resources.Connections_Tile_Button_Add}"
-                                IsDefault="True" />
+                            <TextBlock Style="{StaticResource Views.Shared.Section.Empty.Header}" Text="{Binding Source={x:Static p:Resources.Favorites_Tiles_Message_NoFavorites}}" />
                         </StackPanel>
                     </Grid>
                 </ControlTemplate>

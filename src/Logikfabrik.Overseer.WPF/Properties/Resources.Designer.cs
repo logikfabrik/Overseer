@@ -293,18 +293,18 @@ namespace Logikfabrik.Overseer.WPF.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Add connection.
         /// </summary>
-        public static string Connections_Tile_Button_Add {
+        public static string Connections_Tiles_Button_Add {
             get {
-                return ResourceManager.GetString("Connections_Tile_Button_Add", resourceCulture);
+                return ResourceManager.GetString("Connections_Tiles_Button_Add", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Add a connection to get started.
+        ///   Looks up a localized string similar to There&apos;s nothing here.
         /// </summary>
-        public static string Connections_Tile_Message_NoConnections {
+        public static string Connections_Tiles_Message_NoConnections {
             get {
-                return ResourceManager.GetString("Connections_Tile_Message_NoConnections", resourceCulture);
+                return ResourceManager.GetString("Connections_Tiles_Message_NoConnections", resourceCulture);
             }
         }
         
@@ -561,6 +561,15 @@ namespace Logikfabrik.Overseer.WPF.Properties {
         public static string EditTrackedProjects_Button_SelectAll {
             get {
                 return ResourceManager.GetString("EditTrackedProjects_Button_SelectAll", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to There&apos;s nothing here.
+        /// </summary>
+        public static string Favorites_Tiles_Message_NoFavorites {
+            get {
+                return ResourceManager.GetString("Favorites_Tiles_Message_NoFavorites", resourceCulture);
             }
         }
         

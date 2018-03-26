@@ -33,5 +33,5 @@
     <c:StringToUpperCaseConverter x:Key="StringToUpperCaseConverter" />
 
     <c:IsLessThanConverter x:Key="IsLessThanConverter" />
-    
+
 </ResourceDictionary>

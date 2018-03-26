@@ -219,11 +219,11 @@ Please try again.</value>
   <data name="AddConnection_View1" xml:space="preserve">
     <value>Add connection</value>
   </data>
-  <data name="Connections_Tile_Button_Add" xml:space="preserve">
+  <data name="Connections_Tiles_Button_Add" xml:space="preserve">
     <value>Add connection</value>
   </data>
-  <data name="Connections_Tile_Message_NoConnections" xml:space="preserve">
-    <value>Add a connection to get started</value>
+  <data name="Connections_Tiles_Message_NoConnections" xml:space="preserve">
+    <value>There's nothing here</value>
   </data>
   <data name="EditConnectionSettings_Setting_Description_BuildsPerProject" xml:space="preserve">
     <value>Number of builds to get from the CI/DI service per project</value>
@@ -410,5 +410,8 @@ Please try again.</value>
   </data>
   <data name="BuildStatusMessage_SucceededWithRunTimeAndEndTime" xml:space="preserve">
     <value>Succeeded in {0}, {1}</value>
+  </data>
+  <data name="Favorites_Tiles_Message_NoFavorites" xml:space="preserve">
+    <value>There's nothing here</value>
   </data>
 </root>
