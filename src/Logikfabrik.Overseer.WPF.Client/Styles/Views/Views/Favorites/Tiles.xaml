@@ -11,8 +11,10 @@
                         <ItemsControl ItemsSource="{Binding Favorites, Mode=OneWay}" Visibility="{Binding HasFavorites, Converter={StaticResource BooleanToVisibilityConverter}}">
                             <ItemsControl.ItemContainerStyle>
                                 <Style>
+                                    <!--  ReSharper disable Xaml.RedundantPropertyTypeQualifier  -->
                                     <Setter Property="FrameworkElement.Margin" Value="10,10,0,0" />
                                     <Setter Property="FrameworkElement.Width" Value="200" />
+                                    <!--  ReSharper restore Xaml.RedundantPropertyTypeQualifier  -->
                                 </Style>
                             </ItemsControl.ItemContainerStyle>
                             <ItemsControl.ItemTemplate>
