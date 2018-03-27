@@ -89,7 +89,6 @@
     <Compile Include="BuildNotificationConfigurator.cs" />
     <Compile Include="BuildNotificationManager.cs" />
     <Compile Include="Converters\AddConnectionViewExceptionToLocalizedStringConverter.cs" />
-    <Compile Include="Converters\BuildStatusToStyleConverter.cs" />
     <Compile Include="Converters\EditConnectionViewExceptionToLocalizedStringConverter.cs" />
     <Compile Include="Converters\IsLessThanConverter.cs" />
     <Compile Include="Converters\StringToUpperCaseConverter.cs" />
@@ -148,6 +147,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Styles\LayoutBreakpoint.cs" />
     <Compile Include="Validators\EditConnectionSettingsViewModelValidator{T1,T2}.cs">
       <SonarQubeExclude>true</SonarQubeExclude>
     </Compile>
