@@ -14,17 +14,6 @@ namespace Logikfabrik.Overseer
     {
         /// <inheritdoc />
         [UserScopedSetting]
-        public int Interval
-        {
-            get { return (int)this["Interval"]; }
-            set { this["Interval"] = value; }
-        }
-
-        /// <inheritdoc />
-        public int Expiration => Interval;
-
-        /// <inheritdoc />
-        [UserScopedSetting]
         public string CultureName
         {
             get { return (string)this["CultureName"]; }

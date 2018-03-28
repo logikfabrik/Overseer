@@ -82,11 +82,17 @@ namespace Logikfabrik.Overseer.WPF.Test.ViewModels
         {
             var mocker = new AutoMocker();
 
-            var factoryMock = new Mock<IAppSettingsFactory>();
+            var appSettingsFactoryMock = new Mock<IAppSettingsFactory>();
 
-            factoryMock.Setup(m => m.Create()).Returns(new Mock<IAppSettings>().Object);
+            appSettingsFactoryMock.Setup(m => m.Create()).Returns(new Mock<IAppSettings>().Object);
 
-            mocker.Use(factoryMock);
+            mocker.Use(appSettingsFactoryMock);
+
+            var buildTrackerSettingsFactoryMock = new Mock<IBuildTrackerSettingsFactory>();
+
+            buildTrackerSettingsFactoryMock.Setup(m => m.Create()).Returns(new Mock<IBuildTrackerSettings>().Object);
+
+            mocker.Use(buildTrackerSettingsFactoryMock);
 
             CanGoTo<EditSettingsViewModel>(model => model.GoToSettings(), mocker);
         }

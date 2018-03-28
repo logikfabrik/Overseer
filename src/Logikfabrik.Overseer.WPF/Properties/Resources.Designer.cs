@@ -137,21 +137,30 @@ namespace Logikfabrik.Overseer.WPF.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Add connection.
-        /// </summary>
-        public static string AddConnection_View1 {
-            get {
-                return ResourceManager.GetString("AddConnection_View1", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Sorry, there seems to be a problem!
         ///Please try again..
         /// </summary>
         public static string App_Error_Standard {
             get {
                 return ResourceManager.GetString("App_Error_Standard", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pause.
+        /// </summary>
+        public static string App_TaskbarButton_Pause {
+            get {
+                return ResourceManager.GetString("App_TaskbarButton_Pause", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Play.
+        /// </summary>
+        public static string App_TaskbarButton_Play {
+            get {
+                return ResourceManager.GetString("App_TaskbarButton_Play", resourceCulture);
             }
         }
         
@@ -385,15 +394,6 @@ namespace Logikfabrik.Overseer.WPF.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Edit connection.
-        /// </summary>
-        public static string EditConnection_View1 {
-            get {
-                return ResourceManager.GetString("EditConnection_View1", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Number of builds to get from the CI/DI service per project.
         /// </summary>
         public static string EditConnectionSettings_Setting_Description_BuildsPerProject {
@@ -525,15 +525,6 @@ namespace Logikfabrik.Overseer.WPF.Properties {
         public static string EditSettings_View {
             get {
                 return ResourceManager.GetString("EditSettings_View", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Edit settings.
-        /// </summary>
-        public static string EditSettings_View1 {
-            get {
-                return ResourceManager.GetString("EditSettings_View1", resourceCulture);
             }
         }
         

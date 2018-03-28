@@ -53,6 +53,8 @@ namespace Logikfabrik.Overseer.WPF.Client
             // Business logic setup.
             kernel.Bind<IAppSettingsFactory>().ToFactory();
             kernel.Bind<IAppSettings>().To<AppSettings>();
+            kernel.Bind<IBuildTrackerSettingsFactory>().ToFactory();
+            kernel.Bind<IBuildTrackerSettings>().To<BuildTrackerSettings>();
             kernel.Bind<ILogService>().To<LogService>();
             kernel.Bind<IFavoritesSerializer>().To<FavoritesSerializer>();
             kernel.Bind<IConnectionSettingsSerializer>().ToProvider<Providers.Settings.ConnectionSettingsSerializerProvider>();

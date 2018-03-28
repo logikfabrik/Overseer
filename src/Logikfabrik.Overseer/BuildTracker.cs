@@ -20,7 +20,7 @@ namespace Logikfabrik.Overseer
     // ReSharper disable once InheritdocConsiderUsage
     public class BuildTracker : IBuildTracker, IDisposable
     {
-        private readonly IAppSettingsFactory _appSettingsFactory;
+        private readonly IBuildTrackerSettingsFactory _buildTrackerSettingsFactory;
         private readonly ILogService _logService;
         private IDictionary<Guid, IConnection> _connections;
         private IDisposable _subscription;
@@ -31,15 +31,15 @@ namespace Logikfabrik.Overseer
         /// Initializes a new instance of the <see cref="BuildTracker" /> class.
         /// </summary>
         /// <param name="connectionPool">The connection pool.</param>
-        /// <param name="appSettingsFactory">The app settings factory.</param>
+        /// <param name="buildTrackerSettingsFactory">The build tracker settings factory.</param>
         /// <param name="logService">The log service.</param>
-        public BuildTracker(IConnectionPool connectionPool, IAppSettingsFactory appSettingsFactory, ILogService logService)
+        public BuildTracker(IConnectionPool connectionPool, IBuildTrackerSettingsFactory buildTrackerSettingsFactory, ILogService logService)
         {
             Ensure.That(connectionPool).IsNotNull();
-            Ensure.That(appSettingsFactory).IsNotNull();
+            Ensure.That(buildTrackerSettingsFactory).IsNotNull();
             Ensure.That(logService).IsNotNull();
 
-            _appSettingsFactory = appSettingsFactory;
+            _buildTrackerSettingsFactory = buildTrackerSettingsFactory;
             _logService = logService;
             _connections = new Dictionary<Guid, IConnection>();
             _subscription = connectionPool.Subscribe(this);
@@ -86,7 +86,7 @@ namespace Logikfabrik.Overseer
 
                             await GetProjectsAndBuildsAsync(_connections.Values, cancellationToken).ConfigureAwait(false);
 
-                            await Task.Delay(TimeSpan.FromSeconds(_appSettingsFactory.Create().Interval), cancellationToken).ConfigureAwait(false);
+                            await Task.Delay(TimeSpan.FromSeconds(_buildTrackerSettingsFactory.Create().Interval), cancellationToken).ConfigureAwait(false);
                         }
                         catch (OperationCanceledException)
                         {

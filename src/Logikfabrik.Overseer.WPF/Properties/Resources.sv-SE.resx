@@ -216,9 +216,6 @@ Vänligen försök igen.</value>
   <data name="AddConnection_Button_TryConnect" xml:space="preserve">
     <value>Prova att ansluta</value>
   </data>
-  <data name="AddConnection_View1" xml:space="preserve">
-    <value>Lägg till anslutning</value>
-  </data>
   <data name="Connections_Tiles_Button_Add" xml:space="preserve">
     <value>Lägg till anslutning</value>
   </data>
@@ -243,9 +240,6 @@ Vänligen försök igen.</value>
   <data name="EditConnection_Button_TryConnect" xml:space="preserve">
     <value>Prova att ansluta</value>
   </data>
-  <data name="EditConnection_View1" xml:space="preserve">
-    <value>Redigera anslutning</value>
-  </data>
   <data name="EditSettings_Button_Save" xml:space="preserve">
     <value>OK</value>
   </data>
@@ -260,9 +254,6 @@ Vänligen försök igen.</value>
   </data>
   <data name="EditSettings_Setting_Label_Interval" xml:space="preserve">
     <value>Intervall</value>
-  </data>
-  <data name="EditSettings_View1" xml:space="preserve">
-    <value>Redigera inställningar</value>
   </data>
   <data name="EditTrackedProjects_Button_DeselectAll" xml:space="preserve">
     <value>Välj bort alla</value>
@@ -413,5 +404,11 @@ Vänligen försök igen.</value>
   </data>
   <data name="Favorites_Tiles_Message_NoFavorites" xml:space="preserve">
     <value>Det finns inget här</value>
+  </data>
+  <data name="App_TaskbarButton_Pause" xml:space="preserve">
+    <value>Pausa</value>
+  </data>
+  <data name="App_TaskbarButton_Play" xml:space="preserve">
+    <value>Spela</value>
   </data>
 </root>

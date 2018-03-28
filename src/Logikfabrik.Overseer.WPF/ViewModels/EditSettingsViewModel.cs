@@ -23,6 +23,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         private readonly IApp _application;
         private readonly EditSettingsViewModelValidator _validator;
         private readonly IAppSettings _applicationSettings;
+        private readonly IBuildTrackerSettings _buildTrackerSettings;
         private int _interval;
         private string _cultureName;
 
@@ -32,21 +33,24 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// <param name="platformProvider">The platform provider.</param>
         /// <param name="application">The application.</param>
         /// <param name="applicationSettingsFactory">The application settings factory.</param>
+        /// <param name="buildTrackerSettingsFactory">The build tracker settings factory.</param>
         // ReSharper disable once InheritdocConsiderUsage
-        public EditSettingsViewModel(IPlatformProvider platformProvider, IApp application, IAppSettingsFactory applicationSettingsFactory)
+        public EditSettingsViewModel(IPlatformProvider platformProvider, IApp application, IAppSettingsFactory applicationSettingsFactory, IBuildTrackerSettingsFactory buildTrackerSettingsFactory)
             : base(platformProvider)
         {
             Ensure.That(application).IsNotNull();
             Ensure.That(applicationSettingsFactory).IsNotNull();
+            Ensure.That(buildTrackerSettingsFactory).IsNotNull();
 
             _application = application;
             _validator = new EditSettingsViewModelValidator();
 
-            var applicationSettings = applicationSettingsFactory.Create();
+            _applicationSettings = applicationSettingsFactory.Create();
+            _buildTrackerSettings = buildTrackerSettingsFactory.Create();
 
-            _applicationSettings = applicationSettings;
-            _interval = applicationSettings.Interval;
-            _cultureName = applicationSettings.CultureName;
+            _cultureName = _applicationSettings.CultureName;
+            _interval = _buildTrackerSettings.Interval;
+
             CultureNames = SupportedCultures.CultureNames.Select(cultureName => new Tuple<string, string>(SupportedCulturesLocalizer.Localize(cultureName), cultureName));
             DisplayName = Properties.Resources.EditSettings_View;
         }
@@ -142,10 +146,11 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
 
             var restart = _applicationSettings.CultureName != CultureName;
 
-            _applicationSettings.Interval = _interval;
             _applicationSettings.CultureName = _cultureName;
+            _buildTrackerSettings.Interval = _interval;
 
             _applicationSettings.Save();
+            _buildTrackerSettings.Save();
 
             if (restart)
             {

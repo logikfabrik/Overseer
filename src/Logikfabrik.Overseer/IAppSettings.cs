@@ -18,23 +18,7 @@ namespace Logikfabrik.Overseer
         string CultureName { get; set; }
 
         /// <summary>
-        /// Gets the expiration.
-        /// </summary>
-        /// <value>
-        /// The expiration.
-        /// </value>
-        int Expiration { get; }
-
-        /// <summary>
-        /// Gets or sets the interval in seconds.
-        /// </summary>
-        /// <value>
-        /// The interval in seconds.
-        /// </value>
-        int Interval { get; set; }
-
-        /// <summary>
-        /// Stores the current values of the application settings properties.
+        /// Stores the current app settings.
         /// </summary>
         void Save();
     }

@@ -73,6 +73,7 @@
       <SonarQubeExclude>true</SonarQubeExclude>
     </Compile>
     <Compile Include="BuildProviderStrategy.cs" />
+    <Compile Include="BuildTrackerSettings.cs" />
     <Compile Include="Change.cs" />
     <Compile Include="Extensions\ExceptionExtensions.cs" />
     <Compile Include="Extensions\HttpException.cs" />
@@ -85,6 +86,8 @@
     <Compile Include="Favorites\IFavoritesSerializer.cs" />
     <Compile Include="Favorites\IFavoritesStore.cs" />
     <Compile Include="IAppSettings.cs" />
+    <Compile Include="IBuildTrackerSettings.cs" />
+    <Compile Include="IBuildTrackerSettingsFactory.cs" />
     <Compile Include="IConnection.cs" />
     <Compile Include="Notification\NotificationFactory{T}.cs">
       <SonarQubeExclude>true</SonarQubeExclude>
