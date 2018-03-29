@@ -25,14 +25,6 @@ namespace Logikfabrik.Overseer
         int Interval { get; set; }
 
         /// <summary>
-        /// Gets or sets a value indicating whether build tracking is paused.
-        /// </summary>
-        /// <value>
-        ///   <c>true</c> if build tracking is paused; otherwise, <c>false</c>.
-        /// </value>
-        bool IsPaused { get; set; }
-
-        /// <summary>
         /// Stores the build tracker settings.
         /// </summary>
         void Save();

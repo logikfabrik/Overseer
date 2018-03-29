@@ -22,13 +22,5 @@ namespace Logikfabrik.Overseer
 
         /// <inheritdoc />
         public int Expiration => Interval;
-
-        /// <inheritdoc />
-        [UserScopedSetting]
-        public bool IsPaused
-        {
-            get { return (bool)this["IsPaused"]; }
-            set { this["IsPaused"] = value; }
-        }
     }
 }

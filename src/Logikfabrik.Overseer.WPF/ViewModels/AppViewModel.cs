@@ -16,6 +16,9 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     public sealed class AppViewModel : Conductor<IViewModel>
 #pragma warning restore S110 // Inheritance tree of classes should not be too deep
     {
+        private readonly IAppSettingsFactory _appSettingsFactory;
+        private bool _isShowingNotifications;
+
         /// <summary>
         /// Initializes a new instance of the <see cref="AppViewModel" /> class.
         /// </summary>
@@ -24,12 +27,13 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// <param name="errorViewModel">The error view model.</param>
         /// <param name="viewDashboardViewModel">The view dashboard view model.</param>
         // ReSharper disable once InheritdocConsiderUsage
-        public AppViewModel(IEventAggregator eventAggregator, AppMenuViewModel menuViewModel, AppErrorViewModel errorViewModel, ViewDashboardViewModel viewDashboardViewModel)
+        public AppViewModel(IEventAggregator eventAggregator, AppMenuViewModel menuViewModel, AppErrorViewModel errorViewModel, ViewDashboardViewModel viewDashboardViewModel, IAppSettingsFactory appSettingsFactory)
             : base(eventAggregator)
         {
             Ensure.That(menuViewModel).IsNotNull();
             Ensure.That(errorViewModel).IsNotNull();
             Ensure.That(viewDashboardViewModel).IsNotNull();
+            Ensure.That(appSettingsFactory).IsNotNull();
 
             Menu = menuViewModel;
             Error = errorViewModel;
@@ -37,6 +41,9 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             DisplayName = "Overseer";
 
             ActivateItem(viewDashboardViewModel);
+
+            _appSettingsFactory = appSettingsFactory;
+            _isShowingNotifications = _appSettingsFactory.Create().ShowNotifications;
         }
 
         /// <summary>
@@ -63,12 +70,40 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// </value>
         public AppErrorViewModel Error { get; }
 
+        public bool IsShowingNotifications => _isShowingNotifications;
+
+        public bool IsNotShowingNotifications => !_isShowingNotifications;
+
+        public void TurnNotificationsOff()
+        {
+            ToggleNotifications(false);
+        }
+
+        public void TurnNotificationsOn()
+        {
+            ToggleNotifications(true);
+        }
+
         /// <inheritdoc />
         protected override void ChangeActiveItem(IViewModel newItem, bool closePrevious)
         {
             base.ChangeActiveItem(newItem, closePrevious);
 
             NotifyOfPropertyChange(() => ViewDisplayName);
+        }
+
+        private void ToggleNotifications(bool show)
+        {
+            var settings = _appSettingsFactory.Create();
+
+            settings.ShowNotifications = show;
+
+            settings.Save();
+
+            _isShowingNotifications = show;
+
+            NotifyOfPropertyChange(() => IsShowingNotifications);
+            NotifyOfPropertyChange(() => IsNotShowingNotifications);
         }
     }
 }

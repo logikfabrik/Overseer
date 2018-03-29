@@ -147,20 +147,20 @@ namespace Logikfabrik.Overseer.WPF.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Pause.
+        ///   Looks up a localized string similar to Turn notifications off.
         /// </summary>
-        public static string App_TaskbarButton_Pause {
+        public static string App_TaskbarButton_TurnNotificationsOff {
             get {
-                return ResourceManager.GetString("App_TaskbarButton_Pause", resourceCulture);
+                return ResourceManager.GetString("App_TaskbarButton_TurnNotificationsOff", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Play.
+        ///   Looks up a localized string similar to Turn notifications on.
         /// </summary>
-        public static string App_TaskbarButton_Play {
+        public static string App_TaskbarButton_TurnNotificationsOn {
             get {
-                return ResourceManager.GetString("App_TaskbarButton_Play", resourceCulture);
+                return ResourceManager.GetString("App_TaskbarButton_TurnNotificationsOn", resourceCulture);
             }
         }
         

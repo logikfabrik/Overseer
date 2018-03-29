@@ -18,6 +18,14 @@ namespace Logikfabrik.Overseer
         string CultureName { get; set; }
 
         /// <summary>
+        /// Gets or sets a value indicating whether to show notifications.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if to show notifications; otherwise, <c>false</c>.
+        /// </value>
+        bool ShowNotifications { get; set; }
+
+        /// <summary>
         /// Stores the current app settings.
         /// </summary>
         void Save();

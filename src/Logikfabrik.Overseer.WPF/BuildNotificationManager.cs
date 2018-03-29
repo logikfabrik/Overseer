@@ -19,7 +19,8 @@ namespace Logikfabrik.Overseer.WPF
     // ReSharper disable once InheritdocConsiderUsage
     public class BuildNotificationManager : NotificationManager<ViewNotificationViewModel>, IBuildNotificationManager
     {
-        private readonly IViewNotificationViewModelFactory _buildNotificationFactory;
+        private readonly IViewNotificationViewModelFactory _viewNotificationViewModelFactory;
+        private readonly IAppSettingsFactory _appSettingsFactory;
         private readonly Lazy<DateTime> _appStartTime = new Lazy<DateTime>(() => Process.GetCurrentProcess().StartTime.ToUniversalTime());
         private readonly HashSet<Tuple<string, string>> _finishedBuilds = new HashSet<Tuple<string, string>>();
         private readonly HashSet<Tuple<string, string>> _buildsInProgress = new HashSet<Tuple<string, string>>();
@@ -29,14 +30,16 @@ namespace Logikfabrik.Overseer.WPF
         /// </summary>
         /// <param name="windowManager">The window manager.</param>
         /// <param name="displaySetting">The display setting.</param>
-        /// <param name="buildNotificationFactory">The build notification factory.</param>
+        /// <param name="viewNotificationViewModelFactory">The build notification factory.</param>
         // ReSharper disable once InheritdocConsiderUsage
-        public BuildNotificationManager(IWindowManager windowManager, IDisplaySetting displaySetting, IViewNotificationViewModelFactory buildNotificationFactory)
+        public BuildNotificationManager(IWindowManager windowManager, IDisplaySetting displaySetting, IViewNotificationViewModelFactory viewNotificationViewModelFactory, IAppSettingsFactory appSettingsFactory)
             : base(windowManager, displaySetting)
         {
-            Ensure.That(buildNotificationFactory).IsNotNull();
+            Ensure.That(viewNotificationViewModelFactory).IsNotNull();
+            Ensure.That(appSettingsFactory).IsNotNull();
 
-            _buildNotificationFactory = buildNotificationFactory;
+            _viewNotificationViewModelFactory = viewNotificationViewModelFactory;
+            _appSettingsFactory = appSettingsFactory;
         }
 
         /// <inheritdoc />
@@ -50,13 +53,20 @@ namespace Logikfabrik.Overseer.WPF
                 return;
             }
 
-            var viewModel = _buildNotificationFactory.Create(project, build);
+            var viewModel = _viewNotificationViewModelFactory.Create(project, build);
 
             ShowNotification(viewModel);
         }
 
         private bool ShouldShowNotification(IProject project, IBuild build)
         {
+            var settings = _appSettingsFactory.Create();
+
+            if (!settings.ShowNotifications)
+            {
+                return false;
+            }
+
             // Only show notifications for builds running after app start time.
             if (build.EndTime <= _appStartTime.Value)
             {

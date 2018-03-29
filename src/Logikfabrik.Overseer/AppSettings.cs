@@ -19,5 +19,13 @@ namespace Logikfabrik.Overseer
             get { return (string)this["CultureName"]; }
             set { this["CultureName"] = value; }
         }
+
+        /// <inheritdoc />
+        [UserScopedSetting]
+        public bool ShowNotifications
+        {
+            get { return (bool)this["ShowNotifications"]; }
+            set { this["ShowNotifications"] = value; }
+        }
     }
 }

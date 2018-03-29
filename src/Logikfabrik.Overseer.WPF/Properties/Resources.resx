@@ -405,10 +405,10 @@ Please try again.</value>
   <data name="Favorites_Tiles_Message_NoFavorites" xml:space="preserve">
     <value>There's nothing here</value>
   </data>
-  <data name="App_TaskbarButton_Pause" xml:space="preserve">
-    <value>Pause</value>
+  <data name="App_TaskbarButton_TurnNotificationsOff" xml:space="preserve">
+    <value>Turn notifications off</value>
   </data>
-  <data name="App_TaskbarButton_Play" xml:space="preserve">
-    <value>Play</value>
+  <data name="App_TaskbarButton_TurnNotificationsOn" xml:space="preserve">
+    <value>Turn notifications on</value>
   </data>
 </root>

@@ -8,6 +8,7 @@ namespace Logikfabrik.Overseer.WPF.Client.Views.Windows
     using System.Windows;
     using System.Windows.Forms;
     using EnsureThat;
+    using ViewModels;
 
     /// <summary>
     /// The <see cref="AppView" /> class.
@@ -102,6 +103,16 @@ namespace Logikfabrik.Overseer.WPF.Client.Views.Windows
             Visibility = Visibility.Visible;
 
             SystemCommands.RestoreWindow(this);
+        }
+
+        private void TurnNotificationsOff(object sender, EventArgs e)
+        {
+            ((AppViewModel)DataContext).TurnNotificationsOff();
+        }
+
+        private void TurnNotificationsOn(object sender, EventArgs e)
+        {
+            ((AppViewModel)DataContext).TurnNotificationsOn();
         }
     }
 }
