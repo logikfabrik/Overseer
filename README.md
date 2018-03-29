@@ -1,6 +1,6 @@
 # Overseer [![Build status](https://ci.appveyor.com/api/projects/status/5qb10vsch42wx2y4?svg=true)](https://ci.appveyor.com/project/logikfabrik/overseer) [![Quality Gate](https://sonarcloud.io/api/badges/gate?key=overseer)](https://sonarcloud.io/dashboard?id=overseer)
 
-Overseer is a Windows task bar app for build notifications, in its early stages. It features support for AppVeyor, CircleCI, Codeship, TeamCity, and Visual Studio Team Services.
+Overseer is a WPF MVVM Windows task bar app for build notifications. It features support for AppVeyor, CircleCI, Codeship, TeamCity, Travic CI and Visual Studio Team Services.
 
 Support for Jenkins is in the pipeline.
 
