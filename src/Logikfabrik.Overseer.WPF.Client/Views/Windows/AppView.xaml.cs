@@ -22,35 +22,28 @@ namespace Logikfabrik.Overseer.WPF.Client.Views.Windows
         private readonly IApp _application;
         private readonly NotifyIcon _notifyIcon;
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="AppView" /> class.
-        /// </summary>
-        // ReSharper disable once InheritdocConsiderUsage
-        public AppView()
-        {
-        }
+        private readonly MenuItem _showNotificationsMenuItem;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="AppView" /> class.
         /// </summary>
         /// <param name="application">The application.</param>
+        /// <param name="appSettingsFactory">The app settings factory.</param>
         // ReSharper disable once InheritdocConsiderUsage
-        public AppView(IApp application)
+        public AppView(IApp application, IAppSettingsFactory appSettingsFactory)
         {
             Ensure.That(application).IsNotNull();
+            Ensure.That(appSettingsFactory).IsNotNull();
 
             InitializeComponent();
 
             _application = application;
 
 #pragma warning disable S1075 // URIs should not be hardcoded
-            var stream = System.Windows.Application.GetResourceStream(new Uri("pack://application:,,,/Overseer.ico"))?.Stream;
-#pragma warning restore S1075 // URIs should not be hardcoded
 
-            if (stream == null)
-            {
-                return;
-            }
+            // ReSharper disable once PossibleNullReferenceException
+            var stream = System.Windows.Application.GetResourceStream(new Uri("pack://application:,,,/Overseer.ico")).Stream;
+#pragma warning restore S1075 // URIs should not be hardcoded
 
             using (stream)
             {
@@ -58,12 +51,33 @@ namespace Logikfabrik.Overseer.WPF.Client.Views.Windows
                 {
                     Icon = new System.Drawing.Icon(stream)
                 };
-
-                _notifyIcon.Click += (sender, args) =>
-                {
-                    ShowView();
-                };
             }
+
+            _notifyIcon.DoubleClick += ShowWindow;
+
+            _showNotificationsMenuItem = new MenuItem(
+                Properties.Resources.App_MenuItem_ShowNotifications,
+                (sender, args) =>
+                {
+                    if (((MenuItem)sender).Checked)
+                    {
+                        HideNotifications();
+                    }
+                    else
+                    {
+                        ShowNotifications();
+                    }
+                })
+            { Checked = appSettingsFactory.Create().ShowNotifications };
+
+            var contextMenu = new ContextMenu(new[]
+            {
+                _showNotificationsMenuItem,
+                new MenuItem("-"),
+                new MenuItem(Properties.Resources.App_MenuItem_Open, ShowWindow)
+            });
+
+            _notifyIcon.ContextMenu = contextMenu;
         }
 
         /// <inheritdoc />
@@ -73,7 +87,7 @@ namespace Logikfabrik.Overseer.WPF.Client.Views.Windows
 
             if (WindowState == WindowState.Minimized)
             {
-                HideView();
+                HideWindow();
             }
         }
 
@@ -85,7 +99,7 @@ namespace Logikfabrik.Overseer.WPF.Client.Views.Windows
             _application.Shutdown();
         }
 
-        private void HideView()
+        private void HideWindow()
         {
             _notifyIcon.Visible = true;
 
@@ -95,7 +109,12 @@ namespace Logikfabrik.Overseer.WPF.Client.Views.Windows
             SystemCommands.MinimizeWindow(this);
         }
 
-        private void ShowView()
+        private void ShowWindow(object sender, EventArgs e)
+        {
+            ShowWindow();
+        }
+
+        private void ShowWindow()
         {
             _notifyIcon.Visible = false;
 
@@ -105,14 +124,32 @@ namespace Logikfabrik.Overseer.WPF.Client.Views.Windows
             SystemCommands.RestoreWindow(this);
         }
 
-        private void TurnNotificationsOff(object sender, EventArgs e)
+        private void HideNotifications(object sender, EventArgs e)
         {
-            ((AppViewModel)DataContext).TurnNotificationsOff();
+            HideNotifications();
         }
 
-        private void TurnNotificationsOn(object sender, EventArgs e)
+        private void HideNotifications()
         {
-            ((AppViewModel)DataContext).TurnNotificationsOn();
+            var viewModel = (AppViewModel)DataContext;
+
+            viewModel.HideNotifications();
+
+            _showNotificationsMenuItem.Checked = false;
+        }
+
+        private void ShowNotifications(object sender, EventArgs e)
+        {
+            ShowNotifications();
+        }
+
+        private void ShowNotifications()
+        {
+            var viewModel = (AppViewModel)DataContext;
+
+            viewModel.ShowNotifications();
+
+            _showNotificationsMenuItem.Checked = true;
         }
     }
 }

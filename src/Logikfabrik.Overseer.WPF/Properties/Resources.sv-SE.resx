@@ -405,10 +405,16 @@ Vänligen försök igen.</value>
   <data name="Favorites_Tiles_Message_NoFavorites" xml:space="preserve">
     <value>Det finns inget här</value>
   </data>
-  <data name="App_TaskbarButton_TurnNotificationsOff" xml:space="preserve">
-    <value>Slå av notifikationer</value>
+  <data name="App_TaskbarButton_HideNotifications" xml:space="preserve">
+    <value>Dölj notifikationer</value>
   </data>
-  <data name="App_TaskbarButton_TurnNotificationsOn" xml:space="preserve">
-    <value>Slå på notifikationer</value>
+  <data name="App_TaskbarButton_ShowNotifications" xml:space="preserve">
+    <value>Visa notifikationer</value>
+  </data>
+  <data name="App_MenuItem_Open" xml:space="preserve">
+    <value>Öppna</value>
+  </data>
+  <data name="App_MenuItem_ShowNotifications" xml:space="preserve">
+    <value>Visa notifikationer</value>
   </data>
 </root>

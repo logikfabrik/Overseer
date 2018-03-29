@@ -1,5 +1,12 @@
-﻿namespace Logikfabrik.Overseer.WPF.Localization
+﻿// <copyright file="SupportedCulturesLocalizer.cs" company="Logikfabrik">
+//   Copyright (c) 2016 anton(at)logikfabrik.se. Licensed under the MIT license.
+// </copyright>
+
+namespace Logikfabrik.Overseer.WPF.Localization
 {
+    /// <summary>
+    /// The <see cref="SupportedCulturesLocalizer" /> class.
+    /// </summary>
     public static class SupportedCulturesLocalizer
     {
         public static string Localize(string cultureName)

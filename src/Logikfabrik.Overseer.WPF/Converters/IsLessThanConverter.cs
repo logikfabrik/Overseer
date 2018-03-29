@@ -1,35 +1,39 @@
-﻿using System.Windows.Data;
+﻿// <copyright file="IsLessThanConverter.cs" company="Logikfabrik">
+//   Copyright (c) 2016 anton(at)logikfabrik.se. Licensed under the MIT license.
+// </copyright>
 
 namespace Logikfabrik.Overseer.WPF.Converters
 {
     using System;
     using System.Globalization;
+    using System.Windows.Data;
 
+    /// <summary>
+    /// The <see cref="IsLessThanConverter" /> class.
+    /// </summary>
     public class IsLessThanConverter : IValueConverter
     {
+        /// <inheritdoc />
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (value == null || parameter == null)
+            var v = value as double?;
+
+            if (!v.HasValue)
             {
                 return false;
             }
 
-            int firstOperand;
-            int secondOperand;
+            double p;
 
-            if (!int.TryParse(value.ToString(), out firstOperand))
+            if (!double.TryParse(parameter?.ToString(), out p))
             {
-                throw new InvalidOperationException("The value could not be converted to an integer");
+                return false;
             }
 
-            if (!int.TryParse(parameter.ToString(), out secondOperand))
-            {
-                throw new InvalidOperationException("The parameter could not be converted to an integer");
-            }
-
-            return firstOperand < secondOperand;
+            return v < p;
         }
 
+        /// <inheritdoc />
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             throw new NotImplementedException();

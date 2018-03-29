@@ -405,10 +405,16 @@ Please try again.</value>
   <data name="Favorites_Tiles_Message_NoFavorites" xml:space="preserve">
     <value>There's nothing here</value>
   </data>
-  <data name="App_TaskbarButton_TurnNotificationsOff" xml:space="preserve">
-    <value>Turn notifications off</value>
+  <data name="App_TaskbarButton_HideNotifications" xml:space="preserve">
+    <value>Hide notifications</value>
   </data>
-  <data name="App_TaskbarButton_TurnNotificationsOn" xml:space="preserve">
-    <value>Turn notifications on</value>
+  <data name="App_TaskbarButton_ShowNotifications" xml:space="preserve">
+    <value>Show notifications</value>
+  </data>
+  <data name="App_MenuItem_Open" xml:space="preserve">
+    <value>Open</value>
+  </data>
+  <data name="App_MenuItem_ShowNotifications" xml:space="preserve">
+    <value>Show notifications</value>
   </data>
 </root>

@@ -10,8 +10,8 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     using System.Windows;
     using Caliburn.Micro;
     using EnsureThat;
-    using Favorites;
     using Factories;
+    using Favorites;
     using Notification;
 
     /// <summary>

@@ -26,6 +26,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// <param name="menuViewModel">The menu view model.</param>
         /// <param name="errorViewModel">The error view model.</param>
         /// <param name="viewDashboardViewModel">The view dashboard view model.</param>
+        /// <param name="appSettingsFactory">The app settings factory.</param>
         // ReSharper disable once InheritdocConsiderUsage
         public AppViewModel(IEventAggregator eventAggregator, AppMenuViewModel menuViewModel, AppErrorViewModel errorViewModel, ViewDashboardViewModel viewDashboardViewModel, IAppSettingsFactory appSettingsFactory)
             : base(eventAggregator)
@@ -74,12 +75,12 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
 
         public bool IsNotShowingNotifications => !_isShowingNotifications;
 
-        public void TurnNotificationsOff()
+        public void HideNotifications()
         {
             ToggleNotifications(false);
         }
 
-        public void TurnNotificationsOn()
+        public void ShowNotifications()
         {
             ToggleNotifications(true);
         }

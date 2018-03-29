@@ -61,7 +61,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             INavigationMessageFactory<ViewProjectViewModel> navigationMessageFactory,
             Guid settingsId,
             string projectId)
-            : this(platformProvider, application, eventAggregator, buildTracker, viewBuildViewModelFactory, editFavoriteViewModelFactory,navigationMessageFactory, settingsId, projectId, null)
+            : this(platformProvider, application, eventAggregator, buildTracker, viewBuildViewModelFactory, editFavoriteViewModelFactory, navigationMessageFactory, settingsId, projectId, null)
         {
 #pragma warning restore S107 // Methods should not have too many parameters
         }

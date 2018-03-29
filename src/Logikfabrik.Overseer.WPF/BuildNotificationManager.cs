@@ -31,6 +31,7 @@ namespace Logikfabrik.Overseer.WPF
         /// <param name="windowManager">The window manager.</param>
         /// <param name="displaySetting">The display setting.</param>
         /// <param name="viewNotificationViewModelFactory">The build notification factory.</param>
+        /// <param name="appSettingsFactory">The app settings factory.</param>
         // ReSharper disable once InheritdocConsiderUsage
         public BuildNotificationManager(IWindowManager windowManager, IDisplaySetting displaySetting, IViewNotificationViewModelFactory viewNotificationViewModelFactory, IAppSettingsFactory appSettingsFactory)
             : base(windowManager, displaySetting)

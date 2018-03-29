@@ -147,20 +147,38 @@ namespace Logikfabrik.Overseer.WPF.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Turn notifications off.
+        ///   Looks up a localized string similar to Open.
         /// </summary>
-        public static string App_TaskbarButton_TurnNotificationsOff {
+        public static string App_MenuItem_Open {
             get {
-                return ResourceManager.GetString("App_TaskbarButton_TurnNotificationsOff", resourceCulture);
+                return ResourceManager.GetString("App_MenuItem_Open", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Turn notifications on.
+        ///   Looks up a localized string similar to Show notifications.
         /// </summary>
-        public static string App_TaskbarButton_TurnNotificationsOn {
+        public static string App_MenuItem_ShowNotifications {
             get {
-                return ResourceManager.GetString("App_TaskbarButton_TurnNotificationsOn", resourceCulture);
+                return ResourceManager.GetString("App_MenuItem_ShowNotifications", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hide notifications.
+        /// </summary>
+        public static string App_TaskbarButton_HideNotifications {
+            get {
+                return ResourceManager.GetString("App_TaskbarButton_HideNotifications", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show notifications.
+        /// </summary>
+        public static string App_TaskbarButton_ShowNotifications {
+            get {
+                return ResourceManager.GetString("App_TaskbarButton_ShowNotifications", resourceCulture);
             }
         }
         
