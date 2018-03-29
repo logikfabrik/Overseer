@@ -31,6 +31,24 @@
                                         SelectedValue="{Binding CultureName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                         SelectedValuePath="Item2" />
                                 </StackPanel>
+
+                                <StackPanel Style="{StaticResource Views.Shared.Setting.Panel}">
+                                    <TextBlock Style="{StaticResource Views.Shared.Setting.Label}" Text="Notifications" />
+                                    <TextBlock Style="{StaticResource Views.Shared.Setting.Description}" Text="Show notifications for the following" />
+                                    <CheckBox IsChecked="{Binding ShowNotificationsForInProgressBuilds, Mode=TwoWay}">
+                                        <TextBlock Text="In progress" />
+                                    </CheckBox>
+                                    <CheckBox IsChecked="{Binding ShowNotificationsForFailedBuilds, Mode=TwoWay}">
+                                        <TextBlock Text="Failed" />
+                                    </CheckBox>
+                                    <CheckBox IsChecked="{Binding ShowNotificationsForSucceededBuilds, Mode=TwoWay}">
+                                        <TextBlock Text="Succeeded" />
+                                    </CheckBox>
+                                    <CheckBox IsChecked="{Binding ShowNotificationsForStoppedBuilds, Mode=TwoWay}">
+                                        <TextBlock Text="Stopped" />
+                                    </CheckBox>
+                                </StackPanel>
+
                                 <WrapPanel Style="{StaticResource Views.Shared.Footer.Panel}">
                                     <Button
                                         cal:Message.Attach="Save"

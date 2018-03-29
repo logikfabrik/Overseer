@@ -74,6 +74,26 @@ namespace Logikfabrik.Overseer.WPF
                 return false;
             }
 
+            if (build.Status == BuildStatus.InProgress && !settings.ShowNotificationsForInProgressBuilds)
+            {
+                return false;
+            }
+
+            if (build.Status == BuildStatus.Failed && !settings.ShowNotificationsForFailedBuilds)
+            {
+                return false;
+            }
+
+            if (build.Status == BuildStatus.Succeeded && !settings.ShowNotificationsForSucceededBuilds)
+            {
+                return false;
+            }
+
+            if (build.Status == BuildStatus.Stopped && !settings.ShowNotificationsForStoppedBuilds)
+            {
+                return false;
+            }
+
             var id = new Tuple<string, string>(project.Id, build.Id);
 
             if (build.IsInProgress())

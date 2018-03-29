@@ -26,6 +26,10 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         private readonly IBuildTrackerSettings _buildTrackerSettings;
         private int _interval;
         private string _cultureName;
+        private bool _showNotificationsForInProgressBuilds;
+        private bool _showNotificationsForFailedBuilds;
+        private bool _showNotificationsForSucceededBuilds;
+        private bool _showNotificationsForStoppedBuilds;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="EditSettingsViewModel" /> class.
@@ -46,12 +50,19 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             _validator = new EditSettingsViewModelValidator();
 
             _applicationSettings = applicationSettingsFactory.Create();
-            _buildTrackerSettings = buildTrackerSettingsFactory.Create();
 
             _cultureName = _applicationSettings.CultureName;
-            _interval = _buildTrackerSettings.Interval;
+            _showNotificationsForInProgressBuilds = _applicationSettings.ShowNotificationsForInProgressBuilds;
+            _showNotificationsForFailedBuilds = _applicationSettings.ShowNotificationsForFailedBuilds;
+            _showNotificationsForSucceededBuilds = _applicationSettings.ShowNotificationsForSucceededBuilds;
+            _showNotificationsForStoppedBuilds = _applicationSettings.ShowNotificationsForStoppedBuilds;
 
             CultureNames = SupportedCultures.CultureNames.Select(cultureName => new Tuple<string, string>(SupportedCulturesLocalizer.Localize(cultureName), cultureName));
+
+            _buildTrackerSettings = buildTrackerSettingsFactory.Create();
+
+            _interval = _buildTrackerSettings.Interval;
+
             DisplayName = Properties.Resources.EditSettings_View;
         }
 
@@ -105,6 +116,62 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// </value>
         public IEnumerable<Tuple<string, string>> CultureNames { get; }
 
+        public bool ShowNotificationsForInProgressBuilds
+        {
+            get
+            {
+                return _showNotificationsForInProgressBuilds;
+            }
+
+            set
+            {
+                _showNotificationsForInProgressBuilds = value;
+                NotifyOfPropertyChange(() => ShowNotificationsForInProgressBuilds);
+            }
+        }
+
+        public bool ShowNotificationsForFailedBuilds
+        {
+            get
+            {
+                return _showNotificationsForFailedBuilds;
+            }
+
+            set
+            {
+                _showNotificationsForFailedBuilds = value;
+                NotifyOfPropertyChange(() => ShowNotificationsForFailedBuilds);
+            }
+        }
+
+        public bool ShowNotificationsForSucceededBuilds
+        {
+            get
+            {
+                return _showNotificationsForSucceededBuilds;
+            }
+
+            set
+            {
+                _showNotificationsForSucceededBuilds = value;
+                NotifyOfPropertyChange(() => ShowNotificationsForSucceededBuilds);
+            }
+        }
+
+        public bool ShowNotificationsForStoppedBuilds
+        {
+            get
+            {
+                return _showNotificationsForStoppedBuilds;
+            }
+
+            set
+            {
+                _showNotificationsForStoppedBuilds = value;
+                NotifyOfPropertyChange(() => ShowNotificationsForStoppedBuilds);
+            }
+        }
+
         /// <summary>
         /// Gets a value indicating whether this instance is valid.
         /// </summary>
@@ -147,9 +214,15 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             var restart = _applicationSettings.CultureName != CultureName;
 
             _applicationSettings.CultureName = _cultureName;
-            _buildTrackerSettings.Interval = _interval;
+            _applicationSettings.ShowNotificationsForInProgressBuilds = _showNotificationsForInProgressBuilds;
+            _applicationSettings.ShowNotificationsForFailedBuilds = _showNotificationsForFailedBuilds;
+            _applicationSettings.ShowNotificationsForSucceededBuilds = _showNotificationsForSucceededBuilds;
+            _applicationSettings.ShowNotificationsForStoppedBuilds = _showNotificationsForStoppedBuilds;
 
             _applicationSettings.Save();
+
+            _buildTrackerSettings.Interval = _interval;
+
             _buildTrackerSettings.Save();
 
             if (restart)

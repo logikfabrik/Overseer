@@ -27,5 +27,37 @@ namespace Logikfabrik.Overseer
             get { return (bool)this["ShowNotifications"]; }
             set { this["ShowNotifications"] = value; }
         }
+
+        /// <inheritdoc />
+        [UserScopedSetting]
+        public bool ShowNotificationsForInProgressBuilds
+        {
+            get { return (bool)this["ShowNotificationsForInProgressBuilds"]; }
+            set { this["ShowNotificationsForInProgressBuilds"] = value; }
+        }
+
+        /// <inheritdoc />
+        [UserScopedSetting]
+        public bool ShowNotificationsForFailedBuilds
+        {
+            get { return (bool)this["ShowNotificationsForFailedBuilds"]; }
+            set { this["ShowNotificationsForFailedBuilds"] = value; }
+        }
+
+        /// <inheritdoc />
+        [UserScopedSetting]
+        public bool ShowNotificationsForSucceededBuilds
+        {
+            get { return (bool)this["ShowNotificationsForSucceededBuilds"]; }
+            set { this["ShowNotificationsForSucceededBuilds"] = value; }
+        }
+
+        /// <inheritdoc />
+        [UserScopedSetting]
+        public bool ShowNotificationsForStoppedBuilds
+        {
+            get { return (bool)this["ShowNotificationsForStoppedBuilds"]; }
+            set { this["ShowNotificationsForStoppedBuilds"] = value; }
+        }
     }
 }

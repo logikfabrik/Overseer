@@ -25,6 +25,14 @@ namespace Logikfabrik.Overseer
         /// </value>
         bool ShowNotifications { get; set; }
 
+        bool ShowNotificationsForInProgressBuilds { get; set; }
+
+        bool ShowNotificationsForFailedBuilds { get; set; }
+
+        bool ShowNotificationsForSucceededBuilds { get; set; }
+
+        bool ShowNotificationsForStoppedBuilds { get; set; }
+
         /// <summary>
         /// Stores the current app settings.
         /// </summary>
