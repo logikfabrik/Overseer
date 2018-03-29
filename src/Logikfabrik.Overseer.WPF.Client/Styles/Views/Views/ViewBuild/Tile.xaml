@@ -92,7 +92,7 @@
                                             ToolTip="{Binding StartTime, Mode=OneWay}"
                                             Value="{Binding StartTime, Mode=OneWay}" />
                                     </Grid>
-                                    <!-- ReSharper disable once Xaml.MissingGridIndex -->
+                                    <!--  ReSharper disable once Xaml.MissingGridIndex  -->
                                     <Grid Style="{StaticResource Views.Views.ViewBuild.Tile.Panel.BreakGridAtExtraSmallToRow1}">
                                         <uc:ValueControl
                                             Icon="M16.4,4c0-1.326-1.074-2.4-2.4-2.4S11.6,2.674,11.6,4c0,0.961,0.568,1.784,1.384,2.167c-0.082,1.584-1.27,2.122-3.335,2.896  C8.779,9.39,7.82,9.752,7,10.297V6.176C7.825,5.796,8.4,4.967,8.4,4c0-1.326-1.074-2.4-2.4-2.4S3.6,2.674,3.6,4  c0,0.967,0.576,1.796,1.4,2.176v7.649C4.175,14.204,3.6,15.033,3.6,16c0,1.326,1.074,2.4,2.4,2.4s2.4-1.075,2.4-2.4  c0-0.961-0.568-1.784-1.384-2.167c0.082-1.583,1.271-2.122,3.335-2.896c2.03-0.762,4.541-1.711,4.64-4.756  C15.82,5.803,16.4,4.971,16.4,4z M6,2.615c0.764,0,1.384,0.619,1.384,1.385c0,0.764-0.62,1.385-1.384,1.385  C5.235,5.385,4.616,4.764,4.616,4C4.616,3.234,5.235,2.615,6,2.615z M6,17.385c-0.766,0-1.385-0.621-1.385-1.385  c0-0.766,0.619-1.385,1.385-1.385c0.764,0,1.384,0.619,1.384,1.385C7.384,16.764,6.764,17.385,6,17.385z M14,5.385  c-0.766,0-1.385-0.621-1.385-1.385c0-0.766,0.619-1.385,1.385-1.385c0.764,0,1.384,0.619,1.384,1.385  C15.384,4.764,14.764,5.385,14,5.385z"
@@ -100,7 +100,7 @@
                                             Value="{Binding Branch, Mode=OneWay}" />
                                     </Grid>
                                 </Grid>
-                                <!-- ReSharper disable once Xaml.MissingGridIndex -->
+                                <!--  ReSharper disable once Xaml.MissingGridIndex  -->
                                 <Grid Style="{StaticResource Views.Views.ViewBuild.Tile.Panel.BreakGridAtMediumToRow1}">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="1.5*" />
@@ -116,7 +116,7 @@
                                             ToolTip="{Binding VersionNumber, Mode=OneWay}"
                                             Value="{Binding VersionNumber, Mode=OneWay}" />
                                     </Grid>
-                                    <!-- ReSharper disable once Xaml.MissingGridIndex -->
+                                    <!--  ReSharper disable once Xaml.MissingGridIndex  -->
                                     <Grid Style="{StaticResource Views.Views.ViewBuild.Tile.Panel.BreakGridAtExtraSmallToRow1}">
                                         <uc:ValueControl
                                             Icon="M7.725,2.146c-1.016,0.756-1.289,1.953-1.239,2.59C6.55,5.515,6.708,6.529,6.708,6.529s-0.313,0.17-0.313,0.854  C6.504,9.1,7.078,8.359,7.196,9.112c0.284,1.814,0.933,1.491,0.933,2.481c0,1.649-0.68,2.42-2.803,3.334C3.196,15.845,1,17,1,19v1  h18v-1c0-2-2.197-3.155-4.328-4.072c-2.123-0.914-2.801-1.684-2.801-3.334c0-0.99,0.647-0.667,0.932-2.481  c0.119-0.753,0.692-0.012,0.803-1.729c0-0.684-0.314-0.854-0.314-0.854s0.158-1.014,0.221-1.793c0.065-0.817-0.398-2.561-2.3-3.096  c-0.333-0.34-0.558-0.881,0.466-1.424C9.439,0.112,8.918,1.284,7.725,2.146z"

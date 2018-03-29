@@ -32,8 +32,8 @@
                                     </TextBlock>
                                     <TextBlock>
                                         Overseer is Open Source (MIT), and you're welcome to contribute!
-                                        Get involved and help out on <Hyperlink NavigateUri="https://github.com/logikfabrik/overseer">GitHub</Hyperlink>.
-                                    </TextBlock>
+                                        Get involved and help out on<Hyperlink NavigateUri="https://github.com/logikfabrik/overseer">GitHub</Hyperlink>
+                                        .</TextBlock>
                                 </StackPanel>
                                 <StackPanel Style="{StaticResource Views.Shared.Section.Panel}">
                                     <TextBlock Style="{StaticResource Views.Shared.Section.Header}" Text="{Binding Source={x:Static p:Resources.ViewAbout_Setting_Label_Acknowledgement}, Converter={StaticResource StringToUpperCaseConverter}}" />
