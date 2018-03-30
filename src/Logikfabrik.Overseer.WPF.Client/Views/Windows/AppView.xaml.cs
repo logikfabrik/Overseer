@@ -21,7 +21,6 @@ namespace Logikfabrik.Overseer.WPF.Client.Views.Windows
     {
         private readonly IApp _application;
         private readonly NotifyIcon _notifyIcon;
-
         private readonly MenuItem _showNotificationsMenuItem;
 
         /// <summary>
@@ -42,7 +41,7 @@ namespace Logikfabrik.Overseer.WPF.Client.Views.Windows
 #pragma warning disable S1075 // URIs should not be hardcoded
 
             // ReSharper disable once PossibleNullReferenceException
-            var stream = System.Windows.Application.GetResourceStream(new Uri("pack://application:,,,/Overseer.ico")).Stream;
+            var stream = System.Windows.Application.GetResourceStream(new Uri("pack://application:,,,/Logikfabrik.ico")).Stream;
 #pragma warning restore S1075 // URIs should not be hardcoded
 
             using (stream)

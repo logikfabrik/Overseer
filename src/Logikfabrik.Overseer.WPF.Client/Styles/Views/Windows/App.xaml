@@ -12,7 +12,7 @@
         <Setter Property="MinHeight" Value="550" />
         <Setter Property="UseLayoutRounding" Value="True" />
         <Setter Property="TextElement.Foreground" Value="{StaticResource Window.Foreground}" />
-        <Setter Property="Icon" Value="../../../Overseer.ico" />
+        <Setter Property="Icon" Value="../../../Logikfabrik.ico" />
         <Setter Property="cal:Message.Attach" Value="[Event MouseUp] = [Action Menu.Close]" />
         <Setter Property="Template">
             <Setter.Value>
