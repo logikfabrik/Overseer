@@ -20,6 +20,10 @@
              InstallScope="perMachine"
              Description="Overseer is a Windows task bar app for build notifications."/>
 
+    <Icon Id="Logikfabrik.ico" SourceFile="..\Logikfabrik.Overseer.WPF.Client\Logikfabrik.ico" />
+
+    <Property Id="ARPPRODUCTICON" Value="Logikfabrik.ico" />
+
     <MajorUpgrade DowngradeErrorMessage="A newer version of Overseer is already installed." />
 
     <MediaTemplate EmbedCab="yes"
@@ -110,7 +114,8 @@
                   Name="Overseer"
                   Directory="dir3BE2B7698D754603B3561E3109DF8809"
                   Target="[!filCA7CCBC737E04F139864ACB9FDC02E2E]"
-                  WorkingDirectory="INSTALLFOLDER" />
+                  WorkingDirectory="INSTALLFOLDER"
+                  Icon="Logikfabrik.ico" />
 
         <RemoveFolder Id="remF8CA303B276F40929A820D1F2D1DE801"
                       On="uninstall" />
