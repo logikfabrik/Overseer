@@ -117,6 +117,12 @@
                   WorkingDirectory="INSTALLFOLDER"
                   Icon="Logikfabrik.ico" />
 
+        <Shortcut Id="shc26CF601B625E46F490DE4846DC8DD689"
+                  Name="Uninstall Overseer"
+                  Directory="dir3BE2B7698D754603B3561E3109DF8809"
+                  Target="[System64Folder]msiexec.exe"
+                  Arguments="/x [ProductCode]" />
+
         <RemoveFolder Id="remF8CA303B276F40929A820D1F2D1DE801"
                       On="uninstall" />
 
@@ -137,7 +143,8 @@
                   Name="Overseer"
                   Directory="DesktopFolder"
                   Target="[!filCA7CCBC737E04F139864ACB9FDC02E2E]"
-                  WorkingDirectory="INSTALLFOLDER" />
+                  WorkingDirectory="INSTALLFOLDER" 
+                  Icon="Logikfabrik.ico" />
 
       </Component>
 
