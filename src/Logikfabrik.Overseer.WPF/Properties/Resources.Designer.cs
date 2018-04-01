@@ -484,11 +484,20 @@ namespace Logikfabrik.Overseer.WPF.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Time (s) between updates.
+        ///   Looks up a localized string similar to Time (s) between build updates.
         /// </summary>
         public static string EditSettings_Setting_Description_Interval {
             get {
                 return ResourceManager.GetString("EditSettings_Setting_Description_Interval", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show notifications for builds that:.
+        /// </summary>
+        public static string EditSettings_Setting_Description_Notifications {
+            get {
+                return ResourceManager.GetString("EditSettings_Setting_Description_Notifications", resourceCulture);
             }
         }
         
@@ -507,6 +516,51 @@ namespace Logikfabrik.Overseer.WPF.Properties {
         public static string EditSettings_Setting_Label_Interval {
             get {
                 return ResourceManager.GetString("EditSettings_Setting_Label_Interval", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Notifications.
+        /// </summary>
+        public static string EditSettings_Setting_Label_Notifications {
+            get {
+                return ResourceManager.GetString("EditSettings_Setting_Label_Notifications", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to have failed.
+        /// </summary>
+        public static string EditSettings_Setting_Option_Notifications_Failed {
+            get {
+                return ResourceManager.GetString("EditSettings_Setting_Option_Notifications_Failed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to are in progress.
+        /// </summary>
+        public static string EditSettings_Setting_Option_Notifications_InProgress {
+            get {
+                return ResourceManager.GetString("EditSettings_Setting_Option_Notifications_InProgress", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to have stopped.
+        /// </summary>
+        public static string EditSettings_Setting_Option_Notifications_Stopped {
+            get {
+                return ResourceManager.GetString("EditSettings_Setting_Option_Notifications_Stopped", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to have succeeded.
+        /// </summary>
+        public static string EditSettings_Setting_Option_Notifications_Succeeded {
+            get {
+                return ResourceManager.GetString("EditSettings_Setting_Option_Notifications_Succeeded", resourceCulture);
             }
         }
         

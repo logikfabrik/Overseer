@@ -247,7 +247,7 @@ Vänligen försök igen.</value>
     <value>Byte av språk kommer att starta om programmet</value>
   </data>
   <data name="EditSettings_Setting_Description_Interval" xml:space="preserve">
-    <value>Tid (s) mellan uppdateringar</value>
+    <value>Tid (s) mellan bygguppdateringar</value>
   </data>
   <data name="EditSettings_Setting_Label_CultureName" xml:space="preserve">
     <value>Språk</value>
@@ -416,5 +416,23 @@ Vänligen försök igen.</value>
   </data>
   <data name="App_MenuItem_ShowNotifications" xml:space="preserve">
     <value>Visa notifikationer</value>
+  </data>
+  <data name="EditSettings_Setting_Description_Notifications" xml:space="preserve">
+    <value>Visa notifikationer för byggen som:</value>
+  </data>
+  <data name="EditSettings_Setting_Label_Notifications" xml:space="preserve">
+    <value>Notifikationer</value>
+  </data>
+  <data name="EditSettings_Setting_Option_Notifications_Failed" xml:space="preserve">
+    <value>har misslyckats</value>
+  </data>
+  <data name="EditSettings_Setting_Option_Notifications_InProgress" xml:space="preserve">
+    <value>är pågående</value>
+  </data>
+  <data name="EditSettings_Setting_Option_Notifications_Stopped" xml:space="preserve">
+    <value>har stoppats</value>
+  </data>
+  <data name="EditSettings_Setting_Option_Notifications_Succeeded" xml:space="preserve">
+    <value>har lyckats</value>
   </data>
 </root>

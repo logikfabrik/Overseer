@@ -23,6 +23,22 @@
                                     <TextBox Text="{Binding Interval, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" />
                                 </StackPanel>
                                 <StackPanel Style="{StaticResource Views.Shared.Setting.Panel}">
+                                    <TextBlock Style="{StaticResource Views.Shared.Setting.Label}" Text="{Binding Source={x:Static p:Resources.EditSettings_Setting_Label_Notifications}, Converter={StaticResource StringToUpperCaseConverter}, Mode=OneWay}" />
+                                    <TextBlock Style="{StaticResource Views.Shared.Setting.Description}" Text="{x:Static p:Resources.EditSettings_Setting_Description_Notifications}" />
+                                    <CheckBox IsChecked="{Binding ShowNotificationsForInProgressBuilds, Mode=TwoWay}">
+                                        <TextBlock Text="{x:Static p:Resources.EditSettings_Setting_Option_Notifications_InProgress}" />
+                                    </CheckBox>
+                                    <CheckBox IsChecked="{Binding ShowNotificationsForFailedBuilds, Mode=TwoWay}">
+                                        <TextBlock Text="{x:Static p:Resources.EditSettings_Setting_Option_Notifications_Failed}" />
+                                    </CheckBox>
+                                    <CheckBox IsChecked="{Binding ShowNotificationsForSucceededBuilds, Mode=TwoWay}">
+                                        <TextBlock Text="{x:Static p:Resources.EditSettings_Setting_Option_Notifications_Succeeded}" />
+                                    </CheckBox>
+                                    <CheckBox IsChecked="{Binding ShowNotificationsForStoppedBuilds, Mode=TwoWay}">
+                                        <TextBlock Text="{x:Static p:Resources.EditSettings_Setting_Option_Notifications_Stopped}" />
+                                    </CheckBox>
+                                </StackPanel>
+                                <StackPanel Style="{StaticResource Views.Shared.Setting.Panel}">
                                     <TextBlock Style="{StaticResource Views.Shared.Setting.Label}" Text="{Binding Source={x:Static p:Resources.EditSettings_Setting_Label_CultureName}, Converter={StaticResource StringToUpperCaseConverter}, Mode=OneWay}" />
                                     <TextBlock Style="{StaticResource Views.Shared.Setting.Description}" Text="{x:Static p:Resources.EditSettings_Setting_Description_CultureName}" />
                                     <ComboBox
@@ -31,24 +47,6 @@
                                         SelectedValue="{Binding CultureName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                         SelectedValuePath="Item2" />
                                 </StackPanel>
-
-                                <StackPanel Style="{StaticResource Views.Shared.Setting.Panel}">
-                                    <TextBlock Style="{StaticResource Views.Shared.Setting.Label}" Text="Notifications" />
-                                    <TextBlock Style="{StaticResource Views.Shared.Setting.Description}" Text="Show notifications for the following" />
-                                    <CheckBox IsChecked="{Binding ShowNotificationsForInProgressBuilds, Mode=TwoWay}">
-                                        <TextBlock Text="In progress" />
-                                    </CheckBox>
-                                    <CheckBox IsChecked="{Binding ShowNotificationsForFailedBuilds, Mode=TwoWay}">
-                                        <TextBlock Text="Failed" />
-                                    </CheckBox>
-                                    <CheckBox IsChecked="{Binding ShowNotificationsForSucceededBuilds, Mode=TwoWay}">
-                                        <TextBlock Text="Succeeded" />
-                                    </CheckBox>
-                                    <CheckBox IsChecked="{Binding ShowNotificationsForStoppedBuilds, Mode=TwoWay}">
-                                        <TextBlock Text="Stopped" />
-                                    </CheckBox>
-                                </StackPanel>
-
                                 <WrapPanel Style="{StaticResource Views.Shared.Footer.Panel}">
                                     <Button
                                         cal:Message.Attach="Save"

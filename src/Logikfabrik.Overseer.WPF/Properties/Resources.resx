@@ -247,7 +247,7 @@ Please try again.</value>
     <value>Changing language will restart the program</value>
   </data>
   <data name="EditSettings_Setting_Description_Interval" xml:space="preserve">
-    <value>Time (s) between updates</value>
+    <value>Time (s) between build updates</value>
   </data>
   <data name="EditSettings_Setting_Label_CultureName" xml:space="preserve">
     <value>Language</value>
@@ -416,5 +416,23 @@ Please try again.</value>
   </data>
   <data name="App_MenuItem_ShowNotifications" xml:space="preserve">
     <value>Show notifications</value>
+  </data>
+  <data name="EditSettings_Setting_Description_Notifications" xml:space="preserve">
+    <value>Show notifications for builds that:</value>
+  </data>
+  <data name="EditSettings_Setting_Label_Notifications" xml:space="preserve">
+    <value>Notifications</value>
+  </data>
+  <data name="EditSettings_Setting_Option_Notifications_Failed" xml:space="preserve">
+    <value>have failed</value>
+  </data>
+  <data name="EditSettings_Setting_Option_Notifications_InProgress" xml:space="preserve">
+    <value>are in progress</value>
+  </data>
+  <data name="EditSettings_Setting_Option_Notifications_Stopped" xml:space="preserve">
+    <value>have stopped</value>
+  </data>
+  <data name="EditSettings_Setting_Option_Notifications_Succeeded" xml:space="preserve">
+    <value>have succeeded</value>
   </data>
 </root>
