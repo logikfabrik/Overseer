@@ -96,6 +96,9 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             _provider?.AddConnection();
         }
 
+        /// <summary>
+        /// Goes to the next wizard step.
+        /// </summary>
         public void NextStep()
         {
             var message = _navigationMessageFactory.Create();

@@ -12,7 +12,7 @@ namespace Logikfabrik.Overseer.Extensions
     public static class ExceptionExtensions
     {
         /// <summary>
-        /// Gets the inner exception of the specified exception.
+        /// Gets the inner exception of the specified <see cref="Exception" />.
         /// </summary>
         /// <param name="exception">The exception.</param>
         /// <returns>The inner exception, or the specified exception.</returns>
@@ -20,7 +20,7 @@ namespace Logikfabrik.Overseer.Extensions
         {
             var ex = exception;
 
-            while (ex.InnerException != null)
+            while (ex?.InnerException != null)
             {
                 ex = ex.InnerException;
             }

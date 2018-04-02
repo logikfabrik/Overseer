@@ -13,7 +13,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     /// <summary>
     /// The <see cref="Conductor{T}" /> class.
     /// </summary>
-    /// <typeparam name="T"></typeparam>
+    /// <typeparam name="T">The view model type.</typeparam>
     // ReSharper disable once InheritdocConsiderUsage
     public abstract class Conductor<T> : Caliburn.Micro.Conductor<T>.Collection.OneActive, IHandle<INavigationMessage>, IDisposable
         where T : class

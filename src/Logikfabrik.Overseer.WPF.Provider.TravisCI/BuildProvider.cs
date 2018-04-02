@@ -45,7 +45,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.TravisCI
         {
             Ensure.That(projectId).IsNotNullOrWhiteSpace();
 
-            var builds = await _apiClient.GetBuildsAsync(projectId, int.MaxValue, 0, cancellationToken).ConfigureAwait(false);
+            var builds = await _apiClient.GetBuildsAsync(projectId, Settings.BuildsPerProject, 0, cancellationToken).ConfigureAwait(false);
 
             return builds.Records.Select(build => new Build(build));
         }

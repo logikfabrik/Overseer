@@ -119,8 +119,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="SubscriptionType.cs" />
-    <Compile Include="UriUtility.cs" />
     <Compile Include="Validators\EditConnectionSettingsViewModelValidator.cs" />
     <Compile Include="ViewModels\BuildProviderViewModel.cs" />
     <Compile Include="ViewModels\EditConnectionSettingsViewModel.cs" />

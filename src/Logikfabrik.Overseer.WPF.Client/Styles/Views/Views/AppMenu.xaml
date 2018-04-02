@@ -48,7 +48,7 @@
                                     <ContentControl
                                         Grid.Row="1"
                                         cal:View.Context="Bricks"
-                                        cal:View.Model="{Binding ConnectionsList, Mode=OneTime}"
+                                        cal:View.Model="{Binding Connections, Mode=OneTime}"
                                         Focusable="False"
                                         KeyboardNavigation.TabNavigation="Local"
                                         TabIndex="3" />

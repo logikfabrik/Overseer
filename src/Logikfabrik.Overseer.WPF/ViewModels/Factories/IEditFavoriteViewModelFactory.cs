@@ -6,8 +6,17 @@ namespace Logikfabrik.Overseer.WPF.ViewModels.Factories
 {
     using System;
 
+    /// <summary>
+    /// The <see cref="IEditFavoriteViewModelFactory" /> interface.
+    /// </summary>
     public interface IEditFavoriteViewModelFactory
     {
+        /// <summary>
+        /// Creates a view model.
+        /// </summary>
+        /// <param name="settingsId">The settings identifier.</param>
+        /// <param name="projectId">The project identifier.</param>
+        /// <returns>A view model.</returns>
         EditFavoriteViewModel Create(Guid settingsId, string projectId);
     }
 }

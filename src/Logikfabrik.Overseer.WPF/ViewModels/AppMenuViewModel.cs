@@ -31,12 +31,12 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// </summary>
         /// <param name="eventAggregator">The event aggregator.</param>
         /// <param name="mouseManager">The mouse manager.</param>
-        /// <param name="viewDashboardViewModelNavigationMessageFactory"></param>
-        /// <param name="viewConnectionsViewModelNavigationMessageFactory"></param>
-        /// <param name="newConnectionViewModelNavigationMessageFactory"></param>
-        /// <param name="editSettingsViewModelNavigationMessageFactory"></param>
-        /// <param name="viewAboutViewModelNavigationMessageFactory"></param>
-        /// <param name="connectionsListViewModel">The connections list view model.</param>
+        /// <param name="viewDashboardViewModelNavigationMessageFactory">The view dashboard view model navigation message factory.</param>
+        /// <param name="viewConnectionsViewModelNavigationMessageFactory">The view connections view model navigation message factory.</param>
+        /// <param name="newConnectionViewModelNavigationMessageFactory">The new connection view model navigation message factory.</param>
+        /// <param name="editSettingsViewModelNavigationMessageFactory">The edit settings view model navigation message factory.</param>
+        /// <param name="viewAboutViewModelNavigationMessageFactory">The view about view model navigation message factory.</param>
+        /// <param name="connectionsViewModel">The connections view model.</param>
 #pragma warning disable S107 // Methods should not have too many parameters
 
         // ReSharper disable once InheritdocConsiderUsage
@@ -48,7 +48,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             INavigationMessageFactory<NewConnectionViewModel> newConnectionViewModelNavigationMessageFactory,
             INavigationMessageFactory<EditSettingsViewModel> editSettingsViewModelNavigationMessageFactory,
             INavigationMessageFactory<ViewAboutViewModel> viewAboutViewModelNavigationMessageFactory,
-            ConnectionsViewModel connectionsListViewModel)
+            ConnectionsViewModel connectionsViewModel)
         {
 #pragma warning restore S107 // Methods should not have too many parameters
             Ensure.That(eventAggregator).IsNotNull();
@@ -58,7 +58,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             Ensure.That(newConnectionViewModelNavigationMessageFactory).IsNotNull();
             Ensure.That(editSettingsViewModelNavigationMessageFactory).IsNotNull();
             Ensure.That(viewAboutViewModelNavigationMessageFactory).IsNotNull();
-            Ensure.That(connectionsListViewModel).IsNotNull();
+            Ensure.That(connectionsViewModel).IsNotNull();
 
             _eventAggregator = eventAggregator;
             _mouseManager = mouseManager;
@@ -70,7 +70,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
 
             _mouseManager.PreProcessInput += MouseManagerPreProcessMouse;
 
-            ConnectionsList = connectionsListViewModel;
+            Connections = connectionsViewModel;
         }
 
         /// <summary>
@@ -79,7 +79,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// <value>
         /// The connections list.
         /// </value>
-        public ConnectionsViewModel ConnectionsList { get; }
+        public ConnectionsViewModel Connections { get; }
 
         /// <summary>
         /// Gets or sets a value indicating whether this instance is expanded.

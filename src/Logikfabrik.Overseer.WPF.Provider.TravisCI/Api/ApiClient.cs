@@ -7,6 +7,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.TravisCI.Api
     using System;
     using System.Net.Http;
     using System.Net.Http.Headers;
+    using System.Reflection;
     using System.Threading;
     using System.Threading.Tasks;
     using EnsureThat;
@@ -117,8 +118,10 @@ namespace Logikfabrik.Overseer.WPF.Provider.TravisCI.Api
 
         private static void SetDefaultRequestHeaders(HttpClient client)
         {
-            // TODO: Get product name and version.
-            client.DefaultRequestHeaders.UserAgent.Add(new ProductInfoHeaderValue("Overseer", "1.0.0"));
+            var productName = typeof(ApiClient).Assembly.GetCustomAttribute<AssemblyProductAttribute>()?.Product;
+            var productVersion = typeof(ApiClient).Assembly.GetCustomAttribute<AssemblyVersionAttribute>()?.Version;
+
+            client.DefaultRequestHeaders.UserAgent.Add(new ProductInfoHeaderValue(productName, productVersion));
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             client.DefaultRequestHeaders.Add("Travis-API-Version", new[] { "3" });
         }

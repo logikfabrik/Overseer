@@ -7,12 +7,12 @@ namespace Logikfabrik.Overseer.Extensions
     using System.Linq;
 
     /// <summary>
-    /// The <see cref="BuildStatusExtensions" /> class.
+    /// The <see cref="BuildStatusExtensions" /> class. Extensions for the <see cref="BuildStatus" /> enumeration.
     /// </summary>
     public static class BuildStatusExtensions
     {
         /// <summary>
-        /// Determines whether this status is in progress or finished.
+        /// Determines whether the specified <see cref="BuildStatus" /> is in progress or finished.
         /// </summary>
         /// <param name="status">The status.</param>
         /// <returns><c>true</c> if in progress or finished; otherwise, <c>false</c>.</returns>
@@ -22,7 +22,7 @@ namespace Logikfabrik.Overseer.Extensions
         }
 
         /// <summary>
-        /// Determines whether this status is finished.
+        /// Determines whether the specified <see cref="BuildStatus" /> is finished.
         /// </summary>
         /// <param name="status">The status.</param>
         /// <returns><c>true</c> if finished; otherwise, <c>false</c>.</returns>
@@ -32,7 +32,7 @@ namespace Logikfabrik.Overseer.Extensions
         }
 
         /// <summary>
-        /// Determines whether this status is in progress.
+        /// Determines whether the specified <see cref="BuildStatus" /> is in progress.
         /// </summary>
         /// <param name="status">The status.</param>
         /// <returns><c>true</c> if in progress; otherwise, <c>false</c>.</returns>
@@ -42,7 +42,7 @@ namespace Logikfabrik.Overseer.Extensions
         }
 
         /// <summary>
-        /// Determines whether this status is queued.
+        /// Determines whether the specified <see cref="BuildStatus" /> is queued.
         /// </summary>
         /// <param name="status">The status.</param>
         /// <returns><c>true</c> if queued; otherwise, <c>false</c>.</returns>

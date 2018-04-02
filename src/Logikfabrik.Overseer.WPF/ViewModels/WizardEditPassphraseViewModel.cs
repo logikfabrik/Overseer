@@ -93,6 +93,9 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             }
         }
 
+        /// <summary>
+        /// Goes to the next wizard step.
+        /// </summary>
         public void NextStep()
         {
             if (!IsValid)

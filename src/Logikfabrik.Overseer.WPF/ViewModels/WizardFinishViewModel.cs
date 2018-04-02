@@ -22,6 +22,9 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// <inheritdoc/>
         public WizardViewModel Parent { get; set; }
 
+        /// <summary>
+        /// Finishes this wizard step.
+        /// </summary>
         public void Finish()
         {
             (Parent as IClose)?.TryClose(true);

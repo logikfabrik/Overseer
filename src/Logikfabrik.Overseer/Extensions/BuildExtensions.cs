@@ -7,7 +7,7 @@ namespace Logikfabrik.Overseer.Extensions
     using System;
 
     /// <summary>
-    /// The <see cref="BuildExtensions" /> class.
+    /// The <see cref="BuildExtensions" /> class. Extensions for implementations of the <see cref="IBuild" /> interface.
     /// </summary>
     public static class BuildExtensions
     {
