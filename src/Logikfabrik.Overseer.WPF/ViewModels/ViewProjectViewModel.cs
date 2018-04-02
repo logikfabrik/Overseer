@@ -66,6 +66,22 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
 #pragma warning restore S107 // Methods should not have too many parameters
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ViewProjectViewModel" /> class.
+        /// </summary>
+        /// <param name="platformProvider">The platform provider.</param>
+        /// <param name="application">The application.</param>
+        /// <param name="eventAggregator">The event aggregator.</param>
+        /// <param name="buildTracker">The build tracker.</param>
+        /// <param name="viewBuildViewModelFactory">The view build view model factory.</param>
+        /// <param name="editFavoriteViewModelFactory">The edit favorite view model factory.</param>
+        /// <param name="navigationMessageFactory">The navigation message factory.</param>
+        /// <param name="settingsId">The settings identifier.</param>
+        /// <param name="projectId">The project identifier.</param>
+        /// <param name="projectName">The project name.</param>
+#pragma warning disable S107 // Methods should not have too many parameters
+
+        // ReSharper disable once InheritdocConsiderUsage
         public ViewProjectViewModel(
             IPlatformProvider platformProvider,
             IApp application,

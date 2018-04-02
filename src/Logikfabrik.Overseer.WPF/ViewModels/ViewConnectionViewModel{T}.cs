@@ -53,9 +53,9 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// <param name="viewProjectViewModelFactory">The view project view model factory.</param>
         /// <param name="removeConnectionViewModelFactory">The remove connection view model factory.</param>
         /// <param name="editConnectionViewModelFactory">The edit connection view model factory.</param>
-        /// <param name="viewConnectionViewModelNavigationMessageFactory"></param>
-        /// <param name="editConnectionViewModelNavigationMessageFactory"></param>
-        /// <param name="removeConnectionViewModelNavigationMessageFactory"></param>
+        /// <param name="viewConnectionViewModelNavigationMessageFactory">The view connection view model navigation message factory.</param>
+        /// <param name="editConnectionViewModelNavigationMessageFactory">The edit connection view model navigation message factory.</param>
+        /// <param name="removeConnectionViewModelNavigationMessageFactory">The remove connection view model navigation message factory.</param>
         /// <param name="settings">The settings.</param>
         // ReSharper disable once InheritdocConsiderUsage
         public ViewConnectionViewModel(
