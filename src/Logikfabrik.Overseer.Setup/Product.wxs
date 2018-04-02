@@ -20,6 +20,9 @@
              InstallScope="perMachine"
              Description="Overseer is a Windows task bar app for build notifications."/>
 
+    <WixVariable Id="WixUIBannerBmp" Value="WixUIBannerBmp.bmp" />
+    <WixVariable Id="WixUIDialogBmp" Value="WixUIDialogBmp.bmp" />
+
     <Icon Id="Logikfabrik.ico" SourceFile="..\Logikfabrik.Overseer.WPF.Client\Logikfabrik.ico" />
 
     <Property Id="ARPPRODUCTICON" Value="Logikfabrik.ico" />

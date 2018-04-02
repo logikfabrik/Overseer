@@ -140,6 +140,8 @@
     <Content Include="Attribution\Serilog\LICENSE.txt" />
     <Content Include="Attribution\TrieNet\LICENSE.txt" />
     <Content Include="LICENSE.rtf" />
+    <Content Include="WixUIBannerBmp.bmp" />
+    <Content Include="WixUIDialogBmp.bmp" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Attribution\" />
