@@ -25,7 +25,6 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     public class ViewConnectionViewModel<T> : ViewModel, IViewConnectionViewModel
         where T : ConnectionSettings
     {
-        private readonly IApp _application;
         private readonly IEventAggregator _eventAggregator;
         private readonly IViewProjectViewModelFactory _viewProjectViewModelFactory;
         private readonly IRemoveConnectionViewModelFactory _removeConnectionViewModelFactory;
@@ -47,7 +46,6 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// Initializes a new instance of the <see cref="ViewConnectionViewModel{T}" /> class.
         /// </summary>
         /// <param name="platformProvider">The platform provider.</param>
-        /// <param name="application">The application.</param>
         /// <param name="eventAggregator">The event aggregator.</param>
         /// <param name="buildTracker">The build tracker.</param>
         /// <param name="viewProjectViewModelFactory">The view project view model factory.</param>
@@ -60,7 +58,6 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         // ReSharper disable once InheritdocConsiderUsage
         public ViewConnectionViewModel(
             IPlatformProvider platformProvider,
-            IApp application,
             IEventAggregator eventAggregator,
             IBuildTracker buildTracker,
             IViewProjectViewModelFactory viewProjectViewModelFactory,
@@ -72,7 +69,6 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             T settings)
             : base(platformProvider)
         {
-            Ensure.That(application).IsNotNull();
             Ensure.That(eventAggregator).IsNotNull();
             Ensure.That(buildTracker).IsNotNull();
             Ensure.That(viewProjectViewModelFactory).IsNotNull();
@@ -83,7 +79,6 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             Ensure.That(viewConnectionViewModelNavigationMessageFactory).IsNotNull();
             Ensure.That(settings).IsNotNull();
 
-            _application = application;
             _eventAggregator = eventAggregator;
             _viewProjectViewModelFactory = viewProjectViewModelFactory;
             _removeConnectionViewModelFactory = removeConnectionViewModelFactory;
@@ -273,7 +268,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
                 }
                 else
                 {
-                    _application.Dispatcher.Invoke(() =>
+                    OnUIThread(() =>
                     {
                         var projectToAdd = _viewProjectViewModelFactory.Create(SettingsId, project.Id, project.Name);
 
@@ -291,7 +286,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
 
             if (_projects.Any())
             {
-                _application.Dispatcher.Invoke(() =>
+                OnUIThread(() =>
                 {
                     _projects.RemoveRange(projectsToRemove);
                 });

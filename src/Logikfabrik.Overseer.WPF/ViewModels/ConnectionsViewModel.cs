@@ -20,7 +20,6 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     // ReSharper disable once InheritdocConsiderUsage
     public class ConnectionsViewModel : PropertyChangedBase, IObserver<Notification<ConnectionSettings>[]>, IDisposable
     {
-        private readonly IApp _application;
         private readonly IEventAggregator _eventAggregator;
         private readonly IViewConnectionViewModelStrategy _viewConnectionViewModelStrategy;
         private readonly INavigationMessageFactory<NewConnectionViewModel> _navigationMessageFactory;
@@ -31,26 +30,22 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// <summary>
         /// Initializes a new instance of the <see cref="ConnectionsViewModel" /> class.
         /// </summary>
-        /// <param name="application">The application.</param>
         /// <param name="eventAggregator">The event aggregator.</param>
         /// <param name="viewConnectionViewModelStrategy">The view connection view model strategy.</param>
         /// <param name="connectionSettingsRepository">The connection settings repository.</param>
         /// <param name="navigationMessageFactory">The navigation message factory.</param>
         // ReSharper disable once InheritdocConsiderUsage
         public ConnectionsViewModel(
-            IApp application,
             IEventAggregator eventAggregator,
             IViewConnectionViewModelStrategy viewConnectionViewModelStrategy,
             IConnectionSettingsRepository connectionSettingsRepository,
             INavigationMessageFactory<NewConnectionViewModel> navigationMessageFactory)
         {
-            Ensure.That(application).IsNotNull();
             Ensure.That(eventAggregator).IsNotNull();
             Ensure.That(viewConnectionViewModelStrategy).IsNotNull();
             Ensure.That(connectionSettingsRepository).IsNotNull();
             Ensure.That(navigationMessageFactory).IsNotNull();
 
-            _application = application;
             _eventAggregator = eventAggregator;
             _viewConnectionViewModelStrategy = viewConnectionViewModelStrategy;
             _navigationMessageFactory = navigationMessageFactory;
@@ -97,7 +92,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             {
                 var connectionToRemove = currentConnections[settings.Id];
 
-                _application.Dispatcher.Invoke(() =>
+                OnUIThread(() =>
                 {
                     _connections.Remove(connectionToRemove);
                 });
@@ -112,7 +107,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
 
             foreach (var settings in NotificationUtility.GetPayloads(value, NotificationType.Added, s => !currentConnections.ContainsKey(s.Id)))
             {
-                _application.Dispatcher.Invoke(() =>
+                OnUIThread(() =>
                 {
                     var connectionToAdd = _viewConnectionViewModelStrategy.Create(settings);
 

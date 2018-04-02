@@ -157,7 +157,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// <inheritdoc />
         public void Update(IProject project, IBuild build)
         {
-            var name = BuildMessageUtility.GetBuildName(project.Name, VersionNumber);
+            var name = build.Name(project.Name);
 
             if (Name != name)
             {

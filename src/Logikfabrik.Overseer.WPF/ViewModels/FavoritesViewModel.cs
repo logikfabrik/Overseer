@@ -20,7 +20,6 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     // ReSharper disable once InheritdocConsiderUsage
     public class FavoritesViewModel : PropertyChangedBase, IObserver<Notification<Favorite>[]>, IDisposable
     {
-        private readonly IApp _application;
         private readonly IViewProjectViewModelFactory _viewProjectViewModelFactory;
         private BindableCollection<IViewProjectViewModel> _favorites;
         private IDisposable _subscription;
@@ -29,22 +28,18 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// <summary>
         /// Initializes a new instance of the <see cref="FavoritesViewModel" /> class.
         /// </summary>
-        /// <param name="application">The application.</param>
         /// <param name="favoritesRepository">The favorites repository.</param>
         /// <param name="viewProjectViewModelFactory">The view project view model factory.</param>
         /// <param name="buildTracker">The build tracker.</param>
         // ReSharper disable once InheritdocConsiderUsage
         public FavoritesViewModel(
-            IApp application,
             IFavoritesRepository favoritesRepository,
             IViewProjectViewModelFactory viewProjectViewModelFactory,
             IBuildTracker buildTracker)
         {
-            Ensure.That(application).IsNotNull();
             Ensure.That(favoritesRepository).IsNotNull();
             Ensure.That(viewProjectViewModelFactory).IsNotNull();
 
-            _application = application;
             _viewProjectViewModelFactory = viewProjectViewModelFactory;
             _favorites = new BindableCollection<IViewProjectViewModel>();
             _subscription = favoritesRepository.Subscribe(this);
@@ -93,7 +88,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             {
                 var favoriteToRemove = currentFavorites[new Tuple<Guid, string>(favorite.SettingsId, favorite.ProjectId)];
 
-                _application.Dispatcher.Invoke(() =>
+                OnUIThread(() =>
                 {
                     _favorites.Remove(favoriteToRemove);
                 });
@@ -101,7 +96,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
 
             foreach (var favorite in NotificationUtility.GetPayloads(value, NotificationType.Added, f => !currentFavorites.ContainsKey(new Tuple<Guid, string>(f.SettingsId, f.ProjectId))))
             {
-                _application.Dispatcher.Invoke(() =>
+                OnUIThread(() =>
                 {
                     var favoriteToAdd = _viewProjectViewModelFactory.Create(favorite.SettingsId, favorite.ProjectId);
 

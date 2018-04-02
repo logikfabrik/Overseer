@@ -13,6 +13,22 @@ namespace Logikfabrik.Overseer.Test.Extensions
 
     public class BuildExtensionsTest
     {
+        [Theory]
+        [InlineData(null, null, null)]
+        [InlineData("My Project", null, "My Project")]
+        [InlineData("My Project", "1.0.0", "My Project 1.0.0")]
+        [InlineData(null, "1.0.0", "1.0.0")]
+        public void CanGetName(string projectName, string version, string expected)
+        {
+            var buildMock = new Mock<IBuild>();
+
+            buildMock.Setup(m => m.Version).Returns(version);
+
+            var name = buildMock.Object.Name(projectName);
+
+            name.ShouldBe(expected);
+        }
+
         [Fact]
         public void CanNotGetVersionNumber()
         {

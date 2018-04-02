@@ -2,6 +2,8 @@
 //   Copyright (c) 2016 anton(at)logikfabrik.se. Licensed under the MIT license.
 // </copyright>
 
+using System.Text;
+
 namespace Logikfabrik.Overseer.Extensions
 {
     using System;
@@ -39,6 +41,31 @@ namespace Logikfabrik.Overseer.Extensions
         public static bool IsInProgress(this IBuild build)
         {
             return build.Status.IsInProgress();
+        }
+
+        /// <summary>
+        /// Gets the name of the specified <see cref="IBuild" />.
+        /// </summary>
+        /// <param name="build">The build.</param>
+        /// <param name="projectName">The project name.</param>
+        /// <returns>The name.</returns>
+        public static string Name(this IBuild build, string projectName)
+        {
+            var builder = new StringBuilder();
+
+            if (!string.IsNullOrWhiteSpace(projectName))
+            {
+                builder.AppendFormat("{0} ", projectName);
+            }
+
+            var versionNumber = VersionNumber(build);
+
+            if (!string.IsNullOrWhiteSpace(versionNumber))
+            {
+                builder.AppendFormat("{0} ", versionNumber);
+            }
+
+            return builder.Length > 0 ? builder.ToString().Trim() : null;
         }
 
         /// <summary>

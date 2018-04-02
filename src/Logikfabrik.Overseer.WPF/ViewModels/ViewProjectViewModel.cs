@@ -21,7 +21,6 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     // ReSharper disable once InheritdocConsiderUsage
     public class ViewProjectViewModel : ViewModel, IViewProjectViewModel
     {
-        private readonly IApp _application;
         private readonly IEventAggregator _eventAggregator;
         private readonly IViewBuildViewModelFactory _viewBuildViewModelFactory;
         private readonly INavigationMessageFactory<ViewProjectViewModel> _navigationMessageFactory;
@@ -40,7 +39,6 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// Initializes a new instance of the <see cref="ViewProjectViewModel" /> class.
         /// </summary>
         /// <param name="platformProvider">The platform provider.</param>
-        /// <param name="application">The application.</param>
         /// <param name="eventAggregator">The event aggregator.</param>
         /// <param name="buildTracker">The build tracker.</param>
         /// <param name="viewBuildViewModelFactory">The view build view model factory.</param>
@@ -53,7 +51,6 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         // ReSharper disable once InheritdocConsiderUsage
         public ViewProjectViewModel(
             IPlatformProvider platformProvider,
-            IApp application,
             IEventAggregator eventAggregator,
             IBuildTracker buildTracker,
             IViewBuildViewModelFactory viewBuildViewModelFactory,
@@ -61,7 +58,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             INavigationMessageFactory<ViewProjectViewModel> navigationMessageFactory,
             Guid settingsId,
             string projectId)
-            : this(platformProvider, application, eventAggregator, buildTracker, viewBuildViewModelFactory, editFavoriteViewModelFactory, navigationMessageFactory, settingsId, projectId, null)
+            : this(platformProvider, eventAggregator, buildTracker, viewBuildViewModelFactory, editFavoriteViewModelFactory, navigationMessageFactory, settingsId, projectId, null)
         {
 #pragma warning restore S107 // Methods should not have too many parameters
         }
@@ -70,7 +67,6 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// Initializes a new instance of the <see cref="ViewProjectViewModel" /> class.
         /// </summary>
         /// <param name="platformProvider">The platform provider.</param>
-        /// <param name="application">The application.</param>
         /// <param name="eventAggregator">The event aggregator.</param>
         /// <param name="buildTracker">The build tracker.</param>
         /// <param name="viewBuildViewModelFactory">The view build view model factory.</param>
@@ -84,7 +80,6 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         // ReSharper disable once InheritdocConsiderUsage
         public ViewProjectViewModel(
             IPlatformProvider platformProvider,
-            IApp application,
             IEventAggregator eventAggregator,
             IBuildTracker buildTracker,
             IViewBuildViewModelFactory viewBuildViewModelFactory,
@@ -96,7 +91,6 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             : base(platformProvider)
         {
 #pragma warning restore S107 // Methods should not have too many parameters
-            Ensure.That(application).IsNotNull();
             Ensure.That(eventAggregator).IsNotNull();
             Ensure.That(buildTracker).IsNotNull();
             Ensure.That(viewBuildViewModelFactory).IsNotNull();
@@ -105,7 +99,6 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             Ensure.That(settingsId).IsNotEmpty();
             Ensure.That(projectId).IsNotNullOrWhiteSpace();
 
-            _application = application;
             _eventAggregator = eventAggregator;
             _viewBuildViewModelFactory = viewBuildViewModelFactory;
             _navigationMessageFactory = navigationMessageFactory;
@@ -247,7 +240,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
                 }
                 else
                 {
-                    _application.Dispatcher.Invoke(() =>
+                    OnUIThread(() =>
                     {
                         var buildToAdd = _viewBuildViewModelFactory.Create(e.Project, build);
 
@@ -267,7 +260,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
 
             if (buildsToRemove.Any())
             {
-                _application.Dispatcher.Invoke(() =>
+                OnUIThread(() =>
                 {
                     _builds.RemoveRange(buildsToRemove);
                 });
