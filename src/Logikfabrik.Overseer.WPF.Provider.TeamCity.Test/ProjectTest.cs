@@ -4,7 +4,7 @@
 
 namespace Logikfabrik.Overseer.WPF.Provider.TeamCity.Test
 {
-    using Ploeh.AutoFixture.Xunit2;
+    using AutoFixture.Xunit2;
     using Shouldly;
     using Xunit;
 

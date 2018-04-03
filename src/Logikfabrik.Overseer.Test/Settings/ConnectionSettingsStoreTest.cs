@@ -4,11 +4,11 @@
 
 namespace Logikfabrik.Overseer.Test.Settings
 {
+    using AutoFixture.Xunit2;
     using Moq;
     using Moq.AutoMock;
     using Overseer.IO;
     using Overseer.Settings;
-    using Ploeh.AutoFixture.Xunit2;
     using Xunit;
 
     public class ConnectionSettingsStoreTest

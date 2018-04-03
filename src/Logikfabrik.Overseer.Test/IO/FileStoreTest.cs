@@ -4,9 +4,9 @@
 
 namespace Logikfabrik.Overseer.Test.IO
 {
+    using AutoFixture.Xunit2;
     using Moq;
     using Overseer.IO;
-    using Ploeh.AutoFixture.Xunit2;
     using Shouldly;
     using Xunit;
 

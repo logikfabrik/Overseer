@@ -6,10 +6,10 @@ namespace Logikfabrik.Overseer.Test
 {
     using System;
     using System.Linq;
+    using AutoFixture.Xunit2;
     using Moq;
     using Overseer.Notification;
     using Overseer.Settings;
-    using Ploeh.AutoFixture.Xunit2;
     using Settings;
     using Shouldly;
     using Xunit;

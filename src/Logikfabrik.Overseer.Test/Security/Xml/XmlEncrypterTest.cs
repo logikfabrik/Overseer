@@ -5,10 +5,10 @@
 namespace Logikfabrik.Overseer.Test.Security.Xml
 {
     using System.Xml;
+    using AutoFixture.Xunit2;
     using Moq.AutoMock;
     using Overseer.Passphrase;
     using Overseer.Security.Xml;
-    using Ploeh.AutoFixture.Xunit2;
     using Shouldly;
     using Xunit;
 

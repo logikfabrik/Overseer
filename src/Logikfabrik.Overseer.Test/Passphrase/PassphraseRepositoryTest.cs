@@ -5,12 +5,12 @@
 namespace Logikfabrik.Overseer.Test.Passphrase
 {
     using System;
+    using AutoFixture.Xunit2;
     using Moq;
     using Moq.AutoMock;
     using Overseer.IO.Registry;
     using Overseer.Passphrase;
     using Overseer.Security;
-    using Ploeh.AutoFixture.Xunit2;
     using Shouldly;
     using Xunit;
 

@@ -4,8 +4,8 @@
 
 namespace Logikfabrik.Overseer.WPF.Test.ViewModels
 {
+    using AutoFixture.Xunit2;
     using Moq.AutoMock;
-    using Ploeh.AutoFixture.Xunit2;
     using Shouldly;
     using WPF.ViewModels;
     using Xunit;

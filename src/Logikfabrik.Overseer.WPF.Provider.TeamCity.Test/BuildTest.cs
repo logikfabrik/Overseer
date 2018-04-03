@@ -8,7 +8,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity.Test
     using System.Collections;
     using System.Collections.Generic;
     using System.Linq;
-    using Ploeh.AutoFixture.Xunit2;
+    using AutoFixture.Xunit2;
     using Shouldly;
     using Xunit;
 

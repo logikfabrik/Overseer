@@ -5,7 +5,7 @@
 namespace Logikfabrik.Overseer.Test
 {
     using System;
-    using Ploeh.AutoFixture.Xunit2;
+    using AutoFixture.Xunit2;
     using Shouldly;
     using Xunit;
 

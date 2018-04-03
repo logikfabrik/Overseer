@@ -5,8 +5,8 @@
 namespace Logikfabrik.Overseer.Test.Notification
 {
     using System.Linq;
+    using AutoFixture.Xunit2;
     using Overseer.Notification;
-    using Ploeh.AutoFixture.Xunit2;
     using Shouldly;
     using Xunit;
 

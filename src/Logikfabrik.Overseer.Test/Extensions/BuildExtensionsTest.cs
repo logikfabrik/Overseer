@@ -5,9 +5,9 @@
 namespace Logikfabrik.Overseer.Test.Extensions
 {
     using System;
+    using AutoFixture.Xunit2;
     using Moq;
     using Overseer.Extensions;
-    using Ploeh.AutoFixture.Xunit2;
     using Shouldly;
     using Xunit;
 

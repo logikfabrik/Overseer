@@ -5,10 +5,10 @@
 namespace Logikfabrik.Overseer.Test.Settings
 {
     using System;
+    using AutoFixture.Xunit2;
     using Moq;
     using Moq.AutoMock;
     using Overseer.Settings;
-    using Ploeh.AutoFixture.Xunit2;
     using Shouldly;
     using Xunit;
 
