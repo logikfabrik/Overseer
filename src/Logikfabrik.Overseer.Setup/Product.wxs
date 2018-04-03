@@ -419,6 +419,22 @@
               KeyPath="yes" />
       </Component>
 
+      <Component Id="cmp450EEB2336D649F78014CA5AB8284B61"
+                 Guid="450EEB23-36D6-49F7-8014-CA5AB8284B61"
+                 Directory="INSTALLFOLDER">
+        <File Id="fil159F819B050F4D82967167AB92DB4022"
+              Source="$(var.Logikfabrik.Overseer.WPF.Client.TargetDir)System.ComponentModel.Annotations.dll"
+              KeyPath="yes" />
+      </Component>
+
+      <Component Id="cmp929AA6EB81504A78B604333A2C76B278"
+                 Guid="929AA6EB-8150-4A78-B604-333A2C76B278"
+                 Directory="INSTALLFOLDER">
+        <File Id="filE0C24FBDA5C343FD820B3D696E87004C"
+              Source="$(var.Logikfabrik.Overseer.WPF.Client.TargetDir)System.ComponentModel.Primitives.dll"
+              KeyPath="yes" />
+      </Component>
+
       <Component Id="cmp11A1D9F9D8144C27970DED8DEA0A2DD4"
                  Guid="11A1D9F9-D814-4C27-970D-ED8DEA0A2DD4"
                  Directory="INSTALLFOLDER">
