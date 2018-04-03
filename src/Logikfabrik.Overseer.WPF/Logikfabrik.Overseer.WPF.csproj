@@ -121,7 +121,6 @@
     <Compile Include="Logging\UILogService.cs" />
     <Compile Include="MarkupExtensions\EnumToItemsSourceMarkupExtension.cs" />
     <Compile Include="MouseManager.cs" />
-    <Compile Include="NativeMethods.cs" />
     <Compile Include="Navigation\INavigationMessageFactory{T}.cs">
       <SonarQubeExclude>true</SonarQubeExclude>
     </Compile>

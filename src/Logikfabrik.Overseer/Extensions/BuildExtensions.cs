@@ -2,11 +2,10 @@
 //   Copyright (c) 2016 anton(at)logikfabrik.se. Licensed under the MIT license.
 // </copyright>
 
-using System.Text;
-
 namespace Logikfabrik.Overseer.Extensions
 {
     using System;
+    using System.Text;
 
     /// <summary>
     /// The <see cref="BuildExtensions" /> class. Extensions for implementations of the <see cref="IBuild" /> interface.
