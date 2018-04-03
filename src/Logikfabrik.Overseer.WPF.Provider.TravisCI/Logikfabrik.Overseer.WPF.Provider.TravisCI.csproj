@@ -96,6 +96,7 @@
     <Compile Include="Api\Models\Branch.cs" />
     <Compile Include="Api\Models\Build.cs" />
     <Compile Include="Api\Models\Builds.cs" />
+    <Compile Include="Api\Models\BuildState.cs" />
     <Compile Include="Api\Models\Commit.cs" />
     <Compile Include="Api\Models\Job.cs" />
     <Compile Include="Api\Models\Owner.cs" />

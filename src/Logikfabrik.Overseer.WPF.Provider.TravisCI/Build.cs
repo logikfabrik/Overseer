@@ -71,21 +71,20 @@ namespace Logikfabrik.Overseer.WPF.Provider.TravisCI
 
         private static BuildStatus? GetStatus(Api.Models.Build build)
         {
-            // TODO: Create enumeration.
             switch (build.State)
             {
-                case "created":
+                case Api.Models.BuildState.Created:
                     return BuildStatus.Queued;
 
-                case "booting":
-                case "started":
+                case Api.Models.BuildState.Booting:
+                case Api.Models.BuildState.Started:
                     return BuildStatus.InProgress;
 
-                case "passed":
+                case Api.Models.BuildState.Passed:
                     return BuildStatus.Succeeded;
 
-                case "failed":
-                case "errored":
+                case Api.Models.BuildState.Failed:
+                case Api.Models.BuildState.Errored:
                     return BuildStatus.Failed;
 
                 default:

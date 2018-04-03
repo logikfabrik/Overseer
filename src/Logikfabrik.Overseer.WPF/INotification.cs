@@ -5,17 +5,21 @@
 namespace Logikfabrik.Overseer.WPF
 {
     using System;
-    using Caliburn.Micro;
 
     /// <summary>
     /// The <see cref="INotification" /> interface.
     /// </summary>
     // ReSharper disable once InheritdocConsiderUsage
-    public interface INotification : IViewAware
+    public interface INotification
     {
         /// <summary>
         /// Occurs if closing.
         /// </summary>
         event EventHandler<EventArgs> Closing;
+
+        /// <summary>
+        /// Closes this notification.
+        /// </summary>
+        void Close();
     }
 }

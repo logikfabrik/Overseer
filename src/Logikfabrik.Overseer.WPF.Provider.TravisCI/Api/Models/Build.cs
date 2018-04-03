@@ -35,7 +35,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.TravisCI.Api.Models
         /// <value>
         /// The state.
         /// </value>
-        public string State { get; set; }
+        public BuildState? State { get; set; }
 
         /// <summary>
         /// Gets or sets the previous state.

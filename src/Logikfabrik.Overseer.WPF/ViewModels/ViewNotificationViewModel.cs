@@ -74,16 +74,8 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             e.Handled = true;
         }
 
-        /// <summary>
-        /// Raises the <see cref="Closing" /> event.
-        /// </summary>
-        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
-        protected virtual void OnClosing(EventArgs e)
-        {
-            Closing?.Invoke(this, e);
-        }
-
-        private void Close()
+        /// <inheritdoc />
+        public void Close()
         {
             _dispatcher?.Stop();
             _dispatcher = null;
@@ -98,6 +90,15 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             OnClosing(EventArgs.Empty);
 
             popup.IsOpen = false;
+        }
+
+        /// <summary>
+        /// Raises the <see cref="Closing" /> event.
+        /// </summary>
+        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
+        protected virtual void OnClosing(EventArgs e)
+        {
+            Closing?.Invoke(this, e);
         }
     }
 }

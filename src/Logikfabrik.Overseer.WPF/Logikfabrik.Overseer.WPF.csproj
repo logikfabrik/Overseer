@@ -131,7 +131,9 @@
     <Compile Include="NotificationManager{T}.cs">
       <SonarQubeExclude>true</SonarQubeExclude>
     </Compile>
-    <Compile Include="PopupPlacementHelper.cs" />
+    <Compile Include="NotificationGrid{T}.cs">
+      <SonarQubeExclude>true</SonarQubeExclude>
+    </Compile>
     <Compile Include="NotifyTask.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>

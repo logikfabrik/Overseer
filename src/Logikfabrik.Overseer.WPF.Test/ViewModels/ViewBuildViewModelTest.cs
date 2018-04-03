@@ -30,9 +30,14 @@ namespace Logikfabrik.Overseer.WPF.Test.ViewModels
             model.Id.ShouldBe(id);
         }
 
+        [Fact]
         public void CanGetName()
         {
-            // TODO: This unit test.
+            var mocker = new AutoMocker();
+
+            var model = mocker.CreateInstance<ViewBuildViewModel>();
+
+            model.Name.ShouldSatisfyAllConditions();
         }
 
         [Theory]
@@ -103,9 +108,14 @@ namespace Logikfabrik.Overseer.WPF.Test.ViewModels
             model.Branch.ShouldBe(branch);
         }
 
-        public void CanGetMessage()
+        [Fact]
+        public void CanGetStatusMessage()
         {
-            // TODO: This unit test.
+            var mocker = new AutoMocker();
+
+            var model = mocker.CreateInstance<ViewBuildViewModel>();
+
+            model.StatusMessage.ShouldSatisfyAllConditions();
         }
     }
 }

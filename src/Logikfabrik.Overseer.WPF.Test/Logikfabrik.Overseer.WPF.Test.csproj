@@ -104,7 +104,7 @@
     <Compile Include="Localization\EditConnectionViewErrorLocalizerTest.cs" />
     <Compile Include="Logging\UILogServiceTest.cs" />
     <Compile Include="Navigation\NavigationMessageTest.cs" />
-    <Compile Include="PopupPlacementHelperTest.cs" />
+    <Compile Include="NotificationGridTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\AboutViewModelTest.cs" />
     <Compile Include="ViewModels\AppErrorViewModelTest.cs" />
