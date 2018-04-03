@@ -64,29 +64,9 @@ namespace Logikfabrik.Overseer.WPF.Provider.Codeship.Api
             Ensure.That(perPage).IsInRange(0, 50);
             Ensure.That(page).IsInRange(1, int.MaxValue);
 
-            cancellationToken.ThrowIfCancellationRequested();
-
             var url = $"organizations/{organizationId}/projects?per_page={perPage}&page={page}";
 
-            if (!HasAccessToken(_httpClient.Value))
-            {
-                await SetAccessTokenAsync(_httpClient.Value, _username, _password, cancellationToken).ConfigureAwait(false);
-            }
-
-            using (var response = await _httpClient.Value.GetAsync(url, cancellationToken).ConfigureAwait(false))
-            {
-                if (response.StatusCode == HttpStatusCode.Unauthorized)
-                {
-                    await SetAccessTokenAsync(_httpClient.Value, _username, _password, cancellationToken).ConfigureAwait(false);
-
-                    // TODO: Handle infinite loops.
-                    return await GetProjectsAsync(organizationId, perPage, page, cancellationToken).ConfigureAwait(false);
-                }
-
-                response.ThrowIfUnsuccessful();
-
-                return await response.Content.ReadAsAsync<Projects>(cancellationToken).ConfigureAwait(false);
-            }
+            return await GetAsync<Projects>(url, cancellationToken).ConfigureAwait(false);
         }
 
         /// <inheritdoc />
@@ -99,29 +79,9 @@ namespace Logikfabrik.Overseer.WPF.Provider.Codeship.Api
             Ensure.That(perPage).IsInRange(0, 50);
             Ensure.That(page).IsInRange(1, int.MaxValue);
 
-            cancellationToken.ThrowIfCancellationRequested();
-
             var url = $"organizations/{organizationId}/projects/{projectId}/builds?per_page={perPage}&page={page}";
 
-            if (!HasAccessToken(_httpClient.Value))
-            {
-                await SetAccessTokenAsync(_httpClient.Value, _username, _password, cancellationToken).ConfigureAwait(false);
-            }
-
-            using (var response = await _httpClient.Value.GetAsync(url, cancellationToken).ConfigureAwait(false))
-            {
-                if (response.StatusCode == HttpStatusCode.Unauthorized)
-                {
-                    await SetAccessTokenAsync(_httpClient.Value, _username, _password, cancellationToken).ConfigureAwait(false);
-
-                    // TODO: Handle infinite loops.
-                    return await GetBuildsAsync(organizationId, projectId, perPage, page, cancellationToken).ConfigureAwait(false);
-                }
-
-                response.ThrowIfUnsuccessful();
-
-                return await response.Content.ReadAsAsync<Builds>(cancellationToken).ConfigureAwait(false);
-            }
+            return await GetAsync<Builds>(url, cancellationToken).ConfigureAwait(false);
         }
 
         /// <inheritdoc />
@@ -203,6 +163,39 @@ namespace Logikfabrik.Overseer.WPF.Provider.Codeship.Api
             SetDefaultRequestHeaders(client);
 
             return client;
+        }
+
+        private async Task<T> GetAsync<T>(string url, CancellationToken cancellationToken)
+        {
+            var attempts = 0;
+
+            while (attempts < 5)
+            {
+                cancellationToken.ThrowIfCancellationRequested();
+
+                if (!HasAccessToken(_httpClient.Value))
+                {
+                    await SetAccessTokenAsync(_httpClient.Value, _username, _password, cancellationToken).ConfigureAwait(false);
+                }
+
+                using (var response = await _httpClient.Value.GetAsync(url, cancellationToken).ConfigureAwait(false))
+                {
+                    if (response.StatusCode == HttpStatusCode.Unauthorized)
+                    {
+                        await SetAccessTokenAsync(_httpClient.Value, _username, _password, cancellationToken).ConfigureAwait(false);
+                    }
+                    else
+                    {
+                        response.ThrowIfUnsuccessful();
+
+                        return await response.Content.ReadAsAsync<T>(cancellationToken).ConfigureAwait(false);
+                    }
+                }
+
+                attempts++;
+            }
+
+            throw new HttpException(HttpStatusCode.Unauthorized);
         }
     }
 }

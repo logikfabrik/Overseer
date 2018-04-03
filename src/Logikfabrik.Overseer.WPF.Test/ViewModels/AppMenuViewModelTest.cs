@@ -62,7 +62,11 @@ namespace Logikfabrik.Overseer.WPF.Test.ViewModels
         [Fact]
         public void CanGoToDashboard()
         {
-            CanGoTo<ViewDashboardViewModel>(model => model.GoToDashboard());
+            var mocker = new AutoMocker();
+
+            mocker.Use(mocker.CreateInstance<FavoritesViewModel>());
+
+            CanGoTo<ViewDashboardViewModel>(model => model.GoToDashboard(), mocker);
         }
 
         [Fact]
@@ -108,8 +112,6 @@ namespace Logikfabrik.Overseer.WPF.Test.ViewModels
         {
             mocker = mocker ?? new AutoMocker();
 
-            // TODO: Break out to affected tests. Should not be in general method.
-            mocker.Use(mocker.CreateInstance<FavoritesViewModel>());
             mocker.Use(mocker.CreateInstance<ConnectionsViewModel>());
 
             var model = mocker.CreateInstance<AppMenuViewModel>();
