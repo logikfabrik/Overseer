@@ -21,7 +21,7 @@
                             Grid.Row="0"
                             HorizontalAlignment="Center"
                             VerticalAlignment="Center">
-                            <TextBlock FontSize="48" Text="{x:Static p:Resources.WizardFinish_Heading}" />
+                            <TextBlock FontSize="48" Text="{x:Static p:Resources.WizardFinish_Header}" />
                             <TextBlock FontSize="18" Text="{x:Static p:Resources.WizardFinish_Text}" />
                         </StackPanel>
                         <WrapPanel

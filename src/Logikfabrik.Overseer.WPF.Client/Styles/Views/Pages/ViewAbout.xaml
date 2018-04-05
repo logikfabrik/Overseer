@@ -27,19 +27,17 @@
                                     <TextBlock Style="{StaticResource Views.Shared.Setting.Value}" Text="{Binding Version, Mode=OneTime}" />
                                 </StackPanel>
                                 <StackPanel Style="{StaticResource Views.Shared.Section.Panel}">
+                                    <TextBlock Text="{Binding Source={x:Static p:Resources.ViewAbout_Section_Text_About}}" />
+                                    <TextBlock Text="{Binding Source={x:Static p:Resources.ViewAbout_Section_Text_Contribute}}" />
                                     <TextBlock>
-                                        Overseer is a Windows task bar app for build notifications.
+                                        <Hyperlink NavigateUri="https://github.com/logikfabrik/overseer">
+                                            <TextBlock Margin="0" Text="{Binding Source={x:Static p:Resources.ViewAbout_Section_Text_GitHub}}" />
+                                        </Hyperlink>
                                     </TextBlock>
-                                    <TextBlock>
-                                        Overseer is Open Source (MIT), and you're welcome to contribute!
-                                        Get involved and help out on<Hyperlink NavigateUri="https://github.com/logikfabrik/overseer">GitHub</Hyperlink>
-                                        .</TextBlock>
                                 </StackPanel>
                                 <StackPanel Style="{StaticResource Views.Shared.Section.Panel}">
-                                    <TextBlock Style="{StaticResource Views.Shared.Section.Header}" Text="{Binding Source={x:Static p:Resources.ViewAbout_Setting_Label_Acknowledgement}, Converter={StaticResource StringToUpperCaseConverter}}" />
-                                    <TextBlock Style="{StaticResource Views.Shared.Section.Text}">
-                                        Let's give credit where credit is due, thank you for making Overseer possible. Keep up the good work!
-                                    </TextBlock>
+                                    <TextBlock Style="{StaticResource Views.Shared.Section.Header}" Text="{Binding Source={x:Static p:Resources.ViewAbout_Section_Header_Acknowledgement}, Converter={StaticResource StringToUpperCaseConverter}}" />
+                                    <TextBlock Style="{StaticResource Views.Shared.Section.Text}" Text="{Binding Source={x:Static p:Resources.ViewAbout_Section_Text_Acknowledgement}}" />
                                     <TextBlock>
                                         <Hyperlink NavigateUri="https://github.com/Caliburn-Micro/Caliburn.Micro">Caliburn.Micro</Hyperlink>
                                         <LineBreak />

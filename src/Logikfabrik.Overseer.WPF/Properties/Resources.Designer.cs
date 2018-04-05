@@ -738,9 +738,45 @@ namespace Logikfabrik.Overseer.WPF.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Acknowledgement.
         /// </summary>
-        public static string ViewAbout_Setting_Label_Acknowledgement {
+        public static string ViewAbout_Section_Header_Acknowledgement {
             get {
-                return ResourceManager.GetString("ViewAbout_Setting_Label_Acknowledgement", resourceCulture);
+                return ResourceManager.GetString("ViewAbout_Section_Header_Acknowledgement", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Overseer is a Windows taskbar app for build notifications..
+        /// </summary>
+        public static string ViewAbout_Section_Text_About {
+            get {
+                return ResourceManager.GetString("ViewAbout_Section_Text_About", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string ViewAbout_Section_Text_Acknowledgement {
+            get {
+                return ResourceManager.GetString("ViewAbout_Section_Text_Acknowledgement", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Overseer is Open Source (MIT), and you&apos;re welcome to contribute!.
+        /// </summary>
+        public static string ViewAbout_Section_Text_Contribute {
+            get {
+                return ResourceManager.GetString("ViewAbout_Section_Text_Contribute", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Get involved and help out on GitHub!.
+        /// </summary>
+        public static string ViewAbout_Section_Text_GitHub {
+            get {
+                return ResourceManager.GetString("ViewAbout_Section_Text_GitHub", resourceCulture);
             }
         }
         
@@ -873,9 +909,9 @@ namespace Logikfabrik.Overseer.WPF.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Let&apos;s start with a passphrase.
         /// </summary>
-        public static string WizardEditPassphrase_Heading {
+        public static string WizardEditPassphrase_Header {
             get {
-                return ResourceManager.GetString("WizardEditPassphrase_Heading", resourceCulture);
+                return ResourceManager.GetString("WizardEditPassphrase_Header", resourceCulture);
             }
         }
         
@@ -918,9 +954,9 @@ namespace Logikfabrik.Overseer.WPF.Properties {
         /// <summary>
         ///   Looks up a localized string similar to I&apos;m ready.
         /// </summary>
-        public static string WizardFinish_Heading {
+        public static string WizardFinish_Header {
             get {
-                return ResourceManager.GetString("WizardFinish_Heading", resourceCulture);
+                return ResourceManager.GetString("WizardFinish_Header", resourceCulture);
             }
         }
         
@@ -954,9 +990,9 @@ namespace Logikfabrik.Overseer.WPF.Properties {
         /// <summary>
         ///   Looks up a localized string similar to And finally, add connections.
         /// </summary>
-        public static string WizardNewConnection_Heading {
+        public static string WizardNewConnection_Header {
             get {
-                return ResourceManager.GetString("WizardNewConnection_Heading", resourceCulture);
+                return ResourceManager.GetString("WizardNewConnection_Header", resourceCulture);
             }
         }
         
@@ -981,9 +1017,9 @@ namespace Logikfabrik.Overseer.WPF.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Hi, I&apos;m Overseer.
         /// </summary>
-        public static string WizardStart_Heading {
+        public static string WizardStart_Header {
             get {
-                return ResourceManager.GetString("WizardStart_Heading", resourceCulture);
+                return ResourceManager.GetString("WizardStart_Header", resourceCulture);
             }
         }
         

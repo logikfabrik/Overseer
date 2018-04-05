@@ -282,7 +282,7 @@ Vänligen försök igen.</value>
   <data name="RemoveConnection_Button_Remove" xml:space="preserve">
     <value>Ja</value>
   </data>
-  <data name="ViewAbout_Setting_Label_Acknowledgement" xml:space="preserve">
+  <data name="ViewAbout_Section_Header_Acknowledgement" xml:space="preserve">
     <value>Erkännande</value>
   </data>
   <data name="ViewAbout_Setting_Label_Version" xml:space="preserve">
@@ -312,7 +312,7 @@ Vänligen försök igen.</value>
   <data name="WizardEditPassphrase_Button_NextStep" xml:space="preserve">
     <value>Nästa</value>
   </data>
-  <data name="WizardEditPassphrase_Heading" xml:space="preserve">
+  <data name="WizardEditPassphrase_Header" xml:space="preserve">
     <value>Låt oss börja med en lösenfras</value>
   </data>
   <data name="WizardEditPassphrase_Text" xml:space="preserve">
@@ -321,7 +321,7 @@ Vänligen försök igen.</value>
   <data name="WizardFinish_Button_Finish" xml:space="preserve">
     <value>Avsluta</value>
   </data>
-  <data name="WizardFinish_Heading" xml:space="preserve">
+  <data name="WizardFinish_Header" xml:space="preserve">
     <value>Jag är redo</value>
   </data>
   <data name="WizardFinish_Text" xml:space="preserve">
@@ -330,13 +330,13 @@ Vänligen försök igen.</value>
   <data name="WizardStart_Button_NextStep" xml:space="preserve">
     <value>Kom igång</value>
   </data>
-  <data name="WizardStart_Heading" xml:space="preserve">
+  <data name="WizardStart_Header" xml:space="preserve">
     <value>Hej, jag är Overseer</value>
   </data>
   <data name="WizardStart_Text" xml:space="preserve">
     <value>Jag hjälper till att spåra dina byggen</value>
   </data>
-  <data name="WizardNewConnection_Heading" xml:space="preserve">
+  <data name="WizardNewConnection_Header" xml:space="preserve">
     <value>Och slutligen, lägg till anslutningar</value>
   </data>
   <data name="WizardNewConnection_Text" xml:space="preserve">
@@ -434,5 +434,17 @@ Vänligen försök igen.</value>
   </data>
   <data name="EditSettings_Setting_Option_Notifications_Succeeded" xml:space="preserve">
     <value>har lyckats</value>
+  </data>
+  <data name="ViewAbout_Section_Text_Acknowledgement" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ViewAbout_Section_Text_About" xml:space="preserve">
+    <value>Overseer is a Windows taskbar app for build notifications.</value>
+  </data>
+  <data name="ViewAbout_Section_Text_Contribute" xml:space="preserve">
+    <value>Overseer is Open Source (MIT), and you're welcome to contribute!</value>
+  </data>
+  <data name="ViewAbout_Section_Text_GitHub" xml:space="preserve">
+    <value>Get involved and help out on GitHub!</value>
   </data>
 </root>
