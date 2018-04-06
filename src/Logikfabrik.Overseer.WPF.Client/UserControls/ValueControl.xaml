@@ -12,7 +12,7 @@
             <Setter Property="Margin" Value="5,5,0,5" />
         </Style>
     </UserControl.Resources>
-    <Grid Visibility="{Binding HasValue, Mode=OneWay, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}, Converter={StaticResource BooleanToVisibilityConverter}}">
+    <Grid Visibility="{Binding HasValue, Mode=OneWay, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}, Converter={StaticResource Converters.Shared.BooleanToVisibilityConverter}}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="*" />

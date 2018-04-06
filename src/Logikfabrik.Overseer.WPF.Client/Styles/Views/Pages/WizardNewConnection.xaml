@@ -32,7 +32,7 @@
                             Width="450"
                             HorizontalAlignment="Center"
                             VerticalAlignment="Center"
-                            Visibility="{Binding IsNotAddingConnection, Converter={StaticResource BooleanToVisibilityConverter}}">
+                            Visibility="{Binding IsNotAddingConnection, Converter={StaticResource Converters.Shared.BooleanToVisibilityConverter}}">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*" />
                                 <ColumnDefinition Width="Auto" />
@@ -51,7 +51,7 @@
                             VerticalAlignment="Center"
                             BorderBrush="Aqua"
                             BorderThickness="2"
-                            Visibility="{Binding IsAddingConnection, Converter={StaticResource BooleanToVisibilityConverter}}">
+                            Visibility="{Binding IsAddingConnection, Converter={StaticResource Converters.Shared.BooleanToVisibilityConverter}}">
                             <ScrollViewer>
                                 <i:Interaction.Behaviors>
                                     <b:ScrollToTopBehavior />
@@ -70,12 +70,12 @@
                                 cal:Message.Attach="NextStep"
                                 Content="{x:Static p:Resources.WizardNewConnection_Button_SkipStep}"
                                 IsDefault="True"
-                                Visibility="{Binding Connections.HasNoConnections, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                                Visibility="{Binding Connections.HasNoConnections, Converter={StaticResource Converters.Shared.BooleanToVisibilityConverter}}" />
                             <Button
                                 cal:Message.Attach="NextStep"
                                 Content="{x:Static p:Resources.WizardNewConnection_Button_NextStep}"
                                 IsDefault="True"
-                                Visibility="{Binding Connections.HasConnections, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                                Visibility="{Binding Connections.HasConnections, Converter={StaticResource Converters.Shared.BooleanToVisibilityConverter}}" />
                             <ContentControl
                                 cal:View.Context="WizardBricks"
                                 cal:View.Model="{Binding Connections, Mode=OneWay}"

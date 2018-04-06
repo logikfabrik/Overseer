@@ -24,12 +24,12 @@
                     Click="HideNotifications"
                     Description="{x:Static p:Resources.App_TaskbarButton_HideNotifications}"
                     ImageSource="{StaticResource Views.Windows.App.HideNotifications}"
-                    Visibility="{Binding IsShowingNotifications, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                    Visibility="{Binding IsShowingNotifications, Mode=OneWay, Converter={StaticResource Converters.Shared.BooleanToVisibilityConverter}}" />
                 <ThumbButtonInfo
                     Click="ShowNotifications"
                     Description="{x:Static p:Resources.App_TaskbarButton_ShowNotifications}"
                     ImageSource="{StaticResource Views.Windows.App.ShowNotifications}"
-                    Visibility="{Binding IsNotShowingNotifications, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                    Visibility="{Binding IsNotShowingNotifications, Mode=OneWay, Converter={StaticResource Converters.Shared.BooleanToVisibilityConverter}}" />
             </TaskbarItemInfo.ThumbButtonInfos>
         </TaskbarItemInfo>
     </Window.TaskbarItemInfo>

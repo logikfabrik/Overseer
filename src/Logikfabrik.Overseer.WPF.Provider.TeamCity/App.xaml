@@ -5,8 +5,10 @@
                 <!--  Brushes  -->
                 <ResourceDictionary Source="pack://application:,,,/Logikfabrik.Overseer.WPF;component/Styles/Brushes.xaml" />
 
+                <!--  Converters  -->
+                <ResourceDictionary Source="pack://application:,,,/Logikfabrik.Overseer.WPF;component/Styles/Converters/Shared/Shared.xaml" />
+
                 <!--  Resources  -->
-                <ResourceDictionary Source="pack://application:,,,/Logikfabrik.Overseer.WPF;component/Styles/Resources/Converters.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/Logikfabrik.Overseer.WPF;component/Styles/Resources/FocusVisuals.xaml" />
 
                 <!--  Effects  -->

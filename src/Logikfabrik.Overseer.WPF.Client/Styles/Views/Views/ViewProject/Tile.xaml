@@ -23,18 +23,18 @@
                                             <Run Text="{Binding Id, Mode=OneWay, StringFormat=({0})}" />
                                         </TextBlock>
                                     </Border>
-                                    <StackPanel Style="{StaticResource Views.Views.ViewProject.Tile.LatestBuild.Panel}" Visibility="{Binding HasLatestBuild, Converter={StaticResource BooleanToVisibilityConverter}}">
-                                        <TextBlock Style="{StaticResource Views.Views.ViewProject.Tile.LatestBuild.Header}" Text="{Binding Source={x:Static p:Resources.ViewProject_Tile_Label_LatestBuild}, Converter={StaticResource StringToUpperCaseConverter}}" />
+                                    <StackPanel Style="{StaticResource Views.Views.ViewProject.Tile.LatestBuild.Panel}" Visibility="{Binding HasLatestBuild, Converter={StaticResource Converters.Shared.BooleanToVisibilityConverter}}">
+                                        <TextBlock Style="{StaticResource Views.Views.ViewProject.Tile.LatestBuild.Header}" Text="{Binding Source={x:Static p:Resources.ViewProject_Tile_Label_LatestBuild}, Converter={StaticResource Converters.Shared.StringToUpperCaseConverter}}" />
                                         <ContentControl
                                             cal:View.Context="Tile"
                                             cal:View.Model="{Binding LatestBuild, Mode=OneWay}"
                                             Focusable="False" />
                                     </StackPanel>
-                                    <StackPanel Style="{StaticResource Views.Views.ViewProject.Tile.QueuedBuilds.Panel}" Visibility="{Binding HasQueuedBuilds, Converter={StaticResource BooleanToVisibilityConverter}}">
-                                        <TextBlock Style="{StaticResource Views.Views.ViewProject.Tile.QueuedBuilds.Header}" Text="{Binding Source={x:Static p:Resources.ViewProject_Tile_Label_QueuedBuilds}, Converter={StaticResource StringToUpperCaseConverter}}" />
+                                    <StackPanel Style="{StaticResource Views.Views.ViewProject.Tile.QueuedBuilds.Panel}" Visibility="{Binding HasQueuedBuilds, Converter={StaticResource Converters.Shared.BooleanToVisibilityConverter}}">
+                                        <TextBlock Style="{StaticResource Views.Views.ViewProject.Tile.QueuedBuilds.Header}" Text="{Binding Source={x:Static p:Resources.ViewProject_Tile_Label_QueuedBuilds}, Converter={StaticResource Converters.Shared.StringToUpperCaseConverter}}" />
                                         <TextBlock Text="{Binding QueuedBuilds, Mode=OneWay}" />
                                     </StackPanel>
-                                    <StackPanel Visibility="{Binding HasNoBuilds, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                    <StackPanel Visibility="{Binding HasNoBuilds, Converter={StaticResource Converters.Shared.BooleanToVisibilityConverter}}">
                                         <TextBlock Text="{Binding Source={x:Static p:Resources.ViewProject_Tile_Message_NoBuilds}}" />
                                     </StackPanel>
                                 </StackPanel>

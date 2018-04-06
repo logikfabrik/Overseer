@@ -8,7 +8,7 @@
             <Setter.Value>
                 <ControlTemplate>
                     <ScrollViewer>
-                        <StackPanel Style="{StaticResource Views.Shared.Section.Empty.Panel}" Visibility="{Binding HasNoConnections, Converter={StaticResource BooleanToVisibilityConverter}}">
+                        <StackPanel Style="{StaticResource Views.Shared.Section.Empty.Panel}" Visibility="{Binding HasNoConnections, Converter={StaticResource Converters.Shared.BooleanToVisibilityConverter}}">
                             <TextBlock Style="{StaticResource Views.Shared.Section.Empty.Header}" Text="{x:Static p:Resources.RemoveConnection_Text}" />
                             <WrapPanel HorizontalAlignment="Center" Style="{StaticResource Views.Shared.Footer.Panel}">
                                 <Button

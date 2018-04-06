@@ -8,7 +8,7 @@
             <Setter.Value>
                 <ControlTemplate>
                     <Grid>
-                        <ItemsControl ItemsSource="{Binding Favorites, Mode=OneWay}" Visibility="{Binding HasFavorites, Converter={StaticResource BooleanToVisibilityConverter}}">
+                        <ItemsControl ItemsSource="{Binding Favorites, Mode=OneWay}" Visibility="{Binding HasFavorites, Converter={StaticResource Converters.Shared.BooleanToVisibilityConverter}}">
                             <ItemsControl.ItemContainerStyle>
                                 <Style>
                                     <!--  ReSharper disable Xaml.RedundantPropertyTypeQualifier  -->
@@ -38,7 +38,7 @@
                                 </ItemsPanelTemplate>
                             </ItemsControl.ItemsPanel>
                         </ItemsControl>
-                        <StackPanel Style="{StaticResource Views.Shared.Section.Empty.Panel}" Visibility="{Binding HasNoFavorites, Converter={StaticResource BooleanToVisibilityConverter}}">
+                        <StackPanel Style="{StaticResource Views.Shared.Section.Empty.Panel}" Visibility="{Binding HasNoFavorites, Converter={StaticResource Converters.Shared.BooleanToVisibilityConverter}}">
                             <TextBlock Style="{StaticResource Views.Shared.Section.Empty.Header}" Text="{Binding Source={x:Static p:Resources.Favorites_Tiles_Message_NoFavorites}}" />
                         </StackPanel>
                     </Grid>

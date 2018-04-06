@@ -15,7 +15,7 @@
                     <ScrollViewer>
                         <StackPanel>
                             <StackPanel Style="{StaticResource Views.Shared.Setting.Panel}">
-                                <TextBlock Style="{StaticResource Views.Shared.Setting.Label}" Text="{Binding Source={x:Static p:Resources.ViewAbout_Setting_Label_Version}, Converter={StaticResource StringToUpperCaseConverter}}" />
+                                <TextBlock Style="{StaticResource Views.Shared.Setting.Label}" Text="{Binding Source={x:Static p:Resources.ViewAbout_Setting_Label_Version}, Converter={StaticResource Converters.Shared.StringToUpperCaseConverter}}" />
                                 <TextBlock Style="{StaticResource Views.Shared.Setting.Value}" Text="{Binding Version, Mode=OneTime}" />
                             </StackPanel>
                             <StackPanel Style="{StaticResource Views.Shared.Section.Panel}">
@@ -28,7 +28,7 @@
                                 </TextBlock>
                             </StackPanel>
                             <StackPanel Style="{StaticResource Views.Shared.Section.Panel}">
-                                <TextBlock Style="{StaticResource Views.Shared.Section.Header}" Text="{Binding Source={x:Static p:Resources.ViewAbout_Section_Header_Acknowledgement}, Converter={StaticResource StringToUpperCaseConverter}}" />
+                                <TextBlock Style="{StaticResource Views.Shared.Section.Header}" Text="{Binding Source={x:Static p:Resources.ViewAbout_Section_Header_Acknowledgement}, Converter={StaticResource Converters.Shared.StringToUpperCaseConverter}}" />
                                 <TextBlock Style="{StaticResource Views.Shared.Section.Text}" Text="{Binding Source={x:Static p:Resources.ViewAbout_Section_Text_Acknowledgement}}" />
                                 <TextBlock>
                                     <Hyperlink NavigateUri="https://github.com/Caliburn-Micro/Caliburn.Micro">Caliburn.Micro</Hyperlink>

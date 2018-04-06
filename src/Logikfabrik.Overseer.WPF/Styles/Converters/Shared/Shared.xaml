@@ -1,0 +1,13 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:c="clr-namespace:Logikfabrik.Overseer.WPF.Converters">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="TaskStatus.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+    <BooleanToVisibilityConverter x:Key="Converters.Shared.BooleanToVisibilityConverter" />
+    <c:AddConnectionViewExceptionToLocalizedStringConverter x:Key="Converters.Shared.AddConnectionViewExceptionToLocalizedStringConverter" />
+    <c:EditConnectionViewExceptionToLocalizedStringConverter x:Key="Converters.Shared.EditConnectionViewExceptionToLocalizedStringConverter" />
+    <c:StringToUpperCaseConverter x:Key="Converters.Shared.StringToUpperCaseConverter" />
+    <c:IsLessThanConverter x:Key="Converters.Shared.IsLessThanConverter" />
+</ResourceDictionary>

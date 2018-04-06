@@ -63,7 +63,7 @@
                                 <TextBox
                                     Style="{StaticResource Views.Shared.Filter.TextBox}"
                                     Text="{Binding Filter, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                    Visibility="{Binding ElementName=PART_Filter, Path=IsChecked, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                                    Visibility="{Binding ElementName=PART_Filter, Path=IsChecked, Converter={StaticResource Converters.Shared.BooleanToVisibilityConverter}}" />
                             </StackPanel>
                         </Border>
                     </Grid>

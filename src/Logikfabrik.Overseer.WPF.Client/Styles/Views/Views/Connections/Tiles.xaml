@@ -8,7 +8,7 @@
             <Setter.Value>
                 <ControlTemplate>
                     <Grid>
-                        <ItemsControl ItemsSource="{Binding Connections, Mode=OneWay}" Visibility="{Binding HasConnections, Converter={StaticResource BooleanToVisibilityConverter}}">
+                        <ItemsControl ItemsSource="{Binding Connections, Mode=OneWay}" Visibility="{Binding HasConnections, Converter={StaticResource Converters.Shared.BooleanToVisibilityConverter}}">
                             <ItemsControl.ItemContainerStyle>
                                 <Style>
                                     <!--  ReSharper disable once Xaml.RedundantPropertyTypeQualifier  -->
@@ -36,7 +36,7 @@
                                 </ItemsPanelTemplate>
                             </ItemsControl.ItemsPanel>
                         </ItemsControl>
-                        <StackPanel Style="{StaticResource Views.Shared.Section.Empty.Panel}" Visibility="{Binding HasNoConnections, Converter={StaticResource BooleanToVisibilityConverter}}">
+                        <StackPanel Style="{StaticResource Views.Shared.Section.Empty.Panel}" Visibility="{Binding HasNoConnections, Converter={StaticResource Converters.Shared.BooleanToVisibilityConverter}}">
                             <TextBlock Style="{StaticResource Views.Shared.Section.Empty.Header}" Text="{Binding Source={x:Static p:Resources.Connections_Tiles_Message_NoConnections}}" />
                             <Button
                                 cal:Message.Attach="Add"

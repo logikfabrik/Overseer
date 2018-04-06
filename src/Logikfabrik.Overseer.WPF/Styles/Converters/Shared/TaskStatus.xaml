@@ -1,0 +1,20 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:c="clr-namespace:Logikfabrik.Overseer.WPF.Converters"
+    xmlns:s="clr-namespace:System.Threading.Tasks;assembly=mscorlib">
+    <x:Array x:Key="Converters.Shared.TaskStatus.StatusFaulted" Type="{x:Type s:TaskStatus}">
+        <s:TaskStatus>Faulted</s:TaskStatus>
+    </x:Array>
+    <x:Array x:Key="Converters.Shared.TaskStatus.StatusRunning" Type="{x:Type s:TaskStatus}">
+        <s:TaskStatus>WaitingForActivation</s:TaskStatus>
+        <s:TaskStatus>WaitingToRun</s:TaskStatus>
+        <s:TaskStatus>Running</s:TaskStatus>
+    </x:Array>
+    <c:TaskStatusToBooleanConverter x:Key="Converters.Shared.TaskStatus.FaultedToBooleanConverter" TrueFor="{StaticResource Converters.Shared.TaskStatus.StatusFaulted}" />
+    <c:TaskStatusToBooleanConverter x:Key="Converters.Shared.TaskStatus.RunningToBooleanConverter" TrueFor="{StaticResource Converters.Shared.TaskStatus.StatusRunning}" />
+    <c:ValueConverterGroup x:Key="Converters.Shared.TaskStatus.FaultedToVisibilityConverter">
+        <c:TaskStatusToBooleanConverter TrueFor="{StaticResource Converters.Shared.TaskStatus.StatusFaulted}" />
+        <BooleanToVisibilityConverter />
+    </c:ValueConverterGroup>
+</ResourceDictionary>

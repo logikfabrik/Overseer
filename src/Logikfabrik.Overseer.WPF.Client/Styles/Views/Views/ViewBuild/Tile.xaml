@@ -7,14 +7,14 @@
         <Style.Resources>
             <Style x:Key="Views.Views.ViewBuild.Tile.Panel.BreakColumnAtMedium" TargetType="{x:Type ColumnDefinition}">
                 <Style.Triggers>
-                    <DataTrigger Binding="{Binding ActualWidth, Mode=OneWay, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}, Converter={StaticResource IsLessThanConverter}, ConverterParameter={x:Static s:LayoutBreakpoint.Medium}}" Value="True">
+                    <DataTrigger Binding="{Binding ActualWidth, Mode=OneWay, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}, Converter={StaticResource Converters.Shared.IsLessThanConverter}, ConverterParameter={x:Static s:LayoutBreakpoint.Medium}}" Value="True">
                         <Setter Property="Width" Value="Auto" />
                     </DataTrigger>
                 </Style.Triggers>
             </Style>
             <Style x:Key="Views.Views.ViewBuild.Tile.Panel.BreakColumnAtExtraSmall" TargetType="{x:Type ColumnDefinition}">
                 <Style.Triggers>
-                    <DataTrigger Binding="{Binding ActualWidth, Mode=OneWay, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}, Converter={StaticResource IsLessThanConverter}, ConverterParameter={x:Static s:LayoutBreakpoint.ExtraSmall}}" Value="True">
+                    <DataTrigger Binding="{Binding ActualWidth, Mode=OneWay, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}, Converter={StaticResource Converters.Shared.IsLessThanConverter}, ConverterParameter={x:Static s:LayoutBreakpoint.ExtraSmall}}" Value="True">
                         <Setter Property="Width" Value="Auto" />
                     </DataTrigger>
                 </Style.Triggers>
@@ -23,7 +23,7 @@
                 <Setter Property="Column" Value="1" />
                 <Setter Property="Row" Value="0" />
                 <Style.Triggers>
-                    <DataTrigger Binding="{Binding ActualWidth, Mode=OneWay, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}, Converter={StaticResource IsLessThanConverter}, ConverterParameter={x:Static s:LayoutBreakpoint.Medium}}" Value="True">
+                    <DataTrigger Binding="{Binding ActualWidth, Mode=OneWay, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}, Converter={StaticResource Converters.Shared.IsLessThanConverter}, ConverterParameter={x:Static s:LayoutBreakpoint.Medium}}" Value="True">
                         <Setter Property="Column" Value="0" />
                         <Setter Property="Row" Value="1" />
                     </DataTrigger>
@@ -33,7 +33,7 @@
                 <Setter Property="Column" Value="1" />
                 <Setter Property="Row" Value="0" />
                 <Style.Triggers>
-                    <DataTrigger Binding="{Binding ActualWidth, Mode=OneWay, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}, Converter={StaticResource IsLessThanConverter}, ConverterParameter={x:Static s:LayoutBreakpoint.ExtraSmall}}" Value="True">
+                    <DataTrigger Binding="{Binding ActualWidth, Mode=OneWay, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}, Converter={StaticResource Converters.Shared.IsLessThanConverter}, ConverterParameter={x:Static s:LayoutBreakpoint.ExtraSmall}}" Value="True">
                         <Setter Property="Column" Value="0" />
                         <Setter Property="Row" Value="1" />
                     </DataTrigger>
