@@ -3,7 +3,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate>
-                    <ItemsControl ItemsSource="{Binding Providers, Mode=OneWay}">
+                    <ItemsControl ItemsSource="{Binding Providers, Mode=OneTime}">
                         <ItemsControl.ItemContainerStyle>
                             <Style>
                                 <!--  ReSharper disable once Xaml.RedundantPropertyTypeQualifier  -->

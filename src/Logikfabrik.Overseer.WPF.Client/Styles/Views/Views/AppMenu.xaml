@@ -108,7 +108,7 @@
                         </Border>
                     </Grid>
                     <ControlTemplate.Triggers>
-                        <DataTrigger Binding="{Binding IsExpanded}" Value="True">
+                        <DataTrigger Binding="{Binding IsExpanded, Mode=OneWay}" Value="True">
                             <DataTrigger.EnterActions>
                                 <BeginStoryboard>
                                     <Storyboard>

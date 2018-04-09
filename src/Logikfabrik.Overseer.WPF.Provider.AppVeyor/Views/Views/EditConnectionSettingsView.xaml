@@ -14,14 +14,14 @@
     mc:Ignorable="d">
     <StackPanel>
         <StackPanel Style="{StaticResource Views.Shared.Setting.Panel}">
-            <TextBlock Style="{StaticResource Views.Shared.Setting.Label}" Text="{Binding Source={x:Static p:Resources.EditConnectionSettings_Setting_Label_Name}, Converter={StaticResource Converters.Shared.StringToUpperCaseConverter}}" />
+            <TextBlock Style="{StaticResource Views.Shared.Setting.Label}" Text="{Binding Source={x:Static p:Resources.EditConnectionSettings_Setting_Label_Name}, Mode=OneTime, Converter={StaticResource Converters.Shared.StringToUpperCaseConverter}}" />
             <TextBox Text="{Binding Name, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" />
         </StackPanel>
         <StackPanel Style="{StaticResource Views.Shared.Setting.Panel}">
-            <TextBlock Style="{StaticResource Views.Shared.Setting.Label}" Text="{Binding Source={x:Static p:Resources.EditConnectionSettings_Setting_Label_Token}, Converter={StaticResource Converters.Shared.StringToUpperCaseConverter}}" />
+            <TextBlock Style="{StaticResource Views.Shared.Setting.Label}" Text="{Binding Source={x:Static p:Resources.EditConnectionSettings_Setting_Label_Token}, Mode=OneTime, Converter={StaticResource Converters.Shared.StringToUpperCaseConverter}}" />
             <TextBlock Style="{StaticResource Views.Shared.Setting.Description}">
                 <Run Text="{x:Static p:Resources.EditConnectionSettings_Setting_Description_Token}" />
-                <Hyperlink ex:HyperlinkExtensions.IsExternal="True" NavigateUri="{Binding Source={x:Static appVeyor:UriUtility.BaseUri}}">ci.appveyor.com</Hyperlink>
+                <Hyperlink ex:HyperlinkExtensions.IsExternal="True" NavigateUri="{Binding Source={x:Static appVeyor:UriUtility.BaseUri}, Mode=OneTime}">ci.appveyor.com</Hyperlink>
             </TextBlock>
             <PasswordBox ex:PasswordBoxExtensions.BoundPassword="{Binding Token, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}">
                 <i:Interaction.Behaviors>

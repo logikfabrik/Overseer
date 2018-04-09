@@ -46,7 +46,7 @@
                             Grid.Row="0"
                             BorderBrush="{StaticResource Panel.Border}"
                             BorderThickness="2">
-                            <ItemsControl ItemsSource="{Binding FilteredProjects}">
+                            <ItemsControl ItemsSource="{Binding FilteredProjects, Mode=OneWay}">
                                 <ItemsControl.ItemContainerStyle>
                                     <Style>
                                         <!--  ReSharper disable once Xaml.RedundantPropertyTypeQualifier  -->
@@ -89,7 +89,7 @@
                                     Grid.Column="0"
                                     Grid.ColumnSpan="3"
                                     Row="1"
-                                    Visibility="{Binding ElementName=PART_Filter, Path=IsChecked, Converter={StaticResource Converters.Shared.BooleanToVisibilityConverter}}">
+                                    Visibility="{Binding ElementName=PART_Filter, Path=IsChecked, Mode=OneWay, Converter={StaticResource Converters.Shared.BooleanToVisibilityConverter}}">
                                     <TextBox Style="{StaticResource Views.Shared.Filter.TextBox}" Text="{Binding Filter, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                                 </Grid>
                                 <!--  ReSharper disable once Xaml.MissingGridIndex  -->

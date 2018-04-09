@@ -23,20 +23,20 @@
                                         IsEnabled="{Binding IsValidAndHasNotConnected, Mode=OneWay}" />
                                     <userControls:ProgressControl
                                         VerticalAlignment="Top"
-                                        IsErrored="{Binding ConnectionTask.Status, Converter={StaticResource Converters.Shared.TaskStatus.FaultedToBooleanConverter}}"
-                                        IsInProgress="{Binding ConnectionTask.Status, Converter={StaticResource Converters.Shared.TaskStatus.RunningToBooleanConverter}}" />
+                                        IsErrored="{Binding ConnectionTask.Status, Mode=OneWay, Converter={StaticResource Converters.Shared.TaskStatus.FaultedToBooleanConverter}}"
+                                        IsInProgress="{Binding ConnectionTask.Status, Mode=OneWay, Converter={StaticResource Converters.Shared.TaskStatus.RunningToBooleanConverter}}" />
                                 </Grid>
-                                <TextBlock Text="{Binding ConnectionTask.Exception, Converter={StaticResource Converters.Shared.AddConnectionViewExceptionToLocalizedStringConverter}}" Visibility="{Binding ConnectionTask.Status, Converter={StaticResource Converters.Shared.TaskStatus.FaultedToVisibilityConverter}}" />
+                                <TextBlock Text="{Binding ConnectionTask.Exception, Mode=OneWay, Converter={StaticResource Converters.Shared.AddConnectionViewExceptionToLocalizedStringConverter}}" Visibility="{Binding ConnectionTask.Status, Mode=OneWay, Converter={StaticResource Converters.Shared.TaskStatus.FaultedToVisibilityConverter}}" />
                             </StackPanel>
-                            <StackPanel Style="{StaticResource Views.Shared.Setting.Panel}" Visibility="{Binding HasConnected, Converter={StaticResource Converters.Shared.BooleanToVisibilityConverter}}">
-                                <TextBlock Style="{StaticResource Views.Shared.Setting.Label}" Text="{Binding Source={x:Static p:Resources.EditConnectionSettings_Setting_Label_TrackedProjects}, Converter={StaticResource Converters.Shared.StringToUpperCaseConverter}}" />
+                            <StackPanel Style="{StaticResource Views.Shared.Setting.Panel}" Visibility="{Binding HasConnected, Mode=OneWay, Converter={StaticResource Converters.Shared.BooleanToVisibilityConverter}}">
+                                <TextBlock Style="{StaticResource Views.Shared.Setting.Label}" Text="{Binding Source={x:Static p:Resources.EditConnectionSettings_Setting_Label_TrackedProjects}, Mode=OneTime, Converter={StaticResource Converters.Shared.StringToUpperCaseConverter}}" />
                                 <ContentControl
                                     MaxHeight="304"
                                     cal:View.Model="{Binding Settings.TrackedProjects, Mode=OneWay}"
                                     Focusable="False" />
                             </StackPanel>
                             <StackPanel Style="{StaticResource Views.Shared.Setting.Panel}">
-                                <TextBlock Style="{StaticResource Views.Shared.Setting.Label}" Text="{Binding Source={x:Static p:Resources.EditConnectionSettings_Setting_Label_BuildsPerProject}, Converter={StaticResource Converters.Shared.StringToUpperCaseConverter}}" />
+                                <TextBlock Style="{StaticResource Views.Shared.Setting.Label}" Text="{Binding Source={x:Static p:Resources.EditConnectionSettings_Setting_Label_BuildsPerProject}, Mode=OneTime, Converter={StaticResource Converters.Shared.StringToUpperCaseConverter}}" />
                                 <TextBlock Style="{StaticResource Views.Shared.Setting.Description}" Text="{x:Static p:Resources.EditConnectionSettings_Setting_Description_BuildsPerProject}" />
                                 <TextBox Text="{Binding Settings.BuildsPerProject, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" />
                             </StackPanel>

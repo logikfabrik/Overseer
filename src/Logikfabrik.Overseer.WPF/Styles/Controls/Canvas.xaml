@@ -4,7 +4,7 @@
         <Setter Property="Height" Value="20" />
         <Style.Resources>
             <Style TargetType="{x:Type Path}">
-                <Setter Property="Fill" Value="{Binding (TextElement.Foreground), RelativeSource={RelativeSource Self}}" />
+                <Setter Property="Fill" Value="{Binding (TextElement.Foreground), Mode=OneWay, RelativeSource={RelativeSource Self}}" />
             </Style>
         </Style.Resources>
     </Style>

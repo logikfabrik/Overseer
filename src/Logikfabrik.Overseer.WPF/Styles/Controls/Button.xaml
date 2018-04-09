@@ -22,7 +22,7 @@
         </Style.Resources>
         <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}" />
         <Setter Property="Background" Value="{StaticResource Button.Static.Background}" />
-        <Setter Property="Foreground" Value="{Binding (TextElement.Foreground), RelativeSource={RelativeSource Self}}" />
+        <Setter Property="Foreground" Value="{Binding (TextElement.Foreground), Mode=OneWay, RelativeSource={RelativeSource Self}}" />
         <Setter Property="TextElement.Foreground" Value="{StaticResource Button.Static.Foreground}" />
         <Setter Property="BorderBrush" Value="{StaticResource Button.Static.Border}" />
         <Setter Property="BorderThickness" Value="2" />

@@ -42,19 +42,19 @@
             <Style x:Key="Views.Views.ViewBuild.Tile.Panel" TargetType="{x:Type Border}">
                 <Setter Property="BorderThickness" Value="5,0,0,0" />
                 <Style.Triggers>
-                    <DataTrigger Binding="{Binding Status}" Value="Failed">
+                    <DataTrigger Binding="{Binding Status, Mode=OneWay}" Value="Failed">
                         <Setter Property="BorderBrush" Value="{StaticResource Status.Failed}" />
                     </DataTrigger>
-                    <DataTrigger Binding="{Binding Status}" Value="Succeeded">
+                    <DataTrigger Binding="{Binding Status, Mode=OneWay}" Value="Succeeded">
                         <Setter Property="BorderBrush" Value="{StaticResource Status.Succeeded}" />
                     </DataTrigger>
-                    <DataTrigger Binding="{Binding Status}" Value="InProgress">
+                    <DataTrigger Binding="{Binding Status, Mode=OneWay}" Value="InProgress">
                         <Setter Property="BorderBrush" Value="{StaticResource Status.InProgress}" />
                     </DataTrigger>
-                    <DataTrigger Binding="{Binding Status}" Value="Stopped">
+                    <DataTrigger Binding="{Binding Status, Mode=OneWay}" Value="Stopped">
                         <Setter Property="BorderBrush" Value="{StaticResource Status.Stopped}" />
                     </DataTrigger>
-                    <DataTrigger Binding="{Binding Status}" Value="Queued">
+                    <DataTrigger Binding="{Binding Status, Mode=OneWay}" Value="Queued">
                         <Setter Property="BorderBrush" Value="{StaticResource Status.Queued}" />
                     </DataTrigger>
                 </Style.Triggers>

@@ -12,7 +12,7 @@
                                 <DataTemplate>
                                     <ContentControl
                                         cal:View.Context="Brick"
-                                        cal:View.Model="{Binding}"
+                                        cal:View.Model="{Binding Mode=OneWay}"
                                         Focusable="False">
                                         <ContentControl.Resources>
                                             <Style BasedOn="{StaticResource {x:Type Button}}" TargetType="{x:Type Button}">

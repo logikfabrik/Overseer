@@ -40,7 +40,7 @@
                                 cal:Message.Attach="NextStep"
                                 Content="{x:Static p:Resources.WizardEditPassphrase_Button_NextStep}"
                                 IsDefault="True"
-                                IsEnabled="{Binding IsValid}" />
+                                IsEnabled="{Binding IsValid, Mode=OneWay}" />
                         </WrapPanel>
                     </Grid>
                 </ControlTemplate>

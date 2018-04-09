@@ -13,7 +13,7 @@
                             <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
                         <Border Grid.Row="0" Style="{StaticResource Views.Shared.Header.Panel}">
-                            <TextBlock Style="{StaticResource Views.Shared.Header.Header}" Text="{Binding Name, Converter={StaticResource Converters.Shared.StringToUpperCaseConverter}}" />
+                            <TextBlock Style="{StaticResource Views.Shared.Header.Header}" Text="{Binding Name, Mode=OneWay, Converter={StaticResource Converters.Shared.StringToUpperCaseConverter}}" />
                         </Border>
                         <ItemsControl Grid.Row="1" ItemsSource="{Binding OrderedBuilds, Mode=OneWay}">
                             <ItemsControl.ItemContainerStyle>

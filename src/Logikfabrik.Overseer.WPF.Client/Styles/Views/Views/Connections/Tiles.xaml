@@ -19,7 +19,7 @@
                                 <DataTemplate>
                                     <ContentControl
                                         cal:View.Context="Tile"
-                                        cal:View.Model="{Binding}"
+                                        cal:View.Model="{Binding Mode=OneWay}"
                                         Focusable="False" />
                                 </DataTemplate>
                             </ItemsControl.ItemTemplate>
@@ -36,8 +36,8 @@
                                 </ItemsPanelTemplate>
                             </ItemsControl.ItemsPanel>
                         </ItemsControl>
-                        <StackPanel Style="{StaticResource Views.Shared.Section.Empty.Panel}" Visibility="{Binding HasNoConnections, Converter={StaticResource Converters.Shared.BooleanToVisibilityConverter}}">
-                            <TextBlock Style="{StaticResource Views.Shared.Section.Empty.Header}" Text="{Binding Source={x:Static p:Resources.Connections_Tiles_Message_NoConnections}}" />
+                        <StackPanel Style="{StaticResource Views.Shared.Section.Empty.Panel}" Visibility="{Binding HasNoConnections, Mode=OneWay, Converter={StaticResource Converters.Shared.BooleanToVisibilityConverter}}">
+                            <TextBlock Style="{StaticResource Views.Shared.Section.Empty.Header}" Text="{Binding Source={x:Static p:Resources.Connections_Tiles_Message_NoConnections}, Mode=OneTime}" />
                             <Button
                                 cal:Message.Attach="Add"
                                 Content="{x:Static p:Resources.Connections_Tiles_Button_Add}"

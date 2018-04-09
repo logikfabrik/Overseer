@@ -13,15 +13,15 @@
     mc:Ignorable="d">
     <StackPanel>
         <StackPanel Style="{StaticResource Views.Shared.Setting.Panel}">
-            <TextBlock Style="{StaticResource Views.Shared.Setting.Label}" Text="{Binding Source={x:Static p:Resources.EditConnectionSettings_Setting_Label_Name}, Converter={StaticResource Converters.Shared.StringToUpperCaseConverter}}" />
+            <TextBlock Style="{StaticResource Views.Shared.Setting.Label}" Text="{Binding Source={x:Static p:Resources.EditConnectionSettings_Setting_Label_Name}, Mode=OneTime, Converter={StaticResource Converters.Shared.StringToUpperCaseConverter}}" />
             <TextBox Text="{Binding Name, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" />
         </StackPanel>
         <StackPanel Style="{StaticResource Views.Shared.Setting.Panel}">
-            <TextBlock Style="{StaticResource Views.Shared.Setting.Label}" Text="{Binding Source={x:Static p:Resources.EditConnectionSettings_Setting_Label_Url}, Converter={StaticResource Converters.Shared.StringToUpperCaseConverter}}" />
+            <TextBlock Style="{StaticResource Views.Shared.Setting.Label}" Text="{Binding Source={x:Static p:Resources.EditConnectionSettings_Setting_Label_Url}, Mode=OneTime, Converter={StaticResource Converters.Shared.StringToUpperCaseConverter}}" />
             <TextBox Text="{Binding Url, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" />
         </StackPanel>
         <StackPanel Style="{StaticResource Views.Shared.Setting.Panel}">
-            <TextBlock Style="{StaticResource Views.Shared.Setting.Label}" Text="{Binding Source={x:Static p:Resources.EditConnectionSettings_Setting_Label_Token}, Converter={StaticResource Converters.Shared.StringToUpperCaseConverter}}" />
+            <TextBlock Style="{StaticResource Views.Shared.Setting.Label}" Text="{Binding Source={x:Static p:Resources.EditConnectionSettings_Setting_Label_Token}, Mode=OneTime, Converter={StaticResource Converters.Shared.StringToUpperCaseConverter}}" />
             <TextBlock Style="{StaticResource Views.Shared.Setting.Description}">
                 <Run Text="{x:Static p:Resources.EditConnectionSettings_Setting_Description_Token}" />
                 <Hyperlink ex:HyperlinkExtensions.IsExternal="True" NavigateUri="https://www.visualstudio.com">visualstudio.com</Hyperlink>

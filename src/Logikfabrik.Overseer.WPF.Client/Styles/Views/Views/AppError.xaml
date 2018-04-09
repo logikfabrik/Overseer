@@ -15,7 +15,7 @@
                             <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
                         <Border Padding="12">
-                            <TextBlock Text="{Binding Message}" />
+                            <TextBlock Text="{Binding Message, Mode=OneWay}" />
                         </Border>
                         <Button
                             Grid.Column="1"
@@ -30,7 +30,7 @@
                         </Button>
                     </Grid>
                     <ControlTemplate.Triggers>
-                        <DataTrigger Binding="{Binding IsExpanded}" Value="True">
+                        <DataTrigger Binding="{Binding IsExpanded, Mode=OneWay}" Value="True">
                             <DataTrigger.EnterActions>
                                 <BeginStoryboard>
                                     <Storyboard>
@@ -61,7 +61,7 @@
                             </DataTrigger.ExitActions>
                             <Setter Property="Visibility" Value="Visible" />
                         </DataTrigger>
-                        <DataTrigger Binding="{Binding IsExpanded}" Value="False">
+                        <DataTrigger Binding="{Binding IsExpanded, Mode=OneWay}" Value="False">
                             <Setter Property="Visibility" Value="Collapsed" />
                         </DataTrigger>
                     </ControlTemplate.Triggers>

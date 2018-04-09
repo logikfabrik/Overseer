@@ -10,12 +10,12 @@
                     <ScrollViewer>
                         <StackPanel>
                             <StackPanel Style="{StaticResource Views.Shared.Setting.Panel}">
-                                <TextBlock Style="{StaticResource Views.Shared.Setting.Label}" Text="{Binding Source={x:Static p:Resources.EditSettings_Setting_Label_Interval}, Converter={StaticResource Converters.Shared.StringToUpperCaseConverter}, Mode=OneWay}" />
+                                <TextBlock Style="{StaticResource Views.Shared.Setting.Label}" Text="{Binding Source={x:Static p:Resources.EditSettings_Setting_Label_Interval}, Mode=OneTime, Converter={StaticResource Converters.Shared.StringToUpperCaseConverter}}" />
                                 <TextBlock Style="{StaticResource Views.Shared.Setting.Description}" Text="{x:Static p:Resources.EditSettings_Setting_Description_Interval}" />
                                 <TextBox Text="{Binding Interval, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" />
                             </StackPanel>
                             <StackPanel Style="{StaticResource Views.Shared.Setting.Panel}">
-                                <TextBlock Style="{StaticResource Views.Shared.Setting.Label}" Text="{Binding Source={x:Static p:Resources.EditSettings_Setting_Label_Notifications}, Converter={StaticResource Converters.Shared.StringToUpperCaseConverter}, Mode=OneWay}" />
+                                <TextBlock Style="{StaticResource Views.Shared.Setting.Label}" Text="{Binding Source={x:Static p:Resources.EditSettings_Setting_Label_Notifications}, Mode=OneTime, Converter={StaticResource Converters.Shared.StringToUpperCaseConverter}}" />
                                 <TextBlock Style="{StaticResource Views.Shared.Setting.Description}" Text="{x:Static p:Resources.EditSettings_Setting_Description_Notifications}" />
                                 <CheckBox IsChecked="{Binding ShowNotificationsForInProgressBuilds, Mode=TwoWay}">
                                     <TextBlock Text="{x:Static p:Resources.EditSettings_Setting_Option_Notifications_InProgress}" />
@@ -31,7 +31,7 @@
                                 </CheckBox>
                             </StackPanel>
                             <StackPanel Style="{StaticResource Views.Shared.Setting.Panel}">
-                                <TextBlock Style="{StaticResource Views.Shared.Setting.Label}" Text="{Binding Source={x:Static p:Resources.EditSettings_Setting_Label_CultureName}, Converter={StaticResource Converters.Shared.StringToUpperCaseConverter}, Mode=OneWay}" />
+                                <TextBlock Style="{StaticResource Views.Shared.Setting.Label}" Text="{Binding Source={x:Static p:Resources.EditSettings_Setting_Label_CultureName}, Mode=OneTime, Converter={StaticResource Converters.Shared.StringToUpperCaseConverter}}" />
                                 <TextBlock Style="{StaticResource Views.Shared.Setting.Description}" Text="{x:Static p:Resources.EditSettings_Setting_Description_CultureName}" />
                                 <ComboBox
                                     DisplayMemberPath="Item1"

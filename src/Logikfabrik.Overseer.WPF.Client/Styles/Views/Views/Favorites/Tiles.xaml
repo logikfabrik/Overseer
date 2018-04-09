@@ -8,7 +8,7 @@
             <Setter.Value>
                 <ControlTemplate>
                     <Grid>
-                        <ItemsControl ItemsSource="{Binding Favorites, Mode=OneWay}" Visibility="{Binding HasFavorites, Converter={StaticResource Converters.Shared.BooleanToVisibilityConverter}}">
+                        <ItemsControl ItemsSource="{Binding Favorites, Mode=OneWay}" Visibility="{Binding HasFavorites, Mode=OneWay, Converter={StaticResource Converters.Shared.BooleanToVisibilityConverter}}">
                             <ItemsControl.ItemContainerStyle>
                                 <Style>
                                     <!--  ReSharper disable Xaml.RedundantPropertyTypeQualifier  -->
@@ -21,7 +21,7 @@
                                 <DataTemplate>
                                     <ContentControl
                                         cal:View.Context="Tile"
-                                        cal:View.Model="{Binding}"
+                                        cal:View.Model="{Binding Mode=OneWay}"
                                         Focusable="False" />
                                 </DataTemplate>
                             </ItemsControl.ItemTemplate>
@@ -38,8 +38,8 @@
                                 </ItemsPanelTemplate>
                             </ItemsControl.ItemsPanel>
                         </ItemsControl>
-                        <StackPanel Style="{StaticResource Views.Shared.Section.Empty.Panel}" Visibility="{Binding HasNoFavorites, Converter={StaticResource Converters.Shared.BooleanToVisibilityConverter}}">
-                            <TextBlock Style="{StaticResource Views.Shared.Section.Empty.Header}" Text="{Binding Source={x:Static p:Resources.Favorites_Tiles_Message_NoFavorites}}" />
+                        <StackPanel Style="{StaticResource Views.Shared.Section.Empty.Panel}" Visibility="{Binding HasNoFavorites, Mode=OneWay, Converter={StaticResource Converters.Shared.BooleanToVisibilityConverter}}">
+                            <TextBlock Style="{StaticResource Views.Shared.Section.Empty.Header}" Text="{Binding Source={x:Static p:Resources.Favorites_Tiles_Message_NoFavorites}, Mode=OneTime}" />
                         </StackPanel>
                     </Grid>
                 </ControlTemplate>

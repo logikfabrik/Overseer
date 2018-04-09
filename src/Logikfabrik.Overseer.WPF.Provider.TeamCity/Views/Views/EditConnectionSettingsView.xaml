@@ -15,11 +15,11 @@
     mc:Ignorable="d">
     <StackPanel>
         <StackPanel Style="{StaticResource Views.Shared.Setting.Panel}">
-            <TextBlock Style="{StaticResource Views.Shared.Setting.Label}" Text="{Binding Source={x:Static p:Resources.EditConnectionSettings_Setting_Label_Name}, Converter={StaticResource Converters.Shared.StringToUpperCaseConverter}}" />
+            <TextBlock Style="{StaticResource Views.Shared.Setting.Label}" Text="{Binding Source={x:Static p:Resources.EditConnectionSettings_Setting_Label_Name}, Mode=OneTime, Converter={StaticResource Converters.Shared.StringToUpperCaseConverter}}" />
             <TextBox Text="{Binding Name, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" />
         </StackPanel>
         <StackPanel Style="{StaticResource Views.Shared.Setting.Panel}">
-            <TextBlock Style="{StaticResource Views.Shared.Setting.Label}" Text="{Binding Source={x:Static p:Resources.EditConnectionSettings_Setting_Label_Url}, Converter={StaticResource Converters.Shared.StringToUpperCaseConverter}}" />
+            <TextBlock Style="{StaticResource Views.Shared.Setting.Label}" Text="{Binding Source={x:Static p:Resources.EditConnectionSettings_Setting_Label_Url}, Mode=OneTime, Converter={StaticResource Converters.Shared.StringToUpperCaseConverter}}" />
             <TextBlock
                 Style="{StaticResource Views.Shared.Setting.Description}"
                 Text="{Binding BaseUri, Mode=OneWay}"
@@ -27,7 +27,7 @@
             <TextBox Text="{Binding Url, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" />
         </StackPanel>
         <StackPanel Style="{StaticResource Views.Shared.Setting.Panel}">
-            <TextBlock Style="{StaticResource Views.Shared.Setting.Label}" Text="{Binding Source={x:Static p:Resources.EditConnectionSettings_Setting_Label_AuthenticationType}, Converter={StaticResource Converters.Shared.StringToUpperCaseConverter}}" />
+            <TextBlock Style="{StaticResource Views.Shared.Setting.Label}" Text="{Binding Source={x:Static p:Resources.EditConnectionSettings_Setting_Label_AuthenticationType}, Mode=OneTime, Converter={StaticResource Converters.Shared.StringToUpperCaseConverter}}" />
             <ComboBox
                 DisplayMemberPath="DisplayName"
                 ItemsSource="{markupExtensions:EnumToItemsSourceMarkup {x:Type teamCity:AuthenticationType}}"
@@ -36,11 +36,11 @@
         </StackPanel>
         <StackPanel Visibility="{Binding ShowUsernameAndPassword, Mode=OneWay, Converter={StaticResource Converters.Shared.BooleanToVisibilityConverter}}">
             <StackPanel Style="{StaticResource Views.Shared.Setting.Panel}">
-                <TextBlock Style="{StaticResource Views.Shared.Setting.Label}" Text="{Binding Source={x:Static p:Resources.EditConnectionSettings_Setting_Label_Username}, Converter={StaticResource Converters.Shared.StringToUpperCaseConverter}}" />
+                <TextBlock Style="{StaticResource Views.Shared.Setting.Label}" Text="{Binding Source={x:Static p:Resources.EditConnectionSettings_Setting_Label_Username}, Mode=OneTime, Converter={StaticResource Converters.Shared.StringToUpperCaseConverter}}" />
                 <TextBox Text="{Binding Username, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" />
             </StackPanel>
             <StackPanel Style="{StaticResource Views.Shared.Setting.Panel}">
-                <TextBlock Style="{StaticResource Views.Shared.Setting.Label}" Text="{Binding Source={x:Static p:Resources.EditConnectionSettings_Setting_Label_Password}, Converter={StaticResource Converters.Shared.StringToUpperCaseConverter}}" />
+                <TextBlock Style="{StaticResource Views.Shared.Setting.Label}" Text="{Binding Source={x:Static p:Resources.EditConnectionSettings_Setting_Label_Password}, Mode=OneTime, Converter={StaticResource Converters.Shared.StringToUpperCaseConverter}}" />
                 <PasswordBox ex:PasswordBoxExtensions.BoundPassword="{Binding Password, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}">
                     <i:Interaction.Behaviors>
                         <b:IgnoreMouseWheelBehavior />

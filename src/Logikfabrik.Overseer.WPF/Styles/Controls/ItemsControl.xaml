@@ -11,7 +11,7 @@
         <Setter Property="ItemTemplate">
             <Setter.Value>
                 <DataTemplate>
-                    <ContentControl cal:View.Model="{Binding}" Focusable="False" />
+                    <ContentControl cal:View.Model="{Binding Mode=OneWay}" Focusable="False" />
                 </DataTemplate>
             </Setter.Value>
         </Setter>

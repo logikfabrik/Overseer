@@ -8,8 +8,8 @@
                 <ControlTemplate>
                     <Button
                         cal:Message.Attach="View"
-                        Content="{Binding SettingsName}"
-                        IsEnabled="{Binding IsViewable}" />
+                        Content="{Binding SettingsName, Mode=OneWay}"
+                        IsEnabled="{Binding IsViewable, Mode=OneWay}" />
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
