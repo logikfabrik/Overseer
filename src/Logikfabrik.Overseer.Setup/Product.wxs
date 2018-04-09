@@ -47,8 +47,6 @@
       <ComponentGroupRef Id="cmp8B3C8DF1FB634830AF39151E7BE83F96" />
     </Feature>
 
-    <UIRef Id="WixUI_InstallDir" />
-
     <WixVariable Id="WixUILicenseRtf"
                  Value="LICENSE.rtf" />
 
@@ -558,6 +556,25 @@
 
     </ComponentGroup>
 
+    <!-- Step 2: Add UI to your installer / Step 4: Trigger the custom action -->
+    <UI>
+      <UIRef Id="WixUI_InstallDir" />
+      <Publish Dialog="ExitDialog" 
+               Control="Finish" 
+               Event="DoAction" 
+               Value="LaunchApplication">WIXUI_EXITDIALOGOPTIONALCHECKBOX = 1 and NOT Installed</Publish>
+    </UI>
+    
+    <Property Id="WIXUI_EXITDIALOGOPTIONALCHECKBOXTEXT" Value="Launch Overseer" />
+    <Property Id="WIXUI_EXITDIALOGOPTIONALCHECKBOX" Value="1"/>
+
+    <!-- Step 3: Include the custom action -->
+    <Property Id="WixShellExecTarget" Value="[!filCA7CCBC737E04F139864ACB9FDC02E2E]" />
+
+    <CustomAction Id="LaunchApplication" 
+                  BinaryKey="WixCA" 
+                  DllEntry="WixShellExec"
+                  Impersonate="yes" />
   </Product>
 
 </Wix>
