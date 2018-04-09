@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi"
-     xmlns:netfx="http://schemas.microsoft.com/wix/NetFxExtension">
+     xmlns:netfx="http://schemas.microsoft.com/wix/NetFxExtension"
+     xmlns:util="http://schemas.microsoft.com/wix/UtilExtension">
 
   <?ifndef INSTALLERVERSION ?>
   <?define INSTALLERVERSION="0.0.1.0" ?>
@@ -125,6 +126,10 @@
                   Directory="dir3BE2B7698D754603B3561E3109DF8809"
                   Target="[System64Folder]msiexec.exe"
                   Arguments="/x [ProductCode]" />
+
+        <util:InternetShortcut Id="shc0752FA28E1304014891C556C7795D6F8"
+                               Name="Overseer website"
+                               Target="https://overseer.logikfabrik.se/" />
 
         <RemoveFolder Id="remF8CA303B276F40929A820D1F2D1DE801"
                       On="uninstall" />
