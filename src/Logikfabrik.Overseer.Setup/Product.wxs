@@ -105,6 +105,8 @@
                  Guid="B0CC3638-C76C-4F28-A1FE-246ACEB13972"
                  Directory="dir3BE2B7698D754603B3561E3109DF8809">
 
+        <Condition>UI_SHORTCUTDIALOGSTARTMENUSHORTCUTSCHECKBOX</Condition>
+
         <RegistryValue Root="HKCU"
                        Key="Software\Logikfabrik\Overseer"
                        Name="ProgramMenuShortcut"
@@ -138,6 +140,8 @@
                  Guid="EC155E32-99D5-4F8B-A257-8F1C93F67472"
                  Directory="DesktopFolder">
 
+        <Condition>UI_SHORTCUTDIALOGDESKTOPSHORTCUTCHECKBOX</Condition>
+
         <RegistryValue Root="HKCU"
                        Key="Software\Logikfabrik\Overseer"
                        Name="DesktopShortcut"
@@ -149,7 +153,7 @@
                   Name="Overseer"
                   Directory="DesktopFolder"
                   Target="[!filCA7CCBC737E04F139864ACB9FDC02E2E]"
-                  WorkingDirectory="INSTALLFOLDER" 
+                  WorkingDirectory="INSTALLFOLDER"
                   Icon="Logikfabrik.ico" />
 
       </Component>
@@ -556,23 +560,22 @@
 
     </ComponentGroup>
 
-    <!-- Step 2: Add UI to your installer / Step 4: Trigger the custom action -->
     <UI>
-      <UIRef Id="WixUI_InstallDir" />
-      <Publish Dialog="ExitDialog" 
-               Control="Finish" 
-               Event="DoAction" 
-               Value="LaunchApplication">WIXUI_EXITDIALOGOPTIONALCHECKBOX = 1 and NOT Installed</Publish>
+      <UIRef Id="UI_InstallDir" />
+      <Publish Dialog="UI_ExitDialog"
+               Control="Finish"
+               Event="DoAction"
+               Value="LaunchProduct">UI_EXITDIALOGLAUNCHPRODUCTCHECKBOX = 1 and NOT Installed</Publish>
     </UI>
-    
-    <Property Id="WIXUI_EXITDIALOGOPTIONALCHECKBOXTEXT" Value="Launch Overseer" />
-    <Property Id="WIXUI_EXITDIALOGOPTIONALCHECKBOX" Value="1"/>
 
-    <!-- Step 3: Include the custom action -->
+    <Property Id="UI_SHORTCUTDIALOGDESKTOPSHORTCUTCHECKBOX" Value="1" />
+    <Property Id="UI_SHORTCUTDIALOGSTARTMENUSHORTCUTSCHECKBOX" Value="1" />
+    <Property Id="UI_EXITDIALOGLAUNCHPRODUCTCHECKBOX" Value="1" />
+
     <Property Id="WixShellExecTarget" Value="[!filCA7CCBC737E04F139864ACB9FDC02E2E]" />
 
-    <CustomAction Id="LaunchApplication" 
-                  BinaryKey="WixCA" 
+    <CustomAction Id="LaunchProduct"
+                  BinaryKey="WixCA"
                   DllEntry="WixShellExec"
                   Impersonate="yes" />
   </Product>

@@ -24,7 +24,10 @@
     <IntermediateOutputPath>obj\$(Configuration)\</IntermediateOutputPath>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="UI_ExitDialog.wxs" />
+    <Compile Include="UI_ShortcutDlg.wxs" />
     <Compile Include="Product.wxs" />
+    <Compile Include="UI_InstallDir.wxs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Logikfabrik.Overseer.WPF.Client\Logikfabrik.Overseer.WPF.Client.csproj">
