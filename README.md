@@ -1,4 +1,4 @@
-# Overseer [![Build status](https://ci.appveyor.com/api/projects/status/5qb10vsch42wx2y4?svg=true)](https://ci.appveyor.com/project/logikfabrik/overseer) [![Quality Gate](https://sonarcloud.io/api/badges/gate?key=overseer)](https://sonarcloud.io/dashboard?id=overseer)
+# Overseer [![Build status](https://ci.appveyor.com/api/projects/status/5qb10vsch42wx2y4?svg=true)](https://ci.appveyor.com/project/logikfabrik/overseer) [![Quality Gate](https://sonarcloud.io/api/project_badges/quality_gate?project=overseer)](https://sonarcloud.io/dashboard?id=overseer)
 
 Overseer is a Windows taskbar app for build notifications. It features support for AppVeyor, CircleCI, Codeship, TeamCity, Travic CI and Visual Studio Team Services.
 
