@@ -8,6 +8,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     using System.Linq;
     using Caliburn.Micro;
     using EnsureThat;
+    using JetBrains.Annotations;
     using Navigation;
     using Passphrase;
     using Validators;
@@ -30,6 +31,8 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// <param name="eventAggregator">The event aggregator.</param>
         /// <param name="passphraseRepository">The passphrase repository.</param>
         /// <param name="navigationMessageFactory">The navigation message factory.</param>
+        [UsedImplicitly]
+
         // ReSharper disable once InheritdocConsiderUsage
         public WizardEditPassphraseViewModel(IEventAggregator eventAggregator, IPassphraseRepository passphraseRepository, INavigationMessageFactory<WizardNewConnectionViewModel> navigationMessageFactory)
         {

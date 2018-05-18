@@ -11,6 +11,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     using Caliburn.Micro;
     using EnsureThat;
     using Extensions;
+    using JetBrains.Annotations;
     using Localization;
     using Validators;
 
@@ -38,6 +39,8 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// <param name="application">The application.</param>
         /// <param name="applicationSettingsFactory">The application settings factory.</param>
         /// <param name="buildTrackerSettingsFactory">The build tracker settings factory.</param>
+        [UsedImplicitly]
+
         // ReSharper disable once InheritdocConsiderUsage
         public EditSettingsViewModel(IPlatformProvider platformProvider, IApp application, IAppSettingsFactory applicationSettingsFactory, IBuildTrackerSettingsFactory buildTrackerSettingsFactory)
             : base(platformProvider)

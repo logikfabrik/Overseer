@@ -6,6 +6,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.Codeship.ViewModels
 {
     using Caliburn.Micro;
     using EnsureThat;
+    using JetBrains.Annotations;
     using Overseer.Logging;
     using Settings;
     using WPF.ViewModels.Factories;
@@ -27,9 +28,10 @@ namespace Logikfabrik.Overseer.WPF.Provider.Codeship.ViewModels
         /// <param name="editTrackedProjectViewModelFactory">The tracked project factory.</param>
         /// <param name="editTrackedProjectsViewModelFactory">The tracked projects factory.</param>
         /// <param name="currentSettings">The current settings.</param>
-#pragma warning disable S107 // Methods should not have too many parameters
+        [UsedImplicitly]
 
         // ReSharper disable once InheritdocConsiderUsage
+#pragma warning disable S107 // Methods should not have too many parameters
         public EditConnectionViewModel(
             IPlatformProvider platformProvider,
             ILogService logService,

@@ -13,6 +13,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity.Api
     using System.Threading;
     using System.Threading.Tasks;
     using EnsureThat;
+    using JetBrains.Annotations;
     using Models;
     using Newtonsoft.Json;
     using Newtonsoft.Json.Converters;
@@ -32,6 +33,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.TeamCity.Api
         /// Initializes a new instance of the <see cref="ApiClient" /> class.
         /// </summary>
         /// <param name="settings">The settings.</param>
+        [UsedImplicitly]
         public ApiClient(ConnectionSettings settings)
         {
             Ensure.That(settings).IsNotNull();

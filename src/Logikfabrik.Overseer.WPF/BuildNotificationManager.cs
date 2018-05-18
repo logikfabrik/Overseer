@@ -9,6 +9,7 @@ namespace Logikfabrik.Overseer.WPF
     using System.Diagnostics;
     using Caliburn.Micro;
     using EnsureThat;
+    using JetBrains.Annotations;
     using Overseer.Extensions;
     using ViewModels;
     using ViewModels.Factories;
@@ -33,6 +34,8 @@ namespace Logikfabrik.Overseer.WPF
         /// <param name="displaySetting">The display setting.</param>
         /// <param name="viewNotificationViewModelFactory">The build notification factory.</param>
         /// <param name="appSettingsFactory">The app settings factory.</param>
+        [UsedImplicitly]
+
         // ReSharper disable once InheritdocConsiderUsage
         public BuildNotificationManager(IWindowManager windowManager, IDisplaySetting displaySetting, IViewNotificationViewModelFactory viewNotificationViewModelFactory, IAppSettingsFactory appSettingsFactory)
             : base(windowManager, displaySetting)

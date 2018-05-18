@@ -11,6 +11,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     using Caliburn.Micro;
     using EnsureThat;
     using Factories;
+    using JetBrains.Annotations;
     using Localization;
     using Overseer.Extensions;
 
@@ -33,6 +34,8 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// <param name="viewChangeViewModelFactory">The view change view model factory.</param>
         /// <param name="project">The project.</param>
         /// <param name="build">The build.</param>
+        [UsedImplicitly]
+
         // ReSharper disable once InheritdocConsiderUsage
         public ViewBuildViewModel(IViewChangeViewModelFactory viewChangeViewModelFactory, IProject project, IBuild build)
         {

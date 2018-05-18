@@ -8,6 +8,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     using Caliburn.Micro;
     using EnsureThat;
     using Favorites;
+    using JetBrains.Annotations;
 
     /// <summary>
     /// The <see cref="EditFavoriteViewModel" /> class.
@@ -26,6 +27,8 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// <param name="favoritesRepository">The favorites repository.</param>
         /// <param name="settingsId">The settings identifier.</param>
         /// <param name="projectId">The project identifier.</param>
+        [UsedImplicitly]
+
         // ReSharper disable once InheritdocConsiderUsage
         public EditFavoriteViewModel(IFavoritesRepository favoritesRepository, Guid settingsId, string projectId)
         {

@@ -11,6 +11,7 @@ namespace Logikfabrik.Overseer
     using System.Threading.Tasks;
     using System.Threading.Tasks.Dataflow;
     using EnsureThat;
+    using JetBrains.Annotations;
     using Logging;
     using Notification;
 
@@ -33,6 +34,7 @@ namespace Logikfabrik.Overseer
         /// <param name="connectionPool">The connection pool.</param>
         /// <param name="buildTrackerSettingsFactory">The build tracker settings factory.</param>
         /// <param name="logService">The log service.</param>
+        [UsedImplicitly]
         public BuildTracker(IConnectionPool connectionPool, IBuildTrackerSettingsFactory buildTrackerSettingsFactory, ILogService logService)
         {
             Ensure.That(connectionPool).IsNotNull();

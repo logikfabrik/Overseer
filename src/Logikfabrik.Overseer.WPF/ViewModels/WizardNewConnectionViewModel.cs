@@ -8,6 +8,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     using System.Linq;
     using Caliburn.Micro;
     using EnsureThat;
+    using JetBrains.Annotations;
     using Navigation;
 
     /// <summary>
@@ -27,6 +28,8 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// <param name="navigationMessageFactory">The navigation message factory.</param>
         /// <param name="providerViewModels">The provider view models.</param>
         /// <param name="connectionsViewModel">The connections view model.</param>
+        [UsedImplicitly]
+
         // ReSharper disable once InheritdocConsiderUsage
         public WizardNewConnectionViewModel(
             IEventAggregator eventAggregator,

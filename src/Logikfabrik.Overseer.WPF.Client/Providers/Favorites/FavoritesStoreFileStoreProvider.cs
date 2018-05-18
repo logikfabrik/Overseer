@@ -5,6 +5,7 @@
 namespace Logikfabrik.Overseer.WPF.Client.Providers.Favorites
 {
     using IO;
+    using JetBrains.Annotations;
     using Overseer.IO;
 
     /// <summary>
@@ -17,6 +18,8 @@ namespace Logikfabrik.Overseer.WPF.Client.Providers.Favorites
         /// Initializes a new instance of the <see cref="FavoritesStoreFileStoreProvider" /> class.
         /// </summary>
         /// <param name="fileSystem">The file system.</param>
+        [UsedImplicitly]
+
         // ReSharper disable once InheritdocConsiderUsage
         public FavoritesStoreFileStoreProvider(IFileSystem fileSystem)
             : base(fileSystem, "Favorites.xml")

@@ -8,6 +8,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels.Factories
     using System.Collections.Generic;
     using System.Linq;
     using EnsureThat;
+    using JetBrains.Annotations;
     using Settings;
 
     /// <summary>
@@ -22,6 +23,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels.Factories
         /// Initializes a new instance of the <see cref="ViewConnectionViewModelStrategy" /> class.
         /// </summary>
         /// <param name="factories">The factories.</param>
+        [UsedImplicitly]
         public ViewConnectionViewModelStrategy(Lazy<IEnumerable<IViewConnectionViewModelFactory>> factories)
         {
             Ensure.That(factories).IsNotNull();

@@ -12,6 +12,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     using EnsureThat;
     using Factories;
     using Favorites;
+    using JetBrains.Annotations;
     using Notification;
 
     /// <summary>
@@ -31,6 +32,8 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// <param name="favoritesRepository">The favorites repository.</param>
         /// <param name="viewProjectViewModelFactory">The view project view model factory.</param>
         /// <param name="buildTracker">The build tracker.</param>
+        [UsedImplicitly]
+
         // ReSharper disable once InheritdocConsiderUsage
         public FavoritesViewModel(
             IFavoritesRepository favoritesRepository,

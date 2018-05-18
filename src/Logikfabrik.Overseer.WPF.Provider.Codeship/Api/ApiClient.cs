@@ -13,6 +13,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.Codeship.Api
     using System.Threading;
     using System.Threading.Tasks;
     using EnsureThat;
+    using JetBrains.Annotations;
     using Models;
     using Overseer.Extensions;
 
@@ -31,6 +32,7 @@ namespace Logikfabrik.Overseer.WPF.Provider.Codeship.Api
         /// Initializes a new instance of the <see cref="ApiClient" /> class.
         /// </summary>
         /// <param name="settings">The settings.</param>
+        [UsedImplicitly]
         public ApiClient(ConnectionSettings settings)
         {
             Ensure.That(settings).IsNotNull();

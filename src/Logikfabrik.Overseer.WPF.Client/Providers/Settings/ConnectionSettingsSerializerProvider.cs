@@ -7,6 +7,7 @@ namespace Logikfabrik.Overseer.WPF.Client.Providers.Settings
     using System;
     using System.Linq;
     using EnsureThat;
+    using JetBrains.Annotations;
     using Ninject.Activation;
     using Overseer.Settings;
 
@@ -22,6 +23,7 @@ namespace Logikfabrik.Overseer.WPF.Client.Providers.Settings
         /// Initializes a new instance of the <see cref="ConnectionSettingsSerializerProvider" /> class.
         /// </summary>
         /// <param name="appDomain">The application domain.</param>
+        [UsedImplicitly]
         public ConnectionSettingsSerializerProvider(AppDomain appDomain)
         {
             Ensure.That(appDomain).IsNotNull();

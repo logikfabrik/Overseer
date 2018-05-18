@@ -12,6 +12,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     using Caliburn.Micro;
     using EnsureThat;
     using Factories;
+    using JetBrains.Annotations;
     using Navigation;
     using Overseer.Extensions;
 
@@ -25,9 +26,8 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         private readonly IViewBuildViewModelFactory _viewBuildViewModelFactory;
         private readonly INavigationMessageFactory<ViewProjectViewModel> _navigationMessageFactory;
 
-#pragma warning disable S1450 // Private fields only used as local variables in methods should become local variables
-
         // ReSharper disable once PrivateFieldCanBeConvertedToLocalVariable
+#pragma warning disable S1450 // Private fields only used as local variables in methods should become local variables
         private readonly CollectionViewSource _orderedBuilds;
 #pragma warning restore S1450 // Private fields only used as local variables in methods should become local variables
         private readonly BindableCollection<IViewBuildViewModel> _builds;
@@ -46,9 +46,10 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// <param name="navigationMessageFactory">The navigation message factory.</param>
         /// <param name="settingsId">The settings identifier.</param>
         /// <param name="projectId">The project identifier.</param>
-#pragma warning disable S107 // Methods should not have too many parameters
+        [UsedImplicitly]
 
         // ReSharper disable once InheritdocConsiderUsage
+#pragma warning disable S107 // Methods should not have too many parameters
         public ViewProjectViewModel(
             IPlatformProvider platformProvider,
             IEventAggregator eventAggregator,
@@ -75,9 +76,8 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// <param name="settingsId">The settings identifier.</param>
         /// <param name="projectId">The project identifier.</param>
         /// <param name="projectName">The project name.</param>
-#pragma warning disable S107 // Methods should not have too many parameters
-
         // ReSharper disable once InheritdocConsiderUsage
+#pragma warning disable S107 // Methods should not have too many parameters
         public ViewProjectViewModel(
             IPlatformProvider platformProvider,
             IEventAggregator eventAggregator,

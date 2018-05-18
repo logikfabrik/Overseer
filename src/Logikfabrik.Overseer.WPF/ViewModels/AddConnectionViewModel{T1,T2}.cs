@@ -12,6 +12,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     using Caliburn.Micro;
     using EnsureThat;
     using Factories;
+    using JetBrains.Annotations;
     using Navigation;
     using Overseer.Logging;
     using Settings;
@@ -51,6 +52,8 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// <param name="editConnectionSettingsFactory">The edit connection settings factory.</param>
         /// <param name="viewConnectionsNavigationMessageFactory">The view connections navigation message factory.</param>
         /// <param name="newConnectionNavigationMessageFactory">The new connection navigation message factory.</param>
+        [UsedImplicitly]
+
         // ReSharper disable once InheritdocConsiderUsage
         public AddConnectionViewModel(
             IPlatformProvider platformProvider,
@@ -180,6 +183,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// <summary>
         /// Tries to connect.
         /// </summary>
+        [UsedImplicitly]
         public void TryConnect()
         {
             if (!Settings.IsValid || HasConnected)

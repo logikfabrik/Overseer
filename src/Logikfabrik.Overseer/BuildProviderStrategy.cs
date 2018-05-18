@@ -8,6 +8,7 @@ namespace Logikfabrik.Overseer
     using System.Collections.Generic;
     using System.Linq;
     using EnsureThat;
+    using JetBrains.Annotations;
     using Settings;
 
     /// <summary>
@@ -22,6 +23,7 @@ namespace Logikfabrik.Overseer
         /// Initializes a new instance of the <see cref="BuildProviderStrategy" /> class.
         /// </summary>
         /// <param name="factories">The factories.</param>
+        [UsedImplicitly]
         public BuildProviderStrategy(Lazy<IEnumerable<IBuildProviderFactory>> factories)
         {
             Ensure.That(factories).IsNotNull();

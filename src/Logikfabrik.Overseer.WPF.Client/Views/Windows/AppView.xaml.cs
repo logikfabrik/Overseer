@@ -13,9 +13,8 @@ namespace Logikfabrik.Overseer.WPF.Client.Views.Windows
     /// <summary>
     /// The <see cref="AppView" /> class.
     /// </summary>
-#pragma warning disable S110 // Inheritance tree of classes should not be too deep
-
     // ReSharper disable once InheritdocConsiderUsage
+#pragma warning disable S110 // Inheritance tree of classes should not be too deep
     public partial class AppView
 #pragma warning restore S110 // Inheritance tree of classes should not be too deep
     {
@@ -38,9 +37,8 @@ namespace Logikfabrik.Overseer.WPF.Client.Views.Windows
 
             _application = application;
 
-#pragma warning disable S1075 // URIs should not be hardcoded
-
             // ReSharper disable once PossibleNullReferenceException
+#pragma warning disable S1075 // URIs should not be hardcoded
             var stream = System.Windows.Application.GetResourceStream(new Uri("pack://application:,,,/Logikfabrik.ico")).Stream;
 #pragma warning restore S1075 // URIs should not be hardcoded
 

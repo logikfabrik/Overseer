@@ -7,6 +7,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     using System;
     using Caliburn.Micro;
     using EnsureThat;
+    using JetBrains.Annotations;
 
     /// <summary>
     /// The <see cref="ViewChangeViewModel" /> class.
@@ -18,6 +19,8 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// Initializes a new instance of the <see cref="ViewChangeViewModel" /> class.
         /// </summary>
         /// <param name="change">The change.</param>
+        [UsedImplicitly]
+
         // ReSharper disable once InheritdocConsiderUsage
         public ViewChangeViewModel(IChange change)
         {

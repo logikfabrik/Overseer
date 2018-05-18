@@ -11,11 +11,11 @@ namespace Logikfabrik.Overseer.WPF.Client.UserControls
     /// <summary>
     /// The <see cref="ProgressControl" /> class.
     /// </summary>
-#pragma warning disable S110 // Inheritance tree of classes should not be too deep
     [TemplatePart(Name = "PART_Track", Type = typeof(FrameworkElement))]
     [TemplatePart(Name = "PART_Indicator", Type = typeof(FrameworkElement))]
 
     // ReSharper disable once InheritdocConsiderUsage
+#pragma warning disable S110 // Inheritance tree of classes should not be too deep
     public partial class ProgressControl
 #pragma warning restore S110 // Inheritance tree of classes should not be too deep
     {

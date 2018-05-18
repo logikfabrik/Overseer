@@ -6,6 +6,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
 {
     using Caliburn.Micro;
     using EnsureThat;
+    using JetBrains.Annotations;
 
     /// <summary>
     /// The <see cref="EditTrackedProjectViewModel" /> class.
@@ -21,6 +22,8 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// <param name="projectId">The project identifier.</param>
         /// <param name="projectName">The project name.</param>
         /// <param name="track">Whether this project should be tracked.</param>
+        [UsedImplicitly]
+
         // ReSharper disable once InheritdocConsiderUsage
         public EditTrackedProjectViewModel(string projectId, string projectName, bool track)
         {

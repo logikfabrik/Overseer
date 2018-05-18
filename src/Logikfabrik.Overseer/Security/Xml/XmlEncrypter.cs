@@ -55,9 +55,8 @@ namespace Logikfabrik.Overseer.Security.Xml
             }
         }
 
-#pragma warning disable S3242 // Method parameters should be declared with base types
-
         // ReSharper disable once SuggestBaseTypeForParameter
+#pragma warning disable S3242 // Method parameters should be declared with base types
         private static XmlDocument Encrypt(XmlDocument xml, IEnumerable<string> tagNames, Rijndael algorithm)
 #pragma warning restore S3242 // Method parameters should be declared with base types
         {

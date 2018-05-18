@@ -6,6 +6,7 @@ namespace Logikfabrik.Overseer.WPF.Client.Providers.Settings
 {
     using System.Security.Cryptography;
     using EnsureThat;
+    using JetBrains.Annotations;
     using Ninject.Activation;
     using Notification;
     using Overseer.Logging;
@@ -27,6 +28,7 @@ namespace Logikfabrik.Overseer.WPF.Client.Providers.Settings
         /// <param name="logService">The log service.</param>
         /// <param name="connectionSettingsStore">The settings store.</param>
         /// <param name="notificationFactory">The notification factory.</param>
+        [UsedImplicitly]
         public ConnectionSettingsRepositoryProvider(ILogService logService, IConnectionSettingsStore connectionSettingsStore, NotificationFactory<ConnectionSettings> notificationFactory)
         {
             Ensure.That(logService).IsNotNull();

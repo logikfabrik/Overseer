@@ -5,6 +5,7 @@
 namespace Logikfabrik.Overseer.WPF.Validators
 {
     using FluentValidation;
+    using JetBrains.Annotations;
     using Settings;
     using ViewModels;
 
@@ -21,6 +22,7 @@ namespace Logikfabrik.Overseer.WPF.Validators
         /// <summary>
         /// Initializes a new instance of the <see cref="EditConnectionSettingsViewModelValidator{T1,T2}" /> class.
         /// </summary>
+        [UsedImplicitly]
         protected EditConnectionSettingsViewModelValidator()
         {
             CascadeMode = CascadeMode.StopOnFirstFailure;

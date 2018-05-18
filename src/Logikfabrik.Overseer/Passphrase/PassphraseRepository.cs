@@ -8,6 +8,7 @@ namespace Logikfabrik.Overseer.Passphrase
     using System.Linq;
     using EnsureThat;
     using IO.Registry;
+    using JetBrains.Annotations;
     using Security;
 
     /// <summary>
@@ -29,6 +30,7 @@ namespace Logikfabrik.Overseer.Passphrase
         /// </summary>
         /// <param name="dataProtector">The data protector.</param>
         /// <param name="registryStore">The registry store.</param>
+        [UsedImplicitly]
         public PassphraseRepository(IDataProtector dataProtector, IRegistryStore registryStore)
         {
             Ensure.That(dataProtector).IsNotNull();

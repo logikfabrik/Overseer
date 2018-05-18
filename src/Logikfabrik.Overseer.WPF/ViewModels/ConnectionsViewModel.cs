@@ -10,6 +10,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     using Caliburn.Micro;
     using EnsureThat;
     using Factories;
+    using JetBrains.Annotations;
     using Navigation;
     using Notification;
     using Settings;
@@ -34,6 +35,8 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// <param name="viewConnectionViewModelStrategy">The view connection view model strategy.</param>
         /// <param name="connectionSettingsRepository">The connection settings repository.</param>
         /// <param name="navigationMessageFactory">The navigation message factory.</param>
+        [UsedImplicitly]
+
         // ReSharper disable once InheritdocConsiderUsage
         public ConnectionsViewModel(
             IEventAggregator eventAggregator,

@@ -6,6 +6,7 @@ namespace Logikfabrik.Overseer.Favorites
 {
     using EnsureThat;
     using IO;
+    using JetBrains.Annotations;
 
     /// <summary>
     /// The <see cref="FavoritesStore" /> class.
@@ -21,6 +22,7 @@ namespace Logikfabrik.Overseer.Favorites
         /// </summary>
         /// <param name="serializer">The serializer.</param>
         /// <param name="fileStore">The file store.</param>
+        [UsedImplicitly]
         public FavoritesStore(IFavoritesSerializer serializer, IFileStore fileStore)
         {
             Ensure.That(serializer).IsNotNull();

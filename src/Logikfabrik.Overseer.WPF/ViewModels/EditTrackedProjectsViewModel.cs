@@ -11,6 +11,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     using Caliburn.Micro;
     using EnsureThat;
     using Gma.DataStructures.StringSearch;
+    using JetBrains.Annotations;
 
     /// <summary>
     /// The <see cref="EditTrackedProjectsViewModel" /> class.
@@ -18,9 +19,8 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     // ReSharper disable once InheritdocConsiderUsage
     public class EditTrackedProjectsViewModel : PropertyChangedBase
     {
-#pragma warning disable S1450 // Private fields only used as local variables in methods should become local variables
-
         // ReSharper disable once PrivateFieldCanBeConvertedToLocalVariable
+#pragma warning disable S1450 // Private fields only used as local variables in methods should become local variables
         private readonly CollectionViewSource _filteredProjects;
 #pragma warning restore S1450 // Private fields only used as local variables in methods should become local variables
         private readonly SuffixTrie<EditTrackedProjectViewModel> _trie;
@@ -31,6 +31,8 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// Initializes a new instance of the <see cref="EditTrackedProjectsViewModel" /> class.
         /// </summary>
         /// <param name="editTrackedProjectViewModels">The edit tracked project view models.</param>
+        [UsedImplicitly]
+
         // ReSharper disable once InheritdocConsiderUsage
         public EditTrackedProjectsViewModel(IEnumerable<EditTrackedProjectViewModel> editTrackedProjectViewModels)
         {

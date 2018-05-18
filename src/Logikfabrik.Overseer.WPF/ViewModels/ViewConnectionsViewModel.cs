@@ -6,6 +6,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
 {
     using Caliburn.Micro;
     using EnsureThat;
+    using JetBrains.Annotations;
 
     /// <summary>
     /// The <see cref="ViewConnectionsViewModel" /> class.
@@ -18,6 +19,8 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// </summary>
         /// <param name="platformProvider">The platform provider.</param>
         /// <param name="connectionsViewModel">The connections view model.</param>
+        [UsedImplicitly]
+
         // ReSharper disable once InheritdocConsiderUsage
         public ViewConnectionsViewModel(IPlatformProvider platformProvider, ConnectionsViewModel connectionsViewModel)
             : base(platformProvider)

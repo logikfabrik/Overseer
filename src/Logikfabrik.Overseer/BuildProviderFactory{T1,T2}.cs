@@ -6,6 +6,7 @@ namespace Logikfabrik.Overseer
 {
     using System;
     using EnsureThat;
+    using JetBrains.Annotations;
     using Ninject;
     using Ninject.Parameters;
     using Ninject.Syntax;
@@ -27,6 +28,7 @@ namespace Logikfabrik.Overseer
         /// Initializes a new instance of the <see cref="BuildProviderFactory{T1,T2}" /> class.
         /// </summary>
         /// <param name="resolutionRoot">The resolution root.</param>
+        [UsedImplicitly]
         public BuildProviderFactory(IResolutionRoot resolutionRoot)
         {
             Ensure.That(resolutionRoot).IsNotNull();

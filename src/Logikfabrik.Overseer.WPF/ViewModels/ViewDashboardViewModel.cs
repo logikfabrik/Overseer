@@ -6,6 +6,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
 {
     using Caliburn.Micro;
     using EnsureThat;
+    using JetBrains.Annotations;
 
     /// <summary>
     /// The <see cref="ViewDashboardViewModel" /> class.
@@ -18,6 +19,8 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// </summary>
         /// <param name="platformProvider">The platform provider.</param>
         /// <param name="favoritesViewModel">The favorites view model.</param>
+        [UsedImplicitly]
+
         // ReSharper disable once InheritdocConsiderUsage
         public ViewDashboardViewModel(IPlatformProvider platformProvider, FavoritesViewModel favoritesViewModel)
             : base(platformProvider)

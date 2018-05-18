@@ -6,6 +6,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
 {
     using Caliburn.Micro;
     using EnsureThat;
+    using JetBrains.Annotations;
     using Localization;
 
     /// <summary>
@@ -21,6 +22,8 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// Initializes a new instance of the <see cref="AppErrorViewModel" /> class.
         /// </summary>
         /// <param name="application">The application.</param>
+        [UsedImplicitly]
+
         // ReSharper disable once InheritdocConsiderUsage
         public AppErrorViewModel(IApp application)
         {

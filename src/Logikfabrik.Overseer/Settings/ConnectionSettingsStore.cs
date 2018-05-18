@@ -6,6 +6,7 @@ namespace Logikfabrik.Overseer.Settings
 {
     using EnsureThat;
     using IO;
+    using JetBrains.Annotations;
 
     /// <summary>
     /// The <see cref="ConnectionSettingsStore" /> class.
@@ -23,6 +24,7 @@ namespace Logikfabrik.Overseer.Settings
         /// <param name="serializer">The serializer.</param>
         /// <param name="encrypter">The encrypter.</param>
         /// <param name="fileStore">The file store.</param>
+        [UsedImplicitly]
         public ConnectionSettingsStore(IConnectionSettingsSerializer serializer, IConnectionSettingsEncrypter encrypter, IFileStore fileStore)
         {
             Ensure.That(serializer).IsNotNull();

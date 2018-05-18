@@ -6,6 +6,7 @@ namespace Logikfabrik.Overseer.WPF
 {
     using System.Windows.Input;
     using EnsureThat;
+    using JetBrains.Annotations;
 
     /// <summary>
     /// The <see cref="MouseManager" /> class.
@@ -19,6 +20,7 @@ namespace Logikfabrik.Overseer.WPF
         /// Initializes a new instance of the <see cref="MouseManager" /> class.
         /// </summary>
         /// <param name="inputManager">The input manager.</param>
+        [UsedImplicitly]
         public MouseManager(InputManager inputManager)
         {
             Ensure.That(inputManager).IsNotNull();

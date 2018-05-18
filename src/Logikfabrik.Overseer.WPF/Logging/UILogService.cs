@@ -6,15 +6,15 @@ namespace Logikfabrik.Overseer.WPF.Logging
 {
     using System;
     using EnsureThat;
+    using JetBrains.Annotations;
     using Overseer.Logging;
 
     /// <summary>
     /// The <see cref="UILogService" /> class.
     /// </summary>
-#pragma warning disable S101 // Types should be named in camel case
-
     // ReSharper disable once InconsistentNaming
     // ReSharper disable once InheritdocConsiderUsage
+#pragma warning disable S101 // Types should be named in camel case
     public class UILogService : IUILogService
 #pragma warning restore S101 // Types should be named in camel case
     {
@@ -26,6 +26,8 @@ namespace Logikfabrik.Overseer.WPF.Logging
         /// </summary>
         /// <param name="logService">The log service.</param>
         /// <param name="type">The type.</param>
+        [UsedImplicitly]
+
         public UILogService(ILogService logService, Type type)
         {
             Ensure.That(logService).IsNotNull();

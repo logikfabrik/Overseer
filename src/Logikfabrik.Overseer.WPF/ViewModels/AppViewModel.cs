@@ -6,13 +6,13 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
 {
     using Caliburn.Micro;
     using EnsureThat;
+    using JetBrains.Annotations;
 
     /// <summary>
     /// The <see cref="AppViewModel" /> class.
     /// </summary>
-#pragma warning disable S110 // Inheritance tree of classes should not be too deep
-
     // ReSharper disable once InheritdocConsiderUsage
+#pragma warning disable S110 // Inheritance tree of classes should not be too deep
     public sealed class AppViewModel : Conductor<IViewModel>
 #pragma warning restore S110 // Inheritance tree of classes should not be too deep
     {
@@ -27,6 +27,8 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// <param name="errorViewModel">The error view model.</param>
         /// <param name="viewDashboardViewModel">The view dashboard view model.</param>
         /// <param name="appSettingsFactory">The app settings factory.</param>
+        [UsedImplicitly]
+
         // ReSharper disable once InheritdocConsiderUsage
         public AppViewModel(IEventAggregator eventAggregator, AppMenuViewModel menuViewModel, AppErrorViewModel errorViewModel, ViewDashboardViewModel viewDashboardViewModel, IAppSettingsFactory appSettingsFactory)
             : base(eventAggregator)

@@ -6,6 +6,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
 {
     using System.Reflection;
     using Caliburn.Micro;
+    using JetBrains.Annotations;
 
     /// <summary>
     /// The <see cref="ViewAboutViewModel" /> class.
@@ -17,6 +18,8 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// Initializes a new instance of the <see cref="ViewAboutViewModel" /> class.
         /// </summary>
         /// <param name="platformProvider">The platform provider.</param>
+        [UsedImplicitly]
+
         // ReSharper disable once InheritdocConsiderUsage
         public ViewAboutViewModel(IPlatformProvider platformProvider)
             : base(platformProvider)

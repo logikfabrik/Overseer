@@ -8,6 +8,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     using System.Windows.Input;
     using Caliburn.Micro;
     using EnsureThat;
+    using JetBrains.Annotations;
     using Navigation;
 
     /// <summary>
@@ -37,9 +38,10 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// <param name="editSettingsViewModelNavigationMessageFactory">The edit settings view model navigation message factory.</param>
         /// <param name="viewAboutViewModelNavigationMessageFactory">The view about view model navigation message factory.</param>
         /// <param name="connectionsViewModel">The connections view model.</param>
-#pragma warning disable S107 // Methods should not have too many parameters
+        [UsedImplicitly]
 
         // ReSharper disable once InheritdocConsiderUsage
+#pragma warning disable S107 // Methods should not have too many parameters
         public AppMenuViewModel(
             IEventAggregator eventAggregator,
             IMouseManager mouseManager,

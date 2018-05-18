@@ -14,6 +14,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     using EnsureThat;
     using Factories;
     using Gma.DataStructures.StringSearch;
+    using JetBrains.Annotations;
     using Navigation;
     using Settings;
 
@@ -55,6 +56,8 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// <param name="editConnectionViewModelNavigationMessageFactory">The edit connection view model navigation message factory.</param>
         /// <param name="removeConnectionViewModelNavigationMessageFactory">The remove connection view model navigation message factory.</param>
         /// <param name="settings">The settings.</param>
+        [UsedImplicitly]
+
         // ReSharper disable once InheritdocConsiderUsage
         public ViewConnectionViewModel(
             IPlatformProvider platformProvider,

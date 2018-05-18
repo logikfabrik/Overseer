@@ -11,6 +11,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     using Caliburn.Micro;
     using EnsureThat;
     using Factories;
+    using JetBrains.Annotations;
 
     /// <summary>
     /// The <see cref="ViewNotificationViewModel" /> class.
@@ -28,6 +29,8 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// <param name="viewBuildViewModelFactory">The view build view model factory.</param>
         /// <param name="project">The project.</param>
         /// <param name="build">The build.</param>
+        [UsedImplicitly]
+
         // ReSharper disable once InheritdocConsiderUsage
         public ViewNotificationViewModel(IApp application, IViewBuildViewModelFactory viewBuildViewModelFactory, IProject project, IBuild build)
         {

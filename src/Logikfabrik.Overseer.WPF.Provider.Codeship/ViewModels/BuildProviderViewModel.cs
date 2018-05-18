@@ -5,6 +5,7 @@
 namespace Logikfabrik.Overseer.WPF.Provider.Codeship.ViewModels
 {
     using Caliburn.Micro;
+    using JetBrains.Annotations;
     using Navigation;
 
     /// <summary>
@@ -18,6 +19,8 @@ namespace Logikfabrik.Overseer.WPF.Provider.Codeship.ViewModels
         /// </summary>
         /// <param name="eventAggregator">The event aggregator.</param>
         /// <param name="navigationMessageFactory">The navigation message factory.</param>
+        [UsedImplicitly]
+
         // ReSharper disable once InheritdocConsiderUsage
         public BuildProviderViewModel(IEventAggregator eventAggregator, INavigationMessageFactory<WPF.ViewModels.AddConnectionViewModel<ConnectionSettings, EditConnectionSettingsViewModel>> navigationMessageFactory)
             : base(eventAggregator, navigationMessageFactory, "Codeship")

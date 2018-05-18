@@ -9,6 +9,7 @@ namespace Logikfabrik.Overseer.Favorites
     using System.Linq;
     using EnsureThat;
     using Extensions;
+    using JetBrains.Annotations;
     using Notification;
 
     /// <summary>
@@ -28,6 +29,7 @@ namespace Logikfabrik.Overseer.Favorites
         /// </summary>
         /// <param name="favoritesStore">The favorites store.</param>
         /// <param name="notificationFactory">The notification factory.</param>
+        [UsedImplicitly]
         public FavoritesRepository(IFavoritesStore favoritesStore, NotificationFactory<Favorite> notificationFactory)
         {
             Ensure.That(favoritesStore).IsNotNull();

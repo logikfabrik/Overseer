@@ -6,6 +6,7 @@ namespace Logikfabrik.Overseer.Logging
 {
     using System;
     using EnsureThat;
+    using JetBrains.Annotations;
     using Serilog;
     using Serilog.Events;
 
@@ -21,6 +22,7 @@ namespace Logikfabrik.Overseer.Logging
         /// Initializes a new instance of the <see cref="LogService" /> class.
         /// </summary>
         /// <param name="logger">The logger.</param>
+        [UsedImplicitly]
         public LogService(ILogger logger)
         {
             Ensure.That(logger).IsNotNull();

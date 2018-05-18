@@ -6,6 +6,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels.Factories
 {
     using System;
     using EnsureThat;
+    using JetBrains.Annotations;
     using Ninject;
     using Ninject.Parameters;
     using Ninject.Syntax;
@@ -27,6 +28,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels.Factories
         /// Initializes a new instance of the <see cref="ViewConnectionViewModelFactory{T1,T2} "/> class.
         /// </summary>
         /// <param name="resolutionRoot">The resolution root.</param>
+        [UsedImplicitly]
         public ViewConnectionViewModelFactory(IResolutionRoot resolutionRoot)
         {
             Ensure.That(resolutionRoot).IsNotNull();

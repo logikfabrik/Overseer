@@ -6,6 +6,7 @@ namespace Logikfabrik.Overseer.WPF
 {
     using System;
     using System.Windows;
+    using JetBrains.Annotations;
     using Microsoft.Win32;
 
     /// <summary>
@@ -17,6 +18,7 @@ namespace Logikfabrik.Overseer.WPF
         /// <summary>
         /// Initializes a new instance of the <see cref="DisplaySetting" /> class.
         /// </summary>
+        [UsedImplicitly]
         public DisplaySetting()
         {
             SystemEvents.DisplaySettingsChanged += (sender, args) =>

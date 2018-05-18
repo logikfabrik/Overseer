@@ -6,6 +6,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
 {
     using Caliburn.Micro;
     using EnsureThat;
+    using JetBrains.Annotations;
     using Navigation;
 
     /// <summary>
@@ -22,6 +23,8 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// </summary>
         /// <param name="eventAggregator">The event aggregator.</param>
         /// <param name="navigationMessageFactory">The navigation message factory.</param>
+        [UsedImplicitly]
+
         // ReSharper disable once InheritdocConsiderUsage
         public WizardStartViewModel(IEventAggregator eventAggregator, INavigationMessageFactory<WizardEditPassphraseViewModel> navigationMessageFactory)
         {

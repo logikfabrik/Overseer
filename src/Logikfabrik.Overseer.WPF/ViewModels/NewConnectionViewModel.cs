@@ -7,6 +7,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     using System.Collections.Generic;
     using Caliburn.Micro;
     using EnsureThat;
+    using JetBrains.Annotations;
 
     /// <summary>
     /// The <see cref="NewConnectionViewModel" /> class.
@@ -19,6 +20,8 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// </summary>
         /// <param name="platformProvider">The platform provider.</param>
         /// <param name="buildProviderViewModels">The buiild provider view models.</param>
+        [UsedImplicitly]
+
         // ReSharper disable once InheritdocConsiderUsage
         public NewConnectionViewModel(IPlatformProvider platformProvider, IEnumerable<IBuildProviderViewModel> buildProviderViewModels)
             : base(platformProvider)

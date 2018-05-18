@@ -7,6 +7,7 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
     using Caliburn.Micro;
     using EnsureThat;
     using Favorites;
+    using JetBrains.Annotations;
     using Navigation;
     using Settings;
 
@@ -31,6 +32,8 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
         /// <param name="favoritesRepository">The favorites repository.</param>
         /// <param name="navigationMessageFactory">The navigation message factory.</param>
         /// <param name="viewConnectionViewModel">The view connection view model.</param>
+        [UsedImplicitly]
+
         // ReSharper disable once InheritdocConsiderUsage
         public RemoveConnectionViewModel(
             IPlatformProvider platformProvider,

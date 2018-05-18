@@ -5,6 +5,7 @@
 namespace Logikfabrik.Overseer.WPF.Client.Providers.Settings
 {
     using IO;
+    using JetBrains.Annotations;
     using Overseer.IO;
 
     /// <summary>
@@ -17,6 +18,8 @@ namespace Logikfabrik.Overseer.WPF.Client.Providers.Settings
         /// Initializes a new instance of the <see cref="ConnectionSettingsStoreFileStoreProvider" /> class.
         /// </summary>
         /// <param name="fileSystem">The file system.</param>
+        [UsedImplicitly]
+
         // ReSharper disable once InheritdocConsiderUsage
         public ConnectionSettingsStoreFileStoreProvider(IFileSystem fileSystem)
             : base(fileSystem, "ConnectionSettings.xml")

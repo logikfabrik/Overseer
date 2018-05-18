@@ -10,6 +10,7 @@ namespace Logikfabrik.Overseer.WPF.MarkupExtensions
     using System.Reflection;
     using System.Windows.Markup;
     using EnsureThat;
+    using JetBrains.Annotations;
 
     /// <summary>
     /// The <see cref="EnumToItemsSourceMarkupExtension" /> class.
@@ -26,6 +27,8 @@ namespace Logikfabrik.Overseer.WPF.MarkupExtensions
         /// Initializes a new instance of the <see cref="EnumToItemsSourceMarkupExtension" /> class.
         /// </summary>
         /// <param name="enumType">The type.</param>
+        [UsedImplicitly]
+
         // ReSharper disable once InheritdocConsiderUsage
         public EnumToItemsSourceMarkupExtension(Type enumType)
         {

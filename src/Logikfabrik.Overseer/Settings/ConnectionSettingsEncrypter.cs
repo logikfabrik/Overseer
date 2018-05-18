@@ -6,6 +6,7 @@ namespace Logikfabrik.Overseer.Settings
 {
     using System.Xml;
     using EnsureThat;
+    using JetBrains.Annotations;
     using Passphrase;
     using Security.Xml;
 
@@ -19,6 +20,8 @@ namespace Logikfabrik.Overseer.Settings
         /// Initializes a new instance of the <see cref="ConnectionSettingsEncrypter" /> class.
         /// </summary>
         /// <param name="passphraseRepository">The passphrase repository.</param>
+        [UsedImplicitly]
+
         // ReSharper disable once InheritdocConsiderUsage
         public ConnectionSettingsEncrypter(IPassphraseRepository passphraseRepository)
             : base(passphraseRepository)
