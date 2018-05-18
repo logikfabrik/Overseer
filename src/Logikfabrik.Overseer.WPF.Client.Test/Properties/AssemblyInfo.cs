@@ -1,5 +1,5 @@
 // <copyright file="AssemblyInfo.cs" company="Logikfabrik">
-//   Copyright (c) 2016 anton(at)logikfabrik.se. Licensed under the MIT license.
+//   Copyright (c) 2016-2018 anton(at)logikfabrik.se. Licensed under the MIT license.
 // </copyright>
 
 using System.Reflection;
@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Anton Frennevi")]
 [assembly: AssemblyProduct("Overseer")]
-[assembly: AssemblyCopyright("2016 Anton Frennevi")]
+[assembly: AssemblyCopyright("2016-2018 Anton Frennevi")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 [assembly: ComVisible(false)]

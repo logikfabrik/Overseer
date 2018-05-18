@@ -1,5 +1,5 @@
 ﻿// <copyright file="IgnoreMouseWheelBehavior.cs" company="Logikfabrik">
-//   Copyright (c) 2016 anton(at)logikfabrik.se. Licensed under the MIT license.
+//   Copyright (c) 2016-2018 anton(at)logikfabrik.se. Licensed under the MIT license.
 // </copyright>
 
 namespace Logikfabrik.Overseer.WPF.Behaviors
