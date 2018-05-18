@@ -970,6 +970,15 @@ namespace Logikfabrik.Overseer.WPF.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add.
+        /// </summary>
+        public static string WizardNewConnection_Button_Add {
+            get {
+                return ResourceManager.GetString("WizardNewConnection_Button_Add", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Next.
         /// </summary>
         public static string WizardNewConnection_Button_NextStep {

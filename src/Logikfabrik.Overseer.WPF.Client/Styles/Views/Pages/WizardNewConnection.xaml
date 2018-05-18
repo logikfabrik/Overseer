@@ -42,7 +42,10 @@
                                 DisplayMemberPath="ProviderName"
                                 ItemsSource="{Binding Providers, Mode=OneWay}"
                                 SelectedValue="{Binding Provider, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-                            <Button Grid.Column="1" cal:Message.Attach="AddConnection">Add</Button>
+                            <Button
+                                Grid.Column="1"
+                                cal:Message.Attach="AddConnection"
+                                Content="{x:Static p:Resources.WizardNewConnection_Button_Add}" />
                         </Grid>
                         <Border
                             Grid.Row="1"

@@ -447,4 +447,7 @@ Vänligen försök igen.</value>
   <data name="ViewAbout_Section_Text_GitHub" xml:space="preserve">
     <value>Get involved and help out on GitHub!</value>
   </data>
+  <data name="WizardNewConnection_Button_Add" xml:space="preserve">
+    <value>Lägg till</value>
+  </data>
 </root>
