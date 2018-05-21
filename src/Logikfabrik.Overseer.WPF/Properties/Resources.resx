@@ -316,7 +316,7 @@ Please try again.</value>
     <value>Let's start with a passphrase</value>
   </data>
   <data name="WizardEditPassphrase_Text" xml:space="preserve">
-    <value>I'll use it to encrypt your settings</value>
+    <value>I'll use it to secure your settings</value>
   </data>
   <data name="WizardFinish_Button_Finish" xml:space="preserve">
     <value>Finish</value>

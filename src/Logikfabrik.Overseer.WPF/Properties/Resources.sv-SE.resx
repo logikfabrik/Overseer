@@ -316,7 +316,7 @@ Vänligen försök igen.</value>
     <value>Låt oss börja med en lösenfras</value>
   </data>
   <data name="WizardEditPassphrase_Text" xml:space="preserve">
-    <value>Jag kommer att använda den för att kryptera dina inställningar</value>
+    <value>Jag kommer att använda den för att säkra dina inställningar</value>
   </data>
   <data name="WizardFinish_Button_Finish" xml:space="preserve">
     <value>Avsluta</value>

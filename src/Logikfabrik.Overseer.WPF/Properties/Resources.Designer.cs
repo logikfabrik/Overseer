@@ -916,7 +916,7 @@ namespace Logikfabrik.Overseer.WPF.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to I&apos;ll use it to encrypt your settings.
+        ///   Looks up a localized string similar to I&apos;ll use it to secure your settings.
         /// </summary>
         public static string WizardEditPassphrase_Text {
             get {
