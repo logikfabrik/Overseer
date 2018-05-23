@@ -77,6 +77,8 @@
                          Name="FluentValidation" />
               <Directory Id="dir15F660460DDD476A843D8904959E11E8"
                          Name="Humanizer" />
+              <Directory Id="dir879467470EAE45DF98492CADE85AB597"
+                         Name="WPFControls" />
               <Directory Id="dir695610CED0F243DC8912A2055E0D6804"
                          Name="Newtonsoft.Json" />
               <Directory Id="dir533F14E32DAE4BE5BB7969B2DAD30DDD"
@@ -523,6 +525,14 @@
                  Guid="EAFD71D5-F786-4E7B-9614-FBFDD4CD15BC">
         <File Id="fil46FE24563CA247F79201B8B057002B55"
               Source="Attribution\Humanizer\LICENSE.txt"
+              KeyPath="yes" />
+      </Component>
+
+      <Component Id="cmp46EAE6E8EFB346F9B7D5BFB9E54C23E9"
+                 Directory="dir879467470EAE45DF98492CADE85AB597"
+                 Guid="46EAE6E8-EFB3-46F9-B7D5-BFB9E54C23E9">
+        <File Id="fil45B2C0D56BF745078881668487C18F02"
+              Source="Attribution\WPFControls\LICENSE.txt"
               KeyPath="yes" />
       </Component>
 

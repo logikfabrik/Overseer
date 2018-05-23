@@ -1,6 +1,7 @@
 ﻿<ResourceDictionary
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:c="clr-namespace:Logikfabrik.Overseer.WPF.Controls;assembly=Logikfabrik.Overseer.WPF"
     xmlns:cal="http://www.caliburnproject.org"
     xmlns:p="clr-namespace:Logikfabrik.Overseer.WPF.Properties;assembly=Logikfabrik.Overseer.WPF">
     <Style x:Key="Views.Pages.EditSettings" TargetType="{x:Type UserControl}">
@@ -12,7 +13,11 @@
                             <StackPanel Style="{StaticResource Views.Shared.Setting.Panel}">
                                 <TextBlock Style="{StaticResource Views.Shared.Setting.Label}" Text="{Binding Source={x:Static p:Resources.EditSettings_Setting_Label_Interval}, Mode=OneTime, Converter={StaticResource Converters.Shared.StringToUpperCaseConverter}}" />
                                 <TextBlock Style="{StaticResource Views.Shared.Setting.Description}" Text="{x:Static p:Resources.EditSettings_Setting_Description_Interval}" />
-                                <TextBox Text="{Binding Interval, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" />
+                                <c:NumericUpDown
+                                    Increment="10"
+                                    Maximum="86400"
+                                    Minimum="10"
+                                    Value="{Binding Interval, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" />
                             </StackPanel>
                             <StackPanel Style="{StaticResource Views.Shared.Setting.Panel}">
                                 <TextBlock Style="{StaticResource Views.Shared.Setting.Label}" Text="{Binding Source={x:Static p:Resources.EditSettings_Setting_Label_Notifications}, Mode=OneTime, Converter={StaticResource Converters.Shared.StringToUpperCaseConverter}}" />

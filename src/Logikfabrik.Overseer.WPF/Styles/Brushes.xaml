@@ -106,6 +106,8 @@
     <SolidColorBrush x:Key="TextBox.Disabled.Foreground" Color="{StaticResource Color.Black}" />
     <SolidColorBrush x:Key="TextBox.Disabled.Border" Color="Transparent" />
 
+    <SolidColorBrush x:Key="NumericUpDown.Focus.Border" Color="{StaticResource Color.Yellow}" />
+
     <SolidColorBrush x:Key="ToggleButton.Static.Background" Color="{StaticResource Color.Grey}" />
     <SolidColorBrush x:Key="ToggleButton.Static.Foreground" Color="White" />
     <SolidColorBrush x:Key="ToggleButton.Static.Border" Color="{StaticResource Color.Grey}" />
@@ -125,5 +127,21 @@
     <SolidColorBrush x:Key="ToggleButton.Disabled.Background" Color="{StaticResource Color.Grey}" />
     <SolidColorBrush x:Key="ToggleButton.Disabled.Foreground" Color="{StaticResource Color.LightGrey}" />
     <SolidColorBrush x:Key="ToggleButton.Disabled.Border" Color="{StaticResource Color.Grey}" />
+
+    <SolidColorBrush x:Key="RepeatButton.Static.Background" Color="{StaticResource Color.Grey}" />
+    <SolidColorBrush x:Key="RepeatButton.Static.Foreground" Color="White" />
+    <SolidColorBrush x:Key="RepeatButton.Static.Border" Color="{StaticResource Color.Grey}" />
+
+    <SolidColorBrush x:Key="RepeatButton.MouseOver.Background" Color="{StaticResource Color.LightGrey}" />
+    <SolidColorBrush x:Key="RepeatButton.MouseOver.Foreground" Color="{StaticResource Color.Black}" />
+    <SolidColorBrush x:Key="RepeatButton.MouseOver.Border" Color="{StaticResource Color.LightGrey}" />
+
+    <SolidColorBrush x:Key="RepeatButton.Pressed.Background" Color="{StaticResource Color.Yellow}" />
+    <SolidColorBrush x:Key="RepeatButton.Pressed.Foreground" Color="{StaticResource Color.Black}" />
+    <SolidColorBrush x:Key="RepeatButton.Pressed.Border" Color="{StaticResource Color.Yellow}" />
+
+    <SolidColorBrush x:Key="RepeatButton.Disabled.Background" Color="{StaticResource Color.Grey}" />
+    <SolidColorBrush x:Key="RepeatButton.Disabled.Foreground" Color="{StaticResource Color.LightGrey}" />
+    <SolidColorBrush x:Key="RepeatButton.Disabled.Border" Color="{StaticResource Color.Grey}" />
 
 </ResourceDictionary>

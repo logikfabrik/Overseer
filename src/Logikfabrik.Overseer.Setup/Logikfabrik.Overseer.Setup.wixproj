@@ -146,6 +146,7 @@
     <Content Include="Attribution\Ninject\LICENSE.txt" />
     <Content Include="Attribution\Serilog\LICENSE.txt" />
     <Content Include="Attribution\TrieNet\LICENSE.txt" />
+    <Content Include="Attribution\WPFControls\LICENSE.txt" />
     <Content Include="LICENSE.rtf" />
     <Content Include="WixUIBannerBmp.bmp" />
     <Content Include="WixUIDialogBmp.bmp" />
@@ -158,6 +159,7 @@
     <Folder Include="Attribution\Entypo\" />
     <Folder Include="Attribution\FluentValidation\" />
     <Folder Include="Attribution\Humanizer\" />
+    <Folder Include="Attribution\WPFControls" />
     <Folder Include="Attribution\Newtonsoft.Json\" />
     <Folder Include="Attribution\Ninject\" />
     <Folder Include="Attribution\Serilog\" />

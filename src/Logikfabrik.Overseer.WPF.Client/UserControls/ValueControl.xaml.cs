@@ -19,12 +19,12 @@ namespace Logikfabrik.Overseer.WPF.Client.UserControls
         /// <summary>
         /// The icon dependency property.
         /// </summary>
-        public static readonly DependencyProperty IconProperty = DependencyProperty.Register(nameof(Icon), typeof(Geometry), typeof(ValueControl));
+        public static readonly DependencyProperty IconProperty = DependencyProperty.Register("Icon", typeof(Geometry), typeof(ValueControl));
 
         /// <summary>
         /// The value dependency property.
         /// </summary>
-        public static readonly DependencyProperty ValueProperty = DependencyProperty.Register(nameof(Value), typeof(object), typeof(ValueControl), new UIPropertyMetadata(null, PropertyChangedCallback));
+        public static readonly DependencyProperty ValueProperty = DependencyProperty.Register("Value", typeof(object), typeof(ValueControl), new UIPropertyMetadata(null, PropertyChangedCallback));
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ValueControl" /> class.

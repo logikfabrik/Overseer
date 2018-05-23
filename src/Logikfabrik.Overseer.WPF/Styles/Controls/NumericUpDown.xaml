@@ -1,0 +1,77 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:c="clr-namespace:Logikfabrik.Overseer.WPF.Controls">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="../Brushes.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+    <Style TargetType="{x:Type c:NumericUpDown}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type c:NumericUpDown}">
+                    <StackPanel>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <TextBox Name="PART_Value" />
+                            <RepeatButton
+                                x:Name="PART_Increase"
+                                Grid.Column="1"
+                                Margin="0,0,0,2">
+                                <Viewbox>
+                                    <Canvas>
+                                        <Path Data="M16,10c0,0.553-0.048,1-0.601,1H11v4.399C11,15.951,10.553,16,10,16c-0.553,0-1-0.049-1-0.601V11H4.601  C4.049,11,4,10.553,4,10c0-0.553,0.049-1,0.601-1H9V4.601C9,4.048,9.447,4,10,4c0.553,0,1,0.048,1,0.601V9h4.399  C15.952,9,16,9.447,16,10z" />
+                                    </Canvas>
+                                </Viewbox>
+                            </RepeatButton>
+                            <RepeatButton
+                                x:Name="PART_Decrease"
+                                Grid.Column="2"
+                                Margin="0,0,0,2">
+                                <Viewbox>
+                                    <Canvas>
+                                        <Path Data="M16,10c0,0.553-0.048,1-0.601,1H4.601C4.049,11,4,10.553,4,10c0-0.553,0.049-1,0.601-1h10.799C15.952,9,16,9.447,16,10z" />
+                                    </Canvas>
+                                </Viewbox>
+                            </RepeatButton>
+                            <Border
+                                x:Name="PART_Border"
+                                Grid.Column="0"
+                                Grid.ColumnSpan="3"
+                                BorderBrush="Transparent"
+                                BorderThickness="0,0,0,2" />
+                        </Grid>
+                        <ItemsControl ItemsSource="{Binding (Validation.Errors), Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate DataType="{x:Type ValidationError}">
+                                    <TextBlock Foreground="{StaticResource Control.Error}" Text="{Binding ErrorContent, Mode=OneWay}" />
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </StackPanel>
+                    <ControlTemplate.Triggers>
+                        <Trigger SourceName="PART_Value" Property="IsKeyboardFocused" Value="True">
+                            <Setter TargetName="PART_Border" Property="BorderBrush" Value="{StaticResource NumericUpDown.Focus.Border}" />
+                        </Trigger>
+                        <Trigger SourceName="PART_Increase" Property="IsKeyboardFocused" Value="True">
+                            <Setter TargetName="PART_Border" Property="BorderBrush" Value="{StaticResource NumericUpDown.Focus.Border}" />
+                        </Trigger>
+                        <Trigger SourceName="PART_Decrease" Property="IsKeyboardFocused" Value="True">
+                            <Setter TargetName="PART_Border" Property="BorderBrush" Value="{StaticResource NumericUpDown.Focus.Border}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Validation.ErrorTemplate">
+            <Setter.Value>
+                <ControlTemplate>
+                    <AdornedElementPlaceholder />
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>
