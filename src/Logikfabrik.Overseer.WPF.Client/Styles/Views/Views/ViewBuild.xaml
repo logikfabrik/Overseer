@@ -33,18 +33,15 @@
                                     </Canvas>
                                 </Viewbox>
                             </Button>
-                            <ItemsControl
+                            <Border
                                 Grid.Row="1"
                                 Grid.Column="0"
                                 Grid.ColumnSpan="2"
-                                ItemsSource="{Binding Changes, Mode=OneWay}">
-                                <ItemsControl.ItemContainerStyle>
-                                    <Style>
-                                        <!--  ReSharper disable once Xaml.RedundantPropertyTypeQualifier  -->
-                                        <!--<Setter Property="FrameworkElement.Margin" Value="0,1,0,0" />-->
-                                    </Style>
-                                </ItemsControl.ItemContainerStyle>
-                            </ItemsControl>
+                                Background="{StaticResource Brush.LightGrey}" />
+                            <ItemsControl
+                                Grid.Row="1"
+                                Grid.Column="0"
+                                ItemsSource="{Binding Changes, Mode=OneWay}" />
                         </Grid>
                     </Border>
                 </ControlTemplate>
