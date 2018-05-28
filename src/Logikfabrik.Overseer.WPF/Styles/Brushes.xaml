@@ -2,13 +2,16 @@
 
     <Color x:Key="Color.Yellow">#EEFF55</Color>
     <Color x:Key="Color.Black">#111111</Color>
+    <Color x:Key="Color.VeryLightGrey">#888888</Color>
     <Color x:Key="Color.LightGrey">#777777</Color>
     <Color x:Key="Color.Grey">#555555</Color>
     <Color x:Key="Color.DarkGrey">#333333</Color>
     <Color x:Key="Color.Red">#FF3300</Color>
 
     <SolidColorBrush x:Key="Brush.Yellow" Color="{StaticResource Color.Yellow}" />
+    <SolidColorBrush x:Key="Brush.VeryLightGrey" Color="{StaticResource Color.VeryLightGrey}" />
     <SolidColorBrush x:Key="Brush.LightGrey" Color="{StaticResource Color.LightGrey}" />
+    <SolidColorBrush x:Key="Brush.Grey" Color="{StaticResource Color.Grey}" />
 
     <SolidColorBrush x:Key="Control.Focus" Color="{StaticResource Color.Yellow}" />
     <SolidColorBrush x:Key="Control.Error" Color="{StaticResource Color.Red}" />

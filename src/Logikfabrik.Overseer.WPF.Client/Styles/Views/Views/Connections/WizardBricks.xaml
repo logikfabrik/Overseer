@@ -17,8 +17,6 @@
                                         <ContentControl.Resources>
                                             <Style BasedOn="{StaticResource {x:Type Button}}" TargetType="{x:Type Button}">
                                                 <Setter Property="HorizontalContentAlignment" Value="Stretch" />
-                                                <Setter Property="Background" Value="{StaticResource Brush.AltGrey}" />
-                                                <Setter Property="BorderBrush" Value="{StaticResource Brush.AltGrey}" />
                                             </Style>
                                         </ContentControl.Resources>
                                     </ContentControl>

@@ -8,13 +8,12 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate>
-                    <Grid>
+                    <Grid Effect="{StaticResource DropShadowEffect}">
                         <StackPanel>
                             <Button
                                 HorizontalContentAlignment="Stretch"
                                 VerticalContentAlignment="Stretch"
                                 cal:Message.Attach="View"
-                                Effect="{StaticResource DropShadowEffect}"
                                 IsEnabled="{Binding IsViewable, Mode=OneWay}">
                                 <StackPanel>
                                     <Border Style="{StaticResource Views.Views.ViewProject.Tile.Header.Panel}">

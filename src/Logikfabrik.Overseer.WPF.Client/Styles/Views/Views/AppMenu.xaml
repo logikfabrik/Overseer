@@ -40,19 +40,8 @@
                                     </StackPanel>
                                 </Button>
                                 <Separator />
-                                <Grid>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="Auto" />
-                                        <RowDefinition Height="Auto" />
-                                    </Grid.RowDefinitions>
-                                    <ContentControl
-                                        Grid.Row="1"
-                                        cal:View.Context="Bricks"
-                                        cal:View.Model="{Binding Connections, Mode=OneTime}"
-                                        Focusable="False"
-                                        KeyboardNavigation.TabNavigation="Local"
-                                        TabIndex="3" />
-                                    <Grid Grid.Row="0" Effect="{StaticResource DropShadowEffect}">
+                                <StackPanel>
+                                    <Grid>
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="*" />
                                             <ColumnDefinition Width="Auto" />
@@ -81,7 +70,13 @@
                                             </Viewbox>
                                         </Button>
                                     </Grid>
-                                </Grid>
+                                    <ContentControl
+                                        cal:View.Context="Bricks"
+                                        cal:View.Model="{Binding Connections, Mode=OneTime}"
+                                        Focusable="False"
+                                        KeyboardNavigation.TabNavigation="Local"
+                                        TabIndex="3" />
+                                </StackPanel>
                                 <Separator />
                                 <Button cal:Message.Attach="GoToSettings" TabIndex="4">
                                     <StackPanel>
