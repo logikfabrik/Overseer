@@ -81,7 +81,7 @@ namespace Logikfabrik.Overseer.WPF.Controls
         /// <inheritdoc />
         protected override AutomationControlType GetAutomationControlTypeCore()
         {
-            return AutomationControlType.Spinner;
+            return AutomationControlType.Custom;
         }
 
         private NumericUpDown GetOwner()

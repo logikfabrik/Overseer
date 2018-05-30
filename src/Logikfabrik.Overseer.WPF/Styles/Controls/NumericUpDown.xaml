@@ -6,6 +6,7 @@
         <ResourceDictionary Source="../Brushes.xaml" />
     </ResourceDictionary.MergedDictionaries>
     <Style TargetType="{x:Type c:NumericUpDown}">
+        <Setter Property="Focusable" Value="False" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type c:NumericUpDown}">

@@ -269,25 +269,25 @@ namespace Logikfabrik.Overseer.WPF.Controls
             }
         }
 
-        /// <inheritdoc />
-        protected override void OnMouseWheel(MouseWheelEventArgs e)
-        {
-            base.OnMouseWheel(e);
+        ///// <inheritdoc />
+        //protected override void OnMouseWheel(MouseWheelEventArgs e)
+        //{
+        //    base.OnMouseWheel(e);
 
-            if (!IsKeyboardFocusWithin || IsReadOnly)
-            {
-                return;
-            }
+        //    if (!IsKeyboardFocusWithin || IsReadOnly)
+        //    {
+        //        return;
+        //    }
 
-            if (e.Delta > 0)
-            {
-                Increase();
-            }
-            else
-            {
-                Decrease();
-            }
-        }
+        //    if (e.Delta > 0)
+        //    {
+        //        Increase();
+        //    }
+        //    else
+        //    {
+        //        Decrease();
+        //    }
+        //}
 
         protected virtual void OnValueChanged(RoutedPropertyChangedEventArgs<int> e)
         {

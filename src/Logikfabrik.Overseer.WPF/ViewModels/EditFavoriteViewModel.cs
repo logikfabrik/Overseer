@@ -42,6 +42,12 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             _isFavorite = _favoritesRepository.Exists(_settingsId, _projectId);
         }
 
+        /// <summary>
+        /// Gets a value indicating whether this instance is a favorite.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if this instance is a favorite; otherwise, <c>false</c>.
+        /// </value>
         public bool IsFavorite
         {
             get
@@ -57,30 +63,29 @@ namespace Logikfabrik.Overseer.WPF.ViewModels
             }
         }
 
+        /// <summary>
+        /// Gets a value indicating whether this instance is not a favorite.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if this instance is not a favorite; otherwise, <c>false</c>.
+        /// </value>
         public bool IsNotFavorite => !IsFavorite;
 
-        public void Add()
+        [UsedImplicitly]
+        public void ToggleFavorite()
         {
-            if (_isFavorite)
+            if (IsFavorite)
             {
-                return;
+                _favoritesRepository.Remove(_settingsId, _projectId);
+
+                IsFavorite = false;
             }
-
-            _favoritesRepository.Add(new Favorite { SettingsId = _settingsId, ProjectId = _projectId });
-
-            IsFavorite = true;
-        }
-
-        public void Remove()
-        {
-            if (!_isFavorite)
+            else
             {
-                return;
+                _favoritesRepository.Add(new Favorite { SettingsId = _settingsId, ProjectId = _projectId });
+
+                IsFavorite = true;
             }
-
-            _favoritesRepository.Remove(_settingsId, _projectId);
-
-            IsFavorite = false;
         }
     }
 }
