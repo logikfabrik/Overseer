@@ -17,5 +17,6 @@
         <ResourceDictionary Source="Canvas.xaml" />
         <ResourceDictionary Source="Viewbox.xaml" />
         <ResourceDictionary Source="RepeatButton.xaml" />
+        <ResourceDictionary Source="Progress.xaml" />
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>

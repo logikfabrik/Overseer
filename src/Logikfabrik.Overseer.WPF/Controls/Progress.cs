@@ -1,48 +1,54 @@
-﻿// <copyright file="ProgressControl.xaml.cs" company="Logikfabrik">
+﻿// <copyright file="Progress.cs" company="Logikfabrik">
 //   Copyright (c) 2016-2018 anton(at)logikfabrik.se. Licensed under the MIT license.
 // </copyright>
 
-namespace Logikfabrik.Overseer.WPF.Client.UserControls
+namespace Logikfabrik.Overseer.WPF.Controls
 {
     using System;
     using System.Windows;
+    using System.Windows.Controls;
     using System.Windows.Media.Animation;
 
     /// <summary>
-    /// The <see cref="ProgressControl" /> class.
+    /// The <see cref="Progress" /> class.
     /// </summary>
-    [TemplatePart(Name = "PART_Track", Type = typeof(FrameworkElement))]
-    [TemplatePart(Name = "PART_Indicator", Type = typeof(FrameworkElement))]
+    [TemplatePart(Name = TrackPartName, Type = typeof(FrameworkElement))]
+    [TemplatePart(Name = IndicatorPartName, Type = typeof(FrameworkElement))]
 
     // ReSharper disable once InheritdocConsiderUsage
-#pragma warning disable S110 // Inheritance tree of classes should not be too deep
-    public partial class ProgressControl
-#pragma warning restore S110 // Inheritance tree of classes should not be too deep
+    public class Progress : Control
     {
         /// <summary>
-        /// A dependency property.
+        /// Identifies the <see cref="IsErrored" /> dependency property.
         /// </summary>
-        public static readonly DependencyProperty IsErroredProperty = DependencyProperty.Register("IsErrored", typeof(bool), typeof(ProgressControl), new UIPropertyMetadata(false, OnIsErroredChanged));
+        public static readonly DependencyProperty IsErroredProperty = DependencyProperty.Register("IsErrored", typeof(bool), typeof(Progress), new UIPropertyMetadata(false, OnIsErroredChanged));
 
         /// <summary>
-        /// A dependency property.
+        /// Identifies the <see cref="IsInProgress" /> dependency property.
         /// </summary>
-        public static readonly DependencyProperty IsInProgressProperty = DependencyProperty.Register("IsInProgress", typeof(bool), typeof(ProgressControl), new UIPropertyMetadata(false, OnIsInProgressChanged));
+        public static readonly DependencyProperty IsInProgressProperty = DependencyProperty.Register("IsInProgress", typeof(bool), typeof(Progress), new UIPropertyMetadata(false, OnIsInProgressChanged));
 
-        private const string TrackTemplateName = "PART_Track";
-        private const string IndicatorTemplateName = "PART_Indicator";
+        private const string TrackPartName = "PART_Track";
+        private const string IndicatorPartName = "PART_Indicator";
 
         private FrameworkElement _track;
         private FrameworkElement _indicator;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ProgressControl" /> class.
+        /// Initializes static members of the <see cref="Progress"/> class.
         /// </summary>
         // ReSharper disable once InheritdocConsiderUsage
-        public ProgressControl()
+        static Progress()
         {
-            InitializeComponent();
+            DefaultStyleKeyProperty.OverrideMetadata(typeof(Progress), new FrameworkPropertyMetadata(typeof(Progress)));
+        }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Progress" /> class.
+        /// </summary>
+        // ReSharper disable once InheritdocConsiderUsage
+        public Progress()
+        {
             IsVisibleChanged += (sender, e) => { UpdateAnimation(); };
             IsErroredChanged += (sender, e) => { UpdateAnimation(); };
             IsInProgressChanged += (sender, e) => { UpdateAnimation(); };
@@ -68,7 +74,6 @@ namespace Logikfabrik.Overseer.WPF.Client.UserControls
         {
             get
             {
-                // ReSharper disable once PossibleNullReferenceException
                 return (bool)GetValue(IsErroredProperty);
             }
 
@@ -88,7 +93,6 @@ namespace Logikfabrik.Overseer.WPF.Client.UserControls
         {
             get
             {
-                // ReSharper disable once PossibleNullReferenceException
                 return (bool)GetValue(IsInProgressProperty);
             }
 
@@ -108,8 +112,8 @@ namespace Logikfabrik.Overseer.WPF.Client.UserControls
                 _track.SizeChanged -= TrackOnSizeChanged;
             }
 
-            _track = GetTemplateChild(TrackTemplateName) as FrameworkElement;
-            _indicator = GetTemplateChild(IndicatorTemplateName) as FrameworkElement;
+            _track = GetTemplateChild(TrackPartName) as FrameworkElement;
+            _indicator = GetTemplateChild(IndicatorPartName) as FrameworkElement;
 
             if (_track != null)
             {
@@ -119,12 +123,12 @@ namespace Logikfabrik.Overseer.WPF.Client.UserControls
 
         private static void OnIsErroredChanged(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
         {
-            (dependencyObject as ProgressControl)?.IsErroredChanged?.Invoke(dependencyObject, dependencyPropertyChangedEventArgs);
+            (dependencyObject as Progress)?.IsErroredChanged?.Invoke(dependencyObject, dependencyPropertyChangedEventArgs);
         }
 
         private static void OnIsInProgressChanged(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
         {
-            (dependencyObject as ProgressControl)?.IsInProgressChanged?.Invoke(dependencyObject, dependencyPropertyChangedEventArgs);
+            (dependencyObject as Progress)?.IsInProgressChanged?.Invoke(dependencyObject, dependencyPropertyChangedEventArgs);
         }
 
         private void TrackOnSizeChanged(object sender, SizeChangedEventArgs sizeChangedEventArgs)

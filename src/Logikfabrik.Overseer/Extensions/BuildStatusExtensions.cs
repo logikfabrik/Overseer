@@ -7,7 +7,7 @@ namespace Logikfabrik.Overseer.Extensions
     using System.Linq;
 
     /// <summary>
-    /// The <see cref="BuildStatusExtensions" /> class. Extensions for the <see cref="BuildStatus" /> enumeration.
+    /// Extensions for the <see cref="BuildStatus" /> enumeration.
     /// </summary>
     public static class BuildStatusExtensions
     {

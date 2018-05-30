@@ -7,7 +7,7 @@ namespace Logikfabrik.Overseer.Extensions
     using System.Net.Http;
 
     /// <summary>
-    /// The <see cref="HttpResponseMessageExtensions" /> class.
+    /// Extensions for <see cref="HttpResponseMessage" />.
     /// </summary>
     public static class HttpResponseMessageExtensions
     {

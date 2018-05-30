@@ -101,6 +101,7 @@
     <Compile Include="BuildNotificationManager.cs" />
     <Compile Include="Controls\NumericUpDown.cs" />
     <Compile Include="Controls\NumericUpDownAutomationPeer.cs" />
+    <Compile Include="Controls\Progress.cs" />
     <Compile Include="Converters\AddConnectionViewExceptionToLocalizedStringConverter.cs" />
     <Compile Include="Converters\EditConnectionViewExceptionToLocalizedStringConverter.cs" />
     <Compile Include="Converters\IsLessThanConverter.cs" />
@@ -260,6 +261,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Styles\Controls\NumericUpDown.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Styles\Controls\Progress.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

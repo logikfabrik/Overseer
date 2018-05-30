@@ -147,4 +147,7 @@
     <SolidColorBrush x:Key="RepeatButton.Disabled.Foreground" Color="{StaticResource Color.LightGrey}" />
     <SolidColorBrush x:Key="RepeatButton.Disabled.Border" Color="{StaticResource Color.Grey}" />
 
+    <SolidColorBrush x:Key="Progress.Background" Color="{StaticResource Color.LightGrey}" />
+    <SolidColorBrush x:Key="Progress.Foreground" Color="{StaticResource Color.Yellow}" />
+
 </ResourceDictionary>

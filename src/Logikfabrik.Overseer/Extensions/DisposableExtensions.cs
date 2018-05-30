@@ -7,7 +7,7 @@ namespace Logikfabrik.Overseer.Extensions
     using System;
 
     /// <summary>
-    /// The <see cref="DisposableExtensions" /> class. Extensions for implementations of the <see cref="IDisposable" /> interface.
+    /// Extensions for implementations of the <see cref="IDisposable" /> interface.
     /// </summary>
     public static class DisposableExtensions
     {

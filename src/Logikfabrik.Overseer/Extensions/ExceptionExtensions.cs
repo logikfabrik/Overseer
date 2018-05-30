@@ -7,7 +7,7 @@ namespace Logikfabrik.Overseer.Extensions
     using System;
 
     /// <summary>
-    /// The <see cref="ExceptionExtensions" /> class.
+    /// Extensions for <see cref="Exception" />.
     /// </summary>
     public static class ExceptionExtensions
     {
