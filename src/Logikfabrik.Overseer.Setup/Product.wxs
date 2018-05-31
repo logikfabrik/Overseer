@@ -582,7 +582,7 @@
     <Property Id="UI_SHORTCUTDIALOGSTARTMENUSHORTCUTSCHECKBOX" Value="1" />
     <Property Id="UI_EXITDIALOGLAUNCHPRODUCTCHECKBOX" Value="1" />
 
-    <Property Id="WixShellExecTarget" Value="[!filCA7CCBC737E04F139864ACB9FDC02E2E]" />
+    <Property Id="WixShellExecTarget" Value="[#filCA7CCBC737E04F139864ACB9FDC02E2E]" />
 
     <CustomAction Id="LaunchProduct"
                   BinaryKey="WixCA"
